@@ -6,11 +6,12 @@ import { notFound } from 'next/navigation'
 export const revalidate = 3600 // Revalidate every hour
 
 interface Props {
-  params: { category: string }
+  params: Promise<{ category: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const decodedCategory = decodeURIComponent(params.category)
+  const { category } = await params
+  const decodedCategory = decodeURIComponent(category)
   
   return {
     title: `${decodedCategory} Questions & Answers | Deeper`,
@@ -19,7 +20,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CategoryPage({ params }: Props) {
-  const decodedCategory = decodeURIComponent(params.category)
+  const { category } = await params
+  const decodedCategory = decodeURIComponent(category)
   const questions = await getQuestionsByCategory(decodedCategory)
 
   if (!questions.length) {

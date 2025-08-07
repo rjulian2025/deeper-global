@@ -6,7 +6,7 @@ export default function AnalyticsOptOut() {
   useEffect(() => {
     const GA_ID = process.env.NEXT_PUBLIC_GA_ID
     if (GA_ID) {
-      window[`ga-disable-${GA_ID}`] = true
+      (window as unknown as Record<string, unknown>)[`ga-disable-${GA_ID}`] = true
     }
   }, [])
 

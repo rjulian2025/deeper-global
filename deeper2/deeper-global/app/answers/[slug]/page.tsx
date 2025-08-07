@@ -5,11 +5,12 @@ import { notFound } from 'next/navigation'
 export const revalidate = 3600 // Revalidate every hour
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const question = await getQuestionBySlug(params.slug)
+  const { slug } = await params
+  const question = await getQuestionBySlug(slug)
   
   if (!question) {
     return {
@@ -30,7 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function AnswerPage({ params }: Props) {
-  const question = await getQuestionBySlug(params.slug)
+  const { slug } = await params
+  const question = await getQuestionBySlug(slug)
 
   if (!question) {
     notFound()

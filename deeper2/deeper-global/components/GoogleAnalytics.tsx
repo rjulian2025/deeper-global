@@ -5,6 +5,12 @@ import Script from 'next/script'
 import { useEffect } from 'react'
 import { Analytics } from '@vercel/analytics/react'
 
+declare global {
+  interface Window {
+    gtag: (command: string, targetId: string, config?: Record<string, unknown>) => void
+  }
+}
+
 export default function GoogleAnalytics({ GA_MEASUREMENT_ID }: { GA_MEASUREMENT_ID: string }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
