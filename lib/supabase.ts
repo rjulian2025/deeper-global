@@ -19,33 +19,48 @@ export type Question = {
 }
 
 export async function getQuestions() {
-  const { data, error } = await supabase
-    .from('questions_master')
-    .select('*')
-    .order('created_at', { ascending: false })
+  try {
+    const { data, error } = await supabase
+      .from('questions_master')
+      .select('*')
+      .order('created_at', { ascending: false })
 
-  if (error) throw error
-  return data as Question[]
+    if (error) throw error
+    return data as Question[]
+  } catch (error) {
+    console.warn('Failed to fetch questions:', error)
+    return [] // Return empty array for build-time
+  }
 }
 
 export async function getQuestionBySlug(slug: string) {
-  const { data, error } = await supabase
-    .from('questions_master')
-    .select('*')
-    .eq('slug', slug)
-    .single()
+  try {
+    const { data, error } = await supabase
+      .from('questions_master')
+      .select('*')
+      .eq('slug', slug)
+      .single()
 
-  if (error) throw error
-  return data as Question
+    if (error) throw error
+    return data as Question
+  } catch (error) {
+    console.warn(`Failed to fetch question by slug ${slug}:`, error)
+    return null // Return null for build-time
+  }
 }
 
 export async function getQuestionsByCategory(category: string) {
-  const { data, error } = await supabase
-    .from('questions_master')
-    .select('*')
-    .eq('category', category)
-    .order('created_at', { ascending: false })
+  try {
+    const { data, error } = await supabase
+      .from('questions_master')
+      .select('*')
+      .eq('category', category)
+      .order('created_at', { ascending: false })
 
-  if (error) throw error
-  return data as Question[]
+    if (error) throw error
+    return data as Question[]
+  } catch (error) {
+    console.warn(`Failed to fetch questions by category ${category}:`, error)
+    return [] // Return empty array for build-time
+  }
 }
