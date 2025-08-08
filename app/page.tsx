@@ -1,9 +1,10 @@
 import Link from 'next/link'
-import { getQuestions, Question } from '@/lib/db'
+import { getQuestions, Question } from '@/lib/db.server'
 import { Suspense } from 'react'
 import QuestionCard from '@/components/QuestionCard'
 import ClientOnly from '@/components/ClientOnly'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
+import HomepageJsonLd from '@/components/HomepageJsonLd'
 
 // Loading skeleton component
 function HomepageSkeleton() {
@@ -162,6 +163,7 @@ async function HomepageContent() {
 export default function Home() {
   return (
     <>
+      <HomepageJsonLd />
       <Suspense fallback={<HomepageSkeleton />}>
         <HomepageContent />
       </Suspense>

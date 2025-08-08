@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import WebVitals from '../components/WebVitals'
+import Header from '@/components/Header'
 
 export const metadata: Metadata = {
   title: 'Deeper | AI-Structured Mental Health Search',
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-white text-black">
       <body className="antialiased bg-white text-black">
+        <Header />
         {children}
         <WebVitals />
       </body>

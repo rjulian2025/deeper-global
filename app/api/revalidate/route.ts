@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidateTag } from 'next/cache'
-import { invalidateAllQuestions, invalidateCluster, invalidateQuestion } from '@/lib/supabase'
+import { invalidateAllQuestions, invalidateCluster, invalidateQuestion } from '@/lib/db.server'
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { tag, secret } = body
+    const { type, slug, secret } = body
 
     // Check secret
     if (secret !== process.env.REVALIDATE_SECRET) {
@@ -15,35 +15,55 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    if (!tag) {
+    if (!type) {
       return NextResponse.json(
-        { error: 'Tag is required' },
+        { error: 'Type is required' },
         { status: 400 }
       )
     }
 
-    console.log(`🔄 Revalidating tag: ${tag}`)
+    console.log(`🔄 Revalidating type: ${type}, slug: ${slug || 'all'}`)
 
-    // Handle different tag patterns
-    if (tag === 'questions') {
-      await invalidateAllQuestions()
-    } else if (tag.startsWith('cluster:')) {
-      const clusterSlug = tag.replace('cluster:', '')
-      await invalidateCluster(clusterSlug)
-    } else if (tag.startsWith('question:')) {
-      const questionSlug = tag.replace('question:', '')
-      await invalidateQuestion(questionSlug)
-    } else {
-      // Generic tag revalidation
-      revalidateTag(tag)
+    // Handle different revalidation types
+    switch (type) {
+      case 'question':
+        if (slug) {
+          revalidateTag(`question:${slug}`)
+          console.log(`✅ Revalidated question: ${slug}`)
+        } else {
+          revalidateTag('questions')
+          console.log(`✅ Revalidated all questions`)
+        }
+        break
+      case 'category':
+        if (slug) {
+          revalidateTag(`category:${slug}`)
+          console.log(`✅ Revalidated category: ${slug}`)
+        } else {
+          revalidateTag('questions')
+          console.log(`✅ Revalidated all questions`)
+        }
+        break
+      case 'cluster':
+        if (slug) {
+          revalidateTag(`cluster:${slug}`)
+          console.log(`✅ Revalidated cluster: ${slug}`)
+        } else {
+          revalidateTag('questions')
+          console.log(`✅ Revalidated all questions`)
+        }
+        break
+      default:
+        return NextResponse.json(
+          { error: 'Invalid type. Must be question, category, or cluster' },
+          { status: 400 }
+        )
     }
-
-    console.log(`✅ Successfully revalidated tag: ${tag}`)
 
     return NextResponse.json(
       { 
         success: true, 
-        message: `Revalidated tag: ${tag}`,
+        message: `Revalidated ${type}${slug ? `: ${slug}` : ''}`,
         timestamp: new Date().toISOString()
       },
       { status: 200 }

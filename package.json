@@ -10,6 +10,8 @@
     "start": "next start",
     "lint": "next lint",
     "analyze": "ANALYZE=true next build",
+    "analyze:ci": "ANALYZE=true npm run build:ci",
+    "bundle:guard": "node scripts/bundle_guard.mjs",
     "smoke": "bash scripts/deploy_smoke.sh"
   },
   "dependencies": {

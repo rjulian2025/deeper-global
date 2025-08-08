@@ -27,7 +27,15 @@ export default function WebVitals() {
       }
     }
 
-    loadWebVitals()
+    // Defer web-vitals loading to idle time
+    if (typeof window !== 'undefined') {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => loadWebVitals())
+      } else {
+        // Fallback for browsers without requestIdleCallback
+        setTimeout(() => loadWebVitals(), 1000)
+      }
+    }
   }, [])
 
   return null

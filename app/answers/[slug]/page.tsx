@@ -1,4 +1,4 @@
-import { getQuestionBySlug } from '@/lib/db'
+import { getQuestionBySlug, getRelatedQuestions } from '@/lib/db.server'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -7,6 +7,11 @@ import GoogleAnalytics from '@/components/GoogleAnalytics'
 import ClientOnly from '@/components/ClientOnly'
 import { buildQuestionMetadata } from '@/lib/seo'
 import QuestionJsonLd from '@/components/QuestionJsonLd'
+import Breadcrumbs from '@/app/(ui)/Breadcrumbs'
+import RelatedAnswers from '@/app/(ui)/RelatedAnswers'
+import BackToTop from '@/app/(ui)/BackToTop'
+import PrevNextNavigation from '@/components/PrevNextNavigation'
+import EntityLinkedContent from '@/components/EntityLinkedContent'
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -57,7 +62,10 @@ function AnswerSkeleton() {
 // Main content component
 async function AnswerContent({ params }: Props) {
   const { slug } = await params
-  const question = await getQuestionBySlug(slug)
+  const [question, relatedQuestions] = await Promise.all([
+    getQuestionBySlug(slug),
+    getRelatedQuestions(slug, 5)
+  ])
 
   if (!question) {
     notFound()
@@ -67,55 +75,53 @@ async function AnswerContent({ params }: Props) {
   const safeShortAnswer = question.short_answer || 'No short answer available'
   const safeAnswer = question.answer || 'No detailed answer available'
   const safeCategory = question.category || 'Uncategorized'
+  const safeRawCategory = question.raw_category || safeCategory
+
+  // Build breadcrumb items
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Answers', href: '/answers' },
+    { label: safeCategory, href: `/categories/${encodeURIComponent(safeCategory)}` },
+    { label: question.question }
+  ]
 
   return (
     <div className="bg-white min-h-screen px-4 sm:px-6 lg:px-8 py-12">
-      <QuestionJsonLd question={question} />
-      <div className="max-w-3xl mx-auto">
-        {/* Breadcrumb */}
-        <div className="mb-8">
-          <div className="flex items-center space-x-4 text-sm text-gray-700">
-            <Link 
-              href="/answers"
-              className="text-blue-600 hover:text-blue-700 transition-colors duration-200 flex items-center font-medium"
-            >
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              All answers
-            </Link>
-            <span className="text-gray-400">/</span>
-            <Link 
-              href={`/categories/${encodeURIComponent(safeCategory)}`}
-              className="text-blue-600 hover:text-blue-700 transition-colors duration-200 font-medium"
-            >
-              {safeCategory}
-            </Link>
-          </div>
-        </div>
+      <QuestionJsonLd question={question} relatedQuestions={relatedQuestions} />
+      <article className="mx-auto max-w-3xl">
+        {/* Breadcrumbs */}
+        <Breadcrumbs items={breadcrumbItems} />
 
         {/* Question */}
-        <article className="card p-8 mb-8">
+        <section className="mb-8">
           <h1 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4 leading-tight">
             {question.question}
           </h1>
-          <div className="category-pill mb-6">
+          <div className="inline-flex px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs font-medium mb-6">
             {safeCategory}
           </div>
           <div className="text-lg text-gray-700 mb-6 leading-relaxed">
             {safeShortAnswer}
           </div>
-        </article>
+        </section>
 
         {/* Full Answer */}
-        <article className="card p-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-6">Full Answer</h2>
-          <div 
-            className="prose prose-gray max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline"
-            dangerouslySetInnerHTML={{ __html: safeAnswer }}
+        <section className="prose prose-gray max-w-none">
+          <EntityLinkedContent 
+            content={safeAnswer}
+            className="prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline"
           />
-        </article>
-      </div>
+        </section>
+
+        {/* Related Answers */}
+        <RelatedAnswers category={safeRawCategory} currentSlug={slug} />
+
+        {/* Prev/Next Navigation */}
+        <PrevNextNavigation currentSlug={slug} />
+
+        {/* Back to top */}
+        <BackToTop />
+      </article>
     </div>
   )
 }

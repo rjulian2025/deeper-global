@@ -1,4 +1,4 @@
-import { getQuestionsByCategory } from '@/lib/supabase'
+import { getQuestionsByCategory } from '@/lib/db.server'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
