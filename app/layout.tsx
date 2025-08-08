@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import WebVitals from '../components/WebVitals'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,8 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="bg-white text-black">
-      <body className={`${inter.className} bg-white text-black`}>
+      <body className={`${inter.className} antialiased bg-white text-black`}>
         {children}
+        <WebVitals />
       </body>
     </html>
   )

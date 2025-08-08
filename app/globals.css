@@ -1,8 +1,23 @@
+/* Speed mode toggle - set to true to bypass custom font loading */
+/* To use system fonts only, change the body font-family below */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* tailwind-probe: do not remove */
+._tw_probe_1 { @apply text-gray-900 bg-white rounded-xl border border-gray-300; }
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-var.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   color: black;
   background: white;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif;
 }
