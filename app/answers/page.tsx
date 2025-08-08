@@ -21,25 +21,25 @@ export default async function AnswersPage() {
   }, {} as Record<string, Question[]>)
 
   return (
-    <div className="bg-white text-black min-h-screen px-4 py-12">
+    <div className="bg-white text-black min-h-screen px-6 py-16">
       <div className="max-w-7xl mx-auto">
         {/* Page Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Ask Anything. Deeper Listens.</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <div className="text-center mb-20">
+          <h1 className="text-5xl font-bold text-gray-900 mb-6">Ask Anything. Deeper Listens.</h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             1,000+ evidence-informed answers for humans and machines.
           </p>
         </div>
 
         {/* Categories */}
-        <div className="space-y-16">
+        <div className="space-y-20">
           {Object.entries(grouped).map(([category, questions]) => (
-            <section key={category} className="border-b border-gray-100 pb-12 last:border-b-0">
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl font-bold text-gray-900">{category}</h2>
-                <span className="text-sm text-gray-500">{questions.length} questions</span>
+            <section key={category} className="border-b-2 border-gray-200 pb-16 last:border-b-0">
+              <div className="flex items-center justify-between mb-12">
+                <h2 className="text-3xl font-bold text-gray-900">{category}</h2>
+                <span className="text-lg text-gray-500 font-medium">{questions.length} questions</span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {questions.map((q) => (
                   <QuestionCard key={q.slug} {...q} />
                 ))}
