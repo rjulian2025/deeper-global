@@ -1,6 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: '/questions/:slug',
+        destination: '/answers/:slug',
+        permanent: true,
+        statusCode: 308,
+      },
+    ]
+  },
 };
 
 module.exports = nextConfig;

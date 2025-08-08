@@ -10,7 +10,6 @@ export type Question = {
   question: string
   short_answer: string
   answer: string
-  triage: string
   category: string
   raw_category: string
   slug: string
@@ -47,7 +46,7 @@ export async function getQuestionBySlug(slug: string) {
   try {
     const { data, error } = await supabase
       .from('questions_master')
-      .select('*')
+      .select('id, question, short_answer, answer, category, raw_category, slug, created_at, updated_at')
       .eq('slug', slug)
       .single()
 
@@ -63,7 +62,7 @@ export async function getQuestionsByCategory(category: string) {
   try {
     const { data, error } = await supabase
       .from('questions_master')
-      .select('*')
+      .select('id, question, short_answer, answer, category, raw_category, slug, created_at, updated_at')
       .eq('category', category)
       .order('created_at', { ascending: false })
 
