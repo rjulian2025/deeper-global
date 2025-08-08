@@ -26,7 +26,7 @@ const getCachedAllQuestions = unstable_cache(
 export default async function AnswersPage() {
   const questions = await getCachedAllQuestions()
 
-  const grouped = questions.reduce((acc, q) => {
+  const grouped = questions.reduce((acc: Record<string, Question[]>, q: Question) => {
     acc[q.category] ||= []
     acc[q.category].push(q)
     return acc
@@ -35,12 +35,15 @@ export default async function AnswersPage() {
   return (
     <>
       <AnswersListJsonLd questions={questions} />
-      <div className="bg-white text-black min-h-screen px-6 py-16">
+      <div className="bg-white min-h-screen px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-7xl mx-auto">
           {/* Page Header */}
           <div className="text-center mb-20">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">Ask Anything. Deeper Listens.</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h1 className="text-4xl sm:text-5xl font-semibold text-gray-900 mb-6 leading-tight">
+              Ask Anything.<br />
+              <span className="text-blue-600">Deeper Listens.</span>
+            </h1>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
               1,000+ evidence-informed answers for humans and machines.
             </p>
           </div>
@@ -48,12 +51,14 @@ export default async function AnswersPage() {
           {/* Categories */}
           <div className="space-y-20">
             {Object.entries(grouped).map(([category, questions]) => (
-              <section key={category} className="border-b-2 border-gray-200 pb-16 last:border-b-0">
+              <section key={category} className="border-b border-gray-200 pb-16 last:border-b-0">
                 <div className="flex items-center justify-between mb-12">
-                  <h2 className="text-3xl font-bold text-gray-900">{category}</h2>
-                  <span className="text-lg text-gray-500 font-medium">{questions.length} questions</span>
+                  <h2 className="text-2xl font-semibold text-gray-900">{category}</h2>
+                  <span className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                    {questions.length} questions
+                  </span>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {questions.map((q) => (
                     <QuestionCard key={q.slug} {...q} />
                   ))}

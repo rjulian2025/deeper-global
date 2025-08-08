@@ -1,25 +1,21 @@
 import Link from 'next/link'
 import { getQuestions, Question } from '@/lib/supabase'
 import { Suspense } from 'react'
-import QuestionCard from '@/components/QuestionCard'
-import GoogleAnalytics from '@/components/GoogleAnalytics'
-import ClientOnly from '@/components/ClientOnly'
-import { buildHomeMetadata } from '@/lib/seo'
 import { unstable_cache } from 'next/cache'
-
-export const revalidate = 3600 // Revalidate every hour
-export const metadata = buildHomeMetadata()
+import QuestionCard from '@/components/QuestionCard'
+import ClientOnly from '@/components/ClientOnly'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 // Loading skeleton component
 function HomepageSkeleton() {
   return (
-    <div className="bg-white text-black min-h-screen px-4 py-12">
-      <div className="max-w-4xl mx-auto">
+    <div className="bg-white min-h-screen px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto">
         {/* Hero skeleton */}
         <div className="text-center mb-16">
-          <div className="h-12 bg-gray-200 rounded mb-6 animate-pulse max-w-2xl mx-auto"></div>
+          <div className="h-12 bg-gray-200 rounded-lg mb-6 animate-pulse max-w-2xl mx-auto"></div>
           <div className="h-6 bg-gray-200 rounded mb-8 animate-pulse max-w-2xl mx-auto"></div>
-          <div className="h-10 bg-gray-200 rounded w-40 mx-auto animate-pulse"></div>
+          <div className="h-12 bg-gray-200 rounded-lg w-48 mx-auto animate-pulse"></div>
         </div>
         
         {/* Category skeletons */}
@@ -29,10 +25,10 @@ function HomepageSkeleton() {
               <div className="h-8 bg-gray-200 rounded animate-pulse w-48"></div>
               <div className="h-4 bg-gray-200 rounded animate-pulse w-32"></div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[...Array(3)].map((_, j) => (
-                <div key={j} className="bg-white border border-gray-300 p-4">
-                  <div className="h-6 bg-gray-200 rounded mb-2 animate-pulse"></div>
+                <div key={j} className="card p-6">
+                  <div className="h-6 bg-gray-200 rounded mb-3 animate-pulse"></div>
                   <div className="h-4 bg-gray-200 rounded mb-2 animate-pulse"></div>
                   <div className="h-4 bg-gray-200 rounded w-3/4 animate-pulse"></div>
                 </div>
@@ -48,15 +44,12 @@ function HomepageSkeleton() {
 // Empty state component
 function EmptyState() {
   return (
-    <div className="bg-white text-black min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <div className="text-6xl mb-4">🤔</div>
-        <h2 className="text-2xl font-semibold text-black mb-2">No questions available</h2>
-        <p className="text-black mb-6">Check back soon for mental health insights and answers.</p>
-        <Link 
-          href="/answers"
-          className="inline-block bg-blue-600 text-white px-6 py-3 text-base font-medium underline"
-        >
+    <div className="bg-white min-h-screen flex items-center justify-center px-4">
+      <div className="text-center max-w-md">
+        <div className="text-6xl mb-6">🤔</div>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-3">No questions available</h2>
+        <p className="text-gray-700 mb-8 leading-relaxed">Check back soon for mental health insights and answers.</p>
+        <Link href="/answers" className="btn-primary">
           Browse Answers
         </Link>
       </div>
@@ -77,16 +70,16 @@ function CategorySection({
   return (
     <section>
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-2xl font-semibold text-black">{category}</h2>
+        <h2 className="text-2xl font-semibold text-gray-900">{category}</h2>
         <Link 
           href={`/categories/${encodeURIComponent(category)}`}
-          className="text-blue-600 underline"
+          className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
         >
-          View all {totalCount} questions
+          View all {totalCount} questions →
         </Link>
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {questions.map((question) => (
           <QuestionCard key={question.id} {...question} />
         ))}
@@ -117,7 +110,7 @@ async function HomepageContent() {
     }
 
     // Group questions by category
-    const groupedQuestions = questions.reduce((acc, question) => {
+    const groupedQuestions = questions.reduce((acc: Record<string, Question[]>, question: Question) => {
       const category = question.category || 'Uncategorized'
       if (!acc[category]) {
         acc[category] = []
@@ -128,35 +121,33 @@ async function HomepageContent() {
 
     // Get top 6 categories by question count
     const topCategories = Object.entries(groupedQuestions)
-      .sort(([, a], [, b]) => b.length - a.length)
+      .sort(([, a], [, b]) => (b as Question[]).length - (a as Question[]).length)
       .slice(0, 6)
       .map(([category, questions]) => ({
         category,
-        questions: questions.slice(0, 3), // Show 2-3 questions per category
-        totalCount: questions.length
+        questions: (questions as Question[]).slice(0, 3), // Show 3 questions per category
+        totalCount: (questions as Question[]).length
       }))
 
     return (
-      <div className="bg-white text-black min-h-screen px-4 py-12">
-        <div className="max-w-4xl mx-auto">
+      <div className="bg-white min-h-screen px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-7xl mx-auto">
           {/* Hero Section */}
-          <section className="text-center mb-16">
-            <h1 className="text-4xl font-bold mb-6 text-black">
-              Ask Anything. Deeper Listens.
+          <section className="text-center mb-20">
+            <h1 className="text-4xl sm:text-5xl font-semibold mb-6 text-gray-900 leading-tight">
+              Ask Anything.<br />
+              <span className="text-blue-600">Deeper Listens.</span>
             </h1>
-            <p className="text-lg text-black mb-8 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed">
               1,000+ evidence-informed answers for humans and machines.
             </p>
-            <Link 
-              href="/answers"
-              className="inline-block bg-blue-600 text-white px-6 py-3 text-base font-medium underline"
-            >
+            <Link href="/answers" className="btn-primary">
               Browse All Answers
             </Link>
           </section>
 
           {/* Questions by Category */}
-          <div className="space-y-16">
+          <div className="space-y-20">
             {topCategories.map(({ category, questions, totalCount }) => (
               <CategorySection 
                 key={category}
