@@ -13,36 +13,41 @@ export default async function AnswersPage() {
   const { data } = await supabase
     .from('questions_master')
     .select('id, slug, question, short_answer, category')
-    .order('id', { ascending: true })
     .limit(1000);
 
   const questions = data || [];
 
-  return (
-    <main className="bg-white text-black min-h-screen px-6 py-12">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4">Mental Health Questions & Answers</h1>
-        <p className="text-lg mb-10">Browse {questions.length} evidence-informed answers to mental health questions.</p>
+  const grouped = questions.reduce((acc, q) => {
+    acc[q.category] = acc[q.category] || [];
+    acc[q.category].push(q);
+    return acc;
+  }, {} as Record<string, typeof questions>);
 
-        <div className="space-y-8">
-          {questions.map((q) => (
-            <div
-              key={q.id}
-              className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
-            >
-              <h2 className="text-xl font-semibold mb-2">
-                <Link
-                  href={`/answers/${q.slug}`}
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  {q.question}
-                </Link>
-              </h2>
-              <p className="text-gray-800 mb-2">{q.short_answer}</p>
-              <div className="text-sm text-gray-600">{q.category}</div>
-            </div>
-          ))}
-        </div>
+  return (
+    <main className="bg-white text-black min-h-screen px-4 py-12">
+      <div className="max-w-5xl mx-auto">
+        <header className="mb-12">
+          <h1 className="text-4xl font-bold mb-2">Ask Anything. Deeper Listens.</h1>
+          <p className="text-lg text-gray-700">1,000+ evidence-informed answers for humans and machines.</p>
+        </header>
+
+        {Object.entries(grouped).map(([category, qs]) => (
+          <section key={category} className="mb-10">
+            <h2 className="text-2xl font-semibold mb-4">{category}</h2>
+            <ul className="space-y-4">
+              {qs.slice(0, 3).map((q) => (
+                <li key={q.id} className="border rounded-lg p-4 hover:shadow-sm transition">
+                  <Link href={`/answers/${q.slug}`}>
+                    <h3 className="text-lg font-medium text-blue-700 hover:underline">
+                      {q.question}
+                    </h3>
+                  </Link>
+                  <p className="text-sm text-gray-700 mt-1">{q.short_answer}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
       </div>
     </main>
   );
