@@ -1,72 +1,49 @@
-import { getQuestions } from '@/lib/supabase'
-import MainLayout from '@/components/MainLayout'
-import QuestionCard from '@/components/QuestionCard'
-import { Suspense } from 'react'
+import { supabase } from '@/lib/supabase';
+import Link from 'next/link';
 
-// Loading skeleton
-function AnswersSkeleton() {
+interface Question {
+  id: string;
+  slug: string;
+  question: string;
+  short_answer: string;
+  category: string;
+}
+
+export default async function AnswersPage() {
+  const { data } = await supabase
+    .from('questions_master')
+    .select('id, slug, question, short_answer, category')
+    .order('id', { ascending: true })
+    .limit(1000);
+
+  const questions = data || [];
+
   return (
-    <MainLayout>
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="mb-8">
-          <div className="h-10 bg-gray-200 rounded-lg mb-4 animate-pulse w-64"></div>
-          <div className="h-6 bg-gray-200 rounded-lg animate-pulse w-48"></div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(9)].map((_, i) => (
-            <div key={i} className="bg-white border border-gray-200 rounded-lg p-6">
-              <div className="h-6 bg-gray-200 rounded mb-3 animate-pulse"></div>
-              <div className="h-4 bg-gray-200 rounded mb-2 animate-pulse"></div>
-              <div className="h-4 bg-gray-200 rounded w-3/4 animate-pulse"></div>
+    <main className="bg-white text-black min-h-screen px-6 py-12">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-4xl font-bold mb-4">Mental Health Questions & Answers</h1>
+        <p className="text-lg mb-10">Browse {questions.length} evidence-informed answers to mental health questions.</p>
+
+        <div className="space-y-8">
+          {questions.map((q) => (
+            <div
+              key={q.id}
+              className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <h2 className="text-xl font-semibold mb-2">
+                <Link
+                  href={`/answers/${q.slug}`}
+                  className="text-blue-700 underline hover:text-blue-900"
+                >
+                  {q.question}
+                </Link>
+              </h2>
+              <p className="text-gray-800 mb-2">{q.short_answer}</p>
+              <div className="text-sm text-gray-600">{q.category}</div>
             </div>
           ))}
         </div>
       </div>
-    </MainLayout>
-  )
-}
-
-// Main content component
-async function AnswersContent() {
-  const questions = await getQuestions()
-
-  return (
-    <MainLayout>
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Mental Health Questions & Answers
-          </h1>
-          <p className="text-lg text-gray-600">
-            Browse {questions.length} evidence-informed answers to mental health questions
-          </p>
-        </div>
-
-        {/* Questions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {questions.map((question) => (
-            <QuestionCard key={question.id} question={question} />
-          ))}
-        </div>
-
-        {/* Empty state */}
-        {questions.length === 0 && (
-          <div className="text-center py-12">
-            <div className="text-6xl mb-4">📚</div>
-            <h2 className="text-2xl font-semibold text-gray-700 mb-2">No questions available</h2>
-            <p className="text-gray-500">Check back soon for mental health insights and answers.</p>
-          </div>
-        )}
-      </div>
-    </MainLayout>
-  )
-}
-
-export default function AnswersPage() {
-  return (
-    <Suspense fallback={<AnswersSkeleton />}>
-      <AnswersContent />
-    </Suspense>
-  )
+    </main>
+  );
 }
