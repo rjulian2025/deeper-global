@@ -1,5 +1,5 @@
 import JsonLd from './JsonLd'
-import { Question } from '@/lib/supabase'
+import type { Question } from '@/lib/db'
 
 interface AnswersListJsonLdProps {
   questions: Question[]

@@ -1,4 +1,4 @@
-import { getQuestionBySlug } from '@/lib/supabase'
+import { getQuestionBySlug } from '@/lib/db'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -7,7 +7,6 @@ import GoogleAnalytics from '@/components/GoogleAnalytics'
 import ClientOnly from '@/components/ClientOnly'
 import { buildQuestionMetadata } from '@/lib/seo'
 import QuestionJsonLd from '@/components/QuestionJsonLd'
-import { unstable_cache } from 'next/cache'
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -15,21 +14,9 @@ interface Props {
   params: Promise<{ slug: string }>
 }
 
-// Cached data fetching with tags
-const getCachedQuestionBySlug = unstable_cache(
-  async (slug: string) => {
-    return await getQuestionBySlug(slug)
-  },
-  ['question-by-slug'],
-  {
-    tags: ['questions'],
-    revalidate: 3600,
-  }
-)
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const question = await getCachedQuestionBySlug(slug)
+  const question = await getQuestionBySlug(slug)
   
   if (!question) {
     return {
@@ -70,7 +57,7 @@ function AnswerSkeleton() {
 // Main content component
 async function AnswerContent({ params }: Props) {
   const { slug } = await params
-  const question = await getCachedQuestionBySlug(slug)
+  const question = await getQuestionBySlug(slug)
 
   if (!question) {
     notFound()

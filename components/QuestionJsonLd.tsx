@@ -1,8 +1,8 @@
 import JsonLd from './JsonLd'
-import { Question } from '@/lib/supabase'
+import type { QuestionDetail } from '@/lib/db'
 
 interface QuestionJsonLdProps {
-  question: Question
+  question: QuestionDetail
 }
 
 export default function QuestionJsonLd({ question }: QuestionJsonLdProps) {

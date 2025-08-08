@@ -1,7 +1,6 @@
 import Link from 'next/link'
-import { getQuestions, Question } from '@/lib/supabase'
+import { getQuestions, Question } from '@/lib/db'
 import { Suspense } from 'react'
-import { unstable_cache } from 'next/cache'
 import QuestionCard from '@/components/QuestionCard'
 import ClientOnly from '@/components/ClientOnly'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
@@ -88,22 +87,15 @@ function CategorySection({
   )
 }
 
-// Cached data fetching with tags
-const getCachedQuestions = unstable_cache(
-  async () => {
-    return await getQuestions()
-  },
-  ['homepage-questions'],
-  {
-    tags: ['questions'],
-    revalidate: 3600,
-  }
-)
+// Get questions for homepage (already cached in db.ts)
+const getHomepageQuestions = async () => {
+  return await getQuestions({ limit: 18 }) // Show 6 categories × 3 questions each
+}
 
 // Main content component
 async function HomepageContent() {
   try {
-    const questions = await getCachedQuestions()
+    const questions = await getHomepageQuestions()
     
     if (!questions || questions.length === 0) {
       return <EmptyState />

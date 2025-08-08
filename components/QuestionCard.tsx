@@ -1,11 +1,7 @@
 import Link from 'next/link'
+import type { Question } from '@/lib/db'
 
-interface QuestionCardProps {
-  slug: string
-  question: string
-  short_answer: string
-  category?: string
-}
+type QuestionCardProps = Pick<Question, 'slug' | 'question' | 'short_answer' | 'category'>
 
 export default function QuestionCard({ slug, question, short_answer, category }: QuestionCardProps) {
   return (

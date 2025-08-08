@@ -1,11 +1,9 @@
-import { supabase } from '@/lib/supabase'
 import QuestionCard from '@/components/QuestionCard'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { buildClusterMetadata } from '@/lib/seo'
 import ClusterJsonLd from '@/components/ClusterJsonLd'
-import { Question } from '@/lib/supabase'
-import { unstable_cache } from 'next/cache'
+import { getQuestionsByCategory, getQuestionsCount, Question } from '@/lib/db'
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -13,40 +11,20 @@ interface Props {
   params: Promise<{ slug: string }>
 }
 
-// Cached data fetching with tags
-const getCachedClusterQuestions = unstable_cache(
-  async (clusterSlug: string) => {
-    const { data } = await supabase
-      .from('questions_master')
-      .select('*')
-      .eq('raw_category', decodeURIComponent(clusterSlug))
-    return (data || []) as Question[]
-  },
-  ['cluster-questions'],
-  {
-    tags: ['questions'],
-    revalidate: 3600,
-  }
-)
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const decodedSlug = decodeURIComponent(slug)
   
   // Get question count for this cluster
-  const { data } = await supabase
-    .from('questions_master')
-    .select('id', { count: 'exact' })
-    .eq('raw_category', decodedSlug)
-  
-  const questionCount = data?.length || 0
+  const questionCount = await getQuestionsCount(decodedSlug)
   
   return buildClusterMetadata(decodedSlug, questionCount)
 }
 
 export default async function ClusterPage({ params }: Props) {
   const { slug } = await params
-  const questions = await getCachedClusterQuestions(slug)
+  const decodedSlug = decodeURIComponent(slug)
+  const questions = await getQuestionsByCategory(decodedSlug, { limit: 100 })
 
   return (
     <>
