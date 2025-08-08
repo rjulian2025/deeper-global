@@ -18,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="bg-white text-black">
+      <body className={`${inter.className} bg-white text-black`}>
         <AnalyticsOptOut />
         {children}
         <GoogleAnalytics GA_MEASUREMENT_ID="G-VY56C15LGV" />
