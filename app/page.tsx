@@ -8,23 +8,25 @@ import QuestionCard from '@/components/QuestionCard'
 function HomepageSkeleton() {
   return (
     <MainLayout>
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto px-4 py-16">
         {/* Hero skeleton */}
         <div className="text-center mb-16">
-          <div className="h-16 bg-gray-200 rounded-lg mb-6 animate-pulse max-w-2xl mx-auto"></div>
-          <div className="h-8 bg-gray-200 rounded-lg mb-8 animate-pulse max-w-3xl mx-auto"></div>
-          <div className="h-14 bg-blue-200 rounded-lg w-48 mx-auto animate-pulse"></div>
+          <div className="h-12 bg-gray-200 rounded mb-6 animate-pulse max-w-2xl mx-auto"></div>
+          <div className="h-6 bg-gray-200 rounded mb-8 animate-pulse max-w-2xl mx-auto"></div>
+          <div className="h-10 bg-gray-200 rounded w-40 mx-auto animate-pulse"></div>
         </div>
         
         {/* Category skeletons */}
         {[...Array(6)].map((_, i) => (
-          <div key={i} className="mb-12">
-            <div className="h-8 bg-gray-200 rounded-lg mb-4 animate-pulse w-64"></div>
-            <div className="h-5 bg-gray-200 rounded-lg mb-6 animate-pulse w-48"></div>
+          <div key={i} className="mb-16">
+            <div className="flex items-center justify-between mb-8">
+              <div className="h-8 bg-gray-200 rounded animate-pulse w-48"></div>
+              <div className="h-4 bg-gray-200 rounded animate-pulse w-32"></div>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[...Array(3)].map((_, j) => (
-                <div key={j} className="bg-white border border-gray-200 rounded-lg p-6">
-                  <div className="h-6 bg-gray-200 rounded mb-3 animate-pulse"></div>
+                <div key={j} className="bg-white border border-gray-300 p-4">
+                  <div className="h-6 bg-gray-200 rounded mb-2 animate-pulse"></div>
                   <div className="h-4 bg-gray-200 rounded mb-2 animate-pulse"></div>
                   <div className="h-4 bg-gray-200 rounded w-3/4 animate-pulse"></div>
                 </div>
@@ -44,11 +46,11 @@ function EmptyState() {
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
           <div className="text-6xl mb-4">🤔</div>
-          <h2 className="text-2xl font-semibold text-gray-700 mb-2">No questions available</h2>
-          <p className="text-gray-500 mb-6">Check back soon for mental health insights and answers.</p>
+          <h2 className="text-2xl font-semibold text-black mb-2">No questions available</h2>
+          <p className="text-black mb-6">Check back soon for mental health insights and answers.</p>
           <Link 
             href="/answers"
-            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+            className="inline-block bg-blue-600 text-white px-6 py-3 text-base font-medium underline"
           >
             Browse Answers
           </Link>
@@ -71,12 +73,15 @@ function CategorySection({
   totalCount: number 
 }) {
   return (
-    <section className="mb-12">
-      <div className="mb-6">
-        <h2 className="text-2xl font-semibold text-gray-700 mb-2">{category}</h2>
-        <p className="text-sm text-gray-500">
-          Showing {questions.length} of {totalCount} questions
-        </p>
+    <section>
+      <div className="flex items-center justify-between mb-8">
+        <h2 className="text-2xl font-semibold text-black">{category}</h2>
+        <Link 
+          href={`/categories/${encodeURIComponent(category)}`}
+          className="text-blue-600 underline"
+        >
+          View all {totalCount} questions
+        </Link>
       </div>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -119,25 +124,25 @@ async function HomepageContent() {
 
     return (
       <MainLayout>
-        <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto px-4 py-16">
           {/* Hero Section */}
           <section className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900 leading-tight">
+            <h1 className="text-4xl font-bold mb-6 text-black">
               Ask Anything. Deeper Listens.
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-black mb-8 max-w-2xl mx-auto">
               1,000+ evidence-informed answers for humans and machines.
             </p>
             <Link 
               href="/answers"
-              className="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl"
+              className="inline-block bg-blue-600 text-white px-6 py-3 text-base font-medium underline"
             >
               Browse All Answers
             </Link>
           </section>
 
           {/* Questions by Category */}
-          <div className="space-y-12">
+          <div className="space-y-16">
             {topCategories.map(({ category, questions, totalCount }) => (
               <CategorySection 
                 key={category}
