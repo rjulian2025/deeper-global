@@ -2,7 +2,6 @@ import { getQuestionsByCategory } from '@/lib/supabase'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import MainLayout from '@/components/MainLayout'
 import QuestionCard from '@/components/QuestionCard'
 import { Suspense } from 'react'
 
@@ -25,8 +24,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // Loading skeleton
 function CategorySkeleton() {
   return (
-    <MainLayout>
-      <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="bg-white text-black min-h-screen px-4 py-8">
+      <div className="max-w-6xl mx-auto">
         <div className="mb-8">
           <div className="h-10 bg-gray-200 rounded-lg mb-4 animate-pulse w-64"></div>
           <div className="h-6 bg-gray-200 rounded-lg animate-pulse w-48"></div>
@@ -41,7 +40,7 @@ function CategorySkeleton() {
           ))}
         </div>
       </div>
-    </MainLayout>
+    </div>
   )
 }
 
@@ -56,8 +55,8 @@ async function CategoryContent({ params }: Props) {
   }
 
   return (
-    <MainLayout>
-      <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="bg-white text-black min-h-screen px-4 py-8">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center space-x-4 mb-4">
@@ -71,10 +70,10 @@ async function CategoryContent({ params }: Props) {
               Back to all answers
             </Link>
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold text-black mb-2">
             {decodedCategory}
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-black">
             {questions.length} question{questions.length !== 1 ? 's' : ''} in this category
           </p>
         </div>
@@ -86,7 +85,7 @@ async function CategoryContent({ params }: Props) {
           ))}
         </div>
       </div>
-    </MainLayout>
+    </div>
   )
 }
 
