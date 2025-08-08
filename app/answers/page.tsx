@@ -2,21 +2,29 @@ import { supabase } from '@/lib/supabase'
 import QuestionCard from '@/components/QuestionCard'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import ClientOnly from '@/components/ClientOnly'
+import { buildAnswersMetadata } from '@/lib/seo'
+import AnswersListJsonLd from '@/components/AnswersListJsonLd'
+import { Question } from '@/lib/supabase'
+import { unstable_cache } from 'next/cache'
 
 export const revalidate = 3600 // Revalidate every hour
+export const metadata = buildAnswersMetadata()
 
-interface Question {
-  id: string
-  slug: string
-  question: string
-  short_answer: string
-  category: string
-}
+// Cached data fetching with tags
+const getCachedAllQuestions = unstable_cache(
+  async () => {
+    const { data } = await supabase.from('questions_master').select('*')
+    return (data || []) as Question[]
+  },
+  ['all-questions'],
+  {
+    tags: ['questions'],
+    revalidate: 3600,
+  }
+)
 
 export default async function AnswersPage() {
-  const { data } = await supabase.from('questions_master').select('*')
-
-  const questions = (data || []) as Question[]
+  const questions = await getCachedAllQuestions()
 
   const grouped = questions.reduce((acc, q) => {
     acc[q.category] ||= []
@@ -26,6 +34,7 @@ export default async function AnswersPage() {
 
   return (
     <>
+      <AnswersListJsonLd questions={questions} />
       <div className="bg-white text-black min-h-screen px-6 py-16">
         <div className="max-w-7xl mx-auto">
           {/* Page Header */}

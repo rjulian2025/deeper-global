@@ -4,8 +4,11 @@ import { Suspense } from 'react'
 import QuestionCard from '@/components/QuestionCard'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import ClientOnly from '@/components/ClientOnly'
+import { buildHomeMetadata } from '@/lib/seo'
+import { unstable_cache } from 'next/cache'
 
 export const revalidate = 3600 // Revalidate every hour
+export const metadata = buildHomeMetadata()
 
 // Loading skeleton component
 function HomepageSkeleton() {
@@ -92,10 +95,22 @@ function CategorySection({
   )
 }
 
+// Cached data fetching with tags
+const getCachedQuestions = unstable_cache(
+  async () => {
+    return await getQuestions()
+  },
+  ['homepage-questions'],
+  {
+    tags: ['questions'],
+    revalidate: 3600,
+  }
+)
+
 // Main content component
 async function HomepageContent() {
   try {
-    const questions = await getQuestions()
+    const questions = await getCachedQuestions()
     
     if (!questions || questions.length === 0) {
       return <EmptyState />

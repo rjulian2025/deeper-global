@@ -5,6 +5,9 @@ import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import ClientOnly from '@/components/ClientOnly'
+import { buildQuestionMetadata } from '@/lib/seo'
+import QuestionJsonLd from '@/components/QuestionJsonLd'
+import { unstable_cache } from 'next/cache'
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -12,9 +15,21 @@ interface Props {
   params: Promise<{ slug: string }>
 }
 
+// Cached data fetching with tags
+const getCachedQuestionBySlug = unstable_cache(
+  async (slug: string) => {
+    return await getQuestionBySlug(slug)
+  },
+  ['question-by-slug'],
+  {
+    tags: ['questions'],
+    revalidate: 3600,
+  }
+)
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const question = await getQuestionBySlug(slug)
+  const question = await getCachedQuestionBySlug(slug)
   
   if (!question) {
     return {
@@ -23,15 +38,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  return {
-    title: `${question.question} | Deeper`,
-    description: question.short_answer,
-    openGraph: {
-      title: question.question,
-      description: question.short_answer,
-      type: 'article',
-    },
-  }
+  return buildQuestionMetadata(
+    question.question,
+    question.short_answer || 'No short answer available',
+    slug
+  )
 }
 
 // Loading skeleton
@@ -59,7 +70,7 @@ function AnswerSkeleton() {
 // Main content component
 async function AnswerContent({ params }: Props) {
   const { slug } = await params
-  const question = await getQuestionBySlug(slug)
+  const question = await getCachedQuestionBySlug(slug)
 
   if (!question) {
     notFound()
@@ -70,38 +81,9 @@ async function AnswerContent({ params }: Props) {
   const safeAnswer = question.answer || 'No detailed answer available'
   const safeCategory = question.category || 'Uncategorized'
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'QAPage',
-    mainEntity: {
-      '@type': 'Question',
-      name: question.question,
-      text: question.question,
-      dateCreated: question.created_at,
-      author: {
-        '@type': 'Organization',
-        name: 'Deeper',
-        url: 'https://deeper.global'
-      },
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: safeAnswer,
-        dateCreated: question.created_at,
-        author: {
-          '@type': 'Organization',
-          name: 'Deeper',
-          url: 'https://deeper.global'
-        }
-      }
-    }
-  }
-
   return (
     <div className="bg-white text-black min-h-screen px-4 py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <QuestionJsonLd question={question} />
       <div className="max-w-3xl mx-auto">
         {/* Breadcrumb */}
         <div className="mb-8">
