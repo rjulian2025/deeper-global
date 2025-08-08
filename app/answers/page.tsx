@@ -1,35 +1,72 @@
 import { getQuestions } from '@/lib/supabase'
-import Link from 'next/link'
+import MainLayout from '@/components/MainLayout'
+import QuestionCard from '@/components/QuestionCard'
+import { Suspense } from 'react'
 
-export const revalidate = 3600 // Revalidate every hour
-
-export default async function AnswersPage() {
-  const questions = await getQuestions()
-
+// Loading skeleton
+function AnswersSkeleton() {
   return (
-    <main className="min-h-screen p-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8">Mental Health Questions & Answers</h1>
-        <div className="space-y-8">
-          {questions.map((question) => (
-            <article key={question.id} className="border-b pb-8">
-              <Link href={`/answers/${question.slug}`}>
-                <h2 className="text-xl font-semibold mb-4 hover:text-blue-600">
-                  {question.question}
-                </h2>
-              </Link>
-              <p className="text-gray-600 dark:text-gray-300">
-                {question.short_answer}
-              </p>
-              <div className="mt-4">
-                <span className="inline-block bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-sm">
-                  {question.category}
-                </span>
-              </div>
-            </article>
+    <MainLayout>
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="mb-8">
+          <div className="h-10 bg-gray-200 rounded-lg mb-4 animate-pulse w-64"></div>
+          <div className="h-6 bg-gray-200 rounded-lg animate-pulse w-48"></div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[...Array(9)].map((_, i) => (
+            <div key={i} className="bg-white border border-gray-200 rounded-lg p-6">
+              <div className="h-6 bg-gray-200 rounded mb-3 animate-pulse"></div>
+              <div className="h-4 bg-gray-200 rounded mb-2 animate-pulse"></div>
+              <div className="h-4 bg-gray-200 rounded w-3/4 animate-pulse"></div>
+            </div>
           ))}
         </div>
       </div>
-    </main>
+    </MainLayout>
+  )
+}
+
+// Main content component
+async function AnswersContent() {
+  const questions = await getQuestions()
+
+  return (
+    <MainLayout>
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            Mental Health Questions & Answers
+          </h1>
+          <p className="text-lg text-gray-600">
+            Browse {questions.length} evidence-informed answers to mental health questions
+          </p>
+        </div>
+
+        {/* Questions Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {questions.map((question) => (
+            <QuestionCard key={question.id} question={question} />
+          ))}
+        </div>
+
+        {/* Empty state */}
+        {questions.length === 0 && (
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">📚</div>
+            <h2 className="text-2xl font-semibold text-gray-700 mb-2">No questions available</h2>
+            <p className="text-gray-500">Check back soon for mental health insights and answers.</p>
+          </div>
+        )}
+      </div>
+    </MainLayout>
+  )
+}
+
+export default function AnswersPage() {
+  return (
+    <Suspense fallback={<AnswersSkeleton />}>
+      <AnswersContent />
+    </Suspense>
   )
 }

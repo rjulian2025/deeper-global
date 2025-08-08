@@ -1,11 +1,13 @@
 import Link from 'next/link'
 import { getQuestions, Question } from '@/lib/supabase'
 import { Suspense } from 'react'
+import MainLayout from '@/components/MainLayout'
+import QuestionCard from '@/components/QuestionCard'
 
 // Loading skeleton component
 function HomepageSkeleton() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <MainLayout>
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Hero skeleton */}
         <div className="text-center mb-16">
@@ -31,50 +33,32 @@ function HomepageSkeleton() {
           </div>
         ))}
       </div>
-    </div>
+    </MainLayout>
   )
 }
 
 // Empty state component
 function EmptyState() {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="text-center">
-        <div className="text-6xl mb-4">🤔</div>
-        <h2 className="text-2xl font-semibold text-gray-700 mb-2">No questions available</h2>
-        <p className="text-gray-500 mb-6">Check back soon for mental health insights and answers.</p>
-        <Link 
-          href="/answers"
-          className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-        >
-          Browse Answers
-        </Link>
+    <MainLayout>
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="text-center">
+          <div className="text-6xl mb-4">🤔</div>
+          <h2 className="text-2xl font-semibold text-gray-700 mb-2">No questions available</h2>
+          <p className="text-gray-500 mb-6">Check back soon for mental health insights and answers.</p>
+          <Link 
+            href="/answers"
+            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+          >
+            Browse Answers
+          </Link>
+        </div>
       </div>
-    </div>
+    </MainLayout>
   )
 }
 
-// Question card component
-function QuestionCard({ question, category }: { question: Question; category: string }) {
-  return (
-    <article className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg hover:border-blue-200 transition-all duration-200">
-      <Link href={`/answers/${question.slug}`} className="block">
-        <h3 className="font-semibold text-lg mb-3 text-gray-900 hover:text-blue-600 transition-colors line-clamp-2">
-          {question.question}
-        </h3>
-        <p className="text-gray-600 mb-4 line-clamp-2 text-sm leading-relaxed">
-          {question.short_answer}
-        </p>
-        <div className="text-sm text-blue-600 font-medium flex items-center">
-          {category} 
-          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </div>
-      </Link>
-    </article>
-  )
-}
+
 
 // Category section component
 function CategorySection({ 
@@ -97,7 +81,7 @@ function CategorySection({
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {questions.map((question) => (
-          <QuestionCard key={question.id} question={question} category={category} />
+          <QuestionCard key={question.id} question={question} />
         ))}
       </div>
     </section>
@@ -134,7 +118,7 @@ async function HomepageContent() {
       }))
 
     return (
-      <div className="min-h-screen bg-gray-50">
+      <MainLayout>
         <div className="max-w-6xl mx-auto px-4 py-8">
           {/* Hero Section */}
           <section className="text-center mb-16">
@@ -164,7 +148,7 @@ async function HomepageContent() {
             ))}
           </div>
         </div>
-      </div>
+      </MainLayout>
     )
   } catch (error) {
     console.error('Error loading homepage data:', error)
