@@ -64,11 +64,19 @@ fi
 
 # Test static assets
 echo "📦 Testing static assets..."
-STATIC_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$BASE_URL/_next/static/chunks/framework-*.js")
-if [ "$STATIC_CODE" = "200" ]; then
-    echo "✅ Static assets: $STATIC_CODE"
+# Get actual chunk URL from the page
+CHUNK_URL=$(curl -s "$BASE_URL/answers" | grep -o '/_next/static/chunks/[^"]*\.js' | head -1)
+if [ -n "$CHUNK_URL" ]; then
+    echo "✅ Chunk URL found: $CHUNK_URL"
+    STATIC_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$BASE_URL$CHUNK_URL")
+    if [ "$STATIC_CODE" = "200" ]; then
+        echo "✅ Static assets: $STATIC_CODE"
+    else
+        echo "❌ Static assets: $STATIC_CODE"
+        exit 1
+    fi
 else
-    echo "❌ Static assets: $STATIC_CODE"
+    echo "❌ No chunk URL found"
     exit 1
 fi
 
