@@ -1,32 +1,20 @@
 import Link from 'next/link'
-import { Question } from '@/lib/supabase'
 
 interface QuestionCardProps {
-  question: Question
-  showCategory?: boolean
+  slug: string
+  question: string
+  short_answer: string
+  category?: string
 }
 
-export default function QuestionCard({ question, showCategory = true }: QuestionCardProps) {
+export default function QuestionCard({ slug, question, short_answer, category }: QuestionCardProps) {
   return (
-    <article className="bg-white border border-gray-300 p-4 hover:shadow-md">
-      <Link href={`/answers/${question.slug}`} className="block">
-        <h3 className="font-semibold text-lg mb-2 text-black">
-          {question.question}
-        </h3>
-        <p className="text-black mb-3 text-sm leading-relaxed">
-          {question.short_answer}
-        </p>
-        <div className="flex items-center justify-between">
-          {showCategory && (
-            <div className="text-xs text-black border border-gray-300 px-2 py-1">
-              {question.category}
-            </div>
-          )}
-          <div className="text-sm text-blue-600 underline">
-            Read more
-          </div>
-        </div>
-      </Link>
-    </article>
+    <Link href={`/questions/${slug}`} className="block p-4 bg-white border rounded hover:shadow transition-shadow">
+      <h3 className="font-semibold text-blue-700 hover:underline">{question}</h3>
+      <p className="text-sm text-gray-500 mt-1">{short_answer}</p>
+      {category && (
+        <div className="text-xs text-gray-400 mt-2">{category}</div>
+      )}
+    </Link>
   )
 }

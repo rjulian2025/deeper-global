@@ -86,7 +86,7 @@ function CategorySection({
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {questions.map((question) => (
-          <QuestionCard key={question.id} question={question} />
+          <QuestionCard key={question.id} {...question} />
         ))}
       </div>
     </section>
