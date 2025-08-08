@@ -6,7 +6,7 @@ import ClusterJsonLd from '@/components/ClusterJsonLd'
 import { getClusterPage, getQuestionsCount, Question } from '@/lib/db.server'
 import Pagination from '@/components/Pagination'
 import AdditionalLinks from '@/components/AdditionalLinks'
-import Breadcrumbs, { BreadcrumbItem } from '@/components/Breadcrumbs'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -33,20 +33,13 @@ export default async function ClusterPage({ params, searchParams }: Props) {
   
   const { questions, totalCount, totalPages } = await getClusterPage(decodedSlug, currentPage, 24)
 
-  // Build breadcrumb items
-  const breadcrumbItems: BreadcrumbItem[] = [
-    { label: 'Home', href: '/' },
-    { label: 'Answers', href: '/answers' },
-    { label: decodedSlug }
-  ]
-
   return (
     <>
       <ClusterJsonLd clusterName={decodedSlug} questions={questions} totalCount={totalCount} />
       <div className="bg-white text-black min-h-screen px-4 py-10">
         <div className="max-w-6xl mx-auto">
           {/* Breadcrumbs */}
-          <Breadcrumbs items={breadcrumbItems} className="mb-6" />
+          <Breadcrumbs category={decodedSlug} slug={slug} />
           
           <h1 className="text-3xl font-bold mb-6 text-black">{decodedSlug}</h1>
           <p className="text-black mb-8">{totalCount} questions in this cluster</p>

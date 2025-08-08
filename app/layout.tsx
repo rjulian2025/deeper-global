@@ -7,6 +7,17 @@ export const metadata: Metadata = {
   title: 'Deeper | AI-Structured Mental Health Search',
   description: 'Evidence-informed mental health answers, crafted for both humans and machines.',
   metadataBase: new URL('https://deeper.global'),
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 }
 
 export default function RootLayout({

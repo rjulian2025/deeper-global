@@ -112,3 +112,4 @@ export function buildClusterMetadata(clusterName: string, questionCount: number)
     canonical: `/clusters/${encodeURIComponent(clusterName)}`,
   })
 }
+

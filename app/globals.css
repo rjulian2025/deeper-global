@@ -46,4 +46,14 @@
   .category-pill {
     @apply inline-flex px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-700;
   }
+  
+  /* Internal link styling */
+  .internal-link {
+    @apply text-blue-700 hover:text-blue-800 underline decoration-blue-300 hover:decoration-blue-500 transition-all duration-200;
+  }
+  
+  /* External link styling (for Wikipedia links that aren't rewritten) */
+  .prose a:not(.internal-link) {
+    @apply text-blue-600 hover:text-blue-700 no-underline hover:underline;
+  }
 }

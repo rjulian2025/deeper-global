@@ -5,6 +5,10 @@ import QuestionCard from '@/components/QuestionCard'
 import ClientOnly from '@/components/ClientOnly'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import HomepageJsonLd from '@/components/HomepageJsonLd'
+import { buildHomeMetadata } from '@/lib/seo'
+
+export const revalidate = 3600 // Revalidate every hour
+export const metadata = buildHomeMetadata()
 
 // Loading skeleton component
 function HomepageSkeleton() {

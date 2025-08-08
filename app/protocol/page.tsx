@@ -1,11 +1,13 @@
 import { Metadata } from 'next'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import ClientOnly from '@/components/ClientOnly'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: 'The Deeper Protocol | Mental Health Search',
   description: 'Learn about how we structure and validate mental health information for AI and human search.',
-}
+  canonical: '/protocol',
+})
 
 export default function ProtocolPage() {
   return (

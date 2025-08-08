@@ -36,3 +36,5 @@ SELECT
 FROM pg_indexes 
 WHERE tablename = 'questions_master'
 ORDER BY indexname;
+
+

@@ -7,8 +7,8 @@ import GoogleAnalytics from '@/components/GoogleAnalytics'
 import ClientOnly from '@/components/ClientOnly'
 import { buildQuestionMetadata } from '@/lib/seo'
 import QuestionJsonLd from '@/components/QuestionJsonLd'
-import Breadcrumbs from '@/app/(ui)/Breadcrumbs'
-import RelatedAnswers from '@/app/(ui)/RelatedAnswers'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import RelatedAnswers from '@/components/RelatedAnswers'
 import BackToTop from '@/app/(ui)/BackToTop'
 import PrevNextNavigation from '@/components/PrevNextNavigation'
 import EntityLinkedContent from '@/components/EntityLinkedContent'
@@ -90,7 +90,7 @@ async function AnswerContent({ params }: Props) {
       <QuestionJsonLd question={question} relatedQuestions={relatedQuestions} />
       <article className="mx-auto max-w-3xl">
         {/* Breadcrumbs */}
-        <Breadcrumbs items={breadcrumbItems} />
+        <Breadcrumbs category={safeCategory} slug={slug} />
 
         {/* Question */}
         <section className="mb-8">
@@ -114,7 +114,7 @@ async function AnswerContent({ params }: Props) {
         </section>
 
         {/* Related Answers */}
-        <RelatedAnswers category={safeRawCategory} currentSlug={slug} />
+        <RelatedAnswers currentId={question.id} category={safeRawCategory} />
 
         {/* Prev/Next Navigation */}
         <PrevNextNavigation currentSlug={slug} />

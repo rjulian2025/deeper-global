@@ -309,3 +309,5 @@ echo ""
 echo -e "${YELLOW}📋 Summary:${NC}"
 echo "Check the report above for detailed findings and recommendations."
 echo "No files have been modified or deleted."
+
+

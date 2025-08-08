@@ -1,11 +1,13 @@
 import { Metadata } from 'next'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import ClientOnly from '@/components/ClientOnly'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: 'About Deeper | Our Mission & Team',
   description: 'Learn about our mission to make mental health information more accessible through AI-optimized search.',
-}
+  canonical: '/about',
+})
 
 export default function AboutPage() {
   return (

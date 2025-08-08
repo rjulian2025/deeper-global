@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import QuestionCard from '@/components/QuestionCard'
 import { Suspense } from 'react'
+import { buildMetadata } from '@/lib/seo'
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -15,10 +16,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params
   const decodedCategory = decodeURIComponent(category)
   
-  return {
-    title: `${decodedCategory} Questions & Answers | Deeper`,
+  return buildMetadata({
+    title: `${decodedCategory} Questions & Answers`,
     description: `Browse mental health questions and answers related to ${decodedCategory}.`,
-  }
+    canonical: `/categories/${encodeURIComponent(decodedCategory)}`,
+  })
 }
 
 // Loading skeleton
