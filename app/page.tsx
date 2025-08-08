@@ -1,14 +1,13 @@
 import Link from 'next/link'
 import { getQuestions, Question } from '@/lib/supabase'
 import { Suspense } from 'react'
-import MainLayout from '@/components/MainLayout'
 import QuestionCard from '@/components/QuestionCard'
 
 // Loading skeleton component
 function HomepageSkeleton() {
   return (
-    <MainLayout>
-      <div className="max-w-4xl mx-auto px-4 py-16">
+    <div className="bg-white text-black min-h-screen px-4 py-12">
+      <div className="max-w-4xl mx-auto">
         {/* Hero skeleton */}
         <div className="text-center mb-16">
           <div className="h-12 bg-gray-200 rounded mb-6 animate-pulse max-w-2xl mx-auto"></div>
@@ -35,28 +34,26 @@ function HomepageSkeleton() {
           </div>
         ))}
       </div>
-    </MainLayout>
+    </div>
   )
 }
 
 // Empty state component
 function EmptyState() {
   return (
-    <MainLayout>
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="text-center">
-          <div className="text-6xl mb-4">🤔</div>
-          <h2 className="text-2xl font-semibold text-black mb-2">No questions available</h2>
-          <p className="text-black mb-6">Check back soon for mental health insights and answers.</p>
-          <Link 
-            href="/answers"
-            className="inline-block bg-blue-600 text-white px-6 py-3 text-base font-medium underline"
-          >
-            Browse Answers
-          </Link>
-        </div>
+    <div className="bg-white text-black min-h-screen flex items-center justify-center">
+      <div className="text-center">
+        <div className="text-6xl mb-4">🤔</div>
+        <h2 className="text-2xl font-semibold text-black mb-2">No questions available</h2>
+        <p className="text-black mb-6">Check back soon for mental health insights and answers.</p>
+        <Link 
+          href="/answers"
+          className="inline-block bg-blue-600 text-white px-6 py-3 text-base font-medium underline"
+        >
+          Browse Answers
+        </Link>
       </div>
-    </MainLayout>
+    </div>
   )
 }
 
@@ -123,8 +120,8 @@ async function HomepageContent() {
       }))
 
     return (
-      <MainLayout>
-        <div className="max-w-4xl mx-auto px-4 py-16">
+      <div className="bg-white text-black min-h-screen px-4 py-12">
+        <div className="max-w-4xl mx-auto">
           {/* Hero Section */}
           <section className="text-center mb-16">
             <h1 className="text-4xl font-bold mb-6 text-black">
@@ -153,7 +150,7 @@ async function HomepageContent() {
             ))}
           </div>
         </div>
-      </MainLayout>
+      </div>
     )
   } catch (error) {
     console.error('Error loading homepage data:', error)
