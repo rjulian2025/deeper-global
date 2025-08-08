@@ -2,6 +2,10 @@ import Link from 'next/link'
 import { getQuestions, Question } from '@/lib/supabase'
 import { Suspense } from 'react'
 import QuestionCard from '@/components/QuestionCard'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
+import ClientOnly from '@/components/ClientOnly'
+
+export const revalidate = 3600 // Revalidate every hour
 
 // Loading skeleton component
 function HomepageSkeleton() {
@@ -56,8 +60,6 @@ function EmptyState() {
     </div>
   )
 }
-
-
 
 // Category section component
 function CategorySection({ 
@@ -161,34 +163,13 @@ async function HomepageContent() {
 // Main page component with Suspense
 export default function Home() {
   return (
-    <div className="bg-white text-black min-h-screen p-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6 text-black">
-          Ask Anything. Deeper Listens.
-        </h1>
-        <p className="text-lg text-black mb-8">
-          1,000+ evidence-informed answers for humans and machines.
-        </p>
-        <div className="bg-blue-100 border-2 border-blue-300 p-6 rounded-xl">
-          <h2 className="text-2xl font-bold text-blue-800 mb-4">
-            Test Page - Enhanced Styling
-          </h2>
-          <p className="text-blue-700 mb-4">
-            This is a test page with explicit styling to verify our changes are working.
-          </p>
-          <div className="bg-white border-2 border-gray-300 p-4 rounded-lg shadow-lg">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">
-              Sample Question Card
-            </h3>
-            <p className="text-gray-700 mb-3">
-              This shows how our enhanced QuestionCard component should look.
-            </p>
-            <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-blue-100 text-blue-800 border-2 border-blue-200">
-              Test Category
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <>
+      <Suspense fallback={<HomepageSkeleton />}>
+        <HomepageContent />
+      </Suspense>
+      <ClientOnly>
+        <GoogleAnalytics />
+      </ClientOnly>
+    </>
   )
 }

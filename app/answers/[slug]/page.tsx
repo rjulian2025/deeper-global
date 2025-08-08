@@ -3,6 +3,8 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
+import ClientOnly from '@/components/ClientOnly'
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -63,6 +65,11 @@ async function AnswerContent({ params }: Props) {
     notFound()
   }
 
+  // Guard against null values
+  const safeShortAnswer = question.short_answer || 'No short answer available'
+  const safeAnswer = question.answer || 'No detailed answer available'
+  const safeCategory = question.category || 'Uncategorized'
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'QAPage',
@@ -78,7 +85,7 @@ async function AnswerContent({ params }: Props) {
       },
       acceptedAnswer: {
         '@type': 'Answer',
-        text: question.answer,
+        text: safeAnswer,
         dateCreated: question.created_at,
         author: {
           '@type': 'Organization',
@@ -110,10 +117,10 @@ async function AnswerContent({ params }: Props) {
             </Link>
             <span>/</span>
             <Link 
-              href={`/categories/${encodeURIComponent(question.category)}`}
+              href={`/categories/${encodeURIComponent(safeCategory)}`}
               className="text-blue-600 hover:text-blue-700 transition-colors"
             >
-              {question.category}
+              {safeCategory}
             </Link>
           </div>
         </div>
@@ -124,10 +131,10 @@ async function AnswerContent({ params }: Props) {
             {question.question}
           </h1>
           <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 mb-6">
-            {question.category}
+            {safeCategory}
           </div>
           <div className="text-lg text-black mb-6 leading-relaxed">
-            {question.short_answer}
+            {safeShortAnswer}
           </div>
         </article>
 
@@ -136,7 +143,7 @@ async function AnswerContent({ params }: Props) {
           <h2 className="text-2xl font-semibold text-black mb-6">Full Answer</h2>
           <div 
             className="prose prose-lg max-w-none prose-headings:text-black prose-p:text-black prose-strong:text-black prose-ul:text-black prose-ol:text-black"
-            dangerouslySetInnerHTML={{ __html: question.answer }}
+            dangerouslySetInnerHTML={{ __html: safeAnswer }}
           />
         </article>
       </div>
@@ -146,8 +153,13 @@ async function AnswerContent({ params }: Props) {
 
 export default function AnswerPage(props: Props) {
   return (
-    <Suspense fallback={<AnswerSkeleton />}>
-      <AnswerContent {...props} />
-    </Suspense>
+    <>
+      <Suspense fallback={<AnswerSkeleton />}>
+        <AnswerContent {...props} />
+      </Suspense>
+      <ClientOnly>
+        <GoogleAnalytics />
+      </ClientOnly>
+    </>
   )
 }

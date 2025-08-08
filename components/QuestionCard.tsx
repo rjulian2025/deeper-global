@@ -10,7 +10,7 @@ interface QuestionCardProps {
 export default function QuestionCard({ slug, question, short_answer, category }: QuestionCardProps) {
   return (
     <Link 
-      href={`/questions/${slug}`} 
+      href={`/answers/${slug}`} 
       className="group block bg-white border-2 border-gray-300 rounded-xl p-8 hover:shadow-xl hover:border-blue-400 transition-all duration-300 mb-4"
       style={{ boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
     >

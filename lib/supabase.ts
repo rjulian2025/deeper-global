@@ -48,7 +48,7 @@ export async function getQuestionBySlug(slug: string) {
       .from('questions_master')
       .select('id, question, short_answer, answer, category, raw_category, slug, created_at, updated_at')
       .eq('slug', slug)
-      .single()
+      .maybeSingle()
 
     if (error) throw error
     return data as Question

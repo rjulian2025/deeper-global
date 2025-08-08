@@ -2,12 +2,9 @@
 const nextConfig = {
   async redirects() {
     return [
-      {
-        source: '/questions/:slug',
-        destination: '/answers/:slug',
-        permanent: true,
-        statusCode: 308,
-      },
+      { source: '/questions', destination: '/answers', permanent: true },
+      { source: '/questions/', destination: '/answers', permanent: true },
+      { source: '/questions/:slug*', destination: '/answers/:slug*', permanent: true },
     ]
   },
 };

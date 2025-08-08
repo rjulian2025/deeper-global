@@ -2,6 +2,8 @@ import { supabase } from '@/lib/supabase'
 import QuestionCard from '@/components/QuestionCard'
 import Link from 'next/link'
 
+export const revalidate = 3600 // Revalidate every hour
+
 interface Props {
   params: Promise<{ slug: string }>
 }

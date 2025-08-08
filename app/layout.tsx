@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import GoogleAnalytics from '@/components/GoogleAnalytics'
-import AnalyticsOptOut from '@/components/AnalyticsOptOut'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,9 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-white text-black">
       <body className={`${inter.className} bg-white text-black`}>
-        <AnalyticsOptOut />
         {children}
-        <GoogleAnalytics GA_MEASUREMENT_ID="G-VY56C15LGV" />
       </body>
     </html>
   )
