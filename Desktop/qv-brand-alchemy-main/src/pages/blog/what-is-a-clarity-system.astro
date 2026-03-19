@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/BlogWhatIsAClaritySystem';
+---
+
+<BaseLayout title="What Is a Clarity System? | QV BRANDS" description="A new operating model for modern brands — how to transform identity into operational power.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:visible />
+</BaseLayout>

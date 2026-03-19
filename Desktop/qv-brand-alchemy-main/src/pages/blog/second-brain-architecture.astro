@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/BlogSecondBrainArchitecture';
+---
+
+<BaseLayout title="Brand Architecture for the Second Brain Era | QV BRANDS" description="Your audience is outsourcing memory and meaning to digital systems. Here's how to build a brand they can actually remember.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:visible />
+</BaseLayout>

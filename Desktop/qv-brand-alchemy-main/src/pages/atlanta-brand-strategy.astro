@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Page from '@/views/pages/AtlantaBrandStrategy';
+---
+
+<BaseLayout title="Atlanta Brand Strategy Consultant | QV BRANDS" description="Atlanta-based brand strategy and fractional CMO services for founder-led companies. Local expertise, global strategic frameworks.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:visible />
+</BaseLayout>

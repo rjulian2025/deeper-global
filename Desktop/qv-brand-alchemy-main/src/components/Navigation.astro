@@ -1,0 +1,29 @@
+---
+interface Props {
+  pathname: string;
+}
+const { pathname } = Astro.props;
+const isActive = (path: string, exact = true) =>
+  exact ? pathname === path : pathname.startsWith(path);
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border transition-all duration-300 shadow-sm" style="scroll-behavior: smooth">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center hover:opacity-80 transition-opacity">
+      <img src="/lovable-uploads/qv-initials-black.png" alt="QV BRANDS" class="h-10" />
+    </a>
+
+    <div class="flex items-center gap-6">
+      <a href="/about" class:list={["text-sm font-medium transition-colors hover:text-foreground", pathname === '/about' ? 'text-foreground' : 'text-muted-foreground']}>About</a>
+      <a href="/clients" class:list={["text-sm font-medium transition-colors hover:text-foreground", pathname === '/clients' ? 'text-foreground' : 'text-muted-foreground']}>Clients</a>
+      <a href="/case-study/loopo" class:list={["text-sm font-medium transition-colors hover:text-foreground", pathname === '/case-study/loopo' ? 'text-foreground' : 'text-muted-foreground']}>Case Work</a>
+      <a href="/strategic-answers" class:list={["text-sm font-medium transition-colors hover:text-foreground", pathname.startsWith('/strategic-answers') ? 'text-foreground' : 'text-muted-foreground']}>Strategic Answers</a>
+      <a href="/packages" class:list={["text-sm font-medium transition-colors hover:text-foreground", pathname === '/packages' ? 'text-foreground' : 'text-muted-foreground']}>Packages</a>
+      <a href="/consultation" class:list={["text-sm font-medium transition-colors hover:text-foreground", pathname === '/consultation' ? 'text-foreground' : 'text-muted-foreground']}>Consultation</a>
+      <a href="https://calendar.app.google/sXUh3xXCDNCKir8u6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium bg-foreground text-background hover:bg-foreground/90 px-4 py-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+        Book Strategic Consult
+      </a>
+    </div>
+  </div>
+</nav>

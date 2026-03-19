@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/strategic-answers/BrandPositioningVsBrandMarketing';
+---
+
+<BaseLayout title="Brand Positioning vs Brand Marketing | QV BRANDS" description="The sequencing error that causes marketing spend to underperform.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:load />
+</BaseLayout>

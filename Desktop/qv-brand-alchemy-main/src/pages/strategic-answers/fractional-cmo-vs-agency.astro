@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/strategic-answers/FractionalCMOvsAgency';
+---
+
+<BaseLayout title="Fractional CMO vs Agency | QV BRANDS" description="When embedded leadership outperforms outsourced execution. A comparison of fractional CMO and agency models.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:load />
+</BaseLayout>

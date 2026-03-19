@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/BlogBrandArchetypesAIEra';
+---
+
+<BaseLayout title="The 4 Brand Archetypes That Will Survive the AI Wave | QV BRANDS" description="In the coming algorithmic collapse, only a few brand types will endure.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:visible />
+</BaseLayout>

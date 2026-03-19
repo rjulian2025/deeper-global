@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/BlogBrandStrategyInSyntheticEra';
+---
+
+<BaseLayout title="Brand Strategy in the Synthetic Content Era | QV BRANDS" description="As AI generates infinite noise, clarity becomes a brand's only shield.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:visible />
+</BaseLayout>

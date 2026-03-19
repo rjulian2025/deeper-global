@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Page from '@/views/pages/SignalCall';
+---
+
+<BaseLayout title="Signal Call | QV BRANDS" description="Book a signal call with QV BRANDS.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:visible />
+</BaseLayout>

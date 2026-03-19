@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/strategic-answers/GTMSystemNotCampaign';
+---
+
+<BaseLayout title="GTM Is a System, Not a Campaign | QV BRANDS" description="Why campaigns without a system underneath them produce diminishing returns.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:load />
+</BaseLayout>

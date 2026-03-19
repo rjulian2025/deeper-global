@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/strategic-answers/FractionalCMOCost';
+---
+
+<BaseLayout title="How Much Does a Fractional CMO Cost? | QV BRANDS" description="Fractional CMO costs typically range from $5K–$15K per month depending on scope, stage, and strategic depth.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:load />
+</BaseLayout>

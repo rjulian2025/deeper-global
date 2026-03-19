@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/answers/HowToTellIfBrandIsProblem';
+---
+
+<BaseLayout title="How to Tell If Your Brand Is the Problem | Brand Knowledge Base" description="Diagnostic signals that your brand — not your marketing — is the constraint on growth.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:visible />
+</BaseLayout>

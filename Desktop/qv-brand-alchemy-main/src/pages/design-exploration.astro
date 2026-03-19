@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Page from '@/views/pages/DesignExploration';
+---
+
+<BaseLayout title="Design Exploration | QV BRANDS" description="Internal design exploration.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:visible />
+</BaseLayout>

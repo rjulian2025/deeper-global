@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Page from '@/views/pages/MeetTheStrategist';
+---
+
+<BaseLayout title="Meet the Strategist | QV BRANDS" description="Meet Rick Julian — fractional Chief Branding Officer and growth architect.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:load />
+</BaseLayout>

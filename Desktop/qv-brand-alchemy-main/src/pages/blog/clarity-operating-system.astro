@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/BlogClarityOperatingSystem';
+---
+
+<BaseLayout title="The Clarity Operating System | QV BRANDS" description="In a world drowning in noise, clarity is the new power move.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:visible />
+</BaseLayout>

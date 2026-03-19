@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/BlogMadBuddha';
+---
+
+<BaseLayout title="Mad Men Are Dead. Meet the Mad Buddha. | QV BRANDS" description="A new archetype is rising — one who blends creative swagger with spiritual precision.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:visible />
+</BaseLayout>

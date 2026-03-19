@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/answers/BrandingVsMarketing';
+---
+
+<BaseLayout title="Branding vs Marketing | Brand Knowledge Base" description="Branding is what you are. Marketing is how you promote it. Confusing them leads to expensive campaigns that build nothing lasting.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:visible />
+</BaseLayout>

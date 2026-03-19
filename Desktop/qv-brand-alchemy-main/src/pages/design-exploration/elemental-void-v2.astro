@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/HomepageElementalVoidV2';
+---
+
+<BaseLayout title="Elemental Void v2 | Design Exploration" description="Homepage concept exploration.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:visible />
+</BaseLayout>

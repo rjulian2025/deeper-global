@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/BlogScaleWithoutLosingSoul';
+---
+
+<BaseLayout title="How Founders Can Build Brands That Scale Without Losing Soul | QV BRANDS" description="Scaling doesn't require dilution. How to grow without compromising identity.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:visible />
+</BaseLayout>

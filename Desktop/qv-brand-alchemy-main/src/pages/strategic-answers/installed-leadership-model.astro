@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/strategic-answers/InstalledLeadershipModel';
+---
+
+<BaseLayout title="The Installed Leadership Model | QV BRANDS" description="What it means to install strategic leadership vs. advise from the outside.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:load />
+</BaseLayout>

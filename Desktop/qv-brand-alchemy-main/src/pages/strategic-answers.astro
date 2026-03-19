@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import Page from '@/views/pages/strategic-answers/StrategicAnswersIndex';
+---
+
+<BaseLayout title="Strategic Growth Answers for Founders | QV BRANDS" description="Authoritative answers on fractional CMO leadership, growth architecture, and strategic systems for founder-led companies.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:visible />
+</BaseLayout>

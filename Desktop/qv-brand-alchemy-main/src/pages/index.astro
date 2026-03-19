@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navigation from '../components/Navigation.astro';
+import HomePageContent from '../components/HomePageContent';
+
+const professionalServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "QV BRANDS",
+  "url": "https://www.qvbrands.com",
+  "description": "Fractional Chief Branding Officer and growth architecture for founder-led companies.",
+  "founder": { "@type": "Person", "name": "Rick Julian" },
+  "foundingDate": "2003-01-01",
+  "areaServed": "Global",
+  "sameAs": ["https://linkedin.com/company/qvbrands", "https://instagram.com/qvbrands", "https://twitter.com/qvbrands"],
+  "logo": "https://www.qvbrands.com/images/logo.png"
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Rick Julian",
+  "url": "https://www.qvbrands.com/rick-julian",
+  "jobTitle": "Fractional Chief Branding Officer & Growth Architect",
+  "worksFor": { "@type": "Organization", "name": "QV BRANDS", "url": "https://www.qvbrands.com" },
+  "description": "Fractional Chief Branding Officer and growth architect who combines narrative strategy, creative direction, and growth systems to install strategic clarity for founder-led companies.",
+  "image": "https://www.qvbrands.com/images/rick-hero.jpg",
+  "hasOccupation": [
+    { "@type": "Occupation", "name": "Fractional Chief Branding Officer" },
+    { "@type": "Occupation", "name": "Brand Strategist" },
+    { "@type": "Occupation", "name": "Creative Director" },
+    { "@type": "Occupation", "name": "Growth Architect" }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How much does a fractional CMO cost?", "acceptedAnswer": { "@type": "Answer", "text": "Fractional CMO engagements typically range from $5,000 to $15,000 per month depending on scope, stage, and complexity." } },
+    { "@type": "Question", "name": "What does a fractional CMO do?", "acceptedAnswer": { "@type": "Answer", "text": "A fractional CMO is an experienced chief marketing officer who provides executive-level leadership on a part-time basis." } }
+  ]
+};
+---
+
+<BaseLayout
+  title="Rick Julian — Fractional Chief Branding Officer & Growth Architect | QV Brands"
+  description="Fractional Chief Branding Officer and growth architect for founder-led companies at critical growth stages. Brand strategy, positioning, narrative systems, and scalable growth architecture."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(professionalServiceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <Navigation pathname={Astro.url.pathname} />
+
+  <HomePageContent client:load />
+</BaseLayout>

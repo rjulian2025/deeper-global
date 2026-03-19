@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Page from '@/views/pages/strategic-answers/BrandStrategyFailsWithoutLeadership';
+---
+
+<BaseLayout title="Brand Strategy Fails Without Leadership | QV BRANDS" description="Why strategy documents fail without a senior leader to install and govern them.">
+  <Navigation pathname={Astro.url.pathname} />
+    <Page client:load />
+</BaseLayout>
