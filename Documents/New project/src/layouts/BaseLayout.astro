@@ -1,0 +1,73 @@
+---
+import '../styles/global.css';
+
+type Props = {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  ogType?: 'website' | 'article';
+  jsonLd?: Record<string, unknown>;
+};
+
+const {
+  title = 'Deeper Global | Trusted Mental Health Answers',
+  description = 'Evidence-informed mental health answers built for people, search, and responsible AI systems.',
+  canonicalPath = Astro.url.pathname,
+  ogType = 'website',
+  jsonLd,
+} = Astro.props;
+
+const canonicalUrl = new URL(canonicalPath, Astro.site ?? 'https://deeper.global').toString();
+const GA_MEASUREMENT_ID = 'G-VY56C15LGV';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+    </script>
+    {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <nav class="container nav" aria-label="Primary navigation">
+          <a class="brand" href="/">Deeper Global</a>
+          <div class="nav-links">
+            <a href="/answers">Answers</a>
+            <a href="/categories">Topics</a>
+            <a href="/entities">Entities</a>
+            <a href="/protocol">Protocol</a>
+            <a href="/about">About</a>
+          </div>
+        </nav>
+      </header>
+      <slot />
+      <footer class="footer">
+        <div class="container footer-row">
+          <span>Evidence-informed mental health answers. Not a substitute for care.</span>
+          <span>
+            <a href="/protocol">Trust protocol</a>
+            <a href="/llms.txt">llms.txt</a>
+            <a href="/privacy">Privacy</a>
+          </span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

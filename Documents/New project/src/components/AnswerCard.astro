@@ -1,0 +1,24 @@
+---
+import { categoryPath, displayCategory, formatDate } from '@/lib/content';
+import type { Question } from '@/lib/supabase';
+
+type Props = {
+  question: Question;
+  headingLevel?: 2 | 3;
+};
+
+const { question, headingLevel = 2 } = Astro.props;
+const Heading = `h${headingLevel}` as const;
+const category = displayCategory(question);
+---
+
+<article class="answer-card">
+  <a href={`/answers/${question.slug}`}>
+    <Heading>{question.question}</Heading>
+  </a>
+  <p>{question.short_answer}</p>
+  <div class="meta-row">
+    <a class="pill" href={categoryPath(category)}>{category}</a>
+    <span class="pill">Updated {formatDate(question.updated_at || question.created_at)}</span>
+  </div>
+</article>

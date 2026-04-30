@@ -1,0 +1,90 @@
+---
+import AnswerCard from '@/components/AnswerCard.astro';
+import EmptyState from '@/components/EmptyState.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCategorySummaries } from '@/lib/content';
+import { getQuestions } from '@/lib/supabase';
+
+const questions = await getQuestions(6);
+const categories = getCategorySummaries(questions).slice(0, 6);
+---
+
+<BaseLayout>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Trusted mental health intelligence</p>
+        <h1>Clear answers for the questions people ask before they seek care.</h1>
+        <p class="lede">
+          Deeper Global is a vetted mental health answer engine built to serve people first, while creating the structured intelligence layer that can later power ethical referrals, trend insights, and care navigation.
+        </p>
+        <div class="actions">
+          <a class="button" href="/answers">Explore answers</a>
+          <a class="button secondary" href="/protocol">Read the protocol</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid">
+        <article class="card">
+          <h3>Human-centered</h3>
+          <p>Answers are written for people in uncertainty: plain language, direct framing, and careful next steps.</p>
+        </article>
+        <article class="card">
+          <h3>Evidence-informed</h3>
+          <p>Every content pathway is designed for source tracking, review status, and clinical escalation rules.</p>
+        </article>
+        <article class="card">
+          <h3>AI-readable</h3>
+          <p>Semantic pages and schema markup make the corpus understandable to search engines and responsible AI systems.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section band">
+      <div class="container">
+        <p class="eyebrow">Recent answers</p>
+        <h2>Start with what people are asking now.</h2>
+        <div class="answer-list">
+          {
+            questions.length ? (
+              questions.map((question) => <AnswerCard question={question} />)
+            ) : (
+              <EmptyState
+                title="Supabase content is ready to connect"
+                message="Add Supabase environment variables and this section will populate from questions_master at build time."
+              />
+            )
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">Topic intelligence</p>
+        <h2>Topic hubs turn answer content into navigable demand signals.</h2>
+        <div class="grid">
+          {
+            categories.length ? (
+              categories.map((category) => (
+                <a class="card" href={`/categories/${category.slug}`}>
+                  <h3>{category.name}</h3>
+                  <p>{category.description}</p>
+                </a>
+              ))
+            ) : (
+              ['Anxiety', 'Depression', 'Relationships'].map((name) => (
+                <article class="card">
+                  <h3>{name}</h3>
+                  <p>Topic hubs will populate from Supabase categories as the corpus grows.</p>
+                </article>
+              ))
+            )
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

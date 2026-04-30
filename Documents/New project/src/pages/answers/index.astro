@@ -1,0 +1,39 @@
+---
+import AnswerCard from '@/components/AnswerCard.astro';
+import EmptyState from '@/components/EmptyState.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getQuestions } from '@/lib/supabase';
+
+const questions = await getQuestions();
+---
+
+<BaseLayout
+  title="Mental Health Questions and Answers | Deeper Global"
+  description="Browse evidence-informed mental health questions and answers from Deeper Global."
+  canonicalPath="/answers"
+>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Answer library</p>
+        <h1>Mental health questions and answers.</h1>
+        <p class="lede">A structured library of clear, vetted answers for people seeking context before, during, or after care.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container answer-list">
+        {
+          questions.length ? (
+            questions.map((question) => <AnswerCard question={question} />)
+          ) : (
+            <EmptyState
+              title="No live answers available yet"
+              message="This build did not have Supabase credentials. Configure the environment and rebuild to generate the answer library."
+            />
+          )
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>

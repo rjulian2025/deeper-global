@@ -1,0 +1,207 @@
+---
+import AnswerCard from '@/components/AnswerCard.astro';
+import CrisisBanner from '@/components/CrisisBanner.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import {
+  categoryPath,
+  displayCategory,
+  formatDate,
+  getQuestionCitation,
+  getRelatedQuestions,
+  isCrisisSensitive,
+  slugify,
+  toPlainText,
+  truncate,
+} from '@/lib/content';
+import { getQuestionBySlug, getQuestions, type Question } from '@/lib/supabase';
+
+export async function getStaticPaths() {
+  const questions = await getQuestions();
+  return questions.map((question) => ({
+    params: { slug: question.slug },
+    props: { question },
+  }));
+}
+
+const suppliedQuestion = Astro.props.question as Question | undefined;
+const question = suppliedQuestion ?? (await getQuestionBySlug(Astro.params.slug ?? ''));
+
+if (!question) {
+  return Astro.redirect('/answers');
+}
+
+const allQuestions = await getQuestions();
+const relatedQuestions = getRelatedQuestions(question, allQuestions);
+const category = displayCategory(question);
+const updatedAt = question.updated_at || question.created_at;
+const crisisSensitive = isCrisisSensitive(question);
+const title = `${question.question} | Deeper Global`;
+const description = question.short_answer;
+const citation = getQuestionCitation(question);
+const answerText = toPlainText(question.answer);
+const extractableAnswer = truncate(answerText, 700);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'QAPage',
+      '@id': `https://deeper.global/answers/${question.slug}#qapage`,
+      mainEntity: {
+        '@id': `https://deeper.global/answers/${question.slug}#question`,
+      },
+    },
+    {
+      '@type': 'Question',
+      '@id': `https://deeper.global/answers/${question.slug}#question`,
+      name: question.question,
+      text: question.question,
+      dateCreated: question.created_at,
+      about: {
+        '@id': `https://deeper.global/entities/${slugify(category)}#entity`,
+        name: category,
+      },
+      author: {
+        '@type': 'Organization',
+        name: 'Deeper Global',
+        url: 'https://deeper.global',
+      },
+      acceptedAnswer: {
+        '@id': `https://deeper.global/answers/${question.slug}#accepted-answer`,
+      },
+    },
+    {
+      '@type': 'Answer',
+      '@id': `https://deeper.global/answers/${question.slug}#accepted-answer`,
+      text: answerText,
+      dateCreated: question.created_at,
+      dateModified: updatedAt,
+      citation: citation.url,
+      author: {
+        '@type': 'Organization',
+        name: 'Deeper Global',
+        url: 'https://deeper.global',
+      },
+    },
+    {
+      '@type': 'DefinedTerm',
+      '@id': `https://deeper.global/entities/${slugify(category)}#entity`,
+      name: category,
+      inDefinedTermSet: 'Deeper Global Mental Health Topic Map',
+      url: `https://deeper.global/entities/${slugify(category)}`,
+    },
+  ],
+};
+const legacyJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'QAPage',
+  mainEntity: {
+    '@type': 'Question',
+    name: question.question,
+    text: question.question,
+    dateCreated: question.created_at,
+    author: {
+      '@type': 'Organization',
+      name: 'Deeper Global',
+      url: 'https://deeper.global',
+    },
+    acceptedAnswer: {
+      '@type': 'Answer',
+        text: answerText,
+      dateCreated: question.created_at,
+      dateModified: updatedAt,
+      author: {
+        '@type': 'Organization',
+        name: 'Deeper Global',
+        url: 'https://deeper.global',
+      },
+    },
+  },
+};
+---
+
+<BaseLayout title={title} description={description} canonicalPath={`/answers/${question.slug}`} ogType="article" jsonLd={jsonLd}>
+  {crisisSensitive && <CrisisBanner />}
+  <main>
+    <article
+      class="content answer-content"
+      data-ai-content-type="mental-health-answer"
+      data-ai-citable="true"
+      data-question-id={question.id}
+      data-question-slug={question.slug}
+      data-primary-entity={category}
+      data-risk-class={crisisSensitive ? 'crisis-sensitive' : 'standard'}
+      itemscope
+      itemtype="https://schema.org/QAPage"
+    >
+      <p class="eyebrow">{category}</p>
+      <h1 itemprop="headline">{question.question}</h1>
+      <section
+        class="ai-answer-summary"
+        id="answer-summary"
+        aria-label="Structured answer summary"
+        data-ai-section="answer-summary"
+        itemscope
+        itemprop="mainEntity"
+        itemtype="https://schema.org/Question"
+      >
+        <meta itemprop="name" content={question.question} />
+        <p class="summary" itemprop="text">{question.short_answer}</p>
+      </section>
+      <div class="trust-panel">
+        <strong>Deeper review signal:</strong> evidence-informed answer, categorized for topic intelligence, last updated {formatDate(updatedAt)}.
+        <br />
+        Entity: <a href={`/entities/${slugify(category)}`}>{category}</a>. Topic hub: <a href={categoryPath(category)}>browse more {category.toLowerCase()} answers</a>.
+      </div>
+      <section class="citation-panel" id="citation" aria-label="Citation metadata" data-ai-section="citation">
+        <h2>How to cite this answer</h2>
+        <dl>
+          <div>
+            <dt>Title</dt>
+            <dd>{citation.title}</dd>
+          </div>
+          <div>
+            <dt>Publisher</dt>
+            <dd>{citation.publisher}</dd>
+          </div>
+          <div>
+            <dt>Canonical URL</dt>
+            <dd><a href={citation.url}>{citation.url}</a></dd>
+          </div>
+          <div>
+            <dt>Updated</dt>
+            <dd>{formatDate(citation.dateModified)}</dd>
+          </div>
+        </dl>
+      </section>
+      <section
+        id="accepted-answer"
+        class="accepted-answer"
+        aria-label="Accepted answer"
+        data-ai-section="accepted-answer"
+        data-ai-extract={extractableAnswer}
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+      >
+        <meta itemprop="dateCreated" content={question.created_at} />
+        <meta itemprop="dateModified" content={updatedAt} />
+        <div itemprop="text" set:html={question.answer} />
+      </section>
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(legacyJsonLd)} />
+    </article>
+
+    {
+      relatedQuestions.length > 0 && (
+        <section class="section band">
+          <div class="container">
+            <p class="eyebrow">Related questions</p>
+            <h2>More answers in {category}</h2>
+            <div class="answer-list">
+              {relatedQuestions.map((related) => <AnswerCard question={related} headingLevel={3} />)}
+            </div>
+          </div>
+        </section>
+      )
+    }
+  </main>
+</BaseLayout>

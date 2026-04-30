@@ -1,0 +1,59 @@
+---
+import EmptyState from '@/components/EmptyState.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getEntitySummaries, pluralizeAnswer } from '@/lib/content';
+import { getQuestions } from '@/lib/supabase';
+
+const questions = await getQuestions();
+const entities = getEntitySummaries(questions);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTermSet',
+  name: 'Deeper Global Mental Health Topic Map',
+  url: 'https://deeper.global/entities',
+  hasDefinedTerm: entities.map((entity) => ({
+    '@type': 'DefinedTerm',
+    name: entity.name,
+    url: `https://deeper.global/entities/${entity.slug}`,
+    alternateName: entity.sameAs,
+  })),
+};
+---
+
+<BaseLayout
+  title="Mental Health Entity Map | Deeper Global"
+  description="Canonical mental health entities used to organize Deeper Global answers for people, search engines, and AI systems."
+  canonicalPath="/entities"
+  jsonLd={jsonLd}
+>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Entity map</p>
+        <h1>Mental health entities, not just pages.</h1>
+        <p class="lede">The entity layer gives AI systems a stable topic graph for interpreting, citing, and connecting Deeper Global answers.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid">
+        {
+          entities.length ? (
+            entities.map((entity) => (
+              <a class="card entity-card" href={`/entities/${entity.slug}`} data-ai-entity={entity.name}>
+                <h3>{entity.name}</h3>
+                <p>{entity.description}</p>
+                <div class="meta-row">
+                  <span class="pill">{pluralizeAnswer(entity.count)}</span>
+                  <span class="pill">Topic entity</span>
+                </div>
+              </a>
+            ))
+          ) : (
+            <EmptyState title="No entity data available yet" message="Entities are generated from Supabase categories when corpus credentials are available." />
+          )
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>

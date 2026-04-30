@@ -1,0 +1,50 @@
+---
+import AnswerCard from '@/components/AnswerCard.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { displayCategory, getCategorySummaries, slugify } from '@/lib/content';
+import { getQuestions, type Question } from '@/lib/supabase';
+
+export async function getStaticPaths() {
+  const questions = await getQuestions();
+  const categories = getCategorySummaries(questions);
+
+  return categories.map((category) => ({
+    params: { category: category.slug },
+    props: {
+      categoryName: category.name,
+      questions: questions.filter((question) => displayCategory(question) === category.name),
+    },
+  }));
+}
+
+const categoryName = Astro.props.categoryName as string | undefined;
+const questions = (Astro.props.questions ?? []) as Question[];
+
+if (!categoryName && !questions.length) {
+  return Astro.redirect('/categories');
+}
+
+const resolvedCategory = categoryName ?? Astro.params.category ?? 'Topic';
+---
+
+<BaseLayout
+  title={`${resolvedCategory} Questions and Answers | Deeper Global`}
+  description={`Browse Deeper Global answers about ${resolvedCategory.toLowerCase()}.`}
+  canonicalPath={`/categories/${slugify(resolvedCategory)}`}
+>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Topic hub</p>
+        <h1>{resolvedCategory} questions and answers.</h1>
+        <p class="lede">A focused topic hub for common questions, patterns, and care-seeking language around {resolvedCategory.toLowerCase()}.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container answer-list">
+        {questions.map((question) => <AnswerCard question={question} />)}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

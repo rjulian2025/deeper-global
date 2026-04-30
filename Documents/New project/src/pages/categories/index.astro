@@ -1,0 +1,45 @@
+---
+import EmptyState from '@/components/EmptyState.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCategorySummaries } from '@/lib/content';
+import { getQuestions } from '@/lib/supabase';
+
+const questions = await getQuestions();
+const categories = getCategorySummaries(questions);
+---
+
+<BaseLayout
+  title="Mental Health Topics | Deeper Global"
+  description="Browse Deeper Global mental health topic hubs generated from the answer corpus."
+  canonicalPath="/categories"
+>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Topic map</p>
+        <h1>Mental health topic hubs.</h1>
+        <p class="lede">Categories are the public navigation layer and the early intelligence layer for understanding care-seeking demand.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid">
+        {
+          categories.length ? (
+            categories.map((category) => (
+              <a class="card" href={`/categories/${category.slug}`}>
+                <h3>{category.name}</h3>
+                <p>{category.description}</p>
+              </a>
+            ))
+          ) : (
+            <EmptyState
+              title="No topic data available yet"
+              message="Topic hubs are generated from Supabase categories once content credentials are available during build."
+            />
+          )
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>

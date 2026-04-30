@@ -1,0 +1,82 @@
+---
+import AnswerCard from '@/components/AnswerCard.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { displayCategory, getEntitySummaries, pluralizeAnswer, slugify } from '@/lib/content';
+import { getQuestions, type Question } from '@/lib/supabase';
+
+export async function getStaticPaths() {
+  const questions = await getQuestions();
+  const entities = getEntitySummaries(questions);
+
+  return entities.map((entity) => ({
+    params: { entity: entity.slug },
+    props: {
+      entity,
+      questions: questions.filter((question) => displayCategory(question) === entity.name),
+    },
+  }));
+}
+
+const entity = Astro.props.entity as ReturnType<typeof getEntitySummaries>[number] | undefined;
+const questions = (Astro.props.questions ?? []) as Question[];
+
+if (!entity) {
+  return Astro.redirect('/entities');
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  '@id': `https://deeper.global/entities/${entity.slug}#entity`,
+  name: entity.name,
+  url: `https://deeper.global/entities/${entity.slug}`,
+  alternateName: entity.sameAs,
+  inDefinedTermSet: 'Deeper Global Mental Health Topic Map',
+  subjectOf: questions.slice(0, 50).map((question) => ({
+    '@type': 'QAPage',
+    name: question.question,
+    url: `https://deeper.global/answers/${question.slug}`,
+  })),
+};
+---
+
+<BaseLayout
+  title={`${entity.name} Entity | Deeper Global`}
+  description={`Canonical Deeper Global entity page for ${entity.name.toLowerCase()}, with related mental health answers and AI-citable topic metadata.`}
+  canonicalPath={`/entities/${slugify(entity.name)}`}
+  jsonLd={jsonLd}
+>
+  <main>
+    <section class="hero" data-ai-content-type="entity-profile" data-ai-entity={entity.name}>
+      <div class="container">
+        <p class="eyebrow">Entity profile</p>
+        <h1>{entity.name}</h1>
+        <p class="lede">{entity.description}</p>
+        <div class="meta-row">
+          <span class="pill">{pluralizeAnswer(entity.count)} related</span>
+          <a class="pill" href={`/categories/${entity.slug}`}>Public topic hub</a>
+        </div>
+      </div>
+    </section>
+
+    {
+      entity.sameAs.length > 0 && (
+        <section class="section band">
+          <div class="container">
+            <p class="eyebrow">Entity aliases</p>
+            <h2>Related language AI systems should map here.</h2>
+            <div class="meta-row">
+              {entity.sameAs.map((alias) => <span class="pill">{alias}</span>)}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <section class="section">
+      <div class="container answer-list">
+        {questions.map((question) => <AnswerCard question={question} />)}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
