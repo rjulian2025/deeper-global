@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import WebVitals from '../components/WebVitals'
 import Header from '@/components/Header'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata: Metadata = {
   title: 'Deeper | AI-Structured Mental Health Search',
@@ -31,6 +32,7 @@ export default function RootLayout({
         <Header />
         {children}
         <WebVitals />
+        <Analytics />
       </body>
     </html>
   )
