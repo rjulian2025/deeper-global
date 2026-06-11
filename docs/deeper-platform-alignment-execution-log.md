@@ -293,3 +293,115 @@ Preferred sequence:
 | Production deployment triggered? | **No** |
 | `www.deeper.global` unchanged? | **Yes** — still on `dpl_BaKpUGFGS1nJTCLadaNDr2S8uEF2` |
 | Rollback ID recorded? | **Yes** — `dpl_BaKpUGFGS1nJTCLadaNDr2S8uEF2` |
+
+---
+
+## 11. Addendum — Vercel Git branch visibility diagnosis (2026-06-11)
+
+**Session type:** Diagnosis only — no deploy, no push, no Vercel settings changed, no app edits.
+
+### Dashboard error observed
+
+When attempting **Settings → Environments → Production → Branch Tracking → `production/astro` → Save**, Vercel rejected the change:
+
+```text
+Branch "production/astro" not found in the connected Git repository.
+```
+
+Same error class as earlier API attempts (`git_branch_not_found`).
+
+### GitHub branch verification
+
+Remote heads confirmed on `origin` (`https://github.com/rjulian2025/deeper-global.git`):
+
+| Branch | Remote SHA | Exists? |
+|--------|------------|---------|
+| `production/astro` | `eb5cf8b` | ✅ Yes |
+| `codex/deeper-global-astro-v1` | `d1e19e8` | ✅ Yes |
+| `main` | `0007864` | ✅ Yes |
+
+GitHub API branch list (8 branches total) includes both slash and slashless names, e.g. `production/astro`, `codex/deeper-global-astro-v1`, `opt/sprint-01`, `vercel/install-vercel-web-analytics-rwkict`.
+
+GitHub metadata:
+
+| Field | Value |
+|-------|-------|
+| Full name | `rjulian2025/deeper-global` |
+| Repo ID | `1034144062` |
+| Default branch | `production/astro` |
+| Last push | `2026-06-11T17:16:26Z` |
+
+Local repo: on `production/astro`, clean working tree, `origin/production/astro` tracked.
+
+### Vercel Git link inspection
+
+| Field | Value |
+|-------|-------|
+| Project | `deeper-global-h65m` (`prj_oqoU0c7xWi8QB7VxChkLzsvuUoRL`) |
+| Git provider | `github` |
+| Connected repo | **`rjulian2025/deeper-global`** ✅ matches GitHub |
+| Repo ID | `1034144062` ✅ matches GitHub |
+| Repo owner ID | `204274351` |
+| Git credential ID | `cred_c45f9bd688e6bfebba31e55116d8e84ebe477bec` |
+| Production branch (configured) | `main` |
+| **`sourceless`** | **`true`** ⚠️ |
+| Link `createdAt` / `updatedAt` | `1754610356689` / `1754610356689` (never refreshed since project link creation) |
+| Project `updatedAt` | `1781198046883` (framework/build settings only) |
+
+Build settings remain aligned: Astro, root `.`, `npm install`, `npm run build`, `dist`, Node `22.x`.
+
+### Slash vs slashless branch test (diagnostic API probes)
+
+Read-only diagnosis used the undocumented `/branch` endpoint; **all probes failed** with `git_branch_not_found` — no setting was mutated:
+
+| Branch tested | Result |
+|---------------|--------|
+| `main` | `git_branch_not_found` |
+| `production/astro` | `git_branch_not_found` |
+| `codex/deeper-global-astro-v1` | `git_branch_not_found` |
+| `opt/sprint-01` | `git_branch_not_found` |
+| `production-astro` (hypothetical slashless) | `git_branch_not_found` |
+| `astro-production` (hypothetical slashless) | `git_branch_not_found` |
+
+**Conclusion:** This is **not** a slash-in-branch-name problem. Vercel cannot enumerate **any** branch from the connected repository, including `main` (the currently configured production branch).
+
+### Likely root cause
+
+1. **Stale / sourceless Git link** — `sourceless: true` with link metadata frozen at project creation time indicates Vercel is not successfully reading the live GitHub branch list through its stored credential.
+2. **Branch cache never populated** — Dashboard Branch Tracking validates against Vercel’s internal branch index, not GitHub directly; that index appears empty or disconnected.
+3. **Not a wrong-repo problem** — Repo ID and owner match GitHub exactly.
+4. **Not a missing-branch problem** — Branch exists and is GitHub default.
+
+Recent preview deployments carry `githubCommitRef` in metadata, but those were **CLI-initiated** (`actor: cursor-cli`), not proof that Git webhook branch tracking is healthy. Live production (`dpl_BaKpUGFGS1nJTCLadaNDr2S8uEF2`) is **CLI-only** with no Git ref metadata.
+
+### Workaround options evaluated (not implemented)
+
+| Option | Description | Verdict |
+|--------|-------------|---------|
+| **A** | Slashless alias branch (e.g. `production-astro`) | ❌ **Unlikely to help** — even `main` and `opt/sprint-01` fail branch validation |
+| **B** | Reconnect Vercel Git integration to `rjulian2025/deeper-global` | ✅ **Recommended primary fix** — refreshes credential and branch index; do **not** redeploy on save |
+| **C** | Keep CLI deploy workflow; skip Git production branch alignment | ✅ **Safest short-term** — production already CLI-driven; defers Git cutover |
+| **D** | Use `codex/deeper-global-astro-v1` as production branch | ❌ **Same failure** — also rejected by branch index |
+| **E** | Rename long-term branch to `production-astro` | ❌ **Same failure** — hypothetical slashless names also rejected |
+
+### Recommended workaround (when approved to act)
+
+**Primary:** Option **B** — In Vercel **Settings → Git**, reconnect `rjulian2025/deeper-global` (or refresh GitHub App permissions for the Vercel integration on GitHub). After reconnect:
+
+1. Confirm `sourceless` becomes `false` or branch picker lists branches.
+2. Retry **Production → Branch Tracking → `production/astro`**.
+3. **Do not redeploy** until explicitly approved.
+4. **Do not push** to `production/astro` until production deploy is intentionally gated — once branch tracking is fixed, the next push **will** trigger a production deployment.
+
+**Fallback:** Option **C** — Continue validated CLI preview → explicit promote workflow; treat Git production branch as non-blocking until reconnect is safe.
+
+### Production unchanged confirmation
+
+| Check | Result |
+|-------|--------|
+| Live production deployment | **`dpl_BaKpUGFGS1nJTCLadaNDr2S8uEF2`** (unchanged) |
+| `www.deeper.global` | HTTP **200** |
+| Vercel Production Branch | Still **`main`** (dashboard change blocked) |
+| New production deployment | **None** |
+| Vercel settings mutated | **No** (diagnostic probes failed without effect) |
+| Deploy / push / promote | **None** |
