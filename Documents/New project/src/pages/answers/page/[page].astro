@@ -1,0 +1,60 @@
+---
+import AnswerCard from '@/components/AnswerCard.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getQuestions, type Question } from '@/lib/supabase';
+
+const pageSize = 48;
+
+export async function getStaticPaths() {
+  const pageSize = 48;
+  const questions = await getQuestions();
+  const totalPages = Math.ceil(questions.length / pageSize);
+
+  return Array.from({ length: Math.max(totalPages - 1, 0) }, (_, index) => {
+    const page = index + 2;
+    const start = (page - 1) * pageSize;
+
+    return {
+      params: { page: String(page) },
+      props: {
+        page,
+        totalPages,
+        questions: questions.slice(start, start + pageSize),
+      },
+    };
+  });
+}
+
+const page = Number(Astro.props.page ?? Astro.params.page ?? 1);
+const totalPages = Number(Astro.props.totalPages ?? page);
+const questions = (Astro.props.questions ?? []) as Question[];
+const previousPath = page === 2 ? '/answers/' : `/answers/page/${page - 1}/`;
+const nextPath = page < totalPages ? `/answers/page/${page + 1}/` : null;
+---
+
+<BaseLayout
+  title={`Mental Health Questions and Answers, Page ${page} | Deeper Global`}
+  description={`Browse page ${page} of Deeper Global's evidence-informed mental health answer library.`}
+  canonicalPath={`/answers/page/${page}`}
+>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Answer library</p>
+        <h1>Mental health questions and answers.</h1>
+        <p class="lede">Page {page} of {totalPages} in Deeper Global's structured answer library.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container answer-list">
+        {questions.map((question) => <AnswerCard question={question} />)}
+        <nav class="pagination" aria-label="Answer library pages">
+          <a href={previousPath}>Previous</a>
+          <span>Page {page} of {totalPages}</span>
+          {nextPath && <a href={nextPath}>Next</a>}
+        </nav>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

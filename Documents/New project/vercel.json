@@ -1,5 +1,217 @@
 {
   "framework": "astro",
   "buildCommand": "npm run build",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/clusters",
+      "destination": "/answers/",
+      "permanent": true
+    },
+    {
+      "source": "/clusters/:path*",
+      "destination": "/answers/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/can-i-drink-alcohol-while-taking-psychiatric-medication",
+      "destination": "/answers/can-i-drink-alcohol-while-taking-psychia-181083-061/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/can-stress-and-anxiety-really-cause-stomach-problems",
+      "destination": "/answers/can-stress-and-anxiety-really-cause-stom-181083-002/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-deal-with-feeling-like-im-not-interesting-enough",
+      "destination": "/answers/how-do-i-deal-with-feeling-like-im-not-interesting-184730-089/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-deal-with-feeling-like-im-too-much-for-people",
+      "destination": "/answers/how-do-i-cope-with-feeling-like-im-too-much-for-other-people-a1b2c3/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-deal-with-intrusive-sexual-thoughts",
+      "destination": "/answers/how-do-i-deal-with-intrusive-sexual-thou-177940-031/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-deal-with-not-having-anyone-to-call-in-an-emergency",
+      "destination": "/answers/how-do-i-deal-with-not-having-anyone-to-181083-071/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-deal-with-panic-attacks-at-work",
+      "destination": "/answers/how-do-i-deal-with-panic-attacks-at-work-177940-019/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-deal-with-people-who-dont-support-my-recovery",
+      "destination": "/answers/how-do-i-deal-with-friends-who-dont-support-my-recovery/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-deal-with-seeing-my-ex-with-someone-new",
+      "destination": "/answers/how-do-i-deal-with-seeing-my-ex-with-som-181083-084/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-decide-what-to-do-with-their-belongings",
+      "destination": "/answers/how-do-i-decide-what-to-do-with-their-be-186032-009/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-help-my-anxious-child-without-making-it-worse",
+      "destination": "/answers/how-do-i-help-my-anxious-child-without-m-190974-004/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-integrate-psychedelic-experiences-into-my-daily-life",
+      "destination": "/answers/how-do-i-integrate-psychedelic-experiences-into-a8b3c6/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-know-if-im-experiencing-spiritual-bypassing",
+      "destination": "/answers/how-do-i-know-if-im-experiencing-spiritual-o9p6q1/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-manage-panic-attacks-while-in-public",
+      "destination": "/answers/how-do-i-deal-with-panic-attacks-at-work-177940-019/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-stop-feeling-guilty-about-my-past-mistakes",
+      "destination": "/answers/how-do-i-stop-feeling-guilty-about-my-past-mistakes-184730-053/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-stop-feeling-like-i-need-to-earn-my-place-everywhere",
+      "destination": "/answers/how-do-i-stop-feeling-like-i-need-to-earn-184730-095/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-stop-feeling-like-i-need-to-prove-myself-constantly",
+      "destination": "/answers/how-do-i-stop-feeling-like-i-need-to-prove-myself-q2r5s9/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-stop-feeling-like-im-a-burden-to-others",
+      "destination": "/answers/how-do-i-stop-feeling-like-im-a-burden-to-184730-049/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-stop-feeling-like-im-behind-everyone-else-professionally",
+      "destination": "/answers/how-do-i-deal-with-feeling-like-everyone-else-184730-047/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/what-if-i-become-dependent-on-anxiety-medication",
+      "destination": "/answers/what-if-i-become-dependent-on-anxiety-me-181083-058/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/whats-the-difference-between-healthy-and-toxic-masculinity",
+      "destination": "/answers/whats-the-difference-between-healthy-and-177940-028/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-disconnected-from-my-cultural-food-traditions",
+      "destination": "/answers/why-do-i-feel-disconnected-from-my-cultural-a2b5c8/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-furious-over-small-things-that-shouldnt-matter",
+      "destination": "/answers/why-do-i-feel-furious-over-small-things-that-shoul-186602-001/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-guilty-about-taking-sick-days-for-mental-health",
+      "destination": "/answers/why-do-i-feel-guilty-about-taking-sick-d-177940-026/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-guilty-for-being-happy-after-my-breakup",
+      "destination": "/answers/why-do-i-feel-guilty-for-being-happy-aft-181083-087/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-guilty-for-doubting-my-faith",
+      "destination": "/answers/why-do-i-feel-guilty-for-doubting-my-fai-181083-035/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-like-i-have-to-be-perfect-all-the-time",
+      "destination": "/answers/why-do-i-feel-like-i-have-to-be-perfect-all-184730-084/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-like-ill-never-find-love-again",
+      "destination": "/answers/why-do-i-feel-like-ill-never-find-love-a-181083-083/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-like-im-living-someone-elses-life",
+      "destination": "/answers/why-do-i-feel-like-im-living-someone-els-177940-010/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-like-im-never-enough-for-anyone",
+      "destination": "/answers/why-do-i-feel-like-im-never-enough-for-anyone-l6m9n3/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-like-im-not-allowed-to-have-problems",
+      "destination": "/answers/why-do-i-feel-like-im-not-allowed-to-have-problems-f8g1h4/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-lonely-even-when-im-around-people",
+      "destination": "/answers/why-do-i-feel-lonely-even-when-im-around-184730-017/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-more-like-myself-when-interacting-with-ai-than-in-real-life",
+      "destination": "/answers/why-do-i-feel-more-like-myself-when-interacting-wi-189142-009/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-so-angry-all-the-time",
+      "destination": "/answers/why-do-i-feel-so-angry-all-the-time-186032-020/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-spiritually-empty-despite-having-everything-i-thought-i-wanted",
+      "destination": "/answers/why-do-i-feel-spiritually-empty-despite-having-n8o2p5/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-get-trembling-hands-when-im-nervous",
+      "destination": "/answers/why-do-i-get-trembling-hands-when-im-ner-181083-010/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-shut-down-emotionally-when-conflict-starts",
+      "destination": "/answers/why-do-i-shut-down-emotionally-when-conflict-start-186602-003/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-does-my-chest-feel-tight-when-im-anxious",
+      "destination": "/answers/why-does-my-chest-feel-tight-when-im-anx-181083-001/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-does-my-teenager-seem-to-hate-spending-time-with-family",
+      "destination": "/answers/why-does-my-teenager-seem-to-hate-spending-time-wi-187459-008/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-does-my-throat-feel-tight-when-im-stressed",
+      "destination": "/answers/why-does-my-throat-feel-tight-when-im-st-181083-008/",
+      "permanent": true
+    }
+  ]
 }

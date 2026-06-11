@@ -12,7 +12,7 @@ Deeper Global is the public, consumer-facing knowledge layer for mental health q
    - Astro site at `deeper.global`
    - Answer pages, topic hubs, protocol/about/privacy pages
    - Static generation from Supabase when credentials are present
-   - Schema.org QAPage markup on answer pages
+   - Schema.org Article, MedicalWebPage, Question, Answer, DefinedTerm, and BreadcrumbList markup on answer pages
    - `llms.txt` machine-readable content index for AI systems
    - Entity profile pages that separate canonical topics from raw Q&A URLs
 
@@ -72,7 +72,7 @@ AI citability is not the same as traditional SEO. V1 supports it through:
 - `/llms.txt` as a machine-readable content map
 - visible citation panels on answer pages
 - `data-ai-*` attributes on primary answer and entity markup
-- QAPage, Question, Answer, and DefinedTerm JSON-LD
+- Article, MedicalWebPage, Question, Answer, DefinedTerm, and BreadcrumbList JSON-LD
 - entity pages at `/entities/[entity]`
 - stable canonical answer URLs
 - plain-language short answers plus extractable accepted answer sections

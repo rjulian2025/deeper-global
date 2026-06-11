@@ -7,12 +7,15 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro build"
+    "check": "astro build",
+    "seo:priority": "node scripts/generate-indexation-priority.mjs",
+    "seo:p1-sources": "node scripts/prepare-p1-enrichment-sources.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
     "@supabase/supabase-js": "^2.54.0",
-    "astro": "^6.2.0"
+    "astro": "^6.2.0",
+    "pg": "^8.20.0"
   },
   "devDependencies": {
     "typescript": "^5.9.2"

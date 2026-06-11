@@ -5,11 +5,14 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getQuestions } from '@/lib/supabase';
 
 const questions = await getQuestions();
+const pageSize = 48;
+const visibleQuestions = questions.slice(0, pageSize);
+const totalPages = Math.ceil(questions.length / pageSize);
 ---
 
 <BaseLayout
   title="Mental Health Questions and Answers | Deeper Global"
-  description="Browse evidence-informed mental health questions and answers from Deeper Global."
+  description="Browse Deeper Global's evidence-informed mental health answer library, organized for people seeking clear language before, during, or after care."
   canonicalPath="/answers"
 >
   <main>
@@ -24,13 +27,21 @@ const questions = await getQuestions();
     <section class="section">
       <div class="container answer-list">
         {
-          questions.length ? (
-            questions.map((question) => <AnswerCard question={question} />)
+          visibleQuestions.length ? (
+            visibleQuestions.map((question) => <AnswerCard question={question} />)
           ) : (
             <EmptyState
               title="No live answers available yet"
               message="This build did not have Supabase credentials. Configure the environment and rebuild to generate the answer library."
             />
+          )
+        }
+        {
+          totalPages > 1 && (
+            <nav class="pagination" aria-label="Answer library pages">
+              <span>Page 1 of {totalPages}</span>
+              <a href="/answers/page/2/">Next</a>
+            </nav>
           )
         }
       </div>

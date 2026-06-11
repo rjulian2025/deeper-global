@@ -2,36 +2,37 @@
 import EmptyState from '@/components/EmptyState.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getEntitySummaries, pluralizeAnswer } from '@/lib/content';
+import { siteUrl } from '@/lib/site';
 import { getQuestions } from '@/lib/supabase';
 
 const questions = await getQuestions();
 const entities = getEntitySummaries(questions);
 const jsonLd = {
-  '@context': 'https://schema.org',
   '@type': 'DefinedTermSet',
   name: 'Deeper Global Mental Health Topic Map',
-  url: 'https://deeper.global/entities',
+  url: siteUrl('/entities'),
   hasDefinedTerm: entities.map((entity) => ({
     '@type': 'DefinedTerm',
     name: entity.name,
-    url: `https://deeper.global/entities/${entity.slug}`,
+    url: siteUrl(`/entities/${entity.slug}`),
     alternateName: entity.sameAs,
   })),
 };
 ---
 
 <BaseLayout
-  title="Mental Health Entity Map | Deeper Global"
-  description="Canonical mental health entities used to organize Deeper Global answers for people, search engines, and AI systems."
+  title="Mental Health Themes | Deeper Global"
+  description="Mental health themes that organize Deeper Global answers into clearer paths for exploration and understanding."
   canonicalPath="/entities"
   jsonLd={jsonLd}
+  noindex={true}
 >
   <main>
     <section class="hero">
       <div class="container">
-        <p class="eyebrow">Entity map</p>
-        <h1>Mental health entities, not just pages.</h1>
-        <p class="lede">The entity layer gives AI systems a stable topic graph for interpreting, citing, and connecting Deeper Global answers.</p>
+        <p class="eyebrow">Themes</p>
+        <h1>Explore the patterns behind mental health questions.</h1>
+        <p class="lede">Themes connect related questions, language, and answers so you can keep exploring what feels relevant to you.</p>
       </div>
     </section>
 
@@ -40,17 +41,17 @@ const jsonLd = {
         {
           entities.length ? (
             entities.map((entity) => (
-              <a class="card entity-card" href={`/entities/${entity.slug}`} data-ai-entity={entity.name}>
+              <a class="card entity-card" href={`/entities/${entity.slug}/`} data-ai-entity={entity.name}>
                 <h3>{entity.name}</h3>
                 <p>{entity.description}</p>
                 <div class="meta-row">
                   <span class="pill">{pluralizeAnswer(entity.count)}</span>
-                  <span class="pill">Topic entity</span>
+                  <span class="pill">Theme</span>
                 </div>
               </a>
             ))
           ) : (
-            <EmptyState title="No entity data available yet" message="Entities are generated from Supabase categories when corpus credentials are available." />
+            <EmptyState title="No theme data available yet" message="Themes are generated from Supabase categories when corpus credentials are available." />
           )
         }
       </div>

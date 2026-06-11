@@ -45,4 +45,8 @@ See [docs/platform-architecture.md](docs/platform-architecture.md) for the produ
 
 ## AI Citability
 
-AI systems can discover the corpus through `/llms.txt`. Answer pages include visible citation metadata, QAPage/Answer JSON-LD, `data-ai-*` attributes, and links to canonical entity profiles.
+AI systems can discover the corpus through `/llms.txt`. Answer pages include visible citation metadata, Article/MedicalWebPage/Question/Answer JSON-LD, `data-ai-*` attributes, and links to canonical topic/entity profiles.
+
+## Content Enrichment
+
+The global answer-improvement prompt lives in [docs/answer-enrichment-prompt.md](docs/answer-enrichment-prompt.md). The frontend will automatically use enriched Supabase fields such as `improved_title`, `improved_meta_description`, `improved_summary`, `key_takeaways`, `answer_sections`, `care_note`, `related_questions`, `suggested_schema_question`, and `suggested_schema_answer` when they are present, while preserving the existing fields as fallbacks.

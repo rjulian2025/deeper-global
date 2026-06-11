@@ -1,7 +1,7 @@
 ---
 import EmptyState from '@/components/EmptyState.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { getCategorySummaries } from '@/lib/content';
+import { categoryPath, getCategorySummaries } from '@/lib/content';
 import { getQuestions } from '@/lib/supabase';
 
 const questions = await getQuestions();
@@ -12,6 +12,7 @@ const categories = getCategorySummaries(questions);
   title="Mental Health Topics | Deeper Global"
   description="Browse Deeper Global mental health topic hubs generated from the answer corpus."
   canonicalPath="/categories"
+  noindex={true}
 >
   <main>
     <section class="hero">
@@ -27,7 +28,7 @@ const categories = getCategorySummaries(questions);
         {
           categories.length ? (
             categories.map((category) => (
-              <a class="card" href={`/categories/${category.slug}`}>
+              <a class="card" href={categoryPath(category.name)}>
                 <h3>{category.name}</h3>
                 <p>{category.description}</p>
               </a>
