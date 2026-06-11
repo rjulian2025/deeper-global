@@ -2,6 +2,11 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://deeper.global',
-  integrations: [sitemap()],
+  site: 'https://www.deeper.global',
+  trailingSlash: 'always',
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/entities/') && !page.includes('/categories/'),
+    }),
+  ],
 });

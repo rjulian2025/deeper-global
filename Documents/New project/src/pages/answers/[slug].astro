@@ -1,18 +1,30 @@
 ---
-import AnswerCard from '@/components/AnswerCard.astro';
 import CrisisBanner from '@/components/CrisisBanner.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import {
+  answerPath,
   categoryPath,
   displayCategory,
+  formatAnswerHtml,
   formatDate,
+  getAnswerMetaDescription,
+  getAnswerPlainText,
+  getAnswerDisplayTitle,
+  getAnswerSchemaAnswer,
+  getAnswerSchemaQuestion,
+  getAnswerSummary,
+  getCareNote,
+  getFollowUpQuestions,
+  getKeyTakeaways,
+  getPrimaryTheme,
   getQuestionCitation,
   getRelatedQuestions,
   isCrisisSensitive,
+  shouldIndexQuestion,
   slugify,
-  toPlainText,
   truncate,
 } from '@/lib/content';
+import { organizationId, siteUrl, websiteId } from '@/lib/site';
 import { getQuestionBySlug, getQuestions, type Question } from '@/lib/supabase';
 
 export async function getStaticPaths() {
@@ -33,171 +45,266 @@ if (!question) {
 const allQuestions = await getQuestions();
 const relatedQuestions = getRelatedQuestions(question, allQuestions);
 const category = displayCategory(question);
+const displayTitle = getAnswerDisplayTitle(question);
+const summary = getAnswerSummary(question);
+const schemaQuestion = getAnswerSchemaQuestion(question);
+const schemaAnswerText = getAnswerSchemaAnswer(question);
+const keyTakeaways = getKeyTakeaways(question);
+const followUpQuestions = getFollowUpQuestions(question);
+const primaryTheme = getPrimaryTheme(question);
 const updatedAt = question.updated_at || question.created_at;
 const crisisSensitive = isCrisisSensitive(question);
-const title = `${question.question} | Deeper Global`;
-const description = question.short_answer;
+const careNote = getCareNote(question, crisisSensitive);
+const title = `${displayTitle} | Deeper Global`;
+const description = getAnswerMetaDescription(question);
 const citation = getQuestionCitation(question);
-const answerText = toPlainText(question.answer);
-const extractableAnswer = truncate(answerText, 700);
+const answerHtml = formatAnswerHtml(question);
+const answerText = getAnswerPlainText(question);
+const extractableAnswer = truncate(schemaAnswerText || answerText, 700);
+const answerUrl = siteUrl(`/answers/${question.slug}`);
+const categoryUrl = siteUrl(categoryPath(category));
+const entityUrl = siteUrl(`/entities/${slugify(category)}`);
+const questionId = `${answerUrl}#question`;
+const answerId = `${answerUrl}#accepted-answer`;
+const articleId = `${answerUrl}#article`;
+const pageId = `${answerUrl}#webpage`;
+const shouldIndex = shouldIndexQuestion(question);
 const jsonLd = {
-  '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'QAPage',
-      '@id': `https://deeper.global/answers/${question.slug}#qapage`,
+      '@type': 'MedicalWebPage',
+      '@id': pageId,
+      url: answerUrl,
+      name: displayTitle,
+      description,
+      datePublished: question.created_at,
+      dateModified: updatedAt,
+      isPartOf: {
+        '@id': websiteId(),
+      },
+      publisher: {
+        '@id': organizationId(),
+      },
+      about: {
+        '@id': `${entityUrl}#entity`,
+      },
       mainEntity: {
-        '@id': `https://deeper.global/answers/${question.slug}#question`,
+        '@id': articleId,
+      },
+    },
+    {
+      '@type': 'Article',
+      '@id': articleId,
+      headline: displayTitle,
+      description,
+      articleBody: answerText,
+      datePublished: question.created_at,
+      dateModified: updatedAt,
+      author: {
+        '@id': organizationId(),
+      },
+      publisher: {
+        '@id': organizationId(),
+      },
+      mainEntityOfPage: {
+        '@id': pageId,
+      },
+      about: {
+        '@id': `${entityUrl}#entity`,
       },
     },
     {
       '@type': 'Question',
-      '@id': `https://deeper.global/answers/${question.slug}#question`,
-      name: question.question,
-      text: question.question,
+      '@id': questionId,
+      name: schemaQuestion,
+      text: schemaQuestion,
       dateCreated: question.created_at,
       about: {
-        '@id': `https://deeper.global/entities/${slugify(category)}#entity`,
-        name: category,
+        '@id': `${entityUrl}#entity`,
+        name: primaryTheme,
       },
       author: {
-        '@type': 'Organization',
-        name: 'Deeper Global',
-        url: 'https://deeper.global',
+        '@id': organizationId(),
       },
       acceptedAnswer: {
-        '@id': `https://deeper.global/answers/${question.slug}#accepted-answer`,
+        '@id': answerId,
       },
     },
     {
       '@type': 'Answer',
-      '@id': `https://deeper.global/answers/${question.slug}#accepted-answer`,
-      text: answerText,
+      '@id': answerId,
+      url: `${answerUrl}#accepted-answer`,
+      text: schemaAnswerText,
       dateCreated: question.created_at,
       dateModified: updatedAt,
       citation: citation.url,
       author: {
-        '@type': 'Organization',
-        name: 'Deeper Global',
-        url: 'https://deeper.global',
+        '@id': organizationId(),
       },
     },
     {
       '@type': 'DefinedTerm',
-      '@id': `https://deeper.global/entities/${slugify(category)}#entity`,
-      name: category,
+      '@id': `${entityUrl}#entity`,
+      name: primaryTheme,
       inDefinedTermSet: 'Deeper Global Mental Health Topic Map',
-      url: `https://deeper.global/entities/${slugify(category)}`,
+      url: entityUrl,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${answerUrl}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Deeper Global',
+          item: siteUrl(),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: category,
+          item: categoryUrl,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: displayTitle,
+          item: answerUrl,
+        },
+      ],
     },
   ],
 };
-const legacyJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'QAPage',
-  mainEntity: {
-    '@type': 'Question',
-    name: question.question,
-    text: question.question,
-    dateCreated: question.created_at,
-    author: {
-      '@type': 'Organization',
-      name: 'Deeper Global',
-      url: 'https://deeper.global',
-    },
-    acceptedAnswer: {
-      '@type': 'Answer',
-        text: answerText,
-      dateCreated: question.created_at,
-      dateModified: updatedAt,
-      author: {
-        '@type': 'Organization',
-        name: 'Deeper Global',
-        url: 'https://deeper.global',
-      },
-    },
-  },
-};
 ---
 
-<BaseLayout title={title} description={description} canonicalPath={`/answers/${question.slug}`} ogType="article" jsonLd={jsonLd}>
+<BaseLayout title={title} description={description} canonicalPath={`/answers/${question.slug}`} ogType="article" jsonLd={jsonLd} noindex={!shouldIndex}>
   {crisisSensitive && <CrisisBanner />}
   <main>
+    <nav class="answer-breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Deeper Global</a>
+      <span aria-hidden="true">/</span>
+      <a href={categoryPath(category)}>{category}</a>
+      <span aria-hidden="true">/</span>
+      <span>{truncate(displayTitle, 54)}</span>
+    </nav>
+
     <article
-      class="content answer-content"
+      class="answer-layout"
       data-ai-content-type="mental-health-answer"
       data-ai-citable="true"
       data-question-id={question.id}
       data-question-slug={question.slug}
-      data-primary-entity={category}
+      data-primary-entity={primaryTheme}
       data-risk-class={crisisSensitive ? 'crisis-sensitive' : 'standard'}
       itemscope
-      itemtype="https://schema.org/QAPage"
+      itemtype="https://schema.org/Article"
     >
-      <p class="eyebrow">{category}</p>
-      <h1 itemprop="headline">{question.question}</h1>
-      <section
-        class="ai-answer-summary"
-        id="answer-summary"
-        aria-label="Structured answer summary"
-        data-ai-section="answer-summary"
-        itemscope
-        itemprop="mainEntity"
-        itemtype="https://schema.org/Question"
-      >
-        <meta itemprop="name" content={question.question} />
-        <p class="summary" itemprop="text">{question.short_answer}</p>
-      </section>
-      <div class="trust-panel">
-        <strong>Deeper review signal:</strong> evidence-informed answer, categorized for topic intelligence, last updated {formatDate(updatedAt)}.
-        <br />
-        Entity: <a href={`/entities/${slugify(category)}`}>{category}</a>. Topic hub: <a href={categoryPath(category)}>browse more {category.toLowerCase()} answers</a>.
+      <meta itemprop="datePublished" content={question.created_at} />
+      <meta itemprop="dateModified" content={updatedAt} />
+      <meta itemprop="author" content="Deeper Global" />
+      <div class="answer-main">
+        <a class="answer-topic-badge" href={categoryPath(category)}>{category}</a>
+        <h1 itemprop="headline">{displayTitle}</h1>
+        <section
+          class="ai-answer-summary"
+          id="answer-summary"
+          aria-label="Structured answer summary"
+          data-ai-section="answer-summary"
+        >
+          <p class="summary">{summary}</p>
+        </section>
+        {
+          keyTakeaways.length > 0 && (
+            <section class="key-takeaways" aria-labelledby="key-takeaways-title" data-ai-section="key-takeaways">
+              <h2 id="key-takeaways-title">Key takeaways</h2>
+              <ul>
+                {keyTakeaways.map((takeaway) => <li>{takeaway}</li>)}
+              </ul>
+            </section>
+          )
+        }
+        <section
+          id="accepted-answer"
+          class="accepted-answer"
+          aria-label="Accepted answer"
+          data-ai-section="accepted-answer"
+          data-ai-extract={extractableAnswer}
+          itemprop="articleBody"
+        >
+          <div set:html={answerHtml} />
+        </section>
       </div>
-      <section class="citation-panel" id="citation" aria-label="Citation metadata" data-ai-section="citation">
-        <h2>How to cite this answer</h2>
-        <dl>
-          <div>
-            <dt>Title</dt>
-            <dd>{citation.title}</dd>
-          </div>
-          <div>
-            <dt>Publisher</dt>
-            <dd>{citation.publisher}</dd>
-          </div>
-          <div>
-            <dt>Canonical URL</dt>
-            <dd><a href={citation.url}>{citation.url}</a></dd>
-          </div>
-          <div>
-            <dt>Updated</dt>
-            <dd>{formatDate(citation.dateModified)}</dd>
-          </div>
-        </dl>
-      </section>
-      <section
-        id="accepted-answer"
-        class="accepted-answer"
-        aria-label="Accepted answer"
-        data-ai-section="accepted-answer"
-        data-ai-extract={extractableAnswer}
-        itemscope
-        itemprop="acceptedAnswer"
-        itemtype="https://schema.org/Answer"
-      >
-        <meta itemprop="dateCreated" content={question.created_at} />
-        <meta itemprop="dateModified" content={updatedAt} />
-        <div itemprop="text" set:html={question.answer} />
-      </section>
-      <script is:inline type="application/ld+json" set:html={JSON.stringify(legacyJsonLd)} />
+
+      <aside class="answer-sidebar" aria-label="Answer context">
+        <section class="signal-card">
+          <p class="sidebar-label">Deeper review signal</p>
+          <ul>
+            <li>Evidence-informed answer</li>
+            <li>Categorized for topic intelligence</li>
+            <li>Updated {formatDate(updatedAt)}</li>
+          </ul>
+        </section>
+
+        <section class="sidebar-card">
+          <p class="sidebar-label">Related theme</p>
+          <a class="sidebar-entity" href={categoryPath(category)}>{category}</a>
+          <p>Browse the topic hub for more {category.toLowerCase()} answers.</p>
+          <a class="text-link" href={categoryPath(category)}>Open topic hub</a>
+        </section>
+
+        {
+          followUpQuestions.length > 0 && (
+            <section class="sidebar-card follow-up-card" data-ai-section="related-questions">
+              <p class="sidebar-label">Questions people ask next</p>
+              <ul>
+                {followUpQuestions.map((relatedQuestion) => <li>{relatedQuestion}</li>)}
+              </ul>
+            </section>
+          )
+        }
+
+        <section class="citation-panel" id="citation" aria-label="Citation metadata" data-ai-section="citation">
+          <h2>How to cite this answer</h2>
+          <dl>
+            <div>
+              <dt>Title</dt>
+              <dd>{citation.title}</dd>
+            </div>
+            <div>
+              <dt>Publisher</dt>
+              <dd>{citation.publisher}</dd>
+            </div>
+            <div>
+              <dt>Canonical URL</dt>
+              <dd><a href={citation.url}>{citation.url}</a></dd>
+            </div>
+            <div>
+              <dt>Updated</dt>
+              <dd>{formatDate(citation.dateModified)}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="care-card">
+          <p class="sidebar-label">Not a substitute for care</p>
+          <p>{careNote}</p>
+        </section>
+      </aside>
     </article>
 
     {
       relatedQuestions.length > 0 && (
-        <section class="section band">
+        <section class="section related-section">
           <div class="container">
             <p class="eyebrow">Related questions</p>
             <h2>More answers in {category}</h2>
-            <div class="answer-list">
-              {relatedQuestions.map((related) => <AnswerCard question={related} headingLevel={3} />)}
+            <div class="rabbit-grid">
+              {relatedQuestions.map((related) => (
+                <a class="rabbit-card" href={answerPath(related.slug)}>
+                  <span>{displayCategory(related)}</span>
+                  <strong>{related.question}</strong>
+                </a>
+              ))}
             </div>
           </div>
         </section>

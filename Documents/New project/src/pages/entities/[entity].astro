@@ -1,7 +1,8 @@
 ---
 import AnswerCard from '@/components/AnswerCard.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { displayCategory, getEntitySummaries, pluralizeAnswer, slugify } from '@/lib/content';
+import { categoryPath, displayCategory, getAnswerDisplayTitle, getEntitySummaries, pluralizeAnswer, slugify } from '@/lib/content';
+import { siteUrl } from '@/lib/site';
 import { getQuestions, type Question } from '@/lib/supabase';
 
 export async function getStaticPaths() {
@@ -25,36 +26,36 @@ if (!entity) {
 }
 
 const jsonLd = {
-  '@context': 'https://schema.org',
   '@type': 'DefinedTerm',
-  '@id': `https://deeper.global/entities/${entity.slug}#entity`,
+  '@id': `${siteUrl(`/entities/${entity.slug}`)}#entity`,
   name: entity.name,
-  url: `https://deeper.global/entities/${entity.slug}`,
+  url: siteUrl(`/entities/${entity.slug}`),
   alternateName: entity.sameAs,
   inDefinedTermSet: 'Deeper Global Mental Health Topic Map',
   subjectOf: questions.slice(0, 50).map((question) => ({
-    '@type': 'QAPage',
-    name: question.question,
-    url: `https://deeper.global/answers/${question.slug}`,
+    '@type': 'Article',
+    name: getAnswerDisplayTitle(question),
+    url: siteUrl(`/answers/${question.slug}`),
   })),
 };
 ---
 
 <BaseLayout
-  title={`${entity.name} Entity | Deeper Global`}
-  description={`Canonical Deeper Global entity page for ${entity.name.toLowerCase()}, with related mental health answers and AI-citable topic metadata.`}
+  title={`${entity.name} Theme | Deeper Global`}
+  description={`Deeper Global theme page for ${entity.name.toLowerCase()}, with related mental health answers and connected language.`}
   canonicalPath={`/entities/${slugify(entity.name)}`}
   jsonLd={jsonLd}
+  noindex={true}
 >
   <main>
     <section class="hero" data-ai-content-type="entity-profile" data-ai-entity={entity.name}>
       <div class="container">
-        <p class="eyebrow">Entity profile</p>
+        <p class="eyebrow">Theme</p>
         <h1>{entity.name}</h1>
         <p class="lede">{entity.description}</p>
         <div class="meta-row">
           <span class="pill">{pluralizeAnswer(entity.count)} related</span>
-          <a class="pill" href={`/categories/${entity.slug}`}>Public topic hub</a>
+          <a class="pill" href={categoryPath(entity.name)}>Topic hub</a>
         </div>
       </div>
     </section>
@@ -63,8 +64,8 @@ const jsonLd = {
       entity.sameAs.length > 0 && (
         <section class="section band">
           <div class="container">
-            <p class="eyebrow">Entity aliases</p>
-            <h2>Related language AI systems should map here.</h2>
+            <p class="eyebrow">Related language</p>
+            <h2>Other ways people talk about this theme.</h2>
             <div class="meta-row">
               {entity.sameAs.map((alias) => <span class="pill">{alias}</span>)}
             </div>

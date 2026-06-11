@@ -1,4 +1,5 @@
-import type { Question } from './supabase';
+import type { AnswerSection, Question } from './supabase';
+import { siteUrl } from './site';
 
 const crisisTerms = [
   'suicide',
@@ -56,11 +57,59 @@ export function slugify(value: string) {
 }
 
 export function categoryPath(category: string | null) {
-  return `/categories/${slugify(category || 'general')}`;
+  return `/categories/${slugify(category || 'general')}/`;
+}
+
+export function answerPath(slug: string) {
+  return `/answers/${slug}/`;
 }
 
 export function displayCategory(question: Question) {
   return question.category || question.raw_category || 'General';
+}
+
+export function getAnswerDisplayTitle(question: Question) {
+  return cleanText(question.improved_title) || question.question;
+}
+
+export function getAnswerSummary(question: Question) {
+  return cleanText(question.improved_summary) || question.short_answer;
+}
+
+export function getAnswerSchemaQuestion(question: Question) {
+  return cleanText(question.suggested_schema_question) || question.question;
+}
+
+export function getAnswerSchemaAnswer(question: Question) {
+  return cleanText(question.suggested_schema_answer) || getAnswerPlainText(question);
+}
+
+export function getPrimaryTheme(question: Question) {
+  return cleanText(question.primary_theme) || displayCategory(question);
+}
+
+export function getRelatedThemeNames(question: Question) {
+  return getStringList(question.related_themes);
+}
+
+export function getFollowUpQuestions(question: Question) {
+  return getStringList(question.related_questions).slice(0, 6);
+}
+
+export function getCareNote(question: Question, crisisSensitive = false) {
+  const explicitCareNote = cleanText(question.care_note);
+
+  if (explicitCareNote) return explicitCareNote;
+
+  if (crisisSensitive) {
+    return 'If you may hurt yourself or someone else, call or text 988 in the U.S. or contact local emergency services now.';
+  }
+
+  return 'If this is interfering with daily life, relationships, work, sleep, or your sense of safety, consider talking with a licensed mental health professional.';
+}
+
+export function getKeyTakeaways(question: Question) {
+  return getStringList(question.key_takeaways).slice(0, 5);
 }
 
 export function formatDate(value: string | null) {
@@ -86,13 +135,177 @@ export function toPlainText(html: string) {
     .trim();
 }
 
+export function getAnswerPlainText(question: Question) {
+  const sections = getStructuredAnswerSections(question);
+
+  if (sections.length) {
+    return sections
+      .map((section) => [section.heading, section.body].filter(Boolean).join('. '))
+      .join(' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  return toPlainText(question.answer);
+}
+
+export function formatAnswerHtml(question: Question) {
+  const sections = getStructuredAnswerSections(question);
+
+  if (sections.length) {
+    return sections
+      .map((section) => {
+        const heading = section.heading
+          ? `<h2 data-answer-section="${escapeHtml(section.type || slugify(section.heading))}">${escapeHtml(section.heading)}</h2>`
+          : '';
+        const body = paragraphizeText(section.body)
+          .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+          .join('');
+
+        return `<section class="answer-section">${heading}${body}</section>`;
+      })
+      .join('');
+  }
+
+  if (hasBlockHtml(question.answer)) {
+    return question.answer;
+  }
+
+  return paragraphizeText(question.answer)
+    .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+    .join('');
+}
+
+export function getStructuredAnswerSections(question: Question): AnswerSection[] {
+  if (!Array.isArray(question.answer_sections)) {
+    return [];
+  }
+
+  return question.answer_sections.filter(
+    (section): section is AnswerSection => Boolean(section && typeof section.body === 'string' && section.body.trim())
+  );
+}
+
 export function truncate(value: string, maxLength = 240) {
   if (value.length <= maxLength) return value;
   return `${value.slice(0, maxLength).replace(/\s+\S*$/, '')}...`;
 }
 
+export function getAnswerMetaDescription(question: Question) {
+  const improvedDescription = cleanText(question.improved_meta_description);
+
+  if (improvedDescription) {
+    return truncate(improvedDescription, 158);
+  }
+
+  const shortAnswer = toPlainText(question.short_answer || '');
+  const category = displayCategory(question).toLowerCase();
+  const fallback = `Understand this ${category} question with clear, evidence-informed guidance from Deeper Global.`;
+  const description = shortAnswer.length >= 90 ? shortAnswer : `${shortAnswer || fallback} Learn what may be happening and when support could help.`;
+
+  return truncate(description, 158);
+}
+
+export function getCategoryMetaDescription(category: string, count: number) {
+  return truncate(
+    `Explore ${count} evidence-informed Deeper Global answer${count === 1 ? '' : 's'} about ${category.toLowerCase()}, including common questions, patterns, and care-seeking language.`,
+    158
+  );
+}
+
+export function shouldIndexQuestion(question: Question) {
+  const status = question.review_status?.toLowerCase().trim();
+
+  if (!status) return true;
+
+  return ['approved', 'published', 'reviewed'].includes(status);
+}
+
+function hasBlockHtml(value: string) {
+  return /<\/?(p|h[1-6]|ul|ol|li|blockquote|section|article|div)\b/i.test(value);
+}
+
+function paragraphizeText(value: string) {
+  const text = toPlainText(value);
+
+  if (!text) return [];
+
+  const explicitParagraphs = text
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+
+  if (explicitParagraphs.length > 1) {
+    return explicitParagraphs.flatMap(splitLongParagraph);
+  }
+
+  return splitLongParagraph(text);
+}
+
+function splitLongParagraph(value: string) {
+  const sentences = value.match(/[^.!?]+(?:[.!?]+['"]?|$)/g)?.map((sentence) => sentence.trim()) ?? [value];
+  const paragraphs: string[] = [];
+  let current: string[] = [];
+
+  for (const sentence of sentences) {
+    const nextLength = [...current, sentence].join(' ').length;
+    const shouldStartNew =
+      current.length > 0 && (isTransitionSentence(sentence) || nextLength > 760 || current.length >= 8);
+
+    if (shouldStartNew) {
+      paragraphs.push(current.join(' '));
+      current = [];
+    }
+
+    current.push(sentence);
+  }
+
+  if (current.length) {
+    paragraphs.push(current.join(' '));
+  }
+
+  return paragraphs;
+}
+
+function isTransitionSentence(sentence: string) {
+  return /^(This pattern|When you|The most effective approach|You might also|Remember that|One helpful|Building|If you|Over time)/i.test(
+    sentence
+  );
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function cleanText(value: string | null | undefined) {
+  return typeof value === 'string' ? value.replace(/\s+/g, ' ').trim() : '';
+}
+
+function getStringList(value: unknown) {
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .map((item) => {
+      if (typeof item === 'string') return item;
+      if (item && typeof item === 'object') {
+        const record = item as Record<string, unknown>;
+        const value = record.question ?? record.theme ?? record.name ?? record.text ?? record.title;
+        return typeof value === 'string' ? value : '';
+      }
+
+      return '';
+    })
+    .map((item) => cleanText(item))
+    .filter(Boolean);
+}
+
 export function isCrisisSensitive(question: Question) {
-  const text = `${question.question} ${question.short_answer} ${question.triage ?? ''}`.toLowerCase();
+  const text = `${question.question} ${question.improved_title ?? ''} ${question.short_answer} ${question.improved_summary ?? ''} ${question.triage ?? ''}`.toLowerCase();
   return crisisTerms.some((term) => text.includes(term));
 }
 
@@ -144,8 +357,8 @@ export function getEntitySummaries(questions: Question[]): EntitySummary[] {
 
 export function getQuestionCitation(question: Question) {
   return {
-    title: question.question,
-    url: `https://deeper.global/answers/${question.slug}`,
+    title: getAnswerDisplayTitle(question),
+    url: siteUrl(`/answers/${question.slug}`),
     publisher: 'Deeper Global',
     datePublished: question.created_at,
     dateModified: question.updated_at || question.created_at,

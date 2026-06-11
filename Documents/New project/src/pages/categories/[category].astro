@@ -1,7 +1,8 @@
 ---
 import AnswerCard from '@/components/AnswerCard.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { displayCategory, getCategorySummaries, slugify } from '@/lib/content';
+import { displayCategory, getAnswerDisplayTitle, getCategoryMetaDescription, getCategorySummaries, slugify } from '@/lib/content';
+import { siteUrl, websiteId } from '@/lib/site';
 import { getQuestions, type Question } from '@/lib/supabase';
 
 export async function getStaticPaths() {
@@ -25,12 +26,64 @@ if (!categoryName && !questions.length) {
 }
 
 const resolvedCategory = categoryName ?? Astro.params.category ?? 'Topic';
+const categoryUrl = siteUrl(`/categories/${slugify(resolvedCategory)}`);
+const description = getCategoryMetaDescription(resolvedCategory, questions.length);
+const jsonLd = {
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': `${categoryUrl}#collection`,
+      url: categoryUrl,
+      name: `${resolvedCategory} questions and answers`,
+      description,
+      isPartOf: {
+        '@id': websiteId(),
+      },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: questions.length,
+        itemListElement: questions.slice(0, 24).map((question, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          url: siteUrl(`/answers/${question.slug}`),
+          name: getAnswerDisplayTitle(question),
+        })),
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${categoryUrl}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Deeper Global',
+          item: siteUrl(),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Topics',
+          item: siteUrl('/categories'),
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: resolvedCategory,
+          item: categoryUrl,
+        },
+      ],
+    },
+  ],
+};
 ---
 
 <BaseLayout
   title={`${resolvedCategory} Questions and Answers | Deeper Global`}
-  description={`Browse Deeper Global answers about ${resolvedCategory.toLowerCase()}.`}
+  description={description}
   canonicalPath={`/categories/${slugify(resolvedCategory)}`}
+  jsonLd={jsonLd}
+  noindex={true}
 >
   <main>
     <section class="hero">

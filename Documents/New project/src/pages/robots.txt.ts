@@ -4,8 +4,7 @@ export function GET() {
       'User-agent: *',
       'Allow: /',
       '',
-      'Sitemap: https://deeper.global/sitemap-index.xml',
-      'LLMS: https://deeper.global/llms.txt',
+      'Sitemap: https://www.deeper.global/sitemap-index.xml',
       '',
     ].join('\n'),
     {

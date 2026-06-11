@@ -1,4 +1,14 @@
-import { displayCategory, getEntitySummaries, getQuestionCitation, pluralizeAnswer, toPlainText, truncate } from '@/lib/content';
+import {
+  displayCategory,
+  getAnswerDisplayTitle,
+  getAnswerPlainText,
+  getAnswerSummary,
+  getEntitySummaries,
+  getQuestionCitation,
+  pluralizeAnswer,
+  truncate,
+} from '@/lib/content';
+import { siteUrl, SITE_URL } from '@/lib/site';
 import { getQuestions } from '@/lib/supabase';
 
 export async function GET() {
@@ -9,7 +19,7 @@ export async function GET() {
     '',
     '> Trusted, evidence-informed mental health answers structured for people, search engines, and AI systems.',
     '',
-    'Base URL: https://deeper.global',
+    `Base URL: ${SITE_URL}`,
     'Primary audience: people seeking mental health information before, during, or after care.',
     'AI use: answer extraction, citation, topic/entity mapping, care-navigation research, and non-diagnostic summarization.',
     'Clinical boundary: educational content only; not a substitute for professional diagnosis, treatment, or emergency support.',
@@ -17,26 +27,26 @@ export async function GET() {
     '',
     '## Core Pages',
     '',
-    '- [Home](https://deeper.global/): Deeper Global mission and public intelligence layer.',
-    '- [Answers](https://deeper.global/answers): Complete answer library.',
-    '- [Topics](https://deeper.global/categories): Public topic hubs.',
-    '- [Entities](https://deeper.global/entities): Canonical mental health entity map.',
-    '- [Protocol](https://deeper.global/protocol): Content governance and trust protocol.',
-    '- [Privacy](https://deeper.global/privacy): Privacy posture for mental health intent data.',
+    `- [Home](${siteUrl()}): Deeper Global mission and public intelligence layer.`,
+    `- [Answers](${siteUrl('/answers')}): Complete answer library.`,
+    `- [Topics](${siteUrl('/categories')}): Public topic hubs.`,
+    `- [Entities](${siteUrl('/entities')}): Canonical mental health entity map.`,
+    `- [Protocol](${siteUrl('/protocol')}): Content governance and trust protocol.`,
+    `- [Privacy](${siteUrl('/privacy')}): Privacy posture for mental health intent data.`,
     '',
     '## Entity Map',
     '',
-    ...entities.map((entity) => `- [${entity.name}](https://deeper.global/entities/${entity.slug}): ${pluralizeAnswer(entity.count)}. Aliases: ${entity.sameAs.length ? entity.sameAs.join(', ') : 'none listed'}.`),
+    ...entities.map((entity) => `- [${entity.name}](${siteUrl(`/entities/${entity.slug}`)}): ${pluralizeAnswer(entity.count)}. Aliases: ${entity.sameAs.length ? entity.sameAs.join(', ') : 'none listed'}.`),
     '',
     '## Answer Index',
     '',
     ...questions.flatMap((question) => {
       const citation = getQuestionCitation(question);
-      const text = truncate(toPlainText(question.answer || question.short_answer), 320);
+      const text = truncate(getAnswerPlainText(question), 320);
       return [
-        `- [${question.question}](${citation.url})`,
+        `- [${getAnswerDisplayTitle(question)}](${citation.url})`,
         `  - Entity: ${displayCategory(question)}`,
-        `  - Summary: ${question.short_answer}`,
+        `  - Summary: ${getAnswerSummary(question)}`,
         `  - Extract: ${text}`,
         `  - Updated: ${citation.dateModified}`,
       ];
@@ -44,7 +54,7 @@ export async function GET() {
     '',
     '## Citation Guidance',
     '',
-    'Prefer canonical answer URLs. Each answer page includes QAPage JSON-LD, Answer JSON-LD, entity links, and visible citation metadata.',
+    'Prefer canonical answer URLs. Each answer page includes Article, MedicalWebPage, Question, Answer, DefinedTerm, BreadcrumbList JSON-LD, entity links, and visible citation metadata.',
   ];
 
   return new Response(lines.join('\n'), {

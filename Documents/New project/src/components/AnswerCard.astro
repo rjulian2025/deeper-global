@@ -1,5 +1,5 @@
 ---
-import { categoryPath, displayCategory, formatDate } from '@/lib/content';
+import { answerPath, categoryPath, displayCategory, formatDate, getAnswerDisplayTitle, getAnswerSummary } from '@/lib/content';
 import type { Question } from '@/lib/supabase';
 
 type Props = {
@@ -10,13 +10,15 @@ type Props = {
 const { question, headingLevel = 2 } = Astro.props;
 const Heading = `h${headingLevel}` as const;
 const category = displayCategory(question);
+const title = getAnswerDisplayTitle(question);
+const summary = getAnswerSummary(question);
 ---
 
 <article class="answer-card">
-  <a href={`/answers/${question.slug}`}>
-    <Heading>{question.question}</Heading>
+  <a href={answerPath(question.slug)}>
+    <Heading>{title}</Heading>
   </a>
-  <p>{question.short_answer}</p>
+  <p>{summary}</p>
   <div class="meta-row">
     <a class="pill" href={categoryPath(category)}>{category}</a>
     <span class="pill">Updated {formatDate(question.updated_at || question.created_at)}</span>
