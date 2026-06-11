@@ -40,6 +40,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# legacy nested path (post-hoist local artifacts only)
+Documents/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
