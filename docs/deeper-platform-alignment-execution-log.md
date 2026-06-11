@@ -405,3 +405,96 @@ Recent preview deployments carry `githubCommitRef` in metadata, but those were *
 | New production deployment | **None** |
 | Vercel settings mutated | **No** (diagnostic probes failed without effect) |
 | Deploy / push / promote | **None** |
+
+---
+
+## 12. Addendum — Vercel Git reconnection and Production Branch (2026-06-11)
+
+**Session type:** Manual dashboard repair + API verification — no deploy, no push, no `vercel` CLI.
+
+### Manual actions performed (user-confirmed)
+
+1. **Settings → Git** — confirmed connection was `GitHub → rjulian2025/deeper-global`
+2. **Disconnected** and **reconnected** the same repository (Vercel showed “connected just now”)
+3. **Settings → Environments → Production → Branch Tracking** — set to **`production/astro`** and saved successfully
+4. **Did not** click Redeploy, Deploy, Promote, Create Deployment, Deploy latest commit, or push to GitHub
+
+### Post-reconnect API verification
+
+| Setting | Before reconnect | After reconnect |
+|---------|------------------|-----------------|
+| Git repo | `rjulian2025/deeper-global` | `rjulian2025/deeper-global` (unchanged) |
+| Repo ID | `1034144062` | `1034144062` (unchanged) |
+| **`sourceless`** | **`true`** | **`null` / absent** ✅ (branch index restored) |
+| **`productionBranch`** | **`main`** | **`production/astro`** ✅ |
+| Link `updatedAt` | `1754610356689` (frozen) | **`1781198955459`** ✅ (refreshed) |
+| Framework | Astro | Astro ✅ |
+| Root Directory | `.` | `.` ✅ |
+| Install Command | `npm install` | `npm install` ✅ |
+| Build Command | `npm run build` | `npm run build` ✅ |
+| Output Directory | `dist` | `dist` ✅ |
+| Node.js Version | `22.x` | `22.x` ✅ |
+
+### Branch visibility restored
+
+Diagnostic branch API validation (post-reconnect):
+
+| Branch | Result |
+|--------|--------|
+| `main` | **SUCCESS** (recognized) |
+| `production/astro` | **SUCCESS** (recognized) |
+
+Dashboard Branch Tracking save for **`production/astro`** succeeded — confirms Vercel can enumerate GitHub branches again.
+
+### Production unchanged confirmation
+
+| Check | Result |
+|-------|--------|
+| Live production deployment | **`dpl_BaKpUGFGS1nJTCLadaNDr2S8uEF2`** ✅ unchanged |
+| Production aliases | `www.deeper.global`, `deeper.global`, project Vercel aliases ✅ |
+| `www.deeper.global` | HTTP **200** ✅ |
+| New production deployment | **None** — latest prod deploys remain CLI-sourced |
+| Environment variables | **Unchanged** |
+| GitHub push | **None** |
+
+### Platform alignment status
+
+| Layer | Status |
+|-------|--------|
+| GitHub default branch | `production/astro` ✅ |
+| Vercel Production Branch | `production/astro` ✅ |
+| Vercel build/framework settings | Astro / root / `npm run build` / `dist` ✅ |
+| Git branch enumeration | **Repaired** ✅ |
+| Live production runtime | **Still prior CLI deployment** — cutover not yet executed |
+
+### ⚠️ Warning — next push will trigger production deploy
+
+With Production Branch now set to **`production/astro`**, **any push to that branch will create a production deployment** and may move `www.deeper.global` off `dpl_BaKpUGFGS1nJTCLadaNDr2S8uEF2`.
+
+**Unpushed local commits** on `production/astro` (including doc commits) must **not** be pushed until production deploy is explicitly approved.
+
+Rollback reference remains: **`dpl_BaKpUGFGS1nJTCLadaNDr2S8uEF2`**
+
+### Recommended next step (separate gated session)
+
+When ready for production cutover:
+
+1. Push `production/astro` (or merge to it) only with explicit approval
+2. Monitor the Git-triggered production build
+3. Validate the new production deployment before alias cutover completes
+4. Keep rollback deployment ID ready
+
+---
+
+## 13. Updated session summary (post Git reconnect)
+
+| Question | Answer |
+|----------|--------|
+| Git reconnection completed? | **Yes** — same repo reconnected |
+| Branch visibility restored? | **Yes** — `sourceless` cleared; branches recognized |
+| Production Branch now `production/astro`? | **Yes** |
+| Build/framework settings aligned? | **Yes** — unchanged and correct |
+| Production deployment triggered? | **No** |
+| `www.deeper.global` unchanged? | **Yes** — still on `dpl_BaKpUGFGS1nJTCLadaNDr2S8uEF2` |
+| Push occurred? | **No** |
+| Rollback ID recorded? | **Yes** — `dpl_BaKpUGFGS1nJTCLadaNDr2S8uEF2` |
