@@ -1,0 +1,131 @@
+---
+import { formatDate } from '@/lib/content';
+import {
+  getReviewedByLabel,
+  getSourceRefs,
+} from '@/lib/trust';
+
+type Props = {
+  question: import('@/lib/supabase').Question;
+  updatedAt: string;
+};
+
+const { question, updatedAt } = Astro.props;
+const reviewedBy = getReviewedByLabel(question);
+const sourceRefs = getSourceRefs(question);
+const showNeutralStatement = !reviewedBy && sourceRefs.length === 0;
+---
+
+<section class="signal-card trust-panel" aria-label="Editorial review information" data-ai-section="editorial-trust">
+  <p class="sidebar-label">How this answer was reviewed</p>
+
+  {
+    reviewedBy ? (
+      <p class="trust-reviewed-by">
+        Reviewed by <strong>{reviewedBy}</strong>
+      </p>
+    ) : null
+  }
+
+  {
+    showNeutralStatement ? (
+      <p class="trust-neutral">
+        Deeper publishes structured mental health answers under our editorial protocol. AI may assist drafting; human editorial accountability applies before publication.
+      </p>
+    ) : null
+  }
+
+  <ul class="trust-meta">
+    <li>Updated {formatDate(updatedAt)}</li>
+    <li>
+      <a href="/editorial-policy/">Editorial policy</a>
+    </li>
+    <li>
+      <a href="/protocol/">Trust protocol</a>
+    </li>
+  </ul>
+
+  {
+    sourceRefs.length > 0 ? (
+      <div class="trust-sources">
+        <p class="sidebar-label">Sources</p>
+        <ul>
+          {sourceRefs.map((source) => (
+            <li>
+              {source.url ? (
+                <a href={source.url} rel="noopener noreferrer">
+                  {source.title}
+                </a>
+              ) : (
+                <span>{source.title}</span>
+              )}
+              {source.publisher ? <span class="trust-source-publisher"> — {source.publisher}</span> : null}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ) : null
+  }
+</section>
+
+<style>
+  .trust-panel .trust-reviewed-by,
+  .trust-panel .trust-neutral {
+    margin: 0 0 12px;
+    color: rgba(255, 253, 249, 0.92);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .trust-meta {
+    display: grid;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .trust-meta li {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 8px 10px;
+    color: rgba(255, 253, 249, 0.86);
+    font-size: 0.88rem;
+  }
+
+  .trust-meta a {
+    color: rgba(255, 253, 249, 0.96);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .trust-sources {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .trust-sources ul {
+    display: grid;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .trust-sources li {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 0.86rem;
+    line-height: 1.45;
+  }
+
+  .trust-sources a {
+    color: rgba(255, 253, 249, 0.96);
+  }
+
+  .trust-source-publisher {
+    color: rgba(255, 253, 249, 0.68);
+  }
+</style>

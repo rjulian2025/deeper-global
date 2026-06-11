@@ -1,4 +1,5 @@
 ---
+import AnswerTrustPanel from '@/components/AnswerTrustPanel.astro';
 import CrisisBanner from '@/components/CrisisBanner.astro';
 import PractitionerCallout from '@/components/PractitionerCallout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -27,6 +28,7 @@ import {
 } from '@/lib/content';
 import { getAnswerPractitionerLink } from '@/lib/practitioner-links';
 import { organizationId, siteUrl, websiteId } from '@/lib/site';
+import { getReviewedByLabel, getReviewerDisplayLabel, getSourceRefs, isInternalReviewerLabel } from '@/lib/trust';
 import { getQuestionBySlug, getQuestions, type Question } from '@/lib/supabase';
 
 export async function getStaticPaths() {
@@ -72,6 +74,24 @@ const articleId = `${answerUrl}#article`;
 const pageId = `${answerUrl}#webpage`;
 const shouldIndex = shouldIndexQuestion(question);
 const practitionerLink = getAnswerPractitionerLink(question.slug);
+const reviewedBy = getReviewedByLabel(question);
+const reviewerDisplayLabel = getReviewerDisplayLabel(question);
+const sourceRefs = getSourceRefs(question);
+const sourceCitationUrls = sourceRefs.map((source) => source.url).filter(Boolean);
+const reviewedBySchema = reviewedBy
+  ? {
+      reviewedBy: {
+        '@type': isInternalReviewerLabel(reviewedBy) ? 'Organization' : 'Person',
+        name: reviewerDisplayLabel,
+      },
+    }
+  : {};
+const sourceCitationSchema =
+  sourceCitationUrls.length > 0
+    ? {
+        citation: sourceCitationUrls,
+      }
+    : {};
 const jsonLd = {
   '@graph': [
     {
@@ -94,6 +114,8 @@ const jsonLd = {
       mainEntity: {
         '@id': articleId,
       },
+      ...reviewedBySchema,
+      ...sourceCitationSchema,
     },
     {
       '@type': 'Article',
@@ -115,6 +137,8 @@ const jsonLd = {
       about: {
         '@id': `${entityUrl}#entity`,
       },
+      ...reviewedBySchema,
+      ...sourceCitationSchema,
     },
     {
       '@type': 'Question',
@@ -239,14 +263,7 @@ const jsonLd = {
       </div>
 
       <aside class="answer-sidebar" aria-label="Answer context">
-        <section class="signal-card">
-          <p class="sidebar-label">Deeper review signal</p>
-          <ul>
-            <li>Evidence-informed answer</li>
-            <li>Categorized for topic intelligence</li>
-            <li>Updated {formatDate(updatedAt)}</li>
-          </ul>
-        </section>
+        <AnswerTrustPanel question={question} updatedAt={updatedAt} />
 
         <section class="sidebar-card">
           <p class="sidebar-label">Related theme</p>

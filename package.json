@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro build",
+    "audit:authority": "node scripts/audit-authority-data.mjs",
     "seo:priority": "node scripts/generate-indexation-priority.mjs",
     "seo:p1-sources": "node scripts/prepare-p1-enrichment-sources.mjs"
   },

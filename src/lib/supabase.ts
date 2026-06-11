@@ -38,6 +38,9 @@ export type AnswerSection = {
   body: string;
 };
 
+/** Fail production builds if Supabase returns fewer answers than this floor. */
+export const MIN_ANSWER_COUNT = 950;
+
 const supabaseUrl =
   import.meta.env.SUPABASE_URL ??
   import.meta.env.PUBLIC_SUPABASE_URL ??
@@ -106,6 +109,12 @@ async function fetchQuestionPages() {
     pages.push(...page);
 
     if (page.length < pageSize) break;
+  }
+
+  if (pages.length < MIN_ANSWER_COUNT) {
+    throw new Error(
+      `Answer count floor failed: expected at least ${MIN_ANSWER_COUNT} questions from Supabase, got ${pages.length}.`
+    );
   }
 
   return pages;
