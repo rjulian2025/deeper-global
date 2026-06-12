@@ -1,7 +1,9 @@
 ---
 import AnswerCard from '@/components/AnswerCard.astro';
+import PractitionerCallout from '@/components/PractitionerCallout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { categoryPath, displayCategory, getAnswerDisplayTitle, getEntitySummaries, pluralizeAnswer, slugify } from '@/lib/content';
+import { getEntityPractitionerLink } from '@/lib/practitioner-links';
 import { siteUrl } from '@/lib/site';
 import { getQuestions, type Question } from '@/lib/supabase';
 
@@ -24,6 +26,8 @@ const questions = (Astro.props.questions ?? []) as Question[];
 if (!entity) {
   return Astro.redirect('/entities');
 }
+
+const practitionerLink = getEntityPractitionerLink(entity.slug);
 
 const jsonLd = {
   '@type': 'DefinedTerm',
@@ -59,6 +63,21 @@ const jsonLd = {
         </div>
       </div>
     </section>
+
+    {
+      practitionerLink && (
+        <section class="section band">
+          <div class="container">
+            <PractitionerCallout
+              title={practitionerLink.title}
+              body={practitionerLink.body}
+              href={practitionerLink.href}
+              label={practitionerLink.label}
+            />
+          </div>
+        </section>
+      )
+    }
 
     {
       entity.sameAs.length > 0 && (

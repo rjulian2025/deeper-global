@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string;
+  body: string;
+  href: string;
+  label: string;
+}
+
+const { title, body, href, label } = Astro.props;
+---
+
+<section class="sidebar-card practitioner-card">
+  <p class="sidebar-label">{title}</p>
+  <p>{body}</p>
+  <a class="text-link" href={href} rel="noopener noreferrer">{label}</a>
+</section>

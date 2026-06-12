@@ -1,5 +1,6 @@
 ---
 import CrisisBanner from '@/components/CrisisBanner.astro';
+import PractitionerCallout from '@/components/PractitionerCallout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import {
   answerPath,
@@ -24,6 +25,7 @@ import {
   slugify,
   truncate,
 } from '@/lib/content';
+import { getAnswerPractitionerLink } from '@/lib/practitioner-links';
 import { organizationId, siteUrl, websiteId } from '@/lib/site';
 import { getQuestionBySlug, getQuestions, type Question } from '@/lib/supabase';
 
@@ -69,6 +71,7 @@ const answerId = `${answerUrl}#accepted-answer`;
 const articleId = `${answerUrl}#article`;
 const pageId = `${answerUrl}#webpage`;
 const shouldIndex = shouldIndexQuestion(question);
+const practitionerLink = getAnswerPractitionerLink(question.slug);
 const jsonLd = {
   '@graph': [
     {
@@ -251,6 +254,17 @@ const jsonLd = {
           <p>Browse the topic hub for more {category.toLowerCase()} answers.</p>
           <a class="text-link" href={categoryPath(category)}>Open topic hub</a>
         </section>
+
+        {
+          practitionerLink && (
+            <PractitionerCallout
+              title={practitionerLink.title}
+              body={practitionerLink.body}
+              href={practitionerLink.href}
+              label={practitionerLink.label}
+            />
+          )
+        }
 
         {
           followUpQuestions.length > 0 && (
