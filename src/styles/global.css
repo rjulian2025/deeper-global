@@ -548,6 +548,11 @@ h3 {
   background: rgba(255, 255, 255, 0.12);
 }
 
+.featured-topic-pill {
+  border-color: rgba(207, 172, 101, 0.62);
+  background: rgba(207, 172, 101, 0.16);
+}
+
 .topic-pill span {
   font-weight: 800;
 }
@@ -581,6 +586,51 @@ h3 {
 
 .content :is(h2, h3) {
   margin-top: 34px;
+}
+
+.hub-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.hub-intro-grid,
+.cluster-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hub-signal-card h2 {
+  font-size: 1.85rem;
+  margin-bottom: 14px;
+}
+
+.hub-cluster-card h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.28rem;
+}
+
+.hub-cluster-card ul {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding-left: 18px;
+}
+
+.hub-cluster-card a {
+  color: var(--ocean);
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.hub-cluster-card a:hover {
+  color: var(--navy);
+}
+
+.hub-answer-list {
+  gap: 14px;
 }
 
 .answer-breadcrumbs {
@@ -996,6 +1046,8 @@ h3 {
 
   .grid,
   .question-grid,
+  .hub-intro-grid,
+  .cluster-grid,
   .featured-answer,
   .answer-layout {
     grid-template-columns: 1fr;

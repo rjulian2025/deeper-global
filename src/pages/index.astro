@@ -13,6 +13,7 @@ const visibleCategories = categories.slice(0, 12);
 const featuredQuestion = questions[0];
 const featuredCategory = featuredQuestion ? displayCategory(featuredQuestion) : null;
 const structuredAnswerCount = questions.filter(isV2Answer).length;
+const aiAnswerCount = questions.filter((question) => question.content_prompt_version === 'deeper-ai-concerns-sprint-v1').length;
 const heroStats = [
   { value: questions.length ? questions.length.toLocaleString() : '1,000+', label: 'Vetted answers' },
   { value: categories.length ? categories.length.toLocaleString() : '38', label: 'Topic areas' },
@@ -214,6 +215,14 @@ const trendingQuestions = recentQuestions.slice(0, 4);
           <a class="text-link" href="/categories/">All topics</a>
         </div>
         <div class="topic-pills">
+          {
+            aiAnswerCount ? (
+              <a class="topic-pill featured-topic-pill" href="/ai-mental-health/">
+                <span>AI mental health</span>
+                <small>{aiAnswerCount} answers</small>
+              </a>
+            ) : null
+          }
           {
             visibleCategories.length ? (
               visibleCategories.map((category) => (

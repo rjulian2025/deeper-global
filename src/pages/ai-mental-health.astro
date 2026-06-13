@@ -1,0 +1,232 @@
+---
+import AnswerCard from '@/components/AnswerCard.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { answerPath, getAnswerDisplayTitle, getAnswerSummary } from '@/lib/content';
+import { siteUrl, websiteId } from '@/lib/site';
+import { getQuestions, type Question } from '@/lib/supabase';
+
+const questions = await getQuestions();
+const aiQuestions = questions.filter((question) => question.content_prompt_version === 'deeper-ai-concerns-sprint-v1');
+const questionsBySlug = new Map(aiQuestions.map((question) => [question.slug, question]));
+const featuredSlugs = [
+  'can-ai-chatbots-make-delusional-thoughts-worse',
+  'what-is-ai-psychosis-and-is-it-a-real-diagnosis',
+  'can-using-ai-for-emotional-support-become-addictive',
+];
+const featuredQuestions = featuredSlugs
+  .map((slug) => questionsBySlug.get(slug))
+  .filter((question): question is Question => Boolean(question));
+
+const clusters = [
+  {
+    name: 'Reality testing and AI psychosis',
+    description: 'For searches about delusional spirals, paranoia, sentience beliefs, grandiosity, and emergency thresholds.',
+    slugs: [
+      'can-ai-chatbots-make-delusional-thoughts-worse',
+      'what-is-ai-psychosis-and-is-it-a-real-diagnosis',
+      'how-to-tell-if-ai-conversation-is-making-me-paranoid',
+      'what-if-ai-chatbot-says-i-have-a-special-mission',
+      'what-if-i-think-an-ai-chatbot-is-sentient',
+      'when-are-ai-related-beliefs-a-mental-health-emergency',
+    ],
+  },
+  {
+    name: 'Dependency, attachment, and loneliness',
+    description: 'For people who feel emotionally dependent on AI, attached to a companion, or isolated from real-world support.',
+    slugs: [
+      'how-to-know-if-too-emotionally-dependent-on-ai',
+      'can-using-ai-for-emotional-support-become-addictive',
+      'take-a-break-from-ai-without-feeling-abandoned',
+      'can-ai-companions-reduce-loneliness-or-make-it-worse',
+      'why-ai-companion-feels-more-comforting-than-real-people',
+      'can-ai-make-isolation-feel-normal',
+    ],
+  },
+  {
+    name: 'Therapy, advice, and crisis boundaries',
+    description: 'For deciding when AI is useful reflection, when it is bad advice, and when a real person needs to be involved.',
+    slugs: [
+      'how-to-know-if-ai-is-helping-therapy-or-replacing-it',
+      'should-i-tell-my-therapist-how-much-i-use-ai',
+      'can-ai-give-bad-mental-health-advice',
+      'when-should-i-stop-using-ai-and-talk-to-a-real-person',
+      'can-ai-therapy-apps-replace-a-licensed-therapist',
+      'can-an-ai-chatbot-make-suicidal-thoughts-worse',
+    ],
+  },
+  {
+    name: 'Teens, parents, and AI companions',
+    description: 'For parents trying to understand teen attachment, AI best-friend dynamics, and companion-risk boundaries.',
+    slugs: [
+      'how-to-know-if-teenager-is-too-attached-to-ai',
+      'should-parents-limit-ai-companion-use-for-teens',
+      'what-if-my-child-says-ai-is-their-best-friend',
+      'can-ai-companions-be-risky-for-lonely-teens',
+      'how-to-talk-to-teenager-about-ai-relationships',
+    ],
+  },
+  {
+    name: 'Work, identity, and AI anxiety',
+    description: 'For job insecurity, replaceability, workplace monitoring, burnout, creativity, and future fear.',
+    slugs: [
+      'why-am-i-anxious-about-ai-replacing-my-job',
+      'how-to-handle-feeling-replaceable-because-of-ai',
+      'can-ai-workplace-monitoring-affect-mental-health',
+      'can-ai-make-burnout-worse',
+      'can-ai-make-impostor-syndrome-worse',
+      'why-ai-makes-me-question-what-makes-me-human',
+    ],
+  },
+  {
+    name: 'Safety, privacy, and harmful content',
+    description: 'For AI deepfakes, body image, intrusive thoughts, reassurance loops, relationship checking, and doomscrolling.',
+    slugs: [
+      'why-ai-generated-images-make-me-feel-insecure-about-my-body',
+      'can-deepfakes-cause-trauma-or-anxiety',
+      'what-to-do-if-someone-made-an-ai-deepfake-of-me',
+      'can-ai-make-intrusive-thoughts-worse',
+      'is-using-ai-to-check-if-im-a-bad-person-making-things-worse',
+      'can-ai-make-health-anxiety-worse',
+    ],
+  },
+];
+
+const clusterCards = clusters.map((cluster) => ({
+  ...cluster,
+  questions: cluster.slugs
+    .map((slug) => questionsBySlug.get(slug))
+    .filter((question): question is Question => Boolean(question)),
+}));
+
+const jsonLd = {
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': `${siteUrl('/ai-mental-health')}#collection`,
+      url: siteUrl('/ai-mental-health'),
+      name: 'AI mental health questions and answers',
+      description: 'A curated Deeper Global hub for AI-related mental health concerns, including AI psychosis, chatbot dependency, teen AI use, AI job anxiety, and safety boundaries.',
+      isPartOf: {
+        '@id': websiteId(),
+      },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: aiQuestions.length,
+        itemListElement: aiQuestions.slice(0, 24).map((question, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          url: siteUrl(`/answers/${question.slug}`),
+          name: getAnswerDisplayTitle(question),
+        })),
+      },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="AI Mental Health Questions and Answers | Deeper Global"
+  description="Explore AI-related mental health answers about AI psychosis, chatbot dependency, AI companions, teen AI use, work anxiety, deepfakes, and crisis boundaries."
+  canonicalPath="/ai-mental-health"
+  jsonLd={jsonLd}
+>
+  <main>
+    <section class="hero ai-hub-hero">
+      <div class="container">
+        <p class="eyebrow">AI mental health hub</p>
+        <h1>AI mental health questions and answers.</h1>
+        <p class="lede">
+          A curated hub for the mental health questions people are asking as AI becomes more personal, persuasive, and present in daily life.
+        </p>
+        <div class="hub-actions">
+          <a class="button" href="/answers/?q=artificial%20intelligence">Search AI answers</a>
+          <a class="button secondary" href="/llms/answers.json">Machine-readable index</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container hub-intro-grid">
+        <article class="card hub-signal-card">
+          <p class="eyebrow">Coverage</p>
+          <h2>{aiQuestions.length} AI-related answers</h2>
+          <p>
+            The sprint covers emerging concerns around AI psychosis, emotional dependency, AI companions, teen use, work anxiety,
+            deepfakes, reassurance loops, and when to stop using AI and involve a real person.
+          </p>
+        </article>
+        <article class="card hub-signal-card">
+          <p class="eyebrow">Safety boundary</p>
+          <h2>AI is not crisis care.</h2>
+          <p>
+            If AI conversations involve suicidal thoughts, commands to act, severe sleep loss, danger, or losing touch with reality,
+            the priority is urgent real-world support.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    {
+      featuredQuestions.length ? (
+        <section class="section featured-section">
+          <div class="container">
+            <div class="section-header">
+              <div>
+                <p class="eyebrow">Start here</p>
+                <h2>Highest-safety AI concerns.</h2>
+              </div>
+            </div>
+            <div class="question-grid">
+              {featuredQuestions.map((question) => <AnswerCard question={question} />)}
+            </div>
+          </div>
+        </section>
+      ) : null
+    }
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Concern map</p>
+            <h2>Browse the AI mental health cluster.</h2>
+          </div>
+        </div>
+        <div class="cluster-grid">
+          {
+            clusterCards.map((cluster) => (
+              <article class="card hub-cluster-card">
+                <h3>{cluster.name}</h3>
+                <p>{cluster.description}</p>
+                <ul>
+                  {cluster.questions.map((question) => (
+                    <li>
+                      <a href={answerPath(question.slug)}>{getAnswerDisplayTitle(question)}</a>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">All AI answers</p>
+            <h2>Recently added AI concern pages.</h2>
+          </div>
+          <a class="text-link" href="/answers/?q=artificial%20intelligence">Search the answer library</a>
+        </div>
+        <div class="answer-list hub-answer-list">
+          {
+            aiQuestions.slice(0, 24).map((question) => <AnswerCard question={question} />)
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
