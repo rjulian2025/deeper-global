@@ -176,10 +176,41 @@ const searchIndex = questions.map((question) => {
       return score;
     }
 
-    function resultTemplate(item: { title: string; summary: string; category: string; categoryUrl: string; url: string; updated: string }) {
+    function safeSearchTerm(value: string) {
+      return normalize(value)
+        .replace(/\b[\w.%+-]+@[\w.-]+\.[a-z]{2,}\b/g, '[email]')
+        .replace(/\b(?:\+?1[-.\s]?)?(?:\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}\b/g, '[phone]')
+        .slice(0, 80);
+    }
+
+    function searchIntentStage(value: string) {
+      const text = normalize(value);
+      if (/suicide|self harm|overdose|crisis|unsafe|danger/.test(text)) return 'risk_support';
+      if (/therapy|therapist|counseling|treatment|professional help|support/.test(text)) return 'care_navigation';
+      if (/partner|relationship|conflict|parent|family|friend|co parent/.test(text)) return 'relationship_navigation';
+      if (/identity|self worth|belong|meaning|purpose|esteem/.test(text)) return 'identity_meaning';
+      if (/cope|calm|manage|stop|what should i do|how can i/.test(text)) return 'self_management';
+      return 'understanding_symptom';
+    }
+
+    function searchSensitivity(value: string) {
+      const text = normalize(value);
+      if (/suicide|self harm|overdose|crisis|unsafe|danger/.test(text)) return 'crisis-sensitive';
+      if (/addiction|substance|sobriety|relapse|withdrawal|porn/.test(text)) return 'addiction';
+      if (/trauma|ptsd|flashback|grief/.test(text)) return 'trauma';
+      if (/abuse|violence|coercion|stalking/.test(text)) return 'abuse';
+      if (/teen|child|parenting|minor/.test(text)) return 'minor';
+      if (/medication|antidepressant|ssri|snri|prescription/.test(text)) return 'medication';
+      return 'standard';
+    }
+
+    function resultTemplate(
+      item: { title: string; summary: string; category: string; categoryUrl: string; url: string; updated: string },
+      index: number
+    ) {
       return `
       <article class="answer-card">
-        <a href="${escapeHtml(item.url)}">
+        <a href="${escapeHtml(item.url)}" data-search-result="true" data-search-result-position="${index + 1}" data-search-result-category="${escapeHtml(item.category)}">
           <h2>${escapeHtml(item.title)}</h2>
         </a>
         <p>${escapeHtml(item.summary)}</p>
@@ -215,6 +246,16 @@ const searchIndex = questions.map((question) => {
         ? `Showing ${results.length} result${results.length === 1 ? '' : 's'} for "${trimmedQuery}".`
         : `No direct matches for "${trimmedQuery}" yet. Try a broader phrase like anxiety, addiction, therapy, grief, or relationship.`;
 
+      window.deeperTrackEvent?.('site_search_performed', {
+        content_type: 'search',
+        search_term: safeSearchTerm(trimmedQuery),
+        search_token_count: normalize(trimmedQuery).split(' ').filter(Boolean).length,
+        search_result_count: results.length,
+        search_has_results: results.length > 0,
+        intent_stage: searchIntentStage(trimmedQuery),
+        sensitivity: searchSensitivity(trimmedQuery),
+      });
+
       resultsElement.innerHTML = results.length
         ? results.map(resultTemplate).join('')
         : '<article class="answer-card"><h2>No matching answers found.</h2><p>Try a broader search term or browse the full answer library.</p></article>';
@@ -222,5 +263,18 @@ const searchIndex = questions.map((question) => {
 
     const initialQuery = new URLSearchParams(window.location.search).get('q') ?? '';
     runSearch(initialQuery);
+
+    resultsElement?.addEventListener('click', (event) => {
+      const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[data-search-result="true"]') : null;
+      if (!link) return;
+
+      window.deeperTrackEvent?.('site_search_result_clicked', {
+        content_type: 'search',
+        search_term: safeSearchTerm(searchInput?.value ?? initialQuery),
+        search_result_position: Number(link.dataset.searchResultPosition ?? 0),
+        category: link.dataset.searchResultCategory,
+        target_path: link.getAttribute('href') ?? undefined,
+      });
+    });
   </script>
 </BaseLayout>

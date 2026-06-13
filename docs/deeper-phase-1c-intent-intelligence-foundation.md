@@ -1,6 +1,6 @@
 # Deeper Phase 1C — intent intelligence foundation
 
-**Status:** Spec-first. No tracking implementation yet.  
+**Status:** Initial GA4 instrumentation implemented for aggregate intent signals.
 **Goal:** prepare Deeper Global to learn from aggregate mental health information demand without creating individual-level mental health profiles or weakening user trust.
 
 ## Strategic purpose
@@ -22,7 +22,7 @@ The product posture should be:
 
 ## Non-goals
 
-Phase 1C does **not** implement tracking yet.
+Phase 1C now implements lightweight GA4 event tracking. It does not implement a first-party event warehouse, persistent user accounts, raw event exports, or referral personalization.
 
 Do not do these in Phase 1C:
 
@@ -256,16 +256,23 @@ Do not expose raw `intent_events` to clients or partners. Reports should read fr
 
 ### Phase 1C-2 — lightweight first-party tracking
 
-Track only:
+Initial implementation tracks these GA4 events:
 
 - `answer_viewed`;
 - `category_viewed`;
 - `entity_viewed`;
+- `site_search_performed`;
+- `site_search_result_clicked`;
+- `crisis_banner_seen`;
 - `practitioner_callout_clicked`;
+- `practitioner_callout_viewed`;
 - `source_ref_clicked`;
-- `crisis_resource_clicked`.
+- `crisis_resource_clicked`;
+- `external_referral_clicked`;
+- `editorial_policy_viewed`;
+- `answer_related_clicked`.
 
-No raw user accounts. No ad retargeting. No zip-level reports.
+No raw user accounts. No ad retargeting. No zip-level reports. GA pageview config sends path-only URLs, and event parameters use structured context such as page path, answer slug, category/entity, result count, outbound domain, and coarse intent/sensitivity labels.
 
 ### Phase 1C-3 — reporting
 
@@ -286,11 +293,10 @@ Only after enough volume and policy maturity:
 - practitioner referral matching;
 - anonymized trend reports.
 
-## Go / no-go gates before instrumentation
+## Go / no-go gates before expanded instrumentation
 
-Do not implement tracking until:
+Before expanding beyond the current GA4 instrumentation:
 
-- public privacy copy reflects aggregate intent analytics;
 - event fields are finalized;
 - location policy is approved;
 - sensitive-topic suppression rules are approved;
@@ -299,8 +305,8 @@ Do not implement tracking until:
 
 ## Open decisions
 
-1. Analytics backend: Vercel Analytics, PostHog, Supabase table, or a dedicated warehouse?
+1. Future analytics backend beyond GA4: Vercel Analytics, PostHog, Supabase table, or a dedicated warehouse?
 2. Session model: no session IDs vs short-lived anonymous session hash?
 3. Location source: coarse IP geolocation, self-reported location, or no location initially?
 4. Retention: 30, 90, 180, or 365 days for raw events before rollup-only storage?
-5. Public privacy update timing: before any instrumentation commit.
+5. Raw event export policy: GA4-only reporting vs future first-party rollups.

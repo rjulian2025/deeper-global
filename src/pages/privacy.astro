@@ -16,7 +16,18 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 
     <h2>Current posture</h2>
     <p>
-      The v1 site is a public information resource. It does not require user accounts, personal health records, or symptom tracking.
+      The v1 site is a public information resource. It does not require user accounts, personal health records, or self-reported symptom profiles.
+    </p>
+    <p>
+      Deeper uses Google Analytics to understand aggregate site usage, including answer views, topic views, searches, source engagement, crisis-resource clicks, and outbound referral clicks. These events are used for internal product, safety, and editorial planning.
+    </p>
+
+    <h2>Intent analytics boundary</h2>
+    <p>
+      Search and content events are structured to avoid user accounts, personal health records, full referrer URLs, zip-level reporting, or individual mental health profiles. Search events may include normalized query language and result counts so Deeper can identify coverage gaps, but reporting should stay aggregate-first.
+    </p>
+    <p>
+      Deeper does not use mental health content behavior for sensitive ad retargeting, does not sell raw query logs, and does not combine educational browsing with personally identifiable health data.
     </p>
 
     <h2>Future monetization boundary</h2>
