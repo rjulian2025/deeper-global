@@ -3,6 +3,7 @@ import { formatDate } from '@/lib/content';
 import {
   getReviewedByLabel,
   getReviewerDisplayLabel,
+  getReviewStatusLabel,
   getSourceRefs,
 } from '@/lib/trust';
 
@@ -14,63 +15,60 @@ type Props = {
 const { question, updatedAt } = Astro.props;
 const reviewedBy = getReviewedByLabel(question);
 const reviewerDisplayLabel = getReviewerDisplayLabel(question);
+const reviewStatus = getReviewStatusLabel(question);
+const reviewStatusDisplay = reviewStatus
+  ? reviewStatus.replace(/[-_]+/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
+  : '';
 const sourceRefs = getSourceRefs(question);
-const showNeutralStatement = !reviewedBy && sourceRefs.length === 0;
 const showReviewerName = reviewerDisplayLabel === reviewedBy;
+const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewStatusDisplay || sourceRefs.length > 0);
 ---
 
-<section class="signal-card trust-panel" aria-label="Editorial review information" data-ai-section="editorial-trust">
-  <p class="sidebar-label">How this answer was reviewed</p>
+{
+  hasMeaningfulTrustContent ? (
+    <section class="signal-card trust-panel" aria-label="Editorial review information" data-ai-section="editorial-trust">
+      <p class="sidebar-label">How this answer was reviewed</p>
 
-  {
-    reviewerDisplayLabel ? (
-      <p class="trust-reviewed-by">
-        {showReviewerName ? 'Reviewed by ' : ''}
-        <strong>{reviewerDisplayLabel}</strong>
-      </p>
-    ) : null
-  }
+      {reviewerDisplayLabel ? (
+        <p class="trust-reviewed-by">
+          {showReviewerName ? 'Reviewed by ' : ''}
+          <strong>{reviewerDisplayLabel}</strong>
+        </p>
+      ) : null}
 
-  {
-    showNeutralStatement ? (
-      <p class="trust-neutral">
-        Deeper publishes structured mental health answers under our editorial protocol. AI may assist drafting; human editorial accountability applies before publication.
-      </p>
-    ) : null
-  }
+      <ul class="trust-meta">
+        {reviewStatusDisplay ? <li>Review status: {reviewStatusDisplay}</li> : null}
+        <li>Updated {formatDate(updatedAt)}</li>
+        <li>
+          <a href="/editorial-policy/">Editorial policy</a>
+        </li>
+        <li>
+          <a href="/protocol/">Trust protocol</a>
+        </li>
+      </ul>
 
-  <ul class="trust-meta">
-    <li>Updated {formatDate(updatedAt)}</li>
-    <li>
-      <a href="/editorial-policy/">Editorial policy</a>
-    </li>
-    <li>
-      <a href="/protocol/">Trust protocol</a>
-    </li>
-  </ul>
-
-  {
-    sourceRefs.length > 0 ? (
-      <div class="trust-sources">
-        <p class="sidebar-label">Sources</p>
-        <ul>
-          {sourceRefs.map((source) => (
-            <li>
-              {source.url ? (
-                <a href={source.url} rel="noopener noreferrer">
-                  {source.title}
-                </a>
-              ) : (
-                <span>{source.title}</span>
-              )}
-              {source.publisher ? <span class="trust-source-publisher"> — {source.publisher}</span> : null}
-            </li>
-          ))}
-        </ul>
-      </div>
-    ) : null
-  }
-</section>
+      {sourceRefs.length > 0 ? (
+        <div class="trust-sources">
+          <p class="sidebar-label">Sources</p>
+          <ul>
+            {sourceRefs.map((source) => (
+              <li>
+                {source.url ? (
+                  <a href={source.url} rel="noopener noreferrer">
+                    {source.title}
+                  </a>
+                ) : (
+                  <span>{source.title}</span>
+                )}
+                {source.publisher ? <span class="trust-source-publisher"> — {source.publisher}</span> : null}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+    </section>
+  ) : null
+}
 
 <style>
   .trust-panel .trust-reviewed-by,
