@@ -16,6 +16,26 @@ const DATA_QUALITY_THRESHOLDS = {
   viewsPerActiveUser: 1.2,
   suspiciousSourceCountryShare: 0.5,
 };
+const QUALIFIED_SESSION_DURATION_SECONDS = 10;
+const ONE_PAGE_SESSION_RATIO = 1.1;
+const DEFAULT_TARGET_MARKET_COUNTRIES = ['United States'];
+const DIRECT_NOISE_COUNTRIES = ['Singapore', 'China'];
+const QUARANTINE_REASON_LABELS = {
+  singapore_direct: 'Singapore direct traffic',
+  china_direct: 'China direct traffic',
+  near_zero_duration: 'Near-zero session duration',
+  one_page_zero_engagement: 'One-page or zero-engagement sessions',
+  suspicious_direct_non_target_country: 'Suspicious direct traffic from non-target countries',
+};
+const QUALIFIED_CRITERIA_LABELS = {
+  engaged_sessions: 'Engaged session bucket',
+  non_direct_source: 'Non-direct source',
+  session_duration_over_10s: 'Average session duration above 10 seconds',
+  two_plus_pageviews_per_session: '2+ pageviews/session',
+  target_market_country: 'US / target-market country',
+  organic_search_source: 'Organic search source',
+  referral_social_source: 'Referral/social source',
+};
 
 function cleanText(value, fallback = '') {
   return typeof value === 'string' && value.trim() ? value.trim() : fallback;
@@ -236,6 +256,36 @@ function safeRatio(numerator, denominator) {
   return Number.isFinite(numerator) && Number.isFinite(denominator) && denominator > 0 ? numerator / denominator : null;
 }
 
+function configuredTargetMarketCountries() {
+  const configuredCountries = cleanText(process.env.REPORT_TARGET_MARKET_COUNTRIES);
+  const countries = configuredCountries
+    ? configuredCountries
+        .split(',')
+        .map((country) => cleanText(country))
+        .filter(Boolean)
+    : DEFAULT_TARGET_MARKET_COUNTRIES;
+
+  return Array.from(new Set(countries));
+}
+
+function normalizeCountry(country) {
+  return cleanText(country, '(not set)').toLowerCase();
+}
+
+function countryName(row) {
+  return cleanText(row.dimensions?.country, '(not set)');
+}
+
+function isTargetMarketCountry(country) {
+  const normalizedCountry = normalizeCountry(country);
+  return configuredTargetMarketCountries().some((targetCountry) => normalizeCountry(targetCountry) === normalizedCountry);
+}
+
+function isDirectNoiseCountry(country) {
+  const normalizedCountry = normalizeCountry(country);
+  return DIRECT_NOISE_COUNTRIES.some((noiseCountry) => normalizeCountry(noiseCountry) === normalizedCountry);
+}
+
 function sumGa4Metric(rows, metricName, filterFn = () => true) {
   return rows.reduce((sum, row) => {
     if (!filterFn(row)) return sum;
@@ -262,8 +312,20 @@ function isOrganicSocialReferral(row) {
   return ['organic search', 'organic social', 'referral', 'organic video'].includes(sessionChannel(row).toLowerCase());
 }
 
+function isOrganicSearchTraffic(row) {
+  return sessionChannel(row).toLowerCase() === 'organic search';
+}
+
+function isReferralSocialTraffic(row) {
+  return ['referral', 'organic social', 'organic video', 'social', 'paid social'].includes(sessionChannel(row).toLowerCase());
+}
+
 function viewsPerActiveUserFromMetrics(metrics) {
   return safeRatio(Number(metrics?.screenPageViews ?? 0), Number(metrics?.activeUsers ?? 0));
+}
+
+function viewsPerSessionFromMetrics(metrics) {
+  return safeRatio(Number(metrics?.screenPageViews ?? 0), Number(metrics?.sessions ?? 0));
 }
 
 function topCountryBySessions(countries) {
@@ -287,6 +349,153 @@ function isSuspiciousSourceCountryCombo(row, totalSessions) {
   );
 }
 
+function quarantineReasonCodes(row) {
+  const country = countryName(row);
+  const directTraffic = isDirectTraffic(row);
+  const averageSessionDuration = Number(row.metrics?.averageSessionDuration ?? 0);
+  const engagedSessions = Number(row.metrics?.engagedSessions ?? 0);
+  const viewsPerSession = viewsPerSessionFromMetrics(row.metrics);
+  const weakEngagement =
+    engagedSessions <= 0 ||
+    averageSessionDuration < QUALIFIED_SESSION_DURATION_SECONDS ||
+    (viewsPerSession !== null && viewsPerSession <= ONE_PAGE_SESSION_RATIO);
+  const reasons = [];
+
+  if (directTraffic && normalizeCountry(country) === 'singapore') reasons.push('singapore_direct');
+  if (directTraffic && normalizeCountry(country) === 'china') reasons.push('china_direct');
+  if (averageSessionDuration < QUALIFIED_SESSION_DURATION_SECONDS) reasons.push('near_zero_duration');
+  if (engagedSessions <= 0 || (viewsPerSession !== null && viewsPerSession <= ONE_PAGE_SESSION_RATIO)) {
+    reasons.push('one_page_zero_engagement');
+  }
+  if (directTraffic && !isTargetMarketCountry(country) && !isDirectNoiseCountry(country) && weakEngagement) {
+    reasons.push('suspicious_direct_non_target_country');
+  }
+
+  return reasons;
+}
+
+function qualifiedCriteriaCodes(row) {
+  const averageSessionDuration = Number(row.metrics?.averageSessionDuration ?? 0);
+  const engagedSessions = Number(row.metrics?.engagedSessions ?? 0);
+  const viewsPerSession = viewsPerSessionFromMetrics(row.metrics);
+  const criteria = [];
+
+  if (engagedSessions > 0) criteria.push('engaged_sessions');
+  if (!isDirectTraffic(row)) criteria.push('non_direct_source');
+  if (averageSessionDuration > QUALIFIED_SESSION_DURATION_SECONDS) criteria.push('session_duration_over_10s');
+  if (viewsPerSession !== null && viewsPerSession >= 2) criteria.push('two_plus_pageviews_per_session');
+  if (isTargetMarketCountry(countryName(row))) criteria.push('target_market_country');
+  if (isOrganicSearchTraffic(row)) criteria.push('organic_search_source');
+  if (isReferralSocialTraffic(row)) criteria.push('referral_social_source');
+
+  return criteria;
+}
+
+function bucketLabel(code) {
+  return QUARANTINE_REASON_LABELS[code] ?? QUALIFIED_CRITERIA_LABELS[code] ?? code;
+}
+
+function addBucketTotals(totals, codes, sessions) {
+  for (const code of codes) {
+    const current = totals.get(code) ?? { code, label: bucketLabel(code), sessions: 0 };
+    current.sessions += sessions;
+    totals.set(code, current);
+  }
+}
+
+function sortedBucketTotals(totals, totalSessions) {
+  return [...totals.values()]
+    .map((item) => ({
+      ...item,
+      sessionShare: safeRatio(item.sessions, totalSessions),
+    }))
+    .sort((a, b) => b.sessions - a.sessions || a.label.localeCompare(b.label));
+}
+
+function bucketDetail(row, codes, totalSessions) {
+  const sessions = Number(row.metrics?.sessions ?? 0);
+  return {
+    country: countryName(row),
+    channel: sessionChannel(row),
+    sourceMedium: sessionSourceMedium(row),
+    sessions,
+    sessionShare: safeRatio(sessions, totalSessions),
+    engagedSessions: Number(row.metrics?.engagedSessions ?? 0),
+    engagementRate: Number(row.metrics?.engagementRate ?? 0),
+    averageSessionDuration: Number(row.metrics?.averageSessionDuration ?? 0),
+    viewsPerSession: viewsPerSessionFromMetrics(row.metrics),
+    codes,
+  };
+}
+
+function buildTrafficSegmentation({ summary, trafficSources, sourceCountries }) {
+  const sessions = Number(summary.sessions ?? 0);
+  const reasonTotals = new Map();
+  const criteriaTotals = new Map();
+  const quarantinedBuckets = [];
+  const qualifiedBuckets = [];
+
+  for (const row of sourceCountries) {
+    const bucketSessions = Number(row.metrics?.sessions ?? 0);
+    if (bucketSessions <= 0) continue;
+
+    const reasons = quarantineReasonCodes(row);
+    if (reasons.length) {
+      addBucketTotals(reasonTotals, reasons, bucketSessions);
+      quarantinedBuckets.push(bucketDetail(row, reasons, sessions));
+    }
+
+    const criteria = qualifiedCriteriaCodes(row);
+    if (criteria.length) {
+      addBucketTotals(criteriaTotals, criteria, bucketSessions);
+      qualifiedBuckets.push(bucketDetail(row, criteria, sessions));
+    }
+  }
+
+  const quarantinedSessions = quarantinedBuckets.reduce((total, bucket) => total + bucket.sessions, 0);
+  const qualifiedSessions = qualifiedBuckets.reduce((total, bucket) => total + bucket.sessions, 0);
+  const directSessions = sumGa4Metric(trafficSources, 'sessions', isDirectTraffic);
+  const nonDirectSessions = Math.max(sessions - directSessions, 0);
+  const organicSearchSessions = sumGa4Metric(trafficSources, 'sessions', isOrganicSearchTraffic);
+  const referralSocialSessions = sumGa4Metric(trafficSources, 'sessions', isReferralSocialTraffic);
+  const targetMarketSessions = sumGa4Metric(sourceCountries, 'sessions', (row) => isTargetMarketCountry(countryName(row)));
+
+  return {
+    targetMarketCountries: configuredTargetMarketCountries(),
+    thresholds: {
+      qualifiedSessionDurationSeconds: QUALIFIED_SESSION_DURATION_SECONDS,
+      onePageSessionRatio: ONE_PAGE_SESSION_RATIO,
+    },
+    trafficQuarantine: {
+      method: 'Aggregate GA4 source/country buckets; rows may carry multiple reason codes, but quarantined sessions count each bucket once.',
+      sessions: quarantinedSessions,
+      sessionShare: safeRatio(quarantinedSessions, sessions),
+      topReasons: sortedBucketTotals(reasonTotals, sessions),
+      topBuckets: quarantinedBuckets.sort((a, b) => b.sessions - a.sessions).slice(0, 10),
+      limitations: [
+        'GA4 aggregate reports do not expose raw user/session identifiers.',
+        'Zero-duration sessions cannot be isolated exactly from these aggregate rows, so the report uses averageSessionDuration under 10 seconds as a near-zero bucket signal.',
+        'User-agent crawler quarantine is not available from the current GA4 Data API query; use Vercel logs/firewall analytics or explicit collection for user-agent rules.',
+      ],
+    },
+    qualifiedIntent: {
+      method: 'Aggregate GA4 source/country buckets that meet at least one qualified-intent criterion.',
+      sessions: qualifiedSessions,
+      sessionShare: safeRatio(qualifiedSessions, sessions),
+      criteria: sortedBucketTotals(criteriaTotals, sessions),
+      topBuckets: qualifiedBuckets.sort((a, b) => b.sessions - a.sessions).slice(0, 10),
+      targetMarketSessions,
+      targetMarketSessionShare: safeRatio(targetMarketSessions, sessions),
+      nonDirectSessions,
+      nonDirectSessionShare: safeRatio(nonDirectSessions, sessions),
+      organicSearchSessions,
+      organicSearchSessionShare: safeRatio(organicSearchSessions, sessions),
+      referralSocialSessions,
+      referralSocialSessionShare: safeRatio(referralSocialSessions, sessions),
+    },
+  };
+}
+
 function buildTrafficQuality({ summary, trafficSources, countries, sourceCountries }) {
   const sessions = Number(summary.sessions ?? 0);
   const activeUsers = Number(summary.activeUsers ?? 0);
@@ -301,6 +510,7 @@ function buildTrafficQuality({ summary, trafficSources, countries, sourceCountri
   const engagementRate = Number(summary.engagementRate ?? 0);
   const averageSessionDuration = Number(summary.averageSessionDuration ?? 0);
   const flags = [];
+  const trafficSegmentation = buildTrafficSegmentation({ summary, trafficSources, sourceCountries });
 
   const directSessionShare = safeRatio(directSessions, sessions);
   if (directSessionShare !== null && directSessionShare > DATA_QUALITY_THRESHOLDS.directSessionShare) {
@@ -388,6 +598,10 @@ function buildTrafficQuality({ summary, trafficSources, countries, sourceCountri
     viewsPerActiveUser,
     averageSessionDuration,
     averageEngagementSecondsPerSession: safeRatio(Number(summary.userEngagementDuration ?? 0), sessions),
+    targetMarketCountries: trafficSegmentation.targetMarketCountries,
+    segmentationThresholds: trafficSegmentation.thresholds,
+    trafficQuarantine: trafficSegmentation.trafficQuarantine,
+    qualifiedIntent: trafficSegmentation.qualifiedIntent,
     topCountry: topCountry
       ? {
           country: topCountry.dimensions.country,
@@ -455,7 +669,7 @@ async function fetchSiteKpis(sinceDate) {
         ...common,
         dimensions: ['country', 'sessionDefaultChannelGroup', 'sessionSourceMedium'],
         metrics: ['sessions', 'activeUsers', 'screenPageViews', 'engagedSessions', 'engagementRate', 'averageSessionDuration'],
-        limit: 100,
+        limit: 250,
         orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
       }),
     ]);
@@ -471,6 +685,12 @@ async function fetchSiteKpis(sinceDate) {
       ['sessions', 'activeUsers', 'screenPageViews', 'engagedSessions', 'engagementRate', 'averageSessionDuration'],
       ['country', 'sessionDefaultChannelGroup', 'sessionSourceMedium']
     );
+    const trafficQuality = buildTrafficQuality({
+      summary: summaryRow,
+      trafficSources: trafficSourceRows,
+      countries: countryRows,
+      sourceCountries: sourceCountryRows,
+    });
 
     return {
       available: true,
@@ -481,12 +701,9 @@ async function fetchSiteKpis(sinceDate) {
       trafficSources: trafficSourceRows,
       countries: countryRows,
       sourceCountries: sourceCountryRows,
-      qualifiedTraffic: buildTrafficQuality({
-        summary: summaryRow,
-        trafficSources: trafficSourceRows,
-        countries: countryRows,
-        sourceCountries: sourceCountryRows,
-      }),
+      qualifiedTraffic: trafficQuality,
+      trafficQuarantine: trafficQuality.trafficQuarantine,
+      qualifiedIntent: trafficQuality.qualifiedIntent,
     };
   } catch (error) {
     console.error('site_kpi_report_unavailable', error);
@@ -726,6 +943,34 @@ function dataQualityFlagText(flag) {
   return `- ${flag.label}: ${formatDataQualityFlagValue(flag)}. ${flag.detail}`;
 }
 
+function formatDecimal(value, digits = 2) {
+  return Number.isFinite(value) ? value.toFixed(digits) : 'n/a';
+}
+
+function codeLabels(codes) {
+  return (codes ?? []).map(bucketLabel).join(', ');
+}
+
+function bucketMetricHtml(item) {
+  return `${escapeHtml(item.country)} — ${escapeHtml(item.channel)} / ${escapeHtml(item.sourceMedium)}: <strong>${formatInteger(
+    item.sessions
+  )}</strong> sessions, ${formatInteger(item.engagedSessions)} engaged, ${formatPercent(item.engagementRate)} engagement, ${formatDuration(
+    item.averageSessionDuration
+  )} avg. session, ${formatDecimal(item.viewsPerSession)} views/session. <em>${escapeHtml(codeLabels(item.codes))}</em>`;
+}
+
+function bucketMetricText(item) {
+  return `- ${item.country} / ${item.channel} / ${item.sourceMedium}: ${formatInteger(item.sessions)} sessions, ${formatInteger(
+    item.engagedSessions
+  )} engaged, ${formatPercent(item.engagementRate)} engagement, ${formatDuration(item.averageSessionDuration)} avg. session, ${formatDecimal(
+    item.viewsPerSession
+  )} views/session (${codeLabels(item.codes)})`;
+}
+
+function bucketTotalsText(item) {
+  return `- ${item.label}: ${formatInteger(item.sessions)} sessions (${formatPercent(item.sessionShare)} of raw sessions)`;
+}
+
 function siteKpiHtml(siteKpis) {
   if (!siteKpis?.available) {
     const hostScope = siteKpis?.hostnames?.length ? ` Host filter: ${siteKpis.hostnames.map(escapeHtml).join(', ')}.` : '';
@@ -734,12 +979,14 @@ function siteKpiHtml(siteKpis) {
 
   const summary = siteKpis.summary ?? {};
   const qualified = siteKpis.qualifiedTraffic ?? {};
+  const quarantine = siteKpis.trafficQuarantine ?? qualified.trafficQuarantine ?? {};
+  const qualifiedIntent = siteKpis.qualifiedIntent ?? qualified.qualifiedIntent ?? {};
   const hostScope = siteKpis.hostnames?.length ? ` Host filter: ${siteKpis.hostnames.map(escapeHtml).join(', ')}.` : '';
 
   return `
     <p>Source: ${escapeHtml(siteKpis.source)}.${hostScope} Aggregate-only GA4 metrics; no raw user or session identifiers.</p>
-    <p><strong>Interpretation note:</strong> raw KPIs are not filtered for bot/noise signals. Use the qualified traffic and data quality sections below when judging real audience intent.</p>
-    <h3>Raw site KPIs</h3>
+    <p><strong>Interpretation note:</strong> raw KPIs are not filtered for bot/noise signals. Use the quarantine, qualified intent, and Search Console sections together when judging real audience intent.</p>
+    <h3>Raw all-traffic site KPIs</h3>
     <ul>
       <li><strong>Active users:</strong> ${formatInteger(summary.activeUsers)}</li>
       <li><strong>Total users:</strong> ${formatInteger(summary.totalUsers)}</li>
@@ -752,11 +999,34 @@ function siteKpiHtml(siteKpis) {
       <li><strong>Bounce rate:</strong> ${formatPercent(summary.bounceRate)}</li>
     </ul>
 
-    <h3>Qualified / engaged traffic</h3>
+    <h3>Traffic quarantine</h3>
+    <p>${escapeHtml(quarantine.method ?? 'Aggregate GA4 source/country buckets flagged as likely noise.')}</p>
     <ul>
+      <li><strong>Likely-noise bucket sessions:</strong> ${formatInteger(quarantine.sessions)} (${formatPercent(quarantine.sessionShare)} of raw sessions)</li>
+    </ul>
+    <h4>Top quarantine reasons</h4>
+    ${listHtml((quarantine.topReasons ?? []).slice(0, 8), (item) => {
+      return `${escapeHtml(item.label)} — <strong>${formatInteger(item.sessions)}</strong> sessions (${formatPercent(item.sessionShare)} of raw sessions)`;
+    })}
+    <h4>Top quarantined source / country buckets</h4>
+    ${listHtml(quarantine.topBuckets ?? [], bucketMetricHtml)}
+    ${
+      quarantine.limitations?.length
+        ? `<p><strong>Limitations:</strong> ${quarantine.limitations.map(escapeHtml).join(' ')}</p>`
+        : ''
+    }
+
+    <h3>Qualified intent traffic</h3>
+    <p>${escapeHtml(qualifiedIntent.method ?? 'Aggregate GA4 source/country buckets that meet at least one qualified-intent criterion.')} Target markets: ${escapeHtml(
+      (qualified.targetMarketCountries ?? []).join(', ') || 'United States'
+    )}.</p>
+    <ul>
+      <li><strong>Qualified-intent bucket sessions:</strong> ${formatInteger(qualifiedIntent.sessions)} (${formatPercent(qualifiedIntent.sessionShare)} of raw sessions)</li>
       <li><strong>Engaged sessions:</strong> ${formatInteger(qualified.engagedSessions)} (${formatPercent(qualified.engagementRate)} engagement rate)</li>
-      <li><strong>Non-direct sessions:</strong> ${formatInteger(qualified.nonDirectSessions)} (${formatPercent(qualified.nonDirectSessionShare)} of sessions)</li>
-      <li><strong>Organic/social/referral sessions:</strong> ${formatInteger(qualified.organicSocialReferralSessions)} (${formatPercent(qualified.organicSocialReferralSessionShare)} of sessions)</li>
+      <li><strong>US / target-market sessions:</strong> ${formatInteger(qualifiedIntent.targetMarketSessions)} (${formatPercent(qualifiedIntent.targetMarketSessionShare)} of raw sessions)</li>
+      <li><strong>Non-direct sessions:</strong> ${formatInteger(qualifiedIntent.nonDirectSessions)} (${formatPercent(qualifiedIntent.nonDirectSessionShare)} of raw sessions)</li>
+      <li><strong>Organic search sessions:</strong> ${formatInteger(qualifiedIntent.organicSearchSessions)} (${formatPercent(qualifiedIntent.organicSearchSessionShare)} of raw sessions)</li>
+      <li><strong>Referral/social sessions:</strong> ${formatInteger(qualifiedIntent.referralSocialSessions)} (${formatPercent(qualifiedIntent.referralSocialSessionShare)} of raw sessions)</li>
       <li><strong>Direct sessions:</strong> ${formatInteger(qualified.directSessions)} (${formatPercent(qualified.directSessionShare)} of sessions)</li>
       <li><strong>Views per active user:</strong> ${Number.isFinite(qualified.viewsPerActiveUser) ? qualified.viewsPerActiveUser.toFixed(2) : 'n/a'}</li>
       <li><strong>Avg. engagement per session:</strong> ${formatDuration(qualified.averageEngagementSecondsPerSession)}</li>
@@ -766,6 +1036,12 @@ function siteKpiHtml(siteKpis) {
           : ''
       }
     </ul>
+    <h4>Qualified criteria contribution</h4>
+    ${listHtml(qualifiedIntent.criteria ?? [], (item) => {
+      return `${escapeHtml(item.label)} — <strong>${formatInteger(item.sessions)}</strong> sessions (${formatPercent(item.sessionShare)} of raw sessions)`;
+    })}
+    <h4>Top qualified source / country buckets</h4>
+    ${listHtml(qualifiedIntent.topBuckets ?? [], bucketMetricHtml)}
 
     <h3>Data quality / bot-noise flags</h3>
     ${dataQualityFlagsHtml(qualified.flags)}
@@ -816,7 +1092,7 @@ function searchConsoleHtml(searchConsole) {
     <p>Source: ${escapeHtml(searchConsole.source)}. Site property: ${escapeHtml(searchConsole.siteUrl)}. Window: ${escapeHtml(
       dateRange.startDate
     )} to ${escapeHtml(dateRange.endDate)} (${formatInteger(dateRange.lagDays)}-day reporting lag). Aggregate-only Search Console metrics.</p>
-    <p><strong>Interpretation note:</strong> Search Console reports Google organic search performance and often lags recent dates. Average position is impression-weighted across queries/pages.</p>
+    <p><strong>Interpretation note:</strong> Search Console reports Google organic search visibility alongside qualified intent traffic and often lags recent dates. Average position is impression-weighted across queries/pages.</p>
     <ul>
       <li><strong>Clicks:</strong> ${formatInteger(summary.clicks)}</li>
       <li><strong>Impressions:</strong> ${formatInteger(summary.impressions)}</li>
@@ -862,7 +1138,7 @@ function searchConsoleTextLines(searchConsole) {
     `- Window: ${searchConsole.dateRange?.startDate} to ${searchConsole.dateRange?.endDate} (${formatInteger(
       searchConsole.dateRange?.lagDays
     )}-day reporting lag)`,
-    '- Search Console reports Google organic search performance; average position is impression-weighted.',
+    '- Search Console reports Google organic search visibility alongside qualified intent traffic; average position is impression-weighted.',
     `- Clicks: ${formatInteger(summary.clicks)}`,
     `- Impressions: ${formatInteger(summary.impressions)}`,
     `- CTR: ${formatPercent(summary.ctr)}`,
@@ -946,11 +1222,13 @@ function reportHtml(report) {
 function reportText(report) {
   const siteKpis = report.siteKpis;
   const qualified = siteKpis?.qualifiedTraffic ?? {};
+  const quarantine = siteKpis?.trafficQuarantine ?? qualified.trafficQuarantine ?? {};
+  const qualifiedIntent = siteKpis?.qualifiedIntent ?? qualified.qualifiedIntent ?? {};
   const siteKpiLines = siteKpis?.available
     ? [
         'Site KPIs:',
         ...(siteKpis.hostnames?.length ? [`- Host filter: ${siteKpis.hostnames.join(', ')}`] : []),
-        '- Raw KPIs are not filtered for bot/noise signals; use qualified traffic and data quality flags for interpretation.',
+        '- Raw KPIs are not filtered for bot/noise signals; use quarantine, qualified intent, and Search Console for interpretation.',
         `- Active users: ${formatInteger(siteKpis.summary?.activeUsers)}`,
         `- Total users: ${formatInteger(siteKpis.summary?.totalUsers)}`,
         `- Sessions: ${formatInteger(siteKpis.summary?.sessions)}`,
@@ -961,10 +1239,27 @@ function reportText(report) {
         `- Engagement rate: ${formatPercent(siteKpis.summary?.engagementRate)}`,
         `- Bounce rate: ${formatPercent(siteKpis.summary?.bounceRate)}`,
         '',
-        'Qualified / engaged traffic:',
+        'Traffic quarantine:',
+        `- Likely-noise bucket sessions: ${formatInteger(quarantine.sessions)} (${formatPercent(quarantine.sessionShare)} of raw sessions)`,
+        '- Top quarantine reasons:',
+        ...((quarantine.topReasons ?? []).length ? (quarantine.topReasons ?? []).slice(0, 8).map(bucketTotalsText) : ['- No quarantine reason buckets matched.']),
+        '- Top quarantined source / country buckets:',
+        ...((quarantine.topBuckets ?? []).length ? (quarantine.topBuckets ?? []).map(bucketMetricText) : ['- No quarantined source/country buckets matched.']),
+        ...(quarantine.limitations?.length ? ['- Limitations: ' + quarantine.limitations.join(' ')] : []),
+        '',
+        'Qualified intent traffic:',
+        `- Qualified-intent bucket sessions: ${formatInteger(qualifiedIntent.sessions)} (${formatPercent(qualifiedIntent.sessionShare)} of raw sessions)`,
         `- Engaged sessions: ${formatInteger(qualified.engagedSessions)} (${formatPercent(qualified.engagementRate)} engagement rate)`,
-        `- Non-direct sessions: ${formatInteger(qualified.nonDirectSessions)} (${formatPercent(qualified.nonDirectSessionShare)} of sessions)`,
-        `- Organic/social/referral sessions: ${formatInteger(qualified.organicSocialReferralSessions)} (${formatPercent(qualified.organicSocialReferralSessionShare)} of sessions)`,
+        `- US / target-market sessions: ${formatInteger(qualifiedIntent.targetMarketSessions)} (${formatPercent(
+          qualifiedIntent.targetMarketSessionShare
+        )} of raw sessions)`,
+        `- Non-direct sessions: ${formatInteger(qualifiedIntent.nonDirectSessions)} (${formatPercent(qualifiedIntent.nonDirectSessionShare)} of raw sessions)`,
+        `- Organic search sessions: ${formatInteger(qualifiedIntent.organicSearchSessions)} (${formatPercent(
+          qualifiedIntent.organicSearchSessionShare
+        )} of raw sessions)`,
+        `- Referral/social sessions: ${formatInteger(qualifiedIntent.referralSocialSessions)} (${formatPercent(
+          qualifiedIntent.referralSocialSessionShare
+        )} of raw sessions)`,
         `- Direct sessions: ${formatInteger(qualified.directSessions)} (${formatPercent(qualified.directSessionShare)} of sessions)`,
         `- Views per active user: ${Number.isFinite(qualified.viewsPerActiveUser) ? qualified.viewsPerActiveUser.toFixed(2) : 'n/a'}`,
         `- Avg. engagement per session: ${formatDuration(qualified.averageEngagementSecondsPerSession)}`,
@@ -975,6 +1270,10 @@ function reportText(report) {
               )})`,
             ]
           : []),
+        '- Qualified criteria contribution:',
+        ...((qualifiedIntent.criteria ?? []).length ? (qualifiedIntent.criteria ?? []).map(bucketTotalsText) : ['- No qualified criteria buckets matched.']),
+        '- Top qualified source / country buckets:',
+        ...((qualifiedIntent.topBuckets ?? []).length ? (qualifiedIntent.topBuckets ?? []).map(bucketMetricText) : ['- No qualified source/country buckets matched.']),
         '',
         'Data quality / bot-noise flags:',
         ...(qualified.flags?.length ? qualified.flags.map(dataQualityFlagText) : ['- No automatic bot/noise flags crossed the current thresholds.']),
