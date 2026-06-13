@@ -1,0 +1,236 @@
+[
+  {
+    "question": "How can I apologize in a way that actually repairs trust?",
+    "slug": "how-to-apologize-to-repair-trust",
+    "category": "Communication & Conflict",
+    "intent": "Learn what makes an apology meaningful",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds repair-oriented communication content. Distinct from boundary and argument questions because it focuses on accountability.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support relationship communication and trust repair context."
+      }
+    ],
+    "notes": "Include caution that apologies do not guarantee forgiveness.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do I get defensive even when I know the other person has a point?",
+    "slug": "why-do-i-get-defensive-even-when-they-have-a-point",
+    "category": "Communication & Conflict",
+    "intent": "Understand defensiveness during feedback or conflict",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Addresses self-reflective conflict behavior. Adds depth beyond externalizing questions about difficult people.",
+    "source_refs": [
+      {
+        "title": "Managing Your Distress in the Aftermath of a Shooting",
+        "url": "https://www.apa.org/topics/gun-violence-crime/mass-shooting",
+        "publisher": "American Psychological Association",
+        "note": "Would support emotional regulation concepts, though a more specific communication source should be preferred in review."
+      }
+    ],
+    "notes": "Source should be upgraded during vetting if a better APA communication-specific page is selected.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I set a boundary without sounding harsh?",
+    "slug": "set-a-boundary-without-sounding-harsh",
+    "category": "Communication & Conflict",
+    "intent": "Communicate limits clearly and respectfully",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Boundaries are a core mental health and relationship topic. This version focuses on phrasing and tone rather than deciding whether a boundary is needed.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support healthy relationship and communication context."
+      }
+    ],
+    "notes": "Do not imply boundaries must be softened to be valid.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I know if I might be depressed?",
+    "slug": "how-do-i-know-if-i-might-be-depressed",
+    "category": "Depression",
+    "intent": "Recognize possible depression symptoms and seek next steps",
+    "safety_flags": [
+      "diagnosis-risk",
+      "self-harm"
+    ],
+    "duplicate_risk": "high",
+    "why_this_adds_coverage": "A core entry question for depression content. It should exist if not already covered, with careful non-diagnostic framing.",
+    "source_refs": [
+      {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support symptoms, risk factors, and treatment-seeking guidance."
+      }
+    ],
+    "notes": "Include crisis guidance for suicidal thoughts; avoid self-diagnosis language.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do I feel numb instead of sad?",
+    "slug": "why-do-i-feel-numb-instead-of-sad",
+    "category": "Depression",
+    "intent": "Understand emotional numbness and possible mental health causes",
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds nuanced depression-adjacent coverage for users who do not identify with sadness. Helps reduce false reassurance around emotional numbness.",
+    "source_refs": [
+      {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support varied depressive symptoms and need for care when symptoms persist."
+      }
+    ],
+    "notes": "Escalate if numbness is paired with self-harm, dissociation, or inability to function.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Can depression make it hard to do basic tasks?",
+    "slug": "can-depression-make-basic-tasks-hard",
+    "category": "Depression",
+    "intent": "Understand low motivation and daily functioning issues",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Captures functional impairment, a common depression concern. It supports practical care-seeking and shame-reducing education.",
+    "source_refs": [
+      {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support symptoms such as fatigue, concentration issues, and impairment."
+      }
+    ],
+    "notes": "Avoid framing difficulty with chores as laziness.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What should I do if I think my friend is depressed?",
+    "slug": "what-to-do-if-my-friend-is-depressed",
+    "category": "Depression",
+    "intent": "Support a friend who may be experiencing depression",
+    "safety_flags": [
+      "self-harm",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds supporter-focused depression coverage. It can include how to listen, encourage help, and respond to suicide warning signs.",
+    "source_refs": [
+      {
+        "title": "Warning Signs of Suicide",
+        "url": "https://988lifeline.org/how-we-can-all-prevent-suicide/",
+        "publisher": "988 Suicide & Crisis Lifeline",
+        "note": "Would support crisis escalation and warning-sign guidance."
+      }
+    ],
+    "notes": "Needs clear emergency language if friend may be in immediate danger.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why does depression come back after I start feeling better?",
+    "slug": "why-does-depression-come-back-after-feeling-better",
+    "category": "Depression",
+    "intent": "Understand recurrence and maintenance care",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds relapse and recurrence coverage, which is distinct from first-episode symptom recognition. Useful for long-term management questions.",
+    "source_refs": [
+      {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support depression course, treatment, and recurrence-aware care."
+      }
+    ],
+    "notes": "Avoid advising medication changes; refer medication questions to clinicians.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can parents support a child who worries a lot?",
+    "slug": "how-can-parents-support-a-child-who-worries-a-lot",
+    "category": "Family & Parenting",
+    "intent": "Help a child manage frequent worry",
+    "safety_flags": [
+      "minor",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds child anxiety coverage from the caregiver perspective. It supports early intervention without creating a child-specific taxonomy branch.",
+    "source_refs": [
+      {
+        "title": "Data and Statistics on Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/data-research/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support children's mental health context and prevalence framing."
+      }
+    ],
+    "notes": "Encourage pediatrician or mental health professional involvement when worry impairs school, sleep, or relationships.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What should I do if my child does not want to talk about their feelings?",
+    "slug": "what-if-my-child-does-not-want-to-talk-about-feelings",
+    "category": "Family & Parenting",
+    "intent": "Encourage emotional communication with a child",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Covers parent-child emotional communication without assuming pathology. Distinct from teen-specific refusal or crisis content.",
+    "source_refs": [
+      {
+        "title": "Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support general child mental health and family support context."
+      }
+    ],
+    "notes": "Avoid pressuring disclosure; include safety exceptions.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  }
+]

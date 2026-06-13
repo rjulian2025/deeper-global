@@ -1,0 +1,232 @@
+[
+  {
+    "question": "What should I do after a relapse in recovery?",
+    "slug": "what-should-i-do-after-a-relapse-in-recovery",
+    "category": "Addiction & Recovery",
+    "intent": "Find next steps after returning to substance use",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Relapse questions are common but require non-shaming, practical guidance. This adds recovery-stage coverage beyond first-time help seeking.",
+    "source_refs": [
+      {
+        "title": "Treatment and Recovery",
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "publisher": "National Institute on Drug Abuse",
+        "note": "Would support relapse-aware recovery framing and evidence-based treatment options."
+      }
+    ],
+    "notes": "Include urgent care guidance if overdose risk, withdrawal danger, or self-harm thoughts are present.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can I support someone who is struggling with addiction without enabling them?",
+    "slug": "support-someone-with-addiction-without-enabling",
+    "category": "Addiction & Recovery",
+    "intent": "Help a loved one while maintaining boundaries",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds family-and-supporter content for addiction, not just person-centered recovery content. It can distinguish support, boundaries, and crisis escalation.",
+    "source_refs": [
+      {
+        "title": "National Helpline",
+        "url": "https://www.samhsa.gov/find-help/national-helpline",
+        "publisher": "SAMHSA",
+        "note": "Would support referral pathways for substance use support and treatment navigation."
+      }
+    ],
+    "notes": "Avoid simplistic enablement language that blames families.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Is it normal to feel bored or empty after getting sober?",
+    "slug": "is-it-normal-to-feel-bored-or-empty-after-getting-sober",
+    "category": "Addiction & Recovery",
+    "intent": "Understand emotional adjustment in early recovery",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Addresses a nuanced recovery experience that may otherwise be missed by treatment-entry content. It can connect emotional flatness with support, routines, and care.",
+    "source_refs": [
+      {
+        "title": "Treatment and Recovery",
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "publisher": "National Institute on Drug Abuse",
+        "note": "Would support recovery as an ongoing process involving behavioral and social supports."
+      }
+    ],
+    "notes": "Flag crisis language if emptiness includes suicidal thoughts.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "When should someone seek professional help for substance use?",
+    "slug": "when-to-seek-professional-help-for-substance-use",
+    "category": "Addiction & Recovery",
+    "intent": "Identify thresholds for getting addiction-related care",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Provides a broad doorway into treatment navigation for users unsure whether their use qualifies as serious. Useful for early intervention coverage.",
+    "source_refs": [
+      {
+        "title": "Substance Use",
+        "url": "https://www.samhsa.gov/substance-use",
+        "publisher": "SAMHSA",
+        "note": "Would support general substance use information and help-seeking pathways."
+      }
+    ],
+    "notes": "Mention emergency help for overdose, severe withdrawal, or immediate danger.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can I tell the difference between stress and anxiety?",
+    "slug": "difference-between-stress-and-anxiety",
+    "category": "Anxiety & Stress",
+    "intent": "Compare stress and anxiety symptoms",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "A high-volume comparison question that can clarify everyday stress versus persistent anxiety. Helps users decide whether support may be needed.",
+    "source_refs": [
+      {
+        "title": "Anxiety Disorders",
+        "url": "https://www.nimh.nih.gov/health/topics/anxiety-disorders",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support anxiety symptom and impairment descriptions."
+      }
+    ],
+    "notes": "Frame as educational, not diagnostic.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What can I do when I feel anxious for no clear reason?",
+    "slug": "what-to-do-when-anxious-for-no-clear-reason",
+    "category": "Anxiety & Stress",
+    "intent": "Find grounding and next steps for unexplained anxiety",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Serves users who experience anxiety without an obvious trigger. Adds practical, non-diagnostic anxiety coverage.",
+    "source_refs": [
+      {
+        "title": "I'm So Stressed Out!",
+        "url": "https://www.nimh.nih.gov/health/publications/so-stressed-out-fact-sheet",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support stress response education and when to seek help."
+      }
+    ],
+    "notes": "Include medical caveat for sudden severe physical symptoms.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do I overthink every conversation after it happens?",
+    "slug": "why-do-i-overthink-every-conversation-after-it-happens",
+    "category": "Anxiety & Stress",
+    "intent": "Understand rumination after social interactions",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds social-rumination coverage distinct from generalized worry. It can bridge anxiety and communication content without creating a new category.",
+    "source_refs": [
+      {
+        "title": "Anxiety Disorders",
+        "url": "https://www.nimh.nih.gov/health/topics/anxiety-disorders",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support anxiety symptoms and social anxiety context."
+      }
+    ],
+    "notes": "Avoid labeling the user as having social anxiety unless framed as a possibility to discuss with a clinician.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Can chronic stress affect my mental health?",
+    "slug": "can-chronic-stress-affect-my-mental-health",
+    "category": "Anxiety & Stress",
+    "intent": "Understand long-term stress effects",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds foundational stress education with broad internal linking potential. Supports prevention-oriented mental health content.",
+    "source_refs": [
+      {
+        "title": "Stress",
+        "url": "https://www.apa.org/topics/stress",
+        "publisher": "American Psychological Association",
+        "note": "Would support general stress effects and coping guidance."
+      }
+    ],
+    "notes": "Keep distinct from workplace burnout pages by focusing on stress broadly.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I bring up a hard topic without starting a fight?",
+    "slug": "bring-up-hard-topic-without-starting-fight",
+    "category": "Communication & Conflict",
+    "intent": "Start a difficult conversation more constructively",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Covers proactive conflict prevention rather than repair after conflict. Useful across romantic, family, and workplace contexts.",
+    "source_refs": [
+      {
+        "title": "Conflict Resolution",
+        "url": "https://www.apa.org/topics/conflict-resolution",
+        "publisher": "American Psychological Association",
+        "note": "Would support constructive conflict and communication principles."
+      }
+    ],
+    "notes": "Avoid implying users can control another person's reaction.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What should I do when someone shuts down during conflict?",
+    "slug": "what-to-do-when-someone-shuts-down-during-conflict",
+    "category": "Communication & Conflict",
+    "intent": "Respond to withdrawal or silence during disagreement",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds coverage for conflict withdrawal, a common dynamic not captured by anger-focused questions. Helps users distinguish pause, avoidance, and emotional flooding.",
+    "source_refs": [
+      {
+        "title": "Conflict Resolution",
+        "url": "https://www.apa.org/topics/conflict-resolution",
+        "publisher": "American Psychological Association",
+        "note": "Would support communication strategies during disagreement."
+      }
+    ],
+    "notes": "Use neutral language; do not pathologize shutdown.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  }
+]

@@ -1,0 +1,233 @@
+[
+  {
+    "question": "How do I support someone who is grieving?",
+    "slug": "how-do-i-support-someone-who-is-grieving",
+    "category": "Grief & Loss",
+    "intent": "Help a grieving person with sensitivity",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds supporter-facing grief content. It can include what to say, what not to say, and when to encourage extra help.",
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Would support grief support and coping context."
+      }
+    ],
+    "notes": "Mention crisis support if the grieving person talks about wanting to die.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do I feel guilty after a loved one dies?",
+    "slug": "why-do-i-feel-guilty-after-a-loved-one-dies",
+    "category": "Grief & Loss",
+    "intent": "Understand guilt after bereavement",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds coverage for guilt and regret, common but distinct grief experiences. Important for users stuck in self-blame.",
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Would support grief reactions and coping with loss."
+      }
+    ],
+    "notes": "Escalate if guilt includes self-punishment or suicidal thinking.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "When does grief become something I should get help for?",
+    "slug": "when-to-get-help-for-grief",
+    "category": "Grief & Loss",
+    "intent": "Identify when grief may need professional support",
+    "safety_flags": [
+      "diagnosis-risk",
+      "self-harm"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Addresses the boundary between painful grief and impairing or dangerous grief symptoms. Useful for trust-safe triage.",
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Would support professional help-seeking when grief is persistent or impairing."
+      }
+    ],
+    "notes": "Avoid diagnosing prolonged grief disorder; mention professional evaluation.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do I feel like I am not good enough?",
+    "slug": "why-do-i-feel-like-i-am-not-good-enough",
+    "category": "Identity & Self-Worth",
+    "intent": "Explore persistent low self-worth",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "A core self-worth question with broad relevance across anxiety, depression, trauma, and relationships. Needs compassionate, non-diagnostic framing.",
+    "source_refs": [
+      {
+        "title": "Building Your Resilience",
+        "url": "https://www.apa.org/topics/resilience/building-your-resilience",
+        "publisher": "American Psychological Association",
+        "note": "Would support resilience, self-perception, and coping context."
+      }
+    ],
+    "notes": "Include self-harm escalation if worthlessness includes wanting not to live.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can I stop comparing myself to everyone else?",
+    "slug": "how-to-stop-comparing-myself-to-everyone-else",
+    "category": "Identity & Self-Worth",
+    "intent": "Reduce harmful comparison and improve self-esteem",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds a modern self-worth concern tied to social pressure and identity. Distinct from general confidence questions.",
+    "source_refs": [
+      {
+        "title": "Building Your Resilience",
+        "url": "https://www.apa.org/topics/resilience/building-your-resilience",
+        "publisher": "American Psychological Association",
+        "note": "Would support coping, perspective, and resilience-building strategies."
+      }
+    ],
+    "notes": "Could later link to social media and teen identity content.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do compliments make me uncomfortable?",
+    "slug": "why-do-compliments-make-me-uncomfortable",
+    "category": "Identity & Self-Worth",
+    "intent": "Understand discomfort with positive feedback",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds a subtle self-worth pattern not covered by broad low-esteem questions. It can explore shame, mistrust, and self-image carefully.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support interpersonal and self-perception context."
+      }
+    ],
+    "notes": "Avoid overinterpreting discomfort as trauma or pathology.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I figure out who I am outside of what other people expect?",
+    "slug": "figure-out-who-i-am-outside-other-peoples-expectations",
+    "category": "Identity & Self-Worth",
+    "intent": "Explore identity separate from external pressure",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds identity development content for adults and young adults without creating a new taxonomy branch. Useful for values, boundaries, and self-definition.",
+    "source_refs": [
+      {
+        "title": "Building Your Resilience",
+        "url": "https://www.apa.org/topics/resilience/building-your-resilience",
+        "publisher": "American Psychological Association",
+        "note": "Would support resilience and values-based coping context."
+      }
+    ],
+    "notes": "Keep inclusive and culturally sensitive.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Can low self-esteem affect relationships?",
+    "slug": "can-low-self-esteem-affect-relationships",
+    "category": "Identity & Self-Worth",
+    "intent": "Understand how self-worth influences relationship patterns",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Creates a bridge between self-worth and relationships. It can cover reassurance seeking, boundaries, jealousy, and conflict without over-pathologizing.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support relationship dynamics and emotional wellbeing context."
+      }
+    ],
+    "notes": "Avoid blaming users for relationship problems caused by mistreatment.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do I feel lonely even when I am around people?",
+    "slug": "why-do-i-feel-lonely-even-around-people",
+    "category": "Loneliness & Isolation",
+    "intent": "Understand emotional loneliness despite social contact",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "A common loneliness question that distinguishes connection quality from social quantity. Useful for internal links to depression and relationships.",
+    "source_refs": [
+      {
+        "title": "Our Epidemic of Loneliness and Isolation",
+        "url": "https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support social connection, loneliness, and health impact context."
+      }
+    ],
+    "notes": "Escalate if loneliness includes suicidal thoughts.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I make friends as an adult when I feel awkward?",
+    "slug": "how-to-make-friends-as-an-adult-when-i-feel-awkward",
+    "category": "Loneliness & Isolation",
+    "intent": "Find practical ways to build adult friendships",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds practical social connection coverage for adults. Distinct from loneliness explanation pages because it is action-oriented.",
+    "source_refs": [
+      {
+        "title": "Our Epidemic of Loneliness and Isolation",
+        "url": "https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support the importance of social connection and isolation reduction."
+      }
+    ],
+    "notes": "Avoid suggesting exposure steps as therapy unless framed generally.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  }
+]

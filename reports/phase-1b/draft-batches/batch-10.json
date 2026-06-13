@@ -1,0 +1,165 @@
+[
+  {
+    "question": "What does work-life balance actually mean?",
+    "slug": "what-does-work-life-balance-actually-mean",
+    "category": "Work & Life Balance",
+    "intent": "Define work-life balance realistically",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Foundational concept explainer for a pilot category. It can prevent thin content by defining balance as sustainable fit, not perfect equality.",
+    "source_refs": [
+      {
+        "title": "Healthy Workplaces",
+        "url": "https://www.apa.org/topics/healthy-workplaces",
+        "publisher": "American Psychological Association",
+        "note": "Would support workplace wellbeing and sustainable work practices."
+      }
+    ],
+    "notes": "Avoid one-size-fits-all prescriptions.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I make time for myself when everyone needs something from me?",
+    "slug": "make-time-for-myself-when-everyone-needs-something",
+    "category": "Work & Life Balance",
+    "intent": "Create personal time amid competing demands",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Covers role overload across work, caregiving, and relationships. Useful bridge between balance, parenting, and burnout.",
+    "source_refs": [
+      {
+        "title": "Stress",
+        "url": "https://www.apa.org/topics/stress",
+        "publisher": "American Psychological Association",
+        "note": "Would support stress management and coping context."
+      }
+    ],
+    "notes": "Avoid implying users can easily opt out of caregiving or financial obligations.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I manage stress from a toxic workplace?",
+    "slug": "manage-stress-from-toxic-workplace",
+    "category": "Work, Stress & Burnout",
+    "intent": "Cope with unhealthy workplace dynamics",
+    "safety_flags": [
+      "abuse",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds workplace harm coverage without making a legal claim. It can discuss stress, documentation, support, and safety planning.",
+    "source_refs": [
+      {
+        "title": "Workplace Stress",
+        "url": "https://www.osha.gov/workplace-stress",
+        "publisher": "Occupational Safety and Health Administration",
+        "note": "Would support workplace stress and employer-related context."
+      }
+    ],
+    "notes": "Avoid legal advice; include harassment or retaliation caveats.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why does work stress make me irritable at home?",
+    "slug": "why-work-stress-makes-me-irritable-at-home",
+    "category": "Work, Stress & Burnout",
+    "intent": "Understand spillover from work stress into relationships",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds relational spillover coverage for workplace stress. Distinct from general irritability because the trigger domain is work.",
+    "source_refs": [
+      {
+        "title": "Stress",
+        "url": "https://www.apa.org/topics/stress",
+        "publisher": "American Psychological Association",
+        "note": "Would support stress effects on emotions and behavior."
+      }
+    ],
+    "notes": "Include safety caveat if irritability becomes aggression.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Can workload cause anxiety symptoms?",
+    "slug": "can-workload-cause-anxiety-symptoms",
+    "category": "Work, Stress & Burnout",
+    "intent": "Connect workload stress with anxiety-like symptoms",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds a work-specific anxiety bridge. Helps users understand symptoms while avoiding a diagnosis.",
+    "source_refs": [
+      {
+        "title": "Workplace Stress",
+        "url": "https://www.osha.gov/workplace-stress",
+        "publisher": "Occupational Safety and Health Administration",
+        "note": "Would support work stress and mental health impact context."
+      }
+    ],
+    "notes": "Recommend medical evaluation for chest pain, fainting, or severe sudden symptoms.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I talk to my manager about burnout?",
+    "slug": "talk-to-manager-about-burnout",
+    "category": "Work, Stress & Burnout",
+    "intent": "Prepare for a workplace conversation about burnout",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds workplace communication content tied to burnout. Practical and distinct from recognizing burnout or recovering privately.",
+    "source_refs": [
+      {
+        "title": "Healthy Workplaces",
+        "url": "https://www.apa.org/topics/healthy-workplaces",
+        "publisher": "American Psychological Association",
+        "note": "Would support workplace wellbeing and organizational support context."
+      }
+    ],
+    "notes": "Avoid HR or legal guarantees; suggest considering workplace policies.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What should I do if my job is hurting my mental health?",
+    "slug": "what-to-do-if-my-job-is-hurting-my-mental-health",
+    "category": "Work, Stress & Burnout",
+    "intent": "Evaluate next steps when work harms wellbeing",
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "High-intent work mental health question that can route to support, boundaries, accommodations, or job change considerations. Broad enough to be a strong pilot candidate.",
+    "source_refs": [
+      {
+        "title": "Workplace Stress",
+        "url": "https://www.osha.gov/workplace-stress",
+        "publisher": "Occupational Safety and Health Administration",
+        "note": "Would support work-related stress and worker wellbeing context."
+      }
+    ],
+    "notes": "Avoid legal or employment advice; include crisis support for immediate danger.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  }
+]

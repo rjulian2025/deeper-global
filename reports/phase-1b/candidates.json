@@ -1,0 +1,2035 @@
+[
+  {
+    "question": "How do I know if my drinking has become a problem?",
+    "slug": "how-do-i-know-if-my-drinking-has-become-a-problem",
+    "category": "Addiction & Recovery",
+    "intent": "Assess whether alcohol use may be harmful or worth discussing with a professional",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Covers an early, high-intent self-assessment query without making a diagnosis. It can guide users toward screening and support resources.",
+    "source_refs": [
+      {
+        "title": "Understanding Alcohol Use Disorder",
+        "url": "https://www.niaaa.nih.gov/publications/brochures-and-fact-sheets/understanding-alcohol-use-disorder",
+        "publisher": "National Institute on Alcohol Abuse and Alcoholism",
+        "note": "Would support signs, risk factors, and treatment-oriented framing for alcohol use disorder."
+      }
+    ],
+    "notes": "Avoid definitive diagnostic language; encourage professional evaluation."
+  },
+  {
+    "question": "What should I do after a relapse in recovery?",
+    "slug": "what-should-i-do-after-a-relapse-in-recovery",
+    "category": "Addiction & Recovery",
+    "intent": "Find next steps after returning to substance use",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Relapse questions are common but require non-shaming, practical guidance. This adds recovery-stage coverage beyond first-time help seeking.",
+    "source_refs": [
+      {
+        "title": "Treatment and Recovery",
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "publisher": "National Institute on Drug Abuse",
+        "note": "Would support relapse-aware recovery framing and evidence-based treatment options."
+      }
+    ],
+    "notes": "Include urgent care guidance if overdose risk, withdrawal danger, or self-harm thoughts are present."
+  },
+  {
+    "question": "How can I support someone who is struggling with addiction without enabling them?",
+    "slug": "support-someone-with-addiction-without-enabling",
+    "category": "Addiction & Recovery",
+    "intent": "Help a loved one while maintaining boundaries",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds family-and-supporter content for addiction, not just person-centered recovery content. It can distinguish support, boundaries, and crisis escalation.",
+    "source_refs": [
+      {
+        "title": "National Helpline",
+        "url": "https://www.samhsa.gov/find-help/national-helpline",
+        "publisher": "SAMHSA",
+        "note": "Would support referral pathways for substance use support and treatment navigation."
+      }
+    ],
+    "notes": "Avoid simplistic enablement language that blames families."
+  },
+  {
+    "question": "Is it normal to feel bored or empty after getting sober?",
+    "slug": "is-it-normal-to-feel-bored-or-empty-after-getting-sober",
+    "category": "Addiction & Recovery",
+    "intent": "Understand emotional adjustment in early recovery",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Addresses a nuanced recovery experience that may otherwise be missed by treatment-entry content. It can connect emotional flatness with support, routines, and care.",
+    "source_refs": [
+      {
+        "title": "Treatment and Recovery",
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "publisher": "National Institute on Drug Abuse",
+        "note": "Would support recovery as an ongoing process involving behavioral and social supports."
+      }
+    ],
+    "notes": "Flag crisis language if emptiness includes suicidal thoughts."
+  },
+  {
+    "question": "When should someone seek professional help for substance use?",
+    "slug": "when-to-seek-professional-help-for-substance-use",
+    "category": "Addiction & Recovery",
+    "intent": "Identify thresholds for getting addiction-related care",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Provides a broad doorway into treatment navigation for users unsure whether their use qualifies as serious. Useful for early intervention coverage.",
+    "source_refs": [
+      {
+        "title": "Substance Use",
+        "url": "https://www.samhsa.gov/substance-use",
+        "publisher": "SAMHSA",
+        "note": "Would support general substance use information and help-seeking pathways."
+      }
+    ],
+    "notes": "Mention emergency help for overdose, severe withdrawal, or immediate danger."
+  },
+  {
+    "question": "Why does my anxiety get worse at night?",
+    "slug": "why-does-my-anxiety-get-worse-at-night",
+    "category": "Anxiety & Stress",
+    "intent": "Understand nighttime anxiety patterns and coping options",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Captures a specific anxiety timing pattern rather than generic anxiety. It supports sleep-adjacent content without becoming a sleep disorder page.",
+    "source_refs": [
+      {
+        "title": "Anxiety Disorders",
+        "url": "https://www.nimh.nih.gov/health/topics/anxiety-disorders",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support symptoms, impairment thresholds, and treatment-seeking guidance for anxiety."
+      }
+    ],
+    "notes": "Avoid promising quick fixes; include care escalation if panic or insomnia is severe."
+  },
+  {
+    "question": "How can I tell the difference between stress and anxiety?",
+    "slug": "difference-between-stress-and-anxiety",
+    "category": "Anxiety & Stress",
+    "intent": "Compare stress and anxiety symptoms",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "A high-volume comparison question that can clarify everyday stress versus persistent anxiety. Helps users decide whether support may be needed.",
+    "source_refs": [
+      {
+        "title": "Anxiety Disorders",
+        "url": "https://www.nimh.nih.gov/health/topics/anxiety-disorders",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support anxiety symptom and impairment descriptions."
+      }
+    ],
+    "notes": "Frame as educational, not diagnostic."
+  },
+  {
+    "question": "What can I do when I feel anxious for no clear reason?",
+    "slug": "what-to-do-when-anxious-for-no-clear-reason",
+    "category": "Anxiety & Stress",
+    "intent": "Find grounding and next steps for unexplained anxiety",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Serves users who experience anxiety without an obvious trigger. Adds practical, non-diagnostic anxiety coverage.",
+    "source_refs": [
+      {
+        "title": "I'm So Stressed Out!",
+        "url": "https://www.nimh.nih.gov/health/publications/so-stressed-out-fact-sheet",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support stress response education and when to seek help."
+      }
+    ],
+    "notes": "Include medical caveat for sudden severe physical symptoms."
+  },
+  {
+    "question": "Why do I overthink every conversation after it happens?",
+    "slug": "why-do-i-overthink-every-conversation-after-it-happens",
+    "category": "Anxiety & Stress",
+    "intent": "Understand rumination after social interactions",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds social-rumination coverage distinct from generalized worry. It can bridge anxiety and communication content without creating a new category.",
+    "source_refs": [
+      {
+        "title": "Anxiety Disorders",
+        "url": "https://www.nimh.nih.gov/health/topics/anxiety-disorders",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support anxiety symptoms and social anxiety context."
+      }
+    ],
+    "notes": "Avoid labeling the user as having social anxiety unless framed as a possibility to discuss with a clinician."
+  },
+  {
+    "question": "Can chronic stress affect my mental health?",
+    "slug": "can-chronic-stress-affect-my-mental-health",
+    "category": "Anxiety & Stress",
+    "intent": "Understand long-term stress effects",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds foundational stress education with broad internal linking potential. Supports prevention-oriented mental health content.",
+    "source_refs": [
+      {
+        "title": "Stress",
+        "url": "https://www.apa.org/topics/stress",
+        "publisher": "American Psychological Association",
+        "note": "Would support general stress effects and coping guidance."
+      }
+    ],
+    "notes": "Keep distinct from workplace burnout pages by focusing on stress broadly."
+  },
+  {
+    "question": "How do I bring up a hard topic without starting a fight?",
+    "slug": "bring-up-hard-topic-without-starting-fight",
+    "category": "Communication & Conflict",
+    "intent": "Start a difficult conversation more constructively",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Covers proactive conflict prevention rather than repair after conflict. Useful across romantic, family, and workplace contexts.",
+    "source_refs": [
+      {
+        "title": "Conflict Resolution",
+        "url": "https://www.apa.org/topics/conflict-resolution",
+        "publisher": "American Psychological Association",
+        "note": "Would support constructive conflict and communication principles."
+      }
+    ],
+    "notes": "Avoid implying users can control another person's reaction."
+  },
+  {
+    "question": "What should I do when someone shuts down during conflict?",
+    "slug": "what-to-do-when-someone-shuts-down-during-conflict",
+    "category": "Communication & Conflict",
+    "intent": "Respond to withdrawal or silence during disagreement",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds coverage for conflict withdrawal, a common dynamic not captured by anger-focused questions. Helps users distinguish pause, avoidance, and emotional flooding.",
+    "source_refs": [
+      {
+        "title": "Conflict Resolution",
+        "url": "https://www.apa.org/topics/conflict-resolution",
+        "publisher": "American Psychological Association",
+        "note": "Would support communication strategies during disagreement."
+      }
+    ],
+    "notes": "Use neutral language; do not pathologize shutdown."
+  },
+  {
+    "question": "How can I apologize in a way that actually repairs trust?",
+    "slug": "how-to-apologize-to-repair-trust",
+    "category": "Communication & Conflict",
+    "intent": "Learn what makes an apology meaningful",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds repair-oriented communication content. Distinct from boundary and argument questions because it focuses on accountability.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support relationship communication and trust repair context."
+      }
+    ],
+    "notes": "Include caution that apologies do not guarantee forgiveness."
+  },
+  {
+    "question": "Why do I get defensive even when I know the other person has a point?",
+    "slug": "why-do-i-get-defensive-even-when-they-have-a-point",
+    "category": "Communication & Conflict",
+    "intent": "Understand defensiveness during feedback or conflict",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Addresses self-reflective conflict behavior. Adds depth beyond externalizing questions about difficult people.",
+    "source_refs": [
+      {
+        "title": "Managing Your Distress in the Aftermath of a Shooting",
+        "url": "https://www.apa.org/topics/gun-violence-crime/mass-shooting",
+        "publisher": "American Psychological Association",
+        "note": "Would support emotional regulation concepts, though a more specific communication source should be preferred in review."
+      }
+    ],
+    "notes": "Source should be upgraded during vetting if a better APA communication-specific page is selected."
+  },
+  {
+    "question": "How do I set a boundary without sounding harsh?",
+    "slug": "set-a-boundary-without-sounding-harsh",
+    "category": "Communication & Conflict",
+    "intent": "Communicate limits clearly and respectfully",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Boundaries are a core mental health and relationship topic. This version focuses on phrasing and tone rather than deciding whether a boundary is needed.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support healthy relationship and communication context."
+      }
+    ],
+    "notes": "Do not imply boundaries must be softened to be valid."
+  },
+  {
+    "question": "How do I know if I might be depressed?",
+    "slug": "how-do-i-know-if-i-might-be-depressed",
+    "category": "Depression",
+    "intent": "Recognize possible depression symptoms and seek next steps",
+    "safety_flags": [
+      "diagnosis-risk",
+      "self-harm"
+    ],
+    "duplicate_risk": "high",
+    "why_this_adds_coverage": "A core entry question for depression content. It should exist if not already covered, with careful non-diagnostic framing.",
+    "source_refs": [
+      {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support symptoms, risk factors, and treatment-seeking guidance."
+      }
+    ],
+    "notes": "Include crisis guidance for suicidal thoughts; avoid self-diagnosis language."
+  },
+  {
+    "question": "Why do I feel numb instead of sad?",
+    "slug": "why-do-i-feel-numb-instead-of-sad",
+    "category": "Depression",
+    "intent": "Understand emotional numbness and possible mental health causes",
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds nuanced depression-adjacent coverage for users who do not identify with sadness. Helps reduce false reassurance around emotional numbness.",
+    "source_refs": [
+      {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support varied depressive symptoms and need for care when symptoms persist."
+      }
+    ],
+    "notes": "Escalate if numbness is paired with self-harm, dissociation, or inability to function."
+  },
+  {
+    "question": "Can depression make it hard to do basic tasks?",
+    "slug": "can-depression-make-basic-tasks-hard",
+    "category": "Depression",
+    "intent": "Understand low motivation and daily functioning issues",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Captures functional impairment, a common depression concern. It supports practical care-seeking and shame-reducing education.",
+    "source_refs": [
+      {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support symptoms such as fatigue, concentration issues, and impairment."
+      }
+    ],
+    "notes": "Avoid framing difficulty with chores as laziness."
+  },
+  {
+    "question": "What should I do if I think my friend is depressed?",
+    "slug": "what-to-do-if-my-friend-is-depressed",
+    "category": "Depression",
+    "intent": "Support a friend who may be experiencing depression",
+    "safety_flags": [
+      "self-harm",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds supporter-focused depression coverage. It can include how to listen, encourage help, and respond to suicide warning signs.",
+    "source_refs": [
+      {
+        "title": "Warning Signs of Suicide",
+        "url": "https://988lifeline.org/how-we-can-all-prevent-suicide/",
+        "publisher": "988 Suicide & Crisis Lifeline",
+        "note": "Would support crisis escalation and warning-sign guidance."
+      }
+    ],
+    "notes": "Needs clear emergency language if friend may be in immediate danger."
+  },
+  {
+    "question": "Why does depression come back after I start feeling better?",
+    "slug": "why-does-depression-come-back-after-feeling-better",
+    "category": "Depression",
+    "intent": "Understand recurrence and maintenance care",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds relapse and recurrence coverage, which is distinct from first-episode symptom recognition. Useful for long-term management questions.",
+    "source_refs": [
+      {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support depression course, treatment, and recurrence-aware care."
+      }
+    ],
+    "notes": "Avoid advising medication changes; refer medication questions to clinicians."
+  },
+  {
+    "question": "How can parents support a child who worries a lot?",
+    "slug": "how-can-parents-support-a-child-who-worries-a-lot",
+    "category": "Family & Parenting",
+    "intent": "Help a child manage frequent worry",
+    "safety_flags": [
+      "minor",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds child anxiety coverage from the caregiver perspective. It supports early intervention without creating a child-specific taxonomy branch.",
+    "source_refs": [
+      {
+        "title": "Data and Statistics on Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/data-research/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support children's mental health context and prevalence framing."
+      }
+    ],
+    "notes": "Encourage pediatrician or mental health professional involvement when worry impairs school, sleep, or relationships."
+  },
+  {
+    "question": "What should I do if my child does not want to talk about their feelings?",
+    "slug": "what-if-my-child-does-not-want-to-talk-about-feelings",
+    "category": "Family & Parenting",
+    "intent": "Encourage emotional communication with a child",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Covers parent-child emotional communication without assuming pathology. Distinct from teen-specific refusal or crisis content.",
+    "source_refs": [
+      {
+        "title": "Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support general child mental health and family support context."
+      }
+    ],
+    "notes": "Avoid pressuring disclosure; include safety exceptions."
+  },
+  {
+    "question": "How do I co-parent with someone I do not trust?",
+    "slug": "how-to-co-parent-with-someone-i-do-not-trust",
+    "category": "Family & Parenting",
+    "intent": "Navigate difficult co-parenting dynamics",
+    "safety_flags": [
+      "abuse",
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds family-system coverage where communication, safety, and child wellbeing intersect. It is distinct from divorce logistics.",
+    "source_refs": [
+      {
+        "title": "Divorce and Child Custody",
+        "url": "https://www.apa.org/topics/divorce-child-custody",
+        "publisher": "American Psychological Association",
+        "note": "Would support child-centered divorce and co-parenting considerations."
+      }
+    ],
+    "notes": "Include caution for coercive control, stalking, or unsafe exchanges."
+  },
+  {
+    "question": "How can I repair my relationship with my adult child?",
+    "slug": "repair-relationship-with-adult-child",
+    "category": "Family & Parenting",
+    "intent": "Rebuild connection with an adult child after distance or conflict",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds intergenerational repair content beyond parenting minors. It broadens family coverage while staying within existing categories.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support relationship repair and communication context."
+      }
+    ],
+    "notes": "Avoid entitlement to reconciliation; emphasize accountability and consent."
+  },
+  {
+    "question": "What should parents do when siblings fight constantly?",
+    "slug": "what-should-parents-do-when-siblings-fight-constantly",
+    "category": "Family & Parenting",
+    "intent": "Manage frequent sibling conflict",
+    "safety_flags": [
+      "minor",
+      "abuse"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds family conflict content centered on children. It can distinguish ordinary conflict from bullying or unsafe aggression.",
+    "source_refs": [
+      {
+        "title": "Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support child wellbeing and family mental health context."
+      }
+    ],
+    "notes": "Flag for safety if physical harm, threats, or targeted cruelty are present."
+  },
+  {
+    "question": "What does it mean to take care of your mental health?",
+    "slug": "what-does-it-mean-to-take-care-of-your-mental-health",
+    "category": "General Mental Health",
+    "intent": "Understand basic mental health care concepts",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "A foundational explainer that can anchor beginner users. It supports internal linking to therapy, stress, sleep, relationships, and crisis resources.",
+    "source_refs": [
+      {
+        "title": "Mental Health",
+        "url": "https://www.samhsa.gov/mental-health",
+        "publisher": "SAMHSA",
+        "note": "Would support broad mental health education and help-seeking framing."
+      }
+    ],
+    "notes": "Keep broad and avoid wellness platitudes."
+  },
+  {
+    "question": "When should I talk to someone about my mental health?",
+    "slug": "when-should-i-talk-to-someone-about-my-mental-health",
+    "category": "General Mental Health",
+    "intent": "Decide when to seek support",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds an early help-seeking doorway for users who may not know which condition category fits. Helps route users without diagnosing them.",
+    "source_refs": [
+      {
+        "title": "Mental Health",
+        "url": "https://www.samhsa.gov/mental-health",
+        "publisher": "SAMHSA",
+        "note": "Would support general mental health warning signs and support options."
+      }
+    ],
+    "notes": "Include immediate help guidance for danger to self or others."
+  },
+  {
+    "question": "Can mental health symptoms be physical?",
+    "slug": "can-mental-health-symptoms-be-physical",
+    "category": "General Mental Health",
+    "intent": "Understand the mind-body connection in distress",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Addresses users who experience distress through fatigue, pain, stomach issues, or sleep disruption. Useful bridge between mental health and medical evaluation.",
+    "source_refs": [
+      {
+        "title": "I'm So Stressed Out!",
+        "url": "https://www.nimh.nih.gov/health/publications/so-stressed-out-fact-sheet",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support physical effects of stress and when to seek help."
+      }
+    ],
+    "notes": "Advise medical evaluation for new, severe, or unexplained physical symptoms."
+  },
+  {
+    "question": "How do I know if I need therapy or just more support from friends?",
+    "slug": "need-therapy-or-more-support-from-friends",
+    "category": "General Mental Health",
+    "intent": "Compare informal support and professional care",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Clarifies a common decision point before therapy navigation. It can reduce barriers while respecting the value of social support.",
+    "source_refs": [
+      {
+        "title": "Mental Health",
+        "url": "https://www.samhsa.gov/mental-health",
+        "publisher": "SAMHSA",
+        "note": "Would support help-seeking and mental health service context."
+      }
+    ],
+    "notes": "Escalate for self-harm, abuse, psychosis, or inability to function."
+  },
+  {
+    "question": "Why do I feel emotionally exhausted all the time?",
+    "slug": "why-do-i-feel-emotionally-exhausted-all-the-time",
+    "category": "General Mental Health",
+    "intent": "Explore possible reasons for persistent emotional exhaustion",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Captures a broad symptom users may not map to depression, stress, grief, or burnout. Useful as a routing page to more specific nodes.",
+    "source_refs": [
+      {
+        "title": "Mental Health",
+        "url": "https://www.samhsa.gov/mental-health",
+        "publisher": "SAMHSA",
+        "note": "Would support broad mental health and help-seeking framing."
+      }
+    ],
+    "notes": "Avoid listing too many possible diagnoses; emphasize persistence, impairment, and professional support."
+  },
+  {
+    "question": "Why does grief come in waves?",
+    "slug": "why-does-grief-come-in-waves",
+    "category": "Grief & Loss",
+    "intent": "Understand fluctuating grief intensity",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds a specific grief-process question that normalizes variation without minimizing pain. Distinct from first-loss or complicated grief questions.",
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Would support grief process education and coping guidance."
+      }
+    ],
+    "notes": "Avoid rigid stage-based grief framing."
+  },
+  {
+    "question": "Is it normal to feel angry after someone dies?",
+    "slug": "is-it-normal-to-feel-angry-after-someone-dies",
+    "category": "Grief & Loss",
+    "intent": "Understand anger as part of grief",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Covers a grief emotion that users may feel ashamed of. Adds emotional specificity to loss content.",
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Would support varied emotional responses to loss."
+      }
+    ],
+    "notes": "Include safety caveat if anger becomes violent or uncontrollable."
+  },
+  {
+    "question": "How do I support someone who is grieving?",
+    "slug": "how-do-i-support-someone-who-is-grieving",
+    "category": "Grief & Loss",
+    "intent": "Help a grieving person with sensitivity",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds supporter-facing grief content. It can include what to say, what not to say, and when to encourage extra help.",
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Would support grief support and coping context."
+      }
+    ],
+    "notes": "Mention crisis support if the grieving person talks about wanting to die."
+  },
+  {
+    "question": "Why do I feel guilty after a loved one dies?",
+    "slug": "why-do-i-feel-guilty-after-a-loved-one-dies",
+    "category": "Grief & Loss",
+    "intent": "Understand guilt after bereavement",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds coverage for guilt and regret, common but distinct grief experiences. Important for users stuck in self-blame.",
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Would support grief reactions and coping with loss."
+      }
+    ],
+    "notes": "Escalate if guilt includes self-punishment or suicidal thinking."
+  },
+  {
+    "question": "When does grief become something I should get help for?",
+    "slug": "when-to-get-help-for-grief",
+    "category": "Grief & Loss",
+    "intent": "Identify when grief may need professional support",
+    "safety_flags": [
+      "diagnosis-risk",
+      "self-harm"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Addresses the boundary between painful grief and impairing or dangerous grief symptoms. Useful for trust-safe triage.",
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Would support professional help-seeking when grief is persistent or impairing."
+      }
+    ],
+    "notes": "Avoid diagnosing prolonged grief disorder; mention professional evaluation."
+  },
+  {
+    "question": "Why do I feel like I am not good enough?",
+    "slug": "why-do-i-feel-like-i-am-not-good-enough",
+    "category": "Identity & Self-Worth",
+    "intent": "Explore persistent low self-worth",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "A core self-worth question with broad relevance across anxiety, depression, trauma, and relationships. Needs compassionate, non-diagnostic framing.",
+    "source_refs": [
+      {
+        "title": "Building Your Resilience",
+        "url": "https://www.apa.org/topics/resilience/building-your-resilience",
+        "publisher": "American Psychological Association",
+        "note": "Would support resilience, self-perception, and coping context."
+      }
+    ],
+    "notes": "Include self-harm escalation if worthlessness includes wanting not to live."
+  },
+  {
+    "question": "How can I stop comparing myself to everyone else?",
+    "slug": "how-to-stop-comparing-myself-to-everyone-else",
+    "category": "Identity & Self-Worth",
+    "intent": "Reduce harmful comparison and improve self-esteem",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds a modern self-worth concern tied to social pressure and identity. Distinct from general confidence questions.",
+    "source_refs": [
+      {
+        "title": "Building Your Resilience",
+        "url": "https://www.apa.org/topics/resilience/building-your-resilience",
+        "publisher": "American Psychological Association",
+        "note": "Would support coping, perspective, and resilience-building strategies."
+      }
+    ],
+    "notes": "Could later link to social media and teen identity content."
+  },
+  {
+    "question": "Why do compliments make me uncomfortable?",
+    "slug": "why-do-compliments-make-me-uncomfortable",
+    "category": "Identity & Self-Worth",
+    "intent": "Understand discomfort with positive feedback",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds a subtle self-worth pattern not covered by broad low-esteem questions. It can explore shame, mistrust, and self-image carefully.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support interpersonal and self-perception context."
+      }
+    ],
+    "notes": "Avoid overinterpreting discomfort as trauma or pathology."
+  },
+  {
+    "question": "How do I figure out who I am outside of what other people expect?",
+    "slug": "figure-out-who-i-am-outside-other-peoples-expectations",
+    "category": "Identity & Self-Worth",
+    "intent": "Explore identity separate from external pressure",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds identity development content for adults and young adults without creating a new taxonomy branch. Useful for values, boundaries, and self-definition.",
+    "source_refs": [
+      {
+        "title": "Building Your Resilience",
+        "url": "https://www.apa.org/topics/resilience/building-your-resilience",
+        "publisher": "American Psychological Association",
+        "note": "Would support resilience and values-based coping context."
+      }
+    ],
+    "notes": "Keep inclusive and culturally sensitive."
+  },
+  {
+    "question": "Can low self-esteem affect relationships?",
+    "slug": "can-low-self-esteem-affect-relationships",
+    "category": "Identity & Self-Worth",
+    "intent": "Understand how self-worth influences relationship patterns",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Creates a bridge between self-worth and relationships. It can cover reassurance seeking, boundaries, jealousy, and conflict without over-pathologizing.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support relationship dynamics and emotional wellbeing context."
+      }
+    ],
+    "notes": "Avoid blaming users for relationship problems caused by mistreatment."
+  },
+  {
+    "question": "Why do I feel lonely even when I am around people?",
+    "slug": "why-do-i-feel-lonely-even-around-people",
+    "category": "Loneliness & Isolation",
+    "intent": "Understand emotional loneliness despite social contact",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "A common loneliness question that distinguishes connection quality from social quantity. Useful for internal links to depression and relationships.",
+    "source_refs": [
+      {
+        "title": "Our Epidemic of Loneliness and Isolation",
+        "url": "https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support social connection, loneliness, and health impact context."
+      }
+    ],
+    "notes": "Escalate if loneliness includes suicidal thoughts."
+  },
+  {
+    "question": "How do I make friends as an adult when I feel awkward?",
+    "slug": "how-to-make-friends-as-an-adult-when-i-feel-awkward",
+    "category": "Loneliness & Isolation",
+    "intent": "Find practical ways to build adult friendships",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds practical social connection coverage for adults. Distinct from loneliness explanation pages because it is action-oriented.",
+    "source_refs": [
+      {
+        "title": "Our Epidemic of Loneliness and Isolation",
+        "url": "https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support the importance of social connection and isolation reduction."
+      }
+    ],
+    "notes": "Avoid suggesting exposure steps as therapy unless framed generally."
+  },
+  {
+    "question": "What should I do if I have no one to talk to?",
+    "slug": "what-to-do-if-i-have-no-one-to-talk-to",
+    "category": "Loneliness & Isolation",
+    "intent": "Find support when socially isolated",
+    "safety_flags": [
+      "crisis-sensitive",
+      "self-harm"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "High-safety-value question for isolated users who may be near crisis. Can route to warm lines, crisis lines, therapy, and community supports.",
+    "source_refs": [
+      {
+        "title": "Mental Health",
+        "url": "https://www.samhsa.gov/mental-health",
+        "publisher": "SAMHSA",
+        "note": "Would support mental health support options and help-seeking pathways."
+      }
+    ],
+    "notes": "Needs strong crisis guidance and nonjudgmental tone."
+  },
+  {
+    "question": "Why do I isolate myself when I am struggling?",
+    "slug": "why-do-i-isolate-myself-when-struggling",
+    "category": "Loneliness & Isolation",
+    "intent": "Understand withdrawal during emotional distress",
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Covers isolation as a coping pattern, not just a circumstance. Useful bridge to depression, trauma, shame, and social anxiety content.",
+    "source_refs": [
+      {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support withdrawal as a possible symptom when discussing depression-related context."
+      }
+    ],
+    "notes": "Do not assume depression; present multiple possibilities."
+  },
+  {
+    "question": "Can loneliness affect my mental health?",
+    "slug": "can-loneliness-affect-my-mental-health",
+    "category": "Loneliness & Isolation",
+    "intent": "Understand mental health effects of loneliness",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Provides foundational loneliness education with public health support. Strong concept-node candidate for future canonical entity work.",
+    "source_refs": [
+      {
+        "title": "Our Epidemic of Loneliness and Isolation",
+        "url": "https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support loneliness, isolation, and health impact evidence."
+      }
+    ],
+    "notes": "Keep category as loneliness rather than general mental health because the entity is specific."
+  },
+  {
+    "question": "How do I stop yelling at my kids when I am overwhelmed?",
+    "slug": "how-to-stop-yelling-at-my-kids-when-overwhelmed",
+    "category": "Parenting",
+    "intent": "Manage parental overwhelm and reactive yelling",
+    "safety_flags": [
+      "minor",
+      "abuse"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds emotionally honest parenting content with safety sensitivity. Helps distinguish repairable stress responses from harmful patterns requiring support.",
+    "source_refs": [
+      {
+        "title": "Parenting",
+        "url": "https://www.apa.org/topics/parenting",
+        "publisher": "American Psychological Association",
+        "note": "Would support parenting stress and child wellbeing context."
+      }
+    ],
+    "notes": "Include urgent help if there is risk of harming a child."
+  },
+  {
+    "question": "What should I do when parenting feels impossible?",
+    "slug": "what-to-do-when-parenting-feels-impossible",
+    "category": "Parenting",
+    "intent": "Find support during intense parenting overwhelm",
+    "safety_flags": [
+      "crisis-sensitive",
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Captures high-distress parenting moments that may not fit burnout or depression pages. Important for safety-aware support routing.",
+    "source_refs": [
+      {
+        "title": "Parenting",
+        "url": "https://www.apa.org/topics/parenting",
+        "publisher": "American Psychological Association",
+        "note": "Would support parenting challenges and seeking support."
+      }
+    ],
+    "notes": "Include crisis guidance for risk of harm to self or child."
+  },
+  {
+    "question": "How can I help my child handle big emotions?",
+    "slug": "help-my-child-handle-big-emotions",
+    "category": "Parenting",
+    "intent": "Support child emotion regulation",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds concrete parent-child emotion regulation coverage. Useful for early-childhood and school-age parenting without over-specializing taxonomy.",
+    "source_refs": [
+      {
+        "title": "Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support children's mental health and caregiver support context."
+      }
+    ],
+    "notes": "Avoid making age-specific claims unless reviewed."
+  },
+  {
+    "question": "How do I talk to my child about therapy?",
+    "slug": "how-to-talk-to-my-child-about-therapy",
+    "category": "Parenting",
+    "intent": "Explain therapy to a child in a supportive way",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Connects parenting and therapy navigation through a child-centered lens. Helps reduce stigma and fear around care.",
+    "source_refs": [
+      {
+        "title": "Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support children's mental health support and caregiver involvement."
+      }
+    ],
+    "notes": "Avoid promising confidentiality rules without jurisdiction-specific review."
+  },
+  {
+    "question": "How can I parent differently than how I was raised?",
+    "slug": "how-can-i-parent-differently-than-how-i-was-raised",
+    "category": "Parenting",
+    "intent": "Break unwanted intergenerational parenting patterns",
+    "safety_flags": [
+      "abuse",
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds intergenerational and reflective parenting content. It bridges trauma-aware care and everyday parenting without creating a new category.",
+    "source_refs": [
+      {
+        "title": "Parenting",
+        "url": "https://www.apa.org/topics/parenting",
+        "publisher": "American Psychological Association",
+        "note": "Would support parenting practices and family wellbeing context."
+      }
+    ],
+    "notes": "Be careful not to imply all difficult childhoods were abusive."
+  },
+  {
+    "question": "How do I tell my partner I feel disconnected?",
+    "slug": "tell-my-partner-i-feel-disconnected",
+    "category": "Relationships & Communication",
+    "intent": "Start a relationship conversation about emotional distance",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Common relationship communication question with clear user intent. Distinct from conflict because it focuses on emotional reconnection.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support healthy relationship communication context."
+      }
+    ],
+    "notes": "Avoid assuming romantic relationship structure beyond partner language."
+  },
+  {
+    "question": "Why do we keep having the same argument?",
+    "slug": "why-do-we-keep-having-the-same-argument",
+    "category": "Relationships & Communication",
+    "intent": "Understand recurring conflict patterns",
+    "safety_flags": [
+      "abuse"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds pattern-level relationship conflict coverage. Can distinguish unresolved needs, communication habits, and unsafe dynamics.",
+    "source_refs": [
+      {
+        "title": "Conflict Resolution",
+        "url": "https://www.apa.org/topics/conflict-resolution",
+        "publisher": "American Psychological Association",
+        "note": "Would support constructive approaches to recurring conflict."
+      }
+    ],
+    "notes": "Include safety caveat where arguments involve intimidation, threats, or violence."
+  },
+  {
+    "question": "How can couples rebuild trust after lying?",
+    "slug": "how-can-couples-rebuild-trust-after-lying",
+    "category": "Relationships & Communication",
+    "intent": "Repair trust after dishonesty",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds relationship repair coverage around dishonesty, distinct from infidelity or apology alone. Useful for nuanced trust content.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support relationship quality and trust context."
+      }
+    ],
+    "notes": "Avoid guaranteeing repair; include mutual willingness and time."
+  },
+  {
+    "question": "How do I ask for reassurance without pushing my partner away?",
+    "slug": "ask-for-reassurance-without-pushing-partner-away",
+    "category": "Relationships & Communication",
+    "intent": "Communicate insecurity or need for reassurance",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds a specific relationship anxiety communication pattern. It bridges attachment concerns and practical communication without diagnosing attachment style.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support relationship communication and emotional support context."
+      }
+    ],
+    "notes": "Avoid attachment-style claims unless reviewed."
+  },
+  {
+    "question": "What should I do if my partner refuses to talk about problems?",
+    "slug": "partner-refuses-to-talk-about-problems",
+    "category": "Relationships & Communication",
+    "intent": "Navigate avoidance in a relationship",
+    "safety_flags": [
+      "abuse"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Covers one-sided communication breakdowns. Important to distinguish avoidance from coercive silence or emotional abuse.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support healthy relationship communication context."
+      }
+    ],
+    "notes": "Include abuse caveat if refusal is part of control, punishment, or intimidation."
+  },
+  {
+    "question": "How do I know if divorce is affecting my mental health?",
+    "slug": "how-to-know-if-divorce-is-affecting-my-mental-health",
+    "category": "Relationships & Divorce",
+    "intent": "Recognize emotional strain during or after divorce",
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds divorce-specific mental health triage rather than legal or logistics content. Helps users identify when extra support is needed.",
+    "source_refs": [
+      {
+        "title": "Divorce and Child Custody",
+        "url": "https://www.apa.org/topics/divorce-child-custody",
+        "publisher": "American Psychological Association",
+        "note": "Would support emotional and family impacts of divorce."
+      }
+    ],
+    "notes": "Avoid legal advice; include crisis guidance for self-harm."
+  },
+  {
+    "question": "How can I cope with loneliness after a breakup?",
+    "slug": "cope-with-loneliness-after-breakup",
+    "category": "Relationships & Divorce",
+    "intent": "Manage post-breakup loneliness",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Combines relationship loss and loneliness in a common scenario. Distinct from grief over death and general loneliness pages.",
+    "source_refs": [
+      {
+        "title": "Our Epidemic of Loneliness and Isolation",
+        "url": "https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support social connection and isolation context."
+      }
+    ],
+    "notes": "Escalate if breakup triggers suicidal thoughts or stalking/violence risk."
+  },
+  {
+    "question": "How do I handle divorce when we still have to co-parent?",
+    "slug": "handle-divorce-when-we-still-have-to-co-parent",
+    "category": "Relationships & Divorce",
+    "intent": "Navigate co-parenting during or after divorce",
+    "safety_flags": [
+      "minor",
+      "abuse"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds divorce-specific co-parenting content with child wellbeing focus. It differs from general co-parenting by centering separation stress.",
+    "source_refs": [
+      {
+        "title": "Divorce and Child Custody",
+        "url": "https://www.apa.org/topics/divorce-child-custody",
+        "publisher": "American Psychological Association",
+        "note": "Would support child-centered divorce and custody-related family wellbeing."
+      }
+    ],
+    "notes": "Avoid legal custody advice; include safety caveat for abuse."
+  },
+  {
+    "question": "Why do I miss someone who treated me badly?",
+    "slug": "why-do-i-miss-someone-who-treated-me-badly",
+    "category": "Relationships & Divorce",
+    "intent": "Understand attachment after a painful or harmful relationship",
+    "safety_flags": [
+      "abuse",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds trauma-informed breakup content without creating a separate abuse taxonomy. Important for users confused by grief after mistreatment.",
+    "source_refs": [
+      {
+        "title": "Intimate Partner Violence",
+        "url": "https://www.cdc.gov/intimate-partner-violence/about/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support safety-aware framing around harmful relationship dynamics."
+      }
+    ],
+    "notes": "Do not encourage contact; include safety planning resources if abuse is involved."
+  },
+  {
+    "question": "How can I grieve the end of a relationship?",
+    "slug": "how-can-i-grieve-the-end-of-a-relationship",
+    "category": "Relationships & Divorce",
+    "intent": "Process relationship loss",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Frames breakup or divorce as a grief experience without conflating it with bereavement. Useful bridge between relationship and grief categories.",
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Would support grief responses to significant loss."
+      }
+    ],
+    "notes": "Mention support if grief becomes impairing or unsafe."
+  },
+  {
+    "question": "How can I tell if my teen is struggling with anxiety?",
+    "slug": "how-to-tell-if-my-teen-is-struggling-with-anxiety",
+    "category": "Teen-Specific Questions",
+    "intent": "Recognize possible teen anxiety signs",
+    "safety_flags": [
+      "minor",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds caregiver-facing teen anxiety coverage. Distinct from child anxiety and adult anxiety pages because teen presentation and support needs differ.",
+    "source_refs": [
+      {
+        "title": "Protecting Youth Mental Health",
+        "url": "https://www.hhs.gov/surgeongeneral/priorities/youth-mental-health/index.html",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support youth mental health context and caregiver concern."
+      }
+    ],
+    "notes": "Avoid diagnosis; recommend professional support when symptoms persist or impair functioning."
+  },
+  {
+    "question": "What should I do if my teen says they hate themselves?",
+    "slug": "what-to-do-if-my-teen-says-they-hate-themselves",
+    "category": "Teen-Specific Questions",
+    "intent": "Respond to a teen's severe self-critical statement",
+    "safety_flags": [
+      "minor",
+      "self-harm",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "High-safety teen question that requires caregiver action and crisis awareness. Adds direct coverage for self-worth warning language.",
+    "source_refs": [
+      {
+        "title": "Warning Signs of Suicide",
+        "url": "https://988lifeline.org/how-we-can-all-prevent-suicide/",
+        "publisher": "988 Suicide & Crisis Lifeline",
+        "note": "Would support suicide warning-sign and immediate support guidance."
+      }
+    ],
+    "notes": "Needs clear guidance to ask about safety and seek immediate help if there is danger."
+  },
+  {
+    "question": "How do I talk to my teen about mental health without making them shut down?",
+    "slug": "talk-to-teen-about-mental-health-without-shutdown",
+    "category": "Teen-Specific Questions",
+    "intent": "Start a supportive mental health conversation with a teen",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds practical caregiver communication content for teens. It helps bridge youth mental health and family communication.",
+    "source_refs": [
+      {
+        "title": "Protecting Youth Mental Health",
+        "url": "https://www.hhs.gov/surgeongeneral/priorities/youth-mental-health/index.html",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support youth mental health and supportive adult involvement."
+      }
+    ],
+    "notes": "Do not promise a teen will open up; emphasize trust and safety."
+  },
+  {
+    "question": "When should a teenager see a therapist?",
+    "slug": "when-should-a-teenager-see-a-therapist",
+    "category": "Teen-Specific Questions",
+    "intent": "Identify when therapy may be appropriate for a teen",
+    "safety_flags": [
+      "minor",
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds teen-specific therapy threshold content. It is more precise than general therapy navigation because parent involvement and school functioning matter.",
+    "source_refs": [
+      {
+        "title": "Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support children's and adolescents' mental health support context."
+      }
+    ],
+    "notes": "Include urgent escalation for self-harm, abuse, psychosis, or danger."
+  },
+  {
+    "question": "How can I help my teen after bullying?",
+    "slug": "how-can-i-help-my-teen-after-bullying",
+    "category": "Teen-Specific Questions",
+    "intent": "Support a teen who has been bullied",
+    "safety_flags": [
+      "minor",
+      "abuse",
+      "self-harm"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds youth safety and social harm coverage. It can connect emotional support, school involvement, and crisis monitoring.",
+    "source_refs": [
+      {
+        "title": "Fast Fact: Preventing Bullying",
+        "url": "https://www.cdc.gov/violence-prevention/about/about-bullying.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support bullying definition, effects, and prevention context."
+      }
+    ],
+    "notes": "Include self-harm monitoring and school safety planning."
+  },
+  {
+    "question": "Why do I feel like I do not know who I am as a teen?",
+    "slug": "why-do-i-not-know-who-i-am-as-a-teen",
+    "category": "Teens & Identity",
+    "intent": "Normalize and support teen identity exploration",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds teen-facing identity development coverage. Distinct from adult identity questions due to developmental context.",
+    "source_refs": [
+      {
+        "title": "Protecting Youth Mental Health",
+        "url": "https://www.hhs.gov/surgeongeneral/priorities/youth-mental-health/index.html",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support youth mental health and developmental stress context."
+      }
+    ],
+    "notes": "Use affirming language; avoid assuming crisis."
+  },
+  {
+    "question": "How do I deal with pressure to be perfect in high school?",
+    "slug": "deal-with-pressure-to-be-perfect-in-high-school",
+    "category": "Teens & Identity",
+    "intent": "Cope with perfectionism and academic/social pressure",
+    "safety_flags": [
+      "minor",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds teen-specific performance pressure content. It can bridge stress, self-worth, school, and family expectations.",
+    "source_refs": [
+      {
+        "title": "Stress in America",
+        "url": "https://www.apa.org/news/press/releases/stress",
+        "publisher": "American Psychological Association",
+        "note": "Would support stress context and trends, with review needed for teen-specific relevance."
+      }
+    ],
+    "notes": "Watch for eating disorder or self-harm escalation if perfectionism is severe."
+  },
+  {
+    "question": "What should I do if I feel different from everyone at school?",
+    "slug": "what-to-do-if-i-feel-different-from-everyone-at-school",
+    "category": "Teens & Identity",
+    "intent": "Cope with feeling socially or personally different as a teen",
+    "safety_flags": [
+      "minor",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Captures identity and belonging for teens without forcing a specific identity label. Useful for loneliness, bullying, and self-worth pathways.",
+    "source_refs": [
+      {
+        "title": "Protecting Youth Mental Health",
+        "url": "https://www.hhs.gov/surgeongeneral/priorities/youth-mental-health/index.html",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support youth belonging and mental health context."
+      }
+    ],
+    "notes": "Use inclusive framing; include trusted adult support if school feels unsafe."
+  },
+  {
+    "question": "How can teens build confidence without pretending to be someone else?",
+    "slug": "how-can-teens-build-confidence-without-pretending",
+    "category": "Teens & Identity",
+    "intent": "Build authentic teen confidence",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds positive identity development content for teens. Distinct from low self-esteem because it emphasizes authenticity and growth.",
+    "source_refs": [
+      {
+        "title": "Building Your Resilience",
+        "url": "https://www.apa.org/topics/resilience/building-your-resilience",
+        "publisher": "American Psychological Association",
+        "note": "Would support resilience and confidence-building context."
+      }
+    ],
+    "notes": "Avoid prescriptive identity advice."
+  },
+  {
+    "question": "Why does social media make me feel worse about myself?",
+    "slug": "why-does-social-media-make-me-feel-worse-about-myself",
+    "category": "Teens & Identity",
+    "intent": "Understand social media's effect on teen self-worth",
+    "safety_flags": [
+      "minor",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds a modern teen identity and self-worth concern. Can connect to comparison, loneliness, sleep, and bullying without taxonomy sprawl.",
+    "source_refs": [
+      {
+        "title": "Social Media and Youth Mental Health",
+        "url": "https://www.hhs.gov/surgeongeneral/priorities/youth-mental-health/social-media/index.html",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support youth social media and mental health context."
+      }
+    ],
+    "notes": "Avoid alarmist claims; distinguish heavy distress from everyday comparison."
+  },
+  {
+    "question": "What happens in therapy for the first time?",
+    "slug": "what-happens-in-therapy-for-the-first-time",
+    "category": "Therapy & Mental Health",
+    "intent": "Understand what to expect at a first therapy session",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Core therapy orientation question for anxious first-time users. Helps reduce barriers to care.",
+    "source_refs": [
+      {
+        "title": "Understanding Psychotherapy and How It Works",
+        "url": "https://www.apa.org/topics/psychotherapy/understanding",
+        "publisher": "American Psychological Association",
+        "note": "Would support what psychotherapy is and how it generally works."
+      }
+    ],
+    "notes": "Avoid making universal promises about session structure."
+  },
+  {
+    "question": "How do I know if therapy is working?",
+    "slug": "how-do-i-know-if-therapy-is-working",
+    "category": "Therapy & Mental Health",
+    "intent": "Evaluate progress in therapy",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds care-quality and progress coverage after therapy begins. Distinct from finding a therapist or first-session expectations.",
+    "source_refs": [
+      {
+        "title": "Understanding Psychotherapy and How It Works",
+        "url": "https://www.apa.org/topics/psychotherapy/understanding",
+        "publisher": "American Psychological Association",
+        "note": "Would support psychotherapy goals and collaborative treatment context."
+      }
+    ],
+    "notes": "Encourage discussing goals and concerns with the therapist."
+  },
+  {
+    "question": "Is it okay to switch therapists?",
+    "slug": "is-it-okay-to-switch-therapists",
+    "category": "Therapy & Mental Health",
+    "intent": "Decide whether changing therapists is appropriate",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Addresses therapeutic fit and user agency. Helps prevent users from staying in unhelpful care out of guilt.",
+    "source_refs": [
+      {
+        "title": "How to Choose a Psychologist",
+        "url": "https://www.apa.org/topics/psychotherapy/choose-therapist",
+        "publisher": "American Psychological Association",
+        "note": "Would support fit, credentials, and choosing therapy providers."
+      }
+    ],
+    "notes": "Avoid encouraging abrupt termination in high-risk cases without continuity planning."
+  },
+  {
+    "question": "What should I talk about in therapy when I do not know where to start?",
+    "slug": "what-to-talk-about-in-therapy-when-i-do-not-know-where-to-start",
+    "category": "Therapy & Mental Health",
+    "intent": "Prepare for therapy when feeling unsure",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds practical session-preparation coverage. It reduces intimidation for users already connected to care.",
+    "source_refs": [
+      {
+        "title": "Understanding Psychotherapy and How It Works",
+        "url": "https://www.apa.org/topics/psychotherapy/understanding",
+        "publisher": "American Psychological Association",
+        "note": "Would support collaborative therapy and session expectations."
+      }
+    ],
+    "notes": "Avoid scripting therapy too rigidly."
+  },
+  {
+    "question": "Can therapy help if I do not have a diagnosis?",
+    "slug": "can-therapy-help-if-i-do-not-have-a-diagnosis",
+    "category": "Therapy & Mental Health",
+    "intent": "Understand therapy for non-diagnosed distress or growth",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Clarifies that therapy can address distress, coping, relationships, and life challenges. Reduces the misconception that care requires a formal label.",
+    "source_refs": [
+      {
+        "title": "Understanding Psychotherapy and How It Works",
+        "url": "https://www.apa.org/topics/psychotherapy/understanding",
+        "publisher": "American Psychological Association",
+        "note": "Would support psychotherapy uses and general mental health care context."
+      }
+    ],
+    "notes": "Avoid diminishing diagnosis when clinically important."
+  },
+  {
+    "question": "How do I find a therapist who is a good fit?",
+    "slug": "how-to-find-a-therapist-who-is-a-good-fit",
+    "category": "Therapy Navigation",
+    "intent": "Choose a therapist based on needs, fit, and practical factors",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Core therapy navigation page with high utility. Supports future internal links to modality, cost, credentials, and first-session content.",
+    "source_refs": [
+      {
+        "title": "How to Choose a Psychologist",
+        "url": "https://www.apa.org/topics/psychotherapy/choose-therapist",
+        "publisher": "American Psychological Association",
+        "note": "Would support therapist selection, credentials, and fit."
+      }
+    ],
+    "notes": "Avoid endorsing directories or providers unless reviewed."
+  },
+  {
+    "question": "What kind of therapist do I need?",
+    "slug": "what-kind-of-therapist-do-i-need",
+    "category": "Therapy Navigation",
+    "intent": "Understand therapist types and care options",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds navigation coverage around provider types. Useful for users confused by psychologist, counselor, social worker, psychiatrist, and therapist labels.",
+    "source_refs": [
+      {
+        "title": "How to Choose a Psychologist",
+        "url": "https://www.apa.org/topics/psychotherapy/choose-therapist",
+        "publisher": "American Psychological Association",
+        "note": "Would support choosing a qualified mental health provider."
+      }
+    ],
+    "notes": "Needs jurisdiction-sensitive credential review before publication."
+  },
+  {
+    "question": "How do I get mental health help if I cannot afford therapy?",
+    "slug": "get-mental-health-help-if-i-cannot-afford-therapy",
+    "category": "Therapy Navigation",
+    "intent": "Find lower-cost mental health support options",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Addresses a major access barrier. It can route users to community clinics, crisis resources, insurance, training clinics, and support lines.",
+    "source_refs": [
+      {
+        "title": "National Helpline",
+        "url": "https://www.samhsa.gov/find-help/national-helpline",
+        "publisher": "SAMHSA",
+        "note": "Would support help-finding and referral pathways."
+      }
+    ],
+    "notes": "Avoid guaranteeing availability or cost; resources vary by location."
+  },
+  {
+    "question": "What is the difference between therapy and psychiatry?",
+    "slug": "difference-between-therapy-and-psychiatry",
+    "category": "Therapy Navigation",
+    "intent": "Compare talk therapy and psychiatric medical care",
+    "safety_flags": [
+      "medication",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Important navigation question for users unsure where to start. Adds medication-sensitive content without providing medication advice.",
+    "source_refs": [
+      {
+        "title": "Mental Health Medications",
+        "url": "https://www.nimh.nih.gov/health/topics/mental-health-medications",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support medication and psychiatric care context."
+      }
+    ],
+    "notes": "Do not advise starting, stopping, or changing medication."
+  },
+  {
+    "question": "How do I prepare for a therapy consultation call?",
+    "slug": "prepare-for-a-therapy-consultation-call",
+    "category": "Therapy Navigation",
+    "intent": "Know what to ask before starting therapy",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds a practical pre-care step often missing from therapy content. Helps users assess fit before committing.",
+    "source_refs": [
+      {
+        "title": "How to Choose a Psychologist",
+        "url": "https://www.apa.org/topics/psychotherapy/choose-therapist",
+        "publisher": "American Psychological Association",
+        "note": "Would support questions to ask and fit considerations."
+      }
+    ],
+    "notes": "Avoid implying all therapists offer free consultations."
+  },
+  {
+    "question": "Can trauma affect grief?",
+    "slug": "can-trauma-affect-grief",
+    "category": "Trauma & Grief",
+    "intent": "Understand how traumatic experiences can shape grieving",
+    "safety_flags": [
+      "diagnosis-risk",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds intersectional coverage between trauma reactions and loss. Distinct from ordinary grief and trauma-only symptom pages.",
+    "source_refs": [
+      {
+        "title": "Trauma Types",
+        "url": "https://www.nctsn.org/what-is-child-trauma/trauma-types",
+        "publisher": "National Child Traumatic Stress Network",
+        "note": "Would support trauma-informed context, especially where loss involves traumatic events."
+      }
+    ],
+    "notes": "The requested safety flag list does not include trauma-sensitive; replace with approved flag taxonomy before ingestion."
+  },
+  {
+    "question": "Why do I feel guilty after surviving something traumatic?",
+    "slug": "why-do-i-feel-guilty-after-surviving-something-traumatic",
+    "category": "Trauma & Grief",
+    "intent": "Understand survivor guilt after trauma",
+    "safety_flags": [
+      "crisis-sensitive",
+      "self-harm"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds survivor guilt coverage, a specific trauma-grief experience. Important for safety because guilt can connect to self-punishment or suicidal ideation.",
+    "source_refs": [
+      {
+        "title": "Coping After a Traumatic Event",
+        "url": "https://www.nimh.nih.gov/health/publications/coping-with-traumatic-events",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support common reactions after trauma and when to seek help."
+      }
+    ],
+    "notes": "Use approved flags only; avoid trauma-processing instructions beyond stabilization and support."
+  },
+  {
+    "question": "How do I cope with anniversaries of a traumatic loss?",
+    "slug": "cope-with-anniversaries-of-traumatic-loss",
+    "category": "Trauma & Grief",
+    "intent": "Prepare for anniversary reactions after traumatic bereavement",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds time-triggered trauma and grief coverage. Useful for users who feel destabilized by dates, seasons, or reminders.",
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Would support grief reactions and coping with reminders."
+      }
+    ],
+    "notes": "Avoid exposure-style advice; emphasize support planning."
+  },
+  {
+    "question": "Why do reminders of a loss make me feel like it is happening again?",
+    "slug": "why-reminders-of-loss-feel-like-it-is-happening-again",
+    "category": "Trauma & Grief",
+    "intent": "Understand intense reactions to reminders after traumatic loss",
+    "safety_flags": [
+      "diagnosis-risk",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Captures re-experiencing-like grief reactions without diagnosing PTSD. Adds a careful bridge between trauma symptoms and bereavement.",
+    "source_refs": [
+      {
+        "title": "Coping After a Traumatic Event",
+        "url": "https://www.nimh.nih.gov/health/publications/coping-with-traumatic-events",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support trauma reactions and professional help thresholds."
+      }
+    ],
+    "notes": "Frame as possible trauma response; recommend professional support if persistent or impairing."
+  },
+  {
+    "question": "How can I support someone grieving a traumatic death?",
+    "slug": "support-someone-grieving-a-traumatic-death",
+    "category": "Trauma & Grief",
+    "intent": "Help someone after sudden, violent, or traumatic loss",
+    "safety_flags": [
+      "crisis-sensitive",
+      "self-harm"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds supporter-facing traumatic grief content. Distinct from general grief support because safety, shock, and intrusive reminders may be more central.",
+    "source_refs": [
+      {
+        "title": "Coping After a Traumatic Event",
+        "url": "https://www.nimh.nih.gov/health/publications/coping-with-traumatic-events",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support trauma reactions and when to seek professional help."
+      }
+    ],
+    "notes": "Include crisis escalation if the person may harm themselves or others."
+  },
+  {
+    "question": "How do I know if I am burned out at work?",
+    "slug": "how-do-i-know-if-i-am-burned-out-at-work",
+    "category": "Work & Burnout",
+    "intent": "Recognize possible work burnout",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Core work burnout entry question. It can distinguish burnout from depression or ordinary stress without diagnosing.",
+    "source_refs": [
+      {
+        "title": "Burn-out an occupational phenomenon",
+        "url": "https://www.who.int/standards/classifications/frequently-asked-questions/burn-out-an-occupational-phenomenon",
+        "publisher": "World Health Organization",
+        "note": "Would support burnout as an occupational phenomenon and symptom framing."
+      }
+    ],
+    "notes": "Clarify that burnout is not the same as a formal mental disorder diagnosis."
+  },
+  {
+    "question": "What should I do when work stress follows me home?",
+    "slug": "what-to-do-when-work-stress-follows-me-home",
+    "category": "Work & Burnout",
+    "intent": "Create separation between work stress and home life",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds work-home spillover coverage. Distinct from work-life balance because it centers emotional carryover after hours.",
+    "source_refs": [
+      {
+        "title": "Workplace Stress",
+        "url": "https://www.osha.gov/workplace-stress",
+        "publisher": "Occupational Safety and Health Administration",
+        "note": "Would support workplace stress context and worker wellbeing."
+      }
+    ],
+    "notes": "Avoid placing all responsibility on the individual when workplace conditions are harmful."
+  },
+  {
+    "question": "Can burnout make me feel detached from my job?",
+    "slug": "can-burnout-make-me-feel-detached-from-my-job",
+    "category": "Work & Burnout",
+    "intent": "Understand cynicism or detachment as part of burnout",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds a specific burnout symptom cluster beyond exhaustion. Useful for users confused by numbness, cynicism, or lack of motivation at work.",
+    "source_refs": [
+      {
+        "title": "Burn-out an occupational phenomenon",
+        "url": "https://www.who.int/standards/classifications/frequently-asked-questions/burn-out-an-occupational-phenomenon",
+        "publisher": "World Health Organization",
+        "note": "Would support burnout dimensions including exhaustion, cynicism, and reduced efficacy."
+      }
+    ],
+    "notes": "Mention depression differential carefully."
+  },
+  {
+    "question": "How can I recover from burnout without quitting my job?",
+    "slug": "recover-from-burnout-without-quitting-job",
+    "category": "Work & Burnout",
+    "intent": "Find realistic burnout recovery steps while employed",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds practical recovery content for users unable or unwilling to leave work. Balances individual coping with workload and boundary changes.",
+    "source_refs": [
+      {
+        "title": "Healthy Workplaces",
+        "url": "https://www.apa.org/topics/healthy-workplaces",
+        "publisher": "American Psychological Association",
+        "note": "Would support workplace wellbeing and organizational factors."
+      }
+    ],
+    "notes": "Avoid implying self-care alone solves structural burnout."
+  },
+  {
+    "question": "Why do I dread going to work every morning?",
+    "slug": "why-do-i-dread-going-to-work-every-morning",
+    "category": "Work & Burnout",
+    "intent": "Explore persistent work dread and possible causes",
+    "safety_flags": [
+      "diagnosis-risk",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Captures an emotionally vivid work distress query. Can route to burnout, anxiety, depression, workplace conflict, or unsafe work conditions.",
+    "source_refs": [
+      {
+        "title": "Workplace Stress",
+        "url": "https://www.osha.gov/workplace-stress",
+        "publisher": "Occupational Safety and Health Administration",
+        "note": "Would support workplace stress and health impact context."
+      }
+    ],
+    "notes": "Escalate if dread includes panic, self-harm, or workplace harassment."
+  },
+  {
+    "question": "How do I set work boundaries without feeling guilty?",
+    "slug": "set-work-boundaries-without-feeling-guilty",
+    "category": "Work & Life Balance",
+    "intent": "Set healthier work limits",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds boundary content in a work-life context. Distinct from general communication boundaries because guilt and workplace expectations are central.",
+    "source_refs": [
+      {
+        "title": "Healthy Workplaces",
+        "url": "https://www.apa.org/topics/healthy-workplaces",
+        "publisher": "American Psychological Association",
+        "note": "Would support healthier workplace practices and employee wellbeing."
+      }
+    ],
+    "notes": "Avoid legal employment advice."
+  },
+  {
+    "question": "Why do I feel guilty when I rest?",
+    "slug": "why-do-i-feel-guilty-when-i-rest",
+    "category": "Work & Life Balance",
+    "intent": "Understand guilt around rest and productivity",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds productivity-guilt coverage that spans work stress and self-worth. Useful as a modern work-life balance node.",
+    "source_refs": [
+      {
+        "title": "Stress",
+        "url": "https://www.apa.org/topics/stress",
+        "publisher": "American Psychological Association",
+        "note": "Would support stress and recovery context."
+      }
+    ],
+    "notes": "Keep category work-life balance because rest guilt often arises from productivity norms."
+  },
+  {
+    "question": "How can I stop checking work messages after hours?",
+    "slug": "stop-checking-work-messages-after-hours",
+    "category": "Work & Life Balance",
+    "intent": "Reduce after-hours work checking",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds a concrete digital-boundary behavior. Distinct from broad work boundaries and burnout recovery.",
+    "source_refs": [
+      {
+        "title": "Healthy Workplaces",
+        "url": "https://www.apa.org/topics/healthy-workplaces",
+        "publisher": "American Psychological Association",
+        "note": "Would support workplace wellbeing and boundary-related context."
+      }
+    ],
+    "notes": "Acknowledge on-call roles and job constraints."
+  },
+  {
+    "question": "What does work-life balance actually mean?",
+    "slug": "what-does-work-life-balance-actually-mean",
+    "category": "Work & Life Balance",
+    "intent": "Define work-life balance realistically",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Foundational concept explainer for a pilot category. It can prevent thin content by defining balance as sustainable fit, not perfect equality.",
+    "source_refs": [
+      {
+        "title": "Healthy Workplaces",
+        "url": "https://www.apa.org/topics/healthy-workplaces",
+        "publisher": "American Psychological Association",
+        "note": "Would support workplace wellbeing and sustainable work practices."
+      }
+    ],
+    "notes": "Avoid one-size-fits-all prescriptions."
+  },
+  {
+    "question": "How do I make time for myself when everyone needs something from me?",
+    "slug": "make-time-for-myself-when-everyone-needs-something",
+    "category": "Work & Life Balance",
+    "intent": "Create personal time amid competing demands",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Covers role overload across work, caregiving, and relationships. Useful bridge between balance, parenting, and burnout.",
+    "source_refs": [
+      {
+        "title": "Stress",
+        "url": "https://www.apa.org/topics/stress",
+        "publisher": "American Psychological Association",
+        "note": "Would support stress management and coping context."
+      }
+    ],
+    "notes": "Avoid implying users can easily opt out of caregiving or financial obligations."
+  },
+  {
+    "question": "How do I manage stress from a toxic workplace?",
+    "slug": "manage-stress-from-toxic-workplace",
+    "category": "Work, Stress & Burnout",
+    "intent": "Cope with unhealthy workplace dynamics",
+    "safety_flags": [
+      "abuse",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds workplace harm coverage without making a legal claim. It can discuss stress, documentation, support, and safety planning.",
+    "source_refs": [
+      {
+        "title": "Workplace Stress",
+        "url": "https://www.osha.gov/workplace-stress",
+        "publisher": "Occupational Safety and Health Administration",
+        "note": "Would support workplace stress and employer-related context."
+      }
+    ],
+    "notes": "Avoid legal advice; include harassment or retaliation caveats."
+  },
+  {
+    "question": "Why does work stress make me irritable at home?",
+    "slug": "why-work-stress-makes-me-irritable-at-home",
+    "category": "Work, Stress & Burnout",
+    "intent": "Understand spillover from work stress into relationships",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds relational spillover coverage for workplace stress. Distinct from general irritability because the trigger domain is work.",
+    "source_refs": [
+      {
+        "title": "Stress",
+        "url": "https://www.apa.org/topics/stress",
+        "publisher": "American Psychological Association",
+        "note": "Would support stress effects on emotions and behavior."
+      }
+    ],
+    "notes": "Include safety caveat if irritability becomes aggression."
+  },
+  {
+    "question": "Can workload cause anxiety symptoms?",
+    "slug": "can-workload-cause-anxiety-symptoms",
+    "category": "Work, Stress & Burnout",
+    "intent": "Connect workload stress with anxiety-like symptoms",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds a work-specific anxiety bridge. Helps users understand symptoms while avoiding a diagnosis.",
+    "source_refs": [
+      {
+        "title": "Workplace Stress",
+        "url": "https://www.osha.gov/workplace-stress",
+        "publisher": "Occupational Safety and Health Administration",
+        "note": "Would support work stress and mental health impact context."
+      }
+    ],
+    "notes": "Recommend medical evaluation for chest pain, fainting, or severe sudden symptoms."
+  },
+  {
+    "question": "How do I talk to my manager about burnout?",
+    "slug": "talk-to-manager-about-burnout",
+    "category": "Work, Stress & Burnout",
+    "intent": "Prepare for a workplace conversation about burnout",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds workplace communication content tied to burnout. Practical and distinct from recognizing burnout or recovering privately.",
+    "source_refs": [
+      {
+        "title": "Healthy Workplaces",
+        "url": "https://www.apa.org/topics/healthy-workplaces",
+        "publisher": "American Psychological Association",
+        "note": "Would support workplace wellbeing and organizational support context."
+      }
+    ],
+    "notes": "Avoid HR or legal guarantees; suggest considering workplace policies."
+  },
+  {
+    "question": "What should I do if my job is hurting my mental health?",
+    "slug": "what-to-do-if-my-job-is-hurting-my-mental-health",
+    "category": "Work, Stress & Burnout",
+    "intent": "Evaluate next steps when work harms wellbeing",
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "High-intent work mental health question that can route to support, boundaries, accommodations, or job change considerations. Broad enough to be a strong pilot candidate.",
+    "source_refs": [
+      {
+        "title": "Workplace Stress",
+        "url": "https://www.osha.gov/workplace-stress",
+        "publisher": "Occupational Safety and Health Administration",
+        "note": "Would support work-related stress and worker wellbeing context."
+      }
+    ],
+    "notes": "Avoid legal or employment advice; include crisis support for immediate danger."
+  }
+]

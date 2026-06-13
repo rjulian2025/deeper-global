@@ -1,0 +1,235 @@
+[
+  {
+    "question": "Why do reminders of a loss make me feel like it is happening again?",
+    "slug": "why-reminders-of-loss-feel-like-it-is-happening-again",
+    "category": "Trauma & Grief",
+    "intent": "Understand intense reactions to reminders after traumatic loss",
+    "safety_flags": [
+      "diagnosis-risk",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Captures re-experiencing-like grief reactions without diagnosing PTSD. Adds a careful bridge between trauma symptoms and bereavement.",
+    "source_refs": [
+      {
+        "title": "Coping After a Traumatic Event",
+        "url": "https://www.nimh.nih.gov/health/publications/coping-with-traumatic-events",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support trauma reactions and professional help thresholds."
+      }
+    ],
+    "notes": "Frame as possible trauma response; recommend professional support if persistent or impairing.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can I support someone grieving a traumatic death?",
+    "slug": "support-someone-grieving-a-traumatic-death",
+    "category": "Trauma & Grief",
+    "intent": "Help someone after sudden, violent, or traumatic loss",
+    "safety_flags": [
+      "crisis-sensitive",
+      "self-harm"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds supporter-facing traumatic grief content. Distinct from general grief support because safety, shock, and intrusive reminders may be more central.",
+    "source_refs": [
+      {
+        "title": "Coping After a Traumatic Event",
+        "url": "https://www.nimh.nih.gov/health/publications/coping-with-traumatic-events",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support trauma reactions and when to seek professional help."
+      }
+    ],
+    "notes": "Include crisis escalation if the person may harm themselves or others.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I know if I am burned out at work?",
+    "slug": "how-do-i-know-if-i-am-burned-out-at-work",
+    "category": "Work & Burnout",
+    "intent": "Recognize possible work burnout",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Core work burnout entry question. It can distinguish burnout from depression or ordinary stress without diagnosing.",
+    "source_refs": [
+      {
+        "title": "Burn-out an occupational phenomenon",
+        "url": "https://www.who.int/standards/classifications/frequently-asked-questions/burn-out-an-occupational-phenomenon",
+        "publisher": "World Health Organization",
+        "note": "Would support burnout as an occupational phenomenon and symptom framing."
+      }
+    ],
+    "notes": "Clarify that burnout is not the same as a formal mental disorder diagnosis.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What should I do when work stress follows me home?",
+    "slug": "what-to-do-when-work-stress-follows-me-home",
+    "category": "Work & Burnout",
+    "intent": "Create separation between work stress and home life",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds work-home spillover coverage. Distinct from work-life balance because it centers emotional carryover after hours.",
+    "source_refs": [
+      {
+        "title": "Workplace Stress",
+        "url": "https://www.osha.gov/workplace-stress",
+        "publisher": "Occupational Safety and Health Administration",
+        "note": "Would support workplace stress context and worker wellbeing."
+      }
+    ],
+    "notes": "Avoid placing all responsibility on the individual when workplace conditions are harmful.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Can burnout make me feel detached from my job?",
+    "slug": "can-burnout-make-me-feel-detached-from-my-job",
+    "category": "Work & Burnout",
+    "intent": "Understand cynicism or detachment as part of burnout",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds a specific burnout symptom cluster beyond exhaustion. Useful for users confused by numbness, cynicism, or lack of motivation at work.",
+    "source_refs": [
+      {
+        "title": "Burn-out an occupational phenomenon",
+        "url": "https://www.who.int/standards/classifications/frequently-asked-questions/burn-out-an-occupational-phenomenon",
+        "publisher": "World Health Organization",
+        "note": "Would support burnout dimensions including exhaustion, cynicism, and reduced efficacy."
+      }
+    ],
+    "notes": "Mention depression differential carefully.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can I recover from burnout without quitting my job?",
+    "slug": "recover-from-burnout-without-quitting-job",
+    "category": "Work & Burnout",
+    "intent": "Find realistic burnout recovery steps while employed",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds practical recovery content for users unable or unwilling to leave work. Balances individual coping with workload and boundary changes.",
+    "source_refs": [
+      {
+        "title": "Healthy Workplaces",
+        "url": "https://www.apa.org/topics/healthy-workplaces",
+        "publisher": "American Psychological Association",
+        "note": "Would support workplace wellbeing and organizational factors."
+      }
+    ],
+    "notes": "Avoid implying self-care alone solves structural burnout.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do I dread going to work every morning?",
+    "slug": "why-do-i-dread-going-to-work-every-morning",
+    "category": "Work & Burnout",
+    "intent": "Explore persistent work dread and possible causes",
+    "safety_flags": [
+      "diagnosis-risk",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Captures an emotionally vivid work distress query. Can route to burnout, anxiety, depression, workplace conflict, or unsafe work conditions.",
+    "source_refs": [
+      {
+        "title": "Workplace Stress",
+        "url": "https://www.osha.gov/workplace-stress",
+        "publisher": "Occupational Safety and Health Administration",
+        "note": "Would support workplace stress and health impact context."
+      }
+    ],
+    "notes": "Escalate if dread includes panic, self-harm, or workplace harassment.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I set work boundaries without feeling guilty?",
+    "slug": "set-work-boundaries-without-feeling-guilty",
+    "category": "Work & Life Balance",
+    "intent": "Set healthier work limits",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds boundary content in a work-life context. Distinct from general communication boundaries because guilt and workplace expectations are central.",
+    "source_refs": [
+      {
+        "title": "Healthy Workplaces",
+        "url": "https://www.apa.org/topics/healthy-workplaces",
+        "publisher": "American Psychological Association",
+        "note": "Would support healthier workplace practices and employee wellbeing."
+      }
+    ],
+    "notes": "Avoid legal employment advice.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do I feel guilty when I rest?",
+    "slug": "why-do-i-feel-guilty-when-i-rest",
+    "category": "Work & Life Balance",
+    "intent": "Understand guilt around rest and productivity",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds productivity-guilt coverage that spans work stress and self-worth. Useful as a modern work-life balance node.",
+    "source_refs": [
+      {
+        "title": "Stress",
+        "url": "https://www.apa.org/topics/stress",
+        "publisher": "American Psychological Association",
+        "note": "Would support stress and recovery context."
+      }
+    ],
+    "notes": "Keep category work-life balance because rest guilt often arises from productivity norms.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can I stop checking work messages after hours?",
+    "slug": "stop-checking-work-messages-after-hours",
+    "category": "Work & Life Balance",
+    "intent": "Reduce after-hours work checking",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds a concrete digital-boundary behavior. Distinct from broad work boundaries and burnout recovery.",
+    "source_refs": [
+      {
+        "title": "Healthy Workplaces",
+        "url": "https://www.apa.org/topics/healthy-workplaces",
+        "publisher": "American Psychological Association",
+        "note": "Would support workplace wellbeing and boundary-related context."
+      }
+    ],
+    "notes": "Acknowledge on-call roles and job constraints.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  }
+]

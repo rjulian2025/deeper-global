@@ -1,0 +1,647 @@
+[
+  {
+    "question": "How can I apologize in a way that actually repairs trust?",
+    "slug": "how-to-apologize-to-repair-trust",
+    "category": "Communication & Conflict",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "How to Apologize in a Way That Can Actually Repair Trust",
+    "improved_meta_description": "A real apology is more than saying sorry. Repair usually takes accountability, changed behavior, and room for the other person’s response.",
+    "improved_summary": "An apology repairs trust when it names the harm clearly, takes responsibility without excuses, and is followed by behavior that makes the other person safer with you over time.",
+    "key_takeaways": [
+      "A meaningful apology names what happened without minimizing it.",
+      "Accountability works better than explaining your intent first.",
+      "Repair depends on changed behavior, not only words.",
+      "The other person gets to decide whether and when trust returns."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What makes an apology feel real",
+        "body": "A real apology starts with the other person’s experience, not your defense. It shows that you understand the impact and are willing to be accountable for it."
+      },
+      {
+        "type": "section",
+        "heading": "What to include",
+        "body": "Name the behavior, acknowledge the impact, take responsibility, and say what will change. Keep it specific. “I interrupted you and dismissed your concern” is more useful than “mistakes were made.”"
+      },
+      {
+        "type": "section",
+        "heading": "When trust rebuilds",
+        "body": "Trust usually returns through repeated evidence, not one emotional conversation. If the harm involved abuse, coercion, or repeated boundary violations, repair may require outside support and may not mean the relationship continues."
+      }
+    ],
+    "care_note": "If conflict includes fear, threats, intimidation, or violence, prioritize safety and outside support. An apology is not a substitute for accountability or protection from harm.",
+    "related_questions": [
+      "What makes an apology meaningful?",
+      "How do I rebuild trust after hurting someone?",
+      "What should I avoid saying in an apology?",
+      "How long does it take to regain trust?"
+    ],
+    "suggested_schema_question": "How can I apologize in a way that actually repairs trust?",
+    "suggested_schema_answer": "A repair-oriented apology names the harm, acknowledges impact, takes responsibility, and is followed by changed behavior. It can support trust repair, but it does not guarantee immediate forgiveness.",
+    "primary_theme": "Communication & Conflict",
+    "related_themes": [
+      "Accountability",
+      "Relationship repair",
+      "Trust",
+      "Conflict resolution"
+    ],
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Supports relationship communication and trust repair context."
+      }
+    ],
+    "citation_gaps": [
+      "Add a more specific source on apology, accountability, or relationship repair before review."
+    ],
+    "safety_flags": [
+      "none"
+    ],
+    "draft_notes": "Avoid implying that apology obligates forgiveness. Abuse caveat needs review if retained."
+  },
+  {
+    "question": "Why do I get defensive even when I know the other person has a point?",
+    "slug": "why-do-i-get-defensive-even-when-they-have-a-point",
+    "category": "Communication & Conflict",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Why You Get Defensive Even When the Feedback Is Fair",
+    "improved_meta_description": "Defensiveness can show up before you have time to think. It often protects shame, fear, or self-image more than the actual argument.",
+    "improved_summary": "You may get defensive because your nervous system reacts to criticism as a threat before your reflective mind catches up. Defensiveness often protects shame, fear of being wrong, or feeling misunderstood.",
+    "key_takeaways": [
+      "Defensiveness is often automatic, not deliberate.",
+      "It can be triggered by shame, fear, embarrassment, or feeling misrepresented.",
+      "Pausing before responding can help separate feedback from threat.",
+      "You can validate a fair point without agreeing with everything."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "Someone points out something painful, and your mind rushes to explain, correct, counterattack, or prove you are not the kind of person they are describing."
+      },
+      {
+        "type": "section",
+        "heading": "What can help in the moment",
+        "body": "Try saying, “I feel myself getting defensive, but I want to understand.” Then look for the part you can own, even if the delivery was imperfect."
+      },
+      {
+        "type": "section",
+        "heading": "When defensiveness becomes a pattern",
+        "body": "If defensiveness repeatedly blocks repair, therapy or structured communication support may help you explore what criticism means to you and how to stay present."
+      }
+    ],
+    "care_note": "If defensiveness leads to yelling, intimidation, threats, or unsafe conflict, consider getting support for emotional regulation and relationship safety.",
+    "related_questions": [
+      "How do I stop getting defensive in arguments?",
+      "Why does criticism feel so threatening?",
+      "How can I listen without agreeing with everything?",
+      "How do I take accountability without spiraling into shame?"
+    ],
+    "suggested_schema_question": "Why do I get defensive even when I know the other person has a point?",
+    "suggested_schema_answer": "Defensiveness can happen when feedback triggers shame, fear, or feeling misunderstood. Pausing, naming the reaction, and looking for the part you can own can help.",
+    "primary_theme": "Communication & Conflict",
+    "related_themes": [
+      "Defensiveness",
+      "Feedback",
+      "Shame",
+      "Conflict regulation"
+    ],
+    "source_refs": [
+      {
+        "title": "Managing Your Distress in the Aftermath of a Shooting",
+        "url": "https://www.apa.org/topics/gun-violence-crime/mass-shooting",
+        "publisher": "American Psychological Association",
+        "note": "Original candidate source suggested emotional regulation context, but topical fit is weak."
+      }
+    ],
+    "citation_gaps": [
+      "Replace the current source with a communication, feedback, or emotion-regulation source before review."
+    ],
+    "safety_flags": [
+      "none"
+    ],
+    "draft_notes": "Known source mismatch from candidate audit. Do not promote until source is replaced."
+  },
+  {
+    "question": "How do I set a boundary without sounding harsh?",
+    "slug": "set-a-boundary-without-sounding-harsh",
+    "category": "Communication & Conflict",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "How to Set a Boundary Without Making It Sound Like an Attack",
+    "improved_meta_description": "A boundary can be kind and still be clear. The goal is to name your limit, not apologize for needing one.",
+    "improved_summary": "You can set a boundary without sounding harsh by being clear, specific, and calm rather than overexplaining or blaming. A good boundary names what you can or cannot do.",
+    "key_takeaways": [
+      "A boundary is a limit, not a punishment.",
+      "Clarity usually matters more than perfect wording.",
+      "You do not have to soften a boundary until it disappears.",
+      "A respectful boundary can still disappoint someone."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Start with the limit",
+        "body": "Boundaries get confusing when they turn into arguments about whether you are allowed to have them. Start with the limit itself: “I can’t take calls after 9 p.m.”"
+      },
+      {
+        "type": "section",
+        "heading": "Use calm, direct language",
+        "body": "Phrase the boundary around your action: “I need to leave if yelling starts,” or “I can talk when we are both calmer.” This is different from trying to control someone else."
+      },
+      {
+        "type": "section",
+        "heading": "Let discomfort be part of it",
+        "body": "A boundary may feel harsh if you are used to keeping peace by saying yes. That discomfort does not automatically mean the boundary is wrong."
+      }
+    ],
+    "care_note": "If setting boundaries leads to threats, retaliation, violence, or fear, prioritize safety and outside support. Boundary wording is not the main issue in an unsafe relationship.",
+    "related_questions": [
+      "What is a healthy boundary?",
+      "How do I say no without feeling guilty?",
+      "Why do I feel mean when I set boundaries?",
+      "What if someone gets angry at my boundary?"
+    ],
+    "suggested_schema_question": "How do I set a boundary without sounding harsh?",
+    "suggested_schema_answer": "Use clear, calm language that names what you can or cannot do. A boundary can be respectful and still firm; it does not have to be overexplained to be valid.",
+    "primary_theme": "Communication & Conflict",
+    "related_themes": [
+      "Boundaries",
+      "People-pleasing",
+      "Conflict",
+      "Relationship safety"
+    ],
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Supports healthy relationship and communication context."
+      }
+    ],
+    "citation_gaps": [
+      "Add a boundary-specific source before review."
+    ],
+    "safety_flags": [
+      "none"
+    ],
+    "draft_notes": "Preserves that boundaries do not need to be softened into non-boundaries."
+  },
+  {
+    "question": "How do I know if I might be depressed?",
+    "slug": "how-do-i-know-if-i-might-be-depressed",
+    "category": "Depression",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "How to Tell If What You’re Feeling Might Be Depression",
+    "improved_meta_description": "Depression can look like sadness, numbness, exhaustion, irritability, or not feeling like yourself. Here is when to seek support.",
+    "improved_summary": "You might be dealing with depression if low mood, numbness, loss of interest, exhaustion, sleep changes, hopelessness, or difficulty functioning persist and interfere with your life.",
+    "key_takeaways": [
+      "Depression is not always obvious sadness.",
+      "Duration, intensity, and impact on daily life matter.",
+      "Self-screening can be a starting point, but it is not a diagnosis.",
+      "Suicidal thoughts or feeling unsafe require immediate support."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Signs worth paying attention to",
+        "body": "Depression can affect mood, energy, sleep, appetite, concentration, self-worth, and interest in things that used to matter. Some people feel sad. Others feel flat, angry, slowed down, or unable to start basic tasks."
+      },
+      {
+        "type": "section",
+        "heading": "Do not diagnose it alone",
+        "body": "Depression can overlap with grief, burnout, trauma, anxiety, substance use, medical conditions, and major life stress. A professional can help sort out what is happening."
+      },
+      {
+        "type": "section",
+        "heading": "When to seek help quickly",
+        "body": "Seek support if you feel hopeless, unable to function, disconnected from people, or like life is not worth living. If you may not be safe, call or text 988 in the U.S. or contact emergency services."
+      }
+    ],
+    "care_note": "If you have thoughts of suicide, self-harm, or feel unable to stay safe, seek immediate help. In the U.S., call or text 988.",
+    "related_questions": [
+      "What are common signs of depression?",
+      "Can depression make me feel numb?",
+      "How is depression diagnosed?",
+      "When should I get help for low mood?"
+    ],
+    "suggested_schema_question": "How do I know if I might be depressed?",
+    "suggested_schema_answer": "Persistent low mood, numbness, loss of interest, exhaustion, sleep changes, hopelessness, or difficulty functioning can be signs to seek professional support.",
+    "primary_theme": "Depression",
+    "related_themes": [
+      "Depression symptoms",
+      "Self-assessment",
+      "Care navigation",
+      "Crisis support"
+    ],
+    "source_refs": [
+      {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "National Institute of Mental Health",
+        "note": "Supports symptoms, risk factors, and treatment-seeking guidance."
+      }
+    ],
+    "citation_gaps": [
+      "Add 988 or crisis-source support before review because self-harm guidance is included."
+    ],
+    "safety_flags": [
+      "diagnosis-risk",
+      "self-harm"
+    ],
+    "draft_notes": "High duplicate-risk candidate was human-approved; verify existing depression pages before insertion."
+  },
+  {
+    "question": "Why do I feel numb instead of sad?",
+    "slug": "why-do-i-feel-numb-instead-of-sad",
+    "category": "Depression",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Why You Might Feel Numb Instead of Sad",
+    "improved_meta_description": "Emotional numbness can be a real form of distress. It may show up when your system feels overloaded, shut down, or depressed.",
+    "improved_summary": "Feeling numb instead of sad can happen when your mind and body are overloaded, shut down, or protecting you from emotions that feel too much to process.",
+    "key_takeaways": [
+      "Numbness can be a form of distress.",
+      "Some people experience depression as emptiness or disconnection.",
+      "Stress, trauma, grief, and burnout can also contribute.",
+      "Numbness needs urgent support if it comes with self-harm thoughts."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Numbness can be a shutdown response",
+        "body": "When feelings are too intense, confusing, or long-lasting, the mind may seem to turn the volume down. That can feel like emptiness or distance from yourself."
+      },
+      {
+        "type": "section",
+        "heading": "Why it can overlap with depression",
+        "body": "Depression does not always feel like visible sadness. For some people, it feels like losing interest, moving on autopilot, or not being able to access emotion."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Start gently with routines, sleep, food, movement, low-pressure connection, journaling, or therapy. If numbness is persistent, worsening, or paired with hopelessness, seek support quickly."
+      }
+    ],
+    "care_note": "If emotional numbness comes with suicidal thoughts, self-harm urges, or fear that you cannot stay safe, seek immediate support. In the U.S., call or text 988.",
+    "related_questions": [
+      "Can depression feel like numbness?",
+      "Why can’t I cry even though I am hurting?",
+      "Is emotional numbness a trauma response?",
+      "How do I reconnect with my feelings?"
+    ],
+    "suggested_schema_question": "Why do I feel numb instead of sad?",
+    "suggested_schema_answer": "Emotional numbness can happen when the mind and body are overloaded or shut down. It can overlap with depression, trauma, grief, stress, or burnout.",
+    "primary_theme": "Depression",
+    "related_themes": [
+      "Emotional numbness",
+      "Depression",
+      "Trauma",
+      "Grief"
+    ],
+    "source_refs": [
+      {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "National Institute of Mental Health",
+        "note": "Supports varied depressive symptoms and need for care when symptoms persist."
+      }
+    ],
+    "citation_gaps": [
+      "Add trauma or dissociation-adjacent source if final answer discusses shutdown in depth.",
+      "Add crisis-source support before review because 988 guidance is included."
+    ],
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "draft_notes": "Keep non-diagnostic; do not imply numbness always means depression."
+  },
+  {
+    "question": "Can depression make it hard to do basic tasks?",
+    "slug": "can-depression-make-basic-tasks-hard",
+    "category": "Depression",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Why Depression Can Make Basic Tasks Feel So Hard",
+    "improved_meta_description": "Depression can affect energy, focus, motivation, and self-worth. Struggling with basic tasks is not laziness.",
+    "improved_summary": "Depression can make basic tasks hard because it can affect energy, concentration, sleep, movement, motivation, and the ability to feel reward.",
+    "key_takeaways": [
+      "Difficulty with basic tasks can be part of depression.",
+      "Depression can affect energy, attention, and decision-making.",
+      "Breaking tasks into very small steps can reduce the barrier to starting.",
+      "Support matters when functioning keeps getting harder."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Why small tasks can feel huge",
+        "body": "Tasks like showering, cooking, cleaning, answering messages, or paying bills can feel unusually heavy when mood, energy, and focus are low."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Shrink the task until it has a first step: stand up, gather clothes, open the bill, wash one dish, or send one short text. Momentum often starts smaller than motivation."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "If basic functioning keeps slipping, or if shame and hopelessness are growing, consider talking with a therapist, primary care clinician, or trusted support person."
+      }
+    ],
+    "care_note": "If difficulty functioning is persistent, worsening, or connected to hopelessness or self-harm thoughts, seek professional support. For immediate safety concerns in the U.S., call or text 988.",
+    "related_questions": [
+      "Why does depression make me tired?",
+      "How do I clean when I feel depressed?",
+      "Is low motivation a sign of depression?",
+      "When should I get help for depression?"
+    ],
+    "suggested_schema_question": "Can depression make it hard to do basic tasks?",
+    "suggested_schema_answer": "Yes. Depression can affect energy, focus, motivation, sleep, and reward, which can make ordinary tasks feel unusually difficult.",
+    "primary_theme": "Depression",
+    "related_themes": [
+      "Daily functioning",
+      "Motivation",
+      "Depression symptoms",
+      "Self-compassion"
+    ],
+    "source_refs": [
+      {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "National Institute of Mental Health",
+        "note": "Supports symptoms such as fatigue, concentration issues, and impairment."
+      }
+    ],
+    "citation_gaps": [],
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "draft_notes": "Avoids framing task difficulty as laziness."
+  },
+  {
+    "question": "What should I do if I think my friend is depressed?",
+    "slug": "what-to-do-if-my-friend-is-depressed",
+    "category": "Depression",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "What to Do If You Think Your Friend Is Depressed",
+    "improved_meta_description": "You do not have to diagnose your friend to support them. Start with care, directness, and safety if suicide warning signs appear.",
+    "improved_summary": "If you think your friend is depressed, you can support them by checking in directly, listening without trying to fix everything, encouraging professional help, and taking any suicide warning signs seriously.",
+    "key_takeaways": [
+      "You do not need to diagnose your friend to express concern.",
+      "A calm, direct check-in is often better than waiting for the perfect words.",
+      "Encourage support without making yourself their only lifeline.",
+      "If they may be in immediate danger, involve crisis or emergency support."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Start with a direct check-in",
+        "body": "Try something simple: “I’ve noticed you seem really down lately, and I care about you. Do you want to talk?” Specific observations can feel more supportive than vague pressure to be okay."
+      },
+      {
+        "type": "section",
+        "heading": "Listen without rushing to fix",
+        "body": "Your friend may need space to say what is happening before they need advice. You can validate the pain and ask what kind of support would help."
+      },
+      {
+        "type": "section",
+        "heading": "Know when it is urgent",
+        "body": "If your friend talks about wanting to die, feeling like a burden, having no reason to live, or making plans to harm themselves, do not keep it secret. Contact emergency help, 988 in the U.S., or a trusted adult/support person."
+      }
+    ],
+    "care_note": "If your friend may harm themselves or cannot stay safe, seek immediate help. In the U.S., call or text 988 for crisis support.",
+    "related_questions": [
+      "What are warning signs of suicide?",
+      "How do I ask someone if they are suicidal?",
+      "How can I support a friend without burning out?",
+      "What should I say to someone who is depressed?"
+    ],
+    "suggested_schema_question": "What should I do if I think my friend is depressed?",
+    "suggested_schema_answer": "Check in directly, listen without judgment, encourage professional support, and take any suicide warning signs seriously. If they may be in immediate danger, contact crisis or emergency support.",
+    "primary_theme": "Depression",
+    "related_themes": [
+      "Supporting a friend",
+      "Depression",
+      "Suicide warning signs",
+      "Crisis support"
+    ],
+    "source_refs": [
+      {
+        "title": "Warning Signs of Suicide",
+        "url": "https://988lifeline.org/how-we-can-all-prevent-suicide/",
+        "publisher": "988 Suicide & Crisis Lifeline",
+        "note": "Supports crisis escalation and warning-sign guidance."
+      }
+    ],
+    "citation_gaps": [
+      "Add depression-specific source before review."
+    ],
+    "safety_flags": [
+      "self-harm",
+      "crisis-sensitive"
+    ],
+    "draft_notes": "Clear emergency language included. Human editor should verify wording for friend/supporter context."
+  },
+  {
+    "question": "Why does depression come back after I start feeling better?",
+    "slug": "why-does-depression-come-back-after-feeling-better",
+    "category": "Depression",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Why Depression Can Come Back After You Start Feeling Better",
+    "improved_meta_description": "Feeling better does not always mean depression is gone for good. Recurrence can happen, and it may mean your support plan needs adjusting.",
+    "improved_summary": "Depression can return after improvement because recovery is often uneven, stressors change, treatment plans may need adjustment, or old patterns become active again. A return of symptoms does not mean you failed.",
+    "key_takeaways": [
+      "Depression recovery can be uneven.",
+      "Returning symptoms do not erase progress.",
+      "Stress, sleep, isolation, stopping treatment, or life changes can contribute.",
+      "A recurrence is a reason to revisit support, not a reason for shame."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Why symptoms can return",
+        "body": "Depression can improve and then flare again, especially during stress, grief, sleep disruption, isolation, health changes, or major transitions."
+      },
+      {
+        "type": "section",
+        "heading": "What to do when it happens",
+        "body": "Notice early signs, restart helpful routines, reconnect with support, and consider contacting your therapist or clinician. If medication is involved, do not change it without medical guidance."
+      },
+      {
+        "type": "section",
+        "heading": "When to seek help quickly",
+        "body": "Get support quickly if symptoms are worsening, daily functioning is slipping, or hopelessness returns. If you feel unsafe or suicidal, seek immediate crisis support."
+      }
+    ],
+    "care_note": "If depression symptoms return with suicidal thoughts, self-harm urges, or fear that you cannot stay safe, seek immediate support. Do not change medication without a prescribing clinician’s guidance.",
+    "related_questions": [
+      "Does depression always come back?",
+      "What are early warning signs of depression returning?",
+      "How do I prevent relapse in depression?",
+      "Should I go back to therapy if I feel depressed again?"
+    ],
+    "suggested_schema_question": "Why does depression come back after I start feeling better?",
+    "suggested_schema_answer": "Depression can recur because recovery is uneven and stressors, routines, treatment needs, or life circumstances change. Returning symptoms are a reason to revisit support, not proof of failure.",
+    "primary_theme": "Depression",
+    "related_themes": [
+      "Depression recurrence",
+      "Relapse prevention",
+      "Treatment support",
+      "Medication caution"
+    ],
+    "source_refs": [
+      {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "National Institute of Mental Health",
+        "note": "Supports depression course, treatment, and recurrence-aware care."
+      }
+    ],
+    "citation_gaps": [
+      "Add source specific to relapse prevention or maintenance care before review."
+    ],
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "draft_notes": "Includes medication caution without instructions."
+  },
+  {
+    "question": "How can parents support a child who worries a lot?",
+    "slug": "how-can-parents-support-a-child-who-worries-a-lot",
+    "category": "Family & Parenting",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "How Parents Can Support a Child Who Worries a Lot",
+    "improved_meta_description": "A worried child usually needs calm support, not dismissal or constant reassurance. Here is how parents can respond.",
+    "improved_summary": "Parents can support a child who worries a lot by validating the feeling, helping the child name worries, modeling calm coping, and seeking professional help if worry interferes with sleep, school, health, or relationships.",
+    "key_takeaways": [
+      "A child’s worry should be taken seriously without making it bigger.",
+      "Validation is different from agreeing that the feared thing will happen.",
+      "Gentle routines, naming feelings, and small brave steps can help.",
+      "Persistent or impairing worry deserves professional support."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Start by validating the feeling",
+        "body": "Instead of saying “Don’t worry,” try “I can see this feels scary.” This helps the child feel understood before you move into problem-solving."
+      },
+      {
+        "type": "section",
+        "heading": "Help them practice coping",
+        "body": "Use simple tools: slow breathing, naming the worry, drawing it, creating a predictable routine, or taking one small step toward the feared situation when appropriate."
+      },
+      {
+        "type": "section",
+        "heading": "When to get more help",
+        "body": "Consider talking with a pediatrician, school counselor, or child mental health professional if worry affects sleep, school attendance, friendships, stomachaches, headaches, or daily functioning."
+      }
+    ],
+    "care_note": "If a child’s worry includes talk of self-harm, not wanting to live, abuse, or feeling unsafe, seek immediate help from emergency services, crisis support, or a qualified professional.",
+    "related_questions": [
+      "How do I know if my child has anxiety?",
+      "What should I say to a worried child?",
+      "When should a child see a therapist?",
+      "Can reassurance make anxiety worse?",
+      "How can I help my child sleep when worried?"
+    ],
+    "suggested_schema_question": "How can parents support a child who worries a lot?",
+    "suggested_schema_answer": "Parents can validate the child’s worry, help them name feelings, model calm coping, and seek professional support if worry interferes with sleep, school, relationships, or daily functioning.",
+    "primary_theme": "Family & Parenting",
+    "related_themes": [
+      "Child anxiety",
+      "Parent support",
+      "Emotion coaching",
+      "Care navigation"
+    ],
+    "source_refs": [
+      {
+        "title": "Data and Statistics on Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/data-research/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Supports children's mental health context and prevalence framing."
+      }
+    ],
+    "citation_gaps": [
+      "Add a child anxiety or parenting-intervention source before review."
+    ],
+    "safety_flags": [
+      "minor",
+      "diagnosis-risk"
+    ],
+    "draft_notes": "Avoids diagnosis and recommends pediatric/mental health support when functioning is affected."
+  },
+  {
+    "question": "What should I do if my child does not want to talk about their feelings?",
+    "slug": "what-if-my-child-does-not-want-to-talk-about-feelings",
+    "category": "Family & Parenting",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "What to Do When Your Child Does Not Want to Talk About Feelings",
+    "improved_meta_description": "A child who will not talk may need safety, time, and lower-pressure ways to communicate. Pushing harder can backfire.",
+    "improved_summary": "If your child does not want to talk about feelings, start by lowering pressure and creating consistent openings for connection. Some children talk more through play, routines, movement, drawing, or small moments than direct questions.",
+    "key_takeaways": [
+      "Refusing to talk does not always mean nothing is wrong.",
+      "Pressure can make emotional conversations feel less safe.",
+      "Children may communicate through behavior, play, or brief comments.",
+      "Safety concerns require more direct adult action."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Make talking feel safer",
+        "body": "Instead of repeated questions, try predictable warmth: “You don’t have to talk right now, but I’m here when you want to.” This keeps the door open without turning feelings into an interrogation."
+      },
+      {
+        "type": "section",
+        "heading": "Use lower-pressure openings",
+        "body": "Some children talk better while walking, driving, drawing, playing, or doing chores. Short comments can be more useful than a formal sit-down conversation."
+      },
+      {
+        "type": "section",
+        "heading": "Know when not to wait",
+        "body": "If you notice self-harm talk, abuse concerns, severe withdrawal, big behavior changes, or fear for your child’s safety, seek professional or emergency support even if your child does not want to explain everything."
+      }
+    ],
+    "care_note": "If your child may be unsafe, experiencing abuse, or talking about self-harm, contact emergency support, a pediatrician, a child mental health professional, or an appropriate local safeguarding resource.",
+    "related_questions": [
+      "How do I get my child to open up?",
+      "What if my teen refuses to talk?",
+      "How can I help my child name emotions?",
+      "When should a child see a therapist?",
+      "What are warning signs my child needs help?"
+    ],
+    "suggested_schema_question": "What should I do if my child does not want to talk about their feelings?",
+    "suggested_schema_answer": "Lower the pressure, keep connection predictable, and offer different ways to communicate. If safety concerns, self-harm, abuse, or severe changes are present, seek professional support.",
+    "primary_theme": "Family & Parenting",
+    "related_themes": [
+      "Child communication",
+      "Emotion expression",
+      "Parent support",
+      "Child safety"
+    ],
+    "source_refs": [
+      {
+        "title": "Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Supports general child mental health and family support context."
+      }
+    ],
+    "citation_gaps": [
+      "Add a source specific to child emotional communication before review."
+    ],
+    "safety_flags": [
+      "minor"
+    ],
+    "draft_notes": "Includes safety exceptions while avoiding pressure for disclosure."
+  }
+]

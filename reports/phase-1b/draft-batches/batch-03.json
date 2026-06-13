@@ -1,0 +1,234 @@
+[
+  {
+    "question": "How do I co-parent with someone I do not trust?",
+    "slug": "how-to-co-parent-with-someone-i-do-not-trust",
+    "category": "Family & Parenting",
+    "intent": "Navigate difficult co-parenting dynamics",
+    "safety_flags": [
+      "abuse",
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds family-system coverage where communication, safety, and child wellbeing intersect. It is distinct from divorce logistics.",
+    "source_refs": [
+      {
+        "title": "Divorce and Child Custody",
+        "url": "https://www.apa.org/topics/divorce-child-custody",
+        "publisher": "American Psychological Association",
+        "note": "Would support child-centered divorce and co-parenting considerations."
+      }
+    ],
+    "notes": "Include caution for coercive control, stalking, or unsafe exchanges.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can I repair my relationship with my adult child?",
+    "slug": "repair-relationship-with-adult-child",
+    "category": "Family & Parenting",
+    "intent": "Rebuild connection with an adult child after distance or conflict",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds intergenerational repair content beyond parenting minors. It broadens family coverage while staying within existing categories.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support relationship repair and communication context."
+      }
+    ],
+    "notes": "Avoid entitlement to reconciliation; emphasize accountability and consent.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What should parents do when siblings fight constantly?",
+    "slug": "what-should-parents-do-when-siblings-fight-constantly",
+    "category": "Family & Parenting",
+    "intent": "Manage frequent sibling conflict",
+    "safety_flags": [
+      "minor",
+      "abuse"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds family conflict content centered on children. It can distinguish ordinary conflict from bullying or unsafe aggression.",
+    "source_refs": [
+      {
+        "title": "Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support child wellbeing and family mental health context."
+      }
+    ],
+    "notes": "Flag for safety if physical harm, threats, or targeted cruelty are present.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What does it mean to take care of your mental health?",
+    "slug": "what-does-it-mean-to-take-care-of-your-mental-health",
+    "category": "General Mental Health",
+    "intent": "Understand basic mental health care concepts",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "A foundational explainer that can anchor beginner users. It supports internal linking to therapy, stress, sleep, relationships, and crisis resources.",
+    "source_refs": [
+      {
+        "title": "Mental Health",
+        "url": "https://www.samhsa.gov/mental-health",
+        "publisher": "SAMHSA",
+        "note": "Would support broad mental health education and help-seeking framing."
+      }
+    ],
+    "notes": "Keep broad and avoid wellness platitudes.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "When should I talk to someone about my mental health?",
+    "slug": "when-should-i-talk-to-someone-about-my-mental-health",
+    "category": "General Mental Health",
+    "intent": "Decide when to seek support",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds an early help-seeking doorway for users who may not know which condition category fits. Helps route users without diagnosing them.",
+    "source_refs": [
+      {
+        "title": "Mental Health",
+        "url": "https://www.samhsa.gov/mental-health",
+        "publisher": "SAMHSA",
+        "note": "Would support general mental health warning signs and support options."
+      }
+    ],
+    "notes": "Include immediate help guidance for danger to self or others.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Can mental health symptoms be physical?",
+    "slug": "can-mental-health-symptoms-be-physical",
+    "category": "General Mental Health",
+    "intent": "Understand the mind-body connection in distress",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Addresses users who experience distress through fatigue, pain, stomach issues, or sleep disruption. Useful bridge between mental health and medical evaluation.",
+    "source_refs": [
+      {
+        "title": "I'm So Stressed Out!",
+        "url": "https://www.nimh.nih.gov/health/publications/so-stressed-out-fact-sheet",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support physical effects of stress and when to seek help."
+      }
+    ],
+    "notes": "Advise medical evaluation for new, severe, or unexplained physical symptoms.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I know if I need therapy or just more support from friends?",
+    "slug": "need-therapy-or-more-support-from-friends",
+    "category": "General Mental Health",
+    "intent": "Compare informal support and professional care",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Clarifies a common decision point before therapy navigation. It can reduce barriers while respecting the value of social support.",
+    "source_refs": [
+      {
+        "title": "Mental Health",
+        "url": "https://www.samhsa.gov/mental-health",
+        "publisher": "SAMHSA",
+        "note": "Would support help-seeking and mental health service context."
+      }
+    ],
+    "notes": "Escalate for self-harm, abuse, psychosis, or inability to function.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do I feel emotionally exhausted all the time?",
+    "slug": "why-do-i-feel-emotionally-exhausted-all-the-time",
+    "category": "General Mental Health",
+    "intent": "Explore possible reasons for persistent emotional exhaustion",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Captures a broad symptom users may not map to depression, stress, grief, or burnout. Useful as a routing page to more specific nodes.",
+    "source_refs": [
+      {
+        "title": "Mental Health",
+        "url": "https://www.samhsa.gov/mental-health",
+        "publisher": "SAMHSA",
+        "note": "Would support broad mental health and help-seeking framing."
+      }
+    ],
+    "notes": "Avoid listing too many possible diagnoses; emphasize persistence, impairment, and professional support.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why does grief come in waves?",
+    "slug": "why-does-grief-come-in-waves",
+    "category": "Grief & Loss",
+    "intent": "Understand fluctuating grief intensity",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds a specific grief-process question that normalizes variation without minimizing pain. Distinct from first-loss or complicated grief questions.",
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Would support grief process education and coping guidance."
+      }
+    ],
+    "notes": "Avoid rigid stage-based grief framing.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Is it normal to feel angry after someone dies?",
+    "slug": "is-it-normal-to-feel-angry-after-someone-dies",
+    "category": "Grief & Loss",
+    "intent": "Understand anger as part of grief",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Covers a grief emotion that users may feel ashamed of. Adds emotional specificity to loss content.",
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Would support varied emotional responses to loss."
+      }
+    ],
+    "notes": "Include safety caveat if anger becomes violent or uncontrollable.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  }
+]

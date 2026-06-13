@@ -1,0 +1,239 @@
+[
+  {
+    "question": "How do I talk to my teen about mental health without making them shut down?",
+    "slug": "talk-to-teen-about-mental-health-without-shutdown",
+    "category": "Teen-Specific Questions",
+    "intent": "Start a supportive mental health conversation with a teen",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds practical caregiver communication content for teens. It helps bridge youth mental health and family communication.",
+    "source_refs": [
+      {
+        "title": "Protecting Youth Mental Health",
+        "url": "https://www.hhs.gov/surgeongeneral/priorities/youth-mental-health/index.html",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support youth mental health and supportive adult involvement."
+      }
+    ],
+    "notes": "Do not promise a teen will open up; emphasize trust and safety.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "When should a teenager see a therapist?",
+    "slug": "when-should-a-teenager-see-a-therapist",
+    "category": "Teen-Specific Questions",
+    "intent": "Identify when therapy may be appropriate for a teen",
+    "safety_flags": [
+      "minor",
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds teen-specific therapy threshold content. It is more precise than general therapy navigation because parent involvement and school functioning matter.",
+    "source_refs": [
+      {
+        "title": "Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support children's and adolescents' mental health support context."
+      }
+    ],
+    "notes": "Include urgent escalation for self-harm, abuse, psychosis, or danger.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can I help my teen after bullying?",
+    "slug": "how-can-i-help-my-teen-after-bullying",
+    "category": "Teen-Specific Questions",
+    "intent": "Support a teen who has been bullied",
+    "safety_flags": [
+      "minor",
+      "abuse",
+      "self-harm"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds youth safety and social harm coverage. It can connect emotional support, school involvement, and crisis monitoring.",
+    "source_refs": [
+      {
+        "title": "Fast Fact: Preventing Bullying",
+        "url": "https://www.cdc.gov/violence-prevention/about/about-bullying.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support bullying definition, effects, and prevention context."
+      }
+    ],
+    "notes": "Include self-harm monitoring and school safety planning.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do I feel like I do not know who I am as a teen?",
+    "slug": "why-do-i-not-know-who-i-am-as-a-teen",
+    "category": "Teens & Identity",
+    "intent": "Normalize and support teen identity exploration",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds teen-facing identity development coverage. Distinct from adult identity questions due to developmental context.",
+    "source_refs": [
+      {
+        "title": "Protecting Youth Mental Health",
+        "url": "https://www.hhs.gov/surgeongeneral/priorities/youth-mental-health/index.html",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support youth mental health and developmental stress context."
+      }
+    ],
+    "notes": "Use affirming language; avoid assuming crisis.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I deal with pressure to be perfect in high school?",
+    "slug": "deal-with-pressure-to-be-perfect-in-high-school",
+    "category": "Teens & Identity",
+    "intent": "Cope with perfectionism and academic/social pressure",
+    "safety_flags": [
+      "minor",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds teen-specific performance pressure content. It can bridge stress, self-worth, school, and family expectations.",
+    "source_refs": [
+      {
+        "title": "Stress in America",
+        "url": "https://www.apa.org/news/press/releases/stress",
+        "publisher": "American Psychological Association",
+        "note": "Would support stress context and trends, with review needed for teen-specific relevance."
+      }
+    ],
+    "notes": "Watch for eating disorder or self-harm escalation if perfectionism is severe.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What should I do if I feel different from everyone at school?",
+    "slug": "what-to-do-if-i-feel-different-from-everyone-at-school",
+    "category": "Teens & Identity",
+    "intent": "Cope with feeling socially or personally different as a teen",
+    "safety_flags": [
+      "minor",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Captures identity and belonging for teens without forcing a specific identity label. Useful for loneliness, bullying, and self-worth pathways.",
+    "source_refs": [
+      {
+        "title": "Protecting Youth Mental Health",
+        "url": "https://www.hhs.gov/surgeongeneral/priorities/youth-mental-health/index.html",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support youth belonging and mental health context."
+      }
+    ],
+    "notes": "Use inclusive framing; include trusted adult support if school feels unsafe.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can teens build confidence without pretending to be someone else?",
+    "slug": "how-can-teens-build-confidence-without-pretending",
+    "category": "Teens & Identity",
+    "intent": "Build authentic teen confidence",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds positive identity development content for teens. Distinct from low self-esteem because it emphasizes authenticity and growth.",
+    "source_refs": [
+      {
+        "title": "Building Your Resilience",
+        "url": "https://www.apa.org/topics/resilience/building-your-resilience",
+        "publisher": "American Psychological Association",
+        "note": "Would support resilience and confidence-building context."
+      }
+    ],
+    "notes": "Avoid prescriptive identity advice.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why does social media make me feel worse about myself?",
+    "slug": "why-does-social-media-make-me-feel-worse-about-myself",
+    "category": "Teens & Identity",
+    "intent": "Understand social media's effect on teen self-worth",
+    "safety_flags": [
+      "minor",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds a modern teen identity and self-worth concern. Can connect to comparison, loneliness, sleep, and bullying without taxonomy sprawl.",
+    "source_refs": [
+      {
+        "title": "Social Media and Youth Mental Health",
+        "url": "https://www.hhs.gov/surgeongeneral/priorities/youth-mental-health/social-media/index.html",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support youth social media and mental health context."
+      }
+    ],
+    "notes": "Avoid alarmist claims; distinguish heavy distress from everyday comparison.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What happens in therapy for the first time?",
+    "slug": "what-happens-in-therapy-for-the-first-time",
+    "category": "Therapy & Mental Health",
+    "intent": "Understand what to expect at a first therapy session",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Core therapy orientation question for anxious first-time users. Helps reduce barriers to care.",
+    "source_refs": [
+      {
+        "title": "Understanding Psychotherapy and How It Works",
+        "url": "https://www.apa.org/topics/psychotherapy/understanding",
+        "publisher": "American Psychological Association",
+        "note": "Would support what psychotherapy is and how it generally works."
+      }
+    ],
+    "notes": "Avoid making universal promises about session structure.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Is it okay to switch therapists?",
+    "slug": "is-it-okay-to-switch-therapists",
+    "category": "Therapy & Mental Health",
+    "intent": "Decide whether changing therapists is appropriate",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Addresses therapeutic fit and user agency. Helps prevent users from staying in unhelpful care out of guilt.",
+    "source_refs": [
+      {
+        "title": "How to Choose a Psychologist",
+        "url": "https://www.apa.org/topics/psychotherapy/choose-therapist",
+        "publisher": "American Psychological Association",
+        "note": "Would support fit, credentials, and choosing therapy providers."
+      }
+    ],
+    "notes": "Avoid encouraging abrupt termination in high-risk cases without continuity planning.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  }
+]

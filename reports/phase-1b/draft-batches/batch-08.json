@@ -1,0 +1,235 @@
+[
+  {
+    "question": "What should I talk about in therapy when I do not know where to start?",
+    "slug": "what-to-talk-about-in-therapy-when-i-do-not-know-where-to-start",
+    "category": "Therapy & Mental Health",
+    "intent": "Prepare for therapy when feeling unsure",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds practical session-preparation coverage. It reduces intimidation for users already connected to care.",
+    "source_refs": [
+      {
+        "title": "Understanding Psychotherapy and How It Works",
+        "url": "https://www.apa.org/topics/psychotherapy/understanding",
+        "publisher": "American Psychological Association",
+        "note": "Would support collaborative therapy and session expectations."
+      }
+    ],
+    "notes": "Avoid scripting therapy too rigidly.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Can therapy help if I do not have a diagnosis?",
+    "slug": "can-therapy-help-if-i-do-not-have-a-diagnosis",
+    "category": "Therapy & Mental Health",
+    "intent": "Understand therapy for non-diagnosed distress or growth",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Clarifies that therapy can address distress, coping, relationships, and life challenges. Reduces the misconception that care requires a formal label.",
+    "source_refs": [
+      {
+        "title": "Understanding Psychotherapy and How It Works",
+        "url": "https://www.apa.org/topics/psychotherapy/understanding",
+        "publisher": "American Psychological Association",
+        "note": "Would support psychotherapy uses and general mental health care context."
+      }
+    ],
+    "notes": "Avoid diminishing diagnosis when clinically important.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I find a therapist who is a good fit?",
+    "slug": "how-to-find-a-therapist-who-is-a-good-fit",
+    "category": "Therapy Navigation",
+    "intent": "Choose a therapist based on needs, fit, and practical factors",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Core therapy navigation page with high utility. Supports future internal links to modality, cost, credentials, and first-session content.",
+    "source_refs": [
+      {
+        "title": "How to Choose a Psychologist",
+        "url": "https://www.apa.org/topics/psychotherapy/choose-therapist",
+        "publisher": "American Psychological Association",
+        "note": "Would support therapist selection, credentials, and fit."
+      }
+    ],
+    "notes": "Avoid endorsing directories or providers unless reviewed.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What kind of therapist do I need?",
+    "slug": "what-kind-of-therapist-do-i-need",
+    "category": "Therapy Navigation",
+    "intent": "Understand therapist types and care options",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds navigation coverage around provider types. Useful for users confused by psychologist, counselor, social worker, psychiatrist, and therapist labels.",
+    "source_refs": [
+      {
+        "title": "How to Choose a Psychologist",
+        "url": "https://www.apa.org/topics/psychotherapy/choose-therapist",
+        "publisher": "American Psychological Association",
+        "note": "Would support choosing a qualified mental health provider."
+      }
+    ],
+    "notes": "Needs jurisdiction-sensitive credential review before publication.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I get mental health help if I cannot afford therapy?",
+    "slug": "get-mental-health-help-if-i-cannot-afford-therapy",
+    "category": "Therapy Navigation",
+    "intent": "Find lower-cost mental health support options",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Addresses a major access barrier. It can route users to community clinics, crisis resources, insurance, training clinics, and support lines.",
+    "source_refs": [
+      {
+        "title": "National Helpline",
+        "url": "https://www.samhsa.gov/find-help/national-helpline",
+        "publisher": "SAMHSA",
+        "note": "Would support help-finding and referral pathways."
+      }
+    ],
+    "notes": "Avoid guaranteeing availability or cost; resources vary by location.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What is the difference between therapy and psychiatry?",
+    "slug": "difference-between-therapy-and-psychiatry",
+    "category": "Therapy Navigation",
+    "intent": "Compare talk therapy and psychiatric medical care",
+    "safety_flags": [
+      "medication",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Important navigation question for users unsure where to start. Adds medication-sensitive content without providing medication advice.",
+    "source_refs": [
+      {
+        "title": "Mental Health Medications",
+        "url": "https://www.nimh.nih.gov/health/topics/mental-health-medications",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support medication and psychiatric care context."
+      }
+    ],
+    "notes": "Do not advise starting, stopping, or changing medication.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I prepare for a therapy consultation call?",
+    "slug": "prepare-for-a-therapy-consultation-call",
+    "category": "Therapy Navigation",
+    "intent": "Know what to ask before starting therapy",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds a practical pre-care step often missing from therapy content. Helps users assess fit before committing.",
+    "source_refs": [
+      {
+        "title": "How to Choose a Psychologist",
+        "url": "https://www.apa.org/topics/psychotherapy/choose-therapist",
+        "publisher": "American Psychological Association",
+        "note": "Would support questions to ask and fit considerations."
+      }
+    ],
+    "notes": "Avoid implying all therapists offer free consultations.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Can trauma affect grief?",
+    "slug": "can-trauma-affect-grief",
+    "category": "Trauma & Grief",
+    "intent": "Understand how traumatic experiences can shape grieving",
+    "safety_flags": [
+      "diagnosis-risk",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds intersectional coverage between trauma reactions and loss. Distinct from ordinary grief and trauma-only symptom pages.",
+    "source_refs": [
+      {
+        "title": "Trauma Types",
+        "url": "https://www.nctsn.org/what-is-child-trauma/trauma-types",
+        "publisher": "National Child Traumatic Stress Network",
+        "note": "Would support trauma-informed context, especially where loss involves traumatic events."
+      }
+    ],
+    "notes": "The requested safety flag list does not include trauma-sensitive; replace with approved flag taxonomy before ingestion.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do I feel guilty after surviving something traumatic?",
+    "slug": "why-do-i-feel-guilty-after-surviving-something-traumatic",
+    "category": "Trauma & Grief",
+    "intent": "Understand survivor guilt after trauma",
+    "safety_flags": [
+      "crisis-sensitive",
+      "self-harm"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds survivor guilt coverage, a specific trauma-grief experience. Important for safety because guilt can connect to self-punishment or suicidal ideation.",
+    "source_refs": [
+      {
+        "title": "Coping After a Traumatic Event",
+        "url": "https://www.nimh.nih.gov/health/publications/coping-with-traumatic-events",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support common reactions after trauma and when to seek help."
+      }
+    ],
+    "notes": "Use approved flags only; avoid trauma-processing instructions beyond stabilization and support.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I cope with anniversaries of a traumatic loss?",
+    "slug": "cope-with-anniversaries-of-traumatic-loss",
+    "category": "Trauma & Grief",
+    "intent": "Prepare for anniversary reactions after traumatic bereavement",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds time-triggered trauma and grief coverage. Useful for users who feel destabilized by dates, seasons, or reminders.",
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Would support grief reactions and coping with reminders."
+      }
+    ],
+    "notes": "Avoid exposure-style advice; emphasize support planning.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  }
+]

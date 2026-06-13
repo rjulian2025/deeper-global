@@ -1,0 +1,237 @@
+[
+  {
+    "question": "What should I do if I have no one to talk to?",
+    "slug": "what-to-do-if-i-have-no-one-to-talk-to",
+    "category": "Loneliness & Isolation",
+    "intent": "Find support when socially isolated",
+    "safety_flags": [
+      "crisis-sensitive",
+      "self-harm"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "High-safety-value question for isolated users who may be near crisis. Can route to warm lines, crisis lines, therapy, and community supports.",
+    "source_refs": [
+      {
+        "title": "Mental Health",
+        "url": "https://www.samhsa.gov/mental-health",
+        "publisher": "SAMHSA",
+        "note": "Would support mental health support options and help-seeking pathways."
+      }
+    ],
+    "notes": "Needs strong crisis guidance and nonjudgmental tone.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do I isolate myself when I am struggling?",
+    "slug": "why-do-i-isolate-myself-when-struggling",
+    "category": "Loneliness & Isolation",
+    "intent": "Understand withdrawal during emotional distress",
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Covers isolation as a coping pattern, not just a circumstance. Useful bridge to depression, trauma, shame, and social anxiety content.",
+    "source_refs": [
+      {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "National Institute of Mental Health",
+        "note": "Would support withdrawal as a possible symptom when discussing depression-related context."
+      }
+    ],
+    "notes": "Do not assume depression; present multiple possibilities.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Can loneliness affect my mental health?",
+    "slug": "can-loneliness-affect-my-mental-health",
+    "category": "Loneliness & Isolation",
+    "intent": "Understand mental health effects of loneliness",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Provides foundational loneliness education with public health support. Strong concept-node candidate for future canonical entity work.",
+    "source_refs": [
+      {
+        "title": "Our Epidemic of Loneliness and Isolation",
+        "url": "https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support loneliness, isolation, and health impact evidence."
+      }
+    ],
+    "notes": "Keep category as loneliness rather than general mental health because the entity is specific.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I stop yelling at my kids when I am overwhelmed?",
+    "slug": "how-to-stop-yelling-at-my-kids-when-overwhelmed",
+    "category": "Parenting",
+    "intent": "Manage parental overwhelm and reactive yelling",
+    "safety_flags": [
+      "minor",
+      "abuse"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds emotionally honest parenting content with safety sensitivity. Helps distinguish repairable stress responses from harmful patterns requiring support.",
+    "source_refs": [
+      {
+        "title": "Parenting",
+        "url": "https://www.apa.org/topics/parenting",
+        "publisher": "American Psychological Association",
+        "note": "Would support parenting stress and child wellbeing context."
+      }
+    ],
+    "notes": "Include urgent help if there is risk of harming a child.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What should I do when parenting feels impossible?",
+    "slug": "what-to-do-when-parenting-feels-impossible",
+    "category": "Parenting",
+    "intent": "Find support during intense parenting overwhelm",
+    "safety_flags": [
+      "crisis-sensitive",
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Captures high-distress parenting moments that may not fit burnout or depression pages. Important for safety-aware support routing.",
+    "source_refs": [
+      {
+        "title": "Parenting",
+        "url": "https://www.apa.org/topics/parenting",
+        "publisher": "American Psychological Association",
+        "note": "Would support parenting challenges and seeking support."
+      }
+    ],
+    "notes": "Include crisis guidance for risk of harm to self or child.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can I help my child handle big emotions?",
+    "slug": "help-my-child-handle-big-emotions",
+    "category": "Parenting",
+    "intent": "Support child emotion regulation",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds concrete parent-child emotion regulation coverage. Useful for early-childhood and school-age parenting without over-specializing taxonomy.",
+    "source_refs": [
+      {
+        "title": "Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support children's mental health and caregiver support context."
+      }
+    ],
+    "notes": "Avoid making age-specific claims unless reviewed.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I talk to my child about therapy?",
+    "slug": "how-to-talk-to-my-child-about-therapy",
+    "category": "Parenting",
+    "intent": "Explain therapy to a child in a supportive way",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Connects parenting and therapy navigation through a child-centered lens. Helps reduce stigma and fear around care.",
+    "source_refs": [
+      {
+        "title": "Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support children's mental health support and caregiver involvement."
+      }
+    ],
+    "notes": "Avoid promising confidentiality rules without jurisdiction-specific review.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can I parent differently than how I was raised?",
+    "slug": "how-can-i-parent-differently-than-how-i-was-raised",
+    "category": "Parenting",
+    "intent": "Break unwanted intergenerational parenting patterns",
+    "safety_flags": [
+      "abuse",
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds intergenerational and reflective parenting content. It bridges trauma-aware care and everyday parenting without creating a new category.",
+    "source_refs": [
+      {
+        "title": "Parenting",
+        "url": "https://www.apa.org/topics/parenting",
+        "publisher": "American Psychological Association",
+        "note": "Would support parenting practices and family wellbeing context."
+      }
+    ],
+    "notes": "Be careful not to imply all difficult childhoods were abusive.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I tell my partner I feel disconnected?",
+    "slug": "tell-my-partner-i-feel-disconnected",
+    "category": "Relationships & Communication",
+    "intent": "Start a relationship conversation about emotional distance",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Common relationship communication question with clear user intent. Distinct from conflict because it focuses on emotional reconnection.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support healthy relationship communication context."
+      }
+    ],
+    "notes": "Avoid assuming romantic relationship structure beyond partner language.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do we keep having the same argument?",
+    "slug": "why-do-we-keep-having-the-same-argument",
+    "category": "Relationships & Communication",
+    "intent": "Understand recurring conflict patterns",
+    "safety_flags": [
+      "abuse"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds pattern-level relationship conflict coverage. Can distinguish unresolved needs, communication habits, and unsafe dynamics.",
+    "source_refs": [
+      {
+        "title": "Conflict Resolution",
+        "url": "https://www.apa.org/topics/conflict-resolution",
+        "publisher": "American Psychological Association",
+        "note": "Would support constructive approaches to recurring conflict."
+      }
+    ],
+    "notes": "Include safety caveat where arguments involve intimidation, threats, or violence.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  }
+]

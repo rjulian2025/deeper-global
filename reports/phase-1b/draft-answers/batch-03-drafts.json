@@ -1,0 +1,552 @@
+[
+  {
+    "question": "How do I co-parent with someone I do not trust?",
+    "slug": "how-to-co-parent-with-someone-i-do-not-trust",
+    "category": "Family & Parenting",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "How to Co-Parent With Someone You Do Not Fully Trust",
+    "improved_meta_description": "Co-parenting with low trust requires clear boundaries, child-focused communication, and extra safety planning when control or harm is present.",
+    "improved_summary": "Co-parenting with someone you do not trust works best when communication is structured, child-focused, and documented. If mistrust is connected to coercion, stalking, threats, or unsafe exchanges, safety planning matters more than trying to be more cooperative.",
+    "key_takeaways": [
+      "Low-trust co-parenting usually needs structure, not emotional negotiation.",
+      "Keep communication child-focused, brief, and documented when possible.",
+      "Do not ignore coercive control, stalking, threats, or unsafe exchanges.",
+      "Children benefit when adults reduce conflict exposure and protect safety."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Make communication more structured",
+        "body": "When trust is low, open-ended emotional conversations can easily become conflict. Use clear, child-focused messages about schedules, school, health, transportation, and decisions. Keep the tone neutral and avoid trying to settle the whole relationship inside every exchange."
+      },
+      {
+        "type": "section",
+        "heading": "Protect the child from adult conflict",
+        "body": "Avoid using the child as a messenger, investigator, or emotional support person. If possible, keep disagreements away from the child and focus on predictable routines that help them feel stable."
+      },
+      {
+        "type": "section",
+        "heading": "Know when this is a safety issue",
+        "body": "If mistrust comes from abuse, threats, stalking, coercive control, substance use, or unsafe exchanges, ordinary co-parenting advice may not be enough. Consider legal, clinical, or domestic violence support for safer communication and exchange plans."
+      }
+    ],
+    "care_note": "If co-parenting involves threats, violence, stalking, coercive control, or fear for you or your child, seek local safety support or emergency help. This page is educational and not legal advice.",
+    "related_questions": [
+      "How do I co-parent with a difficult ex?",
+      "What should I do if co-parenting exchanges feel unsafe?",
+      "How do I keep my child out of adult conflict?",
+      "Can therapy help with co-parenting stress?"
+    ],
+    "suggested_schema_question": "How do I co-parent with someone I do not trust?",
+    "suggested_schema_answer": "Use structured, child-focused communication and clear boundaries. If mistrust involves abuse, stalking, threats, or unsafe exchanges, prioritize safety planning and outside support.",
+    "primary_theme": "Family & Parenting",
+    "related_themes": ["Co-parenting", "Child wellbeing", "Boundaries", "Relationship safety"],
+    "source_refs": [
+      {
+        "title": "Divorce and Child Custody",
+        "url": "https://www.apa.org/topics/divorce-child-custody",
+        "publisher": "American Psychological Association",
+        "note": "Supports child-centered divorce and co-parenting considerations."
+      }
+    ],
+    "citation_gaps": ["Add a domestic violence/coercive-control safety source before review."],
+    "safety_flags": ["abuse", "minor"],
+    "draft_notes": "Avoid legal advice. Human editor should review safety language carefully."
+  },
+  {
+    "question": "How can I repair my relationship with my adult child?",
+    "slug": "repair-relationship-with-adult-child",
+    "category": "Family & Parenting",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "How to Repair a Strained Relationship With Your Adult Child",
+    "improved_meta_description": "Repair with an adult child usually starts with listening, accountability, and respecting their pace, not demanding closeness.",
+    "improved_summary": "Repairing a relationship with an adult child often starts with accepting that closeness cannot be forced. The work is to listen, take responsibility where needed, respect boundaries, and show consistency over time.",
+    "key_takeaways": [
+      "Repair requires consent from both people.",
+      "Accountability is more useful than arguing about whose memory is correct.",
+      "Respecting boundaries can be part of rebuilding trust.",
+      "Consistency matters more than one perfect conversation."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Start with their experience",
+        "body": "If your adult child has pulled away, begin by trying to understand what the distance means to them. You do not have to agree with every detail to acknowledge that something has hurt or strained the relationship."
+      },
+      {
+        "type": "section",
+        "heading": "Take responsibility without demanding a result",
+        "body": "A repair attempt should not be a bargain where your apology purchases immediate closeness. Name what you can own, ask what would help, and give them room to decide what kind of contact feels safe."
+      },
+      {
+        "type": "section",
+        "heading": "Rebuild through patterns",
+        "body": "Adult-child repair often takes repeated evidence: respecting limits, not retaliating against distance, showing up reliably, and being willing to hear hard things without turning the conversation into defense."
+      }
+    ],
+    "care_note": "If family contact involves abuse, threats, harassment, or emotional coercion, consider support from a qualified therapist or local safety resource before pursuing repair.",
+    "related_questions": [
+      "How do I apologize to my adult child?",
+      "What if my adult child does not want contact?",
+      "How do I respect family boundaries?",
+      "Can family therapy help adult children and parents?"
+    ],
+    "suggested_schema_question": "How can I repair my relationship with my adult child?",
+    "suggested_schema_answer": "Repair often begins with listening, accountability, respecting boundaries, and showing consistent change over time. Closeness cannot be forced, especially in an adult relationship.",
+    "primary_theme": "Family & Parenting",
+    "related_themes": ["Family repair", "Accountability", "Boundaries", "Adult children"],
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Supports relationship repair and communication context."
+      }
+    ],
+    "citation_gaps": ["Add a family therapy or estrangement-specific source before review."],
+    "safety_flags": ["none"],
+    "draft_notes": "Avoids entitlement to reconciliation; emphasizes consent and pace."
+  },
+  {
+    "question": "What should parents do when siblings fight constantly?",
+    "slug": "what-should-parents-do-when-siblings-fight-constantly",
+    "category": "Family & Parenting",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "What Parents Can Do When Siblings Fight Constantly",
+    "improved_meta_description": "Constant sibling fighting may need more than refereeing. Look for patterns, safety issues, and skills the children have not learned yet.",
+    "improved_summary": "When siblings fight constantly, parents can look beyond who started it and focus on patterns: triggers, fairness concerns, attention needs, skill gaps, and safety. Frequent conflict should be addressed calmly, especially if one child is being targeted or harmed.",
+    "key_takeaways": [
+      "Constant sibling fighting is often a pattern, not a single incident.",
+      "Parents can teach repair, turn-taking, and emotion regulation instead of only punishing.",
+      "Targeted cruelty, fear, threats, or physical harm require stronger intervention.",
+      "Children may need separate attention and clearer family routines."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Look for the pattern",
+        "body": "Notice when fights happen: transitions, screen time, chores, jealousy, boredom, hunger, bedtime, or competition for attention. Patterns often reveal what needs structure."
+      },
+      {
+        "type": "section",
+        "heading": "Teach the missing skill",
+        "body": "Some children need help naming feelings, taking turns, asking for space, repairing harm, or handling losing. The goal is not just to stop noise; it is to build safer ways to manage conflict."
+      },
+      {
+        "type": "section",
+        "heading": "Separate conflict from harm",
+        "body": "Ordinary sibling conflict is different from bullying, intimidation, repeated targeting, or physical danger. If one child is afraid or being harmed, intervene clearly and seek professional support if needed."
+      }
+    ],
+    "care_note": "If sibling conflict includes serious injury risk, threats, cruelty, or fear, seek help from a pediatrician, child therapist, school support, or emergency services when safety is immediate.",
+    "related_questions": [
+      "How do I stop sibling rivalry?",
+      "When is sibling fighting bullying?",
+      "How can I help kids repair after conflict?",
+      "Why do my children fight for attention?"
+    ],
+    "suggested_schema_question": "What should parents do when siblings fight constantly?",
+    "suggested_schema_answer": "Parents can look for conflict patterns, teach missing skills, create clearer routines, and intervene strongly when fighting becomes targeted, frightening, or physically unsafe.",
+    "primary_theme": "Family & Parenting",
+    "related_themes": ["Sibling conflict", "Parenting", "Child safety", "Emotion regulation"],
+    "source_refs": [
+      {
+        "title": "Children's Mental Health",
+        "url": "https://www.cdc.gov/children-mental-health/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Supports child wellbeing and family mental health context."
+      }
+    ],
+    "citation_gaps": ["Add sibling conflict or bullying-specific source before review."],
+    "safety_flags": ["minor", "abuse"],
+    "draft_notes": "Keeps safety distinction between ordinary conflict and targeted harm."
+  },
+  {
+    "question": "What does it mean to take care of your mental health?",
+    "slug": "what-does-it-mean-to-take-care-of-your-mental-health",
+    "category": "General Mental Health",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "What It Actually Means to Take Care of Your Mental Health",
+    "improved_meta_description": "Mental health care is not just self-care. It includes support, habits, relationships, treatment when needed, and noticing when you are not okay.",
+    "improved_summary": "Taking care of your mental health means paying attention to your emotional, relational, physical, and practical needs before distress becomes unmanageable. It can include daily habits, social support, boundaries, rest, therapy, medical care, and crisis support when needed.",
+    "key_takeaways": [
+      "Mental health care is broader than positive thinking or self-care.",
+      "Sleep, relationships, stress, movement, treatment, and safety all matter.",
+      "Support can be preventive, not only for crisis.",
+      "Getting help is part of mental health care, not a failure."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "It means noticing patterns",
+        "body": "Mental health care starts with paying attention: how you sleep, how you cope, how connected you feel, what drains you, and what helps you recover."
+      },
+      {
+        "type": "section",
+        "heading": "It includes support and structure",
+        "body": "Care can include routines, therapy, medical support, movement, rest, boundaries, community, spiritual practices, creative outlets, or practical help with stressors."
+      },
+      {
+        "type": "section",
+        "heading": "It also means knowing when to ask for help",
+        "body": "If your mood, anxiety, relationships, sleep, substance use, or sense of safety is affected, professional support may be appropriate. You do not have to wait for a crisis."
+      }
+    ],
+    "care_note": "If your mental health is interfering with daily life, relationships, work, sleep, or safety, consider talking with a licensed mental health professional or healthcare clinician.",
+    "related_questions": [
+      "When should I talk to someone about my mental health?",
+      "What are signs I need support?",
+      "Can mental health symptoms be physical?",
+      "How do I start taking care of myself?"
+    ],
+    "suggested_schema_question": "What does it mean to take care of your mental health?",
+    "suggested_schema_answer": "Taking care of mental health means noticing emotional and practical needs, building supportive habits and relationships, and seeking professional or crisis support when needed.",
+    "primary_theme": "General Mental Health",
+    "related_themes": ["Mental health care", "Prevention", "Support", "Self-awareness"],
+    "source_refs": [
+      {
+        "title": "Mental Health",
+        "url": "https://www.samhsa.gov/mental-health",
+        "publisher": "SAMHSA",
+        "note": "Supports broad mental health education and help-seeking framing."
+      }
+    ],
+    "citation_gaps": [],
+    "safety_flags": ["none"],
+    "draft_notes": "Broad anchor page; avoid generic wellness framing."
+  },
+  {
+    "question": "When should I talk to someone about my mental health?",
+    "slug": "when-should-i-talk-to-someone-about-my-mental-health",
+    "category": "General Mental Health",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "When It Is Time to Talk to Someone About Your Mental Health",
+    "improved_meta_description": "You do not have to wait until things fall apart. If distress is persistent, isolating, or affecting daily life, support may help.",
+    "improved_summary": "It may be time to talk to someone about your mental health when distress is persistent, hard to manage alone, affecting daily life, or making you feel unsafe. Support can start with a trusted person, therapist, doctor, helpline, or crisis resource depending on urgency.",
+    "key_takeaways": [
+      "You do not need to be in crisis to ask for support.",
+      "Changes in sleep, mood, relationships, functioning, or safety are important signals.",
+      "A trusted person can be a first step, but professional care may be needed.",
+      "Immediate danger requires immediate support."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Signs it is worth talking",
+        "body": "Consider reaching out if you feel unlike yourself, are withdrawing, sleeping poorly, feeling overwhelmed, using substances to cope, losing interest, or struggling to function."
+      },
+      {
+        "type": "section",
+        "heading": "Who to talk to first",
+        "body": "Depending on the situation, you might start with a trusted friend, family member, therapist, doctor, school counselor, employee assistance program, or helpline."
+      },
+      {
+        "type": "section",
+        "heading": "When it is urgent",
+        "body": "If you may hurt yourself or someone else, feel unable to stay safe, or are in immediate danger, call emergency services or a crisis line such as 988 in the U.S."
+      }
+    ],
+    "care_note": "If danger is immediate or you may harm yourself or someone else, seek emergency help. In the U.S., call or text 988 for crisis support.",
+    "related_questions": [
+      "How do I know if I need therapy?",
+      "What should I say when asking for help?",
+      "Can I get help before things are severe?",
+      "What if I do not know what is wrong?"
+    ],
+    "suggested_schema_question": "When should I talk to someone about my mental health?",
+    "suggested_schema_answer": "Talk to someone when distress is persistent, affecting daily life, isolating you, or making you feel unsafe. Immediate danger requires crisis or emergency support.",
+    "primary_theme": "General Mental Health",
+    "related_themes": ["Help-seeking", "Care navigation", "Crisis support", "Mental health symptoms"],
+    "source_refs": [
+      {
+        "title": "Mental Health",
+        "url": "https://www.samhsa.gov/mental-health",
+        "publisher": "SAMHSA",
+        "note": "Supports general mental health warning signs and support options."
+      }
+    ],
+    "citation_gaps": ["Add 988 source before review because crisis instructions are included."],
+    "safety_flags": ["crisis-sensitive"],
+    "draft_notes": "Early help-seeking doorway; keep crisis language direct but not alarmist."
+  },
+  {
+    "question": "Can mental health symptoms be physical?",
+    "slug": "can-mental-health-symptoms-be-physical",
+    "category": "General Mental Health",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Can Mental Health Symptoms Show Up in Your Body?",
+    "improved_meta_description": "Stress, anxiety, depression, and trauma can affect the body. New, severe, or unexplained symptoms still deserve medical care.",
+    "improved_summary": "Mental health symptoms can show up physically because stress and emotion affect sleep, appetite, muscle tension, digestion, energy, pain, and the nervous system. Physical symptoms should still be taken seriously, especially if they are new, severe, or unexplained.",
+    "key_takeaways": [
+      "Mental distress can affect the body.",
+      "Physical symptoms are not fake just because stress may be involved.",
+      "New or severe symptoms need medical evaluation.",
+      "Mind-body symptoms often improve with both practical and emotional support."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "How distress affects the body",
+        "body": "Stress and anxiety can increase muscle tension, stomach upset, headaches, sleep problems, racing heart, and fatigue. Low mood can also affect energy, appetite, and pain sensitivity."
+      },
+      {
+        "type": "section",
+        "heading": "Do not dismiss physical symptoms",
+        "body": "A mental health connection does not mean symptoms are imaginary. If symptoms are sudden, severe, worsening, or unfamiliar, medical evaluation is important."
+      },
+      {
+        "type": "section",
+        "heading": "What support can look like",
+        "body": "Support may include medical care, therapy, stress reduction, sleep work, movement, medication review with a clinician, or addressing the life stressors that keep the body on alert."
+      }
+    ],
+    "care_note": "Seek urgent medical help for chest pain, fainting, severe breathing trouble, sudden weakness, or other acute symptoms. For ongoing symptoms, consider both medical and mental health support.",
+    "related_questions": [
+      "Can stress cause physical symptoms?",
+      "Can anxiety make my stomach hurt?",
+      "When should I see a doctor for stress symptoms?",
+      "Can depression make me tired?"
+    ],
+    "suggested_schema_question": "Can mental health symptoms be physical?",
+    "suggested_schema_answer": "Yes. Stress, anxiety, depression, and trauma can affect the body, but new, severe, or unexplained physical symptoms should still be evaluated medically.",
+    "primary_theme": "General Mental Health",
+    "related_themes": ["Mind-body connection", "Stress symptoms", "Anxiety", "Medical evaluation"],
+    "source_refs": [
+      {
+        "title": "I'm So Stressed Out!",
+        "url": "https://www.nimh.nih.gov/health/publications/so-stressed-out-fact-sheet",
+        "publisher": "National Institute of Mental Health",
+        "note": "Supports physical effects of stress and when to seek help."
+      }
+    ],
+    "citation_gaps": ["Add broader mind-body or anxiety/depression physical symptoms source before review."],
+    "safety_flags": ["diagnosis-risk"],
+    "draft_notes": "Medical caveat is intentionally prominent."
+  },
+  {
+    "question": "How do I know if I need therapy or just more support from friends?",
+    "slug": "need-therapy-or-more-support-from-friends",
+    "category": "General Mental Health",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Do You Need Therapy, or More Support From Friends?",
+    "improved_meta_description": "Friends can matter deeply, but therapy may help when distress is persistent, complex, unsafe, or too heavy for your support system alone.",
+    "improved_summary": "Friend support can be powerful, but therapy may be helpful when distress is persistent, affects daily life, involves safety concerns, or keeps repeating despite support. The choice is not either-or: many people need both connection and professional care.",
+    "key_takeaways": [
+      "Friends can offer care, perspective, and belonging.",
+      "Therapy offers trained support, privacy, and structured help.",
+      "Persistent or impairing distress may need professional care.",
+      "Crisis, abuse, psychosis, or self-harm concerns need immediate support."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What friends can do well",
+        "body": "Friends can listen, remind you that you are not alone, help with practical needs, and offer emotional connection. That support is real and valuable."
+      },
+      {
+        "type": "section",
+        "heading": "What therapy adds",
+        "body": "Therapy can provide a confidential space, pattern recognition, coping skills, trauma-informed care, and support for issues that feel too complicated or heavy to place only on friends."
+      },
+      {
+        "type": "section",
+        "heading": "When therapy is more urgent",
+        "body": "Consider professional help if distress affects sleep, work, relationships, substance use, safety, or daily functioning. Seek immediate help for self-harm thoughts, abuse, psychosis, or danger."
+      }
+    ],
+    "care_note": "If you may hurt yourself or someone else, feel unsafe, or are experiencing abuse or crisis, seek immediate support. In the U.S., call or text 988 for crisis support.",
+    "related_questions": [
+      "How do I know if I need therapy?",
+      "What should I talk about in therapy?",
+      "How do I ask friends for support?",
+      "Can therapy help if I do not have a diagnosis?"
+    ],
+    "suggested_schema_question": "How do I know if I need therapy or just more support from friends?",
+    "suggested_schema_answer": "Friend support can help, but therapy may be appropriate when distress is persistent, impairing, unsafe, or too complex for informal support alone. Many people benefit from both.",
+    "primary_theme": "General Mental Health",
+    "related_themes": ["Therapy", "Social support", "Care navigation", "Crisis support"],
+    "source_refs": [
+      {
+        "title": "Mental Health",
+        "url": "https://www.samhsa.gov/mental-health",
+        "publisher": "SAMHSA",
+        "note": "Supports help-seeking and mental health service context."
+      }
+    ],
+    "citation_gaps": ["Add psychotherapy source and crisis source before review."],
+    "safety_flags": ["crisis-sensitive"],
+    "draft_notes": "Frames therapy and friendship as complementary, not competing."
+  },
+  {
+    "question": "Why do I feel emotionally exhausted all the time?",
+    "slug": "why-do-i-feel-emotionally-exhausted-all-the-time",
+    "category": "General Mental Health",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Why You Might Feel Emotionally Exhausted All the Time",
+    "improved_meta_description": "Emotional exhaustion can come from stress, caregiving, grief, burnout, depression, or carrying too much for too long.",
+    "improved_summary": "Feeling emotionally exhausted all the time can happen when your system has been carrying more stress, responsibility, grief, conflict, or uncertainty than it can recover from. It is not a diagnosis by itself, but it is a signal worth taking seriously.",
+    "key_takeaways": [
+      "Emotional exhaustion often means recovery has not kept pace with demand.",
+      "It can overlap with burnout, depression, anxiety, grief, trauma, or caregiving strain.",
+      "Rest helps, but the underlying load may also need to change.",
+      "Persistent exhaustion deserves support."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "Emotional exhaustion can build when you are constantly managing pressure, conflict, caregiving, uncertainty, or self-criticism. Over time, even small tasks can feel like too much."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Look at both recovery and load. Sleep, food, movement, connection, breaks, and therapy may help, but so can reducing demands, asking for practical help, or changing unsustainable patterns."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Consider support if exhaustion is persistent, affects functioning, or comes with hopelessness, numbness, panic, or thoughts of self-harm."
+      }
+    ],
+    "care_note": "If emotional exhaustion is interfering with daily life, relationships, work, sleep, or your sense of safety, consider talking with a licensed mental health professional or healthcare clinician.",
+    "related_questions": [
+      "Is emotional exhaustion the same as burnout?",
+      "Can depression feel like exhaustion?",
+      "How do I recover from emotional burnout?",
+      "Why do I feel numb and tired?"
+    ],
+    "suggested_schema_question": "Why do I feel emotionally exhausted all the time?",
+    "suggested_schema_answer": "Emotional exhaustion can happen when stress, responsibility, grief, conflict, or uncertainty exceed your ability to recover. It is a signal to reduce load and seek support if persistent.",
+    "primary_theme": "General Mental Health",
+    "related_themes": ["Emotional exhaustion", "Burnout", "Depression", "Stress"],
+    "source_refs": [
+      {
+        "title": "Mental Health",
+        "url": "https://www.samhsa.gov/mental-health",
+        "publisher": "SAMHSA",
+        "note": "Supports broad mental health and help-seeking framing."
+      }
+    ],
+    "citation_gaps": ["Add stress, burnout, or depression-specific source before review."],
+    "safety_flags": ["diagnosis-risk"],
+    "draft_notes": "Avoids over-listing diagnoses while naming common overlaps."
+  },
+  {
+    "question": "Why does grief come in waves?",
+    "slug": "why-does-grief-come-in-waves",
+    "category": "Grief & Loss",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Why Grief Comes in Waves Instead of Moving in a Straight Line",
+    "improved_meta_description": "Grief often rises and falls with memories, dates, stress, and love. Waves do not mean you are going backward.",
+    "improved_summary": "Grief comes in waves because loss is not something the mind processes once and finishes. Memories, anniversaries, stress, sensory reminders, and moments of missing the person can bring grief back suddenly, even after calmer days.",
+    "key_takeaways": [
+      "Grief usually does not move in a straight line.",
+      "Waves can be triggered by memories, dates, places, or stress.",
+      "A hard grief day does not erase progress.",
+      "Support can help when grief feels unmanageable or unsafe."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Why grief rises again",
+        "body": "Loss changes daily life, identity, routines, and expectations. A song, smell, holiday, quiet moment, or stressful day can bring the reality of the loss forward again."
+      },
+      {
+        "type": "section",
+        "heading": "Why waves do not mean failure",
+        "body": "Having a hard day after feeling steadier does not mean you are back at the beginning. It often means another part of the loss has become present."
+      },
+      {
+        "type": "section",
+        "heading": "When grief needs more support",
+        "body": "Consider support if grief feels unbearable, keeps you from functioning, isolates you, or brings thoughts of wanting to die or not continue."
+      }
+    ],
+    "care_note": "If grief includes suicidal thoughts, self-harm urges, or fear that you cannot stay safe, seek immediate support. In the U.S., call or text 988.",
+    "related_questions": [
+      "Is grief supposed to come and go?",
+      "Why do anniversaries make grief worse?",
+      "How long does grief last?",
+      "When should I get help for grief?"
+    ],
+    "suggested_schema_question": "Why does grief come in waves?",
+    "suggested_schema_answer": "Grief comes in waves because reminders, anniversaries, stress, and love can bring the loss forward again. A hard wave does not mean healing has stopped.",
+    "primary_theme": "Grief & Loss",
+    "related_themes": ["Grief", "Loss reminders", "Bereavement", "Coping"],
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Supports grief process education and coping guidance."
+      }
+    ],
+    "citation_gaps": ["Add crisis source before review if 988 care note remains."],
+    "safety_flags": ["none"],
+    "draft_notes": "Avoids rigid stage-based grief framing."
+  },
+  {
+    "question": "Is it normal to feel angry after someone dies?",
+    "slug": "is-it-normal-to-feel-angry-after-someone-dies",
+    "category": "Grief & Loss",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Is It Normal to Feel Angry After Someone Dies?",
+    "improved_meta_description": "Anger can be part of grief. It may point to pain, unfairness, regret, helplessness, or love with nowhere to go.",
+    "improved_summary": "It can be normal to feel angry after someone dies. Grief can include anger at the situation, the person who died, yourself, other people, medical systems, faith, or the unfairness of the loss.",
+    "key_takeaways": [
+      "Anger can be part of grief and does not mean you loved the person less.",
+      "Grief anger often points to helplessness, unfairness, regret, or pain.",
+      "The feeling is valid, but unsafe actions still need support.",
+      "Talking about anger can reduce shame around it."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Why anger can show up",
+        "body": "Death can leave people with unanswered questions, changed futures, and no way to fix what happened. Anger may be the mind’s response to helplessness and unfairness."
+      },
+      {
+        "type": "section",
+        "heading": "What to do with the anger",
+        "body": "Try naming what the anger is protecting: sadness, guilt, abandonment, fear, exhaustion, or regret. Writing, movement, therapy, support groups, or honest conversation can help the feeling move safely."
+      },
+      {
+        "type": "section",
+        "heading": "When anger needs support",
+        "body": "Get help if anger feels uncontrollable, leads to threats or violence, turns into self-punishment, or makes you feel unsafe."
+      }
+    ],
+    "care_note": "If grief-related anger makes you fear you may hurt yourself or someone else, seek immediate support from emergency services, crisis support, or a qualified professional.",
+    "related_questions": [
+      "Why am I angry at someone who died?",
+      "Can grief make me irritable?",
+      "How do I deal with guilt after a death?",
+      "When should I get help for grief?"
+    ],
+    "suggested_schema_question": "Is it normal to feel angry after someone dies?",
+    "suggested_schema_answer": "Anger can be a normal part of grief. It may reflect pain, helplessness, unfairness, regret, or love with nowhere to go, but unsafe anger needs support.",
+    "primary_theme": "Grief & Loss",
+    "related_themes": ["Grief anger", "Bereavement", "Guilt", "Emotional regulation"],
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Supports varied emotional responses to loss."
+      }
+    ],
+    "citation_gaps": ["Add source on anger in grief or crisis support before review."],
+    "safety_flags": ["none"],
+    "draft_notes": "Includes safety caveat for violent or uncontrollable anger."
+  }
+]

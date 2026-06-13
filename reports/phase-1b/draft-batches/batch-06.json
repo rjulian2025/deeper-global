@@ -1,0 +1,238 @@
+[
+  {
+    "question": "How can couples rebuild trust after lying?",
+    "slug": "how-can-couples-rebuild-trust-after-lying",
+    "category": "Relationships & Communication",
+    "intent": "Repair trust after dishonesty",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds relationship repair coverage around dishonesty, distinct from infidelity or apology alone. Useful for nuanced trust content.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support relationship quality and trust context."
+      }
+    ],
+    "notes": "Avoid guaranteeing repair; include mutual willingness and time.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I ask for reassurance without pushing my partner away?",
+    "slug": "ask-for-reassurance-without-pushing-partner-away",
+    "category": "Relationships & Communication",
+    "intent": "Communicate insecurity or need for reassurance",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds a specific relationship anxiety communication pattern. It bridges attachment concerns and practical communication without diagnosing attachment style.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support relationship communication and emotional support context."
+      }
+    ],
+    "notes": "Avoid attachment-style claims unless reviewed.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What should I do if my partner refuses to talk about problems?",
+    "slug": "partner-refuses-to-talk-about-problems",
+    "category": "Relationships & Communication",
+    "intent": "Navigate avoidance in a relationship",
+    "safety_flags": [
+      "abuse"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Covers one-sided communication breakdowns. Important to distinguish avoidance from coercive silence or emotional abuse.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Would support healthy relationship communication context."
+      }
+    ],
+    "notes": "Include abuse caveat if refusal is part of control, punishment, or intimidation.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I know if divorce is affecting my mental health?",
+    "slug": "how-to-know-if-divorce-is-affecting-my-mental-health",
+    "category": "Relationships & Divorce",
+    "intent": "Recognize emotional strain during or after divorce",
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds divorce-specific mental health triage rather than legal or logistics content. Helps users identify when extra support is needed.",
+    "source_refs": [
+      {
+        "title": "Divorce and Child Custody",
+        "url": "https://www.apa.org/topics/divorce-child-custody",
+        "publisher": "American Psychological Association",
+        "note": "Would support emotional and family impacts of divorce."
+      }
+    ],
+    "notes": "Avoid legal advice; include crisis guidance for self-harm.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can I cope with loneliness after a breakup?",
+    "slug": "cope-with-loneliness-after-breakup",
+    "category": "Relationships & Divorce",
+    "intent": "Manage post-breakup loneliness",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Combines relationship loss and loneliness in a common scenario. Distinct from grief over death and general loneliness pages.",
+    "source_refs": [
+      {
+        "title": "Our Epidemic of Loneliness and Isolation",
+        "url": "https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support social connection and isolation context."
+      }
+    ],
+    "notes": "Escalate if breakup triggers suicidal thoughts or stalking/violence risk.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How do I handle divorce when we still have to co-parent?",
+    "slug": "handle-divorce-when-we-still-have-to-co-parent",
+    "category": "Relationships & Divorce",
+    "intent": "Navigate co-parenting during or after divorce",
+    "safety_flags": [
+      "minor",
+      "abuse"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds divorce-specific co-parenting content with child wellbeing focus. It differs from general co-parenting by centering separation stress.",
+    "source_refs": [
+      {
+        "title": "Divorce and Child Custody",
+        "url": "https://www.apa.org/topics/divorce-child-custody",
+        "publisher": "American Psychological Association",
+        "note": "Would support child-centered divorce and custody-related family wellbeing."
+      }
+    ],
+    "notes": "Avoid legal custody advice; include safety caveat for abuse.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "Why do I miss someone who treated me badly?",
+    "slug": "why-do-i-miss-someone-who-treated-me-badly",
+    "category": "Relationships & Divorce",
+    "intent": "Understand attachment after a painful or harmful relationship",
+    "safety_flags": [
+      "abuse",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "Adds trauma-informed breakup content without creating a separate abuse taxonomy. Important for users confused by grief after mistreatment.",
+    "source_refs": [
+      {
+        "title": "Intimate Partner Violence",
+        "url": "https://www.cdc.gov/intimate-partner-violence/about/index.html",
+        "publisher": "Centers for Disease Control and Prevention",
+        "note": "Would support safety-aware framing around harmful relationship dynamics."
+      }
+    ],
+    "notes": "Do not encourage contact; include safety planning resources if abuse is involved.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can I grieve the end of a relationship?",
+    "slug": "how-can-i-grieve-the-end-of-a-relationship",
+    "category": "Relationships & Divorce",
+    "intent": "Process relationship loss",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Frames breakup or divorce as a grief experience without conflating it with bereavement. Useful bridge between relationship and grief categories.",
+    "source_refs": [
+      {
+        "title": "Grief",
+        "url": "https://www.apa.org/topics/grief",
+        "publisher": "American Psychological Association",
+        "note": "Would support grief responses to significant loss."
+      }
+    ],
+    "notes": "Mention support if grief becomes impairing or unsafe.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "How can I tell if my teen is struggling with anxiety?",
+    "slug": "how-to-tell-if-my-teen-is-struggling-with-anxiety",
+    "category": "Teen-Specific Questions",
+    "intent": "Recognize possible teen anxiety signs",
+    "safety_flags": [
+      "minor",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "why_this_adds_coverage": "Adds caregiver-facing teen anxiety coverage. Distinct from child anxiety and adult anxiety pages because teen presentation and support needs differ.",
+    "source_refs": [
+      {
+        "title": "Protecting Youth Mental Health",
+        "url": "https://www.hhs.gov/surgeongeneral/priorities/youth-mental-health/index.html",
+        "publisher": "U.S. Surgeon General",
+        "note": "Would support youth mental health context and caregiver concern."
+      }
+    ],
+    "notes": "Avoid diagnosis; recommend professional support when symptoms persist or impair functioning.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  },
+  {
+    "question": "What should I do if my teen says they hate themselves?",
+    "slug": "what-to-do-if-my-teen-says-they-hate-themselves",
+    "category": "Teen-Specific Questions",
+    "intent": "Respond to a teen's severe self-critical statement",
+    "safety_flags": [
+      "minor",
+      "self-harm",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "why_this_adds_coverage": "High-safety teen question that requires caregiver action and crisis awareness. Adds direct coverage for self-worth warning language.",
+    "source_refs": [
+      {
+        "title": "Warning Signs of Suicide",
+        "url": "https://988lifeline.org/how-we-can-all-prevent-suicide/",
+        "publisher": "988 Suicide & Crisis Lifeline",
+        "note": "Would support suicide warning-sign and immediate support guidance."
+      }
+    ],
+    "notes": "Needs clear guidance to ask about safety and seek immediate help if there is danger.",
+    "phase_1b_status": "draft_eligible_human_approved",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed"
+  }
+]
