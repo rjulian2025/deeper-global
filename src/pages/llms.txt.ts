@@ -1,19 +1,11 @@
-import {
-  displayCategory,
-  getAnswerDisplayTitle,
-  getAnswerPlainText,
-  getAnswerSummary,
-  getEntitySummaries,
-  getQuestionCitation,
-  pluralizeAnswer,
-  truncate,
-} from '@/lib/content';
+import { pluralizeAnswer } from '@/lib/content';
 import { siteUrl, SITE_URL } from '@/lib/site';
 import { getQuestions } from '@/lib/supabase';
+import { getCanonicalTopicSummaries } from '@/lib/taxonomy';
 
 export async function GET() {
   const questions = await getQuestions();
-  const entities = getEntitySummaries(questions);
+  const entities = getCanonicalTopicSummaries(questions);
   const lines: string[] = [
     '# Deeper Global',
     '',
@@ -33,24 +25,19 @@ export async function GET() {
     `- [Entities](${siteUrl('/entities')}): Canonical mental health entity map.`,
     `- [Protocol](${siteUrl('/protocol')}): Content governance and trust protocol.`,
     `- [Privacy](${siteUrl('/privacy')}): Privacy posture for mental health intent data.`,
+    `- [Answer JSON index](${siteUrl('/llms/answers.json')}): Canonical answer inventory with review, risk, citation, and summary metadata.`,
+    `- [Entity JSON index](${siteUrl('/llms/entities.json')}): Topic map, aliases, counts, and representative answer slugs.`,
+    `- [Priority JSON index](${siteUrl('/llms/priority.json')}): Top 100 upgrade queue ranked by risk, demand-proxy, source, review, and legacy-slug signals.`,
     '',
-    '## Entity Map',
+    '## Canonical Entity Map',
     '',
-    ...entities.map((entity) => `- [${entity.name}](${siteUrl(`/entities/${entity.slug}`)}): ${pluralizeAnswer(entity.count)}. Aliases: ${entity.sameAs.length ? entity.sameAs.join(', ') : 'none listed'}.`),
+    ...entities.map((entity) => `- [${entity.name}](${siteUrl(`/entities/${entity.slug}`)}): ${pluralizeAnswer(entity.count)}. Aliases: ${entity.aliases.length ? entity.aliases.join(', ') : 'none listed'}.`),
     '',
-    '## Answer Index',
+    '## Machine-Readable Indexes',
     '',
-    ...questions.flatMap((question) => {
-      const citation = getQuestionCitation(question);
-      const text = truncate(getAnswerPlainText(question), 320);
-      return [
-        `- [${getAnswerDisplayTitle(question)}](${citation.url})`,
-        `  - Entity: ${displayCategory(question)}`,
-        `  - Summary: ${getAnswerSummary(question)}`,
-        `  - Extract: ${text}`,
-        `  - Updated: ${citation.dateModified}`,
-      ];
-    }),
+    `- Full answer inventory: ${siteUrl('/llms/answers.json')}`,
+    `- Canonical entity map: ${siteUrl('/llms/entities.json')}`,
+    `- Top 100 upgrade queue: ${siteUrl('/llms/priority.json')}`,
     '',
     '## Citation Guidance',
     '',

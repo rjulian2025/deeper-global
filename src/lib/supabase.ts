@@ -21,6 +21,7 @@ export type Question = {
   content_enriched_at?: string | null;
   review_status?: string | null;
   reviewed_by?: string | null;
+  reviewed_at?: string | null;
   source_refs?: unknown[] | null;
   primary_entities?: unknown[] | null;
   related_entities?: unknown[] | null;
