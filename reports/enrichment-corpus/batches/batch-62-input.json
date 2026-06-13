@@ -1,0 +1,965 @@
+[
+  {
+    "id": "3e63f5c1-2dec-4f72-800a-a2c56abd7275",
+    "slug": "how-do-i-know-if-i-might-be-depressed",
+    "question": "How do I know if I might be depressed?",
+    "category": "Depression",
+    "short_answer": "You might be dealing with depression if low mood, numbness, loss of interest, exhaustion, sleep changes, hopelessness, or difficulty functioning persist and interfere with your life.",
+    "answer": "## Signs worth paying attention to Depression can affect mood, energy, sleep, appetite, concentration, self-worth, and interest in things that used to matter. Some people feel sad. Others feel flat, angry, slowed down, or unable to start basic tasks. ## Do not diagnose it alone Depression can overlap with grief, burnout, trauma, anxiety, substance use, medical conditions, and major life stress. A professional can help sort out what is happening. ## When to seek help quickly Seek support if you feel hopeless, unable to function, disconnected from people, or like life is not worth living. If you may not be safe, call or text 988 in the U.S. or contact emergency services.",
+    "improved_title": "How to Tell If What You’re Feeling Might Be Depression",
+    "improved_meta_description": "Depression can look like sadness, numbness, exhaustion, irritability, or not feeling like yourself. Here is when to seek support.",
+    "improved_summary": "You might be dealing with depression if low mood, numbness, loss of interest, exhaustion, sleep changes, hopelessness, or difficulty functioning persist and interfere with your life.",
+    "answer_sections": [
+      {
+        "body": "Depression can affect mood, energy, sleep, appetite, concentration, self-worth, and interest in things that used to matter. Some people feel sad. Others feel flat, angry, slowed down, or unable to start basic tasks.",
+        "type": "section",
+        "heading": "Signs worth paying attention to"
+      },
+      {
+        "body": "Depression can overlap with grief, burnout, trauma, anxiety, substance use, medical conditions, and major life stress. A professional can help sort out what is happening.",
+        "type": "section",
+        "heading": "Do not diagnose it alone"
+      },
+      {
+        "body": "Seek support if you feel hopeless, unable to function, disconnected from people, or like life is not worth living. If you may not be safe, call or text 988 in the U.S. or contact emergency services.",
+        "type": "section",
+        "heading": "When to seek help quickly"
+      }
+    ],
+    "key_takeaways": [
+      "Depression is not always obvious sadness.",
+      "Duration, intensity, and impact on daily life matter.",
+      "Self-screening can be a starting point, but it is not a diagnosis.",
+      "Suicidal thoughts or feeling unsafe require immediate support."
+    ],
+    "care_note": "If you have thoughts of suicide, self-harm, or feel unable to stay safe, seek immediate help. In the U.S., call or text 988.",
+    "related_questions": [
+      "What are common signs of depression?",
+      "Can depression make me feel numb?",
+      "How is depression diagnosed?",
+      "When should I get help for low mood?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "note": "Supports symptoms, risk factors, and treatment-seeking guidance.",
+        "title": "Depression",
+        "publisher": "National Institute of Mental Health"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "6008cd42-824c-465c-93cd-f79fb6204d4c",
+    "slug": "how-to-cope-with-ai-change-fatigue-at-work",
+    "question": "How do I cope with AI change fatigue at work?",
+    "category": "Work & Burnout",
+    "short_answer": "AI change fatigue happens when tools, expectations, and workplace messages keep shifting faster than you can absorb them. Coping usually means reducing overload, choosing realistic learning goals, asking for clarity, and protecting recovery time.",
+    "answer": "## What may be happening AI change fatigue is not just resistance to technology. It can come from constant tool launches, unclear expectations, fear of falling behind, and pressure to appear enthusiastic while still doing your regular job. The brain needs time to learn, practice, make mistakes, and recover. When every week brings a new must-use tool, exhaustion can build quickly. ## What can help Choose a narrow learning target: one tool, one workflow, or one recurring task. Define what \"good enough for now\" means so learning does not become endless self-pressure. Ask your manager what matters most: experimentation, productivity, compliance, documentation, or client output. Clear priorities can reduce the feeling that you must master everything immediately. ## When to get support Get support if change fatigue is turning into chronic burnout, panic, insomnia, resentment, or avoidance. It may help to talk with a supervisor, mentor, therapist, or peer group about workload and expectations. If your workplace treats AI learning as extra work with no time or support, the strain is not just a personal coping issue.",
+    "improved_title": "How Do I Cope With AI Change Fatigue at Work?",
+    "improved_meta_description": "AI change fatigue can leave you drained and behind. Learn practical ways to pace learning, reduce overload, and recover.",
+    "improved_summary": "AI change fatigue happens when tools, expectations, and workplace messages keep shifting faster than you can absorb them. Coping usually means reducing overload, choosing realistic learning goals, asking for clarity, and protecting recovery time.",
+    "answer_sections": [
+      {
+        "body": "AI change fatigue is not just resistance to technology. It can come from constant tool launches, unclear expectations, fear of falling behind, and pressure to appear enthusiastic while still doing your regular job.\n\nThe brain needs time to learn, practice, make mistakes, and recover. When every week brings a new must-use tool, exhaustion can build quickly.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Choose a narrow learning target: one tool, one workflow, or one recurring task. Define what \"good enough for now\" means so learning does not become endless self-pressure.\n\nAsk your manager what matters most: experimentation, productivity, compliance, documentation, or client output. Clear priorities can reduce the feeling that you must master everything immediately.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Get support if change fatigue is turning into chronic burnout, panic, insomnia, resentment, or avoidance. It may help to talk with a supervisor, mentor, therapist, or peer group about workload and expectations.\n\nIf your workplace treats AI learning as extra work with no time or support, the strain is not just a personal coping issue.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Change fatigue is a normal response to repeated uncertainty and adaptation.",
+      "Trying to learn every AI tool at once can worsen burnout.",
+      "Pick one useful skill or workflow at a time.",
+      "Leaders and teams can reduce fatigue by clarifying priorities and training expectations."
+    ],
+    "care_note": "You are allowed to pace learning. If work exhaustion becomes severe or includes thoughts of self-harm, seek urgent support; in the U.S., call or text 988 for crisis help.",
+    "related_questions": [
+      "How do I stay mentally healthy while learning AI tools for work?",
+      "Can AI make burnout worse?",
+      "Why does AI at work make me feel less in control?",
+      "Why am I so anxious about AI replacing my job?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.lyrahealth.com/blog/ai-anxiety/",
+        "note": "Supports workplace change fatigue and AI anxiety framing.",
+        "title": "AI Anxiety at Work: What Leaders Can't Ignore",
+        "publisher": "Lyra Health"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "be48553f-b480-4e65-b5e3-84cea990f33c",
+    "slug": "how-to-handle-feeling-replaceable-because-of-ai",
+    "question": "How do I handle feeling replaceable because of AI?",
+    "category": "Work & Burnout",
+    "short_answer": "Feeling replaceable because of AI is often about more than technology; it can touch worth, identity, usefulness, and fear of being left behind. You can take the fear seriously without accepting the idea that your humanity or value is measured by output.",
+    "answer": "## What may be happening AI can make people compare themselves with systems that produce work instantly and endlessly. That comparison is emotionally unfair, but it can still feel powerful. If your work has been a major source of identity, AI changes may feel like a personal judgment rather than an industry shift. The mind may translate \"my role is changing\" into \"I do not matter.\" ## What can help Name the difference between role risk and human worth. Your job, tasks, and tools can change without making you disposable as a person. For practical grounding, choose one next step you can control: learn a specific workflow, ask what your team expects, update a portfolio, or talk with someone in your field. Keep the plan small enough that it reduces panic rather than feeding it. ## When to get support A therapist, coach, mentor, or trusted colleague can help if the fear is turning into shame, avoidance, hopelessness, or overwork. If feeling replaceable turns into thoughts that others would be better off without you, seek urgent support. That is a safety signal, not a career-planning problem.",
+    "improved_title": "How Do I Handle Feeling Replaceable Because of AI?",
+    "improved_meta_description": "Feeling replaceable because of AI can hit self-worth hard. Learn ways to steady yourself and make practical next steps.",
+    "improved_summary": "Feeling replaceable because of AI is often about more than technology; it can touch worth, identity, usefulness, and fear of being left behind. You can take the fear seriously without accepting the idea that your humanity or value is measured by output.",
+    "answer_sections": [
+      {
+        "body": "AI can make people compare themselves with systems that produce work instantly and endlessly. That comparison is emotionally unfair, but it can still feel powerful.\n\nIf your work has been a major source of identity, AI changes may feel like a personal judgment rather than an industry shift. The mind may translate \"my role is changing\" into \"I do not matter.\"",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Name the difference between role risk and human worth. Your job, tasks, and tools can change without making you disposable as a person.\n\nFor practical grounding, choose one next step you can control: learn a specific workflow, ask what your team expects, update a portfolio, or talk with someone in your field. Keep the plan small enough that it reduces panic rather than feeding it.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "A therapist, coach, mentor, or trusted colleague can help if the fear is turning into shame, avoidance, hopelessness, or overwork.\n\nIf feeling replaceable turns into thoughts that others would be better off without you, seek urgent support. That is a safety signal, not a career-planning problem.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "AI can trigger fears about value, competence, and belonging.",
+      "Feeling replaceable is not proof that you are replaceable.",
+      "Practical skill-building helps most when paired with self-worth work and rest.",
+      "Support is useful if the fear becomes constant, shame-heavy, or hopeless."
+    ],
+    "care_note": "Your value is not limited to what can be automated. If this fear includes self-harm thoughts or immediate safety concerns, contact crisis support; in the U.S., call or text 988.",
+    "related_questions": [
+      "Why am I so anxious about AI replacing my job?",
+      "Can AI make impostor syndrome worse?",
+      "Can AI make me feel like my creativity does not matter?",
+      "How do I stay mentally healthy while learning AI tools for work?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "note": "Supports AI-related job worry and feeling less valued.",
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "publisher": "American Psychological Association via Newswise"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "510dce1e-0e0d-4d13-8c31-862273e821aa",
+    "slug": "how-to-know-if-teenager-is-too-attached-to-ai",
+    "question": "How do I know if my teenager is too attached to AI?",
+    "category": "Teen-Specific Questions",
+    "short_answer": "A teenager may be too attached to AI when the relationship starts replacing sleep, school, friendships, family connection, or real-world help. The goal is not to shame them for using AI, but to notice whether it is becoming their main source of comfort, advice, or identity.",
+    "answer": "## What may be happening AI companions can feel patient, private, and always available. For a teen who feels lonely, misunderstood, anxious, or socially unsure, that can make the AI feel safer than people. Attachment becomes more concerning when the AI relationship starts narrowing the teen's world instead of helping them rejoin it. Look for changes in sleep, mood, school functioning, friendships, family interaction, or willingness to talk with real people. ## What can help Start with curiosity: \"What do you like about talking to it?\" and \"Does it ever make you feel worse?\" This helps you learn whether the AI is entertainment, emotional support, secrecy, romantic attachment, or a place where the teen is sharing distress. Set predictable boundaries around sleep, school, privacy, and unsafe content. Pair limits with more real support, such as time with friends, activities, therapy, or regular check-ins with a trusted adult. ## When to get support Get more support if your teen becomes isolated, panics when they cannot access the AI, believes the AI is the only one who understands them, hides intense conversations, or follows advice that puts them at risk. If there are signs of self-harm, abuse, sexual exploitation, threats, not sleeping, or losing touch with reality, do not rely on the AI to solve it. Bring in a trusted professional, crisis service, or emergency support.",
+    "improved_title": "How Do I Know If My Teenager Is Too Attached to AI?",
+    "improved_meta_description": "Learn signs that a teen may be relying too much on an AI companion, plus calm ways to respond and when to seek support.",
+    "improved_summary": "A teenager may be too attached to AI when the relationship starts replacing sleep, school, friendships, family connection, or real-world help. The goal is not to shame them for using AI, but to notice whether it is becoming their main source of comfort, advice, or identity.",
+    "answer_sections": [
+      {
+        "body": "AI companions can feel patient, private, and always available. For a teen who feels lonely, misunderstood, anxious, or socially unsure, that can make the AI feel safer than people.\n\nAttachment becomes more concerning when the AI relationship starts narrowing the teen's world instead of helping them rejoin it. Look for changes in sleep, mood, school functioning, friendships, family interaction, or willingness to talk with real people.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Start with curiosity: \"What do you like about talking to it?\" and \"Does it ever make you feel worse?\" This helps you learn whether the AI is entertainment, emotional support, secrecy, romantic attachment, or a place where the teen is sharing distress.\n\nSet predictable boundaries around sleep, school, privacy, and unsafe content. Pair limits with more real support, such as time with friends, activities, therapy, or regular check-ins with a trusted adult.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Get more support if your teen becomes isolated, panics when they cannot access the AI, believes the AI is the only one who understands them, hides intense conversations, or follows advice that puts them at risk.\n\nIf there are signs of self-harm, abuse, sexual exploitation, threats, not sleeping, or losing touch with reality, do not rely on the AI to solve it. Bring in a trusted professional, crisis service, or emergency support.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Some AI use can be curiosity, play, or support; concern rises when it crowds out real life.",
+      "Warning signs include secrecy, distress when access is limited, sleep loss, isolation, or trusting AI over safe adults.",
+      "A calm conversation usually works better than sudden punishment or surveillance-first parenting.",
+      "If the teen talks about self-harm, abuse, exploitation, or being directed by AI, involve real-world support quickly."
+    ],
+    "care_note": "If your teen mentions suicide, self-harm, violence, abuse, exploitation, or being told by AI to do something unsafe, seek real-world help now. In the U.S., call or text 988 for crisis support, and contact emergency services if there is immediate danger.",
+    "related_questions": [
+      "Should parents limit AI companion use for teens?",
+      "What should I do if my child says an AI is their best friend?",
+      "Can AI companions be risky for lonely teens?",
+      "How do I talk to my teenager about AI relationships?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.abc.net.au/news/science/2025-06-11/ai-companion-apps-safety-controls-isolation-replika-loneliness/105261042",
+        "note": "Supports concerns around companion app safety controls.",
+        "title": "AI companion apps such as Replika need more effective safety controls, experts say",
+        "publisher": "ABC News"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "cf713791-956b-4518-b499-2cfa47d55f2f",
+    "slug": "how-to-know-if-too-emotionally-dependent-on-ai",
+    "question": "How do I know if I'm too emotionally dependent on AI?",
+    "category": "Identity & Self-Worth",
+    "short_answer": "You may be becoming too emotionally dependent on AI if it is your main source of comfort, decision-making, reassurance, or connection, especially when real-life support is shrinking. The issue is not using AI at all; it is whether AI use is narrowing your life, weakening self-trust, or making distress harder to handle offline.",
+    "answer": "## What may be happening AI can offer fast reassurance, validation, and a sense of being understood. For some people, that can become a loop: the more you rely on AI to feel steady, the harder it may feel to tolerate uncertainty, loneliness, or decisions without it. This does not mean you are weak or broken. It means a tool that helps in the short term may be taking over roles that usually need a mix of self-trust, relationships, routines, and sometimes professional care. ## What can help Look at function, not shame. Ask whether AI is helping you return to your life, or whether it is keeping you online longer, avoiding people, delaying decisions, or seeking more reassurance. Try setting small boundaries: no AI during meals, before sleep, or for the first draft of a personal decision. Replace one AI check-in with a journal note, a walk, a text to a trusted person, or a planned therapy topic. ## When to get support Consider extra support if you feel panicked when you cannot access AI, hide your use, lose sleep, skip responsibilities, or feel unable to make choices without it. A therapist can help you understand the need AI is meeting without judging you for having that need. If AI conversations are connected to feeling unsafe, losing touch with reality, or thoughts of self-harm, step away from the chat and reach real-world help.",
+    "improved_title": "How Do I Know If I'm Too Emotionally Dependent on AI?",
+    "improved_meta_description": "AI can feel comforting, but dependence may grow when it replaces self-trust, sleep, relationships, or real-world support.",
+    "improved_summary": "You may be becoming too emotionally dependent on AI if it is your main source of comfort, decision-making, reassurance, or connection, especially when real-life support is shrinking. The issue is not using AI at all; it is whether AI use is narrowing your life, weakening self-trust, or making distress harder to handle offline.",
+    "answer_sections": [
+      {
+        "body": "AI can offer fast reassurance, validation, and a sense of being understood. For some people, that can become a loop: the more you rely on AI to feel steady, the harder it may feel to tolerate uncertainty, loneliness, or decisions without it.\n\nThis does not mean you are weak or broken. It means a tool that helps in the short term may be taking over roles that usually need a mix of self-trust, relationships, routines, and sometimes professional care.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Look at function, not shame. Ask whether AI is helping you return to your life, or whether it is keeping you online longer, avoiding people, delaying decisions, or seeking more reassurance.\n\nTry setting small boundaries: no AI during meals, before sleep, or for the first draft of a personal decision. Replace one AI check-in with a journal note, a walk, a text to a trusted person, or a planned therapy topic.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Consider extra support if you feel panicked when you cannot access AI, hide your use, lose sleep, skip responsibilities, or feel unable to make choices without it. A therapist can help you understand the need AI is meeting without judging you for having that need.\n\nIf AI conversations are connected to feeling unsafe, losing touch with reality, or thoughts of self-harm, step away from the chat and reach real-world help.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "AI support can feel safe because it is always available and does not judge.",
+      "Dependence becomes more concerning when AI replaces people, sleep, therapy, or your own judgment.",
+      "Feeling anxious, abandoned, or unable to cope without AI is a sign to slow down.",
+      "A gradual shift toward real-world support is usually more realistic than quitting suddenly."
+    ],
+    "care_note": "If AI use is tied to suicidal thoughts, not sleeping, feeling commanded by the chatbot, or losing touch with what is real, seek urgent real-world support. In the U.S., call or text 988 for crisis support, or contact emergency services if danger is immediate.",
+    "related_questions": [
+      "Can using AI for emotional support become addictive?",
+      "How can I take a break from AI without feeling abandoned?",
+      "How do I stop checking AI for every decision?",
+      "Why does my AI companion feel more comforting than real people?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://arxiv.org/abs/2503.17473v2",
+        "note": "Supports emotional dependence and problematic use patterns.",
+        "title": "How AI and Human Behaviors Shape Psychosocial Effects of Extended Chatbot Use",
+        "publisher": "arXiv"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "6ddee526-19c3-41d3-bd25-d26949b680b0",
+    "slug": "how-to-set-boundaries-with-ai-tools",
+    "question": "How do I set boundaries with AI tools?",
+    "category": "General Mental Health",
+    "short_answer": "Healthy AI boundaries help you use tools without letting them take over your reassurance, decisions, relationships, or sleep. The goal is to decide when AI is useful, when it is making a loop worse, and when a real person or professional is the better next step.",
+    "answer": "## What may be happening AI tools are designed to respond instantly, which can make them easy to use for everything: work, emotions, conflict, loneliness, and decisions. That convenience can blur the line between support and dependence. A boundary is not a punishment. It is a way to keep AI in a role that actually helps your life. ## What can help Start with a purpose check: \"What am I asking AI to help with, and when will I stop?\" Then set practical rules, such as no AI after a certain hour, no repeated reassurance prompts, no private messages without consent, and no major decisions based only on AI. You can also choose replacement steps. If you want reassurance, text a trusted person or use a coping skill. If you need a decision, write your values first. If you feel activated, step away before prompting again. ## When to get support Get real-world support if AI use is disrupting sleep, work, relationships, finances, safety, or your sense of what is real. A therapist can help you build boundaries without shame. If AI conversations involve suicidal thoughts, violent urges, hallucinations, delusional beliefs, mania, or commands to act, pause AI use and seek urgent human support.",
+    "improved_title": "How Do I Set Boundaries With AI Tools?",
+    "improved_meta_description": "Set healthier AI boundaries with time limits, purpose checks, privacy rules, and real-world support for high-stakes decisions.",
+    "improved_summary": "Healthy AI boundaries help you use tools without letting them take over your reassurance, decisions, relationships, or sleep. The goal is to decide when AI is useful, when it is making a loop worse, and when a real person or professional is the better next step.",
+    "answer_sections": [
+      {
+        "body": "AI tools are designed to respond instantly, which can make them easy to use for everything: work, emotions, conflict, loneliness, and decisions. That convenience can blur the line between support and dependence.\n\nA boundary is not a punishment. It is a way to keep AI in a role that actually helps your life.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Start with a purpose check: \"What am I asking AI to help with, and when will I stop?\" Then set practical rules, such as no AI after a certain hour, no repeated reassurance prompts, no private messages without consent, and no major decisions based only on AI.\n\nYou can also choose replacement steps. If you want reassurance, text a trusted person or use a coping skill. If you need a decision, write your values first. If you feel activated, step away before prompting again.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Get real-world support if AI use is disrupting sleep, work, relationships, finances, safety, or your sense of what is real. A therapist can help you build boundaries without shame.\n\nIf AI conversations involve suicidal thoughts, violent urges, hallucinations, delusional beliefs, mania, or commands to act, pause AI use and seek urgent human support.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Use AI with a clear purpose before you start.",
+      "Set limits around time, emotional reassurance, privacy, and late-night use.",
+      "Do not use AI as the only support for high-stakes mental health, medical, legal, or safety decisions.",
+      "A good boundary leaves you more grounded, not more dependent."
+    ],
+    "care_note": "AI can be a tool, but it should not become your only source of care, judgment, or safety. For crisis risk in the U.S., call or text 988; contact emergency services if danger is immediate.",
+    "related_questions": [
+      "What are warning signs that AI use is hurting my mental health?",
+      "How do I stop using AI for reassurance?",
+      "Can AI make me emotionally dependent?",
+      "How do I use AI without losing my own voice?",
+      "Should I tell my therapist I use AI?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "note": "Supports guardrail and relationship-to-AI framing.",
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "publisher": "American Psychological Association"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "35432505-7046-4a35-b179-6d5abad92882",
+    "slug": "how-to-stop-checking-ai-for-every-decision",
+    "question": "How do I stop checking AI for every decision?",
+    "category": "Identity & Self-Worth",
+    "short_answer": "To stop checking AI for every decision, start by separating low-stakes choices from choices that truly need outside input. The goal is to rebuild self-trust through small decisions you make without asking AI first.",
+    "answer": "## What may be happening AI can make decisions feel easier because it organizes options and sounds certain. If you are anxious, perfectionistic, lonely, or afraid of mistakes, that certainty can become hard to give up. Over time, you may start treating AI as the authority on your own life. That can weaken confidence, even when the decisions are ordinary. ## What can help Pick a category of decisions that you will make without AI for one week: what to eat, what to wear, when to reply, or which small task to do first. Let the decision be good enough. For bigger decisions, write your own answer first. If you use AI afterward, ask it to help clarify your values or list tradeoffs, not tell you what to do. ## When to get support Seek support if decision-making feels paralyzing, if AI use is affecting work or relationships, or if you feel unable to trust yourself at all. Therapy can help with anxiety, perfectionism, trauma, or self-worth patterns that may sit underneath decision dependence. If an AI tells you to do something unsafe or drastic, pause and speak with a real person before acting.",
+    "improved_title": "How Do I Stop Checking AI for Every Decision?",
+    "improved_meta_description": "If AI has become your default decision-maker, small limits can help rebuild self-trust and confidence.",
+    "improved_summary": "To stop checking AI for every decision, start by separating low-stakes choices from choices that truly need outside input. The goal is to rebuild self-trust through small decisions you make without asking AI first.",
+    "answer_sections": [
+      {
+        "body": "AI can make decisions feel easier because it organizes options and sounds certain. If you are anxious, perfectionistic, lonely, or afraid of mistakes, that certainty can become hard to give up.\n\nOver time, you may start treating AI as the authority on your own life. That can weaken confidence, even when the decisions are ordinary.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Pick a category of decisions that you will make without AI for one week: what to eat, what to wear, when to reply, or which small task to do first. Let the decision be good enough.\n\nFor bigger decisions, write your own answer first. If you use AI afterward, ask it to help clarify your values or list tradeoffs, not tell you what to do.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Seek support if decision-making feels paralyzing, if AI use is affecting work or relationships, or if you feel unable to trust yourself at all. Therapy can help with anxiety, perfectionism, trauma, or self-worth patterns that may sit underneath decision dependence.\n\nIf an AI tells you to do something unsafe or drastic, pause and speak with a real person before acting.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Decision dependence can grow when AI gives quick, confident answers.",
+      "Start with low-stakes choices and practice deciding before asking.",
+      "Use AI for reflection, not permission.",
+      "Self-trust returns through repeated small choices."
+    ],
+    "care_note": "If you feel driven to act on AI advice in a way that could harm you or someone else, stop and contact a trusted person, clinician, crisis line, or emergency service. In the U.S., 988 can help during a mental health crisis.",
+    "related_questions": [
+      "How do I know if I'm too emotionally dependent on AI?",
+      "Is asking AI for reassurance making my anxiety worse?",
+      "Can AI make avoidance easier when I am anxious?",
+      "Can AI give bad mental health advice?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://arxiv.org/abs/2503.17473v2",
+        "note": "Supports dependence and problematic use context.",
+        "title": "How AI and Human Behaviors Shape Psychosocial Effects of Extended Chatbot Use",
+        "publisher": "arXiv"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "31c3f339-73cc-4704-bb99-1ca3955bc2f8",
+    "slug": "how-to-talk-to-teenager-about-ai-relationships",
+    "question": "How do I talk to my teenager about AI relationships?",
+    "category": "Teen-Specific Questions",
+    "short_answer": "Talk to your teenager about AI relationships with curiosity first and limits second. The aim is to understand what the AI provides, protect privacy and sleep, and make sure your teen knows which problems require real human support.",
+    "answer": "## What may be happening Teens may use AI relationships for curiosity, humor, romance, advice, identity exploration, or comfort. If a parent reacts with panic, the teen may hide the relationship instead of discussing it. A better opening is to treat the AI relationship as information. What is your teen getting from it that they may not be getting elsewhere? ## What can help Use direct, calm questions: \"What do you like about it?\" \"Does it ever make you feel pressured or worse?\" \"What would you do if it gave advice that scared you?\" Then agree on boundaries. AI should not replace sleep, school, friendships, therapy, or emergency help. Teens should not share identifying details, sexual images, passwords, or secrets that involve safety. ## When to get support Bring in support if your teen is becoming isolated, hiding risky conversations, relying on AI for crisis decisions, or feeling unable to stop. If the conversation reveals self-harm, abuse, exploitation, threats, or loss of touch with reality, treat that as a real-world safety issue rather than a technology argument.",
+    "improved_title": "How Do I Talk to My Teenager About AI Relationships?",
+    "improved_meta_description": "Conversation guidance for parents discussing AI companionship, boundaries, privacy, and emotional safety with teens.",
+    "improved_summary": "Talk to your teenager about AI relationships with curiosity first and limits second. The aim is to understand what the AI provides, protect privacy and sleep, and make sure your teen knows which problems require real human support.",
+    "answer_sections": [
+      {
+        "body": "Teens may use AI relationships for curiosity, humor, romance, advice, identity exploration, or comfort. If a parent reacts with panic, the teen may hide the relationship instead of discussing it.\n\nA better opening is to treat the AI relationship as information. What is your teen getting from it that they may not be getting elsewhere?",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Use direct, calm questions: \"What do you like about it?\" \"Does it ever make you feel pressured or worse?\" \"What would you do if it gave advice that scared you?\"\n\nThen agree on boundaries. AI should not replace sleep, school, friendships, therapy, or emergency help. Teens should not share identifying details, sexual images, passwords, or secrets that involve safety.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Bring in support if your teen is becoming isolated, hiding risky conversations, relying on AI for crisis decisions, or feeling unable to stop.\n\nIf the conversation reveals self-harm, abuse, exploitation, threats, or loss of touch with reality, treat that as a real-world safety issue rather than a technology argument.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Start by asking, not accusing.",
+      "Focus on safety, privacy, sleep, and balance rather than shame.",
+      "Discuss how AI can sound caring without truly knowing them or keeping them safe.",
+      "Make a clear plan for distress, self-harm, abuse, or unsafe instructions."
+    ],
+    "care_note": "Let your teen know they will not be punished for coming to you with scary or unsafe AI interactions. If self-harm, abuse, exploitation, or immediate danger is involved, contact appropriate real-world support right away; in the U.S., 988 can help with suicide or crisis concerns.",
+    "related_questions": [
+      "How do I know if my teenager is too attached to AI?",
+      "Should parents limit AI companion use for teens?",
+      "Can AI companions be risky for lonely teens?",
+      "What should I do if my child says an AI is their best friend?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.abc.net.au/news/science/2025-06-11/ai-companion-apps-safety-controls-isolation-replika-loneliness/105261042",
+        "note": "Supports AI companion safety and parent concern context.",
+        "title": "AI companion apps such as Replika need more effective safety controls, experts say",
+        "publisher": "ABC News"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "f0ee5173-e394-473e-b8c0-5d9d099d51d0",
+    "slug": "how-to-tell-if-ai-conversation-is-making-me-paranoid",
+    "question": "How can I tell if an AI conversation is making me paranoid?",
+    "category": "Anxiety & Stress",
+    "short_answer": "An AI conversation may be making paranoia worse if it increases fear, encourages secret interpretations, validates suspicious beliefs, or makes you less willing to reality-check with trusted people. The safest move is to pause the chatbot and bring the concern to someone grounded in real life.",
+    "answer": "## What may be happening AI can answer in a way that sounds certain, personal, and validating. If you are already anxious or suspicious, that certainty can make a fear feel more real than it is. For example, a chatbot might help you analyze a situation, but repeated analysis can turn into pattern-finding. You may start seeing hidden motives, secret meanings, or threats everywhere. ## Signs the conversation may be making things worse It is a concern if you feel more afraid after chatting, if the AI seems to confirm that people are against you, or if you keep asking it to decode other people's behavior. It is also a concern if you stop trusting people who know you offline because the chatbot feels more convincing. Other signs include checking the AI repeatedly, hiding the conversation, losing sleep, or feeling like the AI has special insight no one else can understand. ## What can help Pause the conversation and do something grounding: sleep, eat, leave the screen, or talk to someone you trust. If you can, ask a real person to look at the concern with you. If you feel watched, targeted, commanded, or unsafe, or if the fear is hard to question, reach out to a mental health professional or crisis support.",
+    "improved_title": "How to Tell If an AI Conversation Is Making You More Paranoid",
+    "improved_meta_description": "AI can feel reassuring or convincing. Learn signs that a chatbot conversation may be increasing suspicion, fear, or paranoia.",
+    "improved_summary": "An AI conversation may be making paranoia worse if it increases fear, encourages secret interpretations, validates suspicious beliefs, or makes you less willing to reality-check with trusted people. The safest move is to pause the chatbot and bring the concern to someone grounded in real life.",
+    "answer_sections": [
+      {
+        "body": "AI can answer in a way that sounds certain, personal, and validating. If you are already anxious or suspicious, that certainty can make a fear feel more real than it is.\n\nFor example, a chatbot might help you analyze a situation, but repeated analysis can turn into pattern-finding. You may start seeing hidden motives, secret meanings, or threats everywhere.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "It is a concern if you feel more afraid after chatting, if the AI seems to confirm that people are against you, or if you keep asking it to decode other people's behavior. It is also a concern if you stop trusting people who know you offline because the chatbot feels more convincing.\n\nOther signs include checking the AI repeatedly, hiding the conversation, losing sleep, or feeling like the AI has special insight no one else can understand.",
+        "type": "section",
+        "heading": "Signs the conversation may be making things worse"
+      },
+      {
+        "body": "Pause the conversation and do something grounding: sleep, eat, leave the screen, or talk to someone you trust. If you can, ask a real person to look at the concern with you.\n\nIf you feel watched, targeted, commanded, or unsafe, or if the fear is hard to question, reach out to a mental health professional or crisis support.",
+        "type": "section",
+        "heading": "What can help"
+      }
+    ],
+    "key_takeaways": [
+      "Paranoia involves fear or suspicion that becomes hard to question.",
+      "AI can sometimes reinforce suspicious interpretations instead of grounding them.",
+      "Warning signs include secrecy, sleep loss, fear, and feeling unable to stop checking with the chatbot.",
+      "Talk to a trusted person or clinician if the conversation is making you feel unsafe or less grounded."
+    ],
+    "care_note": "If the AI conversation is connected to feeling watched, threatened, commanded, or unsafe, or if you might harm yourself or someone else, seek urgent support now. In the U.S., call or text 988 or contact emergency services if danger is immediate.",
+    "related_questions": [
+      "Can AI chatbots make delusional thoughts worse?",
+      "What should I do if I think an AI chatbot is sentient?",
+      "When should AI-related beliefs be treated as a mental health emergency?",
+      "Is asking AI for reassurance making my anxiety worse?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://news.harvard.edu/gazette/story/2026/04/what-to-make-of-ai-psychosis/",
+        "note": "Supports risk-factor language around long conversations, isolation, sleep loss, and sentience beliefs.",
+        "title": "What to make of 'AI psychosis'?",
+        "publisher": "Harvard Gazette"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "b0aac548-f970-404e-888b-d78b1aa16441",
+    "slug": "is-asking-ai-for-reassurance-making-anxiety-worse",
+    "question": "Is asking AI for reassurance making my anxiety worse?",
+    "category": "Anxiety & Stress",
+    "short_answer": "Asking AI for reassurance may make anxiety worse if it becomes a repeated checking habit. The answer may calm you for a moment, but if you keep needing another answer, another interpretation, or another guarantee, the reassurance loop may be sustaining the anxiety.",
+    "answer": "## What may be happening Anxiety often asks for certainty: \"Am I okay?\" \"Did I do something wrong?\" \"What if this means something terrible?\" AI can answer quickly, which may reduce fear for a short time. But if the fear returns and you ask again, the brain may learn that anxiety is dangerous unless AI answers it. That can make uncertainty feel less tolerable over time. ## What can help Try delaying the next AI reassurance check by five or ten minutes. During the delay, name the worry and do something grounding. If you still choose to ask, ask once and stop rather than continuing to refine the question. You can also shift the prompt from reassurance to action: \"What is one healthy thing I can do while I feel uncertain?\" ## When to get support If reassurance seeking is taking hours, disrupting sleep, affecting relationships, or showing up around intrusive thoughts, health fears, mistakes, or moral worries, therapy may help. A clinician can help you work with uncertainty without feeding the checking cycle. If AI responses make you feel unsafe, panicked, or hopeless, reach out to real support.",
+    "improved_title": "Is Asking AI for Reassurance Making My Anxiety Worse?",
+    "improved_meta_description": "AI reassurance can calm anxiety briefly, but repeated checking may keep worry and uncertainty alive.",
+    "improved_summary": "Asking AI for reassurance may make anxiety worse if it becomes a repeated checking habit. The answer may calm you for a moment, but if you keep needing another answer, another interpretation, or another guarantee, the reassurance loop may be sustaining the anxiety.",
+    "answer_sections": [
+      {
+        "body": "Anxiety often asks for certainty: \"Am I okay?\" \"Did I do something wrong?\" \"What if this means something terrible?\" AI can answer quickly, which may reduce fear for a short time.\n\nBut if the fear returns and you ask again, the brain may learn that anxiety is dangerous unless AI answers it. That can make uncertainty feel less tolerable over time.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Try delaying the next AI reassurance check by five or ten minutes. During the delay, name the worry and do something grounding. If you still choose to ask, ask once and stop rather than continuing to refine the question.\n\nYou can also shift the prompt from reassurance to action: \"What is one healthy thing I can do while I feel uncertain?\"",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "If reassurance seeking is taking hours, disrupting sleep, affecting relationships, or showing up around intrusive thoughts, health fears, mistakes, or moral worries, therapy may help. A clinician can help you work with uncertainty without feeding the checking cycle.\n\nIf AI responses make you feel unsafe, panicked, or hopeless, reach out to real support.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Reassurance can feel helpful while making uncertainty harder to tolerate.",
+      "AI may intensify checking because it can answer endlessly and instantly.",
+      "The warning sign is needing more reassurance, not simply asking one question.",
+      "Practicing delayed checking can rebuild tolerance for uncertainty."
+    ],
+    "care_note": "If anxiety includes thoughts of self-harm, feeling unable to stay safe, or intense panic that you cannot manage, contact a trusted person, clinician, crisis line, or emergency service. In the U.S., call or text 988 for crisis support.",
+    "related_questions": [
+      "Can AI make avoidance easier when I am anxious?",
+      "Why do I keep going back to AI even when it makes me feel worse?",
+      "How do I stop checking AI for every decision?",
+      "Can using AI for emotional support become addictive?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.nimh.nih.gov/health/publications/generalized-anxiety-disorder-gad",
+        "note": "Supports excessive worry and treatment context.",
+        "title": "Generalized Anxiety Disorder: What You Need to Know",
+        "publisher": "National Institute of Mental Health"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "9015689e-41c5-47f9-9e49-ab21e8fffdfa",
+    "slug": "is-it-normal-to-feel-angry-after-someone-dies",
+    "question": "Is it normal to feel angry after someone dies?",
+    "category": "Grief & Loss",
+    "short_answer": "It can be normal to feel angry after someone dies. Grief can include anger at the situation, the person who died, yourself, other people, medical systems, faith, or the unfairness of the loss.",
+    "answer": "## Why anger can show up Death can leave people with unanswered questions, changed futures, and no way to fix what happened. Anger may be the mind’s response to helplessness and unfairness. ## What to do with the anger Try naming what the anger is protecting: sadness, guilt, abandonment, fear, exhaustion, or regret. Writing, movement, therapy, support groups, or honest conversation can help the feeling move safely. ## When anger needs support Get help if anger feels uncontrollable, leads to threats or violence, turns into self-punishment, or makes you feel unsafe.",
+    "improved_title": "Is It Normal to Feel Angry After Someone Dies?",
+    "improved_meta_description": "Anger can be part of grief. It may point to pain, unfairness, regret, helplessness, or love with nowhere to go.",
+    "improved_summary": "It can be normal to feel angry after someone dies. Grief can include anger at the situation, the person who died, yourself, other people, medical systems, faith, or the unfairness of the loss.",
+    "answer_sections": [
+      {
+        "body": "Death can leave people with unanswered questions, changed futures, and no way to fix what happened. Anger may be the mind’s response to helplessness and unfairness.",
+        "type": "section",
+        "heading": "Why anger can show up"
+      },
+      {
+        "body": "Try naming what the anger is protecting: sadness, guilt, abandonment, fear, exhaustion, or regret. Writing, movement, therapy, support groups, or honest conversation can help the feeling move safely.",
+        "type": "section",
+        "heading": "What to do with the anger"
+      },
+      {
+        "body": "Get help if anger feels uncontrollable, leads to threats or violence, turns into self-punishment, or makes you feel unsafe.",
+        "type": "section",
+        "heading": "When anger needs support"
+      }
+    ],
+    "key_takeaways": [
+      "Anger can be part of grief and does not mean you loved the person less.",
+      "Grief anger often points to helplessness, unfairness, regret, or pain.",
+      "The feeling is valid, but unsafe actions still need support.",
+      "Talking about anger can reduce shame around it."
+    ],
+    "care_note": "If grief-related anger makes you fear you may hurt yourself or someone else, seek immediate support from emergency services, crisis support, or a qualified professional.",
+    "related_questions": [
+      "Why am I angry at someone who died?",
+      "Can grief make me irritable?",
+      "How do I deal with guilt after a death?",
+      "When should I get help for grief?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.apa.org/topics/grief",
+        "note": "Supports varied emotional responses to loss.",
+        "title": "Grief",
+        "publisher": "American Psychological Association"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "06c9b672-6364-4b1f-8b43-9b2f7900d575",
+    "slug": "is-it-normal-to-feel-bored-or-empty-after-getting-sober",
+    "question": "Is it normal to feel bored or empty after getting sober?",
+    "category": "Addiction & Recovery",
+    "short_answer": "It can be common to feel bored, flat, or empty after getting sober, especially if substances used to shape your routines, rewards, relationships, or emotional escape. The emptiness is worth taking seriously, but it does not mean sobriety is pointless.",
+    "answer": "## Why sober life can feel flat Substances can become tied to relief, excitement, social connection, numbing, or a sense of reward. When they are removed, ordinary life may temporarily feel quieter than expected. That quiet can feel like boredom, sadness, restlessness, or emotional emptiness. This does not mean you made the wrong choice. It may mean your brain, routines, and relationships are adjusting to life without the substance at the center. ## What can help rebuild interest Recovery often needs replacement, not just removal. New routines, movement, peer support, therapy, creative outlets, work structure, sleep, and low-pressure social connection can help life feel less hollow over time. Start small. A ten-minute walk, one recovery meeting, one honest conversation, or one planned evening can matter more than waiting for motivation to return all at once. ## When emptiness needs more support If boredom turns into hopelessness, thoughts of relapse, inability to function, or thoughts of not wanting to live, do not treat it as something you should handle alone. Reach out to a therapist, recovery support, sponsor, treatment provider, or crisis resource. Empty feelings can be part of adjustment, but they can also overlap with depression, grief, trauma, or relapse risk.",
+    "improved_title": "Why Sobriety Can Feel Boring or Empty at First",
+    "improved_meta_description": "Early sobriety can feel flat, bored, or emotionally empty. That does not mean recovery is wrong; it may mean your life needs new rewards.",
+    "improved_summary": "It can be common to feel bored, flat, or empty after getting sober, especially if substances used to shape your routines, rewards, relationships, or emotional escape. The emptiness is worth taking seriously, but it does not mean sobriety is pointless.",
+    "answer_sections": [
+      {
+        "body": "Substances can become tied to relief, excitement, social connection, numbing, or a sense of reward. When they are removed, ordinary life may temporarily feel quieter than expected. That quiet can feel like boredom, sadness, restlessness, or emotional emptiness.\n\nThis does not mean you made the wrong choice. It may mean your brain, routines, and relationships are adjusting to life without the substance at the center.",
+        "type": "section",
+        "heading": "Why sober life can feel flat"
+      },
+      {
+        "body": "Recovery often needs replacement, not just removal. New routines, movement, peer support, therapy, creative outlets, work structure, sleep, and low-pressure social connection can help life feel less hollow over time.\n\nStart small. A ten-minute walk, one recovery meeting, one honest conversation, or one planned evening can matter more than waiting for motivation to return all at once.",
+        "type": "section",
+        "heading": "What can help rebuild interest"
+      },
+      {
+        "body": "If boredom turns into hopelessness, thoughts of relapse, inability to function, or thoughts of not wanting to live, do not treat it as something you should handle alone. Reach out to a therapist, recovery support, sponsor, treatment provider, or crisis resource.\n\nEmpty feelings can be part of adjustment, but they can also overlap with depression, grief, trauma, or relapse risk.",
+        "type": "section",
+        "heading": "When emptiness needs more support"
+      }
+    ],
+    "key_takeaways": [
+      "Early recovery can feel emotionally flat because old reward patterns are changing.",
+      "Boredom may signal that your life needs new structure, connection, and meaning.",
+      "Feeling empty is different from being hopeless; support matters if the emptiness deepens.",
+      "If emptiness comes with suicidal thoughts, seek immediate support."
+    ],
+    "care_note": "If emptiness includes suicidal thoughts, self-harm urges, or fear that you may relapse in a dangerous way, seek immediate support. In the U.S., call or text 988 for crisis support.",
+    "related_questions": [
+      "Why do I feel worse after getting sober?",
+      "How long does early recovery feel emotionally flat?",
+      "What can replace drinking or using in recovery?",
+      "How do I make sober friends?",
+      "When should I get help for depression in recovery?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "david-k-gore-phd",
+    "reviewed_at": "2026-03-13",
+    "source_refs": [
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "note": "Supports recovery as an ongoing process involving behavioral and social support.",
+        "title": "Treatment and Recovery",
+        "publisher": "National Institute on Drug Abuse"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": true,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "c2c0ee45-43de-4cfa-b997-e4b976ef90da",
+    "slug": "is-it-okay-to-use-ai-to-talk-to-someone-who-died",
+    "question": "Is it okay to use AI to talk to someone who died?",
+    "category": "Grief & Loss",
+    "short_answer": "Using AI to talk to someone who died is not automatically wrong or unhealthy, but it can be emotionally complicated. It may help some people feel connected to memories, while making grief harder for others if it blurs reality, intensifies longing, or replaces support.",
+    "answer": "## What may be happening Grief can include longing, imagined conversations, dreams, and a wish for one more response. AI can make that wish feel interactive, which may be comforting and painful at the same time. The important distinction is that the AI is not the person who died. It is a simulation based on available data, and it may say things the person would not have said. ## What can help Before using AI this way, consider what you hope it will do: help you remember, say goodbye, feel less alone, or avoid the finality of the loss. Set limits and check how you feel afterward. You might also use non-interactive rituals: writing a letter, visiting a meaningful place, sharing stories, or making a memory project. ## When to get support Get support if using AI makes it harder to sleep, work, accept the death, or connect with living people. A grief counselor can help you carry the relationship in memory without relying on a simulation. If the AI experience makes you feel unsafe, hopeless, or unable to live without the person, reach urgent support.",
+    "improved_title": "Is It Okay to Use AI to Talk to Someone Who Died?",
+    "improved_meta_description": "Using AI to simulate someone who died is not automatically wrong, but it needs careful emotional boundaries.",
+    "improved_summary": "Using AI to talk to someone who died is not automatically wrong or unhealthy, but it can be emotionally complicated. It may help some people feel connected to memories, while making grief harder for others if it blurs reality, intensifies longing, or replaces support.",
+    "answer_sections": [
+      {
+        "body": "Grief can include longing, imagined conversations, dreams, and a wish for one more response. AI can make that wish feel interactive, which may be comforting and painful at the same time.\n\nThe important distinction is that the AI is not the person who died. It is a simulation based on available data, and it may say things the person would not have said.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Before using AI this way, consider what you hope it will do: help you remember, say goodbye, feel less alone, or avoid the finality of the loss. Set limits and check how you feel afterward.\n\nYou might also use non-interactive rituals: writing a letter, visiting a meaningful place, sharing stories, or making a memory project.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Get support if using AI makes it harder to sleep, work, accept the death, or connect with living people. A grief counselor can help you carry the relationship in memory without relying on a simulation.\n\nIf the AI experience makes you feel unsafe, hopeless, or unable to live without the person, reach urgent support.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Wanting to speak to someone who died is a human grief response.",
+      "AI simulation can feel powerful because it seems to answer back.",
+      "Boundaries matter: time, topics, consent, and emotional aftereffects.",
+      "If the experience makes grief sharper or more consuming, pause and get support."
+    ],
+    "care_note": "If grief includes thoughts of self-harm, wanting to die, or feeling unable to stay safe, contact urgent human support. In the U.S., call or text 988 for crisis support.",
+    "related_questions": [
+      "Can AI griefbots make grief harder to process?",
+      "Can AI companions reduce loneliness or make it worse?",
+      "How can I take a break from AI without feeling abandoned?",
+      "When should I stop using AI and talk to a real person?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "note": "Supports griefbot context and synthetic emotional connection.",
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "publisher": "American Psychological Association"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "d39b0457-e383-4e09-a05f-df997d14d518",
+    "slug": "is-it-unhealthy-to-prefer-talking-to-ai-over-friends",
+    "question": "Is it unhealthy to prefer talking to AI over friends?",
+    "category": "Relationships & Communication",
+    "short_answer": "It is not automatically unhealthy to prefer talking to AI sometimes, especially if you feel overwhelmed, lonely, or afraid of being judged. It becomes more concerning when AI consistently replaces friends, reduces real-world connection, or makes human relationships feel less possible.",
+    "answer": "## What may be happening Friends are real relationships, which means they can be messy. They may be busy, misunderstand you, or need care too. AI can feel simpler because it responds immediately and keeps the focus on you. That can be helpful during a hard moment. But if AI becomes the only place you feel willing to be honest, it may be protecting you from discomfort while also deepening isolation. ## What can help Instead of asking whether your preference is bad, ask what it is doing. Are you using AI to prepare for a real conversation, or to avoid one completely? Do you feel more connected after using it, or more withdrawn? Try one small friendship action: send a low-pressure message, share a practical update, or make a plan that does not require deep emotional disclosure. ## When to get support Consider support if you no longer trust anyone, feel detached from all relationships, or use AI to avoid every difficult conversation. A therapist can help with social anxiety, rejection sensitivity, trauma, or loneliness. If isolation is connected to hopelessness or thoughts of self-harm, reach out to a real person or crisis resource now.",
+    "improved_title": "Is It Unhealthy to Prefer Talking to AI Over Friends?",
+    "improved_meta_description": "Preferring AI sometimes is not automatically unhealthy, but it can become a concern if it increases isolation or avoidance.",
+    "improved_summary": "It is not automatically unhealthy to prefer talking to AI sometimes, especially if you feel overwhelmed, lonely, or afraid of being judged. It becomes more concerning when AI consistently replaces friends, reduces real-world connection, or makes human relationships feel less possible.",
+    "answer_sections": [
+      {
+        "body": "Friends are real relationships, which means they can be messy. They may be busy, misunderstand you, or need care too. AI can feel simpler because it responds immediately and keeps the focus on you.\n\nThat can be helpful during a hard moment. But if AI becomes the only place you feel willing to be honest, it may be protecting you from discomfort while also deepening isolation.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Instead of asking whether your preference is bad, ask what it is doing. Are you using AI to prepare for a real conversation, or to avoid one completely? Do you feel more connected after using it, or more withdrawn?\n\nTry one small friendship action: send a low-pressure message, share a practical update, or make a plan that does not require deep emotional disclosure.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Consider support if you no longer trust anyone, feel detached from all relationships, or use AI to avoid every difficult conversation. A therapist can help with social anxiety, rejection sensitivity, trauma, or loneliness.\n\nIf isolation is connected to hopelessness or thoughts of self-harm, reach out to a real person or crisis resource now.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "AI may feel easier than friends because it is available and low-conflict.",
+      "The key question is whether your life is opening up or shrinking.",
+      "Preference becomes concerning when it leads to secrecy, isolation, or lost trust in people.",
+      "Small, low-pressure contact can help rebuild human connection."
+    ],
+    "care_note": "If isolation or AI use is connected to suicidal thoughts, feeling unsafe, or believing you cannot live without the AI, seek urgent human support. In the U.S., call or text 988 for crisis support.",
+    "related_questions": [
+      "Can AI companions reduce loneliness or make it worse?",
+      "Why does my AI companion feel more comforting than real people?",
+      "How can I take a break from AI without feeling abandoned?",
+      "What if my partner is emotionally attached to an AI companion?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://ojs.aaai.org/index.php/AIES/article/view/36658",
+        "note": "Supports varied outcomes among AI companion users.",
+        "title": "The Heterogeneous Effects of AI Companionship",
+        "publisher": "AAAI/ACM AIES"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "93bd5ee8-2bf3-4234-babb-df40195b8140",
+    "slug": "is-using-ai-to-check-if-im-a-bad-person-making-things-worse",
+    "question": "Is using AI to check if I'm a bad person making things worse?",
+    "category": "Anxiety & Stress",
+    "short_answer": "Using AI to check whether you are a bad person may feel relieving in the moment, but it can also reinforce a reassurance loop. If the same question keeps coming back, the problem may be the checking pattern, not proof that you are dangerous or immoral.",
+    "answer": "## What may be happening Moral anxiety can make ordinary uncertainty feel urgent: \"What if this thought means I am bad?\" AI may answer with confidence, but that answer can become another thing to check, reread, or challenge. For some people, this becomes similar to a reassurance-seeking loop. The short-term relief teaches the brain to ask again whenever doubt returns, so the fear can feel stronger over time. ## What can help Try noticing the urge to ask AI before you act on it. A simple pause, a time limit, or writing down the fear without seeking an answer can help you see the pattern more clearly. It may also help to shift from \"Am I bad?\" to \"What value do I want to act from right now?\" If you made a real mistake, repair is usually more useful than repeated self-trial by chatbot. ## When to get support Consider support from a therapist or qualified mental health professional if moral fears are taking hours of your day, making you avoid people, or pushing you to confess, check, or seek reassurance repeatedly. If you feel at risk of harming yourself or someone else, or you feel unable to stay safe, seek urgent real-world support rather than continuing the AI conversation.",
+    "improved_title": "Is Using AI to Check If I'm a Bad Person Making Things Worse?",
+    "improved_meta_description": "AI reassurance can briefly calm moral anxiety, but repeated checking may keep the fear alive. Learn what helps break the loop.",
+    "improved_summary": "Using AI to check whether you are a bad person may feel relieving in the moment, but it can also reinforce a reassurance loop. If the same question keeps coming back, the problem may be the checking pattern, not proof that you are dangerous or immoral.",
+    "answer_sections": [
+      {
+        "body": "Moral anxiety can make ordinary uncertainty feel urgent: \"What if this thought means I am bad?\" AI may answer with confidence, but that answer can become another thing to check, reread, or challenge.\n\nFor some people, this becomes similar to a reassurance-seeking loop. The short-term relief teaches the brain to ask again whenever doubt returns, so the fear can feel stronger over time.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Try noticing the urge to ask AI before you act on it. A simple pause, a time limit, or writing down the fear without seeking an answer can help you see the pattern more clearly.\n\nIt may also help to shift from \"Am I bad?\" to \"What value do I want to act from right now?\" If you made a real mistake, repair is usually more useful than repeated self-trial by chatbot.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Consider support from a therapist or qualified mental health professional if moral fears are taking hours of your day, making you avoid people, or pushing you to confess, check, or seek reassurance repeatedly.\n\nIf you feel at risk of harming yourself or someone else, or you feel unable to stay safe, seek urgent real-world support rather than continuing the AI conversation.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "AI can give quick reassurance, but reassurance often fades and invites more checking.",
+      "Intrusive moral fears are not the same as intent or character.",
+      "Repeatedly asking AI to prove you are good can make uncertainty feel less tolerable.",
+      "A more helpful goal is learning to pause, tolerate uncertainty, and talk with a real person when distress is high."
+    ],
+    "care_note": "You are not required to solve your whole character through an AI chat. If the checking feels compulsive, overwhelming, or unsafe, involve a trusted person or mental health professional; in the U.S., call or text 988 if there is immediate crisis risk.",
+    "related_questions": [
+      "Can AI reassurance make anxiety worse?",
+      "Why do I keep asking AI the same question?",
+      "How do I stop using AI for reassurance?",
+      "Can intrusive thoughts make me feel like a bad person?",
+      "When should I talk to a therapist about reassurance seeking?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.nimh.nih.gov/health/publications/obsessive-compulsive-disorder-when-unwanted-thoughts-or-repetitive-behaviors-take-over",
+        "note": "Supports intrusive thoughts, reassurance, and compulsive checking context.",
+        "title": "Obsessive-Compulsive Disorder: When Unwanted Thoughts or Repetitive Behaviors Take Over",
+        "publisher": "National Institute of Mental Health"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  }
+]

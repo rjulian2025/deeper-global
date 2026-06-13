@@ -1,0 +1,820 @@
+[
+  {
+    "id": "c8857b5a-4185-47d2-bbca-51b8bbcf51bf",
+    "slug": "why-does-my-chest-feel-tight-when-im-anx-181083-001",
+    "question": "Why does my chest feel tight when I'm anxious?",
+    "category": "Anxiety & Stress",
+    "short_answer": "Anxiety-related chest tightness is a physical manifestation of your body's fight-or-flight response, not usually a sign of a heart problem.",
+    "answer": "When you feel anxious, your body releases stress hormones that can cause your muscles, including those in your chest, to tense up. This is a normal part of the fight-or-flight response. While it can be frightening and mimic symptoms of a heart attack, anxiety-related chest tightness is typically harmless. Deep breathing exercises, progressive muscle relaxation, and grounding techniques can help relax these muscles. If you're concerned about your heart, it's always wise to consult a healthcare provider for peace of mind.",
+    "improved_title": null,
+    "improved_meta_description": null,
+    "improved_summary": null,
+    "answer_sections": null,
+    "key_takeaways": null,
+    "care_note": null,
+    "related_questions": null,
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "source_refs": null,
+    "completeness_score": 0,
+    "missing_fields": [
+      "improved_title",
+      "improved_meta_description",
+      "improved_summary",
+      "answer_sections",
+      "answer_sections>=3",
+      "key_takeaways",
+      "key_takeaways>=3",
+      "care_note",
+      "related_questions>=3",
+      "suggested_schema_question",
+      "suggested_schema_answer",
+      "primary_theme",
+      "related_themes",
+      "source_refs",
+      "source_refs>=2",
+      "content_enriched_at|answer_sections"
+    ],
+    "crisis_sensitive": false,
+    "upgrade_priority": "high",
+    "tier": "legacy-blob",
+    "is_v2": false,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 100
+  },
+  {
+    "id": "4a9a4024-a6fe-41a2-bb49-0f499129ac80",
+    "slug": "why-does-my-face-feel-hot-and-flushed-wh-181083-012",
+    "question": "Why does my face feel hot and flushed when I'm embarrassed?",
+    "category": "Anxiety & Stress",
+    "short_answer": "Facial flushing when embarrassed is caused by blood vessels dilating in response to stress hormones and emotional arousal.",
+    "answer": "Blushing or facial flushing when embarrassed is a normal physiological response that happens when blood vessels in your face dilate due to emotional arousal. This is triggered by your sympathetic nervous system releasing stress hormones like adrenaline. While it can feel mortifying, blushing is actually a social signal that shows others you're aware of social norms and care about their opinion. Most people are far less focused on your blushing than you think they are.",
+    "improved_title": null,
+    "improved_meta_description": null,
+    "improved_summary": null,
+    "answer_sections": null,
+    "key_takeaways": null,
+    "care_note": null,
+    "related_questions": null,
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "source_refs": null,
+    "completeness_score": 0,
+    "missing_fields": [
+      "improved_title",
+      "improved_meta_description",
+      "improved_summary",
+      "answer_sections",
+      "answer_sections>=3",
+      "key_takeaways",
+      "key_takeaways>=3",
+      "care_note",
+      "related_questions>=3",
+      "suggested_schema_question",
+      "suggested_schema_answer",
+      "primary_theme",
+      "related_themes",
+      "source_refs",
+      "source_refs>=2",
+      "content_enriched_at|answer_sections"
+    ],
+    "crisis_sensitive": false,
+    "upgrade_priority": "high",
+    "tier": "legacy-blob",
+    "is_v2": false,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 100
+  },
+  {
+    "id": "54ee114d-1c4f-418e-be7e-4d3143fd98a5",
+    "slug": "why-does-my-heart-race-even-when-im-just-181083-005",
+    "question": "Why does my heart race even when I'm just sitting still?",
+    "category": "Anxiety & Stress",
+    "short_answer": "A racing heart at rest can be caused by anxiety, stress, caffeine, or your body's heightened alert state responding to perceived threats.",
+    "answer": "When your heart races while you're physically calm, it's often your nervous system responding to internal stress or anxiety. Your brain might perceive a threat that isn't physical, triggering your heart to pump faster in preparation for action. This can also be caused by caffeine, dehydration, lack of sleep, or underlying anxiety disorders. If this happens frequently, it's worth discussing with a healthcare provider to rule out any medical causes and learn coping strategies.",
+    "improved_title": null,
+    "improved_meta_description": null,
+    "improved_summary": null,
+    "answer_sections": null,
+    "key_takeaways": null,
+    "care_note": null,
+    "related_questions": null,
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "source_refs": null,
+    "completeness_score": 0,
+    "missing_fields": [
+      "improved_title",
+      "improved_meta_description",
+      "improved_summary",
+      "answer_sections",
+      "answer_sections>=3",
+      "key_takeaways",
+      "key_takeaways>=3",
+      "care_note",
+      "related_questions>=3",
+      "suggested_schema_question",
+      "suggested_schema_answer",
+      "primary_theme",
+      "related_themes",
+      "source_refs",
+      "source_refs>=2",
+      "content_enriched_at|answer_sections"
+    ],
+    "crisis_sensitive": false,
+    "upgrade_priority": "high",
+    "tier": "legacy-blob",
+    "is_v2": false,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 100
+  },
+  {
+    "id": "953a3316-7290-4a8f-b3fc-f60b8871c37e",
+    "slug": "why-does-my-throat-feel-tight-when-im-st-181083-008",
+    "question": "Why does my throat feel tight when I'm stressed?",
+    "category": "Anxiety & Stress",
+    "short_answer": "Throat tightness during stress is caused by muscle tension in your neck and throat area, often called a 'globus sensation.'",
+    "answer": "The feeling of a tight or constricted throat during stress is called globus sensation, and it's caused by tension in the muscles around your throat and neck. When you're stressed, these muscles can contract involuntarily, creating the sensation that something is stuck in your throat or that it's hard to swallow. This is completely harmless but can be distressing. Gentle neck stretches, warm tea, and relaxation techniques can help ease this tension.",
+    "improved_title": null,
+    "improved_meta_description": null,
+    "improved_summary": null,
+    "answer_sections": null,
+    "key_takeaways": null,
+    "care_note": null,
+    "related_questions": null,
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "source_refs": null,
+    "completeness_score": 0,
+    "missing_fields": [
+      "improved_title",
+      "improved_meta_description",
+      "improved_summary",
+      "answer_sections",
+      "answer_sections>=3",
+      "key_takeaways",
+      "key_takeaways>=3",
+      "care_note",
+      "related_questions>=3",
+      "suggested_schema_question",
+      "suggested_schema_answer",
+      "primary_theme",
+      "related_themes",
+      "source_refs",
+      "source_refs>=2",
+      "content_enriched_at|answer_sections"
+    ],
+    "crisis_sensitive": false,
+    "upgrade_priority": "high",
+    "tier": "legacy-blob",
+    "is_v2": false,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 100
+  },
+  {
+    "id": "b9f4e3eb-5136-4862-ac0c-1a763e586820",
+    "slug": "why-does-talking-to-ai-feel-easier-than-talking-to-189142-017",
+    "question": "Why does talking to AI feel easier than talking to my therapist?",
+    "category": "Depression",
+    "short_answer": "AI feels easier because there's no judgment, cost, or scheduling constraints, but therapy offers genuine human insight, professional expertise, and the healing power of authentic relationship.",
+    "answer": "Many people find AI easier to talk to than their therapist for several understandable reasons. AI is available 24/7 without scheduling appointments or paying fees, there's no fear of judgment or disappointing someone, and you can share anything without worrying about the impact on another person. AI doesn't have bad days, personal reactions, or the need to challenge you in ways that might feel uncomfortable. You can also stop the conversation anytime without social awkwardness or concern for the other person's feelings. However, this ease comes with significant limitations that therapy provides. A human therapist brings professional training, the ability to notice patterns you might miss, and the capacity to challenge your thinking in ways that promote growth. They can read between the lines, pick up on nonverbal cues, and provide insights that emerge from genuine human understanding and clinical experience. Perhaps most importantly, the therapeutic relationship itself is healing - being truly seen, understood, and accepted by another human being has profound psychological benefits that AI cannot replicate. Therapy also involves accountability and the sometimes uncomfortable but necessary work of facing difficult truths about yourself and your patterns. While AI might feel easier in the moment, it's the challenge and genuine connection of human therapy that often leads to lasting change and healing. Consider AI as a supplement to, not a replacement for, professional therapeutic support.",
+    "improved_title": null,
+    "improved_meta_description": null,
+    "improved_summary": null,
+    "answer_sections": null,
+    "key_takeaways": null,
+    "care_note": null,
+    "related_questions": null,
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "source_refs": null,
+    "completeness_score": 0,
+    "missing_fields": [
+      "improved_title",
+      "improved_meta_description",
+      "improved_summary",
+      "answer_sections",
+      "answer_sections>=3",
+      "key_takeaways",
+      "key_takeaways>=3",
+      "care_note",
+      "related_questions>=3",
+      "suggested_schema_question",
+      "suggested_schema_answer",
+      "primary_theme",
+      "related_themes",
+      "source_refs",
+      "source_refs>=2",
+      "content_enriched_at|answer_sections"
+    ],
+    "crisis_sensitive": false,
+    "upgrade_priority": "high",
+    "tier": "legacy-blob",
+    "is_v2": false,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 100
+  },
+  {
+    "id": "45d772ee-4713-46f9-b416-3b1b17ccb45a",
+    "slug": "why-dont-i-feel-anything-anymore-even-about-things-i-used-to-care-about",
+    "question": "Why don't I feel anything anymore, even about things I used to care about?",
+    "category": "Depression & Numbness",
+    "short_answer": "Emotional numbness often develops as a protective mechanism when you've been overwhelmed; it's your mind's way of creating distance from pain.",
+    "answer": "Feeling emotionally numb or disconnected from things that used to matter to you is one of the most disorienting aspects of depression and trauma responses. This numbness often develops as a protective mechanism when your emotional system has been overwhelmed for an extended period. Your brain essentially puts up walls to shield you from further pain, but unfortunately, this protection also blocks out positive emotions and connections. This emotional flatness can be more distressing than sadness because at least sadness feels like something. Numbness can make you feel like you're watching your life from the outside, going through the motions without any real engagement or investment. You might find yourself unable to cry, laugh, or feel excited about things that once brought you joy. The good news is that emotional numbness is usually temporary, though it can take time to work through. It often indicates that your emotional system needs rest and healing. This might involve processing underlying trauma, addressing depression, or simply giving yourself permission to feel whatever comes up without judgment. Working with a therapist can be particularly helpful in understanding what's underneath the numbness and gradually reconnecting with your emotional life. Remember that feeling nothing is still feeling something—it's information about what your system needs right now.",
+    "improved_title": null,
+    "improved_meta_description": null,
+    "improved_summary": null,
+    "answer_sections": null,
+    "key_takeaways": null,
+    "care_note": null,
+    "related_questions": null,
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "source_refs": null,
+    "completeness_score": 0,
+    "missing_fields": [
+      "improved_title",
+      "improved_meta_description",
+      "improved_summary",
+      "answer_sections",
+      "answer_sections>=3",
+      "key_takeaways",
+      "key_takeaways>=3",
+      "care_note",
+      "related_questions>=3",
+      "suggested_schema_question",
+      "suggested_schema_answer",
+      "primary_theme",
+      "related_themes",
+      "source_refs",
+      "source_refs>=2",
+      "content_enriched_at|answer_sections"
+    ],
+    "crisis_sensitive": false,
+    "upgrade_priority": "high",
+    "tier": "legacy-blob",
+    "is_v2": false,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 100
+  },
+  {
+    "id": "4c90a855-1740-44b7-8f63-c794c165a258",
+    "slug": "why-is-it-so-hard-to-make-friends-as-an-181083-067",
+    "question": "Why is it so hard to make friends as an adult?",
+    "category": "Relationships & Divorce",
+    "short_answer": "Adult friendships are challenging because you lack the natural proximity and shared experiences that made childhood friendships easier to form.",
+    "answer": "Making friends as an adult is genuinely difficult because the conditions that fostered childhood friendships no longer exist. You don't have the built-in proximity of school, the free time for spontaneous hangouts, or the lack of competing responsibilities. Adult friendships require more intentional effort and vulnerability. Look for activities or groups centered around shared interests, be patient with the process, and remember that quality matters more than quantity. Even one or two close adult friendships can be incredibly fulfilling.",
+    "improved_title": null,
+    "improved_meta_description": null,
+    "improved_summary": null,
+    "answer_sections": null,
+    "key_takeaways": null,
+    "care_note": null,
+    "related_questions": null,
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "source_refs": null,
+    "completeness_score": 0,
+    "missing_fields": [
+      "improved_title",
+      "improved_meta_description",
+      "improved_summary",
+      "answer_sections",
+      "answer_sections>=3",
+      "key_takeaways",
+      "key_takeaways>=3",
+      "care_note",
+      "related_questions>=3",
+      "suggested_schema_question",
+      "suggested_schema_answer",
+      "primary_theme",
+      "related_themes",
+      "source_refs",
+      "source_refs>=2",
+      "content_enriched_at|answer_sections"
+    ],
+    "crisis_sensitive": false,
+    "upgrade_priority": "high",
+    "tier": "legacy-blob",
+    "is_v2": false,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 100
+  },
+  {
+    "id": "207ee5dc-b0e9-4470-a99d-de7c7ee5ef4f",
+    "slug": "why-is-my-teenager-so-angry-and-hostile-toward-me--187459-004",
+    "question": "Why is my teenager so angry and hostile toward me all the time?",
+    "category": "Teen-Specific Questions",
+    "short_answer": "Teen anger often masks deeper emotions like hurt, fear, or feeling misunderstood, and is part of their developmental need for independence.",
+    "answer": "Constant anger and hostility from your teenager can feel like a personal attack, but it's usually more about their developmental stage than about you specifically. Adolescence is a time of intense emotional, physical, and social changes, and anger is often how teens express feelings they don't yet have the vocabulary or emotional regulation skills to handle. Underneath the anger, there may be hurt, fear, frustration, or feeling misunderstood. They're also developmentally driven to separate from you and establish their own identity, which can manifest as rejection of your values, rules, or even presence. Their brains are still developing, particularly the prefrontal cortex responsible for impulse control and emotional regulation, making them more reactive and less able to consider consequences. Try not to take their anger personally, even though it's directed at you. Stay calm and avoid escalating conflicts by matching their intensity. Set clear, consistent boundaries while also giving them appropriate independence and choices. Look for the emotion underneath the anger - are they feeling overwhelmed, unheard, or controlled? Address those underlying needs when possible. If the anger includes threats, violence, or is significantly impacting family life, don't hesitate to seek professional help from a therapist who specializes in adolescent behavior.",
+    "improved_title": null,
+    "improved_meta_description": null,
+    "improved_summary": null,
+    "answer_sections": null,
+    "key_takeaways": null,
+    "care_note": null,
+    "related_questions": null,
+    "review_status": "draft",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "source_refs": null,
+    "completeness_score": 0,
+    "missing_fields": [
+      "improved_title",
+      "improved_meta_description",
+      "improved_summary",
+      "answer_sections",
+      "answer_sections>=3",
+      "key_takeaways",
+      "key_takeaways>=3",
+      "care_note",
+      "related_questions>=3",
+      "suggested_schema_question",
+      "suggested_schema_answer",
+      "primary_theme",
+      "related_themes",
+      "source_refs",
+      "source_refs>=2",
+      "content_enriched_at|answer_sections"
+    ],
+    "crisis_sensitive": false,
+    "upgrade_priority": "high",
+    "tier": "legacy-blob",
+    "is_v2": false,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 100
+  },
+  {
+    "id": "5b536e8b-8b7d-4125-98e6-cbc35886eba5",
+    "slug": "can-ai-give-bad-mental-health-advice",
+    "question": "Can AI give bad mental health advice?",
+    "category": "Therapy & Mental Health",
+    "short_answer": "Yes, AI can give bad mental health advice. It may sound confident while missing context, misunderstanding risk, offering generic suggestions, or failing to respond safely to crisis, psychosis, mania, abuse, or medical concerns.",
+    "answer": "## What may be happening AI can generate supportive-sounding text without truly knowing you, your history, your risks, or your environment. It may miss warning signs or give advice that does not fit your situation. Even when AI is helpful for reflection, it should not be treated as a clinician, crisis service, or emergency support. ## What can help Use caution with advice that tells you to stop medication, confront someone unsafe, isolate, keep secrets, make drastic decisions, or ignore crisis symptoms. Do not rely on AI alone for diagnosis, treatment, legal steps, or safety planning. For lower-risk reflection, compare AI suggestions with your values and with advice from trusted people or professionals. ## When to get support Talk to a real person if the issue involves self-harm, violence, abuse, hallucinations, delusions, mania, not sleeping, substance relapse, or feeling unable to function. These situations need support that can assess risk and respond in the real world. If danger is immediate, contact emergency services.",
+    "improved_title": "Can AI Give Bad Mental Health Advice?",
+    "improved_meta_description": "AI can give incomplete, overconfident, or unsafe mental health advice, especially during crises or complex situations.",
+    "improved_summary": "Yes, AI can give bad mental health advice. It may sound confident while missing context, misunderstanding risk, offering generic suggestions, or failing to respond safely to crisis, psychosis, mania, abuse, or medical concerns.",
+    "answer_sections": [
+      {
+        "body": "AI can generate supportive-sounding text without truly knowing you, your history, your risks, or your environment. It may miss warning signs or give advice that does not fit your situation.\n\nEven when AI is helpful for reflection, it should not be treated as a clinician, crisis service, or emergency support.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Use caution with advice that tells you to stop medication, confront someone unsafe, isolate, keep secrets, make drastic decisions, or ignore crisis symptoms. Do not rely on AI alone for diagnosis, treatment, legal steps, or safety planning.\n\nFor lower-risk reflection, compare AI suggestions with your values and with advice from trusted people or professionals.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Talk to a real person if the issue involves self-harm, violence, abuse, hallucinations, delusions, mania, not sleeping, substance relapse, or feeling unable to function. These situations need support that can assess risk and respond in the real world.\n\nIf danger is immediate, contact emergency services.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "AI is not a substitute for licensed mental health care.",
+      "It can be overconfident, incomplete, or wrong.",
+      "Risk is higher in crisis, abuse, psychosis-like, manic, or safety-sensitive situations.",
+      "Use real-world support for urgent or complex mental health needs."
+    ],
+    "care_note": "If you might hurt yourself or someone else, are being abused, are not sleeping, feel commanded to act, or are losing touch with reality, seek urgent human help now. In the U.S., call or text 988 for crisis support, or contact emergency services if immediate danger is present.",
+    "related_questions": [
+      "When should I stop using AI and talk to a real person?",
+      "Can AI therapy apps replace a licensed therapist?",
+      "How do I know if AI is helping my therapy or replacing it?",
+      "Should I tell my therapist how much I use AI for emotional support?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "note": "Supports need for guardrails and caution around emotional support.",
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "publisher": "American Psychological Association"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "33f3f8ee-06d8-4b1e-8646-aeb023173276",
+    "slug": "can-ai-griefbots-make-grief-harder-to-process",
+    "question": "Can AI griefbots make grief harder to process?",
+    "category": "Grief & Loss",
+    "short_answer": "AI griefbots may offer comfort for some people, but they can also make grief harder if they keep the loss feeling unresolved, intensify longing, or replace support from living people. Using one is not automatically wrong, but it deserves careful boundaries.",
+    "answer": "## What may be happening Grief often includes a continuing bond with the person who died. Photos, memories, rituals, and conversations in your mind can all be part of mourning. A griefbot is different because it can simulate response. That may feel soothing, but it may also blur the line between remembering the person and trying to keep the relationship active in a way that makes the loss harder to face. ## What can help If you use a griefbot, consider clear limits: when you use it, what topics you avoid, and what you do afterward to ground yourself. Notice whether it leaves you calmer, more connected to memory, or more distressed and unable to stop. Balance any AI use with human grief support, rituals, journaling, rest, and contact with people who knew or care about you. ## When to get support Seek grief support if the griefbot makes it hard to sleep, function, accept the death, or connect with living people. A grief counselor can help you honor the bond without getting trapped in the simulation. If grief includes thoughts of self-harm or wanting to die, reach urgent support now.",
+    "improved_title": "Can AI Griefbots Make Grief Harder to Process?",
+    "improved_meta_description": "AI griefbots may comfort some people, but they can also complicate mourning, boundaries, and acceptance.",
+    "improved_summary": "AI griefbots may offer comfort for some people, but they can also make grief harder if they keep the loss feeling unresolved, intensify longing, or replace support from living people. Using one is not automatically wrong, but it deserves careful boundaries.",
+    "answer_sections": [
+      {
+        "body": "Grief often includes a continuing bond with the person who died. Photos, memories, rituals, and conversations in your mind can all be part of mourning.\n\nA griefbot is different because it can simulate response. That may feel soothing, but it may also blur the line between remembering the person and trying to keep the relationship active in a way that makes the loss harder to face.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "If you use a griefbot, consider clear limits: when you use it, what topics you avoid, and what you do afterward to ground yourself. Notice whether it leaves you calmer, more connected to memory, or more distressed and unable to stop.\n\nBalance any AI use with human grief support, rituals, journaling, rest, and contact with people who knew or care about you.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Seek grief support if the griefbot makes it hard to sleep, function, accept the death, or connect with living people. A grief counselor can help you honor the bond without getting trapped in the simulation.\n\nIf grief includes thoughts of self-harm or wanting to die, reach urgent support now.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Wanting connection with someone who died is a normal part of grief.",
+      "AI recreations can feel comforting and destabilizing at the same time.",
+      "Risk rises when the griefbot prevents rest, support, or acceptance of the loss.",
+      "Grief-sensitive human support matters if the experience feels consuming."
+    ],
+    "care_note": "If grief brings thoughts of suicide, not wanting to live, or feeling unable to stay safe, contact urgent human support. In the U.S., call or text 988 for crisis support, or contact emergency services if danger is immediate.",
+    "related_questions": [
+      "Is it okay to use AI to talk to someone who died?",
+      "Can AI companions reduce loneliness or make it worse?",
+      "When should I stop using AI and talk to a real person?",
+      "Can AI give bad mental health advice?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "note": "Supports griefbot and digital companion framing.",
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "publisher": "American Psychological Association"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "a7393d17-166d-4e0d-932f-fe24bdc8fc9e",
+    "slug": "can-ai-make-avoidance-easier-when-anxious",
+    "question": "Can AI make avoidance easier when I am anxious?",
+    "category": "Anxiety & Stress",
+    "short_answer": "AI can make avoidance easier when it becomes the place you go instead of making a call, having a hard conversation, leaving the house, or sitting with uncertainty. It may feel calming at first, but repeated avoidance can keep anxiety powerful over time.",
+    "answer": "## What may be happening When anxiety is high, AI can feel like a safe rehearsal space. That can be useful if it helps you plan a next step. It becomes less helpful when planning turns into postponing, or when every uncertain feeling sends you back to the chat. Avoidance can make anxiety shrink for the moment and grow in the background. AI may unintentionally make that pattern easier to repeat. ## What can help Use AI as a bridge, not a bunker. If you ask it for help with a message, send a simple version. If you ask for social advice, choose one real-world action. If you ask for reassurance, set a limit before the conversation begins. A helpful question is: \"What is the smallest offline step I can take in the next ten minutes?\" ## When to get support Consider therapy if anxiety and avoidance are limiting your life, relationships, work, school, or basic routines. Evidence-based therapy often helps people practice approaching feared situations safely and gradually. If anxiety becomes panic, hopelessness, or a safety concern, use real-world support instead of relying on AI.",
+    "improved_title": "Can AI Make Avoidance Easier When I Am Anxious?",
+    "improved_meta_description": "AI can sometimes support anxiety coping, but it may also make avoidance and reassurance loops easier to maintain.",
+    "improved_summary": "AI can make avoidance easier when it becomes the place you go instead of making a call, having a hard conversation, leaving the house, or sitting with uncertainty. It may feel calming at first, but repeated avoidance can keep anxiety powerful over time.",
+    "answer_sections": [
+      {
+        "body": "When anxiety is high, AI can feel like a safe rehearsal space. That can be useful if it helps you plan a next step. It becomes less helpful when planning turns into postponing, or when every uncertain feeling sends you back to the chat.\n\nAvoidance can make anxiety shrink for the moment and grow in the background. AI may unintentionally make that pattern easier to repeat.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Use AI as a bridge, not a bunker. If you ask it for help with a message, send a simple version. If you ask for social advice, choose one real-world action. If you ask for reassurance, set a limit before the conversation begins.\n\nA helpful question is: \"What is the smallest offline step I can take in the next ten minutes?\"",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Consider therapy if anxiety and avoidance are limiting your life, relationships, work, school, or basic routines. Evidence-based therapy often helps people practice approaching feared situations safely and gradually.\n\nIf anxiety becomes panic, hopelessness, or a safety concern, use real-world support instead of relying on AI.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Avoidance reduces anxiety in the short term but can sustain it over time.",
+      "AI may become part of avoidance because it is private and low-risk.",
+      "Helpful AI use points you back toward real-life action.",
+      "Small, planned exposures are usually more useful than endless preparation."
+    ],
+    "care_note": "If anxiety is connected to thoughts of self-harm, feeling unable to stay safe, or not functioning day to day, contact a trusted person, clinician, crisis line, or emergency service. In the U.S., 988 offers crisis support.",
+    "related_questions": [
+      "Is asking AI for reassurance making my anxiety worse?",
+      "Why do I keep going back to AI even when it makes me feel worse?",
+      "How do I stop checking AI for every decision?",
+      "How do I know if AI is helping my therapy or replacing it?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.nimh.nih.gov/health/topics/psychotherapies",
+        "note": "Supports therapy and avoidance/reframing treatment context.",
+        "title": "Psychotherapies",
+        "publisher": "National Institute of Mental Health"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "b2c43fd1-c291-4d41-8739-6dce9c3052fa",
+    "slug": "can-ai-make-burnout-worse",
+    "question": "Can AI make burnout worse?",
+    "category": "Work & Burnout",
+    "short_answer": "AI can make burnout worse when it increases workload, surveillance, pace, uncertainty, or pressure to constantly adapt. It can also help reduce strain in some settings, so the key question is whether AI is giving people more support or simply more demands.",
+    "answer": "## What may be happening AI is often introduced as a productivity tool, but productivity gains do not automatically become relief for workers. Sometimes they become higher expectations, faster turnaround, more monitoring, or extra work checking AI output. Burnout risk rises when people have high demands, low control, unclear priorities, and little recovery time. AI can intensify those conditions if implementation is rushed or poorly explained. ## What can help Notice whether AI is actually reducing your workload or just changing where the work appears. Are you saving time, or are you now prompting, checking, correcting, documenting, and learning after hours? Ask for clear expectations around tool use, quality, response times, and training time. On a personal level, protect breaks and recovery, but do not treat a system-level workload problem as only a self-care issue. ## When to get support Get support if burnout signs are persistent: exhaustion, cynicism, dread, concentration problems, irritability, or feeling unable to recover after rest. A therapist can help with coping and boundaries, while workplace support may be needed if AI has changed workload or monitoring expectations.",
+    "improved_title": "Can AI Make Burnout Worse?",
+    "improved_meta_description": "AI can reduce some tasks, but it can also add monitoring, pace, and overload. Learn when AI may worsen burnout.",
+    "improved_summary": "AI can make burnout worse when it increases workload, surveillance, pace, uncertainty, or pressure to constantly adapt. It can also help reduce strain in some settings, so the key question is whether AI is giving people more support or simply more demands.",
+    "answer_sections": [
+      {
+        "body": "AI is often introduced as a productivity tool, but productivity gains do not automatically become relief for workers. Sometimes they become higher expectations, faster turnaround, more monitoring, or extra work checking AI output.\n\nBurnout risk rises when people have high demands, low control, unclear priorities, and little recovery time. AI can intensify those conditions if implementation is rushed or poorly explained.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Notice whether AI is actually reducing your workload or just changing where the work appears. Are you saving time, or are you now prompting, checking, correcting, documenting, and learning after hours?\n\nAsk for clear expectations around tool use, quality, response times, and training time. On a personal level, protect breaks and recovery, but do not treat a system-level workload problem as only a self-care issue.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Get support if burnout signs are persistent: exhaustion, cynicism, dread, concentration problems, irritability, or feeling unable to recover after rest.\n\nA therapist can help with coping and boundaries, while workplace support may be needed if AI has changed workload or monitoring expectations.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "AI may reduce burnout when it removes low-value work and is implemented well.",
+      "It may worsen burnout when it adds speed, monitoring, ambiguity, or extra learning on top of existing work.",
+      "Loss of control and unclear expectations are common stress drivers.",
+      "Burnout support may need both personal recovery and workplace changes."
+    ],
+    "care_note": "Burnout is not a personal weakness. If exhaustion turns into thoughts of self-harm or feeling unsafe, seek urgent support; in the U.S., call or text 988.",
+    "related_questions": [
+      "How do I cope with AI change fatigue at work?",
+      "Can AI workplace monitoring affect mental health?",
+      "Why does AI at work make me feel less in control?",
+      "How can managers talk about AI without increasing employee anxiety?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "note": "Supports AI worry, stress, and burnout-adjacent concerns.",
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "publisher": "American Psychological Association via Newswise"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "df1d3e84-c236-4674-98bc-ab3361930d5f",
+    "slug": "can-ai-make-doomscrolling-worse",
+    "question": "Can AI make doomscrolling worse?",
+    "category": "Anxiety & Stress",
+    "short_answer": "AI can make doomscrolling worse when it helps feeds, recommendations, summaries, or searches deliver more alarming content faster. If each scroll or prompt leaves you more tense but still wanting more information, the loop may be feeding anxiety rather than helping you stay informed.",
+    "answer": "## What may be happening Doomscrolling is not just reading bad news. It is the feeling that you need one more update to feel prepared, safe, or certain. AI can intensify this by summarizing, recommending, or generating more angles on the same threat. The result can be a faster information loop with less time for your body to settle. ## What can help Before opening a feed or asking AI for updates, name the purpose: What do I need to know, and what will I do with it? If there is no action, a break may be more useful than another summary. Try choosing a few trusted sources, setting a time limit, and avoiding late-night AI searches about frightening topics. Replace the stop point with something physical, such as water, a walk, or a grounding exercise. ## When to get support Support may help if doomscrolling is disrupting sleep, work, relationships, or your ability to feel present. It can also help if you feel unable to stop even when you know it is hurting you. If the content is connected to panic, hopelessness, self-harm thoughts, or fear that you might act unsafely, seek real-world support promptly.",
+    "improved_title": "Can AI Make Doomscrolling Worse?",
+    "improved_meta_description": "AI-powered feeds and summaries can intensify anxious information loops. Learn how to interrupt doomscrolling.",
+    "improved_summary": "AI can make doomscrolling worse when it helps feeds, recommendations, summaries, or searches deliver more alarming content faster. If each scroll or prompt leaves you more tense but still wanting more information, the loop may be feeding anxiety rather than helping you stay informed.",
+    "answer_sections": [
+      {
+        "body": "Doomscrolling is not just reading bad news. It is the feeling that you need one more update to feel prepared, safe, or certain.\n\nAI can intensify this by summarizing, recommending, or generating more angles on the same threat. The result can be a faster information loop with less time for your body to settle.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Before opening a feed or asking AI for updates, name the purpose: What do I need to know, and what will I do with it? If there is no action, a break may be more useful than another summary.\n\nTry choosing a few trusted sources, setting a time limit, and avoiding late-night AI searches about frightening topics. Replace the stop point with something physical, such as water, a walk, or a grounding exercise.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Support may help if doomscrolling is disrupting sleep, work, relationships, or your ability to feel present. It can also help if you feel unable to stop even when you know it is hurting you.\n\nIf the content is connected to panic, hopelessness, self-harm thoughts, or fear that you might act unsafely, seek real-world support promptly.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "AI-curated content can make threat-focused information feel endless.",
+      "More information does not always create more control.",
+      "Doomscrolling often gives short bursts of certainty followed by more anxiety.",
+      "Boundaries around time, sources, and purpose can help."
+    ],
+    "care_note": "Staying informed should not require keeping your nervous system in constant alarm. If AI-driven scrolling is making you feel unsafe or hopeless, pause the loop and reach out to someone offline.",
+    "related_questions": [
+      "Why does AI make the future feel scary?",
+      "How do I stop doomscrolling about AI?",
+      "Can AI make anxiety worse?",
+      "How do I set boundaries with AI tools?",
+      "What are warning signs that AI use is hurting my mental health?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.apa.org/topics/social-media-internet",
+        "note": "Supports social media and mental health context; AI-specific source needed.",
+        "title": "Social Media and Mental Health",
+        "publisher": "American Psychological Association"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "5d8b2f8d-f3ca-40fa-af8c-0b18cb6f8218",
+    "slug": "can-ai-make-health-anxiety-worse",
+    "question": "Can AI make health anxiety worse?",
+    "category": "Anxiety & Stress",
+    "short_answer": "AI can make health anxiety worse when it turns into repeated symptom checking, worst-case searching, or reassurance that never lasts. AI cannot examine you or replace medical care, so it is best used carefully and not as the final judge of whether you are safe.",
+    "answer": "## What may be happening Health anxiety often grows when attention locks onto body sensations and uncertainty feels dangerous. AI can intensify that loop by generating long lists of possible causes, including rare or frightening ones. Even reassuring answers may not settle the fear for long. If you keep asking the same question in slightly different ways, the checking itself may be keeping your nervous system on alert. ## What can help Use AI, if at all, for practical questions such as what information to bring to an appointment, not to repeatedly decide whether you are safe. Set a limit before you start, then stop when you reach it. For ongoing worries, it can help to write down symptoms, duration, and questions for a clinician. Grounding, movement, and returning to normal activities can also reduce the pull of constant scanning. ## When to get support Contact a medical professional for new, severe, persistent, or concerning symptoms, and use emergency services for symptoms that may be urgent, such as chest pain, trouble breathing, stroke-like symptoms, severe allergic reaction, or sudden severe pain. If health fears are taking over your day even after medical reassurance, a mental health professional can help you work with the anxiety loop.",
+    "improved_title": "Can AI Make Health Anxiety Worse?",
+    "improved_meta_description": "AI symptom checking may feed health anxiety when it becomes repeated reassurance seeking. Learn safer ways to use it.",
+    "improved_summary": "AI can make health anxiety worse when it turns into repeated symptom checking, worst-case searching, or reassurance that never lasts. AI cannot examine you or replace medical care, so it is best used carefully and not as the final judge of whether you are safe.",
+    "answer_sections": [
+      {
+        "body": "Health anxiety often grows when attention locks onto body sensations and uncertainty feels dangerous. AI can intensify that loop by generating long lists of possible causes, including rare or frightening ones.\n\nEven reassuring answers may not settle the fear for long. If you keep asking the same question in slightly different ways, the checking itself may be keeping your nervous system on alert.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Use AI, if at all, for practical questions such as what information to bring to an appointment, not to repeatedly decide whether you are safe. Set a limit before you start, then stop when you reach it.\n\nFor ongoing worries, it can help to write down symptoms, duration, and questions for a clinician. Grounding, movement, and returning to normal activities can also reduce the pull of constant scanning.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Contact a medical professional for new, severe, persistent, or concerning symptoms, and use emergency services for symptoms that may be urgent, such as chest pain, trouble breathing, stroke-like symptoms, severe allergic reaction, or sudden severe pain.\n\nIf health fears are taking over your day even after medical reassurance, a mental health professional can help you work with the anxiety loop.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "AI may amplify health anxiety by offering many possible explanations for the same symptom.",
+      "Repeated checking can make normal body sensations feel more threatening.",
+      "AI cannot diagnose, examine, or rule out medical emergencies.",
+      "A plan for when to stop searching can protect your attention and anxiety level."
+    ],
+    "care_note": "AI is not a medical examiner. If symptoms feel urgent or dangerous, seek real medical care now; if anxiety feels unmanageable or you may harm yourself, contact crisis support or emergency services.",
+    "related_questions": [
+      "How do I stop checking symptoms online?",
+      "Can AI reassurance make anxiety worse?",
+      "When should I see a doctor for health anxiety?",
+      "Why do normal body sensations scare me?",
+      "How do I use AI without spiraling?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.nimh.nih.gov/health/publications/generalized-anxiety-disorder-gad",
+        "note": "Supports excessive worry and anxiety treatment context.",
+        "title": "Generalized Anxiety Disorder: What You Need to Know",
+        "publisher": "National Institute of Mental Health"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  },
+  {
+    "id": "104a874b-b591-4860-9962-dd07950a3b56",
+    "slug": "can-ai-make-impostor-syndrome-worse",
+    "question": "Can AI make impostor syndrome worse?",
+    "category": "Identity & Self-Worth",
+    "short_answer": "AI can make impostor feelings worse when it makes your skills feel outdated, your work feel less original, or your learning curve feel public. The feeling that you are a fraud is not proof that you are one; it may be a stress response to rapid change and comparison.",
+    "answer": "## What may be happening AI can make competence feel unstable. A task you were good at may suddenly be done differently, reviewed differently, or compared with machine output. That can activate the fear that you were never truly capable. Impostor feelings are especially likely when workplaces celebrate AI fluency without giving people time to learn or admitting that everyone is adapting. ## What can help Separate identity from the learning curve. Not knowing a new AI workflow yet means you are learning a tool, not that you have been exposed as a fraud. Pick one skill to practice, ask for examples of good work, and compare your current progress with your own previous baseline rather than with online hype or the fastest adopter in the room. ## When to get support Support can help if impostor feelings lead to avoidance, perfectionism, panic, compulsive overwork, or difficulty accepting positive feedback. A therapist, mentor, or supervisor can help you test the story that you do not belong and turn vague shame into concrete next steps.",
+    "improved_title": "Can AI Make Impostor Syndrome Worse?",
+    "improved_meta_description": "AI can intensify impostor feelings by changing skill expectations and comparison. Learn why it happens and what helps.",
+    "improved_summary": "AI can make impostor feelings worse when it makes your skills feel outdated, your work feel less original, or your learning curve feel public. The feeling that you are a fraud is not proof that you are one; it may be a stress response to rapid change and comparison.",
+    "answer_sections": [
+      {
+        "body": "AI can make competence feel unstable. A task you were good at may suddenly be done differently, reviewed differently, or compared with machine output. That can activate the fear that you were never truly capable.\n\nImpostor feelings are especially likely when workplaces celebrate AI fluency without giving people time to learn or admitting that everyone is adapting.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Separate identity from the learning curve. Not knowing a new AI workflow yet means you are learning a tool, not that you have been exposed as a fraud.\n\nPick one skill to practice, ask for examples of good work, and compare your current progress with your own previous baseline rather than with online hype or the fastest adopter in the room.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Support can help if impostor feelings lead to avoidance, perfectionism, panic, compulsive overwork, or difficulty accepting positive feedback.\n\nA therapist, mentor, or supervisor can help you test the story that you do not belong and turn vague shame into concrete next steps.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "AI can trigger comparison, shame, and fear of being exposed.",
+      "Impostor feelings often grow when expectations are unclear.",
+      "Skill gaps are learnable; they are not proof you do not belong.",
+      "Support helps if shame leads to avoidance, overwork, or chronic anxiety."
+    ],
+    "care_note": "Feeling behind is not the same as being a fraud. If shame or work anxiety becomes overwhelming or includes self-harm thoughts, seek urgent support; in the U.S., 988 is available.",
+    "related_questions": [
+      "How do I handle feeling replaceable because of AI?",
+      "How do I stay mentally healthy while learning AI tools for work?",
+      "Can AI make me feel like my creativity does not matter?",
+      "Why am I so anxious about AI replacing my job?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "codex-seo-review",
+    "reviewed_at": null,
+    "source_refs": [
+      {
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "note": "Supports AI worry and feeling less valued at work.",
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "publisher": "American Psychological Association via Newswise"
+      }
+    ],
+    "completeness_score": 94,
+    "missing_fields": [
+      "source_refs>=2"
+    ],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true,
+    "is_addiction_corpus": false,
+    "demand_proxy_rank": null,
+    "gsc": null,
+    "priority_score": 31
+  }
+]

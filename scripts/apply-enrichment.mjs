@@ -16,7 +16,10 @@ import {
 } from './lib/enrichment-promote.mjs';
 import { resolveCronSecret, resolveSupabaseConfig } from './lib/supabase-env.mjs';
 
-const OUT_DIR = 'reports/enrichment-addiction/promote-updates';
+const OUT_DIRS = {
+  'addiction-enrichment': 'reports/enrichment-addiction/promote-updates',
+  enrichment: 'reports/enrichment-corpus/promote-updates',
+};
 const DEFAULT_REMOTE_URL = 'https://www.deeper.global/api/admin/apply-enrichment';
 
 function parseArgs(argv) {
@@ -150,8 +153,8 @@ async function main() {
     report.apply_path = 'remote';
   }
 
-  mkdirSync(OUT_DIR, { recursive: true });
-  const reportPath = `${OUT_DIR}/${args.campaign}-${new Date().toISOString().slice(0, 10)}.json`;
+  mkdirSync(OUT_DIRS[args.campaign] ?? 'reports/enrichment-addiction/promote-updates', { recursive: true });
+  const reportPath = `${OUT_DIRS[args.campaign] ?? 'reports/enrichment-addiction/promote-updates'}/${args.campaign}-${new Date().toISOString().slice(0, 10)}.json`;
   writeFileSync(reportPath, `${JSON.stringify({ ...report, report_path: reportPath }, null, 2)}\n`);
   console.log(JSON.stringify({ ...report, report_path: reportPath }, null, 2));
 }

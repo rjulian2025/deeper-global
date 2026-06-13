@@ -1,0 +1,178 @@
+{
+  "generated_at": "2026-06-13T23:59:31.918Z",
+  "mode": "applied-local",
+  "campaign": "enrichment",
+  "preserve_review": true,
+  "draft_count": 15,
+  "slugs": [
+    "how-do-i-know-if-i-need-medication-for-m-177940-017",
+    "how-do-i-know-if-i-need-professional-hel-186032-001",
+    "how-do-i-cope-with-losing-someone-to-suicide",
+    "how-do-i-create-a-safety-plan-for-depression",
+    "how-do-i-help-my-teenager-who-seems-depressed",
+    "why-do-i-feel-guilty-when-im-happy-177941-002",
+    "how-do-i-cope-with-losing-a-pet-190974-003",
+    "what-do-i-do-if-i-think-i-have-depressio-186032-018",
+    "what-do-i-do-if-my-teenager-is-self-harming-187459-010",
+    "im-having-thoughts-of-suicide---what-should-i-do-right-now",
+    "what-should-i-do-if-im-having-suicidal-thoughts",
+    "what-should-i-do-if-im-having-thoughts-of-suicide",
+    "why-do-i-feel-like-i-dont-fit-in-anywher-184729-008",
+    "how-can-i-help-my-teenager-who-seems-depressed",
+    "why-do-i-need-to-control-everything-and-everyone-a-187459-012"
+  ],
+  "updates": [
+    {
+      "slug": "how-do-i-know-if-i-need-medication-for-m-177940-017",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.723Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-know-if-i-need-professional-hel-186032-001",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.724Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-cope-with-losing-someone-to-suicide",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.725Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-create-a-safety-plan-for-depression",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.725Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-help-my-teenager-who-seems-depressed",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.725Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "why-do-i-feel-guilty-when-im-happy-177941-002",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.725Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-cope-with-losing-a-pet-190974-003",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.725Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "what-do-i-do-if-i-think-i-have-depressio-186032-018",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.725Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "what-do-i-do-if-my-teenager-is-self-harming-187459-010",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.726Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "im-having-thoughts-of-suicide---what-should-i-do-right-now",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.726Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "what-should-i-do-if-im-having-suicidal-thoughts",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.726Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "what-should-i-do-if-im-having-thoughts-of-suicide",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.726Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "why-do-i-feel-like-i-dont-fit-in-anywher-184729-008",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.726Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-can-i-help-my-teenager-who-seems-depressed",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.726Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "why-do-i-need-to-control-everything-and-everyone-a-187459-012",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-13T23:59:30.726Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    }
+  ],
+  "apply_path": "local",
+  "report_path": "reports/enrichment-corpus/promote-updates/enrichment-2026-06-13.json"
+}
