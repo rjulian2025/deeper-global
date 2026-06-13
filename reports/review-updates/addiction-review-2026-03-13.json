@@ -1,16 +1,13 @@
 {
-  "generated_at": "2026-06-13T23:02:26.429Z",
+  "generated_at": "2026-06-13T23:22:20.203Z",
   "source_table": "public.questions_master",
-  "mode": "dry-run",
+  "mode": "apply",
   "reviewed_by": "david-k-gore-phd",
   "reviewed_at": "2026-03-13",
   "total_answers_scanned": 1099,
   "addiction_answers_identified": 113,
-  "applied_count": 0,
-  "schema_notes": [
-    "Column public.questions_master.reviewed_at was not found. Apply the SQL proposal to add it before running --apply.",
-    "No production data was mutated by this dry run."
-  ],
+  "applied_count": 113,
+  "schema_notes": [],
   "sql_proposal": "alter table public.questions_master\n  add column if not exists reviewed_at date;\n\nupdate public.questions_master\nset\n  review_status = 'reviewed',\n  reviewed_by = 'david-k-gore-phd',\n  reviewed_at = '2026-03-13'::date\nwhere slug = any(array['can-i-drink-alcohol-while-taking-psychia-181083-061', 'can-people-get-addicted-to-ai-chatbots-or-virtual--189142-001', 'can-using-ai-for-emotional-support-become-addictive', 'how-can-i-help-my-partner-who-is-struggling-with-addiction', 'how-do-i-cope-with-the-stress-of-loving-someone-with-addiction', 'how-do-i-deal-with-boredom-in-recovery', 'how-do-i-deal-with-cravings-in-recovery-186032-027', 'how-do-i-deal-with-friends-who-dont-support-my-recovery', 'how-do-i-deal-with-people-who-dont-suppo-181288-035', 'how-do-i-deal-with-people-who-dont-understand-addiction', 'how-do-i-deal-with-people-who-trigger-my-urge-to-use-substances', 'how-do-i-deal-with-relapse-and-the-shame-185759-024', 'how-do-i-deal-with-the-physical-effects-of-long-term-substance-use', 'how-do-i-deal-with-the-stigma-of-being-in-recovery', 'how-do-i-explain-gaps-in-my-employment-history-due-to-addiction', 'how-do-i-find-a-good-therapist-for-addiction-recovery', 'how-do-i-find-motivation-when-recovery-feels-impossible', 'how-do-i-handle-anxiety-without-using-substances', 'how-do-i-handle-drug-testing-at-work-while-in-recovery', 'how-do-i-handle-holidays-and-family-gatherings-with-an-addicted-relative', 'how-do-i-handle-holidays-and-special-occasions-in-recovery', 'how-do-i-handle-peer-pressure-to-drink-or-use-drugs', 'how-do-i-handle-social-events-and-gatherings-in-recovery', 'how-do-i-handle-social-situations-where-everyone-is-drinking', 'how-do-i-handle-stress-without-turning-to-substances', 'how-do-i-handle-work-stress-without-using-substances', 'how-do-i-handle-work-while-in-addiction-treatment', 'how-do-i-help-someone-who-doesnt-want-he-186032-025', 'how-do-i-know-if-i-have-a-gambling-probl-185759-028', 'how-do-i-know-if-i-need-professional-help-for-my-drinking', 'how-do-i-know-if-im-drinking-too-much-190974-009', 'how-do-i-know-if-im-ready-for-addiction-recovery', 'how-do-i-know-if-my-drinking-has-become-190219-016', 'how-do-i-know-if-my-drinking-is-a-proble-184729-011', 'how-do-i-know-if-my-drinking-is-becoming-a-problem', 'how-do-i-know-if-my-recovery-program-is-working', 'how-do-i-know-if-someone-i-love-is-using-186032-021', 'how-do-i-know-when-to-cut-off-contact-with-my-addicted-family-member', 'how-do-i-maintain-my-recovery-during-major-life-changes', 'how-do-i-make-amends-to-people-i-hurt-during-my-addiction', 'how-do-i-protect-my-children-from-their-parents-addiction', 'how-do-i-rebuild-my-career-after-addiction', 'how-do-i-rebuild-my-relationship-with-my-children-after-addiction', 'how-do-i-rebuild-my-self-esteem-after-addiction', 'how-do-i-rebuild-trust-with-family-after-addiction-hurt-them', 'how-do-i-rebuild-trust-with-my-family-after-my-loved-ones-addiction', 'how-do-i-rebuild-trust-with-my-partner-after-addiction', 'how-do-i-rebuild-trust-with-people-i-hurt-during-my-addiction', 'how-do-i-socialize-without-drinking-181288-033', 'how-do-i-stay-motivated-when-recovery-feels-like-a-daily-struggle', 'how-do-i-stay-sober-when-all-my-friends--186032-023', 'how-do-i-stop-enabling-my-loved-ones-addiction', 'how-do-i-support-a-family-member-who-is--185759-025', 'how-do-i-support-someone-in-recovery-wit-190974-010', 'how-do-i-talk-to-my-teenager-about-substance-use', 'how-do-i-tell-my-friends-im-sober-withou-185759-026', 'how-does-depression-interact-with-substance-use', 'how-has-my-addiction-affected-my-relationships', 'how-long-does-it-take-to-feel-normal-again-in-recovery', 'how-long-should-i-wait-before-making-major-life-decisions-in-recovery', 'is-it-normal-to-feel-bored-in-early-reco-181288-034', 'is-it-normal-to-feel-bored-or-empty-after-getting-sober', 'is-it-normal-to-feel-worse-before-i-feel-better-in-recovery', 'is-it-normal-to-have-vivid-dreams-or-nightmares-in-recovery', 'is-it-okay-to-date-someone-in-early-recovery', 'is-it-possible-to-be-addicted-to-social-179301-005', 'is-it-possible-to-use-substances-occasio-186032-028', 'should-i-avoid-all-mood-altering-substances-in-recovery', 'should-i-give-my-addicted-family-member-money-for-basic-needs', 'should-i-stay-in-a-relationship-where-my-partner-is-still-using-substances', 'support-someone-with-addiction-without-enabling', 'what-are-some-healthy-ways-to-celebrate-milestones-in-recovery', 'what-are-the-signs-that-someone-i-love-has-an-addiction', 'what-does-it-mean-to-be-a-dry-drunk-185759-027', 'what-if-i-become-dependent-on-anxiety-me-181083-058', 'what-if-i-dont-believe-in-god-or-a-higher-power-for-12-step-programs', 'what-if-i-lose-my-job-because-of-my-addiction', 'what-if-i-relapse-during-recovery', 'what-if-im-afraid-of-losing-my-identity-without-substances', 'what-if-im-struggling-with-both-addiction-and-mental-health-issues', 'what-if-my-addiction-has-damaged-my-relationship-with-my-children', 'what-if-my-addiction-was-to-prescription-drugs-that-i-legitimately-needed', 'what-if-my-family-doesnt-believe-im-really-in-recovery', 'what-if-my-family-doesnt-support-my-recovery', 'what-if-my-loved-one-is-using-substances-while-pregnant', 'what-if-my-partner-wants-me-to-drink-or-use-substances-with-them', 'what-is-a-process-addiction-and-can-i-be-185759-023', 'what-is-codependency-and-how-does-it-rel-186032-022', 'what-is-the-difference-between-physical--186032-024', 'what-is-the-relationship-between-depression-and-substance-use', 'what-should-i-do-about-my-social-media-addiction', 'what-should-i-do-after-a-relapse-in-recovery', 'what-should-i-do-if-i-have-legal-problems-related-to-my-addiction', 'what-should-i-do-if-i-suspect-my-employee-has-a-substance-abuse-problem', 'what-should-i-do-if-im-around-substances-unexpectedly', 'what-should-i-do-if-im-having-trouble-sleeping-in-recovery', 'what-should-i-do-if-im-struggling-financially-because-of-my-addiction', 'what-should-i-do-if-im-struggling-with-multiple-addictions', 'what-should-i-do-if-my-adult-child-is-addicted-to-drugs', 'what-should-i-do-if-my-doctor-prescribed-addictive-medication', 'what-should-i-do-if-my-teenager-is-experimenting-w-187459-006', 'what-should-i-expect-from-detox-and-withdrawal', 'what-should-i-expect-in-addiction-treatm-186032-026', 'what-should-i-expect-in-my-first-30-days-of-sobriety', 'whats-the-difference-between-addiction-and-dependence', 'whats-the-difference-between-being-sober-and-being-in-recovery', 'whats-the-difference-between-physical-and-psychological-addiction', 'when-to-seek-professional-help-for-substance-use', 'why-cant-i-just-stop-using-drugs-on-my-o-185387-019', 'why-do-i-feel-addicted-to-social-media-validation-v7w2x5', 'why-do-i-feel-ashamed-about-needing-help-for-my-addiction', 'why-do-i-feel-like-i-addicted-to-my-phone-h3i7j4', 'why-do-i-keep-relapsing-even-though-i-want-to-stay-sober']);",
   "matches": [
     {
@@ -21,6 +18,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "alcohol/drinking term",
@@ -35,6 +33,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -48,6 +47,7 @@
       "primary_theme": "AI compulsive use",
       "previous_review_status": "reviewed",
       "previous_reviewed_by": "codex-seo-review",
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -61,6 +61,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term"
       ]
@@ -73,6 +74,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -86,6 +88,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -99,6 +102,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -112,6 +116,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -125,6 +130,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -138,6 +144,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -151,6 +158,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "substance use term",
@@ -165,6 +173,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "relapse with addiction context",
@@ -179,6 +188,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "substance use term",
@@ -193,6 +203,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -206,6 +217,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -219,6 +231,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -232,6 +245,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -245,6 +259,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "substance use term"
       ]
@@ -257,6 +272,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -270,6 +286,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term"
       ]
@@ -282,6 +299,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -295,6 +313,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "alcohol/drinking term"
       ]
@@ -307,6 +326,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -320,6 +340,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "alcohol/drinking term"
       ]
@@ -332,6 +353,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "substance use term",
@@ -346,6 +368,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "substance use term",
@@ -360,6 +383,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "treatment with addiction context"
@@ -373,6 +397,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -386,6 +411,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -399,6 +425,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "alcohol/drinking term"
       ]
@@ -411,6 +438,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "alcohol/drinking term",
@@ -425,6 +453,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -438,6 +467,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "alcohol/drinking term",
@@ -452,6 +482,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "alcohol/drinking term",
@@ -466,6 +497,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "alcohol/drinking term",
@@ -480,6 +512,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -493,6 +526,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -506,6 +540,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term"
       ]
@@ -518,6 +553,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -531,6 +567,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -544,6 +581,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -557,6 +595,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -570,6 +609,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term"
       ]
@@ -582,6 +622,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -595,6 +636,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -608,6 +650,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -621,6 +664,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term"
       ]
@@ -633,6 +677,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -646,6 +691,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "sobriety term",
@@ -661,6 +707,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -674,6 +721,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "sobriety term",
@@ -689,6 +737,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -702,6 +751,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -715,6 +765,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -728,6 +779,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "substance use term",
@@ -742,6 +794,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "sobriety term",
@@ -756,6 +809,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "substance use term",
         "treatment with addiction context"
@@ -769,6 +823,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term"
       ]
@@ -781,6 +836,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -794,6 +850,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -807,6 +864,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -820,6 +878,7 @@
       "primary_theme": "Addiction & Recovery",
       "previous_review_status": "reviewed",
       "previous_reviewed_by": "codex-seo-review",
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "sobriety term",
@@ -835,6 +894,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -848,6 +908,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -861,6 +922,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -874,6 +936,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -887,6 +950,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "substance use term",
@@ -901,6 +965,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "substance use term",
@@ -915,6 +980,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term"
       ]
@@ -927,6 +993,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "substance use term"
       ]
@@ -939,6 +1006,7 @@
       "primary_theme": "Addiction & Recovery",
       "previous_review_status": "reviewed",
       "previous_reviewed_by": "codex-seo-review",
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context",
@@ -953,6 +1021,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -966,6 +1035,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -979,6 +1049,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "sobriety term",
@@ -994,6 +1065,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "medication dependency term"
       ]
@@ -1006,6 +1078,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "12-step term"
       ]
@@ -1018,6 +1091,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1031,6 +1105,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "relapse with addiction context",
@@ -1045,6 +1120,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "substance use term",
@@ -1059,6 +1135,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1072,6 +1149,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term"
       ]
@@ -1084,6 +1162,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1097,6 +1176,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1110,6 +1190,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1123,6 +1204,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "substance use term",
@@ -1137,6 +1219,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "substance use term",
         "alcohol/drinking term"
@@ -1150,6 +1233,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1163,6 +1247,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1176,6 +1261,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1189,6 +1275,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "substance use term",
         "treatment with addiction context"
@@ -1202,6 +1289,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1215,6 +1303,7 @@
       "primary_theme": "Addiction & Recovery",
       "previous_review_status": "reviewed",
       "previous_reviewed_by": "codex-seo-review",
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "relapse with addiction context",
@@ -1230,6 +1319,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1243,6 +1333,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "substance use term",
@@ -1257,6 +1348,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "substance use term",
@@ -1271,6 +1363,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1284,6 +1377,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1297,6 +1391,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1310,6 +1405,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term"
       ]
@@ -1322,6 +1418,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term"
       ]
@@ -1334,6 +1431,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "substance use term",
         "alcohol/drinking term"
@@ -1347,6 +1445,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "treatment setting term"
       ]
@@ -1359,6 +1458,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context",
@@ -1373,6 +1473,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "sobriety term"
       ]
@@ -1385,6 +1486,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1398,6 +1500,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "sobriety term",
@@ -1412,6 +1515,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1425,6 +1529,7 @@
       "primary_theme": "Addiction & Recovery",
       "previous_review_status": "reviewed",
       "previous_reviewed_by": "codex-seo-review",
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "substance use term",
@@ -1440,6 +1545,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1453,6 +1559,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term"
       ]
@@ -1465,6 +1572,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "recovery with addiction context"
@@ -1478,6 +1586,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term"
       ]
@@ -1490,6 +1599,7 @@
       "primary_theme": null,
       "previous_review_status": "draft",
       "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
       "match_reasons": [
         "addiction term",
         "sobriety term",
