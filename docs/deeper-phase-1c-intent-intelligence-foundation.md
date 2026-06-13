@@ -196,7 +196,7 @@ Initial reports should answer strategic questions without exposing raw behavior:
 
 ## Suggested storage model
 
-This is a future implementation sketch, not a migration plan.
+This is now backed by `docs/supabase-intent-analytics.sql`, which creates the table, recorder RPC, and thresholded rollup views.
 
 ### `intent_events`
 
@@ -205,7 +205,6 @@ This is a future implementation sketch, not a migration plan.
 | `id` | uuid | Primary key. |
 | `event_name` | text | Approved event name. |
 | `occurred_at` | timestamptz | Event time. |
-| `session_id_hash` | text/null | Short-lived anonymous session hash, if used. |
 | `page_path` | text | Path only. |
 | `referrer_domain` | text/null | Domain only. |
 | `content_type` | text | Answer/category/entity/etc. |
@@ -218,7 +217,6 @@ This is a future implementation sketch, not a migration plan.
 | `sensitivity` | text[] | Sensitivity labels. |
 | `region_country` | text/null | Coarse location. |
 | `region_state` | text/null | Coarse location. |
-| `region_metro` | text/null | Coarse location. |
 | `device_type` | text/null | Device class. |
 | `metadata` | jsonb | Strict allowlist only. |
 
@@ -244,9 +242,9 @@ Do not expose raw `intent_events` to clients or partners. Reports should read fr
 
 ### Phase 1C-0 — spec and policy
 
-- Approve this document.
-- Decide analytics provider/storage approach.
-- Update public privacy language before tracking begins.
+- Approved initial privacy posture.
+- Updated public privacy language.
+- Selected GA4 for immediate reporting and a Vercel/Supabase first-party path for rollups.
 
 ### Phase 1C-1 — metadata readiness
 
@@ -256,7 +254,7 @@ Do not expose raw `intent_events` to clients or partners. Reports should read fr
 
 ### Phase 1C-2 — lightweight first-party tracking
 
-Initial implementation tracks these GA4 events:
+Initial implementation tracks these events through GA4 and mirrors sanitized payloads to `/api/intent-event` for first-party rollups once the Supabase SQL is applied:
 
 - `answer_viewed`;
 - `category_viewed`;
@@ -272,17 +270,18 @@ Initial implementation tracks these GA4 events:
 - `editorial_policy_viewed`;
 - `answer_related_clicked`.
 
-No raw user accounts. No ad retargeting. No zip-level reports. GA pageview config sends path-only URLs, and event parameters use structured context such as page path, answer slug, category/entity, result count, outbound domain, and coarse intent/sensitivity labels.
+No raw user accounts. No ad retargeting. No zip-level reports. GA pageview config sends path-only URLs, and event parameters use structured context such as page path, answer slug, category/entity, search topic, result count, outbound domain, coarse Vercel country/region, and coarse intent/sensitivity labels.
 
 ### Phase 1C-3 — reporting
 
 Create internal monthly reports:
 
 - top categories by answer views;
+- top search topics by country/state;
 - top care-navigation pages;
-- rising state-level categories;
+- rising state-level categories that clear thresholds;
 - practitioner bridge click-through by category;
-- coverage gaps from search, once site search exists.
+- coverage gaps from search result counts.
 
 ### Phase 1C-4 — external products
 
@@ -305,8 +304,8 @@ Before expanding beyond the current GA4 instrumentation:
 
 ## Open decisions
 
-1. Future analytics backend beyond GA4: Vercel Analytics, PostHog, Supabase table, or a dedicated warehouse?
-2. Session model: no session IDs vs short-lived anonymous session hash?
-3. Location source: coarse IP geolocation, self-reported location, or no location initially?
-4. Retention: 30, 90, 180, or 365 days for raw events before rollup-only storage?
-5. Raw event export policy: GA4-only reporting vs future first-party rollups.
+1. Long-term analytics backend beyond GA4 + Supabase rollups: PostHog, warehouse, or stay lightweight?
+2. Session model: keep no session IDs vs short-lived anonymous session hash?
+3. Retention: 30, 90, 180, or 365 days for raw first-party events before rollup-only storage?
+4. Raw event export policy: internal-only SQL access vs scheduled rollup exports.
+5. Public report cadence and approval workflow.

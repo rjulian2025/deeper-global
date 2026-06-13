@@ -25,6 +25,7 @@ const {
 const canonicalUrl = siteUrl(canonicalPath);
 const imageUrl = siteUrl(imagePath);
 const GA_MEASUREMENT_ID = import.meta.env.NEXT_PUBLIC_GA_ID ?? 'G-VY56C15LGV';
+const INTENT_EVENT_ENDPOINT = import.meta.env.PUBLIC_INTENT_EVENT_ENDPOINT ?? '/api/intent-event';
 const siteGraph = [
   {
     '@type': 'Organization',
@@ -114,7 +115,7 @@ const structuredData = {
         </div>
       </footer>
     </div>
-    <script is:inline>
+    <script is:inline define:vars={{ INTENT_EVENT_ENDPOINT }}>
       (() => {
         const MAX_PARAM_LENGTH = 100;
         const sameHost = window.location.hostname;
@@ -206,9 +207,38 @@ const structuredData = {
               .filter(([, value]) => value !== undefined && value !== null && value !== '')
           );
 
+        const sendFirstPartyIntentEvent = (eventName, params) => {
+          if (!INTENT_EVENT_ENDPOINT) return;
+
+          const body = JSON.stringify({
+            event_name: eventName,
+            event_params: params,
+          });
+
+          try {
+            if (navigator.sendBeacon) {
+              const blob = new Blob([body], { type: 'application/json' });
+              navigator.sendBeacon(INTENT_EVENT_ENDPOINT, blob);
+              return;
+            }
+
+            fetch(INTENT_EVENT_ENDPOINT, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body,
+              keepalive: true,
+            }).catch(() => {});
+          } catch {
+            // Tracking should never affect the educational page experience.
+          }
+        };
+
         window.deeperTrackEvent = (eventName, params = {}) => {
-          if (typeof window.gtag !== 'function') return;
-          window.gtag('event', eventName, compactParams(params));
+          const compactedParams = compactParams(params);
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', eventName, compactedParams);
+          }
+          sendFirstPartyIntentEvent(eventName, compactedParams);
         };
 
         if (document.querySelector('.answer-layout')) {

@@ -246,8 +246,12 @@ const searchIndex = questions.map((question) => {
         ? `Showing ${results.length} result${results.length === 1 ? '' : 's'} for "${trimmedQuery}".`
         : `No direct matches for "${trimmedQuery}" yet. Try a broader phrase like anxiety, addiction, therapy, grief, or relationship.`;
 
+      const topResult = results[0];
+
       window.deeperTrackEvent?.('site_search_performed', {
         content_type: 'search',
+        category: topResult?.category,
+        search_topic: topResult?.category,
         search_term: safeSearchTerm(trimmedQuery),
         search_token_count: normalize(trimmedQuery).split(' ').filter(Boolean).length,
         search_result_count: results.length,
@@ -273,6 +277,7 @@ const searchIndex = questions.map((question) => {
         search_term: safeSearchTerm(searchInput?.value ?? initialQuery),
         search_result_position: Number(link.dataset.searchResultPosition ?? 0),
         category: link.dataset.searchResultCategory,
+        search_topic: link.dataset.searchResultCategory,
         target_path: link.getAttribute('href') ?? undefined,
       });
     });
