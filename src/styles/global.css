@@ -393,11 +393,18 @@ h3 {
 }
 
 .answer-card {
+  position: relative;
   transition: background 0.18s ease, color 0.18s ease;
 }
 
 .answer-card:hover {
   background: var(--mist);
+}
+
+.answer-card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 
 .answer-card h2,
@@ -414,6 +421,8 @@ h3 {
 }
 
 .meta-row {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
