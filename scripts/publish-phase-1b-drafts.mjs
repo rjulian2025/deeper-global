@@ -58,24 +58,25 @@ function resolveSupabaseConfig({ requireWrite = false } = {}) {
     }
   })();
 
-  const url =
-    process.env.SUPABASE_URL ??
-    process.env.PUBLIC_SUPABASE_URL ??
-    process.env.NEXT_PUBLIC_SUPABASE_URL ??
-    fileEnv.SUPABASE_URL ??
-    fileEnv.PUBLIC_SUPABASE_URL ??
-    fileEnv.NEXT_PUBLIC_SUPABASE_URL;
-
-  const key =
-    process.env.SUPABASE_SERVICE_ROLE_KEY ??
-    fileEnv.SUPABASE_SERVICE_ROLE_KEY ??
-    process.env.SUPABASE_ANON_KEY ??
-    process.env.PUBLIC_SUPABASE_ANON_KEY ??
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
-    fileEnv.SUPABASE_ANON_KEY ??
-    fileEnv.PUBLIC_SUPABASE_ANON_KEY ??
-    fileEnv.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY ?? fileEnv.SUPABASE_SERVICE_ROLE_KEY;
+  const firstPresent = (...values) => values.find((value) => typeof value === 'string' && value.trim());
+  const serviceRoleKey = firstPresent(process.env.SUPABASE_SERVICE_ROLE_KEY, fileEnv.SUPABASE_SERVICE_ROLE_KEY);
+  const url = firstPresent(
+    process.env.SUPABASE_URL,
+    process.env.PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    fileEnv.SUPABASE_URL,
+    fileEnv.PUBLIC_SUPABASE_URL,
+    fileEnv.NEXT_PUBLIC_SUPABASE_URL
+  );
+  const key = firstPresent(
+    serviceRoleKey,
+    process.env.SUPABASE_ANON_KEY,
+    process.env.PUBLIC_SUPABASE_ANON_KEY,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    fileEnv.SUPABASE_ANON_KEY,
+    fileEnv.PUBLIC_SUPABASE_ANON_KEY,
+    fileEnv.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  );
 
   if (!url || !key) {
     throw new Error('Missing Supabase credentials. Set SUPABASE_URL and SUPABASE_ANON_KEY, or use .vercel/.env.production.local.');
