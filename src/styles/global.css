@@ -864,6 +864,16 @@ h3 {
   gap: 16px;
 }
 
+.answer-search {
+  margin-top: 28px;
+}
+
+.search-status {
+  margin: 0 0 18px;
+  color: var(--stone);
+  font-weight: 700;
+}
+
 .pagination {
   display: flex;
   align-items: center;

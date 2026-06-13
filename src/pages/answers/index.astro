@@ -2,12 +2,49 @@
 import AnswerCard from '@/components/AnswerCard.astro';
 import EmptyState from '@/components/EmptyState.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import {
+  answerPath,
+  categoryPath,
+  displayCategory,
+  formatDate,
+  getAnswerDisplayTitle,
+  getAnswerPlainText,
+  getAnswerSummary,
+  getFollowUpQuestions,
+  getPrimaryTheme,
+  getRelatedThemeNames,
+} from '@/lib/content';
 import { getQuestions } from '@/lib/supabase';
 
 const questions = await getQuestions();
 const pageSize = 48;
 const visibleQuestions = questions.slice(0, pageSize);
 const totalPages = Math.ceil(questions.length / pageSize);
+const searchIndex = questions.map((question) => {
+  const category = displayCategory(question);
+  const title = getAnswerDisplayTitle(question);
+  const summary = getAnswerSummary(question);
+  const searchableText = [
+    question.question,
+    title,
+    summary,
+    category,
+    getPrimaryTheme(question),
+    ...getRelatedThemeNames(question),
+    ...getFollowUpQuestions(question),
+    getAnswerPlainText(question),
+  ].join(' ');
+
+  return {
+    title,
+    summary,
+    category,
+    categoryUrl: categoryPath(category),
+    url: answerPath(question.slug),
+    updated: formatDate(question.updated_at || question.created_at),
+    searchableText,
+  };
+});
 ---
 
 <BaseLayout
@@ -21,11 +58,20 @@ const totalPages = Math.ceil(questions.length / pageSize);
         <p class="eyebrow">Answer library</p>
         <h1>Mental health questions and answers.</h1>
         <p class="lede">A structured library of clear, vetted answers for people seeking context before, during, or after care.</p>
+        <form class="hero-search answer-search" action="/answers/" method="get" role="search" aria-label="Search mental health answers">
+          <input id="answer-search-input" name="q" type="search" placeholder="Search answers..." autocomplete="off" />
+          <button type="submit" aria-label="Search answers">
+            <span aria-hidden="true">⌕</span>
+          </button>
+        </form>
       </div>
     </section>
 
     <section class="section">
-      <div class="container answer-list">
+      <div class="container">
+        <p class="search-status" id="answer-search-status" hidden></p>
+      </div>
+      <div class="container answer-list" id="answer-results">
         {
           visibleQuestions.length ? (
             visibleQuestions.map((question) => <AnswerCard question={question} />)
@@ -38,7 +84,7 @@ const totalPages = Math.ceil(questions.length / pageSize);
         }
         {
           totalPages > 1 && (
-            <nav class="pagination" aria-label="Answer library pages">
+            <nav class="pagination" aria-label="Answer library pages" id="answer-pagination">
               <span>Page 1 of {totalPages}</span>
               <a href="/answers/page/2/">Next</a>
             </nav>
@@ -47,4 +93,134 @@ const totalPages = Math.ceil(questions.length / pageSize);
       </div>
     </section>
   </main>
+
+  <script type="application/json" id="answer-search-index" set:html={JSON.stringify(searchIndex)} />
+
+  <script>
+    const searchIndexElement = document.querySelector<HTMLScriptElement>('#answer-search-index');
+    const searchInput = document.querySelector<HTMLInputElement>('#answer-search-input');
+    const resultsElement = document.querySelector<HTMLElement>('#answer-results');
+    const statusElement = document.querySelector<HTMLElement>('#answer-search-status');
+    const paginationElement = document.querySelector<HTMLElement>('#answer-pagination');
+
+    const queryExpansions: Record<string, string[]> = {
+      sex: ['sexual', 'intimacy', 'porn', 'pornography', 'compulsive'],
+      addiction: ['addictive', 'substance', 'sobriety', 'recovery', 'relapse', 'compulsive'],
+      anxious: ['anxiety', 'stress', 'worry', 'panic'],
+      anxiety: ['anxious', 'stress', 'worry', 'panic'],
+      depressed: ['depression', 'sad', 'numb', 'mood'],
+      depression: ['depressed', 'sad', 'numb', 'mood'],
+      therapy: ['therapist', 'counseling', 'treatment', 'support'],
+    };
+
+    function normalize(value: string) {
+      return value
+        .toLowerCase()
+        .replace(/[’']/g, '')
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim();
+    }
+
+    function escapeHtml(value: string) {
+      return value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function queryTokens(query: string) {
+      const baseTokens = normalize(query)
+        .split(' ')
+        .filter((token) => token.length > 1);
+      const expandedTokens = baseTokens.flatMap((token) => [token, ...(queryExpansions[token] ?? [])]);
+      return Array.from(new Set(expandedTokens));
+    }
+
+    function scoreResult(item: { title: string; category: string; searchableText: string }, query: string) {
+      const normalizedQuery = normalize(query);
+      const normalizedTitle = normalize(item.title);
+      const normalizedCategory = normalize(item.category);
+      const normalizedText = normalize(item.searchableText);
+      const originalTokens = normalize(query)
+        .split(' ')
+        .filter((token) => token.length > 1);
+      const expandedTokens = queryTokens(query).filter((token) => !originalTokens.includes(token));
+      let score = 0;
+
+      if (normalizedTitle.includes(normalizedQuery)) score += 80;
+      if (normalizedCategory.includes(normalizedQuery)) score += 60;
+      if (normalizedText.includes(normalizedQuery)) score += 40;
+
+      if (originalTokens.length > 1 && originalTokens.every((token) => normalizedTitle.includes(token))) score += 70;
+      if (originalTokens.length > 1 && originalTokens.every((token) => normalizedText.includes(token))) score += 35;
+
+      if (originalTokens.includes('sex') && originalTokens.includes('addiction')) {
+        if (/process addiction|porn|pornography|compulsive sexual/.test(normalizedTitle)) score += 90;
+        if (/process addiction|porn|pornography|compulsive sexual/.test(normalizedText)) score += 90;
+      }
+
+      for (const token of originalTokens) {
+        if (normalizedTitle.includes(token)) score += 30;
+        if (normalizedCategory.includes(token)) score += 18;
+        if (normalizedText.includes(token)) score += 8;
+      }
+
+      for (const token of expandedTokens) {
+        if (normalizedTitle.includes(token)) score += 10;
+        if (normalizedCategory.includes(token)) score += 8;
+        if (normalizedText.includes(token)) score += 3;
+      }
+
+      return score;
+    }
+
+    function resultTemplate(item: { title: string; summary: string; category: string; categoryUrl: string; url: string; updated: string }) {
+      return `
+      <article class="answer-card">
+        <a href="${escapeHtml(item.url)}">
+          <h2>${escapeHtml(item.title)}</h2>
+        </a>
+        <p>${escapeHtml(item.summary)}</p>
+        <div class="meta-row">
+          <a class="pill" href="${escapeHtml(item.categoryUrl)}">${escapeHtml(item.category)}</a>
+          <span class="pill">Updated ${escapeHtml(item.updated)}</span>
+        </div>
+      </article>
+    `;
+    }
+
+    function runSearch(query: string) {
+      if (!searchIndexElement || !resultsElement || !statusElement) return;
+
+      const trimmedQuery = query.trim();
+      if (!trimmedQuery) return;
+
+      const index = JSON.parse(searchIndexElement.textContent || '[]');
+      const results = index
+        .map((item: { title: string; category: string; searchableText: string }) => ({
+          item,
+          score: scoreResult(item, trimmedQuery),
+        }))
+        .filter((result: { score: number }) => result.score > 0)
+        .sort((a: { score: number }, b: { score: number }) => b.score - a.score)
+        .slice(0, 48)
+        .map((result: { item: { title: string; summary: string; category: string; categoryUrl: string; url: string; updated: string } }) => result.item);
+
+      if (searchInput) searchInput.value = trimmedQuery;
+      if (paginationElement) paginationElement.hidden = true;
+      statusElement.hidden = false;
+      statusElement.textContent = results.length
+        ? `Showing ${results.length} result${results.length === 1 ? '' : 's'} for "${trimmedQuery}".`
+        : `No direct matches for "${trimmedQuery}" yet. Try a broader phrase like anxiety, addiction, therapy, grief, or relationship.`;
+
+      resultsElement.innerHTML = results.length
+        ? results.map(resultTemplate).join('')
+        : '<article class="answer-card"><h2>No matching answers found.</h2><p>Try a broader search term or browse the full answer library.</p></article>';
+    }
+
+    const initialQuery = new URLSearchParams(window.location.search).get('q') ?? '';
+    runSearch(initialQuery);
+  </script>
 </BaseLayout>
