@@ -97,11 +97,14 @@ If any GA4 env var is missing, or if the GA4 Data API request fails, the email s
 The report intentionally separates raw host-filtered GA4 KPIs from quarantine, qualified intent, and search visibility interpretation:
 
 - Raw all-traffic site KPIs show GA4's aggregate active users, sessions, views, engagement, bounce rate, and duration without suppressing noisy traffic.
-- Traffic quarantine uses aggregate GA4 `country`, `sessionDefaultChannelGroup`, and `sessionSourceMedium` buckets to label likely-noise traffic. Current reason codes cover Singapore direct traffic, China direct traffic, near-zero average session duration, one-page or zero-engagement buckets, and suspicious direct traffic from non-target countries.
-- Qualified intent uses aggregate GA4 source/country buckets that meet at least one criterion: engaged sessions, non-direct source, average session duration above 10 seconds, 2+ pageviews/session, US or configured target-market country, organic search source, or referral/social source.
+- Traffic quarantine uses aggregate GA4 `country`, `sessionDefaultChannelGroup`, and `sessionSourceMedium` buckets to label likely-noise traffic. Current reason codes cover Singapore direct traffic, China direct traffic, short duration with other weak signals, one-page plus zero-engagement buckets, and suspicious direct traffic from non-target countries.
+- Quarantined sessions are unique source/country bucket sessions counted once and shown as a capped share of raw sessions. Quarantine reason-code matches are intentionally separate because one bucket can match multiple reasons; those overlapping matches may exceed raw sessions and are labeled as reason-code matches, not traffic share.
+- Qualified intent has two layers. The loose criteria view is exploratory and includes buckets that meet at least one positive criterion: engaged sessions, non-direct source, average session duration above 10 seconds, 2+ pageviews/session, US or configured target-market country, organic search source, or referral/social source. Criteria totals are overlapping criteria matches, not unique traffic shares.
+- Strict qualified traffic is more conservative: it excludes quarantined buckets and requires stronger evidence such as engaged sessions, non-direct source, organic/referral/social source, or target-market traffic with engagement, duration, or pageview quality. Strict qualified sessions are unique source/country bucket sessions counted once and shown as a capped share of raw sessions.
+- Mixed-signal / needs-review traffic captures short-duration buckets that still have promising source or target-market signals. These buckets are not automatically quarantined unless short duration is combined with additional weak signals such as direct source, non-target country, zero engaged sessions, one-page behavior, or known noisy direct countries.
 - The qualified intent section also breaks out target-market sessions, non-direct sessions, engaged sessions, organic search sessions, and referral/social sessions so those layers are visible without hiding raw traffic.
 - Data quality / bot-noise flags highlight suspicious aggregate conditions instead of hiding them from the headline. Current thresholds flag direct sessions above 80%, top country share above 70%, engagement rate below 5%, average session duration below 5 seconds, views per active user near 1, and source/country combinations that look like concentrated direct bot or proxy traffic.
-- Top source/country combinations, top quarantined buckets, and top qualified buckets are included to make country, channel, and source concentration easier to interpret while staying aggregate-only.
+- Top source/country combinations, top quarantined buckets, top needs-review buckets, and top loose/strict qualified buckets are included to make country, channel, and source concentration easier to interpret while staying aggregate-only.
 
 Use raw KPIs to understand what GA4 counted, traffic quarantine to understand likely noise, qualified intent to judge real audience activity, and Search Console to understand indexed/query visibility. Do not cite raw site KPIs externally when quarantine or bot/noise flags are present without explaining the quality caveat.
 
@@ -109,8 +112,8 @@ Quarantine and qualified intent limitations:
 
 - These calculations use aggregate GA4 rows only. They do not use raw user IDs, session IDs, IPs, or raw event streams.
 - The source/country bucket query is capped for runtime control and ordered by sessions, so long-tail low-volume buckets may not appear in the detailed quarantine or qualified bucket lists.
-- GA4 aggregate rows cannot isolate exact zero-duration sessions in this implementation. The report uses `averageSessionDuration < 10 seconds` on source/country buckets as a near-zero duration signal.
-- One-page or zero-engagement buckets are derived from `screenPageViews / sessions` and `engagedSessions` on aggregate rows.
+- GA4 aggregate rows cannot isolate exact zero-duration sessions in this implementation. The report uses `averageSessionDuration < 10 seconds` on source/country buckets as a short-duration signal, but short duration alone is not treated as automatic quarantine.
+- One-page plus zero-engagement buckets are derived from `screenPageViews / sessions` and `engagedSessions` on aggregate rows.
 - GA4 Data API does not expose user agent in the current report query. Known crawler/user-agent quarantine requires Vercel logs, Vercel Firewall analytics, or additional explicit collection.
 
 Search Console metrics are aggregate-only Google organic search metrics:
@@ -126,7 +129,7 @@ Authorized manual testing:
 vercel curl "/api/reports/intent-email?dryRun=1" --deployment <deployment-url> -H "Authorization: Bearer $CRON_SECRET"
 ```
 
-The report currently includes aggregate GA4 site KPIs (active users, total users, sessions, engaged sessions, page/screen views, engagement time, engagement rate, bounce rate when available, top pages, traffic sources/channels, source/country combinations, country/region distribution, traffic quarantine, qualified intent metrics, and data quality flags), aggregate Search Console metrics (clicks, impressions, CTR, average position, top queries/pages/countries/devices), top searched topics, top searched topics by region, no-result searches, care-navigation demand, and safety-sensitive aggregate signals. It does not include raw first-party site-search queries, raw GA4 user/session identifiers, or below-threshold intent location segments.
+The report currently includes aggregate GA4 site KPIs (active users, total users, sessions, engaged sessions, page/screen views, engagement time, engagement rate, bounce rate when available, top pages, traffic sources/channels, source/country combinations, country/region distribution, traffic quarantine, mixed-signal needs-review traffic, loose and strict qualified intent metrics, and data quality flags), aggregate Search Console metrics (clicks, impressions, CTR, average position, top queries/pages/countries/devices), top searched topics, top searched topics by region, no-result searches, care-navigation demand, and safety-sensitive aggregate signals. It does not include raw first-party site-search queries, raw GA4 user/session identifiers, or below-threshold intent location segments.
 
 ## Example Questions
 

@@ -23,7 +23,7 @@ const DIRECT_NOISE_COUNTRIES = ['Singapore', 'China'];
 const QUARANTINE_REASON_LABELS = {
   singapore_direct: 'Singapore direct traffic',
   china_direct: 'China direct traffic',
-  near_zero_duration: 'Near-zero session duration',
+  near_zero_duration: 'Short duration with weak signals',
   one_page_zero_engagement: 'One-page or zero-engagement sessions',
   suspicious_direct_non_target_country: 'Suspicious direct traffic from non-target countries',
 };
@@ -35,6 +35,13 @@ const QUALIFIED_CRITERIA_LABELS = {
   target_market_country: 'US / target-market country',
   organic_search_source: 'Organic search source',
   referral_social_source: 'Referral/social source',
+  strict_engaged_not_quarantined: 'Engaged sessions, not quarantined',
+  strict_non_direct_not_quarantined: 'Non-direct source, not quarantined',
+  strict_organic_referral_social_not_quarantined: 'Organic/referral/social source, not quarantined',
+  strict_target_quality_not_quarantined: 'Target market with engagement, duration, or pageview quality',
+};
+const MIXED_SIGNAL_LABELS = {
+  short_duration_mixed_signal: 'Short duration with promising source or target-market signal',
 };
 
 function cleanText(value, fallback = '') {
@@ -256,6 +263,16 @@ function safeRatio(numerator, denominator) {
   return Number.isFinite(numerator) && Number.isFinite(denominator) && denominator > 0 ? numerator / denominator : null;
 }
 
+function cappedRatio(numerator, denominator) {
+  const ratio = safeRatio(numerator, denominator);
+  return ratio === null ? null : Math.min(ratio, 1);
+}
+
+function cappedSessionCount(value, rawSessions) {
+  if (!Number.isFinite(value)) return 0;
+  return Number.isFinite(rawSessions) && rawSessions > 0 ? Math.min(value, rawSessions) : value;
+}
+
 function configuredTargetMarketCountries() {
   const configuredCountries = cleanText(process.env.REPORT_TARGET_MARKET_COUNTRIES);
   const countries = configuredCountries
@@ -328,6 +345,45 @@ function viewsPerSessionFromMetrics(metrics) {
   return safeRatio(Number(metrics?.screenPageViews ?? 0), Number(metrics?.sessions ?? 0));
 }
 
+function bucketSignals(row) {
+  const country = countryName(row);
+  const averageSessionDuration = Number(row.metrics?.averageSessionDuration ?? 0);
+  const engagedSessions = Number(row.metrics?.engagedSessions ?? 0);
+  const viewsPerSession = viewsPerSessionFromMetrics(row.metrics);
+  const directTraffic = isDirectTraffic(row);
+  const targetMarketCountry = isTargetMarketCountry(country);
+  const directNoiseCountry = isDirectNoiseCountry(country);
+  const onePageSession = viewsPerSession !== null && viewsPerSession <= ONE_PAGE_SESSION_RATIO;
+  const zeroEngagedSessions = engagedSessions <= 0;
+  const shortDuration = averageSessionDuration < QUALIFIED_SESSION_DURATION_SECONDS;
+  const organicReferralSocial = isOrganicSocialReferral(row) || isReferralSocialTraffic(row);
+  const negativeSignals = [
+    directTraffic,
+    !targetMarketCountry,
+    directNoiseCountry,
+    zeroEngagedSessions,
+    onePageSession,
+  ].filter(Boolean).length;
+
+  return {
+    country,
+    averageSessionDuration,
+    engagedSessions,
+    viewsPerSession,
+    directTraffic,
+    targetMarketCountry,
+    directNoiseCountry,
+    onePageSession,
+    zeroEngagedSessions,
+    shortDuration,
+    organicReferralSocial,
+    promisingTraffic: organicReferralSocial || targetMarketCountry,
+    negativeSignals,
+    durationOrPageviewQuality:
+      averageSessionDuration > QUALIFIED_SESSION_DURATION_SECONDS || (viewsPerSession !== null && viewsPerSession >= 2),
+  };
+}
+
 function topCountryBySessions(countries) {
   return [...countries].sort((a, b) => Number(b.metrics?.sessions ?? 0) - Number(a.metrics?.sessions ?? 0))[0] ?? null;
 }
@@ -350,24 +406,21 @@ function isSuspiciousSourceCountryCombo(row, totalSessions) {
 }
 
 function quarantineReasonCodes(row) {
-  const country = countryName(row);
-  const directTraffic = isDirectTraffic(row);
-  const averageSessionDuration = Number(row.metrics?.averageSessionDuration ?? 0);
-  const engagedSessions = Number(row.metrics?.engagedSessions ?? 0);
-  const viewsPerSession = viewsPerSessionFromMetrics(row.metrics);
-  const weakEngagement =
-    engagedSessions <= 0 ||
-    averageSessionDuration < QUALIFIED_SESSION_DURATION_SECONDS ||
-    (viewsPerSession !== null && viewsPerSession <= ONE_PAGE_SESSION_RATIO);
+  const signals = bucketSignals(row);
+  const normalizedCountry = normalizeCountry(signals.country);
+  const weakEngagement = signals.zeroEngagedSessions || signals.shortDuration || signals.onePageSession;
+  const shortDurationWithWeakSignals =
+    signals.shortDuration &&
+    (signals.negativeSignals >= 2 || (!signals.promisingTraffic && signals.negativeSignals >= 1));
   const reasons = [];
 
-  if (directTraffic && normalizeCountry(country) === 'singapore') reasons.push('singapore_direct');
-  if (directTraffic && normalizeCountry(country) === 'china') reasons.push('china_direct');
-  if (averageSessionDuration < QUALIFIED_SESSION_DURATION_SECONDS) reasons.push('near_zero_duration');
-  if (engagedSessions <= 0 || (viewsPerSession !== null && viewsPerSession <= ONE_PAGE_SESSION_RATIO)) {
+  if (signals.directTraffic && normalizedCountry === 'singapore') reasons.push('singapore_direct');
+  if (signals.directTraffic && normalizedCountry === 'china') reasons.push('china_direct');
+  if (shortDurationWithWeakSignals) reasons.push('near_zero_duration');
+  if (signals.zeroEngagedSessions && signals.onePageSession) {
     reasons.push('one_page_zero_engagement');
   }
-  if (directTraffic && !isTargetMarketCountry(country) && !isDirectNoiseCountry(country) && weakEngagement) {
+  if (signals.directTraffic && !signals.targetMarketCountry && !signals.directNoiseCountry && weakEngagement) {
     reasons.push('suspicious_direct_non_target_country');
   }
 
@@ -375,24 +428,45 @@ function quarantineReasonCodes(row) {
 }
 
 function qualifiedCriteriaCodes(row) {
-  const averageSessionDuration = Number(row.metrics?.averageSessionDuration ?? 0);
-  const engagedSessions = Number(row.metrics?.engagedSessions ?? 0);
-  const viewsPerSession = viewsPerSessionFromMetrics(row.metrics);
+  const signals = bucketSignals(row);
   const criteria = [];
 
-  if (engagedSessions > 0) criteria.push('engaged_sessions');
-  if (!isDirectTraffic(row)) criteria.push('non_direct_source');
-  if (averageSessionDuration > QUALIFIED_SESSION_DURATION_SECONDS) criteria.push('session_duration_over_10s');
-  if (viewsPerSession !== null && viewsPerSession >= 2) criteria.push('two_plus_pageviews_per_session');
-  if (isTargetMarketCountry(countryName(row))) criteria.push('target_market_country');
+  if (signals.engagedSessions > 0) criteria.push('engaged_sessions');
+  if (!signals.directTraffic) criteria.push('non_direct_source');
+  if (signals.averageSessionDuration > QUALIFIED_SESSION_DURATION_SECONDS) criteria.push('session_duration_over_10s');
+  if (signals.viewsPerSession !== null && signals.viewsPerSession >= 2) criteria.push('two_plus_pageviews_per_session');
+  if (signals.targetMarketCountry) criteria.push('target_market_country');
   if (isOrganicSearchTraffic(row)) criteria.push('organic_search_source');
   if (isReferralSocialTraffic(row)) criteria.push('referral_social_source');
 
   return criteria;
 }
 
+function strictQualifiedCriteriaCodes(row, quarantineReasons) {
+  if (quarantineReasons.length) return [];
+
+  const signals = bucketSignals(row);
+  const criteria = [];
+
+  if (signals.engagedSessions > 0) criteria.push('strict_engaged_not_quarantined');
+  if (!signals.directTraffic) criteria.push('strict_non_direct_not_quarantined');
+  if (signals.organicReferralSocial) criteria.push('strict_organic_referral_social_not_quarantined');
+  if (signals.targetMarketCountry && (signals.engagedSessions > 0 || signals.durationOrPageviewQuality)) {
+    criteria.push('strict_target_quality_not_quarantined');
+  }
+
+  return criteria;
+}
+
+function needsReviewCodes(row, quarantineReasons) {
+  const signals = bucketSignals(row);
+
+  if (!signals.shortDuration || quarantineReasons.length || !signals.promisingTraffic) return [];
+  return ['short_duration_mixed_signal'];
+}
+
 function bucketLabel(code) {
-  return QUARANTINE_REASON_LABELS[code] ?? QUALIFIED_CRITERIA_LABELS[code] ?? code;
+  return QUARANTINE_REASON_LABELS[code] ?? QUALIFIED_CRITERIA_LABELS[code] ?? MIXED_SIGNAL_LABELS[code] ?? code;
 }
 
 function addBucketTotals(totals, codes, sessions) {
@@ -403,11 +477,11 @@ function addBucketTotals(totals, codes, sessions) {
   }
 }
 
-function sortedBucketTotals(totals, totalSessions) {
+function sortedBucketTotals(totals, totalSessions, shareKey = 'sessionShare') {
   return [...totals.values()]
     .map((item) => ({
       ...item,
-      sessionShare: safeRatio(item.sessions, totalSessions),
+      [shareKey]: safeRatio(item.sessions, totalSessions),
     }))
     .sort((a, b) => b.sessions - a.sessions || a.label.localeCompare(b.label));
 }
@@ -419,7 +493,7 @@ function bucketDetail(row, codes, totalSessions) {
     channel: sessionChannel(row),
     sourceMedium: sessionSourceMedium(row),
     sessions,
-    sessionShare: safeRatio(sessions, totalSessions),
+    sessionShare: cappedRatio(sessions, totalSessions),
     engagedSessions: Number(row.metrics?.engagedSessions ?? 0),
     engagementRate: Number(row.metrics?.engagementRate ?? 0),
     averageSessionDuration: Number(row.metrics?.averageSessionDuration ?? 0),
@@ -432,8 +506,11 @@ function buildTrafficSegmentation({ summary, trafficSources, sourceCountries }) 
   const sessions = Number(summary.sessions ?? 0);
   const reasonTotals = new Map();
   const criteriaTotals = new Map();
+  const strictCriteriaTotals = new Map();
   const quarantinedBuckets = [];
-  const qualifiedBuckets = [];
+  const looseQualifiedBuckets = [];
+  const strictQualifiedBuckets = [];
+  const needsReviewBuckets = [];
 
   for (const row of sourceCountries) {
     const bucketSessions = Number(row.metrics?.sessions ?? 0);
@@ -448,12 +525,39 @@ function buildTrafficSegmentation({ summary, trafficSources, sourceCountries }) 
     const criteria = qualifiedCriteriaCodes(row);
     if (criteria.length) {
       addBucketTotals(criteriaTotals, criteria, bucketSessions);
-      qualifiedBuckets.push(bucketDetail(row, criteria, sessions));
+      looseQualifiedBuckets.push(bucketDetail(row, criteria, sessions));
+    }
+
+    const strictCriteria = strictQualifiedCriteriaCodes(row, reasons);
+    if (strictCriteria.length) {
+      addBucketTotals(strictCriteriaTotals, strictCriteria, bucketSessions);
+      strictQualifiedBuckets.push(bucketDetail(row, strictCriteria, sessions));
+    }
+
+    const reviewCodes = needsReviewCodes(row, reasons);
+    if (reviewCodes.length) {
+      needsReviewBuckets.push(bucketDetail(row, reviewCodes, sessions));
     }
   }
 
-  const quarantinedSessions = quarantinedBuckets.reduce((total, bucket) => total + bucket.sessions, 0);
-  const qualifiedSessions = qualifiedBuckets.reduce((total, bucket) => total + bucket.sessions, 0);
+  const quarantinedSessions = cappedSessionCount(
+    quarantinedBuckets.reduce((total, bucket) => total + bucket.sessions, 0),
+    sessions
+  );
+  const reasonMatches = sortedBucketTotals(reasonTotals, sessions, 'reasonMatchShare').reduce((total, item) => total + item.sessions, 0);
+  const looseQualifiedSessions = cappedSessionCount(
+    looseQualifiedBuckets.reduce((total, bucket) => total + bucket.sessions, 0),
+    sessions
+  );
+  const criteriaMatches = sortedBucketTotals(criteriaTotals, sessions, 'criteriaMatchShare').reduce((total, item) => total + item.sessions, 0);
+  const strictQualifiedSessions = cappedSessionCount(
+    strictQualifiedBuckets.reduce((total, bucket) => total + bucket.sessions, 0),
+    sessions
+  );
+  const needsReviewSessions = cappedSessionCount(
+    needsReviewBuckets.reduce((total, bucket) => total + bucket.sessions, 0),
+    sessions
+  );
   const directSessions = sumGa4Metric(trafficSources, 'sessions', isDirectTraffic);
   const nonDirectSessions = Math.max(sessions - directSessions, 0);
   const organicSearchSessions = sumGa4Metric(trafficSources, 'sessions', isOrganicSearchTraffic);
@@ -468,30 +572,46 @@ function buildTrafficSegmentation({ summary, trafficSources, sourceCountries }) 
     },
     trafficQuarantine: {
       method: 'Aggregate GA4 source/country buckets; rows may carry multiple reason codes, but quarantined sessions count each bucket once.',
-      sessions: quarantinedSessions,
-      sessionShare: safeRatio(quarantinedSessions, sessions),
-      topReasons: sortedBucketTotals(reasonTotals, sessions),
+      quarantinedSessions,
+      quarantinedSessionShare: cappedRatio(quarantinedSessions, sessions),
+      reasonMatches,
+      reasonMatchShare: safeRatio(reasonMatches, sessions),
+      topReasonMatches: sortedBucketTotals(reasonTotals, sessions, 'reasonMatchShare'),
       topBuckets: quarantinedBuckets.sort((a, b) => b.sessions - a.sessions).slice(0, 10),
       limitations: [
         'GA4 aggregate reports do not expose raw user/session identifiers.',
-        'Zero-duration sessions cannot be isolated exactly from these aggregate rows, so the report uses averageSessionDuration under 10 seconds as a near-zero bucket signal.',
+        'Zero-duration sessions cannot be isolated exactly from these aggregate rows, so short averageSessionDuration is treated as a weak signal unless other weak signals are present.',
         'User-agent crawler quarantine is not available from the current GA4 Data API query; use Vercel logs/firewall analytics or explicit collection for user-agent rules.',
       ],
     },
+    needsReview: {
+      method:
+        'Short-duration aggregate buckets with otherwise promising source or target-market signals; these are mixed signals for review, not automatic quarantine.',
+      needsReviewSessions,
+      needsReviewSessionShare: cappedRatio(needsReviewSessions, sessions),
+      topBuckets: needsReviewBuckets.sort((a, b) => b.sessions - a.sessions).slice(0, 10),
+    },
     qualifiedIntent: {
-      method: 'Aggregate GA4 source/country buckets that meet at least one qualified-intent criterion.',
-      sessions: qualifiedSessions,
-      sessionShare: safeRatio(qualifiedSessions, sessions),
-      criteria: sortedBucketTotals(criteriaTotals, sessions),
-      topBuckets: qualifiedBuckets.sort((a, b) => b.sessions - a.sessions).slice(0, 10),
+      method:
+        'Loose criteria are exploratory bucket matches; strict qualified traffic excludes quarantined buckets and requires stronger positive evidence.',
+      looseQualifiedSessions,
+      looseQualifiedSessionShare: cappedRatio(looseQualifiedSessions, sessions),
+      criteriaMatches,
+      criteriaMatchShare: safeRatio(criteriaMatches, sessions),
+      criteria: sortedBucketTotals(criteriaTotals, sessions, 'criteriaMatchShare'),
+      topLooseBuckets: looseQualifiedBuckets.sort((a, b) => b.sessions - a.sessions).slice(0, 10),
+      strictQualifiedSessions,
+      strictQualifiedSessionShare: cappedRatio(strictQualifiedSessions, sessions),
+      strictCriteria: sortedBucketTotals(strictCriteriaTotals, sessions, 'criteriaMatchShare'),
+      topStrictBuckets: strictQualifiedBuckets.sort((a, b) => b.sessions - a.sessions).slice(0, 10),
       targetMarketSessions,
-      targetMarketSessionShare: safeRatio(targetMarketSessions, sessions),
+      targetMarketSessionShare: cappedRatio(targetMarketSessions, sessions),
       nonDirectSessions,
-      nonDirectSessionShare: safeRatio(nonDirectSessions, sessions),
+      nonDirectSessionShare: cappedRatio(nonDirectSessions, sessions),
       organicSearchSessions,
-      organicSearchSessionShare: safeRatio(organicSearchSessions, sessions),
+      organicSearchSessionShare: cappedRatio(organicSearchSessions, sessions),
       referralSocialSessions,
-      referralSocialSessionShare: safeRatio(referralSocialSessions, sessions),
+      referralSocialSessionShare: cappedRatio(referralSocialSessions, sessions),
     },
   };
 }
@@ -512,7 +632,7 @@ function buildTrafficQuality({ summary, trafficSources, countries, sourceCountri
   const flags = [];
   const trafficSegmentation = buildTrafficSegmentation({ summary, trafficSources, sourceCountries });
 
-  const directSessionShare = safeRatio(directSessions, sessions);
+  const directSessionShare = cappedRatio(directSessions, sessions);
   if (directSessionShare !== null && directSessionShare > DATA_QUALITY_THRESHOLDS.directSessionShare) {
     flags.push({
       severity: 'warning',
@@ -524,7 +644,7 @@ function buildTrafficQuality({ summary, trafficSources, countries, sourceCountri
     });
   }
 
-  const topCountryShare = safeRatio(topCountrySessions, sessions);
+  const topCountryShare = cappedRatio(topCountrySessions, sessions);
   if (topCountry && topCountryShare !== null && topCountryShare > DATA_QUALITY_THRESHOLDS.topCountryShare) {
     flags.push({
       severity: 'warning',
@@ -578,7 +698,7 @@ function buildTrafficQuality({ summary, trafficSources, countries, sourceCountri
       severity: 'warning',
       code: 'suspicious_source_country_combo',
       label: 'Top source/country combination looks bot-like',
-      value: safeRatio(comboSessions, sessions),
+      value: cappedRatio(comboSessions, sessions),
       threshold: DATA_QUALITY_THRESHOLDS.suspiciousSourceCountryShare,
       detail: `${country} / ${source} has ${Math.round(comboSessions).toLocaleString('en-US')} sessions with weak engagement signals.`,
     });
@@ -592,15 +712,16 @@ function buildTrafficQuality({ summary, trafficSources, countries, sourceCountri
     directSessions,
     directSessionShare,
     nonDirectSessions,
-    nonDirectSessionShare: safeRatio(nonDirectSessions, sessions),
+    nonDirectSessionShare: cappedRatio(nonDirectSessions, sessions),
     organicSocialReferralSessions,
-    organicSocialReferralSessionShare: safeRatio(organicSocialReferralSessions, sessions),
+    organicSocialReferralSessionShare: cappedRatio(organicSocialReferralSessions, sessions),
     viewsPerActiveUser,
     averageSessionDuration,
     averageEngagementSecondsPerSession: safeRatio(Number(summary.userEngagementDuration ?? 0), sessions),
     targetMarketCountries: trafficSegmentation.targetMarketCountries,
     segmentationThresholds: trafficSegmentation.thresholds,
     trafficQuarantine: trafficSegmentation.trafficQuarantine,
+    needsReview: trafficSegmentation.needsReview,
     qualifiedIntent: trafficSegmentation.qualifiedIntent,
     topCountry: topCountry
       ? {
@@ -703,6 +824,7 @@ async function fetchSiteKpis(sinceDate) {
       sourceCountries: sourceCountryRows,
       qualifiedTraffic: trafficQuality,
       trafficQuarantine: trafficQuality.trafficQuarantine,
+      needsReview: trafficQuality.needsReview,
       qualifiedIntent: trafficQuality.qualifiedIntent,
     };
   } catch (error) {
@@ -967,8 +1089,8 @@ function bucketMetricText(item) {
   )} views/session (${codeLabels(item.codes)})`;
 }
 
-function bucketTotalsText(item) {
-  return `- ${item.label}: ${formatInteger(item.sessions)} sessions (${formatPercent(item.sessionShare)} of raw sessions)`;
+function bucketTotalsText(item, { countLabel = 'sessions', shareKey = 'sessionShare', shareLabel = 'of raw sessions' } = {}) {
+  return `- ${item.label}: ${formatInteger(item.sessions)} ${countLabel} (${formatPercent(item[shareKey])} ${shareLabel})`;
 }
 
 function siteKpiHtml(siteKpis) {
@@ -980,6 +1102,7 @@ function siteKpiHtml(siteKpis) {
   const summary = siteKpis.summary ?? {};
   const qualified = siteKpis.qualifiedTraffic ?? {};
   const quarantine = siteKpis.trafficQuarantine ?? qualified.trafficQuarantine ?? {};
+  const needsReview = siteKpis.needsReview ?? qualified.needsReview ?? {};
   const qualifiedIntent = siteKpis.qualifiedIntent ?? qualified.qualifiedIntent ?? {};
   const hostScope = siteKpis.hostnames?.length ? ` Host filter: ${siteKpis.hostnames.map(escapeHtml).join(', ')}.` : '';
 
@@ -1002,11 +1125,14 @@ function siteKpiHtml(siteKpis) {
     <h3>Traffic quarantine</h3>
     <p>${escapeHtml(quarantine.method ?? 'Aggregate GA4 source/country buckets flagged as likely noise.')}</p>
     <ul>
-      <li><strong>Likely-noise bucket sessions:</strong> ${formatInteger(quarantine.sessions)} (${formatPercent(quarantine.sessionShare)} of raw sessions)</li>
+      <li><strong>Quarantined sessions:</strong> ${formatInteger(quarantine.quarantinedSessions)} (${formatPercent(quarantine.quarantinedSessionShare)} of raw sessions, unique buckets counted once)</li>
+      <li><strong>Overlapping reason-code matches:</strong> ${formatInteger(quarantine.reasonMatches)} (${formatPercent(quarantine.reasonMatchShare)} of raw sessions; matches can overlap)</li>
     </ul>
-    <h4>Top quarantine reasons</h4>
-    ${listHtml((quarantine.topReasons ?? []).slice(0, 8), (item) => {
-      return `${escapeHtml(item.label)} — <strong>${formatInteger(item.sessions)}</strong> sessions (${formatPercent(item.sessionShare)} of raw sessions)`;
+    <h4>Top overlapping quarantine reason-code matches</h4>
+    ${listHtml((quarantine.topReasonMatches ?? []).slice(0, 8), (item) => {
+      return `${escapeHtml(item.label)} — <strong>${formatInteger(item.sessions)}</strong> reason-code matches (${formatPercent(
+        item.reasonMatchShare
+      )} of raw sessions; overlapping)`;
     })}
     <h4>Top quarantined source / country buckets</h4>
     ${listHtml(quarantine.topBuckets ?? [], bucketMetricHtml)}
@@ -1016,12 +1142,22 @@ function siteKpiHtml(siteKpis) {
         : ''
     }
 
+    <h3>Mixed-signal traffic needing review</h3>
+    <p>${escapeHtml(needsReview.method ?? 'Short-duration aggregate buckets with promising signals; not automatic quarantine.')}</p>
+    <ul>
+      <li><strong>Needs-review sessions:</strong> ${formatInteger(needsReview.needsReviewSessions)} (${formatPercent(needsReview.needsReviewSessionShare)} of raw sessions, unique buckets counted once)</li>
+    </ul>
+    <h4>Top needs-review source / country buckets</h4>
+    ${listHtml(needsReview.topBuckets ?? [], bucketMetricHtml)}
+
     <h3>Qualified intent traffic</h3>
     <p>${escapeHtml(qualifiedIntent.method ?? 'Aggregate GA4 source/country buckets that meet at least one qualified-intent criterion.')} Target markets: ${escapeHtml(
       (qualified.targetMarketCountries ?? []).join(', ') || 'United States'
     )}.</p>
     <ul>
-      <li><strong>Qualified-intent bucket sessions:</strong> ${formatInteger(qualifiedIntent.sessions)} (${formatPercent(qualifiedIntent.sessionShare)} of raw sessions)</li>
+      <li><strong>Loose qualified bucket sessions:</strong> ${formatInteger(qualifiedIntent.looseQualifiedSessions)} (${formatPercent(qualifiedIntent.looseQualifiedSessionShare)} of raw sessions, unique buckets counted once)</li>
+      <li><strong>Strict qualified sessions:</strong> ${formatInteger(qualifiedIntent.strictQualifiedSessions)} (${formatPercent(qualifiedIntent.strictQualifiedSessionShare)} of raw sessions, unique buckets counted once)</li>
+      <li><strong>Overlapping loose criteria matches:</strong> ${formatInteger(qualifiedIntent.criteriaMatches)} (${formatPercent(qualifiedIntent.criteriaMatchShare)} of raw sessions; matches can overlap)</li>
       <li><strong>Engaged sessions:</strong> ${formatInteger(qualified.engagedSessions)} (${formatPercent(qualified.engagementRate)} engagement rate)</li>
       <li><strong>US / target-market sessions:</strong> ${formatInteger(qualifiedIntent.targetMarketSessions)} (${formatPercent(qualifiedIntent.targetMarketSessionShare)} of raw sessions)</li>
       <li><strong>Non-direct sessions:</strong> ${formatInteger(qualifiedIntent.nonDirectSessions)} (${formatPercent(qualifiedIntent.nonDirectSessionShare)} of raw sessions)</li>
@@ -1036,12 +1172,22 @@ function siteKpiHtml(siteKpis) {
           : ''
       }
     </ul>
-    <h4>Qualified criteria contribution</h4>
+    <h4>Loose qualified criteria matches</h4>
     ${listHtml(qualifiedIntent.criteria ?? [], (item) => {
-      return `${escapeHtml(item.label)} — <strong>${formatInteger(item.sessions)}</strong> sessions (${formatPercent(item.sessionShare)} of raw sessions)`;
+      return `${escapeHtml(item.label)} — <strong>${formatInteger(item.sessions)}</strong> criteria matches (${formatPercent(
+        item.criteriaMatchShare
+      )} of raw sessions; overlapping)`;
     })}
-    <h4>Top qualified source / country buckets</h4>
-    ${listHtml(qualifiedIntent.topBuckets ?? [], bucketMetricHtml)}
+    <h4>Strict qualified criteria matches</h4>
+    ${listHtml(qualifiedIntent.strictCriteria ?? [], (item) => {
+      return `${escapeHtml(item.label)} — <strong>${formatInteger(item.sessions)}</strong> criteria matches (${formatPercent(
+        item.criteriaMatchShare
+      )} of raw sessions; overlapping)`;
+    })}
+    <h4>Top loose qualified source / country buckets</h4>
+    ${listHtml(qualifiedIntent.topLooseBuckets ?? [], bucketMetricHtml)}
+    <h4>Top strict qualified source / country buckets</h4>
+    ${listHtml(qualifiedIntent.topStrictBuckets ?? [], bucketMetricHtml)}
 
     <h3>Data quality / bot-noise flags</h3>
     ${dataQualityFlagsHtml(qualified.flags)}
@@ -1223,6 +1369,7 @@ function reportText(report) {
   const siteKpis = report.siteKpis;
   const qualified = siteKpis?.qualifiedTraffic ?? {};
   const quarantine = siteKpis?.trafficQuarantine ?? qualified.trafficQuarantine ?? {};
+  const needsReview = siteKpis?.needsReview ?? qualified.needsReview ?? {};
   const qualifiedIntent = siteKpis?.qualifiedIntent ?? qualified.qualifiedIntent ?? {};
   const siteKpiLines = siteKpis?.available
     ? [
@@ -1240,15 +1387,39 @@ function reportText(report) {
         `- Bounce rate: ${formatPercent(siteKpis.summary?.bounceRate)}`,
         '',
         'Traffic quarantine:',
-        `- Likely-noise bucket sessions: ${formatInteger(quarantine.sessions)} (${formatPercent(quarantine.sessionShare)} of raw sessions)`,
-        '- Top quarantine reasons:',
-        ...((quarantine.topReasons ?? []).length ? (quarantine.topReasons ?? []).slice(0, 8).map(bucketTotalsText) : ['- No quarantine reason buckets matched.']),
+        `- Quarantined sessions: ${formatInteger(quarantine.quarantinedSessions)} (${formatPercent(
+          quarantine.quarantinedSessionShare
+        )} of raw sessions, unique buckets counted once)`,
+        `- Overlapping reason-code matches: ${formatInteger(quarantine.reasonMatches)} (${formatPercent(
+          quarantine.reasonMatchShare
+        )} of raw sessions; matches can overlap)`,
+        '- Top overlapping quarantine reason-code matches:',
+        ...((quarantine.topReasonMatches ?? []).length
+          ? (quarantine.topReasonMatches ?? [])
+              .slice(0, 8)
+              .map((item) => bucketTotalsText(item, { countLabel: 'reason-code matches', shareKey: 'reasonMatchShare', shareLabel: 'of raw sessions; overlapping' }))
+          : ['- No quarantine reason-code matches.']),
         '- Top quarantined source / country buckets:',
         ...((quarantine.topBuckets ?? []).length ? (quarantine.topBuckets ?? []).map(bucketMetricText) : ['- No quarantined source/country buckets matched.']),
         ...(quarantine.limitations?.length ? ['- Limitations: ' + quarantine.limitations.join(' ')] : []),
         '',
+        'Mixed-signal traffic needing review:',
+        `- Needs-review sessions: ${formatInteger(needsReview.needsReviewSessions)} (${formatPercent(
+          needsReview.needsReviewSessionShare
+        )} of raw sessions, unique buckets counted once)`,
+        '- Top needs-review source / country buckets:',
+        ...((needsReview.topBuckets ?? []).length ? (needsReview.topBuckets ?? []).map(bucketMetricText) : ['- No mixed-signal source/country buckets matched.']),
+        '',
         'Qualified intent traffic:',
-        `- Qualified-intent bucket sessions: ${formatInteger(qualifiedIntent.sessions)} (${formatPercent(qualifiedIntent.sessionShare)} of raw sessions)`,
+        `- Loose qualified bucket sessions: ${formatInteger(qualifiedIntent.looseQualifiedSessions)} (${formatPercent(
+          qualifiedIntent.looseQualifiedSessionShare
+        )} of raw sessions, unique buckets counted once)`,
+        `- Strict qualified sessions: ${formatInteger(qualifiedIntent.strictQualifiedSessions)} (${formatPercent(
+          qualifiedIntent.strictQualifiedSessionShare
+        )} of raw sessions, unique buckets counted once)`,
+        `- Overlapping loose criteria matches: ${formatInteger(qualifiedIntent.criteriaMatches)} (${formatPercent(
+          qualifiedIntent.criteriaMatchShare
+        )} of raw sessions; matches can overlap)`,
         `- Engaged sessions: ${formatInteger(qualified.engagedSessions)} (${formatPercent(qualified.engagementRate)} engagement rate)`,
         `- US / target-market sessions: ${formatInteger(qualifiedIntent.targetMarketSessions)} (${formatPercent(
           qualifiedIntent.targetMarketSessionShare
@@ -1270,10 +1441,26 @@ function reportText(report) {
               )})`,
             ]
           : []),
-        '- Qualified criteria contribution:',
-        ...((qualifiedIntent.criteria ?? []).length ? (qualifiedIntent.criteria ?? []).map(bucketTotalsText) : ['- No qualified criteria buckets matched.']),
-        '- Top qualified source / country buckets:',
-        ...((qualifiedIntent.topBuckets ?? []).length ? (qualifiedIntent.topBuckets ?? []).map(bucketMetricText) : ['- No qualified source/country buckets matched.']),
+        '- Loose qualified criteria matches:',
+        ...((qualifiedIntent.criteria ?? []).length
+          ? (qualifiedIntent.criteria ?? []).map((item) =>
+              bucketTotalsText(item, { countLabel: 'criteria matches', shareKey: 'criteriaMatchShare', shareLabel: 'of raw sessions; overlapping' })
+            )
+          : ['- No loose qualified criteria matches.']),
+        '- Strict qualified criteria matches:',
+        ...((qualifiedIntent.strictCriteria ?? []).length
+          ? (qualifiedIntent.strictCriteria ?? []).map((item) =>
+              bucketTotalsText(item, { countLabel: 'criteria matches', shareKey: 'criteriaMatchShare', shareLabel: 'of raw sessions; overlapping' })
+            )
+          : ['- No strict qualified criteria matches.']),
+        '- Top loose qualified source / country buckets:',
+        ...((qualifiedIntent.topLooseBuckets ?? []).length
+          ? (qualifiedIntent.topLooseBuckets ?? []).map(bucketMetricText)
+          : ['- No loose qualified source/country buckets matched.']),
+        '- Top strict qualified source / country buckets:',
+        ...((qualifiedIntent.topStrictBuckets ?? []).length
+          ? (qualifiedIntent.topStrictBuckets ?? []).map(bucketMetricText)
+          : ['- No strict qualified source/country buckets matched.']),
         '',
         'Data quality / bot-noise flags:',
         ...(qualified.flags?.length ? qualified.flags.map(dataQualityFlagText) : ['- No automatic bot/noise flags crossed the current thresholds.']),
