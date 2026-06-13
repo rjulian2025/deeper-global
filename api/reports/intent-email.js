@@ -4,6 +4,9 @@ const DEFAULT_REPORT_TO = 'rjulian@qvbrands.com';
 const REPORT_WINDOW_DAYS = 30;
 const DEFAULT_GA4_REPORT_HOSTNAME = 'www.deeper.global';
 const GA4_SCOPE = 'https://www.googleapis.com/auth/analytics.readonly';
+const GSC_SCOPE = 'https://www.googleapis.com/auth/webmasters.readonly';
+const DEFAULT_GSC_SITE_URL = 'https://www.deeper.global/';
+const GSC_REPORT_LAG_DAYS = 3;
 const GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token';
 const DATA_QUALITY_THRESHOLDS = {
   directSessionShare: 0.8,
@@ -20,6 +23,12 @@ function cleanText(value, fallback = '') {
 
 function isoDateDaysAgo(days) {
   const date = new Date();
+  date.setUTCDate(date.getUTCDate() - days);
+  return date.toISOString().slice(0, 10);
+}
+
+function isoDateDaysBefore(dateString, days) {
+  const date = new Date(`${dateString}T00:00:00.000Z`);
   date.setUTCDate(date.getUTCDate() - days);
   return date.toISOString().slice(0, 10);
 }
@@ -82,7 +91,7 @@ async function fetchRollupsSafe(viewName, sinceDate) {
   }
 }
 
-function normalizeGa4PrivateKey(value) {
+function normalizeGooglePrivateKey(value) {
   return cleanText(value).replace(/\\n/g, '\n');
 }
 
@@ -119,12 +128,12 @@ function base64Url(value) {
   return buffer.toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
 }
 
-function createServiceAccountJwt({ clientEmail, privateKey }) {
+function createServiceAccountJwt({ clientEmail, privateKey, scope }) {
   const now = Math.floor(Date.now() / 1000);
   const header = { alg: 'RS256', typ: 'JWT' };
   const claims = {
     iss: clientEmail,
-    scope: GA4_SCOPE,
+    scope,
     aud: GOOGLE_TOKEN_URL,
     exp: now + 3600,
     iat: now,
@@ -140,7 +149,7 @@ function createServiceAccountJwt({ clientEmail, privateKey }) {
 function ga4Config() {
   const propertyId = cleanText(process.env.GA4_PROPERTY_ID).replace(/^properties\//, '');
   const clientEmail = cleanText(process.env.GA4_CLIENT_EMAIL);
-  const privateKey = normalizeGa4PrivateKey(process.env.GA4_PRIVATE_KEY);
+  const privateKey = normalizeGooglePrivateKey(process.env.GA4_PRIVATE_KEY);
   const hostnames = ga4ReportHostnames();
 
   if (!propertyId || !clientEmail || !privateKey) {
@@ -150,8 +159,8 @@ function ga4Config() {
   return { ok: true, propertyId, clientEmail, privateKey, hostnames };
 }
 
-async function fetchGa4AccessToken(config) {
-  const assertion = createServiceAccountJwt(config);
+async function fetchGoogleAccessToken(config, { scope, label }) {
+  const assertion = createServiceAccountJwt({ ...config, scope });
   const params = new URLSearchParams({
     grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
     assertion,
@@ -165,10 +174,14 @@ async function fetchGa4AccessToken(config) {
   const payload = await response.json().catch(() => ({}));
 
   if (!response.ok || !payload.access_token) {
-    throw new Error(`GA4 token request failed: ${payload.error_description ?? payload.error ?? response.statusText}`);
+    throw new Error(`${label} token request failed: ${payload.error_description ?? payload.error ?? response.statusText}`);
   }
 
   return payload.access_token;
+}
+
+function fetchGa4AccessToken(config) {
+  return fetchGoogleAccessToken(config, { scope: GA4_SCOPE, label: 'GA4' });
 }
 
 async function runGa4Report({ propertyId, accessToken, sinceDate, metrics, dimensions = [], limit = 10, orderBys = [], dimensionFilter }) {
@@ -481,6 +494,107 @@ async function fetchSiteKpis(sinceDate) {
   }
 }
 
+function searchConsoleConfig() {
+  const siteUrl = cleanText(process.env.GSC_SITE_URL, DEFAULT_GSC_SITE_URL);
+  const clientEmail = cleanText(process.env.GSC_CLIENT_EMAIL, cleanText(process.env.GA4_CLIENT_EMAIL));
+  const privateKey = normalizeGooglePrivateKey(process.env.GSC_PRIVATE_KEY ?? process.env.GA4_PRIVATE_KEY);
+
+  if (!clientEmail || !privateKey) {
+    return {
+      ok: false,
+      reason: 'Missing GSC_CLIENT_EMAIL/GSC_PRIVATE_KEY or GA4_CLIENT_EMAIL/GA4_PRIVATE_KEY fallback credentials.',
+      siteUrl,
+    };
+  }
+
+  return { ok: true, siteUrl, clientEmail, privateKey };
+}
+
+async function runSearchConsoleQuery({ siteUrl, accessToken, startDate, endDate, dimensions = [], rowLimit = 10 }) {
+  const response = await fetch(`https://searchconsole.googleapis.com/webmasters/v3/sites/${encodeURIComponent(siteUrl)}/searchAnalytics/query`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      startDate,
+      endDate,
+      dimensions,
+      rowLimit,
+      dataState: 'final',
+    }),
+  });
+  const payload = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(`Search Console query failed: ${payload?.error?.message ?? response.statusText}`);
+  }
+
+  return payload;
+}
+
+function parseSearchConsoleRows(payload, dimensionName) {
+  return (payload.rows ?? []).map((row) => ({
+    [dimensionName]: cleanText(row.keys?.[0], '(not set)'),
+    clicks: Number(row.clicks ?? 0),
+    impressions: Number(row.impressions ?? 0),
+    ctr: Number(row.ctr ?? 0),
+    position: Number(row.position ?? 0),
+  }));
+}
+
+function firstSearchConsoleSummary(payload) {
+  const row = payload.rows?.[0] ?? {};
+  return {
+    clicks: Number(row.clicks ?? 0),
+    impressions: Number(row.impressions ?? 0),
+    ctr: Number(row.ctr ?? 0),
+    position: Number(row.position ?? 0),
+  };
+}
+
+async function fetchSearchConsoleMetrics() {
+  const config = searchConsoleConfig();
+  const endDate = isoDateDaysAgo(GSC_REPORT_LAG_DAYS);
+  const startDate = isoDateDaysBefore(endDate, REPORT_WINDOW_DAYS);
+  const dateRange = { startDate, endDate, lagDays: GSC_REPORT_LAG_DAYS };
+
+  if (!config.ok) return { available: false, reason: config.reason, siteUrl: config.siteUrl, dateRange };
+
+  try {
+    const accessToken = await fetchGoogleAccessToken(config, { scope: GSC_SCOPE, label: 'Search Console' });
+    const common = {
+      siteUrl: config.siteUrl,
+      accessToken,
+      startDate,
+      endDate,
+    };
+    const [summary, topQueries, topPages, countries, devices] = await Promise.all([
+      runSearchConsoleQuery({ ...common, rowLimit: 1 }),
+      runSearchConsoleQuery({ ...common, dimensions: ['query'], rowLimit: 10 }),
+      runSearchConsoleQuery({ ...common, dimensions: ['page'], rowLimit: 10 }),
+      runSearchConsoleQuery({ ...common, dimensions: ['country'], rowLimit: 10 }),
+      runSearchConsoleQuery({ ...common, dimensions: ['device'], rowLimit: 10 }),
+    ]);
+
+    return {
+      available: true,
+      source: 'Google Search Console API',
+      siteUrl: config.siteUrl,
+      dateRange,
+      summary: firstSearchConsoleSummary(summary),
+      topQueries: parseSearchConsoleRows(topQueries, 'query'),
+      topPages: parseSearchConsoleRows(topPages, 'page'),
+      countries: parseSearchConsoleRows(countries, 'country'),
+      devices: parseSearchConsoleRows(devices, 'device'),
+    };
+  } catch (error) {
+    console.error('search_console_report_unavailable', error);
+    return { available: false, reason: error.message, siteUrl: config.siteUrl, dateRange };
+  }
+}
+
 function sumRows(rows, keyFn, filterFn = () => true) {
   const totals = new Map();
 
@@ -500,7 +614,7 @@ function splitKey(value) {
   return String(value).split('||');
 }
 
-function buildReport({ internalRows, publicRows, sinceDate, siteKpis, intentRollups }) {
+function buildReport({ internalRows, publicRows, sinceDate, siteKpis, searchConsole, intentRollups }) {
   const topSearchTopics = sumRows(
     publicRows,
     (row) => row.category,
@@ -541,6 +655,7 @@ function buildReport({ internalRows, publicRows, sinceDate, siteKpis, intentRoll
     careNavigationRegions,
     safetySignals,
     siteKpis,
+    searchConsole,
     intentRollups,
     rawRollupRows: {
       internal: internalRows.length,
@@ -569,6 +684,10 @@ function formatInteger(value) {
 function formatPercent(value) {
   if (!Number.isFinite(value)) return 'n/a';
   return `${(value * 100).toFixed(1)}%`;
+}
+
+function formatPosition(value) {
+  return Number.isFinite(value) ? value.toFixed(1) : 'n/a';
 }
 
 function formatDuration(seconds) {
@@ -675,6 +794,94 @@ function siteKpiHtml(siteKpis) {
   `;
 }
 
+function searchConsoleMetricHtml(item, label) {
+  return `${escapeHtml(item[label])} — <strong>${formatInteger(item.clicks)}</strong> clicks, ${formatInteger(item.impressions)} impressions, ${formatPercent(item.ctr)} CTR, ${formatPosition(item.position)} avg. position`;
+}
+
+function searchConsoleHtml(searchConsole) {
+  if (!searchConsole?.available) {
+    const siteScope = searchConsole?.siteUrl ? ` Site property: ${escapeHtml(searchConsole.siteUrl)}.` : '';
+    const dateScope = searchConsole?.dateRange
+      ? ` Window: ${escapeHtml(searchConsole.dateRange.startDate)} to ${escapeHtml(searchConsole.dateRange.endDate)}.`
+      : '';
+    return `<p><strong>Search Console data unavailable.</strong> ${escapeHtml(
+      searchConsole?.reason ?? 'Search Console was not configured or returned no data.'
+    )}${siteScope}${dateScope}</p>`;
+  }
+
+  const summary = searchConsole.summary ?? {};
+  const dateRange = searchConsole.dateRange ?? {};
+
+  return `
+    <p>Source: ${escapeHtml(searchConsole.source)}. Site property: ${escapeHtml(searchConsole.siteUrl)}. Window: ${escapeHtml(
+      dateRange.startDate
+    )} to ${escapeHtml(dateRange.endDate)} (${formatInteger(dateRange.lagDays)}-day reporting lag). Aggregate-only Search Console metrics.</p>
+    <p><strong>Interpretation note:</strong> Search Console reports Google organic search performance and often lags recent dates. Average position is impression-weighted across queries/pages.</p>
+    <ul>
+      <li><strong>Clicks:</strong> ${formatInteger(summary.clicks)}</li>
+      <li><strong>Impressions:</strong> ${formatInteger(summary.impressions)}</li>
+      <li><strong>CTR:</strong> ${formatPercent(summary.ctr)}</li>
+      <li><strong>Avg. position:</strong> ${formatPosition(summary.position)}</li>
+    </ul>
+
+    <h3>Top Google queries</h3>
+    ${listHtml(searchConsole.topQueries ?? [], (item) => searchConsoleMetricHtml(item, 'query'))}
+
+    <h3>Top Google landing pages</h3>
+    ${listHtml(searchConsole.topPages ?? [], (item) => searchConsoleMetricHtml(item, 'page'))}
+
+    <h3>Top countries</h3>
+    ${listHtml(searchConsole.countries ?? [], (item) => searchConsoleMetricHtml(item, 'country'))}
+
+    <h3>Top devices</h3>
+    ${listHtml(searchConsole.devices ?? [], (item) => searchConsoleMetricHtml(item, 'device'))}
+  `;
+}
+
+function searchConsoleMetricText(item, label) {
+  return `- ${item[label]}: ${formatInteger(item.clicks)} clicks, ${formatInteger(item.impressions)} impressions, ${formatPercent(
+    item.ctr
+  )} CTR, ${formatPosition(item.position)} avg. position`;
+}
+
+function searchConsoleTextLines(searchConsole) {
+  if (!searchConsole?.available) {
+    return [
+      'Google Search Console:',
+      ...(searchConsole?.siteUrl ? [`- Site property: ${searchConsole.siteUrl}`] : []),
+      ...(searchConsole?.dateRange ? [`- Window: ${searchConsole.dateRange.startDate} to ${searchConsole.dateRange.endDate}`] : []),
+      `- Search Console data unavailable: ${searchConsole?.reason ?? 'Search Console was not configured or returned no data.'}`,
+    ];
+  }
+
+  const summary = searchConsole.summary ?? {};
+
+  return [
+    'Google Search Console:',
+    `- Site property: ${searchConsole.siteUrl}`,
+    `- Window: ${searchConsole.dateRange?.startDate} to ${searchConsole.dateRange?.endDate} (${formatInteger(
+      searchConsole.dateRange?.lagDays
+    )}-day reporting lag)`,
+    '- Search Console reports Google organic search performance; average position is impression-weighted.',
+    `- Clicks: ${formatInteger(summary.clicks)}`,
+    `- Impressions: ${formatInteger(summary.impressions)}`,
+    `- CTR: ${formatPercent(summary.ctr)}`,
+    `- Avg. position: ${formatPosition(summary.position)}`,
+    '',
+    'Top Google queries:',
+    ...(searchConsole.topQueries ?? []).map((item) => searchConsoleMetricText(item, 'query')),
+    '',
+    'Top Google landing pages:',
+    ...(searchConsole.topPages ?? []).map((item) => searchConsoleMetricText(item, 'page')),
+    '',
+    'Top countries:',
+    ...(searchConsole.countries ?? []).map((item) => searchConsoleMetricText(item, 'country')),
+    '',
+    'Top devices:',
+    ...(searchConsole.devices ?? []).map((item) => searchConsoleMetricText(item, 'device')),
+  ];
+}
+
 function intentRollupHtml(intentRollups) {
   if (intentRollups?.available) return '';
 
@@ -698,6 +905,9 @@ function reportHtml(report) {
 
     <h2>Site KPIs</h2>
     ${siteKpiHtml(report.siteKpis)}
+
+    <h2>Google Search Console</h2>
+    ${searchConsoleHtml(report.searchConsole)}
 
     ${intentRollupHtml(report.intentRollups)}
 
@@ -809,6 +1019,8 @@ function reportText(report) {
     '',
     ...siteKpiLines,
     '',
+    ...searchConsoleTextLines(report.searchConsole),
+    '',
     ...(report.intentRollups?.available
       ? []
       : [
@@ -881,10 +1093,11 @@ export default async function handler(req, res) {
 
   try {
     const sinceDate = isoDateDaysAgo(REPORT_WINDOW_DAYS);
-    const [internalRollups, publicRollups, siteKpis] = await Promise.all([
+    const [internalRollups, publicRollups, siteKpis, searchConsole] = await Promise.all([
       fetchRollupsSafe('intent_internal_daily_rollups', sinceDate),
       fetchRollupsSafe('intent_public_macro_rollups', sinceDate),
       fetchSiteKpis(sinceDate),
+      fetchSearchConsoleMetrics(),
     ]);
     const intentRollups = {
       available: !internalRollups.error && !publicRollups.error,
@@ -896,6 +1109,7 @@ export default async function handler(req, res) {
       publicRows: publicRollups.rows,
       sinceDate,
       siteKpis,
+      searchConsole,
       intentRollups,
     });
 
