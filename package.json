@@ -20,6 +20,7 @@
     "content:apply-addiction-batch-02": "node scripts/apply-enrichment.mjs --apply reports/enrichment-addiction/draft-answers/batch-02-drafts.json",
     "content:apply-addiction-batch-03": "node scripts/apply-enrichment.mjs --apply reports/enrichment-addiction/draft-answers/batch-03-drafts.json",
     "content:apply-addiction-batch-04": "node scripts/apply-enrichment.mjs --apply reports/enrichment-addiction/draft-answers/batch-04-drafts.json",
+    "content:apply-addiction-batch-05": "node scripts/apply-enrichment.mjs --apply reports/enrichment-addiction/draft-answers/batch-05-drafts.json",
     "env:sync": "node scripts/sync-local-env.mjs",
     "env:check": "node scripts/check-local-env.mjs",
     "seo:priority": "node scripts/generate-indexation-priority.mjs",
