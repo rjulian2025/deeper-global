@@ -1,0 +1,176 @@
+{
+  "generated_at": "2026-06-13T23:35:21.818Z",
+  "mode": "dry-run",
+  "campaign": "addiction-enrichment",
+  "preserve_review": true,
+  "draft_count": 15,
+  "slugs": [
+    "how-do-i-cope-with-the-stress-of-loving-someone-with-addiction",
+    "how-do-i-deal-with-relapse-and-the-shame-185759-024",
+    "how-do-i-handle-stress-without-turning-to-substances",
+    "how-do-i-handle-work-while-in-addiction-treatment",
+    "how-do-i-know-if-i-need-professional-help-for-my-drinking",
+    "how-do-i-know-if-my-drinking-has-become-190219-016",
+    "how-do-i-know-when-to-cut-off-contact-with-my-addicted-family-member",
+    "how-do-i-maintain-my-recovery-during-major-life-changes",
+    "how-do-i-rebuild-trust-with-my-family-after-my-loved-ones-addiction",
+    "how-does-depression-interact-with-substance-use",
+    "how-long-does-it-take-to-feel-normal-again-in-recovery",
+    "is-it-normal-to-feel-worse-before-i-feel-better-in-recovery",
+    "is-it-normal-to-have-vivid-dreams-or-nightmares-in-recovery",
+    "is-it-okay-to-date-someone-in-early-recovery",
+    "is-it-possible-to-be-addicted-to-social-179301-005"
+  ],
+  "updates": [
+    {
+      "slug": "how-do-i-cope-with-the-stress-of-loving-someone-with-addiction",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.192Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-deal-with-relapse-and-the-shame-185759-024",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.193Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-handle-stress-without-turning-to-substances",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.193Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-handle-work-while-in-addiction-treatment",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.193Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-know-if-i-need-professional-help-for-my-drinking",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.193Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-know-if-my-drinking-has-become-190219-016",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.193Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-know-when-to-cut-off-contact-with-my-addicted-family-member",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-maintain-my-recovery-during-major-life-changes",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-rebuild-trust-with-my-family-after-my-loved-ones-addiction",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-does-depression-interact-with-substance-use",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-long-does-it-take-to-feel-normal-again-in-recovery",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "is-it-normal-to-feel-worse-before-i-feel-better-in-recovery",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "is-it-normal-to-have-vivid-dreams-or-nightmares-in-recovery",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "is-it-okay-to-date-someone-in-early-recovery",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "is-it-possible-to-be-addicted-to-social-179301-005",
+      "review_status": "reviewed",
+      "reviewed_by": "david-k-gore-phd",
+      "reviewed_at": "2026-03-13",
+      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    }
+  ]
+}
