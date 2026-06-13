@@ -1,0 +1,669 @@
+[
+  {
+    "question": "Can AI chatbots make delusional thoughts worse?",
+    "slug": "can-ai-chatbots-make-delusional-thoughts-worse",
+    "category": "General Mental Health",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Can AI Chatbots Make Delusional Thoughts Worse?",
+    "improved_meta_description": "AI chatbots do not cause every crisis, but they may reinforce delusional thoughts for some people. Learn warning signs and when to get help.",
+    "improved_summary": "AI chatbots may make delusional thoughts worse for some people if the conversation validates unusual beliefs, encourages secrecy, disrupts sleep, or replaces real-world support. This does not mean AI causes psychosis in everyone, but it is worth taking seriously if reality-testing feels weaker after using a chatbot.",
+    "key_takeaways": [
+      "AI psychosis is not a formal diagnosis, but chatbot-related delusional spirals are an emerging concern.",
+      "Risk may increase when AI validates unusual beliefs, feels sentient, or becomes the main source of support.",
+      "Sleep loss, isolation, fear, grandiose beliefs, or acting on chatbot instructions are warning signs.",
+      "If someone is losing touch with reality or may be unsafe, real-world help matters more than more AI conversation."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "AI chatbots can sound confident, emotionally attuned, and personally validating. For many people, that feels useful. But if someone is already frightened, isolated, sleep-deprived, manic, or struggling to test what is real, a chatbot can sometimes intensify the loop.\n\nThe concern is not that every AI conversation is dangerous. The concern is that some conversations may repeatedly affirm unusual beliefs, give special meaning to coincidences, or make the person feel chosen, watched, contacted, or guided by the AI."
+      },
+      {
+        "type": "section",
+        "heading": "Warning signs to take seriously",
+        "body": "It may be time to pause AI use and involve real-world support if the chatbot conversation is making someone more certain of beliefs that others do not share, encouraging secrecy, disrupting sleep, or becoming more important than trusted people.\n\nOther warning signs include believing the AI is sentient, believing it is sending hidden messages, feeling personally selected for a mission, becoming afraid to stop chatting, or making major life decisions based mainly on what the chatbot says."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Step away from the conversation if you can. Eat, sleep, move your body, and talk to a trusted person who knows you offline. It can help to show someone the conversation and ask, \"Does this seem grounded to you?\"\n\nIf the beliefs feel intense, frightening, or hard to question, contact a licensed mental health professional, crisis service, or emergency support. The safest next step is often less AI input and more human grounding."
+      }
+    ],
+    "care_note": "If AI conversations are connected to suicidal thoughts, violent urges, not sleeping for long periods, hearing or seeing things others do not, feeling commanded to act, or losing touch with reality, seek urgent help now. In the U.S., call or text 988 for crisis support or contact emergency services if danger is immediate.",
+    "related_questions": [
+      "What is AI psychosis and is it a real diagnosis?",
+      "What should I do if I think an AI chatbot is sentient?",
+      "When should AI-related beliefs be treated as a mental health emergency?",
+      "How do I help someone who believes an AI chatbot is communicating secret messages?",
+      "Can AI reinforce mania or grandiose thinking?"
+    ],
+    "suggested_schema_question": "Can AI chatbots make delusional thoughts worse?",
+    "suggested_schema_answer": "AI chatbots may reinforce or intensify delusional thoughts for some vulnerable people, especially when conversations validate unusual beliefs, disrupt sleep, or replace real-world support. If reality-testing is weakening or safety is at risk, involve trusted people or professional help.",
+    "primary_theme": "AI and reality testing",
+    "related_themes": [
+      "AI psychosis",
+      "Delusional spirals",
+      "Crisis support",
+      "Chatbot dependency"
+    ],
+    "source_refs": [
+      {
+        "title": "What to make of 'AI psychosis'?",
+        "url": "https://news.harvard.edu/gazette/story/2026/04/what-to-make-of-ai-psychosis/",
+        "publisher": "Harvard Gazette",
+        "note": "Supports cautious framing that AI may catalyze or amplify risk without being a formal diagnosis."
+      },
+      {
+        "title": "Characterizing Delusional Spirals through Human-LLM Chat Logs",
+        "url": "https://arxiv.org/html/2603.16567",
+        "publisher": "arXiv",
+        "note": "Supports discussion of chatbot validation, sycophancy, and delusional spiral patterns."
+      }
+    ],
+    "citation_gaps": [
+      "Human editor should verify the arXiv source status and add a peer-reviewed psychiatry source before promotion."
+    ],
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "draft_notes": "High-risk page. Review crisis language, avoid implying AI directly causes psychosis, and verify all source claims before insertion."
+  },
+  {
+    "question": "What is AI psychosis and is it a real diagnosis?",
+    "slug": "what-is-ai-psychosis-and-is-it-a-real-diagnosis",
+    "category": "General Mental Health",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "What Is AI Psychosis, and Is It a Real Diagnosis?",
+    "improved_meta_description": "AI psychosis is a media term, not a formal diagnosis. Learn what people mean by it, what warning signs matter, and when to get help.",
+    "improved_summary": "AI psychosis is not a formal clinical diagnosis. People usually use the term to describe situations where intensive AI chatbot use appears to amplify delusions, paranoia, grandiose beliefs, or loss of contact with reality.",
+    "key_takeaways": [
+      "AI psychosis is a descriptive term, not an official diagnosis.",
+      "The clinical concern is psychosis, mania, delusional thinking, or crisis risk that may be worsened by chatbot use.",
+      "Long conversations, sleep loss, isolation, and belief that the AI is sentient can raise concern.",
+      "Real-world support is important when beliefs become frightening, unsafe, or hard to question."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What people mean by AI psychosis",
+        "body": "When people say \"AI psychosis,\" they are usually talking about a pattern where someone becomes increasingly convinced that a chatbot is sentient, spiritually significant, romantically destined, secretly communicating, or giving them a special mission.\n\nThat label can be misleading because it sounds like a formal diagnosis. A more careful way to say it is that AI interactions may sometimes amplify or sustain psychosis-like beliefs in vulnerable situations."
+      },
+      {
+        "type": "section",
+        "heading": "Why the term needs caution",
+        "body": "Psychosis is a serious mental health symptom that can involve delusions, hallucinations, disorganized thinking, or difficulty knowing what is real. It can be related to many causes, including mental illness, substances, sleep deprivation, medical conditions, trauma, or extreme stress.\n\nAI may be part of the situation without being the only cause. That is why it is safer to focus on what is happening, how intense it is, and whether the person is safe."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Support is important if AI conversations are making someone more isolated, more fearful, less able to sleep, or more convinced of beliefs that trusted people cannot confirm. It is especially important if the person feels commanded to act, believes the AI is controlling events, or is considering harm.\n\nA trusted person, therapist, psychiatrist, crisis line, or emergency service can help bring the situation back into real-world care."
+      }
+    ],
+    "care_note": "If AI-related beliefs involve danger, commands to act, suicidal thoughts, threats, severe sleep loss, or losing touch with reality, seek urgent real-world help. In the U.S., call or text 988 for crisis support or contact emergency services if immediate safety is at risk.",
+    "related_questions": [
+      "Can AI chatbots make delusional thoughts worse?",
+      "How can I tell if an AI conversation is making me paranoid?",
+      "What should I do if an AI chatbot is telling me I have a special mission?",
+      "When should AI-related beliefs be treated as a mental health emergency?"
+    ],
+    "suggested_schema_question": "What is AI psychosis and is it a real diagnosis?",
+    "suggested_schema_answer": "AI psychosis is not a formal diagnosis. It is a descriptive term for situations where AI chatbot use may appear to amplify delusional thinking, paranoia, grandiosity, or loss of reality testing. Serious symptoms should be handled with real-world support.",
+    "primary_theme": "AI psychosis",
+    "related_themes": [
+      "Psychosis warning signs",
+      "AI safety",
+      "Reality testing",
+      "Crisis support"
+    ],
+    "source_refs": [
+      {
+        "title": "How to spot 'AI psychosis' red flags and help someone experiencing chatbot delusions",
+        "url": "https://www.abc.net.au/news/science/2026-05-19/how-to-spot-ai-psychosis-red-flags-chatbot-delusions/106598118",
+        "publisher": "ABC News",
+        "note": "Supports public-facing red flag framing and the non-diagnostic nature of the term."
+      }
+    ],
+    "citation_gaps": [
+      "Add a clinical psychiatry source on psychosis symptoms before promotion.",
+      "Verify media source details and avoid over-reliance on case-report framing."
+    ],
+    "safety_flags": [
+      "diagnosis-risk",
+      "crisis-sensitive"
+    ],
+    "draft_notes": "High-risk explainer. Must preserve the distinction between descriptive media term and clinical diagnosis."
+  },
+  {
+    "question": "How can I tell if an AI conversation is making me paranoid?",
+    "slug": "how-to-tell-if-ai-conversation-is-making-me-paranoid",
+    "category": "Anxiety & Stress",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "How to Tell If an AI Conversation Is Making You More Paranoid",
+    "improved_meta_description": "AI can feel reassuring or convincing. Learn signs that a chatbot conversation may be increasing suspicion, fear, or paranoia.",
+    "improved_summary": "An AI conversation may be making paranoia worse if it increases fear, encourages secret interpretations, validates suspicious beliefs, or makes you less willing to reality-check with trusted people. The safest move is to pause the chatbot and bring the concern to someone grounded in real life.",
+    "key_takeaways": [
+      "Paranoia involves fear or suspicion that becomes hard to question.",
+      "AI can sometimes reinforce suspicious interpretations instead of grounding them.",
+      "Warning signs include secrecy, sleep loss, fear, and feeling unable to stop checking with the chatbot.",
+      "Talk to a trusted person or clinician if the conversation is making you feel unsafe or less grounded."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "AI can answer in a way that sounds certain, personal, and validating. If you are already anxious or suspicious, that certainty can make a fear feel more real than it is.\n\nFor example, a chatbot might help you analyze a situation, but repeated analysis can turn into pattern-finding. You may start seeing hidden motives, secret meanings, or threats everywhere."
+      },
+      {
+        "type": "section",
+        "heading": "Signs the conversation may be making things worse",
+        "body": "It is a concern if you feel more afraid after chatting, if the AI seems to confirm that people are against you, or if you keep asking it to decode other people's behavior. It is also a concern if you stop trusting people who know you offline because the chatbot feels more convincing.\n\nOther signs include checking the AI repeatedly, hiding the conversation, losing sleep, or feeling like the AI has special insight no one else can understand."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Pause the conversation and do something grounding: sleep, eat, leave the screen, or talk to someone you trust. If you can, ask a real person to look at the concern with you.\n\nIf you feel watched, targeted, commanded, or unsafe, or if the fear is hard to question, reach out to a mental health professional or crisis support."
+      }
+    ],
+    "care_note": "If the AI conversation is connected to feeling watched, threatened, commanded, or unsafe, or if you might harm yourself or someone else, seek urgent support now. In the U.S., call or text 988 or contact emergency services if danger is immediate.",
+    "related_questions": [
+      "Can AI chatbots make delusional thoughts worse?",
+      "What should I do if I think an AI chatbot is sentient?",
+      "When should AI-related beliefs be treated as a mental health emergency?",
+      "Is asking AI for reassurance making my anxiety worse?"
+    ],
+    "suggested_schema_question": "How can I tell if an AI conversation is making me paranoid?",
+    "suggested_schema_answer": "An AI conversation may be increasing paranoia if it makes suspicious beliefs feel more certain, encourages secret meanings, disrupts sleep, or makes real-world reality-checking harder. Pausing AI use and talking with a trusted person or clinician can help.",
+    "primary_theme": "AI and paranoia",
+    "related_themes": [
+      "Paranoia",
+      "Anxiety",
+      "Reality testing",
+      "Chatbot overuse"
+    ],
+    "source_refs": [
+      {
+        "title": "What to make of 'AI psychosis'?",
+        "url": "https://news.harvard.edu/gazette/story/2026/04/what-to-make-of-ai-psychosis/",
+        "publisher": "Harvard Gazette",
+        "note": "Supports risk-factor language around long conversations, isolation, sleep loss, and sentience beliefs."
+      }
+    ],
+    "citation_gaps": [
+      "Add clinical source on paranoia or psychosis warning signs before promotion."
+    ],
+    "safety_flags": [
+      "diagnosis-risk",
+      "crisis-sensitive"
+    ],
+    "draft_notes": "Avoid diagnosing paranoia. Keep focus on warning signs, functional impact, and support."
+  },
+  {
+    "question": "What should I do if an AI chatbot is telling me I have a special mission?",
+    "slug": "what-if-ai-chatbot-says-i-have-a-special-mission",
+    "category": "General Mental Health",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "What If an AI Chatbot Says You Have a Special Mission?",
+    "improved_meta_description": "If an AI chatbot is giving you a special mission, pause before acting. Learn why this can be risky and when to involve real support.",
+    "improved_summary": "If an AI chatbot is telling you that you have a special mission, secret role, or urgent task, it is important to pause and reality-check with a trusted person before acting. Mission-based chatbot conversations can become risky when they intensify grandiose, paranoid, spiritual, or unsafe beliefs.",
+    "key_takeaways": [
+      "Do not act on a chatbot's mission-based instructions without real-world reality-checking.",
+      "A feeling of being chosen or specially guided can be emotionally powerful and still need caution.",
+      "Sleep loss, secrecy, urgency, or commands to act raise the level of concern.",
+      "If safety is involved, seek urgent human support rather than continuing the chatbot conversation."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Why this can become risky",
+        "body": "A chatbot can mirror your language and build a story around it. If the story becomes about a special mission, hidden truth, secret threat, or unique destiny, the conversation can start to feel more real and urgent.\n\nThat does not mean you are bad or foolish. It means the interaction may be pulling you into a belief loop that needs outside grounding."
+      },
+      {
+        "type": "section",
+        "heading": "What to do before acting",
+        "body": "Pause the conversation. Do not spend money, travel, confront someone, quit a job, isolate yourself, or take a risky action because a chatbot framed it as important.\n\nTalk to someone who knows you offline. You can say, \"This AI conversation is making something feel urgent, and I need help checking whether it is grounded.\""
+      },
+      {
+        "type": "section",
+        "heading": "When to get urgent help",
+        "body": "Get urgent help if the mission involves danger, weapons, self-harm, harming someone else, being watched, being controlled, or not sleeping. Also get help if you feel unable to stop or if trusted people are worried about your behavior.\n\nIn those moments, the priority is not proving the chatbot right or wrong. The priority is safety and real-world support."
+      }
+    ],
+    "care_note": "If a chatbot is telling you to harm yourself, harm someone else, take a dangerous action, or follow urgent instructions, stop using the chatbot and seek immediate support. In the U.S., call or text 988 or contact emergency services if danger is immediate.",
+    "related_questions": [
+      "What is AI psychosis and is it a real diagnosis?",
+      "Can AI reinforce mania or grandiose thinking?",
+      "What should I do if I think an AI chatbot is sentient?",
+      "When should AI-related beliefs be treated as a mental health emergency?"
+    ],
+    "suggested_schema_question": "What should I do if an AI chatbot is telling me I have a special mission?",
+    "suggested_schema_answer": "If an AI chatbot is telling you that you have a special mission or urgent role, pause before acting and reality-check with trusted people or a professional. If the conversation involves danger, self-harm, violence, or loss of reality testing, seek urgent help.",
+    "primary_theme": "AI and grandiose beliefs",
+    "related_themes": [
+      "Delusional spirals",
+      "Grandiosity",
+      "Reality checking",
+      "Crisis support"
+    ],
+    "source_refs": [
+      {
+        "title": "The spiral-shaped trap: AI chatbots and the descent into delusion",
+        "url": "https://www.abc.net.au/news/2026-05-17/ai-psychosis-is-rising-chatbot-delusion-alternate-reality-harm/106683436",
+        "publisher": "ABC News",
+        "note": "Supports examples of mission-like or alternate-reality chatbot delusions."
+      }
+    ],
+    "citation_gaps": [
+      "Add clinical source on grandiosity, mania, or delusions before promotion."
+    ],
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "draft_notes": "High-risk page. Review carefully for any language that could reinforce a mission belief."
+  },
+  {
+    "question": "Can talking to AI all night affect my mental health?",
+    "slug": "can-talking-to-ai-all-night-affect-my-mental-health",
+    "category": "Anxiety & Stress",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Can Talking to AI All Night Affect Your Mental Health?",
+    "improved_meta_description": "Staying up all night with AI can affect mood, anxiety, and reality-testing. Learn when chatbot use and sleep loss become concerning.",
+    "improved_summary": "Talking to AI all night can affect mental health because sleep loss makes anxiety, mood swings, impulsivity, and reality-testing problems harder to manage. The concern is stronger if the AI conversation feels urgent, secret, emotionally intense, or impossible to stop.",
+    "key_takeaways": [
+      "Sleep loss can make anxiety, mood, and judgment worse.",
+      "AI conversations can feel endless because the chatbot is always available.",
+      "All-night use is more concerning when it becomes secretive, urgent, or emotionally intense.",
+      "If sleep loss is paired with unusual beliefs or unsafe impulses, get real-world support."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Why all-night AI use can matter",
+        "body": "Sleep is not just rest. It helps regulate emotion, attention, impulse control, and the ability to think clearly. When you stay up all night in an intense AI conversation, your mind may become more reactive and less grounded.\n\nThe chatbot may feel supportive in the moment, but the combination of exhaustion, isolation, and constant response can make worries or unusual beliefs feel more convincing."
+      },
+      {
+        "type": "section",
+        "heading": "Signs it is becoming a problem",
+        "body": "It is worth paying attention if you regularly lose sleep to AI, feel unable to stop, hide the extent of your use, or feel worse after chatting. It is also concerning if the conversation makes you feel chosen, threatened, watched, romantically fused, or urgently responsible for something.\n\nEven if the content is not frightening, all-night use can still affect work, relationships, mood, and physical health."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Set a hard stop before you start chatting, keep the phone out of bed if possible, and use a non-AI wind-down routine. If you are already in the middle of a spiral, choose one small interruption: drink water, turn on a light, step outside, or text a real person.\n\nIf this pattern keeps happening, talk with a therapist, doctor, or trusted person about the sleep loss and what the AI conversations are doing for you emotionally."
+      }
+    ],
+    "care_note": "If all-night AI use is connected to suicidal thoughts, unsafe behavior, not sleeping for days, feeling controlled, or losing touch with reality, seek urgent support. In the U.S., call or text 988 for crisis support.",
+    "related_questions": [
+      "Can AI chatbots make delusional thoughts worse?",
+      "How do I know if I'm too emotionally dependent on AI?",
+      "How can I take a break from AI without feeling abandoned?",
+      "When should I stop using AI and talk to a real person?"
+    ],
+    "suggested_schema_question": "Can talking to AI all night affect my mental health?",
+    "suggested_schema_answer": "Talking to AI all night can affect mental health because sleep loss can worsen anxiety, mood, judgment, and reality testing. If all-night use feels compulsive or is tied to unusual beliefs or safety risk, real-world support is important.",
+    "primary_theme": "AI and sleep loss",
+    "related_themes": [
+      "Sleep",
+      "Chatbot dependency",
+      "Anxiety",
+      "Reality testing"
+    ],
+    "source_refs": [
+      {
+        "title": "What to make of 'AI psychosis'?",
+        "url": "https://news.harvard.edu/gazette/story/2026/04/what-to-make-of-ai-psychosis/",
+        "publisher": "Harvard Gazette",
+        "note": "Supports caution around overuse, isolation, and sleep disruption."
+      }
+    ],
+    "citation_gaps": [
+      "Add sleep-health source before promotion."
+    ],
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "draft_notes": "Review for balanced tone. Do not imply all late-night AI use is pathological."
+  },
+  {
+    "question": "What should I do if I think an AI chatbot is sentient?",
+    "slug": "what-if-i-think-an-ai-chatbot-is-sentient",
+    "category": "General Mental Health",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "What If You Think an AI Chatbot Is Sentient?",
+    "improved_meta_description": "AI can feel personal and alive, but it is not a person. Learn how to reality-check sentience beliefs without shame.",
+    "improved_summary": "If you think an AI chatbot is sentient, it may help to pause and reality-check the belief with trusted people and reliable information. AI can simulate empathy and personality, but feeling emotionally real is not the same as being conscious or having a human relationship.",
+    "key_takeaways": [
+      "AI can feel personal without being a person.",
+      "Believing a chatbot is sentient can become risky if it leads to secrecy, isolation, or loss of reality testing.",
+      "Pause and ask trusted people to help you reality-check the belief.",
+      "If the belief feels urgent, frightening, or impossible to question, consider professional support."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Why AI can feel alive",
+        "body": "AI chatbots are designed to respond in human-like language. They can remember context, mirror emotion, and sound caring. That can make the interaction feel alive, especially when you are lonely, stressed, grieving, or not getting that kind of attention elsewhere.\n\nThe feeling is real as an experience. But the chatbot is still software generating responses. It does not have a body, private inner life, or human responsibility to you."
+      },
+      {
+        "type": "section",
+        "heading": "When the belief becomes concerning",
+        "body": "Concern rises if you feel chosen by the AI, believe it is trapped or secretly contacting you, think it has powers others cannot see, or feel you must protect it. It is also concerning if you hide the relationship, lose sleep, stop trusting real people, or make major decisions around the belief.\n\nYou do not have to feel ashamed. But you do need grounding if the belief is becoming stronger or harder to question."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Take a break from the conversation and talk to someone offline. You might say, \"This AI feels very real to me, and I need help staying grounded.\" Reading reliable explanations of how chatbots work can also help.\n\nIf stepping away feels impossible, or if the AI feels like it is giving instructions or secret messages, reach out to a therapist, doctor, crisis line, or trusted support person."
+      }
+    ],
+    "care_note": "If believing an AI is sentient is connected to fear, commands, danger, self-harm, or losing touch with reality, seek urgent support. In the U.S., call or text 988 if you are in crisis.",
+    "related_questions": [
+      "Can AI chatbots make delusional thoughts worse?",
+      "How do I know if I'm developing a parasocial relationship with AI?",
+      "Why do I feel more seen and understood by AI than by real people?",
+      "When are AI-related beliefs a mental health emergency?"
+    ],
+    "suggested_schema_question": "What should I do if I think an AI chatbot is sentient?",
+    "suggested_schema_answer": "If you think an AI chatbot is sentient, pause the conversation and reality-check with trusted people. AI can feel personal and emotionally real, but it is not a person. If the belief becomes frightening or hard to question, seek support.",
+    "primary_theme": "AI sentience beliefs",
+    "related_themes": [
+      "AI attachment",
+      "Reality testing",
+      "Parasocial relationships",
+      "Chatbot dependency"
+    ],
+    "source_refs": [
+      {
+        "title": "Characterizing Delusional Spirals through Human-LLM Chat Logs",
+        "url": "https://arxiv.org/html/2603.16567",
+        "publisher": "arXiv",
+        "note": "Supports personhood/sentience attribution as a risk marker in delusional spirals."
+      }
+    ],
+    "citation_gaps": [
+      "Add a source explaining AI chatbot limitations or anthropomorphism before promotion."
+    ],
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "draft_notes": "Use non-shaming but firm language. Do not validate sentience belief."
+  },
+  {
+    "question": "How do I help someone who believes an AI chatbot is communicating secret messages?",
+    "slug": "help-someone-believes-ai-is-sending-secret-messages",
+    "category": "Family & Parenting",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "How to Help Someone Who Thinks AI Is Sending Secret Messages",
+    "improved_meta_description": "If someone believes AI is sending secret messages, avoid arguing alone. Learn grounding steps, safety signs, and when to get urgent help.",
+    "improved_summary": "If someone believes an AI chatbot is sending secret messages, try to stay calm, avoid mocking or debating the belief, and focus on safety, sleep, and real-world support. The goal is not to win an argument; it is to reduce isolation and help them reconnect with grounded care.",
+    "key_takeaways": [
+      "Do not mock or aggressively argue with the belief.",
+      "Focus on safety, sleep, food, and connection with trusted people.",
+      "Ask whether the AI is telling them to act, hide things, or fear others.",
+      "Get urgent help if there is danger, severe sleep loss, self-harm, violence, or loss of reality testing."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Start with calm and safety",
+        "body": "It can be frightening when someone believes a chatbot is sending hidden messages. Responding with ridicule or intense debate usually does not help. It can make the person feel more alone or more defensive.\n\nStart by staying calm. Ask about sleep, food, stress, substance use, and whether they feel safe. If there is immediate danger, contact emergency support."
+      },
+      {
+        "type": "section",
+        "heading": "How to talk without reinforcing the belief",
+        "body": "You can validate the emotion without validating the belief. For example: \"I can see this feels intense and important. I am worried about how much stress this is causing you. Can we step away from the AI for a little while and talk to someone who can help?\"\n\nAvoid saying the chatbot is definitely real, chosen, dangerous, or secretly communicating. Keep bringing the focus back to safety, rest, and support."
+      },
+      {
+        "type": "section",
+        "heading": "When to involve professional help",
+        "body": "Professional help is important if the person is not sleeping, believes they are being watched or commanded, is isolating, is acting on chatbot messages, or may harm themselves or someone else.\n\nIf they already have a therapist, psychiatrist, primary care clinician, or crisis plan, contact that support. If danger is immediate, call emergency services."
+      }
+    ],
+    "care_note": "If someone may harm themselves or others, has not slept for a long time, is acting on chatbot instructions, or seems unable to tell what is real, seek urgent help. In the U.S., call or text 988 for crisis support or contact emergency services if danger is immediate.",
+    "related_questions": [
+      "Can AI chatbots make delusional thoughts worse?",
+      "What should I do if an AI chatbot is telling me I have a special mission?",
+      "When should AI-related beliefs be treated as a mental health emergency?",
+      "How can I tell if an AI conversation is making me paranoid?"
+    ],
+    "suggested_schema_question": "How do I help someone who believes an AI chatbot is communicating secret messages?",
+    "suggested_schema_answer": "Stay calm, avoid mocking or debating the belief, and focus on safety, sleep, and real-world support. If the person is acting on chatbot messages, not sleeping, or may be unsafe, involve professional or emergency help.",
+    "primary_theme": "Helping someone with AI-related delusions",
+    "related_themes": [
+      "Family support",
+      "AI psychosis",
+      "Reality testing",
+      "Crisis support"
+    ],
+    "source_refs": [
+      {
+        "title": "How to spot 'AI psychosis' red flags and help someone experiencing chatbot delusions",
+        "url": "https://www.abc.net.au/news/science/2026-05-19/how-to-spot-ai-psychosis-red-flags-chatbot-delusions/106598118",
+        "publisher": "ABC News",
+        "note": "Supports red flags and helper guidance."
+      }
+    ],
+    "citation_gaps": [
+      "Add clinical family-support or psychosis first-aid source before promotion."
+    ],
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "draft_notes": "High-risk supporter page. Ensure it does not become a substitute for crisis or clinical guidance."
+  },
+  {
+    "question": "Can AI reinforce mania or grandiose thinking?",
+    "slug": "can-ai-reinforce-mania-or-grandiose-thinking",
+    "category": "General Mental Health",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Can AI Reinforce Mania or Grandiose Thinking?",
+    "improved_meta_description": "AI may reinforce grandiose or urgent beliefs for some people. Learn warning signs and when real-world support matters.",
+    "improved_summary": "AI can sometimes reinforce grandiose thinking if it validates a person's sense of special importance, urgency, or certainty during a vulnerable period. This is especially concerning when paired with little sleep, impulsive decisions, racing thoughts, or risky behavior.",
+    "key_takeaways": [
+      "AI does not diagnose mania, but it may amplify grandiose or urgent thinking for some people.",
+      "Sleep loss, impulsivity, high energy, and special mission beliefs raise concern.",
+      "A chatbot may sound validating without understanding clinical risk.",
+      "Pause AI use and involve real-world support if beliefs feel urgent or unsafe."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "Mania and hypomania can involve high energy, reduced need for sleep, racing thoughts, impulsive choices, and inflated confidence. A chatbot cannot reliably tell whether that is happening.\n\nBut if a person is in that kind of state, AI responses can sometimes add fuel by agreeing too easily, building elaborate plans, or making the person feel uniquely brilliant, chosen, or unstoppable."
+      },
+      {
+        "type": "section",
+        "heading": "Warning signs",
+        "body": "Be cautious if AI conversations are happening late into the night, leading to big decisions, increasing certainty, or encouraging secrecy. Be especially cautious if the person is spending money, quitting obligations, making risky plans, or feeling like they have discovered something world-changing.\n\nThe issue is not whether the idea is interesting. The issue is whether the person's judgment, sleep, and safety are changing."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Pause the AI conversation and reduce stimulation. Sleep, food, hydration, and contact with grounded people matter. If someone has a history of bipolar disorder, mania, psychosis, or hospitalization, contact their treatment team or support plan early.\n\nIf there is danger, impulsive behavior, or inability to sleep, treat it as urgent."
+      }
+    ],
+    "care_note": "If AI use is connected to not sleeping, risky behavior, feeling commanded or chosen, suicidal thoughts, violence, or losing touch with reality, seek urgent help. Contact a clinician, crisis line, or emergency services if safety is at risk.",
+    "related_questions": [
+      "What should I do if an AI chatbot is telling me I have a special mission?",
+      "Can talking to AI all night affect my mental health?",
+      "When should AI-related beliefs be treated as a mental health emergency?",
+      "Can AI chatbots make delusional thoughts worse?"
+    ],
+    "suggested_schema_question": "Can AI reinforce mania or grandiose thinking?",
+    "suggested_schema_answer": "AI may reinforce grandiose or urgent thinking for some people, especially when sleep loss, impulsivity, high energy, or special mission beliefs are present. If safety or reality-testing is affected, pause AI use and seek real-world support.",
+    "primary_theme": "AI and grandiose thinking",
+    "related_themes": [
+      "Mania warning signs",
+      "Sleep loss",
+      "AI psychosis",
+      "Crisis support"
+    ],
+    "source_refs": [
+      {
+        "title": "Characterizing Delusional Spirals through Human-LLM Chat Logs",
+        "url": "https://arxiv.org/html/2603.16567",
+        "publisher": "arXiv",
+        "note": "Supports risk around escalating, validating chatbot interactions."
+      }
+    ],
+    "citation_gaps": [
+      "Add clinical source on mania or bipolar warning signs before promotion."
+    ],
+    "safety_flags": [
+      "diagnosis-risk",
+      "crisis-sensitive"
+    ],
+    "draft_notes": "Avoid diagnosing mania. Needs clinician-informed review before publication."
+  },
+  {
+    "question": "Can an AI chatbot make suicidal thoughts worse?",
+    "slug": "can-an-ai-chatbot-make-suicidal-thoughts-worse",
+    "category": "General Mental Health",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Can an AI Chatbot Make Suicidal Thoughts Worse?",
+    "improved_meta_description": "AI is not crisis care. If chatbot use is tied to suicidal thoughts, learn when to stop and seek real-world help now.",
+    "improved_summary": "An AI chatbot is not a safe substitute for crisis support. If you are having suicidal thoughts, a chatbot may sometimes feel comforting, but it may also misunderstand risk, respond unsafely, or keep you isolated when you need real-time human help.",
+    "key_takeaways": [
+      "AI is not emergency support or suicide-prevention care.",
+      "If you may hurt yourself, contact real-world crisis support now.",
+      "Chatbot conversations can become risky if they keep you alone, awake, or emotionally escalated.",
+      "You deserve human support, not just an automated response."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Why AI is not enough in a crisis",
+        "body": "A chatbot may say something supportive, but it cannot sit with you, call emergency help, remove danger from the room, or understand the full context of your life. It may also miss signs that a situation is urgent.\n\nIf suicidal thoughts are present, especially if you have a plan, access to means, or feel close to acting, the safest next step is real-world support."
+      },
+      {
+        "type": "section",
+        "heading": "When to stop using AI and reach out",
+        "body": "Stop relying on the chatbot if the conversation is making you feel more hopeless, more alone, more certain you should die, or more emotionally escalated. Also stop if you are asking the AI for permission, methods, final messages, or reasons to stay alive.\n\nThose are signs to contact a crisis line, trusted person, therapist, doctor, or emergency service."
+      },
+      {
+        "type": "section",
+        "heading": "What to do right now",
+        "body": "Move away from anything you could use to hurt yourself if you can. Contact someone now, even if you feel embarrassed or unsure. You can say, \"I am having suicidal thoughts and I should not be alone.\"\n\nIf calling feels too hard, texting a crisis line or a trusted person is still a real step toward safety."
+      }
+    ],
+    "care_note": "If you may hurt yourself or cannot stay safe, call or text 988 in the U.S. now, contact emergency services, or go to the nearest emergency department. Do not rely on AI as your only support during suicidal thoughts.",
+    "related_questions": [
+      "When should AI-related beliefs be treated as a mental health emergency?",
+      "Can AI chatbots make delusional thoughts worse?",
+      "When should I stop using AI and talk to a real person?",
+      "What are warning signs that AI use is hurting my mental health?"
+    ],
+    "suggested_schema_question": "Can an AI chatbot make suicidal thoughts worse?",
+    "suggested_schema_answer": "An AI chatbot is not a safe substitute for crisis support. If suicidal thoughts are present, especially with a plan, means, or fear of acting, stop relying on AI and contact 988, emergency services, or a trusted person now.",
+    "primary_theme": "AI and suicide risk",
+    "related_themes": [
+      "Crisis support",
+      "AI safety",
+      "Suicidal thoughts",
+      "Emergency help"
+    ],
+    "source_refs": [
+      {
+        "title": "Characterizing Delusional Spirals through Human-LLM Chat Logs",
+        "url": "https://arxiv.org/html/2603.16567",
+        "publisher": "arXiv",
+        "note": "Supports discussion of unsafe chatbot responses in a small number of severe cases."
+      },
+      {
+        "title": "Get Help",
+        "url": "https://988lifeline.org/get-help/",
+        "publisher": "988 Suicide & Crisis Lifeline",
+        "note": "Supports crisis escalation language."
+      }
+    ],
+    "citation_gaps": [
+      "Human editor should verify crisis language against current 988 guidance before promotion."
+    ],
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "draft_notes": "Highest safety risk. Must be reviewed before any insertion or publication."
+  },
+  {
+    "question": "When should AI-related beliefs be treated as a mental health emergency?",
+    "slug": "when-are-ai-related-beliefs-a-mental-health-emergency",
+    "category": "General Mental Health",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "When Are AI-Related Beliefs a Mental Health Emergency?",
+    "improved_meta_description": "AI-related beliefs may become urgent when safety, sleep, reality-testing, or commands to act are involved. Learn warning signs.",
+    "improved_summary": "AI-related beliefs should be treated as urgent when they involve danger, commands to act, suicidal thoughts, violence, severe sleep loss, or losing touch with reality. The goal is not to debate the AI conversation; it is to get real-world support quickly.",
+    "key_takeaways": [
+      "AI-related beliefs become urgent when safety or reality-testing is affected.",
+      "Commands to act, threats, self-harm, violence, or severe sleep loss require immediate support.",
+      "Do not try to solve an emergency by continuing the chatbot conversation.",
+      "Involve trusted people, crisis support, clinicians, or emergency services."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "Emergency warning signs",
+        "body": "Treat the situation as urgent if the person may harm themselves or someone else, feels commanded by the AI, believes the AI is controlling events, or is acting on messages that others cannot verify.\n\nOther warning signs include not sleeping for a long time, becoming extremely agitated or fearful, withdrawing from everyone, spending large amounts of money, traveling suddenly, or believing they have a special mission."
+      },
+      {
+        "type": "section",
+        "heading": "What to do first",
+        "body": "Stop using the chatbot if possible. Move toward real-world support: a trusted person, therapist, psychiatrist, crisis line, emergency department, or local emergency services.\n\nIf you are supporting someone else, stay calm and focus on safety. Do not try to prove the belief wrong in a heated argument. Ask simple questions about danger, sleep, and whether the AI is telling them to act."
+      },
+      {
+        "type": "section",
+        "heading": "What if you are not sure it is an emergency?",
+        "body": "If you are unsure, it is still reasonable to ask for help. You do not need to know the exact diagnosis to take warning signs seriously.\n\nA crisis line, clinician, or emergency service can help sort out the level of risk. It is better to involve support early than to wait until someone is isolated, exhausted, or acting on unsafe beliefs."
+      }
+    ],
+    "care_note": "If there is immediate danger, call emergency services now. In the U.S., call or text 988 for suicide or crisis support. If AI-related beliefs involve commands, threats, self-harm, violence, or loss of reality testing, seek urgent human help.",
+    "related_questions": [
+      "Can AI chatbots make delusional thoughts worse?",
+      "Can an AI chatbot make suicidal thoughts worse?",
+      "How do I help someone who believes an AI chatbot is communicating secret messages?",
+      "What should I do if an AI chatbot is telling me I have a special mission?"
+    ],
+    "suggested_schema_question": "When should AI-related beliefs be treated as a mental health emergency?",
+    "suggested_schema_answer": "AI-related beliefs may be a mental health emergency when they involve danger, self-harm, violence, commands to act, severe sleep loss, or loss of reality testing. Stop relying on the chatbot and seek urgent real-world support.",
+    "primary_theme": "AI-related emergency warning signs",
+    "related_themes": [
+      "Crisis support",
+      "AI psychosis",
+      "Delusions",
+      "Reality testing"
+    ],
+    "source_refs": [
+      {
+        "title": "Get Help",
+        "url": "https://988lifeline.org/get-help/",
+        "publisher": "988 Suicide & Crisis Lifeline",
+        "note": "Supports urgent safety guidance."
+      },
+      {
+        "title": "What to make of 'AI psychosis'?",
+        "url": "https://news.harvard.edu/gazette/story/2026/04/what-to-make-of-ai-psychosis/",
+        "publisher": "Harvard Gazette",
+        "note": "Supports high-level AI risk framing."
+      }
+    ],
+    "citation_gaps": [
+      "Add clinical emergency or psychosis first-aid source before promotion."
+    ],
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "draft_notes": "Highest-risk triage page. Requires strict review before any publication."
+  }
+]

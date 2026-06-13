@@ -1,0 +1,219 @@
+[
+  {
+    "question": "How do I know if I'm too emotionally dependent on AI?",
+    "slug": "how-to-know-if-too-emotionally-dependent-on-ai",
+    "category": "Identity & Self-Worth",
+    "intent": "Assess emotional dependence on AI without shaming users",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "medium",
+    "priority_pair": "AI + dependency",
+    "why_this_adds_coverage": "High-frequency consumer concern tied to companionship, social avoidance, and therapy boundaries.",
+    "source_refs": [
+      {
+        "title": "How AI and Human Behaviors Shape Psychosocial Effects of Extended Chatbot Use",
+        "url": "https://arxiv.org/abs/2503.17473v2",
+        "publisher": "arXiv",
+        "note": "Supports emotional dependence and problematic use patterns."
+      }
+    ],
+    "notes": "Near current AI relationship pages but broader and more self-assessment oriented."
+  },
+  {
+    "question": "Can using AI for emotional support become addictive?",
+    "slug": "can-using-ai-for-emotional-support-become-addictive",
+    "category": "Addiction & Recovery",
+    "intent": "Understand whether AI emotional support can become compulsive or hard to stop",
+    "safety_flags": [
+      "diagnosis-risk",
+      "addiction"
+    ],
+    "duplicate_risk": "medium",
+    "priority_pair": "AI + addiction / compulsive use",
+    "why_this_adds_coverage": "Connects AI dependency to behavioral addiction language while keeping claims cautious.",
+    "source_refs": [
+      {
+        "title": "How AI and Human Behaviors Shape Psychosocial Effects of Extended Chatbot Use",
+        "url": "https://arxiv.org/abs/2503.17473v2",
+        "publisher": "arXiv",
+        "note": "Supports problematic AI usage and emotional dependence."
+      }
+    ],
+    "notes": "Avoid declaring an official addiction diagnosis."
+  },
+  {
+    "question": "Why do I keep going back to AI even when it makes me feel worse?",
+    "slug": "why-keep-going-back-to-ai-even-when-it-feels-worse",
+    "category": "Anxiety & Stress",
+    "intent": "Explain reinforcement loops, avoidance, and compulsive return to AI",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + compulsive loop",
+    "why_this_adds_coverage": "Captures a natural-language high-frequency query around repeated AI use.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports concerns around heavy use, loneliness, and problematic dependence."
+      }
+    ],
+    "notes": "Strong candidate for internal linking to social anxiety and avoidance pages."
+  },
+  {
+    "question": "How can I take a break from AI without feeling abandoned?",
+    "slug": "take-a-break-from-ai-without-feeling-abandoned",
+    "category": "Loneliness & Isolation",
+    "intent": "Help users reduce AI reliance while managing attachment feelings",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + attachment / withdrawal",
+    "why_this_adds_coverage": "Useful self-management content for people already emotionally attached to AI.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports AI attachment and social-connection framing."
+      }
+    ],
+    "notes": "Avoid moralizing; focus on gradual reconnection with real-world supports."
+  },
+  {
+    "question": "Can AI make avoidance easier when I am anxious?",
+    "slug": "can-ai-make-avoidance-easier-when-anxious",
+    "category": "Anxiety & Stress",
+    "intent": "Understand how AI can become part of avoidance and reassurance loops",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + anxiety avoidance",
+    "why_this_adds_coverage": "AI-specific version of a common anxiety mechanism likely to grow in demand.",
+    "source_refs": [
+      {
+        "title": "Psychotherapies",
+        "url": "https://www.nimh.nih.gov/health/topics/psychotherapies",
+        "publisher": "National Institute of Mental Health",
+        "note": "Supports therapy and avoidance/reframing treatment context."
+      }
+    ],
+    "notes": "Source support should be strengthened with AI-specific material before review."
+  },
+  {
+    "question": "Is asking AI for reassurance making my anxiety worse?",
+    "slug": "is-asking-ai-for-reassurance-making-anxiety-worse",
+    "category": "Anxiety & Stress",
+    "intent": "Explain reassurance-seeking loops with AI tools",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + reassurance seeking",
+    "why_this_adds_coverage": "Likely high-frequency pair for anxiety, OCD-adjacent worry, and social reassurance.",
+    "source_refs": [
+      {
+        "title": "Generalized Anxiety Disorder: What You Need to Know",
+        "url": "https://www.nimh.nih.gov/health/publications/generalized-anxiety-disorder-gad",
+        "publisher": "National Institute of Mental Health",
+        "note": "Supports excessive worry and treatment context."
+      }
+    ],
+    "notes": "Avoid implying AI is uniquely harmful; focus on the reassurance pattern."
+  },
+  {
+    "question": "How do I stop checking AI for every decision?",
+    "slug": "how-to-stop-checking-ai-for-every-decision",
+    "category": "Identity & Self-Worth",
+    "intent": "Reduce decision dependence and rebuild self-trust",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + decision dependence",
+    "why_this_adds_coverage": "Connects AI use with self-trust, confidence, and autonomy concerns.",
+    "source_refs": [
+      {
+        "title": "How AI and Human Behaviors Shape Psychosocial Effects of Extended Chatbot Use",
+        "url": "https://arxiv.org/abs/2503.17473v2",
+        "publisher": "arXiv",
+        "note": "Supports dependence and problematic use context."
+      }
+    ],
+    "notes": "Good internal bridge to self-worth and perfectionism pages."
+  },
+  {
+    "question": "Can AI companions reduce loneliness or make it worse?",
+    "slug": "can-ai-companions-reduce-loneliness-or-make-it-worse",
+    "category": "Loneliness & Isolation",
+    "intent": "Present balanced evidence on AI companions and loneliness",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "priority_pair": "AI + loneliness / companionship",
+    "why_this_adds_coverage": "High-frequency broad page that can link to more specific attachment and intimacy answers.",
+    "source_refs": [
+      {
+        "title": "AI Companions Reduce Loneliness",
+        "url": "https://www.hbs.edu/ris/Publication%20Files/AI%20Companions%20Reduce%20Loneliness%2011.7.2025_57451c02-8047-4e0d-abfc-55841f64166d.pdf",
+        "publisher": "Harvard Business School",
+        "note": "Supports potential loneliness benefits in some contexts."
+      },
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports risks around heavy use and social displacement."
+      }
+    ],
+    "notes": "Needs balanced tone: benefit for some, risk for others."
+  },
+  {
+    "question": "Why does my AI companion feel more comforting than real people?",
+    "slug": "why-ai-companion-feels-more-comforting-than-real-people",
+    "category": "Loneliness & Isolation",
+    "intent": "Explain why AI can feel emotionally safer than human connection",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "priority_pair": "AI + emotional comfort",
+    "why_this_adds_coverage": "Strong natural-language query tied to companionship and isolation.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports synthetic relationship and emotional connection framing."
+      }
+    ],
+    "notes": "Near existing 'seen by AI' pages; focus this on comfort and real-world connection."
+  },
+  {
+    "question": "Is it unhealthy to prefer talking to AI over friends?",
+    "slug": "is-it-unhealthy-to-prefer-talking-to-ai-over-friends",
+    "category": "Relationships & Communication",
+    "intent": "Evaluate AI preference without shame and identify when isolation is increasing",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "priority_pair": "AI + social substitution",
+    "why_this_adds_coverage": "Common relational framing likely distinct from existing AI partner pages.",
+    "source_refs": [
+      {
+        "title": "The Heterogeneous Effects of AI Companionship",
+        "url": "https://ojs.aaai.org/index.php/AIES/article/view/36658",
+        "publisher": "AAAI/ACM AIES",
+        "note": "Supports varied outcomes among AI companion users."
+      }
+    ],
+    "notes": "Avoid categorical judgment; focus on functional impact."
+  }
+]

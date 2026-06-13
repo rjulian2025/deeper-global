@@ -1,12 +1,18 @@
 #!/usr/bin/env node
 /**
- * Publish approved Phase 1B new-question drafts into questions_master.
+ * Publish approved new-question drafts into questions_master.
  *
- * Dry run:
+ * Phase 1B dry run:
  *   npm run content:publish-phase-1b -- reports/phase-1b/draft-answers/batch-01-drafts.json
  *
- * Apply:
+ * Phase 1B apply:
  *   npm run content:publish-phase-1b -- --apply reports/phase-1b/draft-answers/batch-01-drafts.json
+ *
+ * AI sprint dry run:
+ *   npm run content:publish-ai-sprint -- reports/ai-sprint/draft-answers/batch-01-drafts.json
+ *
+ * AI sprint apply:
+ *   npm run content:publish-ai-sprint -- --apply reports/ai-sprint/draft-answers/batch-01-drafts.json
  */
 import { randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -14,7 +20,16 @@ import { createClient } from '@supabase/supabase-js';
 
 const ENV_PATH = '.vercel/.env.production.local';
 const REVIEWED_BY = 'codex-seo-review';
-const PROMPT_VERSION = 'deeper-phase-1b-new-question-v1';
+const CAMPAIGNS = {
+  'phase-1b': {
+    promptVersion: 'deeper-phase-1b-new-question-v1',
+    citationNote: 'Phase 1B new-question batch promotion.',
+  },
+  'ai-sprint': {
+    promptVersion: 'deeper-ai-concerns-sprint-v1',
+    citationNote: 'AI mental health concerns sprint promotion.',
+  },
+};
 
 function parseEnv(path) {
   return Object.fromEntries(
@@ -34,7 +49,7 @@ function parseEnv(path) {
   );
 }
 
-function resolveSupabaseConfig() {
+function resolveSupabaseConfig({ requireWrite = false } = {}) {
   const fileEnv = (() => {
     try {
       return parseEnv(ENV_PATH);
@@ -53,15 +68,21 @@ function resolveSupabaseConfig() {
 
   const key =
     process.env.SUPABASE_SERVICE_ROLE_KEY ??
+    fileEnv.SUPABASE_SERVICE_ROLE_KEY ??
     process.env.SUPABASE_ANON_KEY ??
     process.env.PUBLIC_SUPABASE_ANON_KEY ??
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
     fileEnv.SUPABASE_ANON_KEY ??
     fileEnv.PUBLIC_SUPABASE_ANON_KEY ??
     fileEnv.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY ?? fileEnv.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!url || !key) {
     throw new Error('Missing Supabase credentials. Set SUPABASE_URL and SUPABASE_ANON_KEY, or use .vercel/.env.production.local.');
+  }
+
+  if (requireWrite && !serviceRoleKey) {
+    throw new Error('Publishing requires SUPABASE_SERVICE_ROLE_KEY because questions_master rejects anon-key inserts under RLS.');
   }
 
   return { url, key };
@@ -123,9 +144,44 @@ function entitiesFromDraft(draft) {
   return Array.from(new Set(names)).map((name) => ({ name, type: 'Topic' }));
 }
 
-function citationNotesFromDraft(draft) {
+function parseArgs(argv) {
+  let campaign = 'phase-1b';
+  const paths = [];
+  let apply = false;
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+
+    if (arg === '--apply') {
+      apply = true;
+      continue;
+    }
+
+    if (arg === '--campaign') {
+      campaign = argv[index + 1] ?? '';
+      index += 1;
+      continue;
+    }
+
+    if (arg.startsWith('--campaign=')) {
+      campaign = arg.slice('--campaign='.length);
+      continue;
+    }
+
+    paths.push(arg);
+  }
+
+  const campaignConfig = CAMPAIGNS[campaign];
+  if (!campaignConfig) {
+    throw new Error(`Unknown campaign "${campaign}". Use one of: ${Object.keys(CAMPAIGNS).join(', ')}`);
+  }
+
+  return { apply, campaign, campaignConfig, paths };
+}
+
+function citationNotesFromDraft(draft, campaignConfig) {
   const notes = [
-    'Phase 1B new-question batch promotion.',
+    campaignConfig.citationNote,
     cleanText(draft.draft_notes) && `Draft notes: ${cleanText(draft.draft_notes)}`,
     normalizeSafetyFlags(draft.safety_flags).length && `Safety flags: ${normalizeSafetyFlags(draft.safety_flags).join(', ')}`,
     Array.isArray(draft.citation_gaps) && draft.citation_gaps.length && `Citation follow-ups: ${draft.citation_gaps.map((gap) => cleanText(gap)).filter(Boolean).join(' ')}`,
@@ -134,7 +190,7 @@ function citationNotesFromDraft(draft) {
   return notes.join('\n');
 }
 
-function rowFromDraft(draft) {
+function rowFromDraft(draft, campaignConfig) {
   const question = cleanText(draft.question);
   const slug = cleanText(draft.slug);
   const category = cleanText(draft.category);
@@ -167,8 +223,8 @@ function rowFromDraft(draft) {
     suggested_schema_answer: cleanText(draft.suggested_schema_answer || draft.improved_summary),
     primary_theme: cleanText(draft.primary_theme || category),
     related_themes: Array.isArray(draft.related_themes) ? draft.related_themes : [],
-    citation_notes: citationNotesFromDraft(draft),
-    content_prompt_version: PROMPT_VERSION,
+    citation_notes: citationNotesFromDraft(draft, campaignConfig),
+    content_prompt_version: campaignConfig.promptVersion,
     content_enriched_at: new Date().toISOString(),
     review_status: 'reviewed',
     reviewed_by: REVIEWED_BY,
@@ -178,7 +234,7 @@ function rowFromDraft(draft) {
   };
 }
 
-function loadRows(paths) {
+function loadRows(paths, campaignConfig) {
   const drafts = paths.flatMap((path) => {
     const parsed = JSON.parse(readFileSync(path, 'utf8'));
     if (!Array.isArray(parsed)) {
@@ -187,7 +243,7 @@ function loadRows(paths) {
     return parsed;
   });
 
-  const rows = drafts.map(rowFromDraft);
+  const rows = drafts.map((draft) => rowFromDraft(draft, campaignConfig));
   const duplicateInputSlugs = rows
     .map((row) => row.slug)
     .filter((slug, index, slugs) => slugs.indexOf(slug) !== index);
@@ -200,15 +256,14 @@ function loadRows(paths) {
 }
 
 async function main() {
-  const apply = process.argv.includes('--apply');
-  const paths = process.argv.slice(2).filter((arg) => arg !== '--apply');
+  const { apply, campaign, campaignConfig, paths } = parseArgs(process.argv.slice(2));
 
   if (!paths.length) {
     throw new Error('Pass one or more draft JSON files.');
   }
 
-  const rows = loadRows(paths);
-  const { url, key } = resolveSupabaseConfig();
+  const rows = loadRows(paths, campaignConfig);
+  const { url, key } = resolveSupabaseConfig({ requireWrite: apply });
   const supabase = createClient(url, key, { auth: { persistSession: false } });
   const slugs = rows.map((row) => row.slug);
 
@@ -233,6 +288,7 @@ async function main() {
       JSON.stringify(
         {
           mode: 'dry-run',
+          campaign,
           rowsReady: rows.length,
           beforeCount,
           expectedAfterCount: (beforeCount ?? 0) + rows.length,
@@ -258,6 +314,7 @@ async function main() {
     JSON.stringify(
       {
         mode: 'applied',
+        campaign,
         inserted: rows.length,
         beforeCount,
         afterCount,

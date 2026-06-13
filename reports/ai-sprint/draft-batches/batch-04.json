@@ -1,0 +1,213 @@
+[
+  {
+    "question": "How do I know if my teenager is too attached to AI?",
+    "slug": "how-to-know-if-teenager-is-too-attached-to-ai",
+    "category": "Teen-Specific Questions",
+    "intent": "Help parents identify concerning AI attachment in teens",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "medium",
+    "priority_pair": "AI + teens / parenting",
+    "why_this_adds_coverage": "Parent-facing AI safety content is likely high demand and high trust value.",
+    "source_refs": [
+      {
+        "title": "AI companion apps such as Replika need more effective safety controls, experts say",
+        "url": "https://www.abc.net.au/news/science/2025-06-11/ai-companion-apps-safety-controls-isolation-replika-loneliness/105261042",
+        "publisher": "ABC News",
+        "note": "Supports concerns around companion app safety controls."
+      }
+    ],
+    "notes": "Include parent-child communication and crisis red flags."
+  },
+  {
+    "question": "Should parents limit AI companion use for teens?",
+    "slug": "should-parents-limit-ai-companion-use-for-teens",
+    "category": "Teen-Specific Questions",
+    "intent": "Guide parents on boundaries without panic",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + teen boundaries",
+    "why_this_adds_coverage": "Practical, high-intent parenting page tied to AI companion safety.",
+    "source_refs": [
+      {
+        "title": "AI companion apps such as Replika need more effective safety controls, experts say",
+        "url": "https://www.abc.net.au/news/science/2025-06-11/ai-companion-apps-safety-controls-isolation-replika-loneliness/105261042",
+        "publisher": "ABC News",
+        "note": "Supports safety-control and isolation concerns."
+      }
+    ],
+    "notes": "Needs age-appropriate, non-alarmist guidance."
+  },
+  {
+    "question": "What should I do if my child says an AI is their best friend?",
+    "slug": "what-if-my-child-says-ai-is-their-best-friend",
+    "category": "Parenting",
+    "intent": "Help parents respond to child or teen AI attachment",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + child attachment",
+    "why_this_adds_coverage": "Natural parent query with emotional and safety relevance.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports AI emotional connection and relationship framing."
+      }
+    ],
+    "notes": "Distinguish imaginative play from isolation or dependency."
+  },
+  {
+    "question": "Can AI companions be risky for lonely teens?",
+    "slug": "can-ai-companions-be-risky-for-lonely-teens",
+    "category": "Teen-Specific Questions",
+    "intent": "Explain risks and possible benefits for lonely adolescents",
+    "safety_flags": [
+      "minor",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + lonely teens",
+    "why_this_adds_coverage": "Combines high-volume loneliness concerns with teen safety.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports loneliness and digital companion concerns."
+      }
+    ],
+    "notes": "Include 988 if loneliness includes self-harm thoughts."
+  },
+  {
+    "question": "How do I talk to my teenager about AI relationships?",
+    "slug": "how-to-talk-to-teenager-about-ai-relationships",
+    "category": "Teen-Specific Questions",
+    "intent": "Give parents language for discussing AI companionship and boundaries",
+    "safety_flags": [
+      "minor"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + parent communication",
+    "why_this_adds_coverage": "Practical companion page to risk-focused teen AI content.",
+    "source_refs": [
+      {
+        "title": "AI companion apps such as Replika need more effective safety controls, experts say",
+        "url": "https://www.abc.net.au/news/science/2025-06-11/ai-companion-apps-safety-controls-isolation-replika-loneliness/105261042",
+        "publisher": "ABC News",
+        "note": "Supports AI companion safety and parent concern context."
+      }
+    ],
+    "notes": "Avoid surveillance-first parenting advice."
+  },
+  {
+    "question": "Why am I so anxious about AI replacing my job?",
+    "slug": "why-am-i-anxious-about-ai-replacing-my-job",
+    "category": "Work & Burnout",
+    "intent": "Understand job displacement anxiety and identity threat",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "priority_pair": "AI + job anxiety",
+    "why_this_adds_coverage": "High-frequency mainstream query; overlaps reviewed page but uses more common phrasing.",
+    "source_refs": [
+      {
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "publisher": "American Psychological Association via Newswise",
+        "note": "Supports AI job-worry and stress data."
+      }
+    ],
+    "notes": "Near duplicate of reviewed AI job anxiety page; likely REVIEW."
+  },
+  {
+    "question": "How do I handle feeling replaceable because of AI?",
+    "slug": "how-to-handle-feeling-replaceable-because-of-ai",
+    "category": "Work & Burnout",
+    "intent": "Address self-worth and work identity fears tied to AI",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + replaceability",
+    "why_this_adds_coverage": "More emotional/self-worth framing than current job-displacement pages.",
+    "source_refs": [
+      {
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "publisher": "American Psychological Association via Newswise",
+        "note": "Supports AI-related job worry and feeling less valued."
+      }
+    ],
+    "notes": "Good commercial bridge for therapist websites serving professionals."
+  },
+  {
+    "question": "Can AI workplace monitoring affect mental health?",
+    "slug": "can-ai-workplace-monitoring-affect-mental-health",
+    "category": "Work & Burnout",
+    "intent": "Explain the mental health impact of automated surveillance and monitoring",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "priority_pair": "AI + workplace surveillance",
+    "why_this_adds_coverage": "High-frequency workplace concern with policy and employee wellbeing relevance.",
+    "source_refs": [
+      {
+        "title": "Estimating the prevalence of automated management and surveillance technologies at work and their impact on workers' well-being",
+        "url": "https://equitablegrowth.org/research-paper/estimating-the-prevalence-of-automated-management-and-surveillance-technologies-at-work-and-their-impact-on-workers-well-being/",
+        "publisher": "Washington Center for Equitable Growth",
+        "note": "Supports links between monitoring, anxiety, pressure, and wellbeing."
+      }
+    ],
+    "notes": "Existing surveillance anxiety page exists; this is broader and evidence-focused."
+  },
+  {
+    "question": "Why does AI at work make me feel less in control?",
+    "slug": "why-ai-at-work-makes-me-feel-less-in-control",
+    "category": "Work & Burnout",
+    "intent": "Connect AI management/surveillance with autonomy and distress",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + autonomy",
+    "why_this_adds_coverage": "Targets autonomy, one of the strongest workplace mental health mechanisms.",
+    "source_refs": [
+      {
+        "title": "When resilience backfires: the counterintuitive effect of employee resilience in high-tech surveillance environments",
+        "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2026.1790846/full",
+        "publisher": "Frontiers in Psychology",
+        "note": "Supports autonomy and distress mechanisms in AI surveillance contexts."
+      }
+    ],
+    "notes": "Keep workplace advice practical and non-legal."
+  },
+  {
+    "question": "How do I cope with AI change fatigue at work?",
+    "slug": "how-to-cope-with-ai-change-fatigue-at-work",
+    "category": "Work & Burnout",
+    "intent": "Help workers manage exhaustion from constant AI changes",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + change fatigue",
+    "why_this_adds_coverage": "Common workplace experience distinct from job loss fear.",
+    "source_refs": [
+      {
+        "title": "AI Anxiety at Work: What Leaders Can't Ignore",
+        "url": "https://www.lyrahealth.com/blog/ai-anxiety/",
+        "publisher": "Lyra Health",
+        "note": "Supports workplace change fatigue and AI anxiety framing."
+      }
+    ],
+    "notes": "Source should be supplemented with APA/workplace sources before review."
+  }
+]

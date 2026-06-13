@@ -1,0 +1,263 @@
+[
+  {
+    "question": "Can AI make me feel emotionally numb?",
+    "slug": "can-ai-make-me-feel-emotionally-numb",
+    "category": "Depression",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Can AI Make Me Feel Emotionally Numb?",
+    "improved_meta_description": "Heavy AI use may leave some people feeling detached or emotionally flat. Learn what may be happening and what can help.",
+    "improved_summary": "AI does not necessarily cause emotional numbness, but heavy or repetitive use may contribute to feeling detached, passive, or less connected to yourself for some people. Emotional numbness can also be related to depression, stress, burnout, trauma, or sleep loss, so it is worth paying attention to the wider pattern.",
+    "key_takeaways": [
+      "AI may contribute to numbness when it replaces reflection, rest, creativity, or real connection.",
+      "Feeling emotionally flat can have many causes, not just AI use.",
+      "A short break from AI can help you notice whether your feelings return or shift.",
+      "If numbness is persistent, worsening, or connected to self-harm thoughts, get real-world support."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "AI can make tasks and conversations easier, but that ease can sometimes become emotional distance. If you ask AI to think, write, decide, comfort, and respond for you, you may have fewer moments where you notice what you actually feel.\n\nFor some people, long sessions with a chatbot may also blur together with avoidance: staying engaged enough to not feel alone, but not connected enough to feel present."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Try a small experiment: take a planned break from AI for a few hours or a day, then notice your mood, energy, body sensations, and desire for real contact. The goal is not to prove AI is the cause, but to understand your pattern.\n\nIt may also help to do something that requires your own presence: talk to someone offline, go outside, cook, move, journal without AI, or make something imperfectly by hand."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Consider professional support if emotional numbness lasts, affects relationships or work, or comes with hopelessness, loss of interest, major sleep changes, or feeling disconnected from reality.\n\nIf numbness is connected to thoughts of suicide, self-harm, or not wanting to be alive, seek urgent support now rather than continuing to process it with AI."
+      }
+    ],
+    "care_note": "Emotional numbness is not a personal failure. If you feel unsafe, detached from reality, or at risk of self-harm, contact a trusted person, clinician, crisis line, or emergency service; in the U.S., call or text 988 for crisis support.",
+    "related_questions": [
+      "Why do I feel ashamed about relying on AI?",
+      "Can AI make isolation feel normal?",
+      "What are warning signs that AI use is hurting my mental health?",
+      "How do I use AI without losing my own voice?",
+      "How can I rebuild real-world connection after relying on AI?"
+    ],
+    "suggested_schema_question": "Can AI make me feel emotionally numb?",
+    "suggested_schema_answer": "AI may contribute to emotional numbness for some people if heavy use replaces reflection, rest, creativity, or real-world connection. Numbness can also have many other causes, so persistent or unsafe symptoms deserve human support.",
+    "primary_theme": "AI and emotional numbness",
+    "related_themes": [
+      "Depression",
+      "Dissociation",
+      "Chatbot dependency",
+      "Real-world connection"
+    ],
+    "source_refs": [
+      {
+        "title": "How AI and Human Behaviors Shape Psychosocial Effects of Extended Chatbot Use",
+        "url": "https://arxiv.org/abs/2503.17473v2",
+        "publisher": "arXiv",
+        "note": "Supports psychosocial outcomes around extended chatbot use."
+      }
+    ],
+    "citation_gaps": [
+      "Source is a preprint and supports extended chatbot use broadly, not emotional numbness or depression specifically.",
+      "Human editor should add clinical sources on emotional numbness, depression, dissociation, or burnout before review."
+    ],
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "draft_notes": "Avoid direct-causation language. Needs clinical review for depression/numbness framing."
+  },
+  {
+    "question": "Why do I feel ashamed about relying on AI?",
+    "slug": "why-do-i-feel-ashamed-about-relying-on-ai",
+    "category": "Identity & Self-Worth",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Why Do I Feel Ashamed About Relying on AI?",
+    "improved_meta_description": "Feeling ashamed about relying on AI is common when support, secrecy, identity, and independence get tangled together.",
+    "improved_summary": "You may feel ashamed about relying on AI because it touches independence, loneliness, privacy, productivity, or the fear that you should be able to cope alone. Shame can make the reliance more secret, which can make it harder to understand what you actually need.",
+    "key_takeaways": [
+      "Shame often grows when AI use feels hidden, excessive, or tied to loneliness.",
+      "Relying on a tool does not mean you are weak or broken.",
+      "The important question is what need AI is meeting and whether it is crowding out other support.",
+      "Talking honestly with a trusted person can reduce secrecy and self-judgment."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "AI can meet real needs: help thinking, writing, calming down, feeling less alone, or getting through a hard moment. Shame often appears when those needs feel embarrassing or when the tool starts to feel more important than you expected.\n\nYou might also judge yourself for needing support from something that is not human. That judgment can become another layer of distress on top of the original need."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Try replacing \"I should not need this\" with \"What am I using this for?\" You may find needs for reassurance, structure, companionship, courage, or rest.\n\nFrom there, decide what AI can safely help with and what needs a human response. You might tell a therapist, friend, or partner a simple version: \"I have been using AI more than I expected, and I am trying to understand why.\""
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Support may help if shame is making you hide, isolate, avoid responsibilities, or feel unable to stop using AI even when it hurts. A therapist can help you understand the need beneath the habit without moralizing it.\n\nIf shame turns into thoughts of self-harm or feeling like you do not deserve help, seek urgent human support."
+      }
+    ],
+    "care_note": "Relying on AI does not make you bad. If shame is becoming heavy, secretive, or unsafe, bring another person into the loop; in crisis, contact local emergency support or call/text 988 in the U.S.",
+    "related_questions": [
+      "Can AI make me emotionally dependent?",
+      "How do I use AI without losing my own voice?",
+      "Should I tell my therapist I use AI?",
+      "Can AI make isolation feel normal?",
+      "How do I set boundaries with AI tools?"
+    ],
+    "suggested_schema_question": "Why do I feel ashamed about relying on AI?",
+    "suggested_schema_answer": "You may feel ashamed because AI reliance can touch independence, loneliness, secrecy, and self-worth. The shame does not mean you are bad; it may be a signal to understand what need AI is meeting and where human support is needed.",
+    "primary_theme": "AI and shame",
+    "related_themes": [
+      "Self-worth",
+      "Chatbot dependency",
+      "Loneliness",
+      "Therapy disclosure"
+    ],
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports emotional connection and reliance context."
+      }
+    ],
+    "citation_gaps": [
+      "Source supports emotional connection and AI reliance broadly, but not shame around AI use specifically."
+    ],
+    "safety_flags": [
+      "none"
+    ],
+    "draft_notes": "Human editor should consider a shame/self-compassion source if this page moves forward."
+  },
+  {
+    "question": "Can AI make isolation feel normal?",
+    "slug": "can-ai-make-isolation-feel-normal",
+    "category": "Loneliness & Isolation",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Can AI Make Isolation Feel Normal?",
+    "improved_meta_description": "AI companionship may help some moments feel less lonely, but it can also make isolation easier to maintain.",
+    "improved_summary": "AI can make isolation feel normal if it meets enough emotional needs that real-world contact starts to feel unnecessary, risky, or exhausting. It may offer temporary comfort, but it cannot fully replace being known, challenged, and supported by other people.",
+    "key_takeaways": [
+      "AI companionship may reduce loneliness briefly, but it can also make withdrawal easier.",
+      "Isolation can start to feel normal when AI becomes the main source of comfort or conversation.",
+      "Real-world connection does not have to be intense to matter.",
+      "Small, low-pressure contact can help rebuild social confidence."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "AI can be available, patient, and easy to talk to. Those qualities may feel safer than human relationships, especially if you are tired, anxious, grieving, or afraid of rejection.\n\nThe concern is when comfort turns into replacement. If AI makes it easier to avoid calls, plans, therapy, community, or honest conflict, isolation may start to feel normal even while your need for human connection remains."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Start with connection that is small enough to actually do: send one text, sit in a public place, attend a familiar group, or schedule a brief call. You do not have to jump from isolation to a full social life.\n\nYou can also use AI as a bridge rather than a substitute. For example, ask it to help plan a simple message, then send that message to a real person."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Consider support if you rarely talk to people offline, feel anxious about leaving AI conversations, or are losing interest in real-world relationships. A therapist or support group can help you reconnect at a manageable pace.\n\nIf isolation is connected to self-harm thoughts, feeling unsafe, or losing touch with reality, seek urgent human support."
+      }
+    ],
+    "care_note": "AI can be comforting, but you still deserve human care. If isolation is deepening or safety is a concern, reach out to someone offline or contact crisis support; in the U.S., call or text 988 if you may be in danger.",
+    "related_questions": [
+      "How can I rebuild real-world connection after relying on AI?",
+      "Can AI make me emotionally dependent?",
+      "Why do I feel ashamed about relying on AI?",
+      "What are warning signs that AI use is hurting my mental health?",
+      "How do I set boundaries with AI companions?"
+    ],
+    "suggested_schema_question": "Can AI make isolation feel normal?",
+    "suggested_schema_answer": "AI can make isolation feel normal when it becomes the main source of comfort or conversation and reduces motivation for real-world contact. It may help temporarily, but it cannot fully replace human connection.",
+    "primary_theme": "AI and isolation",
+    "related_themes": [
+      "Loneliness",
+      "AI companions",
+      "Social withdrawal",
+      "Reconnection"
+    ],
+    "source_refs": [
+      {
+        "title": "AI companion apps such as Replika need more effective safety controls, experts say",
+        "url": "https://www.abc.net.au/news/science/2025-06-11/ai-companion-apps-safety-controls-isolation-replika-loneliness/105261042",
+        "publisher": "ABC News",
+        "note": "Supports concerns that companion apps may worsen isolation for some users."
+      }
+    ],
+    "citation_gaps": [
+      "Source is journalistic and supports expert concerns, but human editor should add clinical or peer-reviewed loneliness sources before publication."
+    ],
+    "safety_flags": [
+      "none"
+    ],
+    "draft_notes": "Balance risk with possible short-term support benefits. Consider linking to reconnection and loneliness resources."
+  },
+  {
+    "question": "How can I rebuild real-world connection after relying on AI?",
+    "slug": "rebuild-real-world-connection-after-relying-on-ai",
+    "category": "Loneliness & Isolation",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "How to Rebuild Real-World Connection After Relying on AI",
+    "improved_meta_description": "Rebuild connection after relying on AI with small, low-pressure steps toward real people, routines, and support.",
+    "improved_summary": "You can rebuild real-world connection after relying on AI by starting small, lowering the pressure, and using AI as a bridge rather than a replacement. The goal is not to shame yourself for using AI, but to gradually make human contact feel possible again.",
+    "key_takeaways": [
+      "Start with low-pressure contact, not a full social overhaul.",
+      "Use AI to prepare for real connection, not to avoid it.",
+      "Consistency matters more than intensity when rebuilding social confidence.",
+      "If isolation feels stuck or unsafe, support from a therapist or group can help."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "AI can become a reliable place to talk when human connection feels complicated. Over time, though, real-world contact may feel more awkward simply because you have had less practice.\n\nThat does not mean you failed. It means your social system may need gentle repetition, safety, and realistic steps."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Choose one small connection step for this week: reply to a message, take a walk where people are nearby, attend a class, schedule a short call, or ask someone a simple question. Keep the goal small enough that you can repeat it.\n\nIf you use AI, use it to support the real-world step. Ask for help drafting a text, planning conversation topics, or lowering the pressure, then move the action offline."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Support can help if isolation has lasted a long time, you feel anxious around people, or AI has become your only reliable source of comfort. Therapy, peer groups, community activities, or structured support can make reconnection less overwhelming.\n\nIf isolation is connected to hopelessness, self-harm thoughts, or feeling unable to stay safe, seek urgent support now."
+      }
+    ],
+    "care_note": "Reconnection can be slow and still real. If you feel unsafe, hopeless, or unable to reach anyone, contact crisis support or emergency services; in the U.S., call or text 988.",
+    "related_questions": [
+      "Can AI make isolation feel normal?",
+      "Can AI make me emotionally dependent?",
+      "How do I set boundaries with AI tools?",
+      "Why do I feel ashamed about relying on AI?",
+      "How do I make friends when I feel out of practice?"
+    ],
+    "suggested_schema_question": "How can I rebuild real-world connection after relying on AI?",
+    "suggested_schema_answer": "Start with small, repeatable contact, such as a text, short call, group activity, or public routine. AI can help you prepare, but the healing step is gradually moving support back into real-world relationships.",
+    "primary_theme": "Rebuilding connection after AI reliance",
+    "related_themes": [
+      "Loneliness",
+      "Social connection",
+      "AI boundaries",
+      "Support networks"
+    ],
+    "source_refs": [
+      {
+        "title": "Our Epidemic of Loneliness and Isolation",
+        "url": "https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf",
+        "publisher": "U.S. Surgeon General",
+        "note": "Supports the importance of social connection for health and wellbeing."
+      }
+    ],
+    "citation_gaps": [
+      "Source supports the importance of social connection broadly, but not AI reliance or AI-to-human reconnection specifically."
+    ],
+    "safety_flags": [
+      "none"
+    ],
+    "draft_notes": "Action-oriented page with solid general connection source; add AI-specific reliance source if available before publication."
+  }
+]

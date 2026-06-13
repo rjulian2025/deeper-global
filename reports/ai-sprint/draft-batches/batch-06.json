@@ -1,0 +1,219 @@
+[
+  {
+    "question": "Is using AI to check if I'm a bad person making things worse?",
+    "slug": "is-using-ai-to-check-if-im-a-bad-person-making-things-worse",
+    "category": "Anxiety & Stress",
+    "intent": "Address moral reassurance seeking and AI checking loops",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + moral anxiety",
+    "why_this_adds_coverage": "Very Deeper-aligned real-language query around shame, reassurance, and intrusive thoughts.",
+    "source_refs": [
+      {
+        "title": "Obsessive-Compulsive Disorder: When Unwanted Thoughts or Repetitive Behaviors Take Over",
+        "url": "https://www.nimh.nih.gov/health/publications/obsessive-compulsive-disorder-when-unwanted-thoughts-or-repetitive-behaviors-take-over",
+        "publisher": "National Institute of Mental Health",
+        "note": "Supports intrusive thoughts, reassurance, and compulsive checking context."
+      }
+    ],
+    "notes": "Avoid moral judgment; explain reassurance loops."
+  },
+  {
+    "question": "Can AI make health anxiety worse?",
+    "slug": "can-ai-make-health-anxiety-worse",
+    "category": "Anxiety & Stress",
+    "intent": "Explain AI symptom checking and health reassurance loops",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + health anxiety",
+    "why_this_adds_coverage": "High-frequency symptom-checking use case as people ask AI about health fears.",
+    "source_refs": [
+      {
+        "title": "Generalized Anxiety Disorder: What You Need to Know",
+        "url": "https://www.nimh.nih.gov/health/publications/generalized-anxiety-disorder-gad",
+        "publisher": "National Institute of Mental Health",
+        "note": "Supports excessive worry and anxiety treatment context."
+      }
+    ],
+    "notes": "Include medical emergency caveat; do not give medical advice."
+  },
+  {
+    "question": "Can AI make relationship anxiety worse?",
+    "slug": "can-ai-make-relationship-anxiety-worse",
+    "category": "Relationships & Communication",
+    "intent": "Explain how repeated AI analysis can fuel relationship doubt and reassurance seeking",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + relationship anxiety",
+    "why_this_adds_coverage": "High-frequency relationship query with AI-specific behavior.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Supports relationship communication context; AI-specific source needed."
+      }
+    ],
+    "notes": "Strong candidate for internal linking to communication/conflict pages."
+  },
+  {
+    "question": "Should I use AI to analyze my partner's texts?",
+    "slug": "should-i-use-ai-to-analyze-my-partners-texts",
+    "category": "Relationships & Communication",
+    "intent": "Help users think through AI text analysis, anxiety, privacy, and conflict",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + text analysis / relationships",
+    "why_this_adds_coverage": "Concrete high-frequency modern relationship behavior.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Supports relationship communication and conflict context."
+      }
+    ],
+    "notes": "Discuss privacy and anxiety loops without legal claims."
+  },
+  {
+    "question": "Can AI make people-pleasing worse?",
+    "slug": "can-ai-make-people-pleasing-worse",
+    "category": "Communication & Conflict",
+    "intent": "Explain how AI can over-optimize messages and reinforce approval-seeking",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + people-pleasing",
+    "why_this_adds_coverage": "Modernizes existing people-pleasing demand with AI writing/checking behavior.",
+    "source_refs": [
+      {
+        "title": "Relationships",
+        "url": "https://www.apa.org/topics/relationships",
+        "publisher": "American Psychological Association",
+        "note": "Supports communication and relationship context."
+      }
+    ],
+    "notes": "Likely needs stronger AI-writing source later."
+  },
+  {
+    "question": "How do I use AI without losing my own voice?",
+    "slug": "how-to-use-ai-without-losing-my-own-voice",
+    "category": "Identity & Self-Worth",
+    "intent": "Help users preserve agency and self-expression while using AI tools",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + identity / self-expression",
+    "why_this_adds_coverage": "Positive, practical counterbalance to risk-heavy content.",
+    "source_refs": [
+      {
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "publisher": "American Psychological Association via Newswise",
+        "note": "Supports AI-related autonomy and value concerns."
+      }
+    ],
+    "notes": "May need style/identity-specific source before review."
+  },
+  {
+    "question": "Why does AI make the future feel scary?",
+    "slug": "why-ai-makes-the-future-feel-scary",
+    "category": "Anxiety & Stress",
+    "intent": "Explain uncertainty, anticipatory anxiety, and future threat around AI",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + future anxiety",
+    "why_this_adds_coverage": "Broad entry page for general AI anxiety beyond work.",
+    "source_refs": [
+      {
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "publisher": "American Psychological Association via Newswise",
+        "note": "Supports AI worry and stress framing."
+      }
+    ],
+    "notes": "Can internally link to job anxiety, existential anxiety, and decision dependence pages."
+  },
+  {
+    "question": "Can AI make doomscrolling worse?",
+    "slug": "can-ai-make-doomscrolling-worse",
+    "category": "Anxiety & Stress",
+    "intent": "Connect AI-curated content, algorithms, and anxious information loops",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + algorithms / doomscrolling",
+    "why_this_adds_coverage": "Extends algorithm-related content into a clearer AI trend frame.",
+    "source_refs": [
+      {
+        "title": "Social Media and Mental Health",
+        "url": "https://www.apa.org/topics/social-media-internet",
+        "publisher": "American Psychological Association",
+        "note": "Supports social media and mental health context; AI-specific source needed."
+      }
+    ],
+    "notes": "Useful lower-risk cluster item."
+  },
+  {
+    "question": "How do I set boundaries with AI tools?",
+    "slug": "how-to-set-boundaries-with-ai-tools",
+    "category": "General Mental Health",
+    "intent": "Give practical boundaries for AI use across work, emotional support, and decision-making",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + boundaries",
+    "why_this_adds_coverage": "Central self-management hub for the AI sprint.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports guardrail and relationship-to-AI framing."
+      }
+    ],
+    "notes": "Should link to all major AI cluster pages."
+  },
+  {
+    "question": "What are warning signs that AI use is hurting my mental health?",
+    "slug": "warning-signs-ai-use-is-hurting-my-mental-health",
+    "category": "General Mental Health",
+    "intent": "Provide a broad self-check across AI dependency, sleep, isolation, distress, and reality testing",
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + warning signs",
+    "why_this_adds_coverage": "Broad, high-value hub page for the AI concern sprint.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports heavy-use and relationship-to-AI concerns."
+      },
+      {
+        "title": "What to make of 'AI psychosis'?",
+        "url": "https://news.harvard.edu/gazette/story/2026/04/what-to-make-of-ai-psychosis/",
+        "publisher": "Harvard Gazette",
+        "note": "Supports high-risk warning signs around AI-associated delusional content."
+      }
+    ],
+    "notes": "This should likely be one of the first reviewed pages."
+  }
+]

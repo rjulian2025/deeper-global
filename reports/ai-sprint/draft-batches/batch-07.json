@@ -1,0 +1,86 @@
+[
+  {
+    "question": "Can AI make me feel emotionally numb?",
+    "slug": "can-ai-make-me-feel-emotionally-numb",
+    "category": "Depression",
+    "intent": "Explore emotional numbing or disengagement after heavy AI use",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + emotional numbness",
+    "why_this_adds_coverage": "Extends existing numbness/depression demand into AI use patterns.",
+    "source_refs": [
+      {
+        "title": "How AI and Human Behaviors Shape Psychosocial Effects of Extended Chatbot Use",
+        "url": "https://arxiv.org/abs/2503.17473v2",
+        "publisher": "arXiv",
+        "note": "Supports psychosocial outcomes around extended chatbot use."
+      }
+    ],
+    "notes": "Avoid implying direct causation."
+  },
+  {
+    "question": "Why do I feel ashamed about relying on AI?",
+    "slug": "why-do-i-feel-ashamed-about-relying-on-ai",
+    "category": "Identity & Self-Worth",
+    "intent": "Address shame, secrecy, and self-judgment around AI reliance",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + shame",
+    "why_this_adds_coverage": "A human, Deeper-style angle likely to connect with users who are hiding AI dependence.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports emotional connection and reliance context."
+      }
+    ],
+    "notes": "Good bridge to dependency, therapy disclosure, and loneliness pages."
+  },
+  {
+    "question": "Can AI make isolation feel normal?",
+    "slug": "can-ai-make-isolation-feel-normal",
+    "category": "Loneliness & Isolation",
+    "intent": "Explain how AI companionship can reduce motivation for real-world connection",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + isolation",
+    "why_this_adds_coverage": "High-frequency concern around AI companions and social withdrawal.",
+    "source_refs": [
+      {
+        "title": "AI companion apps such as Replika need more effective safety controls, experts say",
+        "url": "https://www.abc.net.au/news/science/2025-06-11/ai-companion-apps-safety-controls-isolation-replika-loneliness/105261042",
+        "publisher": "ABC News",
+        "note": "Supports concerns that companion apps may worsen isolation for some users."
+      }
+    ],
+    "notes": "Balance with possible temporary support benefits."
+  },
+  {
+    "question": "How can I rebuild real-world connection after relying on AI?",
+    "slug": "rebuild-real-world-connection-after-relying-on-ai",
+    "category": "Loneliness & Isolation",
+    "intent": "Offer practical steps for returning from AI reliance to human connection",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + reconnection",
+    "why_this_adds_coverage": "Action-oriented follow-up to dependency and isolation pages.",
+    "source_refs": [
+      {
+        "title": "Our Epidemic of Loneliness and Isolation",
+        "url": "https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf",
+        "publisher": "U.S. Surgeon General",
+        "note": "Supports the importance of social connection for health and wellbeing."
+      }
+    ],
+    "notes": "Strong self-management page with less AI-specific source need."
+  }
+]

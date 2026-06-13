@@ -1,0 +1,225 @@
+[
+  {
+    "question": "Can AI make it harder to build real intimacy?",
+    "slug": "can-ai-make-it-harder-to-build-real-intimacy",
+    "category": "Relationships & Divorce",
+    "intent": "Understand whether AI companionship can interfere with human intimacy",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "priority_pair": "AI + intimacy",
+    "why_this_adds_coverage": "Complements existing AI love/companionship pages with a practical relationship angle.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports emotional connection and synthetic relationship risks."
+      }
+    ],
+    "notes": "Good candidate for related pages around vulnerability and partner communication."
+  },
+  {
+    "question": "What if my partner is emotionally attached to an AI companion?",
+    "slug": "what-if-my-partner-is-attached-to-an-ai-companion",
+    "category": "Relationships & Divorce",
+    "intent": "Help partners discuss AI attachment, boundaries, and trust",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + relationship conflict",
+    "why_this_adds_coverage": "Adds partner-facing content to existing user-facing AI intimacy pages.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports companion relationship context."
+      }
+    ],
+    "notes": "Avoid framing all AI attachment as cheating; focus on secrecy, boundaries, and impact."
+  },
+  {
+    "question": "Can AI griefbots make grief harder to process?",
+    "slug": "can-ai-griefbots-make-grief-harder-to-process",
+    "category": "Grief & Loss",
+    "intent": "Understand risks and potential harms of AI recreations of deceased loved ones",
+    "safety_flags": [
+      "trauma"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + griefbots",
+    "why_this_adds_coverage": "Distinct, emotionally charged emerging use case with strong Deeper fit.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports griefbot and digital companion framing."
+      }
+    ],
+    "notes": "Should include grief-sensitive caveats and not shame continuing bonds."
+  },
+  {
+    "question": "Is it okay to use AI to talk to someone who died?",
+    "slug": "is-it-okay-to-use-ai-to-talk-to-someone-who-died",
+    "category": "Grief & Loss",
+    "intent": "Help grieving users think through AI recreations and emotional boundaries",
+    "safety_flags": [
+      "trauma"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + grief",
+    "why_this_adds_coverage": "A direct natural-language version of the griefbot concern.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports griefbot context and synthetic emotional connection."
+      }
+    ],
+    "notes": "Frame around support vs avoidance, not moral right/wrong."
+  },
+  {
+    "question": "Can AI make religious or spiritual confusion worse?",
+    "slug": "can-ai-make-religious-or-spiritual-confusion-worse",
+    "category": "Identity & Self-Worth",
+    "intent": "Address AI reinforcement of spiritual fears, special meanings, or confusing beliefs",
+    "safety_flags": [
+      "diagnosis-risk",
+      "trauma"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + spiritual confusion",
+    "why_this_adds_coverage": "Bridges existing spiritual crisis coverage with AI-specific reinforcement risk.",
+    "source_refs": [
+      {
+        "title": "What to make of 'AI psychosis'?",
+        "url": "https://news.harvard.edu/gazette/story/2026/04/what-to-make-of-ai-psychosis/",
+        "publisher": "Harvard Gazette",
+        "note": "Supports caution around AI amplifying beliefs and reality-testing concerns."
+      }
+    ],
+    "notes": "Be respectful of faith while naming warning signs."
+  },
+  {
+    "question": "How do I know if AI is helping my therapy or replacing it?",
+    "slug": "how-to-know-if-ai-is-helping-therapy-or-replacing-it",
+    "category": "Therapy Navigation",
+    "intent": "Clarify healthy vs risky use of AI alongside therapy",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "priority_pair": "AI + therapy boundary",
+    "why_this_adds_coverage": "High care-navigation value and important clinical boundary page.",
+    "source_refs": [
+      {
+        "title": "Psychotherapies",
+        "url": "https://www.nimh.nih.gov/health/topics/psychotherapies",
+        "publisher": "National Institute of Mental Health",
+        "note": "Supports what therapy is and why human clinical care matters."
+      },
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports AI emotional support context."
+      }
+    ],
+    "notes": "Do not overstate what AI can or cannot do clinically."
+  },
+  {
+    "question": "Should I tell my therapist how much I use AI for emotional support?",
+    "slug": "should-i-tell-my-therapist-how-much-i-use-ai",
+    "category": "Therapy Navigation",
+    "intent": "Encourage disclosure of AI use in therapy when relevant",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "medium",
+    "priority_pair": "AI + therapy disclosure",
+    "why_this_adds_coverage": "Practical bridge between AI use and professional care.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports clinicians needing to understand AI companion relationships."
+      }
+    ],
+    "notes": "Already has related existing page; focus on disclosure and therapy process."
+  },
+  {
+    "question": "Can AI give bad mental health advice?",
+    "slug": "can-ai-give-bad-mental-health-advice",
+    "category": "Therapy & Mental Health",
+    "intent": "Explain why AI mental health output can be incomplete, unsafe, or overconfident",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + advice risk",
+    "why_this_adds_coverage": "Broad high-frequency query with trust-layer relevance.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails and caution around emotional support."
+      }
+    ],
+    "notes": "Include crisis caveat: AI is not emergency support."
+  },
+  {
+    "question": "When should I stop using AI and talk to a real person?",
+    "slug": "when-should-i-stop-using-ai-and-talk-to-a-real-person",
+    "category": "Therapy Navigation",
+    "intent": "Define practical thresholds for real-world support",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + care escalation",
+    "why_this_adds_coverage": "Central triage page for the whole AI cluster.",
+    "source_refs": [
+      {
+        "title": "Find Help & Support",
+        "url": "https://www.samhsa.gov/find-help",
+        "publisher": "SAMHSA",
+        "note": "Supports real-world help pathways."
+      },
+      {
+        "title": "Get Help",
+        "url": "https://988lifeline.org/get-help/",
+        "publisher": "988 Suicide & Crisis Lifeline",
+        "note": "Supports crisis escalation."
+      }
+    ],
+    "notes": "Must be clear and practical."
+  },
+  {
+    "question": "Can AI therapy apps replace a licensed therapist?",
+    "slug": "can-ai-therapy-apps-replace-a-licensed-therapist",
+    "category": "Therapy Navigation",
+    "intent": "Clarify the boundary between AI tools and licensed care",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + therapy replacement",
+    "why_this_adds_coverage": "Likely high-frequency care-navigation query as AI therapy apps proliferate.",
+    "source_refs": [
+      {
+        "title": "Psychotherapies",
+        "url": "https://www.nimh.nih.gov/health/topics/psychotherapies",
+        "publisher": "National Institute of Mental Health",
+        "note": "Supports licensed psychotherapy context."
+      }
+    ],
+    "notes": "Should discuss adjunct tool vs replacement without blanket dismissal."
+  }
+]

@@ -1,0 +1,644 @@
+[
+  {
+    "question": "How can managers talk about AI without increasing employee anxiety?",
+    "slug": "how-managers-can-talk-about-ai-without-increasing-anxiety",
+    "category": "Work & Burnout",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "How Can Managers Talk About AI Without Increasing Employee Anxiety?",
+    "improved_meta_description": "Managers can reduce AI anxiety with clear, honest, human communication. Learn what to say and what to avoid.",
+    "improved_summary": "Managers can reduce AI anxiety by being clear about what is changing, what is not known yet, how decisions will be made, and how employees will be supported. Vague reassurance often backfires; people usually need honesty, agency, and a path for questions.",
+    "key_takeaways": [
+      "Employees may hear AI messages as job, value, or surveillance threats.",
+      "Clear expectations are usually calmer than hype or vague reassurance.",
+      "Managers should name uncertainty without making employees carry it alone.",
+      "Support, training, and human review can reduce fear when they are specific."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "AI announcements can sound exciting to leaders and threatening to employees. People may wonder whether they are being replaced, monitored, judged, or expected to do more work with fewer resources.\n\nAnxiety rises when communication is full of buzzwords but light on specifics. Silence can also create fear because employees fill the gaps with worst-case scenarios."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Use plain language. Explain what the AI tool is for, what it will not be used for, what data is involved, how performance will be evaluated, and where human judgment remains. If you do not know something, say when you expect to know more.\n\nInvite questions without punishing skepticism. Employees are more likely to engage when concerns are treated as useful information rather than resistance."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "If anxiety is widespread, managers may need support from HR, internal communications, legal or compliance teams, and mental health resources. The goal is to create accurate communication, not to make managers improvise answers outside their role.\n\nIf an employee is showing severe distress, encourage appropriate support and follow workplace safety procedures."
+      }
+    ],
+    "care_note": "Managers do not need to promise certainty they do not have. A calm, honest message with real channels for support is usually safer than hype, secrecy, or dismissal.",
+    "related_questions": [
+      "Can AI make burnout worse?",
+      "Can AI workplace monitoring affect mental health?",
+      "Why am I so anxious about AI replacing my job?",
+      "How do I stay mentally healthy while learning AI tools for work?"
+    ],
+    "suggested_schema_question": "How can managers talk about AI without increasing employee anxiety?",
+    "suggested_schema_answer": "Managers can reduce AI anxiety by being specific about changes, limits, data use, expectations, support, and what remains uncertain. Honest communication with room for questions is usually more reassuring than vague positivity.",
+    "primary_theme": "AI leadership communication",
+    "related_themes": [
+      "Work anxiety",
+      "Manager communication",
+      "AI adoption",
+      "Employee wellbeing"
+    ],
+    "citation_gaps": [
+      "Source supports workplace worry and value concerns, but editor should add leadership communication or organizational psychology sources before review."
+    ],
+    "draft_notes": "Leadership-oriented page. Verify it fits consumer answer format before insertion.",
+    "source_refs": [
+      {
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "publisher": "American Psychological Association via Newswise",
+        "note": "Supports workplace worry and value/mattering framing."
+      }
+    ],
+    "safety_flags": [
+      "none"
+    ]
+  },
+  {
+    "question": "Can AI make burnout worse?",
+    "slug": "can-ai-make-burnout-worse",
+    "category": "Work & Burnout",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Can AI Make Burnout Worse?",
+    "improved_meta_description": "AI can reduce some tasks, but it can also add monitoring, pace, and overload. Learn when AI may worsen burnout.",
+    "improved_summary": "AI can make burnout worse when it increases workload, surveillance, pace, uncertainty, or pressure to constantly adapt. It can also help reduce strain in some settings, so the key question is whether AI is giving people more support or simply more demands.",
+    "key_takeaways": [
+      "AI may reduce burnout when it removes low-value work and is implemented well.",
+      "It may worsen burnout when it adds speed, monitoring, ambiguity, or extra learning on top of existing work.",
+      "Loss of control and unclear expectations are common stress drivers.",
+      "Burnout support may need both personal recovery and workplace changes."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "AI is often introduced as a productivity tool, but productivity gains do not automatically become relief for workers. Sometimes they become higher expectations, faster turnaround, more monitoring, or extra work checking AI output.\n\nBurnout risk rises when people have high demands, low control, unclear priorities, and little recovery time. AI can intensify those conditions if implementation is rushed or poorly explained."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Notice whether AI is actually reducing your workload or just changing where the work appears. Are you saving time, or are you now prompting, checking, correcting, documenting, and learning after hours?\n\nAsk for clear expectations around tool use, quality, response times, and training time. On a personal level, protect breaks and recovery, but do not treat a system-level workload problem as only a self-care issue."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Get support if burnout signs are persistent: exhaustion, cynicism, dread, concentration problems, irritability, or feeling unable to recover after rest.\n\nA therapist can help with coping and boundaries, while workplace support may be needed if AI has changed workload or monitoring expectations."
+      }
+    ],
+    "care_note": "Burnout is not a personal weakness. If exhaustion turns into thoughts of self-harm or feeling unsafe, seek urgent support; in the U.S., call or text 988.",
+    "related_questions": [
+      "How do I cope with AI change fatigue at work?",
+      "Can AI workplace monitoring affect mental health?",
+      "Why does AI at work make me feel less in control?",
+      "How can managers talk about AI without increasing employee anxiety?"
+    ],
+    "suggested_schema_question": "Can AI make burnout worse?",
+    "suggested_schema_answer": "AI can make burnout worse when it adds workload, monitoring, pace, ambiguity, or constant learning without real support. It can help when it reduces demands and preserves autonomy, clarity, and recovery time.",
+    "primary_theme": "AI and burnout",
+    "related_themes": [
+      "Work stress",
+      "Change fatigue",
+      "AI monitoring",
+      "Workload"
+    ],
+    "citation_gaps": [
+      "Source supports AI work worry and stress, but editor should add stronger burnout-specific and workload-demand sources before review."
+    ],
+    "draft_notes": "Review for balance: AI can help some workflows, but the page should focus on mental health risk conditions.",
+    "source_refs": [
+      {
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "publisher": "American Psychological Association via Newswise",
+        "note": "Supports AI worry, stress, and burnout-adjacent concerns."
+      }
+    ],
+    "safety_flags": [
+      "none"
+    ]
+  },
+  {
+    "question": "How do I stay mentally healthy while learning AI tools for work?",
+    "slug": "stay-mentally-healthy-while-learning-ai-tools-for-work",
+    "category": "Work & Burnout",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "How Do I Stay Mentally Healthy While Learning AI Tools for Work?",
+    "improved_meta_description": "Learn AI tools without panic or overwork. Practical ways to pace skill-building, reduce shame, and protect recovery.",
+    "improved_summary": "Staying mentally healthy while learning AI tools means pacing yourself, choosing useful skills instead of chasing every trend, and separating learning from self-worth. You can adapt without turning every evening into unpaid training or every mistake into proof you are behind.",
+    "key_takeaways": [
+      "Pick one relevant workflow to learn before adding more.",
+      "Set time boundaries so skill-building does not become constant overwork.",
+      "Ask what your workplace actually expects and supports.",
+      "Shame slows learning; curiosity and practice usually work better."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "AI learning can feel urgent because the public conversation is full of hype, fear, and comparison. That urgency can make people try to learn everything at once, which often creates more anxiety than skill.\n\nYou may also feel exposed: if a tool changes how work is done, learning it can touch identity, competence, and fear of being judged."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Choose one practical use case tied to your actual work. Give yourself a short practice window, keep notes on what helps, and stop before learning turns into late-night panic.\n\nAsk your manager or team what tools matter, what level of skill is expected, and whether training time is available. If expectations are unclear, you are not failing by feeling uncertain."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Seek support if AI learning is causing insomnia, panic, shame, avoidance, or compulsive overwork. A mentor, peer group, therapist, or career counselor can help you build a plan that fits your actual life.\n\nIf the pressure to learn AI is part of a broader burnout pattern, recovery and workload boundaries matter as much as skill development."
+      }
+    ],
+    "care_note": "You can learn in a paced, human way. If work anxiety becomes overwhelming or includes thoughts of self-harm, seek urgent support; in the U.S., call or text 988.",
+    "related_questions": [
+      "How do I cope with AI change fatigue at work?",
+      "Why am I so anxious about AI replacing my job?",
+      "Can AI make impostor syndrome worse?",
+      "Can AI make burnout worse?"
+    ],
+    "suggested_schema_question": "How can I stay mentally healthy while learning AI tools for work?",
+    "suggested_schema_answer": "Stay mentally healthy by learning one relevant AI workflow at a time, setting time boundaries, asking for clear expectations, and treating mistakes as part of learning rather than proof you are behind.",
+    "primary_theme": "AI skill adaptation",
+    "related_themes": [
+      "Work learning",
+      "AI anxiety",
+      "Burnout prevention",
+      "Self-worth"
+    ],
+    "citation_gaps": [
+      "Source supports training and support as AI anxiety mitigators, but editor should add independent workplace learning or burnout sources before review."
+    ],
+    "draft_notes": "Positive coping page. Review for practical usefulness and avoid implying workers alone are responsible for systemic change.",
+    "source_refs": [
+      {
+        "title": "AI Anxiety at Work: What Leaders Can't Ignore",
+        "url": "https://www.lyrahealth.com/blog/ai-anxiety/",
+        "publisher": "Lyra Health",
+        "note": "Supports transparency, training, and support as AI anxiety mitigators."
+      }
+    ],
+    "safety_flags": [
+      "none"
+    ]
+  },
+  {
+    "question": "Can AI make impostor syndrome worse?",
+    "slug": "can-ai-make-impostor-syndrome-worse",
+    "category": "Identity & Self-Worth",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Can AI Make Impostor Syndrome Worse?",
+    "improved_meta_description": "AI can intensify impostor feelings by changing skill expectations and comparison. Learn why it happens and what helps.",
+    "improved_summary": "AI can make impostor feelings worse when it makes your skills feel outdated, your work feel less original, or your learning curve feel public. The feeling that you are a fraud is not proof that you are one; it may be a stress response to rapid change and comparison.",
+    "key_takeaways": [
+      "AI can trigger comparison, shame, and fear of being exposed.",
+      "Impostor feelings often grow when expectations are unclear.",
+      "Skill gaps are learnable; they are not proof you do not belong.",
+      "Support helps if shame leads to avoidance, overwork, or chronic anxiety."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "AI can make competence feel unstable. A task you were good at may suddenly be done differently, reviewed differently, or compared with machine output. That can activate the fear that you were never truly capable.\n\nImpostor feelings are especially likely when workplaces celebrate AI fluency without giving people time to learn or admitting that everyone is adapting."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Separate identity from the learning curve. Not knowing a new AI workflow yet means you are learning a tool, not that you have been exposed as a fraud.\n\nPick one skill to practice, ask for examples of good work, and compare your current progress with your own previous baseline rather than with online hype or the fastest adopter in the room."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Support can help if impostor feelings lead to avoidance, perfectionism, panic, compulsive overwork, or difficulty accepting positive feedback.\n\nA therapist, mentor, or supervisor can help you test the story that you do not belong and turn vague shame into concrete next steps."
+      }
+    ],
+    "care_note": "Feeling behind is not the same as being a fraud. If shame or work anxiety becomes overwhelming or includes self-harm thoughts, seek urgent support; in the U.S., 988 is available.",
+    "related_questions": [
+      "How do I handle feeling replaceable because of AI?",
+      "How do I stay mentally healthy while learning AI tools for work?",
+      "Can AI make me feel like my creativity does not matter?",
+      "Why am I so anxious about AI replacing my job?"
+    ],
+    "suggested_schema_question": "Can AI make impostor syndrome worse?",
+    "suggested_schema_answer": "AI can intensify impostor feelings by changing skill expectations, increasing comparison, and making people feel behind. Clear expectations, small learning goals, and support can help separate growth from shame.",
+    "primary_theme": "AI and impostor feelings",
+    "related_themes": [
+      "Self-worth",
+      "Work anxiety",
+      "Skill disruption",
+      "Comparison"
+    ],
+    "citation_gaps": [
+      "Source supports AI worry and feeling less valued, but editor should add specific impostor phenomenon or self-worth sourcing before review."
+    ],
+    "draft_notes": "Use careful language: impostor syndrome is common phrasing, but avoid diagnosing.",
+    "source_refs": [
+      {
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "publisher": "American Psychological Association via Newswise",
+        "note": "Supports AI worry and feeling less valued at work."
+      }
+    ],
+    "safety_flags": [
+      "none"
+    ]
+  },
+  {
+    "question": "Why does AI make me question what makes me human?",
+    "slug": "why-ai-makes-me-question-what-makes-me-human",
+    "category": "Identity & Self-Worth",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Why Does AI Make Me Question What Makes Me Human?",
+    "improved_meta_description": "AI can stir existential anxiety about identity, connection, and meaning. Learn why this happens and how to ground yourself.",
+    "improved_summary": "AI can make you question what makes you human because it imitates language, creativity, advice, and connection in ways that used to feel uniquely personal. That unease does not mean you are overreacting; it may be your mind trying to update your sense of meaning in a rapidly changing world.",
+    "key_takeaways": [
+      "AI can stir questions about identity, meaning, connection, and uniqueness.",
+      "Existential anxiety is not the same as losing touch with reality.",
+      "Grounding comes from lived relationships, values, embodiment, and choices, not just productivity.",
+      "Support can help if the questions become obsessive, frightening, or isolating."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "AI can produce words, images, plans, and emotional responses that feel surprisingly human. That can blur categories you may have relied on: creativity, intelligence, care, originality, or purpose.\n\nFor some people, this creates existential anxiety: If a machine can imitate parts of human expression, what still matters about being human?"
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Try moving the question from abstraction to lived experience. Being human is not only producing impressive output. It includes having a body, history, relationships, vulnerability, responsibility, memory, grief, humor, values, and the ability to care about what happens.\n\nSpend time with real people and real-world activities that reconnect you to agency: making something by hand, moving, helping, learning, resting, or talking with someone who knows you."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Consider support if these questions become intrusive, frightening, or hard to stop thinking about, or if they lead you to withdraw from life.\n\nA therapist can help you explore existential anxiety without treating it as a flaw or forcing quick answers."
+      }
+    ],
+    "care_note": "Big questions about humanity can be meaningful and unsettling at the same time. If the thoughts become overwhelming or include self-harm, seek urgent support; in the U.S., call or text 988.",
+    "related_questions": [
+      "Can AI make me feel like my creativity does not matter?",
+      "Can AI make impostor syndrome worse?",
+      "How do I handle feeling replaceable because of AI?",
+      "What should I do if I think an AI chatbot is sentient?"
+    ],
+    "suggested_schema_question": "Why does AI make me question what makes me human?",
+    "suggested_schema_answer": "AI can raise existential questions because it imitates language, creativity, and connection. Grounding often comes from real relationships, values, embodied life, and support if the questions become frightening or obsessive.",
+    "primary_theme": "AI and existential anxiety",
+    "related_themes": [
+      "Identity",
+      "Meaning",
+      "AI relationships",
+      "Self-worth"
+    ],
+    "citation_gaps": [
+      "Source supports emotional connection and AI relationship context, but editor should add existential anxiety or identity-focused sources before review."
+    ],
+    "draft_notes": "Needs thoughtful editorial review to avoid cliches and keep Deeper voice.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports AI reshaping emotional connection and identity-adjacent concerns."
+      }
+    ],
+    "safety_flags": [
+      "none"
+    ]
+  },
+  {
+    "question": "Can AI make me feel like my creativity does not matter?",
+    "slug": "can-ai-make-me-feel-like-my-creativity-does-not-matter",
+    "category": "Identity & Self-Worth",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Can AI Make Me Feel Like My Creativity Does Not Matter?",
+    "improved_meta_description": "Generative AI can stir grief, comparison, and self-doubt about creativity. Learn how to protect meaning and motivation.",
+    "improved_summary": "AI can make creativity feel less meaningful when it seems to produce endless images, songs, ideas, or drafts instantly. That feeling can be painful, but speed and volume are not the same as lived perspective, intention, craft, or the meaning your creativity has for you and others.",
+    "key_takeaways": [
+      "Generative AI can trigger comparison and grief for creative workers.",
+      "Fast output is not the same as human meaning, taste, context, or care.",
+      "It helps to reconnect with why you create and who your work serves.",
+      "Support is useful if creative self-doubt becomes hopelessness or burnout."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "Creative work often carries identity: \"This is how I see, feel, notice, and contribute.\" When AI generates similar-looking output quickly, it can feel like that identity is being flattened or copied.\n\nThe distress may include grief, anger, comparison, fear of lost income, or the sense that effort no longer matters."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Separate market disruption from creative worth. Economic uncertainty is real, but it does not decide whether your voice matters.\n\nReconnect with process, community, and audience. What do you notice that a generic system does not? What choices, experiences, constraints, and relationships shape your work? Those questions can help protect meaning even while practical career questions remain."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Get support if AI-related creative distress is leading to burnout, avoidance, shame, depression, or a sense that there is no point in making anything.\n\nA therapist, creative peer group, mentor, or career advisor can help you hold both realities: the field may be changing, and your inner life still matters."
+      }
+    ],
+    "care_note": "Your creativity is not only the final artifact. If this fear turns into hopelessness or self-harm thoughts, seek urgent support; in the U.S., call or text 988.",
+    "related_questions": [
+      "Why does AI make me question what makes me human?",
+      "Can AI make impostor syndrome worse?",
+      "How do I handle feeling replaceable because of AI?",
+      "Why do AI-generated images make me feel insecure about my body?"
+    ],
+    "suggested_schema_question": "Can AI make me feel like my creativity does not matter?",
+    "suggested_schema_answer": "AI can make creativity feel less meaningful by triggering comparison, grief, and fear about value or income. Reconnecting with process, audience, community, and lived perspective can help protect creative self-worth.",
+    "primary_theme": "AI and creative self-worth",
+    "related_themes": [
+      "Creativity",
+      "Identity",
+      "Work anxiety",
+      "Comparison"
+    ],
+    "citation_gaps": [
+      "Input source is about AI work identity generally; editor should add creative-worker or generative-AI creativity sources before review."
+    ],
+    "draft_notes": "Potentially high-value page but source support is weak for creative-specific claims.",
+    "source_refs": [
+      {
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "publisher": "American Psychological Association via Newswise",
+        "note": "Supports AI-related work identity and value concerns."
+      }
+    ],
+    "safety_flags": [
+      "none"
+    ]
+  },
+  {
+    "question": "Why do AI-generated images make me feel insecure about my body?",
+    "slug": "why-ai-generated-images-make-me-feel-insecure-about-my-body",
+    "category": "Identity & Self-Worth",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Why Do AI-Generated Images Make Me Feel Insecure About My Body?",
+    "improved_meta_description": "AI images can intensify body comparison by showing synthetic perfection. Learn why it affects body image and what helps.",
+    "improved_summary": "AI-generated images can make body insecurity worse because they often present synthetic, edited, or impossible bodies as if they are normal. Even when you know an image is artificial, repeated comparison can still affect how you see yourself.",
+    "key_takeaways": [
+      "AI images can amplify unrealistic body standards and social comparison.",
+      "Knowing an image is fake does not always stop the emotional impact.",
+      "Curating exposure and naming the image as synthetic can help reduce comparison.",
+      "If body image distress affects eating, exercise, mood, or daily life, get support."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "Body image is shaped by repeated exposure, not just conscious belief. AI images can combine idealized features, lighting, angles, and proportions into bodies that may not exist in real life.\n\nYour brain may still compare you with those images, especially if they appear in social feeds, dating contexts, advertising, fitness content, or sexualized media."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Reduce exposure where you can: unfollow accounts, mute tags, adjust feeds, and avoid using AI tools to generate bodies you know will trigger comparison. When you see an image, label it plainly: \"This is synthetic or heavily altered, not a fair standard for my body.\"\n\nReconnect with body function and care rather than only appearance: sleep, movement, food, comfort, medical care, and relationships that do not treat your body as a project."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Consider support if AI image exposure is changing how you eat, exercise, dress, socialize, date, or feel in your body.\n\nA therapist, doctor, dietitian, or eating-disorder-informed professional can help if body image distress is intense, persistent, or tied to harmful behaviors."
+      }
+    ],
+    "care_note": "Body image distress can be serious even when the trigger is digital or synthetic. If you feel at risk of harming yourself, seek urgent support; in the U.S., call or text 988.",
+    "related_questions": [
+      "Can AI make me feel like my creativity does not matter?",
+      "Can AI make impostor syndrome worse?",
+      "How do I stop comparing myself to people online?",
+      "Can deepfakes cause trauma or anxiety?"
+    ],
+    "suggested_schema_question": "Why do AI-generated images make me feel insecure about my body?",
+    "suggested_schema_answer": "AI-generated images can intensify body insecurity by presenting synthetic or impossible bodies as normal. Reducing exposure, labeling images as artificial, and getting support for persistent distress can help.",
+    "primary_theme": "AI and body image",
+    "related_themes": [
+      "Body image",
+      "Social comparison",
+      "Synthetic media",
+      "Self-worth"
+    ],
+    "citation_gaps": [
+      "Input source supports media comparison and body image, but AI-specific body image evidence is missing before review."
+    ],
+    "draft_notes": "Diagnosis-risk page. Avoid eating disorder diagnosis or treatment instructions; recommend appropriate support for harmful behaviors.",
+    "source_refs": [
+      {
+        "title": "Social Media and Body Image",
+        "url": "https://www.apa.org/topics/social-media-internet/body-image",
+        "publisher": "American Psychological Association",
+        "note": "Supports body image and media comparison context; AI-specific source needed before review."
+      }
+    ],
+    "safety_flags": [
+      "diagnosis-risk"
+    ]
+  },
+  {
+    "question": "Can deepfakes cause trauma or anxiety?",
+    "slug": "can-deepfakes-cause-trauma-or-anxiety",
+    "category": "Trauma & Grief",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Can Deepfakes Cause Trauma or Anxiety?",
+    "improved_meta_description": "Deepfakes can feel violating and frightening. Learn why they may cause anxiety or trauma responses and what support can help.",
+    "improved_summary": "Deepfakes can cause anxiety, trauma responses, shame, fear, and a loss of safety, especially when they are sexual, threatening, humiliating, or used in abuse. The harm is real even when the image or video is fake, because the violation, exposure, and threat can affect your body and relationships.",
+    "key_takeaways": [
+      "A deepfake can be emotionally harmful even if it is not real footage.",
+      "Common reactions include panic, shame, anger, numbness, hypervigilance, and fear of being seen.",
+      "Support should focus on safety, documentation, trusted people, and emotional care.",
+      "Avoid handling abuse or threats alone, especially if there is immediate danger."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "Deepfakes can violate identity, privacy, consent, and reputation. If the content is sexual, abusive, or used to threaten you, your nervous system may respond as if you are in danger even when you know the media was fabricated.\n\nYou might feel anxious, frozen, ashamed, angry, exposed, or afraid that others will believe it. Those reactions are understandable responses to a violation."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Reach out to someone safe before deciding what to do next. If you can do so without putting yourself at more risk, preserve evidence such as links, screenshots, dates, usernames, and messages.\n\nUse platform reporting tools and consider support from a trusted advocate, workplace or school contact, therapist, or technology abuse resource. This content is not legal advice, and laws vary by location."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Get support quickly if the deepfake is connected to stalking, threats, intimate partner abuse, workplace coercion, school harassment, sexual exploitation, or fear of physical danger.\n\nIf you are in immediate danger, contact emergency services or a local crisis resource. Emotional support matters too; you do not have to wait until things are \"bad enough\" to ask for help."
+      }
+    ],
+    "care_note": "If a deepfake is part of abuse, stalking, threats, or sexual exploitation, prioritize real-world safety and support from trusted people or specialized services. If there is immediate danger, contact emergency services; if the distress includes self-harm thoughts, call or text 988 in the U.S.",
+    "related_questions": [
+      "What should I do if someone made an AI deepfake of me?",
+      "Why do AI-generated images make me feel insecure about my body?",
+      "Can AI make intrusive thoughts worse?",
+      "How do I cope after online harassment?"
+    ],
+    "suggested_schema_question": "Can deepfakes cause trauma or anxiety?",
+    "suggested_schema_answer": "Deepfakes can cause anxiety or trauma responses because they may violate consent, privacy, identity, and safety. Support can include trusted people, evidence preservation, platform reporting, therapy, and safety resources when abuse or threats are involved.",
+    "primary_theme": "Deepfake trauma and abuse",
+    "related_themes": [
+      "Technology-facilitated abuse",
+      "Trauma",
+      "Online harassment",
+      "Safety planning"
+    ],
+    "citation_gaps": [
+      "Source supports technology-facilitated abuse and safety planning, but editor should add deepfake-specific harm or trauma sources before review."
+    ],
+    "draft_notes": "High-risk abuse/trauma page. Avoid legal advice; verify any future practical steps against jurisdiction-neutral safety guidance.",
+    "source_refs": [
+      {
+        "title": "Technology-facilitated abuse resources",
+        "url": "https://www.thehotline.org/resources/technology-safety/",
+        "publisher": "National Domestic Violence Hotline",
+        "note": "Supports technology-facilitated abuse and safety planning context."
+      }
+    ],
+    "safety_flags": [
+      "trauma",
+      "abuse"
+    ]
+  },
+  {
+    "question": "What should I do if someone made an AI deepfake of me?",
+    "slug": "what-to-do-if-someone-made-an-ai-deepfake-of-me",
+    "category": "Trauma & Grief",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "What Should I Do If Someone Made an AI Deepfake of Me?",
+    "improved_meta_description": "If someone made a deepfake of you, focus on safety, support, evidence, reporting, and emotional care without handling it alone.",
+    "improved_summary": "If someone made an AI deepfake of you, first focus on safety and support rather than handling it alone. The content may be fake, but the violation is real, and you may need help documenting it, reporting it, protecting yourself, and caring for the emotional impact.",
+    "key_takeaways": [
+      "Get support from a trusted person before responding publicly or directly.",
+      "Preserve evidence if it is safe to do so: links, screenshots, dates, accounts, and messages.",
+      "Use platform reporting tools and consider specialized technology abuse resources.",
+      "If threats, stalking, sexual exploitation, or immediate danger are involved, seek urgent real-world support."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "An AI deepfake can feel shocking, humiliating, frightening, or unreal. You may want to delete everything, confront the person, or prove it is fake immediately. Those urges make sense, but it can help to slow down and get support first.\n\nThe safest next step depends on the context: who made it, where it was shared, whether threats are involved, and whether the person has access to you offline."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "If you can do so safely, save evidence before it disappears: URLs, screenshots, usernames, timestamps, messages, and where the content was posted. Avoid engaging with the person directly if that could escalate risk.\n\nReport the content to the platform and consider telling a trusted friend, family member, workplace contact, school administrator, therapist, or technology abuse advocate. This is not legal advice; if you need legal information, seek a qualified local professional or victim-support resource."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Get immediate support if the deepfake is sexual, involves a minor, includes threats, is part of stalking or partner abuse, or makes you fear for your safety.\n\nEmotional support is also important. Panic, shame, numbness, anger, and trouble sleeping are common after a violation like this, and you deserve help even if other people minimize it."
+      }
+    ],
+    "care_note": "If the deepfake involves threats, stalking, sexual exploitation, abuse, or immediate danger, prioritize safety and contact trusted real-world support. If distress includes self-harm thoughts, call or text 988 in the U.S.; contact emergency services if danger is immediate.",
+    "related_questions": [
+      "Can deepfakes cause trauma or anxiety?",
+      "Why do AI-generated images make me feel insecure about my body?",
+      "How do I cope after online harassment?",
+      "Can AI make intrusive thoughts worse?"
+    ],
+    "suggested_schema_question": "What should I do if someone made an AI deepfake of me?",
+    "suggested_schema_answer": "Focus first on safety and support. If safe, preserve evidence, report the content to the platform, avoid direct engagement that could escalate risk, and seek help from trusted people, advocates, or professionals.",
+    "primary_theme": "AI deepfake response",
+    "related_themes": [
+      "Technology-facilitated abuse",
+      "Trauma support",
+      "Online harassment",
+      "Safety planning"
+    ],
+    "citation_gaps": [
+      "Source supports technology abuse and safety planning, but editor should add deepfake-specific platform/reporting and trauma sources before review."
+    ],
+    "draft_notes": "High-risk abuse/trauma page. No legal instructions; review minor/sexual exploitation language carefully before publication.",
+    "source_refs": [
+      {
+        "title": "Technology Safety",
+        "url": "https://www.thehotline.org/resources/technology-safety/",
+        "publisher": "National Domestic Violence Hotline",
+        "note": "Supports safety planning and technology abuse framing."
+      }
+    ],
+    "safety_flags": [
+      "abuse",
+      "trauma"
+    ]
+  },
+  {
+    "question": "Can AI make intrusive thoughts worse?",
+    "slug": "can-ai-make-intrusive-thoughts-worse",
+    "category": "Anxiety & Stress",
+    "review_status": "draft",
+    "indexation_instruction": "noindex_until_reviewed",
+    "improved_title": "Can AI Make Intrusive Thoughts Worse?",
+    "improved_meta_description": "AI can sometimes reinforce intrusive-thought loops through reassurance seeking or elaboration. Learn what helps and when to get support.",
+    "improved_summary": "AI can make intrusive thoughts worse for some people if it becomes part of a reassurance-seeking loop, gives long explanations that make the thought feel more important, or encourages repeated checking. Intrusive thoughts are common and are not the same as intent, but distressing or repetitive loops deserve support.",
+    "key_takeaways": [
+      "Intrusive thoughts are unwanted thoughts, images, or urges that can feel distressing.",
+      "AI may intensify loops if it provides endless reassurance, analysis, or scary possibilities.",
+      "Repeated checking often brings short relief but can keep the cycle going.",
+      "Seek support if thoughts involve self-harm, harm to others, compulsions, or major distress."
+    ],
+    "answer_sections": [
+      {
+        "type": "section",
+        "heading": "What may be happening",
+        "body": "Intrusive thoughts often feel alarming because they clash with what you value. A person may ask AI for reassurance: \"Does this mean I am bad?\" or \"Could I really do this?\" The answer may calm them briefly, but then doubt returns.\n\nBecause AI is always available, it can become a place for repeated checking, reassurance, or mental review. For some people, that may sustain the anxiety loop rather than resolve it."
+      },
+      {
+        "type": "section",
+        "heading": "What can help",
+        "body": "Try to notice whether AI use is giving lasting help or only short relief followed by more checking. If it is feeding the loop, pause the conversation and shift to grounding, values-based action, or support from a qualified professional.\n\nAvoid using AI to test whether a thought is \"true\" or to get certainty that no risk exists. Intrusive-thought recovery often involves learning to tolerate uncertainty, not winning an argument with the thought."
+      },
+      {
+        "type": "section",
+        "heading": "When to get support",
+        "body": "Seek support if intrusive thoughts are frequent, terrifying, tied to compulsive checking, or interfering with daily life. A therapist familiar with anxiety or OCD-related concerns can help without judging the content of the thoughts.\n\nIf thoughts involve a plan or intent to harm yourself or someone else, treat that as urgent and seek immediate real-world help."
+      }
+    ],
+    "care_note": "Intrusive thoughts can be frightening, but having an unwanted thought is not the same as wanting it. If you feel at risk of acting on harm to yourself or others, seek urgent help now; in the U.S., call or text 988 or contact emergency services if danger is immediate.",
+    "related_questions": [
+      "Can AI chatbots make delusional thoughts worse?",
+      "Can deepfakes cause trauma or anxiety?",
+      "How can I tell if AI reassurance is making my anxiety worse?",
+      "Can AI make health anxiety worse?"
+    ],
+    "suggested_schema_question": "Can AI make intrusive thoughts worse?",
+    "suggested_schema_answer": "AI can make intrusive thoughts worse if it becomes part of repeated reassurance seeking, checking, or analysis. If intrusive thoughts are distressing, compulsive, or involve safety risk, real-world professional support is safer than endless AI reassurance.",
+    "primary_theme": "AI and intrusive thoughts",
+    "related_themes": [
+      "Anxiety",
+      "OCD-related concerns",
+      "Reassurance seeking",
+      "Safety support"
+    ],
+    "citation_gaps": [
+      "Source supports intrusive thoughts and compulsive reassurance generally, but editor should add AI-specific reinforcement evidence before review."
+    ],
+    "draft_notes": "Diagnosis-risk page. Avoid diagnosing OCD; include urgent support for plan/intent to harm self or others.",
+    "source_refs": [
+      {
+        "title": "Obsessive-Compulsive Disorder: When Unwanted Thoughts or Repetitive Behaviors Take Over",
+        "url": "https://www.nimh.nih.gov/health/publications/obsessive-compulsive-disorder-when-unwanted-thoughts-or-repetitive-behaviors-take-over",
+        "publisher": "National Institute of Mental Health",
+        "note": "Supports intrusive thought and compulsive reassurance context."
+      }
+    ],
+    "safety_flags": [
+      "diagnosis-risk"
+    ]
+  }
+]

@@ -1,0 +1,214 @@
+[
+  {
+    "question": "How can managers talk about AI without increasing employee anxiety?",
+    "slug": "how-managers-can-talk-about-ai-without-increasing-anxiety",
+    "category": "Work & Burnout",
+    "intent": "Provide leadership-oriented guidance on psychologically safer AI communication",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + manager communication",
+    "why_this_adds_coverage": "Useful B2B/practitioner bridge for Deeper Websites and workplace content.",
+    "source_refs": [
+      {
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "publisher": "American Psychological Association via Newswise",
+        "note": "Supports workplace worry and value/mattering framing."
+      }
+    ],
+    "notes": "This is less consumer-first but strategically valuable; keep educational."
+  },
+  {
+    "question": "Can AI make burnout worse?",
+    "slug": "can-ai-make-burnout-worse",
+    "category": "Work & Burnout",
+    "intent": "Explain when AI tools increase workload, monitoring pressure, or cognitive overload",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + burnout",
+    "why_this_adds_coverage": "Broad high-demand workplace mental health pair.",
+    "source_refs": [
+      {
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "publisher": "American Psychological Association via Newswise",
+        "note": "Supports AI worry, stress, and burnout-adjacent concerns."
+      }
+    ],
+    "notes": "Tie to workload, uncertainty, surveillance, and lack of control."
+  },
+  {
+    "question": "How do I stay mentally healthy while learning AI tools for work?",
+    "slug": "stay-mentally-healthy-while-learning-ai-tools-for-work",
+    "category": "Work & Burnout",
+    "intent": "Help workers learn AI without panic, shame, or overwork",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + skill adaptation",
+    "why_this_adds_coverage": "Positive self-management page balancing the risk-heavy cluster.",
+    "source_refs": [
+      {
+        "title": "AI Anxiety at Work: What Leaders Can't Ignore",
+        "url": "https://www.lyrahealth.com/blog/ai-anxiety/",
+        "publisher": "Lyra Health",
+        "note": "Supports transparency, training, and support as AI anxiety mitigators."
+      }
+    ],
+    "notes": "Good internal link to AI job anxiety page."
+  },
+  {
+    "question": "Can AI make impostor syndrome worse?",
+    "slug": "can-ai-make-impostor-syndrome-worse",
+    "category": "Identity & Self-Worth",
+    "intent": "Understand how AI comparison and skill disruption can fuel inadequacy",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + impostor syndrome",
+    "why_this_adds_coverage": "High-search self-worth/work identity pair likely under-covered.",
+    "source_refs": [
+      {
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "publisher": "American Psychological Association via Newswise",
+        "note": "Supports AI worry and feeling less valued at work."
+      }
+    ],
+    "notes": "Good bridge between work and self-worth clusters."
+  },
+  {
+    "question": "Why does AI make me question what makes me human?",
+    "slug": "why-ai-makes-me-question-what-makes-me-human",
+    "category": "Identity & Self-Worth",
+    "intent": "Address existential anxiety and identity meaning around AI",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + existential anxiety",
+    "why_this_adds_coverage": "Distinct high-level existential concern that fits Deeper's voice.",
+    "source_refs": [
+      {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports AI reshaping emotional connection and identity-adjacent concerns."
+      }
+    ],
+    "notes": "Needs thoughtful, non-cliché writing."
+  },
+  {
+    "question": "Can AI make me feel like my creativity does not matter?",
+    "slug": "can-ai-make-me-feel-like-my-creativity-does-not-matter",
+    "category": "Identity & Self-Worth",
+    "intent": "Explore creative self-worth concerns in the age of generative AI",
+    "safety_flags": [
+      "none"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + creativity / self-worth",
+    "why_this_adds_coverage": "Likely demand among writers, artists, designers, therapists, and knowledge workers.",
+    "source_refs": [
+      {
+        "title": "Worries about artificial intelligence, surveillance at work may be connected to poor mental health",
+        "url": "https://www.newswise.com/articles/worries-about-artificial-intelligence-surveillance-at-work-may-be-connected-to-poor-mental-health",
+        "publisher": "American Psychological Association via Newswise",
+        "note": "Supports AI-related work identity and value concerns."
+      }
+    ],
+    "notes": "May need creative-worker-specific source before review."
+  },
+  {
+    "question": "Why do AI-generated images make me feel insecure about my body?",
+    "slug": "why-ai-generated-images-make-me-feel-insecure-about-my-body",
+    "category": "Identity & Self-Worth",
+    "intent": "Connect synthetic media, comparison, body image, and self-worth",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + body image",
+    "why_this_adds_coverage": "Emerging visual AI concern that extends social comparison coverage.",
+    "source_refs": [
+      {
+        "title": "Social Media and Body Image",
+        "url": "https://www.apa.org/topics/social-media-internet/body-image",
+        "publisher": "American Psychological Association",
+        "note": "Supports body image and media comparison context; AI-specific source needed before review."
+      }
+    ],
+    "notes": "AI-specific citation gap likely."
+  },
+  {
+    "question": "Can deepfakes cause trauma or anxiety?",
+    "slug": "can-deepfakes-cause-trauma-or-anxiety",
+    "category": "Trauma & Grief",
+    "intent": "Understand emotional impact of deepfake exposure, harassment, or identity violation",
+    "safety_flags": [
+      "trauma",
+      "abuse"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + deepfake harm",
+    "why_this_adds_coverage": "High-risk, high-relevance AI harm category beyond chatbots.",
+    "source_refs": [
+      {
+        "title": "Technology-facilitated abuse resources",
+        "url": "https://www.thehotline.org/resources/technology-safety/",
+        "publisher": "National Domestic Violence Hotline",
+        "note": "Supports technology-facilitated abuse and safety planning context."
+      }
+    ],
+    "notes": "Needs careful safety/legal boundary; no legal advice."
+  },
+  {
+    "question": "What should I do if someone made an AI deepfake of me?",
+    "slug": "what-to-do-if-someone-made-an-ai-deepfake-of-me",
+    "category": "Trauma & Grief",
+    "intent": "Provide emotional and safety steps after AI image/video abuse",
+    "safety_flags": [
+      "abuse",
+      "trauma"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + image abuse",
+    "why_this_adds_coverage": "Concrete high-intent query likely to grow as deepfake abuse increases.",
+    "source_refs": [
+      {
+        "title": "Technology Safety",
+        "url": "https://www.thehotline.org/resources/technology-safety/",
+        "publisher": "National Domestic Violence Hotline",
+        "note": "Supports safety planning and technology abuse framing."
+      }
+    ],
+    "notes": "Include documentation/support suggestions without legal instruction."
+  },
+  {
+    "question": "Can AI make intrusive thoughts worse?",
+    "slug": "can-ai-make-intrusive-thoughts-worse",
+    "category": "Anxiety & Stress",
+    "intent": "Explain how AI reassurance or elaboration can interact with intrusive thoughts",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + intrusive thoughts",
+    "why_this_adds_coverage": "Likely high-frequency anxiety/OCD-adjacent AI concern.",
+    "source_refs": [
+      {
+        "title": "Obsessive-Compulsive Disorder: When Unwanted Thoughts or Repetitive Behaviors Take Over",
+        "url": "https://www.nimh.nih.gov/health/publications/obsessive-compulsive-disorder-when-unwanted-thoughts-or-repetitive-behaviors-take-over",
+        "publisher": "National Institute of Mental Health",
+        "note": "Supports intrusive thought and compulsive reassurance context."
+      }
+    ],
+    "notes": "Needs AI-specific reinforcement caveat."
+  }
+]

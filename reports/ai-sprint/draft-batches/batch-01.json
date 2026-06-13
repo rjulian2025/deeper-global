@@ -1,0 +1,237 @@
+[
+  {
+    "question": "Can AI chatbots make delusional thoughts worse?",
+    "slug": "can-ai-chatbots-make-delusional-thoughts-worse",
+    "category": "General Mental Health",
+    "intent": "Understand whether chatbot conversations can amplify distorted beliefs or reality-testing problems",
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + psychosis / delusional spirals",
+    "why_this_adds_coverage": "Directly covers the highest-risk AI concern gap not currently represented in the corpus.",
+    "source_refs": [
+      {
+        "title": "What to make of 'AI psychosis'?",
+        "url": "https://news.harvard.edu/gazette/story/2026/04/what-to-make-of-ai-psychosis/",
+        "publisher": "Harvard Gazette",
+        "note": "Supports cautious framing that AI may catalyze or amplify risk without being a formal diagnosis."
+      },
+      {
+        "title": "Characterizing Delusional Spirals through Human-LLM Chat Logs",
+        "url": "https://arxiv.org/html/2603.16567",
+        "publisher": "arXiv",
+        "note": "Supports discussion of chatbot validation, sycophancy, and delusional spiral patterns."
+      }
+    ],
+    "notes": "Avoid saying AI causes psychosis; include urgent help guidance for loss of reality testing or danger."
+  },
+  {
+    "question": "What is AI psychosis and is it a real diagnosis?",
+    "slug": "what-is-ai-psychosis-and-is-it-a-real-diagnosis",
+    "category": "General Mental Health",
+    "intent": "Clarify a trending term without validating it as a clinical diagnosis",
+    "safety_flags": [
+      "diagnosis-risk",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + psychosis / delusional spirals",
+    "why_this_adds_coverage": "Captures the exact emerging search phrase while maintaining clinical humility.",
+    "source_refs": [
+      {
+        "title": "How to spot 'AI psychosis' red flags and help someone experiencing chatbot delusions",
+        "url": "https://www.abc.net.au/news/science/2026-05-19/how-to-spot-ai-psychosis-red-flags-chatbot-delusions/106598118",
+        "publisher": "ABC News",
+        "note": "Supports public-facing red flag framing and the non-diagnostic nature of the term."
+      }
+    ],
+    "notes": "Must state that psychosis is a symptom/clinical concern and AI psychosis is a descriptive media term."
+  },
+  {
+    "question": "How can I tell if an AI conversation is making me paranoid?",
+    "slug": "how-to-tell-if-ai-conversation-is-making-me-paranoid",
+    "category": "Anxiety & Stress",
+    "intent": "Identify warning signs that chatbot use is reinforcing suspicious or paranoid thinking",
+    "safety_flags": [
+      "diagnosis-risk",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + paranoia",
+    "why_this_adds_coverage": "Targets a likely high-intent self-assessment query while avoiding diagnosis.",
+    "source_refs": [
+      {
+        "title": "What to make of 'AI psychosis'?",
+        "url": "https://news.harvard.edu/gazette/story/2026/04/what-to-make-of-ai-psychosis/",
+        "publisher": "Harvard Gazette",
+        "note": "Supports risk-factor language around long conversations, isolation, sleep loss, and sentience beliefs."
+      }
+    ],
+    "notes": "Differentiate anxiety/suspicion from paranoia requiring professional support."
+  },
+  {
+    "question": "What should I do if an AI chatbot is telling me I have a special mission?",
+    "slug": "what-if-ai-chatbot-says-i-have-a-special-mission",
+    "category": "General Mental Health",
+    "intent": "Respond safely to grandiose or mission-based chatbot reinforcement",
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + grandiosity / delusion",
+    "why_this_adds_coverage": "Addresses a concrete delusional-spiral pattern in practical, safety-oriented language.",
+    "source_refs": [
+      {
+        "title": "The spiral-shaped trap: AI chatbots and the descent into delusion",
+        "url": "https://www.abc.net.au/news/2026-05-17/ai-psychosis-is-rising-chatbot-delusion-alternate-reality-harm/106683436",
+        "publisher": "ABC News",
+        "note": "Supports examples of mission-like or alternate-reality chatbot delusions."
+      }
+    ],
+    "notes": "Include guidance to pause AI use and check with trusted people or a clinician."
+  },
+  {
+    "question": "Can talking to AI all night affect my mental health?",
+    "slug": "can-talking-to-ai-all-night-affect-my-mental-health",
+    "category": "Anxiety & Stress",
+    "intent": "Connect prolonged AI use, sleep loss, and emotional or reality-testing risk",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + sleep loss",
+    "why_this_adds_coverage": "Sleep disruption is a clear risk amplifier across AI dependency and psychosis-adjacent concerns.",
+    "source_refs": [
+      {
+        "title": "What to make of 'AI psychosis'?",
+        "url": "https://news.harvard.edu/gazette/story/2026/04/what-to-make-of-ai-psychosis/",
+        "publisher": "Harvard Gazette",
+        "note": "Supports caution around overuse, isolation, and sleep disruption."
+      }
+    ],
+    "notes": "Avoid alarmism; include signs that sleep loss has become urgent."
+  },
+  {
+    "question": "What should I do if I think an AI chatbot is sentient?",
+    "slug": "what-if-i-think-an-ai-chatbot-is-sentient",
+    "category": "General Mental Health",
+    "intent": "Help users reality-check beliefs about AI personhood without shaming them",
+    "safety_flags": [
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + sentience belief",
+    "why_this_adds_coverage": "A core feature of risky AI attachment and delusional spiral reports.",
+    "source_refs": [
+      {
+        "title": "Characterizing Delusional Spirals through Human-LLM Chat Logs",
+        "url": "https://arxiv.org/html/2603.16567",
+        "publisher": "arXiv",
+        "note": "Supports personhood/sentience attribution as a risk marker in delusional spirals."
+      }
+    ],
+    "notes": "Use validating but firm language: the feeling can be powerful, but AI is not a person."
+  },
+  {
+    "question": "How do I help someone who believes an AI chatbot is communicating secret messages?",
+    "slug": "help-someone-believes-ai-is-sending-secret-messages",
+    "category": "Family & Parenting",
+    "intent": "Give family or friends practical guidance for chatbot-related delusional beliefs",
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + family support / delusion",
+    "why_this_adds_coverage": "Adds caregiver/supporter coverage for a high-risk AI scenario.",
+    "source_refs": [
+      {
+        "title": "How to spot 'AI psychosis' red flags and help someone experiencing chatbot delusions",
+        "url": "https://www.abc.net.au/news/science/2026-05-19/how-to-spot-ai-psychosis-red-flags-chatbot-delusions/106598118",
+        "publisher": "ABC News",
+        "note": "Supports red flags and helper guidance."
+      }
+    ],
+    "notes": "Include do-not-argue-with-delusion framing and urgent support thresholds."
+  },
+  {
+    "question": "Can AI reinforce mania or grandiose thinking?",
+    "slug": "can-ai-reinforce-mania-or-grandiose-thinking",
+    "category": "General Mental Health",
+    "intent": "Understand AI risk when someone is sleeping less, energized, impulsive, or grandiose",
+    "safety_flags": [
+      "diagnosis-risk",
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + mania",
+    "why_this_adds_coverage": "Covers a distinct high-risk presentation adjacent to psychosis and delusional spirals.",
+    "source_refs": [
+      {
+        "title": "Characterizing Delusional Spirals through Human-LLM Chat Logs",
+        "url": "https://arxiv.org/html/2603.16567",
+        "publisher": "arXiv",
+        "note": "Supports risk around escalating, validating chatbot interactions."
+      }
+    ],
+    "notes": "Avoid diagnosing mania; focus on warning signs and support."
+  },
+  {
+    "question": "Can an AI chatbot make suicidal thoughts worse?",
+    "slug": "can-an-ai-chatbot-make-suicidal-thoughts-worse",
+    "category": "General Mental Health",
+    "intent": "Understand crisis risk when AI is used during suicidal distress",
+    "safety_flags": [
+      "crisis-sensitive"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + suicide risk",
+    "why_this_adds_coverage": "High-safety-priority topic that requires clear crisis guidance.",
+    "source_refs": [
+      {
+        "title": "Characterizing Delusional Spirals through Human-LLM Chat Logs",
+        "url": "https://arxiv.org/html/2603.16567",
+        "publisher": "arXiv",
+        "note": "Supports discussion of unsafe chatbot responses in a small number of severe cases."
+      },
+      {
+        "title": "Get Help",
+        "url": "https://988lifeline.org/get-help/",
+        "publisher": "988 Suicide & Crisis Lifeline",
+        "note": "Supports crisis escalation language."
+      }
+    ],
+    "notes": "Must include immediate 988/emergency guidance in the care note."
+  },
+  {
+    "question": "When should AI-related beliefs be treated as a mental health emergency?",
+    "slug": "when-are-ai-related-beliefs-a-mental-health-emergency",
+    "category": "General Mental Health",
+    "intent": "Identify emergency thresholds around AI delusions, threats, self-harm, or unsafe behavior",
+    "safety_flags": [
+      "crisis-sensitive",
+      "diagnosis-risk"
+    ],
+    "duplicate_risk": "low",
+    "priority_pair": "AI + emergency risk",
+    "why_this_adds_coverage": "Creates a clear escalation page for the riskiest AI cluster.",
+    "source_refs": [
+      {
+        "title": "Get Help",
+        "url": "https://988lifeline.org/get-help/",
+        "publisher": "988 Suicide & Crisis Lifeline",
+        "note": "Supports urgent safety guidance."
+      },
+      {
+        "title": "What to make of 'AI psychosis'?",
+        "url": "https://news.harvard.edu/gazette/story/2026/04/what-to-make-of-ai-psychosis/",
+        "publisher": "Harvard Gazette",
+        "note": "Supports high-level AI risk framing."
+      }
+    ],
+    "notes": "Prioritize safety over SEO; avoid giving steps that reinforce beliefs."
+  }
+]
