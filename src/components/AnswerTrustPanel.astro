@@ -1,7 +1,9 @@
 ---
 import { formatDate } from '@/lib/content';
 import {
+  getReviewedAt,
   getReviewedByLabel,
+  getReviewerProfile,
   getReviewerDisplayLabel,
   getReviewStatusLabel,
   getSourceRefs,
@@ -14,6 +16,8 @@ type Props = {
 
 const { question, updatedAt } = Astro.props;
 const reviewedBy = getReviewedByLabel(question);
+const reviewedAt = getReviewedAt(question);
+const reviewerProfile = getReviewerProfile(question);
 const reviewerDisplayLabel = getReviewerDisplayLabel(question);
 const reviewStatus = getReviewStatusLabel(question);
 const reviewStatusDisplay = reviewStatus
@@ -21,7 +25,7 @@ const reviewStatusDisplay = reviewStatus
   : '';
 const sourceRefs = getSourceRefs(question);
 const showReviewerName = reviewerDisplayLabel === reviewedBy;
-const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewStatusDisplay || sourceRefs.length > 0);
+const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStatusDisplay || sourceRefs.length > 0);
 ---
 
 {
@@ -29,7 +33,14 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewStatusDisplay || s
     <section class="signal-card trust-panel" aria-label="Editorial review information" data-ai-section="editorial-trust">
       <p class="sidebar-label">How this answer was reviewed</p>
 
-      {reviewerDisplayLabel ? (
+      {reviewerProfile ? (
+        <div class="trust-reviewer">
+          <p class="trust-reviewed-by">
+            Clinically reviewed by <a href={reviewerProfile.url}><strong>{reviewerProfile.name}</strong></a>
+          </p>
+          <p class="trust-credentials">{reviewerProfile.credentialLine}</p>
+        </div>
+      ) : reviewerDisplayLabel ? (
         <p class="trust-reviewed-by">
           {showReviewerName ? 'Reviewed by ' : ''}
           <strong>{reviewerDisplayLabel}</strong>
@@ -38,6 +49,7 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewStatusDisplay || s
 
       <ul class="trust-meta">
         {reviewStatusDisplay ? <li>Review status: {reviewStatusDisplay}</li> : null}
+        {reviewedAt ? <li>Last reviewed: {formatDate(reviewedAt)}</li> : null}
         <li>Updated {formatDate(updatedAt)}</li>
         <li>
           <a href="/editorial-policy/">Editorial policy</a>
@@ -72,11 +84,24 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewStatusDisplay || s
 
 <style>
   .trust-panel .trust-reviewed-by,
+  .trust-panel .trust-credentials,
   .trust-panel .trust-neutral {
     margin: 0 0 12px;
     color: rgba(255, 253, 249, 0.92);
     font-size: 0.92rem;
     line-height: 1.55;
+  }
+
+  .trust-panel .trust-reviewed-by a {
+    color: rgba(255, 253, 249, 0.98);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .trust-panel .trust-credentials {
+    margin-top: -6px;
+    color: rgba(255, 253, 249, 0.74);
+    font-size: 0.86rem;
   }
 
   .trust-meta {

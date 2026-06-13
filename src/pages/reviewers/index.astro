@@ -1,0 +1,32 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { reviewerProfiles } from '@/lib/trust';
+---
+
+<BaseLayout
+  title="Clinical Reviewers | Deeper Global"
+  description="Meet the clinical reviewers who review selected Deeper Global mental health answers."
+  canonicalPath="/reviewers"
+>
+  <main class="content">
+    <p class="eyebrow">Clinical reviewers</p>
+    <h1>Clinical reviewers for Deeper Global answers</h1>
+    <p class="summary">
+      Some Deeper Global answers include a named clinical reviewer. Those pages show the reviewer, credentials, and last reviewed date recorded for that answer.
+    </p>
+
+    <ul>
+      {
+        reviewerProfiles.map((reviewer) => (
+          <li>
+            <a href={reviewer.url}>{reviewer.name}</a> — {reviewer.credentialLine}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p>
+      Learn more about how Deeper Global handles sources, clinical review, and updates in our <a href="/editorial-policy/">editorial policy</a>.
+    </p>
+  </main>
+</BaseLayout>

@@ -115,11 +115,15 @@ export function getKeyTakeaways(question: Question) {
 export function formatDate(value: string | null) {
   if (!value) return 'Not yet reviewed';
 
+  const date = /^\d{4}-\d{2}-\d{2}$/.test(value)
+    ? new Date(Number(value.slice(0, 4)), Number(value.slice(5, 7)) - 1, Number(value.slice(8, 10)))
+    : new Date(value);
+
   return new Intl.DateTimeFormat('en', {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
-  }).format(new Date(value));
+  }).format(date);
 }
 
 export function toPlainText(html: string) {

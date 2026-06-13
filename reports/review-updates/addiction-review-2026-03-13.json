@@ -1,0 +1,1501 @@
+{
+  "generated_at": "2026-06-13T23:02:26.429Z",
+  "source_table": "public.questions_master",
+  "mode": "dry-run",
+  "reviewed_by": "david-k-gore-phd",
+  "reviewed_at": "2026-03-13",
+  "total_answers_scanned": 1099,
+  "addiction_answers_identified": 113,
+  "applied_count": 0,
+  "schema_notes": [
+    "Column public.questions_master.reviewed_at was not found. Apply the SQL proposal to add it before running --apply.",
+    "No production data was mutated by this dry run."
+  ],
+  "sql_proposal": "alter table public.questions_master\n  add column if not exists reviewed_at date;\n\nupdate public.questions_master\nset\n  review_status = 'reviewed',\n  reviewed_by = 'david-k-gore-phd',\n  reviewed_at = '2026-03-13'::date\nwhere slug = any(array['can-i-drink-alcohol-while-taking-psychia-181083-061', 'can-people-get-addicted-to-ai-chatbots-or-virtual--189142-001', 'can-using-ai-for-emotional-support-become-addictive', 'how-can-i-help-my-partner-who-is-struggling-with-addiction', 'how-do-i-cope-with-the-stress-of-loving-someone-with-addiction', 'how-do-i-deal-with-boredom-in-recovery', 'how-do-i-deal-with-cravings-in-recovery-186032-027', 'how-do-i-deal-with-friends-who-dont-support-my-recovery', 'how-do-i-deal-with-people-who-dont-suppo-181288-035', 'how-do-i-deal-with-people-who-dont-understand-addiction', 'how-do-i-deal-with-people-who-trigger-my-urge-to-use-substances', 'how-do-i-deal-with-relapse-and-the-shame-185759-024', 'how-do-i-deal-with-the-physical-effects-of-long-term-substance-use', 'how-do-i-deal-with-the-stigma-of-being-in-recovery', 'how-do-i-explain-gaps-in-my-employment-history-due-to-addiction', 'how-do-i-find-a-good-therapist-for-addiction-recovery', 'how-do-i-find-motivation-when-recovery-feels-impossible', 'how-do-i-handle-anxiety-without-using-substances', 'how-do-i-handle-drug-testing-at-work-while-in-recovery', 'how-do-i-handle-holidays-and-family-gatherings-with-an-addicted-relative', 'how-do-i-handle-holidays-and-special-occasions-in-recovery', 'how-do-i-handle-peer-pressure-to-drink-or-use-drugs', 'how-do-i-handle-social-events-and-gatherings-in-recovery', 'how-do-i-handle-social-situations-where-everyone-is-drinking', 'how-do-i-handle-stress-without-turning-to-substances', 'how-do-i-handle-work-stress-without-using-substances', 'how-do-i-handle-work-while-in-addiction-treatment', 'how-do-i-help-someone-who-doesnt-want-he-186032-025', 'how-do-i-know-if-i-have-a-gambling-probl-185759-028', 'how-do-i-know-if-i-need-professional-help-for-my-drinking', 'how-do-i-know-if-im-drinking-too-much-190974-009', 'how-do-i-know-if-im-ready-for-addiction-recovery', 'how-do-i-know-if-my-drinking-has-become-190219-016', 'how-do-i-know-if-my-drinking-is-a-proble-184729-011', 'how-do-i-know-if-my-drinking-is-becoming-a-problem', 'how-do-i-know-if-my-recovery-program-is-working', 'how-do-i-know-if-someone-i-love-is-using-186032-021', 'how-do-i-know-when-to-cut-off-contact-with-my-addicted-family-member', 'how-do-i-maintain-my-recovery-during-major-life-changes', 'how-do-i-make-amends-to-people-i-hurt-during-my-addiction', 'how-do-i-protect-my-children-from-their-parents-addiction', 'how-do-i-rebuild-my-career-after-addiction', 'how-do-i-rebuild-my-relationship-with-my-children-after-addiction', 'how-do-i-rebuild-my-self-esteem-after-addiction', 'how-do-i-rebuild-trust-with-family-after-addiction-hurt-them', 'how-do-i-rebuild-trust-with-my-family-after-my-loved-ones-addiction', 'how-do-i-rebuild-trust-with-my-partner-after-addiction', 'how-do-i-rebuild-trust-with-people-i-hurt-during-my-addiction', 'how-do-i-socialize-without-drinking-181288-033', 'how-do-i-stay-motivated-when-recovery-feels-like-a-daily-struggle', 'how-do-i-stay-sober-when-all-my-friends--186032-023', 'how-do-i-stop-enabling-my-loved-ones-addiction', 'how-do-i-support-a-family-member-who-is--185759-025', 'how-do-i-support-someone-in-recovery-wit-190974-010', 'how-do-i-talk-to-my-teenager-about-substance-use', 'how-do-i-tell-my-friends-im-sober-withou-185759-026', 'how-does-depression-interact-with-substance-use', 'how-has-my-addiction-affected-my-relationships', 'how-long-does-it-take-to-feel-normal-again-in-recovery', 'how-long-should-i-wait-before-making-major-life-decisions-in-recovery', 'is-it-normal-to-feel-bored-in-early-reco-181288-034', 'is-it-normal-to-feel-bored-or-empty-after-getting-sober', 'is-it-normal-to-feel-worse-before-i-feel-better-in-recovery', 'is-it-normal-to-have-vivid-dreams-or-nightmares-in-recovery', 'is-it-okay-to-date-someone-in-early-recovery', 'is-it-possible-to-be-addicted-to-social-179301-005', 'is-it-possible-to-use-substances-occasio-186032-028', 'should-i-avoid-all-mood-altering-substances-in-recovery', 'should-i-give-my-addicted-family-member-money-for-basic-needs', 'should-i-stay-in-a-relationship-where-my-partner-is-still-using-substances', 'support-someone-with-addiction-without-enabling', 'what-are-some-healthy-ways-to-celebrate-milestones-in-recovery', 'what-are-the-signs-that-someone-i-love-has-an-addiction', 'what-does-it-mean-to-be-a-dry-drunk-185759-027', 'what-if-i-become-dependent-on-anxiety-me-181083-058', 'what-if-i-dont-believe-in-god-or-a-higher-power-for-12-step-programs', 'what-if-i-lose-my-job-because-of-my-addiction', 'what-if-i-relapse-during-recovery', 'what-if-im-afraid-of-losing-my-identity-without-substances', 'what-if-im-struggling-with-both-addiction-and-mental-health-issues', 'what-if-my-addiction-has-damaged-my-relationship-with-my-children', 'what-if-my-addiction-was-to-prescription-drugs-that-i-legitimately-needed', 'what-if-my-family-doesnt-believe-im-really-in-recovery', 'what-if-my-family-doesnt-support-my-recovery', 'what-if-my-loved-one-is-using-substances-while-pregnant', 'what-if-my-partner-wants-me-to-drink-or-use-substances-with-them', 'what-is-a-process-addiction-and-can-i-be-185759-023', 'what-is-codependency-and-how-does-it-rel-186032-022', 'what-is-the-difference-between-physical--186032-024', 'what-is-the-relationship-between-depression-and-substance-use', 'what-should-i-do-about-my-social-media-addiction', 'what-should-i-do-after-a-relapse-in-recovery', 'what-should-i-do-if-i-have-legal-problems-related-to-my-addiction', 'what-should-i-do-if-i-suspect-my-employee-has-a-substance-abuse-problem', 'what-should-i-do-if-im-around-substances-unexpectedly', 'what-should-i-do-if-im-having-trouble-sleeping-in-recovery', 'what-should-i-do-if-im-struggling-financially-because-of-my-addiction', 'what-should-i-do-if-im-struggling-with-multiple-addictions', 'what-should-i-do-if-my-adult-child-is-addicted-to-drugs', 'what-should-i-do-if-my-doctor-prescribed-addictive-medication', 'what-should-i-do-if-my-teenager-is-experimenting-w-187459-006', 'what-should-i-expect-from-detox-and-withdrawal', 'what-should-i-expect-in-addiction-treatm-186032-026', 'what-should-i-expect-in-my-first-30-days-of-sobriety', 'whats-the-difference-between-addiction-and-dependence', 'whats-the-difference-between-being-sober-and-being-in-recovery', 'whats-the-difference-between-physical-and-psychological-addiction', 'when-to-seek-professional-help-for-substance-use', 'why-cant-i-just-stop-using-drugs-on-my-o-185387-019', 'why-do-i-feel-addicted-to-social-media-validation-v7w2x5', 'why-do-i-feel-ashamed-about-needing-help-for-my-addiction', 'why-do-i-feel-like-i-addicted-to-my-phone-h3i7j4', 'why-do-i-keep-relapsing-even-though-i-want-to-stay-sober']);",
+  "matches": [
+    {
+      "id": "2a4e5d5d-3a21-4529-917a-bb4716cfb944",
+      "slug": "can-i-drink-alcohol-while-taking-psychia-181083-061",
+      "question": "Can I drink alcohol while taking psychiatric medication?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "alcohol/drinking term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "f72fd755-8d1b-4d94-a525-0a82545a753c",
+      "slug": "can-people-get-addicted-to-ai-chatbots-or-virtual--189142-001",
+      "question": "Can people get addicted to AI chatbots or virtual companions?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "ff370296-02ed-44c2-911c-626894387fe2",
+      "slug": "can-using-ai-for-emotional-support-become-addictive",
+      "question": "Can using AI for emotional support become addictive?",
+      "category": "Addiction & Recovery",
+      "primary_theme": "AI compulsive use",
+      "previous_review_status": "reviewed",
+      "previous_reviewed_by": "codex-seo-review",
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "ac17e0fa-a2aa-4a7a-b902-4bccd1e98bd7",
+      "slug": "how-can-i-help-my-partner-who-is-struggling-with-addiction",
+      "question": "How can I help my partner who is struggling with addiction?",
+      "category": "Relationships & Communication",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term"
+      ]
+    },
+    {
+      "id": "b1d24111-e81e-45c9-bc3f-542e778e415c",
+      "slug": "how-do-i-cope-with-the-stress-of-loving-someone-with-addiction",
+      "question": "How do I cope with the stress of loving someone with addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "6df6b8fd-84b2-49c2-aa5a-7ff2151c515f",
+      "slug": "how-do-i-deal-with-boredom-in-recovery",
+      "question": "How do I deal with boredom in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "f9639ede-bead-4bbf-b0fc-452e0b6ca4fb",
+      "slug": "how-do-i-deal-with-cravings-in-recovery-186032-027",
+      "question": "How do I deal with cravings in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "3b94fa9e-32f8-4232-b217-2cc985baf259",
+      "slug": "how-do-i-deal-with-friends-who-dont-support-my-recovery",
+      "question": "How do I deal with friends who don't support my recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "5460eb5a-4831-4375-b243-92699e643a1d",
+      "slug": "how-do-i-deal-with-people-who-dont-suppo-181288-035",
+      "question": "How do I deal with people who don't support my recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "81ab930d-7eb2-4a7b-927d-d756314861b9",
+      "slug": "how-do-i-deal-with-people-who-dont-understand-addiction",
+      "question": "How do I deal with people who don't understand addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "192f38c4-e687-443d-beef-30e8c7fcc576",
+      "slug": "how-do-i-deal-with-people-who-trigger-my-urge-to-use-substances",
+      "question": "How do I deal with people who trigger my urge to use substances?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "substance use term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "276e8bdd-a859-4bbe-b41b-3c63e913c601",
+      "slug": "how-do-i-deal-with-relapse-and-the-shame-185759-024",
+      "question": "How do I deal with relapse and the shame that comes with it?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "relapse with addiction context",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "06e782ea-c47e-47f8-bf53-ceaaa9858bd5",
+      "slug": "how-do-i-deal-with-the-physical-effects-of-long-term-substance-use",
+      "question": "How do I deal with the physical effects of long-term substance use?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "substance use term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "0ece6d07-f015-432b-81e6-fb0a5337a3aa",
+      "slug": "how-do-i-deal-with-the-stigma-of-being-in-recovery",
+      "question": "How do I deal with the stigma of being in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "314715df-1b92-46f3-ba9f-ccc8ceeae295",
+      "slug": "how-do-i-explain-gaps-in-my-employment-history-due-to-addiction",
+      "question": "How do I explain gaps in my employment history due to addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "8612dadc-77ad-4057-9fda-ae81631bd2e0",
+      "slug": "how-do-i-find-a-good-therapist-for-addiction-recovery",
+      "question": "How do I find a good therapist for addiction recovery?",
+      "category": "Therapy & Mental Health",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "1990247f-0ef6-4770-be40-4a811bf6f0f8",
+      "slug": "how-do-i-find-motivation-when-recovery-feels-impossible",
+      "question": "How do I find motivation when recovery feels impossible?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "052bc6ae-7355-46bc-9fbe-bfa257904509",
+      "slug": "how-do-i-handle-anxiety-without-using-substances",
+      "question": "How do I handle anxiety without using substances?",
+      "category": "Anxiety & Stress",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "substance use term"
+      ]
+    },
+    {
+      "id": "3e88b83c-b6f4-4781-aa96-d4eb02c599e9",
+      "slug": "how-do-i-handle-drug-testing-at-work-while-in-recovery",
+      "question": "How do I handle drug testing at work while in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "d1b69990-8ff2-4de7-8e09-7ef1e1591377",
+      "slug": "how-do-i-handle-holidays-and-family-gatherings-with-an-addicted-relative",
+      "question": "How do I handle holidays and family gatherings with an addicted relative?",
+      "category": "Family & Parenting",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term"
+      ]
+    },
+    {
+      "id": "0bf42f26-6cd8-4bac-aea8-6ddb8a86d7ce",
+      "slug": "how-do-i-handle-holidays-and-special-occasions-in-recovery",
+      "question": "How do I handle holidays and special occasions in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "9d6785d6-4be4-40a4-88ba-75f48838fca3",
+      "slug": "how-do-i-handle-peer-pressure-to-drink-or-use-drugs",
+      "question": "How do I handle peer pressure to drink or use drugs?",
+      "category": "General Mental Health",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "alcohol/drinking term"
+      ]
+    },
+    {
+      "id": "07db9977-19ac-4f2b-adb1-d0840e7aed9d",
+      "slug": "how-do-i-handle-social-events-and-gatherings-in-recovery",
+      "question": "How do I handle social events and gatherings in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "8d8623ea-ab03-4485-852d-c9465b58c32c",
+      "slug": "how-do-i-handle-social-situations-where-everyone-is-drinking",
+      "question": "How do I handle social situations where everyone is drinking?",
+      "category": "Loneliness & Isolation",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "alcohol/drinking term"
+      ]
+    },
+    {
+      "id": "717c1e6b-7530-4018-b4e3-0c77c7fe0061",
+      "slug": "how-do-i-handle-stress-without-turning-to-substances",
+      "question": "How do I handle stress without turning to substances?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "substance use term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "a94fbd2f-ce8b-40a1-a90f-ae90e50d1822",
+      "slug": "how-do-i-handle-work-stress-without-using-substances",
+      "question": "How do I handle work stress without using substances?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "substance use term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "350ecc6c-b219-4030-b78c-d9c5284c64ce",
+      "slug": "how-do-i-handle-work-while-in-addiction-treatment",
+      "question": "How do I handle work while in addiction treatment?",
+      "category": "Therapy & Mental Health",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "treatment with addiction context"
+      ]
+    },
+    {
+      "id": "7ffa3f05-9d16-49ca-9e96-cbb6fea4058b",
+      "slug": "how-do-i-help-someone-who-doesnt-want-he-186032-025",
+      "question": "How do I help someone who doesn't want help for their addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "248a005f-0204-4ca0-9fc3-c401794e9406",
+      "slug": "how-do-i-know-if-i-have-a-gambling-probl-185759-028",
+      "question": "How do I know if I have a gambling problem?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "443274c7-9fca-4b22-9b19-f632bef5ac7d",
+      "slug": "how-do-i-know-if-i-need-professional-help-for-my-drinking",
+      "question": "How do I know if I need professional help for my drinking?",
+      "category": "General Mental Health",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "alcohol/drinking term"
+      ]
+    },
+    {
+      "id": "bc66af5b-504b-4add-bbf4-57e3a073793b",
+      "slug": "how-do-i-know-if-im-drinking-too-much-190974-009",
+      "question": "How do I know if I'm drinking too much?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "alcohol/drinking term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "19710edc-2c1f-47fd-bed9-2522ebc8ccf6",
+      "slug": "how-do-i-know-if-im-ready-for-addiction-recovery",
+      "question": "How do I know if I'm ready for addiction recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "ab37c9ce-2104-440d-b6cc-ea4988bc60bc",
+      "slug": "how-do-i-know-if-my-drinking-has-become-190219-016",
+      "question": "How do I know if my drinking has become a problem?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "alcohol/drinking term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "b01ab11e-3705-4ed5-9a80-a7f2e4e07c75",
+      "slug": "how-do-i-know-if-my-drinking-is-a-proble-184729-011",
+      "question": "How do I know if my drinking is a problem?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "alcohol/drinking term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "8fe5f5e9-bacc-4fb4-949a-2ba348ba0b49",
+      "slug": "how-do-i-know-if-my-drinking-is-becoming-a-problem",
+      "question": "How do I know if my drinking is becoming a problem?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "alcohol/drinking term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "bb759689-de97-44b0-a649-e9dd8b83d41e",
+      "slug": "how-do-i-know-if-my-recovery-program-is-working",
+      "question": "How do I know if my recovery program is working?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "e4bfcd15-f369-46f0-ae48-e27ae05ae6a6",
+      "slug": "how-do-i-know-if-someone-i-love-is-using-186032-021",
+      "question": "How do I know if someone I love is using drugs?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "baeade2f-29da-455e-89fa-7b25e0a80338",
+      "slug": "how-do-i-know-when-to-cut-off-contact-with-my-addicted-family-member",
+      "question": "How do I know when to cut off contact with my addicted family member?",
+      "category": "Family & Parenting",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term"
+      ]
+    },
+    {
+      "id": "2567f59c-767d-47b4-85f2-fc4272568a2a",
+      "slug": "how-do-i-maintain-my-recovery-during-major-life-changes",
+      "question": "How do I maintain my recovery during major life changes?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "d234fdc7-17c0-4051-8e49-e732473a62c6",
+      "slug": "how-do-i-make-amends-to-people-i-hurt-during-my-addiction",
+      "question": "How do I make amends to people I hurt during my addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "2b02b005-691b-4ded-8ded-554e9a4485fe",
+      "slug": "how-do-i-protect-my-children-from-their-parents-addiction",
+      "question": "How do I protect my children from their parent's addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "6d1effd8-d512-4a06-b0af-fbf351f9a7c4",
+      "slug": "how-do-i-rebuild-my-career-after-addiction",
+      "question": "How do I rebuild my career after addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "bf66a1b5-b363-412c-9470-d0c677cb57f0",
+      "slug": "how-do-i-rebuild-my-relationship-with-my-children-after-addiction",
+      "question": "How do I rebuild my relationship with my children after addiction?",
+      "category": "Relationships & Communication",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term"
+      ]
+    },
+    {
+      "id": "8c62684e-3dc3-4663-ae38-b350a942ce52",
+      "slug": "how-do-i-rebuild-my-self-esteem-after-addiction",
+      "question": "How do I rebuild my self-esteem after addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "1aa98f04-f330-4f9e-ad9a-53defca0e738",
+      "slug": "how-do-i-rebuild-trust-with-family-after-addiction-hurt-them",
+      "question": "How do I rebuild trust with family after addiction hurt them?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "986978c6-f831-4cfa-abef-b8e46d83e1df",
+      "slug": "how-do-i-rebuild-trust-with-my-family-after-my-loved-ones-addiction",
+      "question": "How do I rebuild trust with my family after my loved one's addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "9b8bacbd-9b71-4e7a-babd-464e1beadfbe",
+      "slug": "how-do-i-rebuild-trust-with-my-partner-after-addiction",
+      "question": "How do I rebuild trust with my partner after addiction?",
+      "category": "Relationships & Communication",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term"
+      ]
+    },
+    {
+      "id": "7b5291a2-1c0e-4dba-a0d9-10cf5e171d93",
+      "slug": "how-do-i-rebuild-trust-with-people-i-hurt-during-my-addiction",
+      "question": "How do I rebuild trust with people I hurt during my addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "517d7692-15b3-4a95-b204-a875e981c7c9",
+      "slug": "how-do-i-socialize-without-drinking-181288-033",
+      "question": "How do I socialize without drinking?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "sobriety term",
+        "alcohol/drinking term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "d657b4bb-bd7e-41d2-8b1f-efffd46f2ce7",
+      "slug": "how-do-i-stay-motivated-when-recovery-feels-like-a-daily-struggle",
+      "question": "How do I stay motivated when recovery feels like a daily struggle?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "f6e6ad70-80a5-492b-af8b-76eb5727509e",
+      "slug": "how-do-i-stay-sober-when-all-my-friends--186032-023",
+      "question": "How do I stay sober when all my friends drink?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "sobriety term",
+        "alcohol/drinking term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "90548629-5f1d-430f-be9e-d2d115907b3f",
+      "slug": "how-do-i-stop-enabling-my-loved-ones-addiction",
+      "question": "How do I stop enabling my loved one's addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "7a11ba99-ecc0-4688-a252-a2eec4337e50",
+      "slug": "how-do-i-support-a-family-member-who-is--185759-025",
+      "question": "How do I support a family member who is struggling with addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "3f7a9a61-ba36-45b5-ab9a-2be727033c13",
+      "slug": "how-do-i-support-someone-in-recovery-wit-190974-010",
+      "question": "How do I support someone in recovery without enabling them?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "42a8ba99-428d-4eab-bb83-c5f29d4163c5",
+      "slug": "how-do-i-talk-to-my-teenager-about-substance-use",
+      "question": "How do I talk to my teenager about substance use?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "substance use term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "f94fdc4b-177e-4d14-86e5-5edf645eb504",
+      "slug": "how-do-i-tell-my-friends-im-sober-withou-185759-026",
+      "question": "How do I tell my friends I'm sober without making it weird?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "sobriety term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "cce0afd4-2802-4412-8547-5601e4672bc5",
+      "slug": "how-does-depression-interact-with-substance-use",
+      "question": "How does depression interact with substance use?",
+      "category": "Depression",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "substance use term",
+        "treatment with addiction context"
+      ]
+    },
+    {
+      "id": "6d8974ff-1fc4-4095-ba3b-aafc73d95887",
+      "slug": "how-has-my-addiction-affected-my-relationships",
+      "question": "How has my addiction affected my relationships?",
+      "category": "Relationships & Communication",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term"
+      ]
+    },
+    {
+      "id": "6b4b1f44-ac5a-4307-9ffb-28b7df277a7e",
+      "slug": "how-long-does-it-take-to-feel-normal-again-in-recovery",
+      "question": "How long does it take to feel normal again in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "14da4654-31c2-481e-8c7e-78b311ef6db6",
+      "slug": "how-long-should-i-wait-before-making-major-life-decisions-in-recovery",
+      "question": "How long should I wait before making major life decisions in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "a0591b87-562a-4ff6-acde-2bb25edd0c70",
+      "slug": "is-it-normal-to-feel-bored-in-early-reco-181288-034",
+      "question": "Is it normal to feel bored in early recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "06c9b672-6364-4b1f-8b43-9b2f7900d575",
+      "slug": "is-it-normal-to-feel-bored-or-empty-after-getting-sober",
+      "question": "Is it normal to feel bored or empty after getting sober?",
+      "category": "Addiction & Recovery",
+      "primary_theme": "Addiction & Recovery",
+      "previous_review_status": "reviewed",
+      "previous_reviewed_by": "codex-seo-review",
+      "match_reasons": [
+        "addiction term",
+        "sobriety term",
+        "relapse with addiction context",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "116c02be-b735-4f65-950a-c0f811253e5a",
+      "slug": "is-it-normal-to-feel-worse-before-i-feel-better-in-recovery",
+      "question": "Is it normal to feel worse before I feel better in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "ce51cb42-3bc5-4823-bffc-8944099d3c34",
+      "slug": "is-it-normal-to-have-vivid-dreams-or-nightmares-in-recovery",
+      "question": "Is it normal to have vivid dreams or nightmares in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "0e3de0c2-7639-4c1f-931a-b230fbc3c973",
+      "slug": "is-it-okay-to-date-someone-in-early-recovery",
+      "question": "Is it okay to date someone in early recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "a980fdfe-e9d7-471d-95dd-03f8dc7a0e25",
+      "slug": "is-it-possible-to-be-addicted-to-social-179301-005",
+      "question": "Is it possible to be addicted to social media?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "b1b2114a-20dc-4dd5-9006-7cdc0bb0ad1d",
+      "slug": "is-it-possible-to-use-substances-occasio-186032-028",
+      "question": "Is it possible to use substances occasionally after addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "substance use term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "df107d59-7239-4b8f-83cf-081b25545e4e",
+      "slug": "should-i-avoid-all-mood-altering-substances-in-recovery",
+      "question": "Should I avoid all mood-altering substances in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "substance use term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "7d8bc4cc-c8a5-4e88-8ee0-929f5fa493c6",
+      "slug": "should-i-give-my-addicted-family-member-money-for-basic-needs",
+      "question": "Should I give my addicted family member money for basic needs?",
+      "category": "Family & Parenting",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term"
+      ]
+    },
+    {
+      "id": "8eb1d4f2-a815-497e-a206-523c3f467eeb",
+      "slug": "should-i-stay-in-a-relationship-where-my-partner-is-still-using-substances",
+      "question": "Should I stay in a relationship where my partner is still using substances?",
+      "category": "Relationships & Communication",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "substance use term"
+      ]
+    },
+    {
+      "id": "71c72887-f87d-40c4-b005-c550b1caaee7",
+      "slug": "support-someone-with-addiction-without-enabling",
+      "question": "How can I support someone who is struggling with addiction without enabling them?",
+      "category": "Addiction & Recovery",
+      "primary_theme": "Addiction & Recovery",
+      "previous_review_status": "reviewed",
+      "previous_reviewed_by": "codex-seo-review",
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context",
+        "treatment with addiction context"
+      ]
+    },
+    {
+      "id": "f0aba38f-2a6c-4721-a536-e3d661f53433",
+      "slug": "what-are-some-healthy-ways-to-celebrate-milestones-in-recovery",
+      "question": "What are some healthy ways to celebrate milestones in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "38655aae-423f-4483-94b3-e0ad941d9c9b",
+      "slug": "what-are-the-signs-that-someone-i-love-has-an-addiction",
+      "question": "What are the signs that someone I love has an addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "8550a90c-f7b8-403c-9bc4-6e189a88e0cd",
+      "slug": "what-does-it-mean-to-be-a-dry-drunk-185759-027",
+      "question": "What does it mean to be a 'dry drunk'?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "sobriety term",
+        "alcohol/drinking term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "57247ad9-d691-4c83-944b-5bb2c0a1db32",
+      "slug": "what-if-i-become-dependent-on-anxiety-me-181083-058",
+      "question": "What if I become dependent on anxiety medication?",
+      "category": "Anxiety & Stress",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "medication dependency term"
+      ]
+    },
+    {
+      "id": "b90965ad-cbda-4862-b656-d0098e5ceb2e",
+      "slug": "what-if-i-dont-believe-in-god-or-a-higher-power-for-12-step-programs",
+      "question": "What if I don't believe in God or a higher power for 12-step programs?",
+      "category": "General Mental Health",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "12-step term"
+      ]
+    },
+    {
+      "id": "d5ec1afc-5a53-4167-bdfc-c1aa99e61e3e",
+      "slug": "what-if-i-lose-my-job-because-of-my-addiction",
+      "question": "What if I lose my job because of my addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "c7263b4f-98af-412d-9d7b-253f29096e5b",
+      "slug": "what-if-i-relapse-during-recovery",
+      "question": "What if I relapse during recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "relapse with addiction context",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "776c6d44-ed41-4f5f-b77c-031a105daa90",
+      "slug": "what-if-im-afraid-of-losing-my-identity-without-substances",
+      "question": "What if I'm afraid of losing my identity without substances?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "substance use term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "0184ad3c-ce17-4af3-9af7-4fe7ab6082cf",
+      "slug": "what-if-im-struggling-with-both-addiction-and-mental-health-issues",
+      "question": "What if I'm struggling with both addiction and mental health issues?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "a416fb77-f5c3-478c-be1c-995f3e0d93d6",
+      "slug": "what-if-my-addiction-has-damaged-my-relationship-with-my-children",
+      "question": "What if my addiction has damaged my relationship with my children?",
+      "category": "Relationships & Communication",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term"
+      ]
+    },
+    {
+      "id": "4dbc3b02-1b8b-45f3-a8ac-37521ec8ee83",
+      "slug": "what-if-my-addiction-was-to-prescription-drugs-that-i-legitimately-needed",
+      "question": "What if my addiction was to prescription drugs that I legitimately needed?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "7f66645d-c612-4ecb-8844-0d78ef1fe85b",
+      "slug": "what-if-my-family-doesnt-believe-im-really-in-recovery",
+      "question": "What if my family doesn't believe I'm really in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "048fff98-2f6f-4eba-967c-4166890ef0a9",
+      "slug": "what-if-my-family-doesnt-support-my-recovery",
+      "question": "What if my family doesn't support my recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "75240bc8-ac37-4a8c-b8e1-2d806cf3d2ca",
+      "slug": "what-if-my-loved-one-is-using-substances-while-pregnant",
+      "question": "What if my loved one is using substances while pregnant?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "substance use term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "ba4aeb75-9142-4ade-9216-cff30a61ee4d",
+      "slug": "what-if-my-partner-wants-me-to-drink-or-use-substances-with-them",
+      "question": "What if my partner wants me to drink or use substances with them?",
+      "category": "Relationships & Communication",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "substance use term",
+        "alcohol/drinking term"
+      ]
+    },
+    {
+      "id": "0d7b8b7c-3037-4d73-b11c-f36f2a8a91d0",
+      "slug": "what-is-a-process-addiction-and-can-i-be-185759-023",
+      "question": "What is a process addiction and can I be addicted to something other than drugs?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "e95e87a6-186d-4475-8dff-17ee06ba5f47",
+      "slug": "what-is-codependency-and-how-does-it-rel-186032-022",
+      "question": "What is codependency and how does it relate to addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "88813172-969a-48ec-bd04-243e51722dde",
+      "slug": "what-is-the-difference-between-physical--186032-024",
+      "question": "What is the difference between physical and psychological addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "ca37e352-a9bb-44d8-a004-941649e3859a",
+      "slug": "what-is-the-relationship-between-depression-and-substance-use",
+      "question": "What is the relationship between depression and substance use?",
+      "category": "Depression",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "substance use term",
+        "treatment with addiction context"
+      ]
+    },
+    {
+      "id": "41b759c6-b7c0-4bfd-a3e0-2d4a4e92ad64",
+      "slug": "what-should-i-do-about-my-social-media-addiction",
+      "question": "What should I do about my social media addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "ed6ed102-f87e-4dc1-bca7-d927a8424ae7",
+      "slug": "what-should-i-do-after-a-relapse-in-recovery",
+      "question": "What should I do after a relapse in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": "Addiction & Recovery",
+      "previous_review_status": "reviewed",
+      "previous_reviewed_by": "codex-seo-review",
+      "match_reasons": [
+        "addiction term",
+        "relapse with addiction context",
+        "recovery with addiction context",
+        "treatment with addiction context"
+      ]
+    },
+    {
+      "id": "0babfbe2-9c3b-4f84-a6cb-44c93903290d",
+      "slug": "what-should-i-do-if-i-have-legal-problems-related-to-my-addiction",
+      "question": "What should I do if I have legal problems related to my addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "d9eedcf9-cc48-45b1-a11a-1fd4f1fefe9d",
+      "slug": "what-should-i-do-if-i-suspect-my-employee-has-a-substance-abuse-problem",
+      "question": "What should I do if I suspect my employee has a substance abuse problem?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "substance use term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "840eda09-9faa-4e3e-b26e-38538217aed5",
+      "slug": "what-should-i-do-if-im-around-substances-unexpectedly",
+      "question": "What should I do if I'm around substances unexpectedly?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "substance use term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "59ce0963-4941-4f06-9c90-90982600ff42",
+      "slug": "what-should-i-do-if-im-having-trouble-sleeping-in-recovery",
+      "question": "What should I do if I'm having trouble sleeping in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "c7a05a48-4ece-455a-b30c-1497810b9590",
+      "slug": "what-should-i-do-if-im-struggling-financially-because-of-my-addiction",
+      "question": "What should I do if I'm struggling financially because of my addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "b1b3e1b9-59cf-4c81-be55-6f9b9e7bea17",
+      "slug": "what-should-i-do-if-im-struggling-with-multiple-addictions",
+      "question": "What should I do if I'm struggling with multiple addictions?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "1e7fdcba-4c9f-4b55-8e8a-2090ab2fbd8a",
+      "slug": "what-should-i-do-if-my-adult-child-is-addicted-to-drugs",
+      "question": "What should I do if my adult child is addicted to drugs?",
+      "category": "Family & Parenting",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term"
+      ]
+    },
+    {
+      "id": "66a9add1-393e-4415-a648-0a2e3760071c",
+      "slug": "what-should-i-do-if-my-doctor-prescribed-addictive-medication",
+      "question": "What should I do if my doctor prescribed addictive medication?",
+      "category": "Anxiety & Stress",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term"
+      ]
+    },
+    {
+      "id": "9b525ebb-44bd-4483-880e-aaa6246b4c09",
+      "slug": "what-should-i-do-if-my-teenager-is-experimenting-w-187459-006",
+      "question": "What should I do if my teenager is experimenting with drugs or alcohol?",
+      "category": "Teen-Specific Questions",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "substance use term",
+        "alcohol/drinking term"
+      ]
+    },
+    {
+      "id": "95771c30-9939-450f-9ae2-c1093949a876",
+      "slug": "what-should-i-expect-from-detox-and-withdrawal",
+      "question": "What should I expect from detox and withdrawal?",
+      "category": "General Mental Health",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "treatment setting term"
+      ]
+    },
+    {
+      "id": "94703dc5-1181-4aba-b000-ab21175bb1df",
+      "slug": "what-should-i-expect-in-addiction-treatm-186032-026",
+      "question": "What should I expect in addiction treatment?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context",
+        "treatment with addiction context"
+      ]
+    },
+    {
+      "id": "80516d6d-46a9-4ad4-8138-a34aab4bd177",
+      "slug": "what-should-i-expect-in-my-first-30-days-of-sobriety",
+      "question": "What should I expect in my first 30 days of sobriety?",
+      "category": "General Mental Health",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "sobriety term"
+      ]
+    },
+    {
+      "id": "a109b726-a170-4462-9436-9ceea7a44ba6",
+      "slug": "whats-the-difference-between-addiction-and-dependence",
+      "question": "What's the difference between addiction and dependence?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "48f727ef-ef94-486a-85d5-dc04ba528fff",
+      "slug": "whats-the-difference-between-being-sober-and-being-in-recovery",
+      "question": "What's the difference between being sober and being in recovery?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "sobriety term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "491f6681-0d35-4c99-b99c-9be901efd415",
+      "slug": "whats-the-difference-between-physical-and-psychological-addiction",
+      "question": "What's the difference between physical and psychological addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "37123b85-0215-4f2f-b16b-92b2152c4553",
+      "slug": "when-to-seek-professional-help-for-substance-use",
+      "question": "When should someone seek professional help for substance use?",
+      "category": "Addiction & Recovery",
+      "primary_theme": "Addiction & Recovery",
+      "previous_review_status": "reviewed",
+      "previous_reviewed_by": "codex-seo-review",
+      "match_reasons": [
+        "addiction term",
+        "substance use term",
+        "recovery with addiction context",
+        "treatment with addiction context"
+      ]
+    },
+    {
+      "id": "0ae0b3db-8b3b-4b31-b82a-dabee26b9dae",
+      "slug": "why-cant-i-just-stop-using-drugs-on-my-o-185387-019",
+      "question": "Why can't I just stop using drugs on my own?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "010c3808-ea3c-4dfa-89c9-8d7cd35ae95a",
+      "slug": "why-do-i-feel-addicted-to-social-media-validation-v7w2x5",
+      "question": "Why do I feel addicted to social media validation?",
+      "category": "Anxiety & Stress",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term"
+      ]
+    },
+    {
+      "id": "4350e01a-84bb-4f23-8393-e9d06f5c409a",
+      "slug": "why-do-i-feel-ashamed-about-needing-help-for-my-addiction",
+      "question": "Why do I feel ashamed about needing help for my addiction?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "recovery with addiction context"
+      ]
+    },
+    {
+      "id": "70b97b0c-c0db-4f3d-8d3b-94dab5c25d2f",
+      "slug": "why-do-i-feel-like-i-addicted-to-my-phone-h3i7j4",
+      "question": "Why do I feel like I'm addicted to my phone?",
+      "category": "Anxiety & Stress",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term"
+      ]
+    },
+    {
+      "id": "98edea60-916d-42cb-ab56-8d3c665aaccf",
+      "slug": "why-do-i-keep-relapsing-even-though-i-want-to-stay-sober",
+      "question": "Why do I keep relapsing even though I want to stay sober?",
+      "category": "Addiction & Recovery",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "match_reasons": [
+        "addiction term",
+        "sobriety term",
+        "relapse with addiction context",
+        "recovery with addiction context"
+      ]
+    }
+  ]
+}
