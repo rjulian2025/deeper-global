@@ -55,6 +55,36 @@ Allowed uses:
 - Minimum state threshold: 50 events.
 - Sensitive categories such as crisis, abuse, minors, addiction, and medication suppress state-level location and require higher aggregation.
 
+## Scheduled Email Report
+
+`/api/reports/intent-email` sends a weekly private intent report through Resend. It is scheduled in `vercel.json` for Mondays at 13:00 UTC and reads thresholded intent rollup views plus aggregate-only GA4 site KPIs when GA4 service-account credentials are configured.
+
+Required production environment variables:
+
+- `CRON_SECRET`: authorizes the Vercel Cron request.
+- `RESEND_API_KEY`: sends the email through Resend.
+- `REPORT_EMAIL_FROM`: verified Resend sender, for example `Deeper Global <reports@deeper.global>`.
+
+Optional production environment variable:
+
+- `REPORT_EMAIL_TO`: defaults to `rjulian@qvbrands.com`.
+
+Optional GA4 KPI environment variables:
+
+- `GA4_PROPERTY_ID`: GA4 numeric property ID. `properties/123456789` is also accepted.
+- `GA4_CLIENT_EMAIL`: Google service-account client email with read access to the GA4 property.
+- `GA4_PRIVATE_KEY`: Google service-account private key. Escaped newlines (`\n`) are supported for Vercel env storage.
+
+If any GA4 env var is missing, or if the GA4 Data API request fails, the email still sends the intent rollup sections and includes a "site KPI data unavailable" note.
+
+Authorized manual testing:
+
+```bash
+vercel curl "/api/reports/intent-email?dryRun=1" --deployment <deployment-url> -H "Authorization: Bearer $CRON_SECRET"
+```
+
+The report currently includes aggregate GA4 site KPIs (active users, total users, sessions, page/screen views, engagement time, engagement rate, bounce rate when available, top pages, traffic sources/channels, and country/region distribution), top searched topics, top searched topics by region, no-result searches, care-navigation demand, and safety-sensitive aggregate signals. It does not include raw queries, raw GA4 user/session identifiers, or below-threshold intent location segments.
+
 ## Example Questions
 
 Top searched topics by country:
@@ -109,4 +139,6 @@ order by date desc, no_result_searches desc;
 - Trigger a test search and answer view.
 - Confirm rows appear in `intent_events`.
 - Confirm thresholded rows appear only after minimum counts are met.
+- Configure `CRON_SECRET`, `RESEND_API_KEY`, and `REPORT_EMAIL_FROM` in Vercel production.
+- To include site KPIs, configure `GA4_PROPERTY_ID`, `GA4_CLIENT_EMAIL`, and `GA4_PRIVATE_KEY` in Vercel production and grant the service account Viewer access to the GA4 property.
 - Keep public reporting national/state-level and aggregate-only.
