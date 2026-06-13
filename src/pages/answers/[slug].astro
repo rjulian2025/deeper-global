@@ -241,7 +241,6 @@ const jsonLd = {
         >
           <p class="summary">{summary}</p>
         </section>
-        <AnswerTrustPanel question={question} updatedAt={updatedAt} />
         {
           keyTakeaways.length > 0 && (
             <section class="key-takeaways" aria-labelledby="key-takeaways-title" data-ai-section="key-takeaways">
@@ -265,6 +264,7 @@ const jsonLd = {
       </div>
 
       <aside class="answer-sidebar" aria-label="Answer context">
+        <AnswerTrustPanel question={question} updatedAt={updatedAt} />
         <section class="sidebar-card">
           <p class="sidebar-label">Related theme</p>
           <a class="sidebar-entity" href={categoryPath(category)}>{category}</a>

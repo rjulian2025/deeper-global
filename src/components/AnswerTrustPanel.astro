@@ -30,7 +30,7 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStat
 
 {
   hasMeaningfulTrustContent ? (
-    <section class="signal-card answer-trust-panel" aria-label="Editorial review information" data-ai-section="editorial-trust">
+    <section class="sidebar-card answer-trust-panel" aria-label="Editorial review information" data-ai-section="editorial-trust">
       <p class="sidebar-label">How this answer was reviewed</p>
 
       {reviewerProfile ? (
@@ -51,13 +51,13 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStat
         {reviewStatusDisplay ? <li>Review status: {reviewStatusDisplay}</li> : null}
         {reviewedAt ? <li>Last reviewed: {formatDate(reviewedAt)}</li> : null}
         <li>Updated {formatDate(updatedAt)}</li>
-        <li>
-          <a href="/editorial-policy/">Editorial policy</a>
-        </li>
-        <li>
-          <a href="/protocol/">Trust protocol</a>
-        </li>
       </ul>
+
+      <p class="trust-links">
+        <a href="/editorial-policy/">Editorial policy</a>
+        <span aria-hidden="true"> · </span>
+        <a href="/protocol/">Trust protocol</a>
+      </p>
 
       {sourceRefs.length > 0 ? (
         <div class="trust-sources">
@@ -84,48 +84,59 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStat
 
 <style>
   .answer-trust-panel {
-    margin: 0 0 34px;
+    margin: 0;
   }
 
   .answer-trust-panel .trust-reviewed-by,
-  .answer-trust-panel .trust-credentials,
-  .answer-trust-panel .trust-neutral {
-    margin: 0 0 12px;
-    color: rgba(255, 253, 249, 0.92);
-    font-size: 0.92rem;
-    line-height: 1.55;
+  .answer-trust-panel .trust-credentials {
+    margin: 0 0 10px;
+    color: var(--ink);
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 
   .answer-trust-panel .trust-reviewed-by a {
-    color: rgba(255, 253, 249, 0.98);
+    color: var(--ocean);
+    text-decoration: none;
+  }
+
+  .answer-trust-panel .trust-reviewed-by a:hover {
     text-decoration: underline;
     text-underline-offset: 2px;
   }
 
   .answer-trust-panel .trust-credentials {
-    margin-top: -6px;
-    color: rgba(255, 253, 249, 0.74);
-    font-size: 0.86rem;
+    margin-top: -4px;
+    color: var(--stone);
+    font-size: 0.82rem;
   }
 
   .trust-meta {
     display: grid;
-    gap: 8px;
+    gap: 6px;
     padding: 0;
-    margin: 0;
+    margin: 0 0 12px;
     list-style: none;
   }
 
   .trust-meta li {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 8px 10px;
-    color: rgba(255, 253, 249, 0.86);
-    font-size: 0.88rem;
+    color: var(--stone);
+    font-size: 0.82rem;
+    line-height: 1.45;
   }
 
-  .trust-meta a {
-    color: rgba(255, 253, 249, 0.96);
+  .trust-links {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .trust-links a {
+    color: var(--ocean);
+    text-decoration: none;
+  }
+
+  .trust-links a:hover {
     text-decoration: underline;
     text-underline-offset: 2px;
   }
@@ -133,7 +144,7 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStat
   .trust-sources {
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    border-top: 1px solid var(--line);
   }
 
   .trust-sources ul {
@@ -145,18 +156,22 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStat
   }
 
   .trust-sources li {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    padding: 8px 10px;
-    font-size: 0.86rem;
+    color: var(--ink);
+    font-size: 0.84rem;
     line-height: 1.45;
   }
 
   .trust-sources a {
-    color: rgba(255, 253, 249, 0.96);
+    color: var(--ocean);
+    text-decoration: none;
+  }
+
+  .trust-sources a:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
 
   .trust-source-publisher {
-    color: rgba(255, 253, 249, 0.68);
+    color: var(--stone);
   }
 </style>
