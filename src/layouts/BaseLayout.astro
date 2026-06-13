@@ -2,6 +2,11 @@
 import '../styles/global.css';
 import { organizationId, siteUrl, SITE_NAME, websiteId } from '@/lib/site';
 
+const DEFAULT_OG_IMAGE_PATH = '/og/deeper-global-og.jpg';
+const DEFAULT_OG_IMAGE_ALT = 'Deeper Global trusted mental health answers';
+const DEFAULT_OG_IMAGE_WIDTH = 1200;
+const DEFAULT_OG_IMAGE_HEIGHT = 630;
+
 type Props = {
   title?: string;
   description?: string;
@@ -10,6 +15,9 @@ type Props = {
   jsonLd?: Record<string, unknown>;
   noindex?: boolean;
   imagePath?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
 };
 
 const {
@@ -19,11 +27,14 @@ const {
   ogType = 'website',
   jsonLd,
   noindex = false,
-  imagePath = '/images/deeper-hero-reader-1200.webp',
+  imagePath = DEFAULT_OG_IMAGE_PATH,
+  imageAlt = DEFAULT_OG_IMAGE_ALT,
+  imageWidth = DEFAULT_OG_IMAGE_WIDTH,
+  imageHeight = DEFAULT_OG_IMAGE_HEIGHT,
 } = Astro.props;
 
 const canonicalUrl = siteUrl(canonicalPath);
-const imageUrl = siteUrl(imagePath);
+const imageUrl = /^https?:\/\//i.test(imagePath) ? imagePath : siteUrl(imagePath);
 const GA_MEASUREMENT_ID = import.meta.env.NEXT_PUBLIC_GA_ID ?? 'G-VY56C15LGV';
 const INTENT_EVENT_ENDPOINT = import.meta.env.PUBLIC_INTENT_EVENT_ENDPOINT ?? '/api/intent-event';
 const siteGraph = [
@@ -67,8 +78,15 @@ const structuredData = {
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:secure_url" content={imageUrl} />
+    <meta property="og:image:width" content={imageWidth} />
+    <meta property="og:image:height" content={imageHeight} />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
