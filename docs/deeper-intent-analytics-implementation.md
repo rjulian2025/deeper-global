@@ -74,8 +74,9 @@ Optional GA4 KPI environment variables:
 - `GA4_PROPERTY_ID`: GA4 numeric property ID. `properties/123456789` is also accepted.
 - `GA4_CLIENT_EMAIL`: Google service-account client email with read access to the GA4 property.
 - `GA4_PRIVATE_KEY`: Google service-account private key. Escaped newlines (`\n`) are supported for Vercel env storage.
+- `GA4_REPORT_HOSTNAME` or `GA4_REPORT_HOSTNAMES`: optional host filter for GA4 site KPIs. Defaults to `www.deeper.global`; use a comma-separated `GA4_REPORT_HOSTNAMES` value only if more than one production host should be included.
 
-If any GA4 env var is missing, or if the GA4 Data API request fails, the email still sends the intent rollup sections and includes a "site KPI data unavailable" note. If the Supabase intent rollup views have not been applied yet, the email still sends the site KPI section and includes an "intent rollup data unavailable" setup note.
+The weekly GA4 Data API queries filter on GA4's `hostName` dimension so site KPIs exclude shared-property, preview, staging, or other noisy host traffic. If any GA4 env var is missing, or if the GA4 Data API request fails, the email still sends the intent rollup sections and includes a "site KPI data unavailable" note. If the Supabase intent rollup views have not been applied yet, the email still sends the site KPI section and includes an "intent rollup data unavailable" setup note.
 
 Authorized manual testing:
 
@@ -140,5 +141,5 @@ order by date desc, no_result_searches desc;
 - Confirm rows appear in `intent_events`.
 - Confirm thresholded rows appear only after minimum counts are met.
 - Configure `CRON_SECRET`, `RESEND_API_KEY`, and `REPORT_EMAIL_FROM` in Vercel production.
-- To include site KPIs, configure `GA4_PROPERTY_ID`, `GA4_CLIENT_EMAIL`, and `GA4_PRIVATE_KEY` in Vercel production and grant the service account Viewer access to the GA4 property.
+- To include site KPIs, configure `GA4_PROPERTY_ID`, `GA4_CLIENT_EMAIL`, and `GA4_PRIVATE_KEY` in Vercel production and grant the service account Viewer access to the GA4 property. Leave `GA4_REPORT_HOSTNAME` unset for the default `www.deeper.global` filter unless production traffic intentionally spans more hosts.
 - Keep public reporting national/state-level and aggregate-only.

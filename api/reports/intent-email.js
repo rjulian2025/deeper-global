@@ -2,6 +2,7 @@ import { createSign } from 'node:crypto';
 
 const DEFAULT_REPORT_TO = 'rjulian@qvbrands.com';
 const REPORT_WINDOW_DAYS = 30;
+const DEFAULT_GA4_REPORT_HOSTNAME = 'www.deeper.global';
 const GA4_SCOPE = 'https://www.googleapis.com/auth/analytics.readonly';
 const GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token';
 
@@ -77,6 +78,34 @@ function normalizeGa4PrivateKey(value) {
   return cleanText(value).replace(/\\n/g, '\n');
 }
 
+function ga4ReportHostnames() {
+  const configuredHostnames = cleanText(process.env.GA4_REPORT_HOSTNAMES ?? process.env.GA4_REPORT_HOSTNAME);
+  const hostnames = configuredHostnames
+    ? configuredHostnames
+        .split(',')
+        .map((hostname) => cleanText(hostname).toLowerCase())
+        .filter(Boolean)
+    : [DEFAULT_GA4_REPORT_HOSTNAME];
+
+  return Array.from(new Set(hostnames.length ? hostnames : [DEFAULT_GA4_REPORT_HOSTNAME]));
+}
+
+function ga4HostDimensionFilter(hostnames) {
+  const expressions = hostnames.map((hostname) => ({
+    filter: {
+      fieldName: 'hostName',
+      stringFilter: {
+        matchType: 'EXACT',
+        value: hostname,
+        caseSensitive: false,
+      },
+    },
+  }));
+
+  if (expressions.length === 1) return expressions[0];
+  return { orGroup: { expressions } };
+}
+
 function base64Url(value) {
   const buffer = Buffer.isBuffer(value) ? value : Buffer.from(value);
   return buffer.toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
@@ -104,12 +133,13 @@ function ga4Config() {
   const propertyId = cleanText(process.env.GA4_PROPERTY_ID).replace(/^properties\//, '');
   const clientEmail = cleanText(process.env.GA4_CLIENT_EMAIL);
   const privateKey = normalizeGa4PrivateKey(process.env.GA4_PRIVATE_KEY);
+  const hostnames = ga4ReportHostnames();
 
   if (!propertyId || !clientEmail || !privateKey) {
-    return { ok: false, reason: 'Missing GA4_PROPERTY_ID, GA4_CLIENT_EMAIL, or GA4_PRIVATE_KEY.' };
+    return { ok: false, reason: 'Missing GA4_PROPERTY_ID, GA4_CLIENT_EMAIL, or GA4_PRIVATE_KEY.', hostnames };
   }
 
-  return { ok: true, propertyId, clientEmail, privateKey };
+  return { ok: true, propertyId, clientEmail, privateKey, hostnames };
 }
 
 async function fetchGa4AccessToken(config) {
@@ -133,7 +163,7 @@ async function fetchGa4AccessToken(config) {
   return payload.access_token;
 }
 
-async function runGa4Report({ propertyId, accessToken, sinceDate, metrics, dimensions = [], limit = 10, orderBys = [] }) {
+async function runGa4Report({ propertyId, accessToken, sinceDate, metrics, dimensions = [], limit = 10, orderBys = [], dimensionFilter }) {
   const response = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, {
     method: 'POST',
     headers: {
@@ -144,6 +174,7 @@ async function runGa4Report({ propertyId, accessToken, sinceDate, metrics, dimen
       dateRanges: [{ startDate: sinceDate, endDate: 'today' }],
       metrics: metrics.map((name) => ({ name })),
       dimensions: dimensions.map((name) => ({ name })),
+      ...(dimensionFilter ? { dimensionFilter } : {}),
       limit,
       orderBys,
       keepEmptyRows: false,
@@ -182,11 +213,16 @@ function firstGa4MetricRow(payload, metricNames) {
 
 async function fetchSiteKpis(sinceDate) {
   const config = ga4Config();
-  if (!config.ok) return { available: false, reason: config.reason };
+  if (!config.ok) return { available: false, reason: config.reason, hostnames: config.hostnames };
 
   try {
     const accessToken = await fetchGa4AccessToken(config);
-    const common = { propertyId: config.propertyId, accessToken, sinceDate };
+    const common = {
+      propertyId: config.propertyId,
+      accessToken,
+      sinceDate,
+      dimensionFilter: ga4HostDimensionFilter(config.hostnames),
+    };
     const summaryMetrics = [
       'activeUsers',
       'totalUsers',
@@ -229,6 +265,7 @@ async function fetchSiteKpis(sinceDate) {
     return {
       available: true,
       source: 'GA4 Data API',
+      hostnames: config.hostnames,
       summary: firstGa4MetricRow(summary, summaryMetrics),
       topPages: parseGa4Rows(topPages, ['screenPageViews', 'sessions', 'activeUsers', 'userEngagementDuration'], ['pagePath', 'pageTitle']),
       trafficSources: parseGa4Rows(
@@ -240,7 +277,7 @@ async function fetchSiteKpis(sinceDate) {
     };
   } catch (error) {
     console.error('site_kpi_report_unavailable', error);
-    return { available: false, reason: error.message };
+    return { available: false, reason: error.message, hostnames: config.hostnames };
   }
 }
 
@@ -352,13 +389,15 @@ function averageEngagementSeconds(summary) {
 
 function siteKpiHtml(siteKpis) {
   if (!siteKpis?.available) {
-    return `<p><strong>Site KPI data unavailable.</strong> ${escapeHtml(siteKpis?.reason ?? 'GA4 was not configured or returned no data.')}</p>`;
+    const hostScope = siteKpis?.hostnames?.length ? ` Host filter: ${siteKpis.hostnames.map(escapeHtml).join(', ')}.` : '';
+    return `<p><strong>Site KPI data unavailable.</strong> ${escapeHtml(siteKpis?.reason ?? 'GA4 was not configured or returned no data.')}${hostScope}</p>`;
   }
 
   const summary = siteKpis.summary ?? {};
+  const hostScope = siteKpis.hostnames?.length ? ` Host filter: ${siteKpis.hostnames.map(escapeHtml).join(', ')}.` : '';
 
   return `
-    <p>Source: ${escapeHtml(siteKpis.source)}. Aggregate-only GA4 metrics; no raw user or session identifiers.</p>
+    <p>Source: ${escapeHtml(siteKpis.source)}.${hostScope} Aggregate-only GA4 metrics; no raw user or session identifiers.</p>
     <ul>
       <li><strong>Active users:</strong> ${formatInteger(summary.activeUsers)}</li>
       <li><strong>Total users:</strong> ${formatInteger(summary.totalUsers)}</li>
@@ -452,6 +491,7 @@ function reportText(report) {
   const siteKpiLines = siteKpis?.available
     ? [
         'Site KPIs:',
+        ...(siteKpis.hostnames?.length ? [`- Host filter: ${siteKpis.hostnames.join(', ')}`] : []),
         `- Active users: ${formatInteger(siteKpis.summary?.activeUsers)}`,
         `- Total users: ${formatInteger(siteKpis.summary?.totalUsers)}`,
         `- Sessions: ${formatInteger(siteKpis.summary?.sessions)}`,
@@ -477,7 +517,11 @@ function reportText(report) {
           return `- ${item.dimensions.country}${region}: ${formatInteger(item.metrics.activeUsers)} active users`;
         }),
       ]
-    : ['Site KPIs:', `- Site KPI data unavailable: ${siteKpis?.reason ?? 'GA4 was not configured or returned no data.'}`];
+    : [
+        'Site KPIs:',
+        ...(siteKpis?.hostnames?.length ? [`- Host filter: ${siteKpis.hostnames.join(', ')}`] : []),
+        `- Site KPI data unavailable: ${siteKpis?.reason ?? 'GA4 was not configured or returned no data.'}`,
+      ];
 
   const lines = [
     'Deeper Global intent report',
