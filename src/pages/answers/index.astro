@@ -210,7 +210,7 @@ const searchIndex = questions.map((question) => {
     ) {
       return `
       <article class="answer-card">
-        <a href="${escapeHtml(item.url)}" data-search-result="true" data-search-result-position="${index + 1}" data-search-result-category="${escapeHtml(item.category)}">
+        <a class="answer-card-link" href="${escapeHtml(item.url)}" data-search-result="true" data-search-result-position="${index + 1}" data-search-result-category="${escapeHtml(item.category)}">
           <h2>${escapeHtml(item.title)}</h2>
         </a>
         <p>${escapeHtml(item.summary)}</p>
