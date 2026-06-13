@@ -75,7 +75,7 @@ Optional GA4 KPI environment variables:
 - `GA4_CLIENT_EMAIL`: Google service-account client email with read access to the GA4 property.
 - `GA4_PRIVATE_KEY`: Google service-account private key. Escaped newlines (`\n`) are supported for Vercel env storage.
 
-If any GA4 env var is missing, or if the GA4 Data API request fails, the email still sends the intent rollup sections and includes a "site KPI data unavailable" note.
+If any GA4 env var is missing, or if the GA4 Data API request fails, the email still sends the intent rollup sections and includes a "site KPI data unavailable" note. If the Supabase intent rollup views have not been applied yet, the email still sends the site KPI section and includes an "intent rollup data unavailable" setup note.
 
 Authorized manual testing:
 

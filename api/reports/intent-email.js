@@ -64,6 +64,15 @@ async function fetchRollups(viewName, sinceDate) {
   return response.json();
 }
 
+async function fetchRollupsSafe(viewName, sinceDate) {
+  try {
+    return { rows: await fetchRollups(viewName, sinceDate), error: null };
+  } catch (error) {
+    console.error('intent_rollups_unavailable', viewName, error);
+    return { rows: [], error: error.message };
+  }
+}
+
 function normalizeGa4PrivateKey(value) {
   return cleanText(value).replace(/\\n/g, '\n');
 }
@@ -254,7 +263,7 @@ function splitKey(value) {
   return String(value).split('||');
 }
 
-function buildReport({ internalRows, publicRows, sinceDate, siteKpis }) {
+function buildReport({ internalRows, publicRows, sinceDate, siteKpis, intentRollups }) {
   const topSearchTopics = sumRows(
     publicRows,
     (row) => row.category,
@@ -295,6 +304,7 @@ function buildReport({ internalRows, publicRows, sinceDate, siteKpis }) {
     careNavigationRegions,
     safetySignals,
     siteKpis,
+    intentRollups,
     rawRollupRows: {
       internal: internalRows.length,
       public: publicRows.length,
@@ -379,6 +389,15 @@ function siteKpiHtml(siteKpis) {
   `;
 }
 
+function intentRollupHtml(intentRollups) {
+  if (intentRollups?.available) return '';
+
+  const reasons = [intentRollups?.internalError, intentRollups?.publicError].filter(Boolean);
+  const detail = reasons.length ? ` ${escapeHtml(Array.from(new Set(reasons)).join(' '))}` : '';
+
+  return `<p><strong>Intent rollup data unavailable.</strong> Apply <code>docs/supabase-intent-analytics.sql</code> in Supabase to enable thresholded topic and regional insights.${detail}</p>`;
+}
+
 function reportHtml(report) {
   return `<!doctype html>
 <html lang="en">
@@ -393,6 +412,8 @@ function reportHtml(report) {
 
     <h2>Site KPIs</h2>
     ${siteKpiHtml(report.siteKpis)}
+
+    ${intentRollupHtml(report.intentRollups)}
 
     <h2>Top searched topics</h2>
     ${listHtml(report.topSearchTopics, (item) => `${escapeHtml(item.key)} — <strong>${item.count}</strong> searches`)}
@@ -465,6 +486,13 @@ function reportText(report) {
     '',
     ...siteKpiLines,
     '',
+    ...(report.intentRollups?.available
+      ? []
+      : [
+          'Intent rollups:',
+          '- Intent rollup data unavailable. Apply docs/supabase-intent-analytics.sql in Supabase to enable thresholded topic and regional insights.',
+          '',
+        ]),
     'Top searched topics:',
     ...report.topSearchTopics.map((item) => `- ${item.key}: ${item.count}`),
     '',
@@ -525,12 +553,23 @@ export default async function handler(req, res) {
 
   try {
     const sinceDate = isoDateDaysAgo(REPORT_WINDOW_DAYS);
-    const [internalRows, publicRows, siteKpis] = await Promise.all([
-      fetchRollups('intent_internal_daily_rollups', sinceDate),
-      fetchRollups('intent_public_macro_rollups', sinceDate),
+    const [internalRollups, publicRollups, siteKpis] = await Promise.all([
+      fetchRollupsSafe('intent_internal_daily_rollups', sinceDate),
+      fetchRollupsSafe('intent_public_macro_rollups', sinceDate),
       fetchSiteKpis(sinceDate),
     ]);
-    const report = buildReport({ internalRows, publicRows, sinceDate, siteKpis });
+    const intentRollups = {
+      available: !internalRollups.error && !publicRollups.error,
+      internalError: internalRollups.error,
+      publicError: publicRollups.error,
+    };
+    const report = buildReport({
+      internalRows: internalRollups.rows,
+      publicRows: publicRollups.rows,
+      sinceDate,
+      siteKpis,
+      intentRollups,
+    });
 
     if (req.query?.dryRun === '1') {
       return res.status(200).json({ mode: 'dry-run', report });
