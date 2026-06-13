@@ -2,6 +2,7 @@
 import { formatDate } from '@/lib/content';
 import {
   getReviewedByLabel,
+  getReviewerDisplayLabel,
   getSourceRefs,
 } from '@/lib/trust';
 
@@ -12,17 +13,20 @@ type Props = {
 
 const { question, updatedAt } = Astro.props;
 const reviewedBy = getReviewedByLabel(question);
+const reviewerDisplayLabel = getReviewerDisplayLabel(question);
 const sourceRefs = getSourceRefs(question);
 const showNeutralStatement = !reviewedBy && sourceRefs.length === 0;
+const showReviewerName = reviewerDisplayLabel === reviewedBy;
 ---
 
 <section class="signal-card trust-panel" aria-label="Editorial review information" data-ai-section="editorial-trust">
   <p class="sidebar-label">How this answer was reviewed</p>
 
   {
-    reviewedBy ? (
+    reviewerDisplayLabel ? (
       <p class="trust-reviewed-by">
-        Reviewed by <strong>{reviewedBy}</strong>
+        {showReviewerName ? 'Reviewed by ' : ''}
+        <strong>{reviewerDisplayLabel}</strong>
       </p>
     ) : null
   }

@@ -53,7 +53,7 @@ No Vercel settings were changed. No production deploy or promotion was performed
 | 4 | Editorial policy indexable (no `noindex`) | **PASS** | |
 | 5 | Draft answer `noindex,follow` | **PASS** | therapy slug |
 | 6 | Reviewed answer indexable (no `noindex`) | **PASS** | OCD checking slug |
-| 7 | Reviewed answer shows `reviewed_by` | **PASS** | `codex-seo-review` from DB |
+| 7 | Reviewed answer shows review signal | **PASS** | Internal DB reviewer token mapped to public-safe display language |
 | 8 | Reviewed answer shows `source_refs` links | **PASS** | NIMH + IOCDF sources rendered |
 | 9 | Draft answer does not invent reviewer | **PASS** | no “Reviewed by” in body |
 | 10 | Draft answer does not render sources panel | **PASS** | no rendered `<div class="trust-sources">` |
@@ -97,7 +97,7 @@ Broad indexation logic was **not** changed in Phase 1A.
 | Answer | `reviewed_by` | `source_refs` | UI |
 | --- | --- | --- | --- |
 | Draft therapy answer | empty | empty | Neutral editorial statement + policy/protocol links |
-| Reviewed OCD answer | `codex-seo-review` | 2 refs | Reviewer line + linked sources with publishers |
+| Reviewed OCD answer | `codex-seo-review` | 2 refs | Public-safe review language + linked sources with publishers |
 | Crisis suicidal-thoughts answer | empty | empty | Neutral statement + crisis banner (988 + intl) |
 
 No false clinical review or citation claims on draft pages.

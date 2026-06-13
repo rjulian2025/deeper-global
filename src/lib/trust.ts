@@ -8,6 +8,8 @@ export type SourceRef = {
 };
 
 const INDEXABLE_REVIEW_STATUSES = new Set(['approved', 'published', 'reviewed']);
+const INTERNAL_REVIEWER_LABELS = new Set(['codex-seo-review']);
+const GENERIC_EDITORIAL_REVIEW_LABEL = 'Reviewed for clarity, structure, and source alignment';
 
 export function getSourceRefs(question: Question): SourceRef[] {
   if (!Array.isArray(question.source_refs)) return [];
@@ -33,6 +35,17 @@ export function getSourceRefs(question: Question): SourceRef[] {
 
 export function getReviewedByLabel(question: Question) {
   return cleanText(question.reviewed_by);
+}
+
+export function isInternalReviewerLabel(label: string) {
+  return INTERNAL_REVIEWER_LABELS.has(label.toLowerCase().trim());
+}
+
+export function getReviewerDisplayLabel(question: Question) {
+  const reviewedBy = getReviewedByLabel(question);
+  if (!reviewedBy) return '';
+  if (isInternalReviewerLabel(reviewedBy)) return GENERIC_EDITORIAL_REVIEW_LABEL;
+  return reviewedBy;
 }
 
 export function isV2Answer(question: Question) {
