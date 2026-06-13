@@ -15,6 +15,10 @@
     "content:review-addiction": "node scripts/review-addiction-answers.mjs",
     "content:prepare-addiction-enrichment": "node scripts/prepare-addiction-enrichment-sources.mjs",
     "content:promote-enrichment": "node scripts/promote-enrichment-drafts.mjs",
+    "content:apply-enrichment": "node scripts/apply-enrichment.mjs",
+    "content:apply-addiction-batch-01": "node scripts/apply-enrichment.mjs --apply reports/enrichment-addiction/draft-answers/batch-01-drafts.json",
+    "env:sync": "node scripts/sync-local-env.mjs",
+    "env:check": "node scripts/check-local-env.mjs",
     "seo:priority": "node scripts/generate-indexation-priority.mjs",
     "seo:p1-sources": "node scripts/prepare-p1-enrichment-sources.mjs"
   },

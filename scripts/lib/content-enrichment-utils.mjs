@@ -1,6 +1,11 @@
 import { readFileSync } from 'node:fs';
+import {
+  loadLocalEnv,
+  resolveSupabaseConfig as resolveSupabaseConfigFromFiles,
+  ENV_PATHS,
+} from './supabase-env.mjs';
 
-export const ENV_PATH = '.vercel/.env.production.local';
+export const ENV_PATH = ENV_PATHS.vercelProduction;
 
 export function parseEnv(path) {
   return Object.fromEntries(
@@ -24,43 +29,9 @@ export function firstPresent(...values) {
   return values.find((value) => typeof value === 'string' && value.trim());
 }
 
-export function resolveSupabaseConfig({ requireWrite = false } = {}) {
-  const fileEnv = (() => {
-    try {
-      return parseEnv(ENV_PATH);
-    } catch {
-      return {};
-    }
-  })();
-
-  const serviceRoleKey = firstPresent(process.env.SUPABASE_SERVICE_ROLE_KEY, fileEnv.SUPABASE_SERVICE_ROLE_KEY);
-  const url = firstPresent(
-    process.env.SUPABASE_URL,
-    process.env.PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    fileEnv.SUPABASE_URL,
-    fileEnv.PUBLIC_SUPABASE_URL,
-    fileEnv.NEXT_PUBLIC_SUPABASE_URL
-  );
-  const key = firstPresent(
-    serviceRoleKey,
-    process.env.SUPABASE_ANON_KEY,
-    process.env.PUBLIC_SUPABASE_ANON_KEY,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    fileEnv.SUPABASE_ANON_KEY,
-    fileEnv.PUBLIC_SUPABASE_ANON_KEY,
-    fileEnv.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  );
-
-  if (!url || !key) {
-    throw new Error('Missing Supabase credentials. Set SUPABASE_URL and SUPABASE_ANON_KEY, or use .vercel/.env.production.local.');
-  }
-
-  if (requireWrite && !serviceRoleKey) {
-    throw new Error('Applying enrichment updates requires SUPABASE_SERVICE_ROLE_KEY.');
-  }
-
-  return { url, key, serviceRoleKey };
+export function resolveSupabaseConfig(options) {
+  loadLocalEnv();
+  return resolveSupabaseConfigFromFiles(options);
 }
 
 export function cleanText(value) {

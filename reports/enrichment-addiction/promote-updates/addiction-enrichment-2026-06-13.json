@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-13T23:35:21.818Z",
-  "mode": "dry-run",
+  "generated_at": "2026-06-13T23:41:39.952Z",
+  "mode": "applied-local",
   "campaign": "addiction-enrichment",
   "preserve_review": true,
   "draft_count": 15,
@@ -27,7 +27,7 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.192Z",
+      "content_enriched_at": "2026-06-13T23:41:37.633Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -37,7 +37,7 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.193Z",
+      "content_enriched_at": "2026-06-13T23:41:37.634Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -47,7 +47,7 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.193Z",
+      "content_enriched_at": "2026-06-13T23:41:37.635Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -57,7 +57,7 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.193Z",
+      "content_enriched_at": "2026-06-13T23:41:37.635Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -67,7 +67,7 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.193Z",
+      "content_enriched_at": "2026-06-13T23:41:37.635Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -77,7 +77,7 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.193Z",
+      "content_enriched_at": "2026-06-13T23:41:37.635Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -87,7 +87,7 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "content_enriched_at": "2026-06-13T23:41:37.635Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -97,7 +97,7 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "content_enriched_at": "2026-06-13T23:41:37.635Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -107,7 +107,7 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "content_enriched_at": "2026-06-13T23:41:37.635Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -117,7 +117,7 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "content_enriched_at": "2026-06-13T23:41:37.635Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -127,7 +127,7 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "content_enriched_at": "2026-06-13T23:41:37.635Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -137,7 +137,7 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "content_enriched_at": "2026-06-13T23:41:37.635Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -147,7 +147,7 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "content_enriched_at": "2026-06-13T23:41:37.635Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -157,7 +157,7 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "content_enriched_at": "2026-06-13T23:41:37.636Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -167,10 +167,12 @@
       "review_status": "reviewed",
       "reviewed_by": "david-k-gore-phd",
       "reviewed_at": "2026-03-13",
-      "content_enriched_at": "2026-06-13T23:35:21.194Z",
+      "content_enriched_at": "2026-06-13T23:41:37.636Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
     }
-  ]
+  ],
+  "apply_path": "local",
+  "report_path": "reports/enrichment-addiction/promote-updates/addiction-enrichment-2026-06-13.json"
 }
