@@ -300,7 +300,7 @@ const structuredData = {
             });
           }
 
-          if (link.closest('.trust-panel') && /^https?:\/\//.test(href)) {
+          if (link.closest('.answer-trust-panel') && /^https?:\/\//.test(href)) {
             window.deeperTrackEvent('source_ref_clicked', {
               link_label: label,
               outbound_domain: new URL(href).hostname,

@@ -30,7 +30,7 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStat
 
 {
   hasMeaningfulTrustContent ? (
-    <section class="signal-card trust-panel" aria-label="Editorial review information" data-ai-section="editorial-trust">
+    <section class="signal-card answer-trust-panel" aria-label="Editorial review information" data-ai-section="editorial-trust">
       <p class="sidebar-label">How this answer was reviewed</p>
 
       {reviewerProfile ? (
@@ -83,22 +83,26 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStat
 }
 
 <style>
-  .trust-panel .trust-reviewed-by,
-  .trust-panel .trust-credentials,
-  .trust-panel .trust-neutral {
+  .answer-trust-panel {
+    margin: 0 0 34px;
+  }
+
+  .answer-trust-panel .trust-reviewed-by,
+  .answer-trust-panel .trust-credentials,
+  .answer-trust-panel .trust-neutral {
     margin: 0 0 12px;
     color: rgba(255, 253, 249, 0.92);
     font-size: 0.92rem;
     line-height: 1.55;
   }
 
-  .trust-panel .trust-reviewed-by a {
+  .answer-trust-panel .trust-reviewed-by a {
     color: rgba(255, 253, 249, 0.98);
     text-decoration: underline;
     text-underline-offset: 2px;
   }
 
-  .trust-panel .trust-credentials {
+  .answer-trust-panel .trust-credentials {
     margin-top: -6px;
     color: rgba(255, 253, 249, 0.74);
     font-size: 0.86rem;
