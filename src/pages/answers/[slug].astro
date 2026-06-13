@@ -74,6 +74,7 @@ const articleId = `${answerUrl}#article`;
 const pageId = `${answerUrl}#webpage`;
 const shouldIndex = shouldIndexQuestion(question);
 const practitionerLink = getAnswerPractitionerLink(question.slug);
+const isAiMentalHealthAnswer = question.content_prompt_version === 'deeper-ai-concerns-sprint-v1';
 const reviewedBy = getReviewedByLabel(question);
 const reviewerDisplayLabel = getReviewerDisplayLabel(question);
 const sourceRefs = getSourceRefs(question);
@@ -271,6 +272,17 @@ const jsonLd = {
           <p>Browse the topic hub for more {category.toLowerCase()} answers.</p>
           <a class="text-link" href={categoryPath(category)}>Open topic hub</a>
         </section>
+
+        {
+          isAiMentalHealthAnswer && (
+            <section class="sidebar-card">
+              <p class="sidebar-label">AI concern hub</p>
+              <a class="sidebar-entity" href="/ai-mental-health/">AI mental health</a>
+              <p>Explore the full cluster on AI psychosis, chatbot dependency, AI companions, privacy, work anxiety, and safety boundaries.</p>
+              <a class="text-link" href="/ai-mental-health/">Open AI mental health hub</a>
+            </section>
+          )
+        }
 
         {
           practitionerLink && (

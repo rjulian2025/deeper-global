@@ -78,13 +78,22 @@ Optional GA4 KPI environment variables:
 
 The weekly GA4 Data API queries filter on GA4's `hostName` dimension so site KPIs exclude shared-property, preview, staging, or other noisy host traffic. If any GA4 env var is missing, or if the GA4 Data API request fails, the email still sends the intent rollup sections and includes a "site KPI data unavailable" note. If the Supabase intent rollup views have not been applied yet, the email still sends the site KPI section and includes an "intent rollup data unavailable" setup note.
 
+The report intentionally separates raw host-filtered GA4 KPIs from qualified/engaged traffic interpretation:
+
+- Raw site KPIs show GA4's aggregate active users, sessions, views, engagement, bounce rate, and duration without suppressing noisy traffic.
+- Qualified / engaged traffic shows aggregate-derived engaged sessions, non-direct sessions, organic/social/referral sessions, direct-session share, views per active user, engagement per session, and top country concentration.
+- Data quality / bot-noise flags highlight suspicious aggregate conditions instead of hiding them from the headline. Current thresholds flag direct sessions above 80%, top country share above 70%, engagement rate below 5%, average session duration below 5 seconds, views per active user near 1, and source/country combinations that look like concentrated direct bot or proxy traffic.
+- Top source/country combinations are included to make country, channel, and source concentration easier to interpret while staying aggregate-only.
+
+Use raw KPIs to understand what GA4 counted, and use qualified traffic plus data quality flags to judge whether the counted activity likely represents real audience intent. Do not cite raw site KPIs externally when bot/noise flags are present without explaining the quality caveat.
+
 Authorized manual testing:
 
 ```bash
 vercel curl "/api/reports/intent-email?dryRun=1" --deployment <deployment-url> -H "Authorization: Bearer $CRON_SECRET"
 ```
 
-The report currently includes aggregate GA4 site KPIs (active users, total users, sessions, page/screen views, engagement time, engagement rate, bounce rate when available, top pages, traffic sources/channels, and country/region distribution), top searched topics, top searched topics by region, no-result searches, care-navigation demand, and safety-sensitive aggregate signals. It does not include raw queries, raw GA4 user/session identifiers, or below-threshold intent location segments.
+The report currently includes aggregate GA4 site KPIs (active users, total users, sessions, engaged sessions, page/screen views, engagement time, engagement rate, bounce rate when available, top pages, traffic sources/channels, source/country combinations, country/region distribution, qualified traffic metrics, and data quality flags), top searched topics, top searched topics by region, no-result searches, care-navigation demand, and safety-sensitive aggregate signals. It does not include raw queries, raw GA4 user/session identifiers, or below-threshold intent location segments.
 
 ## Example Questions
 

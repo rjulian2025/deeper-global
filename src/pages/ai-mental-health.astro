@@ -104,8 +104,8 @@ const jsonLd = {
       '@type': 'CollectionPage',
       '@id': `${siteUrl('/ai-mental-health')}#collection`,
       url: siteUrl('/ai-mental-health'),
-      name: 'AI mental health questions and answers',
-      description: 'A curated Deeper Global hub for AI-related mental health concerns, including AI psychosis, chatbot dependency, teen AI use, AI job anxiety, and safety boundaries.',
+      name: 'AI mental health hub: AI psychosis, chatbot dependency, and safety',
+      description: 'A curated Deeper Global hub for AI-related mental health concerns, including AI psychosis, chatbot dependency, AI companions, teen AI use, job anxiety, deepfakes, and safety boundaries.',
       isPartOf: {
         '@id': websiteId(),
       },
@@ -120,13 +120,31 @@ const jsonLd = {
         })),
       },
     },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${siteUrl('/ai-mental-health')}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Deeper Global',
+          item: siteUrl(),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'AI mental health',
+          item: siteUrl('/ai-mental-health'),
+        },
+      ],
+    },
   ],
 };
 ---
 
 <BaseLayout
-  title="AI Mental Health Questions and Answers | Deeper Global"
-  description="Explore AI-related mental health answers about AI psychosis, chatbot dependency, AI companions, teen AI use, work anxiety, deepfakes, and crisis boundaries."
+  title="AI Mental Health Hub: Psychosis, Chatbots & Safety | Deeper Global"
+  description="Explore answers about AI psychosis, chatbot dependency, AI companions, teen AI use, work anxiety, deepfakes, privacy concerns, and crisis boundaries."
   canonicalPath="/ai-mental-health"
   jsonLd={jsonLd}
 >

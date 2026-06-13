@@ -13,7 +13,9 @@ const visibleCategories = categories.slice(0, 12);
 const featuredQuestion = questions[0];
 const featuredCategory = featuredQuestion ? displayCategory(featuredQuestion) : null;
 const structuredAnswerCount = questions.filter(isV2Answer).length;
-const aiAnswerCount = questions.filter((question) => question.content_prompt_version === 'deeper-ai-concerns-sprint-v1').length;
+const aiQuestions = questions.filter((question) => question.content_prompt_version === 'deeper-ai-concerns-sprint-v1');
+const aiAnswerCount = aiQuestions.length;
+const aiFeaturedQuestions = aiQuestions.slice(0, 3);
 const heroStats = [
   { value: questions.length ? questions.length.toLocaleString() : '1,000+', label: 'Vetted answers' },
   { value: categories.length ? categories.length.toLocaleString() : '38', label: 'Topic areas' },
@@ -203,6 +205,32 @@ const trendingQuestions = recentQuestions.slice(0, 4);
           </div>
         </section>
       )
+    }
+
+    {
+      aiAnswerCount ? (
+        <section class="section featured-section ai-discovery-section">
+          <div class="container featured-answer">
+            <div class="featured-question">
+              <p class="eyebrow">AI mental health</p>
+              <h2>Questions about AI, therapy, dependency, and safety.</h2>
+              <a class="button light" href="/ai-mental-health/">Open the AI mental health hub</a>
+            </div>
+            <div class="featured-summary">
+              <p class="eyebrow">New concern cluster</p>
+              <p>
+                Browse evidence-informed answers about AI psychosis, chatbot attachment, AI companions, teen use, work anxiety,
+                deepfakes, and when real-world support matters most.
+              </p>
+              <div class="featured-meta">
+                {aiFeaturedQuestions.map((question) => (
+                  <a class="pill" href={answerPath(question.slug)}>{truncate(getAnswerDisplayTitle(question), 44)}</a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null
     }
 
     <section class="section topic-section">

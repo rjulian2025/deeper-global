@@ -1,10 +1,18 @@
-import { createSign } from 'node:crypto';
+import { createHash, createSign } from 'node:crypto';
 
 const DEFAULT_REPORT_TO = 'rjulian@qvbrands.com';
 const REPORT_WINDOW_DAYS = 30;
 const DEFAULT_GA4_REPORT_HOSTNAME = 'www.deeper.global';
 const GA4_SCOPE = 'https://www.googleapis.com/auth/analytics.readonly';
 const GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token';
+const DATA_QUALITY_THRESHOLDS = {
+  directSessionShare: 0.8,
+  topCountryShare: 0.7,
+  engagementRate: 0.05,
+  averageSessionDurationSeconds: 5,
+  viewsPerActiveUser: 1.2,
+  suspiciousSourceCountryShare: 0.5,
+};
 
 function cleanText(value, fallback = '') {
   return typeof value === 'string' && value.trim() ? value.trim() : fallback;
@@ -211,6 +219,175 @@ function firstGa4MetricRow(payload, metricNames) {
   return parseGa4Rows(payload, metricNames)[0]?.metrics ?? {};
 }
 
+function safeRatio(numerator, denominator) {
+  return Number.isFinite(numerator) && Number.isFinite(denominator) && denominator > 0 ? numerator / denominator : null;
+}
+
+function sumGa4Metric(rows, metricName, filterFn = () => true) {
+  return rows.reduce((sum, row) => {
+    if (!filterFn(row)) return sum;
+    return sum + Number(row.metrics?.[metricName] ?? 0);
+  }, 0);
+}
+
+function sessionChannel(row) {
+  return cleanText(row.dimensions?.sessionDefaultChannelGroup, '(not set)');
+}
+
+function sessionSourceMedium(row) {
+  return cleanText(row.dimensions?.sessionSourceMedium, '(not set)');
+}
+
+function isDirectTraffic(row) {
+  const channel = sessionChannel(row).toLowerCase();
+  const sourceMedium = sessionSourceMedium(row).toLowerCase();
+
+  return channel === 'direct' || sourceMedium === '(direct) / (none)' || sourceMedium === '(direct)/(none)';
+}
+
+function isOrganicSocialReferral(row) {
+  return ['organic search', 'organic social', 'referral', 'organic video'].includes(sessionChannel(row).toLowerCase());
+}
+
+function viewsPerActiveUserFromMetrics(metrics) {
+  return safeRatio(Number(metrics?.screenPageViews ?? 0), Number(metrics?.activeUsers ?? 0));
+}
+
+function topCountryBySessions(countries) {
+  return [...countries].sort((a, b) => Number(b.metrics?.sessions ?? 0) - Number(a.metrics?.sessions ?? 0))[0] ?? null;
+}
+
+function isSuspiciousSourceCountryCombo(row, totalSessions) {
+  const sessions = Number(row.metrics?.sessions ?? 0);
+  const directShare = safeRatio(sessions, totalSessions);
+  const engagementRate = Number(row.metrics?.engagementRate ?? 0);
+  const averageSessionDuration = Number(row.metrics?.averageSessionDuration ?? 0);
+  const viewsPerActiveUser = viewsPerActiveUserFromMetrics(row.metrics);
+
+  return (
+    isDirectTraffic(row) &&
+    directShare !== null &&
+    directShare > DATA_QUALITY_THRESHOLDS.suspiciousSourceCountryShare &&
+    (engagementRate < DATA_QUALITY_THRESHOLDS.engagementRate ||
+      averageSessionDuration < DATA_QUALITY_THRESHOLDS.averageSessionDurationSeconds ||
+      (viewsPerActiveUser !== null && viewsPerActiveUser <= DATA_QUALITY_THRESHOLDS.viewsPerActiveUser))
+  );
+}
+
+function buildTrafficQuality({ summary, trafficSources, countries, sourceCountries }) {
+  const sessions = Number(summary.sessions ?? 0);
+  const activeUsers = Number(summary.activeUsers ?? 0);
+  const screenPageViews = Number(summary.screenPageViews ?? 0);
+  const directSessions = sumGa4Metric(trafficSources, 'sessions', isDirectTraffic);
+  const nonDirectSessions = Math.max(sessions - directSessions, 0);
+  const organicSocialReferralSessions = sumGa4Metric(trafficSources, 'sessions', isOrganicSocialReferral);
+  const topCountry = topCountryBySessions(countries);
+  const topCountrySessions = Number(topCountry?.metrics?.sessions ?? 0);
+  const suspiciousSourceCountry = sourceCountries.find((row) => isSuspiciousSourceCountryCombo(row, sessions));
+  const viewsPerActiveUser = safeRatio(screenPageViews, activeUsers);
+  const engagementRate = Number(summary.engagementRate ?? 0);
+  const averageSessionDuration = Number(summary.averageSessionDuration ?? 0);
+  const flags = [];
+
+  const directSessionShare = safeRatio(directSessions, sessions);
+  if (directSessionShare !== null && directSessionShare > DATA_QUALITY_THRESHOLDS.directSessionShare) {
+    flags.push({
+      severity: 'warning',
+      code: 'high_direct_share',
+      label: 'Direct sessions dominate traffic',
+      value: directSessionShare,
+      threshold: DATA_QUALITY_THRESHOLDS.directSessionShare,
+      detail: `${Math.round(directSessions).toLocaleString('en-US')} of ${Math.round(sessions).toLocaleString('en-US')} sessions are Direct.`,
+    });
+  }
+
+  const topCountryShare = safeRatio(topCountrySessions, sessions);
+  if (topCountry && topCountryShare !== null && topCountryShare > DATA_QUALITY_THRESHOLDS.topCountryShare) {
+    flags.push({
+      severity: 'warning',
+      code: 'high_country_concentration',
+      label: 'One country dominates traffic',
+      value: topCountryShare,
+      threshold: DATA_QUALITY_THRESHOLDS.topCountryShare,
+      detail: `${topCountry.dimensions.country} accounts for ${Math.round(topCountrySessions).toLocaleString('en-US')} sessions.`,
+    });
+  }
+
+  if (engagementRate < DATA_QUALITY_THRESHOLDS.engagementRate) {
+    flags.push({
+      severity: 'warning',
+      code: 'low_engagement_rate',
+      label: 'Engagement rate is very low',
+      value: engagementRate,
+      threshold: DATA_QUALITY_THRESHOLDS.engagementRate,
+      detail: 'GA4 engagement rate is below the bot/noise review threshold.',
+    });
+  }
+
+  if (averageSessionDuration < DATA_QUALITY_THRESHOLDS.averageSessionDurationSeconds) {
+    flags.push({
+      severity: 'warning',
+      code: 'short_sessions',
+      label: 'Average session duration is very short',
+      value: averageSessionDuration,
+      threshold: DATA_QUALITY_THRESHOLDS.averageSessionDurationSeconds,
+      detail: 'Very short visits are consistent with bot, proxy, or accidental traffic.',
+    });
+  }
+
+  if (viewsPerActiveUser !== null && viewsPerActiveUser <= DATA_QUALITY_THRESHOLDS.viewsPerActiveUser) {
+    flags.push({
+      severity: 'warning',
+      code: 'views_per_user_near_one',
+      label: 'Views per active user are near 1',
+      value: viewsPerActiveUser,
+      threshold: DATA_QUALITY_THRESHOLDS.viewsPerActiveUser,
+      detail: 'Most active users appear to view only one page.',
+    });
+  }
+
+  if (suspiciousSourceCountry) {
+    const country = suspiciousSourceCountry.dimensions.country;
+    const source = sessionSourceMedium(suspiciousSourceCountry);
+    const comboSessions = Number(suspiciousSourceCountry.metrics?.sessions ?? 0);
+
+    flags.push({
+      severity: 'warning',
+      code: 'suspicious_source_country_combo',
+      label: 'Top source/country combination looks bot-like',
+      value: safeRatio(comboSessions, sessions),
+      threshold: DATA_QUALITY_THRESHOLDS.suspiciousSourceCountryShare,
+      detail: `${country} / ${source} has ${Math.round(comboSessions).toLocaleString('en-US')} sessions with weak engagement signals.`,
+    });
+  }
+
+  return {
+    thresholds: DATA_QUALITY_THRESHOLDS,
+    rawSessions: sessions,
+    engagedSessions: Number(summary.engagedSessions ?? 0),
+    engagementRate,
+    directSessions,
+    directSessionShare,
+    nonDirectSessions,
+    nonDirectSessionShare: safeRatio(nonDirectSessions, sessions),
+    organicSocialReferralSessions,
+    organicSocialReferralSessionShare: safeRatio(organicSocialReferralSessions, sessions),
+    viewsPerActiveUser,
+    averageSessionDuration,
+    averageEngagementSecondsPerSession: safeRatio(Number(summary.userEngagementDuration ?? 0), sessions),
+    topCountry: topCountry
+      ? {
+          country: topCountry.dimensions.country,
+          region: topCountry.dimensions.region,
+          sessions: topCountrySessions,
+          sessionShare: topCountryShare,
+          activeUsers: Number(topCountry.metrics?.activeUsers ?? 0),
+        }
+      : null,
+    flags,
+  };
+}
+
 async function fetchSiteKpis(sinceDate) {
   const config = ga4Config();
   if (!config.ok) return { available: false, reason: config.reason, hostnames: config.hostnames };
@@ -229,11 +406,12 @@ async function fetchSiteKpis(sinceDate) {
       'sessions',
       'screenPageViews',
       'userEngagementDuration',
+      'engagedSessions',
       'engagementRate',
       'bounceRate',
       'averageSessionDuration',
     ];
-    const [summary, topPages, trafficSources, countries] = await Promise.all([
+    const [summary, topPages, trafficSources, countries, sourceCountries] = await Promise.all([
       runGa4Report({
         ...common,
         metrics: summaryMetrics,
@@ -249,31 +427,53 @@ async function fetchSiteKpis(sinceDate) {
       runGa4Report({
         ...common,
         dimensions: ['sessionDefaultChannelGroup', 'sessionSourceMedium'],
-        metrics: ['sessions', 'activeUsers', 'screenPageViews', 'engagementRate', 'bounceRate'],
-        limit: 10,
+        metrics: ['sessions', 'activeUsers', 'screenPageViews', 'engagedSessions', 'engagementRate', 'bounceRate', 'averageSessionDuration'],
+        limit: 100,
         orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
       }),
       runGa4Report({
         ...common,
         dimensions: ['country', 'region'],
         metrics: ['activeUsers', 'sessions', 'screenPageViews'],
-        limit: 10,
-        orderBys: [{ metric: { metricName: 'activeUsers' }, desc: true }],
+        limit: 25,
+        orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
+      }),
+      runGa4Report({
+        ...common,
+        dimensions: ['country', 'sessionDefaultChannelGroup', 'sessionSourceMedium'],
+        metrics: ['sessions', 'activeUsers', 'screenPageViews', 'engagedSessions', 'engagementRate', 'averageSessionDuration'],
+        limit: 100,
+        orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
       }),
     ]);
+    const summaryRow = firstGa4MetricRow(summary, summaryMetrics);
+    const trafficSourceRows = parseGa4Rows(
+      trafficSources,
+      ['sessions', 'activeUsers', 'screenPageViews', 'engagedSessions', 'engagementRate', 'bounceRate', 'averageSessionDuration'],
+      ['sessionDefaultChannelGroup', 'sessionSourceMedium']
+    );
+    const countryRows = parseGa4Rows(countries, ['activeUsers', 'sessions', 'screenPageViews'], ['country', 'region']);
+    const sourceCountryRows = parseGa4Rows(
+      sourceCountries,
+      ['sessions', 'activeUsers', 'screenPageViews', 'engagedSessions', 'engagementRate', 'averageSessionDuration'],
+      ['country', 'sessionDefaultChannelGroup', 'sessionSourceMedium']
+    );
 
     return {
       available: true,
       source: 'GA4 Data API',
       hostnames: config.hostnames,
-      summary: firstGa4MetricRow(summary, summaryMetrics),
+      summary: summaryRow,
       topPages: parseGa4Rows(topPages, ['screenPageViews', 'sessions', 'activeUsers', 'userEngagementDuration'], ['pagePath', 'pageTitle']),
-      trafficSources: parseGa4Rows(
-        trafficSources,
-        ['sessions', 'activeUsers', 'screenPageViews', 'engagementRate', 'bounceRate'],
-        ['sessionDefaultChannelGroup', 'sessionSourceMedium']
-      ),
-      countries: parseGa4Rows(countries, ['activeUsers', 'sessions', 'screenPageViews'], ['country', 'region']),
+      trafficSources: trafficSourceRows,
+      countries: countryRows,
+      sourceCountries: sourceCountryRows,
+      qualifiedTraffic: buildTrafficQuality({
+        summary: summaryRow,
+        trafficSources: trafficSourceRows,
+        countries: countryRows,
+        sourceCountries: sourceCountryRows,
+      }),
     };
   } catch (error) {
     console.error('site_kpi_report_unavailable', error);
@@ -387,6 +587,26 @@ function averageEngagementSeconds(summary) {
   return activeUsers > 0 ? totalEngagementSeconds / activeUsers : null;
 }
 
+function dataQualityFlagsHtml(flags) {
+  if (!flags?.length) return '<p>No automatic bot/noise flags crossed the current thresholds.</p>';
+
+  return `<ul>${flags
+    .map((flag) => {
+      return `<li><strong>${escapeHtml(flag.label)}:</strong> ${formatDataQualityFlagValue(flag)}. ${escapeHtml(flag.detail)}</li>`;
+    })
+    .join('')}</ul>`;
+}
+
+function formatDataQualityFlagValue(flag) {
+  if (flag.code === 'short_sessions') return formatDuration(flag.value);
+  if (flag.code === 'views_per_user_near_one') return Number.isFinite(flag.value) ? flag.value.toFixed(2) : 'n/a';
+  return formatPercent(flag.value);
+}
+
+function dataQualityFlagText(flag) {
+  return `- ${flag.label}: ${formatDataQualityFlagValue(flag)}. ${flag.detail}`;
+}
+
 function siteKpiHtml(siteKpis) {
   if (!siteKpis?.available) {
     const hostScope = siteKpis?.hostnames?.length ? ` Host filter: ${siteKpis.hostnames.map(escapeHtml).join(', ')}.` : '';
@@ -394,20 +614,42 @@ function siteKpiHtml(siteKpis) {
   }
 
   const summary = siteKpis.summary ?? {};
+  const qualified = siteKpis.qualifiedTraffic ?? {};
   const hostScope = siteKpis.hostnames?.length ? ` Host filter: ${siteKpis.hostnames.map(escapeHtml).join(', ')}.` : '';
 
   return `
     <p>Source: ${escapeHtml(siteKpis.source)}.${hostScope} Aggregate-only GA4 metrics; no raw user or session identifiers.</p>
+    <p><strong>Interpretation note:</strong> raw KPIs are not filtered for bot/noise signals. Use the qualified traffic and data quality sections below when judging real audience intent.</p>
+    <h3>Raw site KPIs</h3>
     <ul>
       <li><strong>Active users:</strong> ${formatInteger(summary.activeUsers)}</li>
       <li><strong>Total users:</strong> ${formatInteger(summary.totalUsers)}</li>
       <li><strong>Sessions:</strong> ${formatInteger(summary.sessions)}</li>
+      <li><strong>Engaged sessions:</strong> ${formatInteger(summary.engagedSessions)}</li>
       <li><strong>Page/screen views:</strong> ${formatInteger(summary.screenPageViews)}</li>
       <li><strong>Avg. engagement time per active user:</strong> ${formatDuration(averageEngagementSeconds(summary))}</li>
       <li><strong>Avg. session duration:</strong> ${formatDuration(summary.averageSessionDuration)}</li>
       <li><strong>Engagement rate:</strong> ${formatPercent(summary.engagementRate)}</li>
       <li><strong>Bounce rate:</strong> ${formatPercent(summary.bounceRate)}</li>
     </ul>
+
+    <h3>Qualified / engaged traffic</h3>
+    <ul>
+      <li><strong>Engaged sessions:</strong> ${formatInteger(qualified.engagedSessions)} (${formatPercent(qualified.engagementRate)} engagement rate)</li>
+      <li><strong>Non-direct sessions:</strong> ${formatInteger(qualified.nonDirectSessions)} (${formatPercent(qualified.nonDirectSessionShare)} of sessions)</li>
+      <li><strong>Organic/social/referral sessions:</strong> ${formatInteger(qualified.organicSocialReferralSessions)} (${formatPercent(qualified.organicSocialReferralSessionShare)} of sessions)</li>
+      <li><strong>Direct sessions:</strong> ${formatInteger(qualified.directSessions)} (${formatPercent(qualified.directSessionShare)} of sessions)</li>
+      <li><strong>Views per active user:</strong> ${Number.isFinite(qualified.viewsPerActiveUser) ? qualified.viewsPerActiveUser.toFixed(2) : 'n/a'}</li>
+      <li><strong>Avg. engagement per session:</strong> ${formatDuration(qualified.averageEngagementSecondsPerSession)}</li>
+      ${
+        qualified.topCountry
+          ? `<li><strong>Top country:</strong> ${escapeHtml(qualified.topCountry.country)} — ${formatInteger(qualified.topCountry.sessions)} sessions (${formatPercent(qualified.topCountry.sessionShare)})</li>`
+          : ''
+      }
+    </ul>
+
+    <h3>Data quality / bot-noise flags</h3>
+    ${dataQualityFlagsHtml(qualified.flags)}
 
     <h3>Top pages</h3>
     ${listHtml(siteKpis.topPages ?? [], (item) => {
@@ -416,8 +658,13 @@ function siteKpiHtml(siteKpis) {
     })}
 
     <h3>Traffic sources / channels</h3>
-    ${listHtml(siteKpis.trafficSources ?? [], (item) => {
-      return `${escapeHtml(item.dimensions.sessionDefaultChannelGroup)} — ${escapeHtml(item.dimensions.sessionSourceMedium)}: <strong>${formatInteger(item.metrics.sessions)}</strong> sessions, ${formatPercent(item.metrics.engagementRate)} engagement`;
+    ${listHtml((siteKpis.trafficSources ?? []).slice(0, 10), (item) => {
+      return `${escapeHtml(item.dimensions.sessionDefaultChannelGroup)} — ${escapeHtml(item.dimensions.sessionSourceMedium)}: <strong>${formatInteger(item.metrics.sessions)}</strong> sessions, ${formatInteger(item.metrics.engagedSessions)} engaged, ${formatPercent(item.metrics.engagementRate)} engagement`;
+    })}
+
+    <h3>Top source / country combinations</h3>
+    ${listHtml((siteKpis.sourceCountries ?? []).slice(0, 10), (item) => {
+      return `${escapeHtml(item.dimensions.country)} — ${escapeHtml(item.dimensions.sessionDefaultChannelGroup)} / ${escapeHtml(item.dimensions.sessionSourceMedium)}: <strong>${formatInteger(item.metrics.sessions)}</strong> sessions, ${formatPercent(item.metrics.engagementRate)} engagement, ${formatDuration(item.metrics.averageSessionDuration)} avg. session`;
     })}
 
     <h3>Country / region distribution</h3>
@@ -488,17 +735,39 @@ function reportHtml(report) {
 
 function reportText(report) {
   const siteKpis = report.siteKpis;
+  const qualified = siteKpis?.qualifiedTraffic ?? {};
   const siteKpiLines = siteKpis?.available
     ? [
         'Site KPIs:',
         ...(siteKpis.hostnames?.length ? [`- Host filter: ${siteKpis.hostnames.join(', ')}`] : []),
+        '- Raw KPIs are not filtered for bot/noise signals; use qualified traffic and data quality flags for interpretation.',
         `- Active users: ${formatInteger(siteKpis.summary?.activeUsers)}`,
         `- Total users: ${formatInteger(siteKpis.summary?.totalUsers)}`,
         `- Sessions: ${formatInteger(siteKpis.summary?.sessions)}`,
+        `- Engaged sessions: ${formatInteger(siteKpis.summary?.engagedSessions)}`,
         `- Page/screen views: ${formatInteger(siteKpis.summary?.screenPageViews)}`,
         `- Avg. engagement time per active user: ${formatDuration(averageEngagementSeconds(siteKpis.summary))}`,
+        `- Avg. session duration: ${formatDuration(siteKpis.summary?.averageSessionDuration)}`,
         `- Engagement rate: ${formatPercent(siteKpis.summary?.engagementRate)}`,
         `- Bounce rate: ${formatPercent(siteKpis.summary?.bounceRate)}`,
+        '',
+        'Qualified / engaged traffic:',
+        `- Engaged sessions: ${formatInteger(qualified.engagedSessions)} (${formatPercent(qualified.engagementRate)} engagement rate)`,
+        `- Non-direct sessions: ${formatInteger(qualified.nonDirectSessions)} (${formatPercent(qualified.nonDirectSessionShare)} of sessions)`,
+        `- Organic/social/referral sessions: ${formatInteger(qualified.organicSocialReferralSessions)} (${formatPercent(qualified.organicSocialReferralSessionShare)} of sessions)`,
+        `- Direct sessions: ${formatInteger(qualified.directSessions)} (${formatPercent(qualified.directSessionShare)} of sessions)`,
+        `- Views per active user: ${Number.isFinite(qualified.viewsPerActiveUser) ? qualified.viewsPerActiveUser.toFixed(2) : 'n/a'}`,
+        `- Avg. engagement per session: ${formatDuration(qualified.averageEngagementSecondsPerSession)}`,
+        ...(qualified.topCountry
+          ? [
+              `- Top country: ${qualified.topCountry.country} — ${formatInteger(qualified.topCountry.sessions)} sessions (${formatPercent(
+                qualified.topCountry.sessionShare
+              )})`,
+            ]
+          : []),
+        '',
+        'Data quality / bot-noise flags:',
+        ...(qualified.flags?.length ? qualified.flags.map(dataQualityFlagText) : ['- No automatic bot/noise flags crossed the current thresholds.']),
         '',
         'Top pages:',
         ...(siteKpis.topPages ?? []).map(
@@ -506,9 +775,19 @@ function reportText(report) {
         ),
         '',
         'Traffic sources / channels:',
-        ...(siteKpis.trafficSources ?? []).map(
+        ...(siteKpis.trafficSources ?? []).slice(0, 10).map(
           (item) =>
-            `- ${item.dimensions.sessionDefaultChannelGroup} / ${item.dimensions.sessionSourceMedium}: ${formatInteger(item.metrics.sessions)} sessions`
+            `- ${item.dimensions.sessionDefaultChannelGroup} / ${item.dimensions.sessionSourceMedium}: ${formatInteger(
+              item.metrics.sessions
+            )} sessions, ${formatInteger(item.metrics.engagedSessions)} engaged, ${formatPercent(item.metrics.engagementRate)} engagement`
+        ),
+        '',
+        'Top source / country combinations:',
+        ...(siteKpis.sourceCountries ?? []).slice(0, 10).map(
+          (item) =>
+            `- ${item.dimensions.country} / ${item.dimensions.sessionDefaultChannelGroup} / ${item.dimensions.sessionSourceMedium}: ${formatInteger(
+              item.metrics.sessions
+            )} sessions, ${formatPercent(item.metrics.engagementRate)} engagement, ${formatDuration(item.metrics.averageSessionDuration)} avg. session`
         ),
         '',
         'Country / region distribution:',
@@ -550,6 +829,10 @@ function reportText(report) {
   return lines.join('\n');
 }
 
+function emailPayloadHash(payload) {
+  return createHash('sha256').update(JSON.stringify(payload)).digest('hex').slice(0, 16);
+}
+
 async function sendEmail(report) {
   const apiKey = process.env.RESEND_API_KEY;
   const from = cleanText(process.env.REPORT_EMAIL_FROM);
@@ -559,28 +842,29 @@ async function sendEmail(report) {
   if (!from) throw new Error('Missing REPORT_EMAIL_FROM.');
 
   const subject = `Deeper Global intent report — ${new Date().toISOString().slice(0, 10)}`;
+  const payload = {
+    from,
+    to: [to],
+    subject,
+    html: reportHtml(report),
+    text: reportText(report),
+  };
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
-      'Idempotency-Key': `intent-report/${new Date().toISOString().slice(0, 10)}`,
+      'Idempotency-Key': `intent-report/${new Date().toISOString().slice(0, 10)}/${emailPayloadHash(payload)}`,
     },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      subject,
-      html: reportHtml(report),
-      text: reportText(report),
-    }),
+    body: JSON.stringify(payload),
   });
 
-  const payload = await response.json().catch(() => ({}));
+  const resendPayload = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(`Resend send failed: ${payload?.message ?? response.statusText}`);
+    throw new Error(`Resend send failed: ${resendPayload?.message ?? response.statusText}`);
   }
 
-  return payload;
+  return resendPayload;
 }
 
 export default async function handler(req, res) {
