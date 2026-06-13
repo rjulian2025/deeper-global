@@ -4,6 +4,7 @@ import EmptyState from '@/components/EmptyState.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { answerPath, categoryPath, displayCategory, formatDate, getAnswerDisplayTitle, getAnswerSummary, getCategorySummaries, truncate } from '@/lib/content';
 import { getQuestions } from '@/lib/supabase';
+import { isV2Answer } from '@/lib/trust';
 
 const questions = await getQuestions();
 const recentQuestions = questions.slice(0, 6);
@@ -11,10 +12,11 @@ const categories = getCategorySummaries(questions);
 const visibleCategories = categories.slice(0, 12);
 const featuredQuestion = questions[0];
 const featuredCategory = featuredQuestion ? displayCategory(featuredQuestion) : null;
+const structuredAnswerCount = questions.filter(isV2Answer).length;
 const heroStats = [
   { value: questions.length ? questions.length.toLocaleString() : '1,000+', label: 'Vetted answers' },
   { value: categories.length ? categories.length.toLocaleString() : '38', label: 'Topic areas' },
-  { value: 'Citable', label: 'Structured answers' },
+  { value: structuredAnswerCount ? structuredAnswerCount.toLocaleString() : 'Citable', label: 'Structured answers' },
 ];
 const trendingQuestions = recentQuestions.slice(0, 4);
 ---

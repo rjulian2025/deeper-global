@@ -10,6 +10,7 @@
     "check": "astro build",
     "audit:authority": "node scripts/audit-authority-data.mjs",
     "content:audit-candidates": "node scripts/audit-content-candidates.mjs",
+    "content:publish-phase-1b": "node scripts/publish-phase-1b-drafts.mjs",
     "seo:priority": "node scripts/generate-indexation-priority.mjs",
     "seo:p1-sources": "node scripts/prepare-p1-enrichment-sources.mjs"
   },
