@@ -13,6 +13,8 @@
     "content:publish-ai-sprint": "node scripts/publish-phase-1b-drafts.mjs --campaign ai-sprint",
     "content:publish-phase-1b": "node scripts/publish-phase-1b-drafts.mjs",
     "content:review-addiction": "node scripts/review-addiction-answers.mjs",
+    "content:prepare-addiction-enrichment": "node scripts/prepare-addiction-enrichment-sources.mjs",
+    "content:promote-enrichment": "node scripts/promote-enrichment-drafts.mjs",
     "seo:priority": "node scripts/generate-indexation-priority.mjs",
     "seo:p1-sources": "node scripts/prepare-p1-enrichment-sources.mjs"
   },
