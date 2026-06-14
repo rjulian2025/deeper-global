@@ -1,0 +1,178 @@
+{
+  "generated_at": "2026-06-14T00:01:51.844Z",
+  "mode": "applied-local",
+  "campaign": "enrichment",
+  "preserve_review": true,
+  "draft_count": 15,
+  "slugs": [
+    "how-do-i-deal-with-anxiety-about-my-firs-185759-044",
+    "how-do-i-deal-with-fear-of-hell-after-le-181083-036",
+    "how-do-i-deal-with-feeling-disconnected-from-my-o9p4q2",
+    "how-do-i-deal-with-feeling-like-im-behind-in-177941-017",
+    "how-do-i-deal-with-feeling-overwhelmed-by-my-v9w3x7",
+    "how-do-i-deal-with-side-effects-from-psy-181083-065",
+    "how-do-i-deal-with-trauma-triggers-in-ev-190219-011",
+    "how-do-i-help-my-teenager-with-anxiety-without-mak-187459-001",
+    "how-do-i-know-if-i-have-ptsd-or-just-nor-181288-027",
+    "how-do-i-know-if-i-have-trauma-from-my-c-190974-001",
+    "how-do-i-know-if-im-in-an-emotionally-ab-177940-025",
+    "how-do-i-reconnect-with-my-spiritual-beliefs-after-e9f5g2",
+    "how-do-i-know-if-microdosing-psychedelics-is-a3b7c2",
+    "how-do-i-know-if-my-psychiatric-medicati-181083-062",
+    "how-do-i-know-if-psychedelics-could-help-with-my-depression-h7k3m9"
+  ],
+  "updates": [
+    {
+      "slug": "how-do-i-deal-with-anxiety-about-my-firs-185759-044",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.946Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-deal-with-fear-of-hell-after-le-181083-036",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.947Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-deal-with-feeling-disconnected-from-my-o9p4q2",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.948Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-deal-with-feeling-like-im-behind-in-177941-017",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.948Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-deal-with-feeling-overwhelmed-by-my-v9w3x7",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.948Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-deal-with-side-effects-from-psy-181083-065",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.948Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-deal-with-trauma-triggers-in-ev-190219-011",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.948Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-help-my-teenager-with-anxiety-without-mak-187459-001",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.948Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-know-if-i-have-ptsd-or-just-nor-181288-027",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.948Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-know-if-i-have-trauma-from-my-c-190974-001",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.948Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-know-if-im-in-an-emotionally-ab-177940-025",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.948Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-reconnect-with-my-spiritual-beliefs-after-e9f5g2",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.948Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-know-if-microdosing-psychedelics-is-a3b7c2",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.948Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-know-if-my-psychiatric-medicati-181083-062",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.949Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    },
+    {
+      "slug": "how-do-i-know-if-psychedelics-could-help-with-my-depression-h7k3m9",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "content_enriched_at": "2026-06-14T00:01:49.949Z",
+      "section_count": 3,
+      "takeaway_count": 4,
+      "source_ref_count": 2
+    }
+  ],
+  "apply_path": "local",
+  "report_path": "reports/enrichment-corpus/promote-updates/enrichment-2026-06-14.json"
+}
