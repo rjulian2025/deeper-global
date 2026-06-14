@@ -30,6 +30,7 @@
     "content:apply-corpus-batch-13": "node scripts/apply-enrichment.mjs --apply --campaign enrichment reports/enrichment-corpus/draft-answers/batch-13-drafts.json",
     "content:apply-corpus-batch-14": "node scripts/apply-enrichment.mjs --apply --campaign enrichment reports/enrichment-corpus/draft-answers/batch-14-drafts.json",
     "content:apply-corpus-batch-15": "node scripts/apply-enrichment.mjs --apply --campaign enrichment reports/enrichment-corpus/draft-answers/batch-15-drafts.json",
+    "content:apply-corpus-batch-16": "node scripts/apply-enrichment.mjs --apply --campaign enrichment reports/enrichment-corpus/draft-answers/batch-16-drafts.json",
     "content:promote-enrichment": "node scripts/promote-enrichment-drafts.mjs",
     "content:apply-enrichment": "node scripts/apply-enrichment.mjs",
     "content:apply-addiction-batch-01": "node scripts/apply-enrichment.mjs --apply reports/enrichment-addiction/draft-answers/batch-01-drafts.json",

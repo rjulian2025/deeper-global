@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-14T00:57:02.431Z",
+  "generated_at": "2026-06-14T01:00:41.693Z",
   "mode": "applied-local",
   "campaign": "enrichment",
   "preserve_review": true,
@@ -37,7 +37,7 @@
       "review_status": "draft",
       "reviewed_by": "kenneth-w-christian-phd",
       "reviewed_at": "2026-06-13",
-      "content_enriched_at": "2026-06-14T00:57:00.765Z",
+      "content_enriched_at": "2026-06-14T01:00:39.824Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -47,7 +47,7 @@
       "review_status": "draft",
       "reviewed_by": "kenneth-w-christian-phd",
       "reviewed_at": "2026-06-13",
-      "content_enriched_at": "2026-06-14T00:57:00.766Z",
+      "content_enriched_at": "2026-06-14T01:00:39.825Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -57,7 +57,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.766Z",
+      "content_enriched_at": "2026-06-14T01:00:39.825Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -67,7 +67,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.767Z",
+      "content_enriched_at": "2026-06-14T01:00:39.826Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -77,7 +77,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.768Z",
+      "content_enriched_at": "2026-06-14T01:00:39.826Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -87,7 +87,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.768Z",
+      "content_enriched_at": "2026-06-14T01:00:39.826Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -97,7 +97,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.768Z",
+      "content_enriched_at": "2026-06-14T01:00:39.826Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -107,7 +107,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.768Z",
+      "content_enriched_at": "2026-06-14T01:00:39.826Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -117,7 +117,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.768Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -127,7 +127,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.768Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -137,7 +137,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.768Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -147,7 +147,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.768Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -157,7 +157,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.768Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -167,7 +167,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.768Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -177,7 +177,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.768Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -187,7 +187,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.769Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -197,7 +197,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.769Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -207,7 +207,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.769Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -217,7 +217,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.769Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -227,7 +227,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.769Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -237,7 +237,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.769Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -247,7 +247,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.769Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -257,7 +257,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.769Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -267,7 +267,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.770Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
@@ -277,7 +277,7 @@
       "review_status": "draft",
       "reviewed_by": null,
       "reviewed_at": null,
-      "content_enriched_at": "2026-06-14T00:57:00.770Z",
+      "content_enriched_at": "2026-06-14T01:00:39.827Z",
       "section_count": 3,
       "takeaway_count": 4,
       "source_ref_count": 2
