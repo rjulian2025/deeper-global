@@ -1,0 +1,833 @@
+{
+  "generated_at": "2026-06-14T01:45:08.072Z",
+  "mode": "applied",
+  "target_score": 94,
+  "targets_found": 58,
+  "patches_prepared": 58,
+  "applied_count": 58,
+  "skipped": [],
+  "before": {
+    "94": 58,
+    "100": 1041,
+    "other": 0
+  },
+  "after": {
+    "94": 0,
+    "100": 1099,
+    "other": 0
+  },
+  "patches": [
+    {
+      "id": "f61e63ea-38da-4151-a1f2-c44ac26e94bb",
+      "slug": "difference-between-stress-and-anxiety",
+      "question": "How can I tell the difference between stress and anxiety?",
+      "category": "Anxiety & Stress",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Coping with Stress",
+        "url": "https://www.cdc.gov/mental-health/caring-for-yourself/coping-with-stress/index.html",
+        "publisher": "CDC",
+        "note": "Supports stress management and when to seek help."
+      }
+    },
+    {
+      "id": "fcff0a85-13f3-465d-8906-18864178de8c",
+      "slug": "what-to-do-when-anxious-for-no-clear-reason",
+      "question": "What can I do when I feel anxious for no clear reason?",
+      "category": "Anxiety & Stress",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Coping with Stress",
+        "url": "https://www.cdc.gov/mental-health/caring-for-yourself/coping-with-stress/index.html",
+        "publisher": "CDC",
+        "note": "Supports stress management and when to seek help."
+      }
+    },
+    {
+      "id": "bff2668f-11d9-448a-a229-4ca93508a637",
+      "slug": "why-do-i-overthink-every-conversation-after-it-happens",
+      "question": "Why do I overthink every conversation after it happens?",
+      "category": "Anxiety & Stress",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Coping with Stress",
+        "url": "https://www.cdc.gov/mental-health/caring-for-yourself/coping-with-stress/index.html",
+        "publisher": "CDC",
+        "note": "Supports stress management and when to seek help."
+      }
+    },
+    {
+      "id": "a3625f49-195a-4cc5-9c4b-42e8c499d879",
+      "slug": "can-chronic-stress-affect-my-mental-health",
+      "question": "Can chronic stress affect my mental health?",
+      "category": "Anxiety & Stress",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Coping with Stress",
+        "url": "https://www.cdc.gov/mental-health/caring-for-yourself/coping-with-stress/index.html",
+        "publisher": "CDC",
+        "note": "Supports stress management and when to seek help."
+      }
+    },
+    {
+      "id": "decbea77-6a45-405b-9e95-60532dd6af2e",
+      "slug": "bring-up-hard-topic-without-starting-fight",
+      "question": "How do I bring up a hard topic without starting a fight?",
+      "category": "Communication & Conflict",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Mental Health",
+        "url": "https://medlineplus.gov/mentalhealth.html",
+        "publisher": "MedlinePlus",
+        "note": "Supports general mental health education and help-seeking."
+      }
+    },
+    {
+      "id": "feb92937-e514-4ad7-8dd2-47d3f206dcd2",
+      "slug": "what-to-do-when-someone-shuts-down-during-conflict",
+      "question": "What should I do when someone shuts down during conflict?",
+      "category": "Communication & Conflict",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Mental Health",
+        "url": "https://medlineplus.gov/mentalhealth.html",
+        "publisher": "MedlinePlus",
+        "note": "Supports general mental health education and help-seeking."
+      }
+    },
+    {
+      "id": "bf99327a-654a-4bd2-a503-a594a2b5fbce",
+      "slug": "how-to-apologize-to-repair-trust",
+      "question": "How can I apologize in a way that actually repairs trust?",
+      "category": "Communication & Conflict",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Mental Health",
+        "url": "https://medlineplus.gov/mentalhealth.html",
+        "publisher": "MedlinePlus",
+        "note": "Supports general mental health education and help-seeking."
+      }
+    },
+    {
+      "id": "9a554bec-b175-4bd3-b3a0-12ac00e9ecdf",
+      "slug": "why-do-i-get-defensive-even-when-they-have-a-point",
+      "question": "Why do I get defensive even when I know the other person has a point?",
+      "category": "Communication & Conflict",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Mental Health",
+        "url": "https://medlineplus.gov/mentalhealth.html",
+        "publisher": "MedlinePlus",
+        "note": "Supports general mental health education and help-seeking."
+      }
+    },
+    {
+      "id": "dddb528a-d0f0-4979-9915-18f60f06c31b",
+      "slug": "set-a-boundary-without-sounding-harsh",
+      "question": "How do I set a boundary without sounding harsh?",
+      "category": "Communication & Conflict",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Mental Health",
+        "url": "https://medlineplus.gov/mentalhealth.html",
+        "publisher": "MedlinePlus",
+        "note": "Supports general mental health education and help-seeking."
+      }
+    },
+    {
+      "id": "27c7afc3-193c-4296-a190-34a913794de5",
+      "slug": "why-do-i-feel-numb-instead-of-sad",
+      "question": "Why do I feel numb instead of sad?",
+      "category": "Depression",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "cdfc1817-7c3f-41fa-a742-8ea171c5c131",
+      "slug": "why-does-depression-come-back-after-feeling-better",
+      "question": "Why does depression come back after I start feeling better?",
+      "category": "Depression",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "0daf3668-4678-483a-922a-faa3a7d8e9b9",
+      "slug": "what-if-my-child-does-not-want-to-talk-about-feelings",
+      "question": "What should I do if my child does not want to talk about their feelings?",
+      "category": "Family & Parenting",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Caring for Your Mental Health",
+        "url": "https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health",
+        "publisher": "NIMH",
+        "note": "Supports self-care and when to seek professional help."
+      }
+    },
+    {
+      "id": "1df5d067-a0bc-4167-ad09-fd45a78c2fc5",
+      "slug": "how-to-co-parent-with-someone-i-do-not-trust",
+      "question": "How do I co-parent with someone I do not trust?",
+      "category": "Family & Parenting",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Caring for Your Mental Health",
+        "url": "https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health",
+        "publisher": "NIMH",
+        "note": "Supports self-care and when to seek professional help."
+      }
+    },
+    {
+      "id": "5c77dde7-ae2d-4169-b8b8-e9f2a1592a71",
+      "slug": "repair-relationship-with-adult-child",
+      "question": "How can I repair my relationship with my adult child?",
+      "category": "Family & Parenting",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Caring for Your Mental Health",
+        "url": "https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health",
+        "publisher": "NIMH",
+        "note": "Supports self-care and when to seek professional help."
+      }
+    },
+    {
+      "id": "fdb318ba-5480-481f-a33d-0b6eba858350",
+      "slug": "what-should-parents-do-when-siblings-fight-constantly",
+      "question": "What should parents do when siblings fight constantly?",
+      "category": "Family & Parenting",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Mental Health",
+        "url": "https://medlineplus.gov/mentalhealth.html",
+        "publisher": "MedlinePlus",
+        "note": "Supports general mental health education and help-seeking."
+      }
+    },
+    {
+      "id": "042d9590-19d9-4fa8-a58a-9a85cba40ea2",
+      "slug": "what-does-it-mean-to-take-care-of-your-mental-health",
+      "question": "What does it mean to take care of your mental health?",
+      "category": "General Mental Health",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "17b0e8de-eeaa-4d69-9bac-0a42dc98e2d4",
+      "slug": "when-should-i-talk-to-someone-about-my-mental-health",
+      "question": "When should I talk to someone about my mental health?",
+      "category": "General Mental Health",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "88542f02-b4b1-4ddb-b4d6-0ee73d09df3a",
+      "slug": "can-mental-health-symptoms-be-physical",
+      "question": "Can mental health symptoms be physical?",
+      "category": "General Mental Health",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "ddfb8676-7c1f-4694-bd0f-b648ec55ee9f",
+      "slug": "need-therapy-or-more-support-from-friends",
+      "question": "How do I know if I need therapy or just more support from friends?",
+      "category": "General Mental Health",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Caring for Your Mental Health",
+        "url": "https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health",
+        "publisher": "NIMH",
+        "note": "Supports self-care and when to seek professional help."
+      }
+    },
+    {
+      "id": "736bf9b9-4cd2-4f34-a6b8-67b91401fcef",
+      "slug": "why-do-i-feel-emotionally-exhausted-all-the-time",
+      "question": "Why do I feel emotionally exhausted all the time?",
+      "category": "General Mental Health",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Depression",
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "publisher": "NIMH",
+        "note": "Supports understanding depression symptoms and treatment options."
+      }
+    },
+    {
+      "id": "f5bf947e-36e7-4b69-b11e-e65c5c0f1b2f",
+      "slug": "why-does-grief-come-in-waves",
+      "question": "Why does grief come in waves?",
+      "category": "Grief & Loss",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Coping with Grief and Loss",
+        "url": "https://www.nimh.nih.gov/health/publications/coping-with-grief-and-loss",
+        "publisher": "NIMH",
+        "note": "Supports understanding grief as a personal, non-linear process."
+      }
+    },
+    {
+      "id": "9015689e-41c5-47f9-9e49-ab21e8fffdfa",
+      "slug": "is-it-normal-to-feel-angry-after-someone-dies",
+      "question": "Is it normal to feel angry after someone dies?",
+      "category": "Grief & Loss",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "Coping with Grief and Loss",
+        "url": "https://www.nimh.nih.gov/health/publications/coping-with-grief-and-loss",
+        "publisher": "NIMH",
+        "note": "Supports understanding grief as a personal, non-linear process."
+      }
+    },
+    {
+      "id": "4939a867-f3de-4bca-bfa3-3363e97c8b9f",
+      "slug": "what-is-ai-psychosis-and-is-it-a-real-diagnosis",
+      "question": "What is AI psychosis and is it a real diagnosis?",
+      "category": "General Mental Health",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "f0ee5173-e394-473e-b8c0-5d9d099d51d0",
+      "slug": "how-to-tell-if-ai-conversation-is-making-me-paranoid",
+      "question": "How can I tell if an AI conversation is making me paranoid?",
+      "category": "Anxiety & Stress",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "1634696c-9082-41a7-b190-c9dfbf5e899d",
+      "slug": "what-if-ai-chatbot-says-i-have-a-special-mission",
+      "question": "What should I do if an AI chatbot is telling me I have a special mission?",
+      "category": "General Mental Health",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "26b682ea-6856-4fd6-b42b-7ff26685aa48",
+      "slug": "what-if-i-think-an-ai-chatbot-is-sentient",
+      "question": "What should I do if I think an AI chatbot is sentient?",
+      "category": "General Mental Health",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "ae120bcd-ca42-4e8e-b020-5fd3f0f76a75",
+      "slug": "why-keep-going-back-to-ai-even-when-it-feels-worse",
+      "question": "Why do I keep going back to AI even when it makes me feel worse?",
+      "category": "Anxiety & Stress",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "86143b60-7204-4dae-9389-1cc055129eb9",
+      "slug": "take-a-break-from-ai-without-feeling-abandoned",
+      "question": "How can I take a break from AI without feeling abandoned?",
+      "category": "Loneliness & Isolation",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "b0aac548-f970-404e-888b-d78b1aa16441",
+      "slug": "is-asking-ai-for-reassurance-making-anxiety-worse",
+      "question": "Is asking AI for reassurance making my anxiety worse?",
+      "category": "Anxiety & Stress",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "35432505-7046-4a35-b179-6d5abad92882",
+      "slug": "how-to-stop-checking-ai-for-every-decision",
+      "question": "How do I stop checking AI for every decision?",
+      "category": "Identity & Self-Worth",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "b88a3917-dce4-4820-a740-707a7835144b",
+      "slug": "why-ai-companion-feels-more-comforting-than-real-people",
+      "question": "Why does my AI companion feel more comforting than real people?",
+      "category": "Loneliness & Isolation",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "d39b0457-e383-4e09-a05f-df997d14d518",
+      "slug": "is-it-unhealthy-to-prefer-talking-to-ai-over-friends",
+      "question": "Is it unhealthy to prefer talking to AI over friends?",
+      "category": "Relationships & Communication",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "5eb5897a-9644-40bc-aa0d-9fed2713a25a",
+      "slug": "what-if-my-partner-is-attached-to-an-ai-companion",
+      "question": "What if my partner is emotionally attached to an AI companion?",
+      "category": "Relationships & Divorce",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "c2c0ee45-43de-4cfa-b997-e4b976ef90da",
+      "slug": "is-it-okay-to-use-ai-to-talk-to-someone-who-died",
+      "question": "Is it okay to use AI to talk to someone who died?",
+      "category": "Grief & Loss",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "4933c4cb-3dab-4fe1-bb5c-e6d1dd086c41",
+      "slug": "should-i-tell-my-therapist-how-much-i-use-ai",
+      "question": "Should I tell my therapist how much I use AI for emotional support?",
+      "category": "Therapy Navigation",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "34a9b274-f36d-4674-88a9-a39e94378ba0",
+      "slug": "should-parents-limit-ai-companion-use-for-teens",
+      "question": "Should parents limit AI companion use for teens?",
+      "category": "Teen-Specific Questions",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "c356d169-2775-439e-9c26-492b58349476",
+      "slug": "what-if-my-child-says-ai-is-their-best-friend",
+      "question": "What should I do if my child says an AI is their best friend?",
+      "category": "Parenting",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "31c3f339-73cc-4704-bb99-1ca3955bc2f8",
+      "slug": "how-to-talk-to-teenager-about-ai-relationships",
+      "question": "How do I talk to my teenager about AI relationships?",
+      "category": "Teen-Specific Questions",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "eeb6ec3f-c62d-4a1e-91c0-a2fec9f6ddd8",
+      "slug": "why-am-i-anxious-about-ai-replacing-my-job",
+      "question": "Why am I so anxious about AI replacing my job?",
+      "category": "Work & Burnout",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "e449fadb-dc16-4a10-b676-164a795e1e31",
+      "slug": "why-ai-at-work-makes-me-feel-less-in-control",
+      "question": "Why does AI at work make me feel less in control?",
+      "category": "Work & Burnout",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "2dbac3c4-c752-440f-8a13-ce571c428d6d",
+      "slug": "how-managers-can-talk-about-ai-without-increasing-anxiety",
+      "question": "How can managers talk about AI without increasing employee anxiety?",
+      "category": "Work & Burnout",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "f278337a-b677-4289-9ebe-e97ef38b3f0a",
+      "slug": "stay-mentally-healthy-while-learning-ai-tools-for-work",
+      "question": "How do I stay mentally healthy while learning AI tools for work?",
+      "category": "Work & Burnout",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "928e961e-fe6b-45c1-9420-6e5fe9b60f8b",
+      "slug": "why-ai-makes-me-question-what-makes-me-human",
+      "question": "Why does AI make me question what makes me human?",
+      "category": "Identity & Self-Worth",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "1a23cd6b-4c42-408e-bdd3-2d3ab7b60519",
+      "slug": "why-ai-generated-images-make-me-feel-insecure-about-my-body",
+      "question": "Why do AI-generated images make me feel insecure about my body?",
+      "category": "Identity & Self-Worth",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "5f21556f-bd96-4e8a-9e6b-f56ca2111b17",
+      "slug": "what-to-do-if-someone-made-an-ai-deepfake-of-me",
+      "question": "What should I do if someone made an AI deepfake of me?",
+      "category": "Trauma & Grief",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "93bd5ee8-2bf3-4234-babb-df40195b8140",
+      "slug": "is-using-ai-to-check-if-im-a-bad-person-making-things-worse",
+      "question": "Is using AI to check if I'm a bad person making things worse?",
+      "category": "Anxiety & Stress",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "5b0d8198-dec6-46e7-9327-ba47bf84f9fc",
+      "slug": "can-ai-make-relationship-anxiety-worse",
+      "question": "Can AI make relationship anxiety worse?",
+      "category": "Relationships & Communication",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "51c66bd3-0c81-4a47-b340-1c454ca88bb8",
+      "slug": "should-i-use-ai-to-analyze-my-partners-texts",
+      "question": "Should I use AI to analyze my partner's texts?",
+      "category": "Relationships & Communication",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "dac9ebf6-9bae-4124-b83c-29468c3314e9",
+      "slug": "can-ai-make-people-pleasing-worse",
+      "question": "Can AI make people-pleasing worse?",
+      "category": "Communication & Conflict",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "a3d9d305-c01e-4946-9e01-1653ae5f82af",
+      "slug": "how-to-use-ai-without-losing-my-own-voice",
+      "question": "How do I use AI without losing my own voice?",
+      "category": "Identity & Self-Worth",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "ad5ca418-e45d-48e6-a5da-675a747a6a0e",
+      "slug": "why-ai-makes-the-future-feel-scary",
+      "question": "Why does AI make the future feel scary?",
+      "category": "Anxiety & Stress",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "6ddee526-19c3-41d3-bd25-d26949b680b0",
+      "slug": "how-to-set-boundaries-with-ai-tools",
+      "question": "How do I set boundaries with AI tools?",
+      "category": "General Mental Health",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "af36db8b-4ed3-4b01-be4e-d13b3e7fd13d",
+      "slug": "why-do-i-feel-ashamed-about-relying-on-ai",
+      "question": "Why do I feel ashamed about relying on AI?",
+      "category": "Identity & Self-Worth",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "About Mental Health",
+        "url": "https://www.cdc.gov/mental-health/about/index.html",
+        "publisher": "CDC",
+        "note": "Supports mental health as a public health concern."
+      }
+    },
+    {
+      "id": "0f22d2f7-c6bc-4948-83d2-e602c80294d3",
+      "slug": "rebuild-real-world-connection-after-relying-on-ai",
+      "question": "How can I rebuild real-world connection after relying on AI?",
+      "category": "Loneliness & Isolation",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "AI chatbots and digital companions are reshaping emotional connection",
+        "url": "https://www.apa.org/monitor/2026/01-02/trends-digital-ai-relationships-emotional-connection",
+        "publisher": "American Psychological Association",
+        "note": "Supports need for guardrails around AI emotional support."
+      }
+    },
+    {
+      "id": "ed6ed102-f87e-4dc1-bca7-d927a8424ae7",
+      "slug": "what-should-i-do-after-a-relapse-in-recovery",
+      "question": "What should I do after a relapse in recovery?",
+      "category": "Addiction & Recovery",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "SAMHSA National Helpline",
+        "url": "https://www.samhsa.gov/find-help/helplines/national-helpline",
+        "publisher": "SAMHSA",
+        "note": "Supports finding treatment and recovery resources for substance use."
+      }
+    },
+    {
+      "id": "71c72887-f87d-40c4-b005-c550b1caaee7",
+      "slug": "support-someone-with-addiction-without-enabling",
+      "question": "How can I support someone who is struggling with addiction without enabling them?",
+      "category": "Addiction & Recovery",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "SAMHSA National Helpline",
+        "url": "https://www.samhsa.gov/find-help/helplines/national-helpline",
+        "publisher": "SAMHSA",
+        "note": "Supports finding treatment and recovery resources for substance use."
+      }
+    },
+    {
+      "id": "06c9b672-6364-4b1f-8b43-9b2f7900d575",
+      "slug": "is-it-normal-to-feel-bored-or-empty-after-getting-sober",
+      "question": "Is it normal to feel bored or empty after getting sober?",
+      "category": "Addiction & Recovery",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "SAMHSA National Helpline",
+        "url": "https://www.samhsa.gov/find-help/helplines/national-helpline",
+        "publisher": "SAMHSA",
+        "note": "Supports finding treatment and recovery resources for substance use."
+      }
+    },
+    {
+      "id": "37123b85-0215-4f2f-b16b-92b2152c4553",
+      "slug": "when-to-seek-professional-help-for-substance-use",
+      "question": "When should someone seek professional help for substance use?",
+      "category": "Addiction & Recovery",
+      "before_score": 94,
+      "after_score": 100,
+      "added_ref": {
+        "title": "SAMHSA National Helpline",
+        "url": "https://www.samhsa.gov/find-help/helplines/national-helpline",
+        "publisher": "SAMHSA",
+        "note": "Supports finding treatment and recovery resources for substance use."
+      }
+    }
+  ]
+}
