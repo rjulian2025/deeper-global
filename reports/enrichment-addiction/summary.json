@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T23:32:36.477Z",
+  "generated_at": "2026-06-13T23:56:22.542Z",
   "report_path": "reports/review-updates/addiction-review-2026-03-13.json",
   "addiction_slug_count": 113,
   "fetched_count": 113,
@@ -7,8 +7,8 @@
   "missing_slugs": [],
   "batch_size": 15,
   "batch_count": 8,
-  "v2_count": 5,
-  "complete_count": 5,
-  "crisis_sensitive_count": 34,
-  "average_completeness_score": 4
+  "v2_count": 113,
+  "complete_count": 113,
+  "crisis_sensitive_count": 108,
+  "average_completeness_score": 100
 }

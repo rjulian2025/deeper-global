@@ -1,632 +1,976 @@
 [
   {
-    "id": "b01ab11e-3705-4ed5-9a80-a7f2e4e07c75",
-    "slug": "how-do-i-know-if-my-drinking-is-a-proble-184729-011",
-    "question": "How do I know if my drinking is a problem?",
+    "id": "6b4b1f44-ac5a-4307-9ffb-28b7df277a7e",
+    "slug": "how-long-does-it-take-to-feel-normal-again-in-recovery",
+    "question": "How long does it take to feel normal again in recovery?",
     "category": "Addiction & Recovery",
-    "short_answer": "Problem drinking often involves loss of control, negative consequences, and preoccupation with alcohol; it exists on a spectrum.",
-    "answer": "Problem drinking isn't just about how much you drink, but how it affects your life. Signs of a problem include drinking more than you intend to, trying to cut back without success, experiencing negative consequences in your relationships or work, and spending a lot of time thinking about alcohol. It exists on a spectrum from mild to severe, and you don't have to hit rock bottom to seek help. If you're questioning your relationship with alcohol, that's a sign that it might be worth exploring with a professional.",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "short_answer": "Feeling \"normal\" again in recovery has no fixed deadline because it depends on substance type, duration of use, health, and support. Many people notice gradual improvements over the first 3–6 months, with continued gains over the first year.",
+    "answer": "## What the first months can feel like After stopping use, your brain and body adjust to functioning without substances. Some people experience post-acute withdrawal effects: irritability, anxiety, foggy thinking, sleep trouble, or anhedonia. These symptoms often improve over weeks to months, though the pace is uneven. ## Signs of gradual improvement Track small wins: sleeping a bit better, fewer cravings, more stable mood, returning interest in people or activities. These increments matter even when full normalcy feels far away. Routine, nutrition, movement, therapy, and peer support all support neurochemical recovery, but none guarantee a straight line. ## When to get support If low mood, anxiety, or sleep problems persist or worsen, ask about co-occurring mental health care. Feeling worse does not always mean you are failing—it may mean you need more support. Seek urgent help for suicidal thoughts or inability to function safely.",
+    "improved_title": "How Long Until Recovery Starts to Feel Normal Again?",
+    "improved_meta_description": "There is no single timeline for feeling normal in recovery. Here is what many people experience as the brain and body heal over months.",
+    "improved_summary": "Feeling \"normal\" again in recovery has no fixed deadline because it depends on substance type, duration of use, health, and support. Many people notice gradual improvements over the first 3–6 months, with continued gains over the first year.",
+    "answer_sections": [
+      {
+        "body": "After stopping use, your brain and body adjust to functioning without substances. Some people experience post-acute withdrawal effects: irritability, anxiety, foggy thinking, sleep trouble, or anhedonia.\n\nThese symptoms often improve over weeks to months, though the pace is uneven.",
+        "type": "section",
+        "heading": "What the first months can feel like"
+      },
+      {
+        "body": "Track small wins: sleeping a bit better, fewer cravings, more stable mood, returning interest in people or activities. These increments matter even when full normalcy feels far away.\n\nRoutine, nutrition, movement, therapy, and peer support all support neurochemical recovery, but none guarantee a straight line.",
+        "type": "section",
+        "heading": "Signs of gradual improvement"
+      },
+      {
+        "body": "If low mood, anxiety, or sleep problems persist or worsen, ask about co-occurring mental health care. Feeling worse does not always mean you are failing—it may mean you need more support.\n\nSeek urgent help for suicidal thoughts or inability to function safely.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Timelines vary widely; comparison to others often increases discouragement.",
+      "Early recovery can include mood swings, sleep changes, and low energy while the brain heals.",
+      "Many people feel meaningful improvement around 90 days, with continued gains over a year.",
+      "A new \"normal\" may feel different—but healthier—than life before addiction."
+    ],
+    "care_note": "If you feel persistently hopeless or have thoughts of self-harm, contact a mental health professional or call/text 988 in the U.S.",
+    "related_questions": [
+      "Is it normal to feel worse before I feel better in recovery?",
+      "Is it normal to feel bored or empty after getting sober?",
+      "How long should I wait before making major life decisions in recovery?",
+      "What should I expect in my first 30 days of sobriety?",
+      "Is it normal to have vivid dreams or nightmares in recovery?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "note": "Supports recovery as a long-term process.",
+        "title": "Treatment and Recovery",
+        "publisher": "National Institute on Drug Abuse"
+      },
+      {
+        "url": "https://www.samhsa.gov/data/sites/default/files/PEP20-06-01-001.pdf",
+        "note": "Supports post-acute withdrawal symptom context.",
+        "title": "Protracted Withdrawal",
+        "publisher": "SAMHSA"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
   },
   {
-    "id": "8fe5f5e9-bacc-4fb4-949a-2ba348ba0b49",
-    "slug": "how-do-i-know-if-my-drinking-is-becoming-a-problem",
-    "question": "How do I know if my drinking is becoming a problem?",
+    "id": "14da4654-31c2-481e-8c7e-78b311ef6db6",
+    "slug": "how-long-should-i-wait-before-making-major-life-decisions-in-recovery",
+    "question": "How long should I wait before making major life decisions in recovery?",
     "category": "Addiction & Recovery",
-    "short_answer": "Problem drinking often develops gradually; if you're questioning your relationship with alcohol, that awareness itself is worth exploring further.",
-    "answer": "The line between social drinking and problem drinking can be blurry, especially in a culture where alcohol is deeply embedded in social activities, stress relief, and celebration. Many people who develop drinking problems don't fit the stereotype of someone who's lost everything—they're functional, successful people who gradually find themselves relying on alcohol more than they're comfortable with. Some signs that drinking might be becoming problematic include: drinking more than you intended on a regular basis, feeling anxious or irritable when you can't drink, using alcohol as your primary way to cope with stress or difficult emotions, lying about how much you drink, or finding that alcohol is interfering with your relationships, work, or health. If you're questioning your drinking, that questioning itself is significant—most people with healthy relationships to alcohol don't spend much time worrying about it. It's important to understand that addiction exists on a spectrum, and you don't have to hit rock bottom to benefit from examining your relationship with alcohol. Many people find that their lives improve significantly when they reduce or eliminate drinking, even if they wouldn't have been diagnosed with an alcohol use disorder. If you're concerned about your drinking, consider talking to a healthcare provider, attending a support group, or simply experimenting with periods of sobriety to see how you feel.",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "short_answer": "Many addiction professionals suggest waiting before major life changes in early recovery, often around the first year, because judgment and emotions may still be stabilizing. Decisions about relationships, careers, moves, or large financial commitments may look different once you have more clarity. Some choices that protect your safety or recovery should not wait.",
+    "answer": "## What may be happening Early recovery can bring intense emotions, renewed energy, and a desire to rebuild life quickly. That urgency can feel motivating, but it may also lead to impulsive choices that do not hold up once you have more stability. Your brain is still healing from the effects of substance use, which can affect how you assess risk, handle stress, and prioritize what matters. What seems like a great idea at 30 days sober may look different at 12 months. ## What can help Consider postponing major decisions such as ending or starting relationships, changing careers, moving cities, large financial commitments, marriage, or having children—especially if they are hard to reverse. Use early recovery to build a foundation: stable routines, coping skills, support meetings, therapy, and clearer values. That groundwork often leads to better decisions later. Talk major choices through with a sponsor, therapist, or trusted people in your recovery network. Ask whether the decision supports sobriety or might be driven by loneliness, guilt, or euphoria. Do not delay decisions that protect your recovery or safety. Leaving an abusive relationship, exiting a dangerous living situation, or starting mental health treatment may need to happen sooner rather than later. ## When to get support If you feel pressured to make a major life change and are unsure, consult a therapist, sponsor, or addiction counselor before acting. Call or text 988 in the U.S. if stress about life decisions is contributing to emotional crisis or thoughts of using again.",
+    "improved_title": "When to Make Major Life Decisions in Recovery",
+    "improved_meta_description": "Early recovery can cloud judgment. Learn why waiting on big decisions often helps and when not to delay.",
+    "improved_summary": "Many addiction professionals suggest waiting before major life changes in early recovery, often around the first year, because judgment and emotions may still be stabilizing. Decisions about relationships, careers, moves, or large financial commitments may look different once you have more clarity. Some choices that protect your safety or recovery should not wait.",
+    "answer_sections": [
+      {
+        "body": "Early recovery can bring intense emotions, renewed energy, and a desire to rebuild life quickly. That urgency can feel motivating, but it may also lead to impulsive choices that do not hold up once you have more stability.\n\nYour brain is still healing from the effects of substance use, which can affect how you assess risk, handle stress, and prioritize what matters. What seems like a great idea at 30 days sober may look different at 12 months.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Consider postponing major decisions such as ending or starting relationships, changing careers, moving cities, large financial commitments, marriage, or having children—especially if they are hard to reverse.\n\nUse early recovery to build a foundation: stable routines, coping skills, support meetings, therapy, and clearer values. That groundwork often leads to better decisions later.\n\nTalk major choices through with a sponsor, therapist, or trusted people in your recovery network. Ask whether the decision supports sobriety or might be driven by loneliness, guilt, or euphoria.\n\nDo not delay decisions that protect your recovery or safety. Leaving an abusive relationship, exiting a dangerous living situation, or starting mental health treatment may need to happen sooner rather than later.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "If you feel pressured to make a major life change and are unsure, consult a therapist, sponsor, or addiction counselor before acting.\n\nCall or text 988 in the U.S. if stress about life decisions is contributing to emotional crisis or thoughts of using again.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Early recovery can affect impulse control, emotional regulation, and decision-making.",
+      "A common guideline is waiting about a year before major irreversible changes.",
+      "Decisions that protect safety or sobriety—like leaving abuse—may need prompt action.",
+      "Trusted recovery supports can help you assess whether a decision supports recovery."
+    ],
+    "care_note": "Recovery is about learning to live thoughtfully, not impulsively. Waiting on big decisions is often an act of self-protection, not passivity.",
+    "related_questions": [
+      "Should I stay in a relationship where my partner is still using substances?",
+      "How do I know if I'm ready for addiction recovery?",
+      "What should I do if I relapse during recovery?",
+      "Is it normal to feel bored in early recovery?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "note": "Supports brain healing and stabilization during early recovery.",
+        "title": "Treatment and Recovery",
+        "publisher": "National Institute on Drug Abuse"
+      },
+      {
+        "url": "https://www.samhsa.gov/find-help/recovery",
+        "note": "Supports building recovery foundation before major life changes.",
+        "title": "Recovery and Support",
+        "publisher": "SAMHSA"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
   },
   {
-    "id": "bb759689-de97-44b0-a649-e9dd8b83d41e",
-    "slug": "how-do-i-know-if-my-recovery-program-is-working",
-    "question": "How do I know if my recovery program is working?",
+    "id": "a0591b87-562a-4ff6-acde-2bb25edd0c70",
+    "slug": "is-it-normal-to-feel-bored-in-early-reco-181288-034",
+    "question": "Is it normal to feel bored in early recovery?",
     "category": "Addiction & Recovery",
-    "short_answer": "Measuring progress in recovery involves looking at multiple areas of your life, not just whether you're abstinent from substances.",
-    "answer": "Measuring progress in recovery involves looking at multiple areas of your life, not just whether you're abstinent from substances. While sobriety is important, true recovery encompasses much broader improvements in your overall wellbeing and life functioning. Signs that your recovery program is working include: feeling more emotionally stable, sleeping better, having improved relationships, being able to handle stress without immediately thinking about using substances, feeling more hopeful about the future, and developing interests and activities that don't involve substances. You might also notice that you're taking better care of yourself physically, showing up more consistently for work or family responsibilities, and feeling more honest in your relationships. Many people report feeling more \"like themselves\" as recovery progresses. It's normal for progress to be uneven. You might have great weeks followed by difficult days. What matters is the overall trajectory over time. Keep a recovery journal to track your mood, challenges, and victories—this can help you see patterns and progress that might not be obvious day-to-day. If you're not seeing improvement after several months in a program, it might be time to adjust your approach. This could mean trying a different type of therapy, adding medication for co-occurring mental health issues, increasing your meeting attendance, or finding a different support group that fits better. Remember that recovery is a lifelong process, not a destination. Even people with years of sobriety continue to grow and face new challenges. The goal isn't perfection—it's developing the tools and support systems to handle life's ups and downs without returning to substance use.",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "short_answer": "Boredom in early recovery is very common. Substances may have provided excitement, escape, or routine, and without them life can feel flat while your brain readjusts. This phase is usually temporary, but it may require actively exploring new activities, connections, and sources of meaning.",
+    "answer": "## What may be happening After stopping alcohol or drugs, many people feel restless, empty, or bored. Substances may have filled time, created social connection, or provided a sense of relief. Without them, ordinary activities can feel dull or pointless. Your brain's reward system needs time to recalibrate. Pleasure from everyday experiences—food, conversation, exercise, hobbies—may feel muted at first. That does not mean recovery is failing; it often reflects healing in progress. ## What can help Treat boredom as a signal to experiment, not a verdict on sober life. Try new activities even if nothing feels exciting yet: exercise, creative projects, volunteering, classes, or recovery meetings. Rebuild structure. Regular sleep, meals, movement, and social contact can reduce the empty hours that make boredom worse. Stay connected to others in recovery who understand this phase. Hearing that boredom is common can reduce the fear that sobriety will always feel this way. Be patient with the process. Many people notice their capacity for interest and joy gradually returns as their brain heals and they build a life that fits sobriety. ## When to get support If boredom is driving strong cravings, depression, or isolation, talk with a therapist, sponsor, or treatment provider. Call or text 988 in the U.S. if boredom or recovery stress is contributing to emotional crisis or thoughts of using again.",
+    "improved_title": "Is Boredom Normal in Early Recovery?",
+    "improved_meta_description": "Feeling bored after quitting substances is common. Learn why it happens and how to get through it.",
+    "improved_summary": "Boredom in early recovery is very common. Substances may have provided excitement, escape, or routine, and without them life can feel flat while your brain readjusts. This phase is usually temporary, but it may require actively exploring new activities, connections, and sources of meaning.",
+    "answer_sections": [
+      {
+        "body": "After stopping alcohol or drugs, many people feel restless, empty, or bored. Substances may have filled time, created social connection, or provided a sense of relief. Without them, ordinary activities can feel dull or pointless.\n\nYour brain's reward system needs time to recalibrate. Pleasure from everyday experiences—food, conversation, exercise, hobbies—may feel muted at first. That does not mean recovery is failing; it often reflects healing in progress.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Treat boredom as a signal to experiment, not a verdict on sober life. Try new activities even if nothing feels exciting yet: exercise, creative projects, volunteering, classes, or recovery meetings.\n\nRebuild structure. Regular sleep, meals, movement, and social contact can reduce the empty hours that make boredom worse.\n\nStay connected to others in recovery who understand this phase. Hearing that boredom is common can reduce the fear that sobriety will always feel this way.\n\nBe patient with the process. Many people notice their capacity for interest and joy gradually returns as their brain heals and they build a life that fits sobriety.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "If boredom is driving strong cravings, depression, or isolation, talk with a therapist, sponsor, or treatment provider.\n\nCall or text 988 in the U.S. if boredom or recovery stress is contributing to emotional crisis or thoughts of using again.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Boredom is one of the most common early recovery challenges.",
+      "Substances often hijacked your brain's reward system; natural pleasure may take time to return.",
+      "Actively trying new hobbies, social connections, and routines can help.",
+      "Persistent boredom that triggers cravings is worth discussing with a counselor or sponsor."
+    ],
+    "care_note": "Boredom in early recovery does not mean you chose wrong. It often means your brain and life are still adjusting—and that adjustment takes time.",
+    "related_questions": [
+      "How do I find motivation when recovery feels impossible?",
+      "How do I handle social events and gatherings in recovery?",
+      "How do I handle work stress without using substances?",
+      "What are some healthy ways to celebrate milestones in recovery?",
+      "How do I know if I'm ready for addiction recovery?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction",
+        "note": "Supports brain reward system changes in addiction and recovery.",
+        "title": "Drugs, Brains, and Behavior: The Science of Addiction",
+        "publisher": "National Institute on Drug Abuse"
+      },
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "note": "Supports lifestyle changes during early recovery.",
+        "title": "Treatment and Recovery",
+        "publisher": "National Institute on Drug Abuse"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
   },
   {
-    "id": "e4bfcd15-f369-46f0-ae48-e27ae05ae6a6",
-    "slug": "how-do-i-know-if-someone-i-love-is-using-186032-021",
-    "question": "How do I know if someone I love is using drugs?",
+    "id": "116c02be-b735-4f65-950a-c0f811253e5a",
+    "slug": "is-it-normal-to-feel-worse-before-i-feel-better-in-recovery",
+    "question": "Is it normal to feel worse before I feel better in recovery?",
     "category": "Addiction & Recovery",
-    "short_answer": "Signs of drug use include behavioral changes, physical symptoms, neglecting responsibilities, and secretive behavior; approach with compassion, not accusation.",
-    "answer": "Signs that someone might be using drugs include sudden behavioral changes, physical symptoms like bloodshot eyes or unusual smells, neglecting responsibilities, lying, being secretive, changes in friend groups, and financial problems. However, some of these signs could indicate other issues like depression or stress. If you suspect drug use, approach the person with compassion rather than accusation. Express your concerns using 'I' statements and offer support. Avoid enabling behaviors like giving money or covering for them. Consider reaching out to a professional for guidance on how to help.",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "short_answer": "Yes—many people feel worse before they feel better in early recovery. Your body and brain are adjusting without substances, old coping tools are gone, and underlying mood or sleep problems may surface. That discomfort is often temporary, but it deserves support.",
+    "answer": "## Why feeling worse can happen Substances often masked pain, anxiety, or trauma. When they leave, those feelings can rush back. Brain chemistry also needs time to rebalance, which can show up as irritability, fatigue, or emotional rawness. You may simultaneously lose a coping strategy before new skills feel automatic. ## What can help in early recovery Prioritize basics: regular meals, hydration, sleep hygiene, gentle movement, and daily check-ins with support. Keep expectations small—one day or one hour at a time. Therapy, medical care, and peer support can address depression, anxiety, or trauma that becomes clearer in sobriety. ## When to get extra help Contact a clinician if symptoms are severe, persistent, or include self-harm thoughts. Sometimes co-occurring mental health conditions need targeted treatment. Call or text 988 in the U.S. if you feel unsafe with yourself.",
+    "improved_title": "Why Early Recovery Can Feel Worse Before It Gets Better",
+    "improved_meta_description": "Feeling worse at first in recovery is common as your brain adjusts. Here is what is normal, what helps, and when to seek extra support.",
+    "improved_summary": "Yes—many people feel worse before they feel better in early recovery. Your body and brain are adjusting without substances, old coping tools are gone, and underlying mood or sleep problems may surface. That discomfort is often temporary, but it deserves support.",
+    "answer_sections": [
+      {
+        "body": "Substances often masked pain, anxiety, or trauma. When they leave, those feelings can rush back. Brain chemistry also needs time to rebalance, which can show up as irritability, fatigue, or emotional rawness.\n\nYou may simultaneously lose a coping strategy before new skills feel automatic.",
+        "type": "section",
+        "heading": "Why feeling worse can happen"
+      },
+      {
+        "body": "Prioritize basics: regular meals, hydration, sleep hygiene, gentle movement, and daily check-ins with support. Keep expectations small—one day or one hour at a time.\n\nTherapy, medical care, and peer support can address depression, anxiety, or trauma that becomes clearer in sobriety.",
+        "type": "section",
+        "heading": "What can help in early recovery"
+      },
+      {
+        "body": "Contact a clinician if symptoms are severe, persistent, or include self-harm thoughts. Sometimes co-occurring mental health conditions need targeted treatment.\n\nCall or text 988 in the U.S. if you feel unsafe with yourself.",
+        "type": "section",
+        "heading": "When to get extra help"
+      }
+    ],
+    "key_takeaways": [
+      "Early recovery discomfort is common and does not mean treatment is failing.",
+      "Anxiety, low mood, sleep trouble, and cravings often peak before they ease.",
+      "Basic self-care and connection reduce the intensity of this phase.",
+      "Persistent or severe worsening warrants professional evaluation."
+    ],
+    "care_note": "If you have suicidal thoughts or feel unable to stay safe, seek emergency help or call/text 988 in the U.S. immediately.",
+    "related_questions": [
+      "How long does it take to feel normal again in recovery?",
+      "Is it normal to feel bored or empty after getting sober?",
+      "Is it normal to have vivid dreams or nightmares in recovery?",
+      "What should I expect in my first 30 days of sobriety?",
+      "What if I am struggling with both addiction and mental health issues?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "note": "Supports early recovery adjustment context.",
+        "title": "Treatment and Recovery",
+        "publisher": "National Institute on Drug Abuse"
+      },
+      {
+        "url": "https://www.nimh.nih.gov/health/topics/depression",
+        "note": "Supports when low mood in recovery may need clinical attention.",
+        "title": "Depression",
+        "publisher": "National Institute of Mental Health"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
   },
   {
-    "id": "d234fdc7-17c0-4051-8e49-e732473a62c6",
-    "slug": "how-do-i-make-amends-to-people-i-hurt-during-my-addiction",
-    "question": "How do I make amends to people I hurt during my addiction?",
+    "id": "ce51cb42-3bc5-4823-bffc-8944099d3c34",
+    "slug": "is-it-normal-to-have-vivid-dreams-or-nightmares-in-recovery",
+    "question": "Is it normal to have vivid dreams or nightmares in recovery?",
     "category": "Addiction & Recovery",
-    "short_answer": "Making amends is a crucial part of recovery that involves taking responsibility for the harm you caused during your addiction and taking concrete action to repair that damage where possible.",
-    "answer": "Making amends is a crucial part of recovery that involves taking responsibility for the harm you caused during your addiction and taking concrete action to repair that damage where possible. This process requires careful thought, humility, and often guidance from a sponsor or therapist. Understand the difference between apologies and amends. An apology acknowledges wrongdoing and expresses remorse, while amends involve taking action to repair the harm you caused. True amends often include both an apology and concrete steps to make things right. Start by taking a thorough moral inventory of the people you harmed and the specific ways your addiction affected them. This might include family members you lied to, friends you stole from, employers you let down, or anyone else who was negatively impacted by your behavior. Prioritize your list based on the severity of harm caused and your relationship with each person. You might start with immediate family members or people you hurt most seriously, though sometimes it's easier to begin with less emotionally charged relationships to practice the process. Be completely honest about what you did wrong without minimizing, making excuses, or blaming your addiction. Take full responsibility for your actions and their consequences. Avoid phrases like \"I'm sorry if you were hurt\" and instead say \"I'm sorry I hurt you by...\" Listen to the other person's response without becoming defensive or trying to explain your behavior. They may be angry, hurt, or skeptical about your amends. Allow them to express their feelings and validate their right to feel however they feel about what happened. Ask what you can do to make things right, but don't expect forgiveness or reconciliation. Some people may not be ready to forgive, and others may choose not to rebuild the relationship. Respect their decisions and focus on doing the right thing regardless of their response. Make concrete efforts to repair the damage where possible. This might include paying back money you borrowed or stole, replacing items you damaged, or taking specific actions to rebuild trust. Sometimes the amends process takes months or years to complete fully. Be prepared...",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "short_answer": "Yes, vivid dreams and nightmares are common in recovery, especially early on. Substances often suppress REM sleep; when use stops, dream intensity can surge, including realistic \"using dreams\" that do not mean you want to relapse.",
+    "answer": "## What may be happening Many substances alter REM sleep. When you stop, REM rebound can produce intense, memorable dreams. Some people wake feeling guilty or panicked after a using dream even though they did not use. Nightmares may also increase if trauma or unresolved stress is present. ## What can help Improve sleep hygiene: consistent bed/wake times, limit late caffeine and screens, cool dark bedroom, and a calming wind-down routine. Regular exercise can help, but not right before bed. Talk about using dreams with a sponsor or therapist—they are common and lose power when not kept secret. ## When to get support See a clinician if nightmares are frequent, cause severe distress, or leave you afraid to sleep. Trauma-focused therapy or sleep treatment may help. If dreams accompany severe depression or self-harm thoughts, seek professional care promptly.",
+    "improved_title": "Why Vivid Dreams and Nightmares Are Common in Recovery",
+    "improved_meta_description": "Intense dreams—including using dreams—are common as sleep rhythms return in recovery. Here is what they mean and when to seek help.",
+    "improved_summary": "Yes, vivid dreams and nightmares are common in recovery, especially early on. Substances often suppress REM sleep; when use stops, dream intensity can surge, including realistic \"using dreams\" that do not mean you want to relapse.",
+    "answer_sections": [
+      {
+        "body": "Many substances alter REM sleep. When you stop, REM rebound can produce intense, memorable dreams. Some people wake feeling guilty or panicked after a using dream even though they did not use.\n\nNightmares may also increase if trauma or unresolved stress is present.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Improve sleep hygiene: consistent bed/wake times, limit late caffeine and screens, cool dark bedroom, and a calming wind-down routine. Regular exercise can help, but not right before bed.\n\nTalk about using dreams with a sponsor or therapist—they are common and lose power when not kept secret.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "See a clinician if nightmares are frequent, cause severe distress, or leave you afraid to sleep. Trauma-focused therapy or sleep treatment may help.\n\nIf dreams accompany severe depression or self-harm thoughts, seek professional care promptly.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Vivid dreams often increase as sleep architecture normalizes.",
+      "Using dreams can feel real but do not predict relapse by themselves.",
+      "Nightmares may reflect stress, trauma, or guilt being processed in sleep.",
+      "Persistent sleep disruption deserves clinical attention."
+    ],
+    "care_note": "If sleep disruption is severe or accompanied by suicidal thoughts, contact a mental health professional or call/text 988 in the U.S.",
+    "related_questions": [
+      "Is it normal to feel worse before I feel better in recovery?",
+      "What should I do if I am having trouble sleeping in recovery?",
+      "How long does it take to feel normal again in recovery?",
+      "What should I do after a relapse in recovery?",
+      "Is it normal to feel bored or empty after getting sober?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://nida.nih.gov/research-topics/sleep",
+        "note": "Supports substance effects on sleep and recovery-related sleep changes.",
+        "title": "Sleep, Sleep Disorders, and Substance Use",
+        "publisher": "National Institute on Drug Abuse"
+      },
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "note": "Supports general early recovery context.",
+        "title": "Treatment and Recovery",
+        "publisher": "National Institute on Drug Abuse"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
   },
   {
-    "id": "2b02b005-691b-4ded-8ded-554e9a4485fe",
-    "slug": "how-do-i-protect-my-children-from-their-parents-addiction",
-    "question": "How do I protect my children from their parent's addiction?",
+    "id": "a980fdfe-e9d7-471d-95dd-03f8dc7a0e25",
+    "slug": "is-it-possible-to-be-addicted-to-social-179301-005",
+    "question": "Is it possible to be addicted to social media?",
     "category": "Addiction & Recovery",
-    "short_answer": "Protecting children from a parent's addiction requires balancing their need for safety and stability with their relationship with the addicted parent.",
-    "answer": "Protecting children from a parent's addiction requires balancing their need for safety and stability with their relationship with the addicted parent. This situation is emotionally complex and often requires difficult decisions, but your children's wellbeing must be the top priority. Ensure your children's immediate physical and emotional safety first. If the addicted parent is driving under the influence with children, leaving them unsupervised, exposing them to dangerous people or situations, or being physically or emotionally abusive, you may need to limit or supervise their contact immediately. Be honest with your children about the situation in age-appropriate ways. Young children might be told that \"Mommy/Daddy is sick and getting help,\" while older children can understand more about addiction as a disease. Avoid making the addicted parent the villain, but don't make excuses for harmful behavior either. Maintain stability and routine in your children's lives as much as possible. Children need predictability and security, especially when dealing with the chaos that addiction can create. Keep regular meal times, bedtimes, and activities that help them feel safe and cared for. Consider family therapy with a counselor who specializes in addiction and family dynamics. Children often blame themselves for their parent's addiction or feel responsible for fixing it. Professional help can teach them healthy coping skills and help them understand that the addiction isn't their fault. Document concerning incidents involving the addicted parent and your children. Keep records of missed visits, inappropriate behavior, or safety concerns. This documentation may be important if you need to seek legal protection or modify custody arrangements. Connect your children with support resources like Alateen (for teenagers) or other support groups for children of addicted parents. These groups help children understand they're not alone and provide coping strategies from peers who understand their situation. Set clear boundaries about what behavior you will and won't allow around your children. The addicted parent might be allowed supervised visits when sober but not unsupervised...",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "short_answer": "Problematic social media use is increasingly recognized as a behavioral addiction pattern: compulsive use, difficulty stopping, and harm to mood, sleep, or relationships even when you want to cut back. It may not fit classic substance addiction, but the struggle is real.",
+    "answer": "## What problematic use can look like You may lose track of time scrolling, feel anxious when away from your phone, neglect work or relationships, or keep using despite wanting to stop. Mood can dip after comparison-heavy browsing. These patterns resemble other behavioral addictions like gambling— not identical to substance use disorders, but sharing compulsivity and harm. ## What can help Try structured limits: app timers, phone-free meals and bedrooms, grayscale mode, or deleting apps from your home screen. Replace scrolling with offline activities that meet needs for connection or stimulation. If shame, anxiety, or depression drive use, therapy can address underlying triggers—not just screen time. ## When to get support Consider professional help if use feels uncontrollable, co-occurs with depression or anxiety, or significantly impairs daily life. If compulsive online behavior includes self-harm content or crisis thoughts, seek immediate mental health support.",
+    "improved_title": "Can You Be Addicted to Social Media?",
+    "improved_meta_description": "Compulsive social media use can look like behavioral addiction. Here is how to tell when scrolling is harming your life—and what helps.",
+    "improved_summary": "Problematic social media use is increasingly recognized as a behavioral addiction pattern: compulsive use, difficulty stopping, and harm to mood, sleep, or relationships even when you want to cut back. It may not fit classic substance addiction, but the struggle is real.",
+    "answer_sections": [
+      {
+        "body": "You may lose track of time scrolling, feel anxious when away from your phone, neglect work or relationships, or keep using despite wanting to stop. Mood can dip after comparison-heavy browsing.\n\nThese patterns resemble other behavioral addictions like gambling— not identical to substance use disorders, but sharing compulsivity and harm.",
+        "type": "section",
+        "heading": "What problematic use can look like"
+      },
+      {
+        "body": "Try structured limits: app timers, phone-free meals and bedrooms, grayscale mode, or deleting apps from your home screen. Replace scrolling with offline activities that meet needs for connection or stimulation.\n\nIf shame, anxiety, or depression drive use, therapy can address underlying triggers—not just screen time.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Consider professional help if use feels uncontrollable, co-occurs with depression or anxiety, or significantly impairs daily life.\n\nIf compulsive online behavior includes self-harm content or crisis thoughts, seek immediate mental health support.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Behavioral addictions involve compulsive reward-seeking despite negative consequences.",
+      "Social platforms use variable rewards that can reinforce repetitive checking.",
+      "Harm to sleep, focus, mood, or relationships signals a problem worth addressing.",
+      "Digital boundaries and professional support can help when self-control alone fails."
+    ],
+    "care_note": "If social media use is tied to suicidal thoughts or self-harm urges, contact a mental health professional or call/text 988 in the U.S.",
+    "related_questions": [
+      "Why do I feel addicted to social media validation?",
+      "Why do I feel like I am addicted to my phone?",
+      "What should I do about my social media addiction?",
+      "What is a process addiction?",
+      "Can using AI for emotional support become addictive?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://nida.nih.gov/research-topics/addiction-science/behavioral-addictions",
+        "note": "Supports behavioral addiction framing beyond substances.",
+        "title": "Behavioral Addictions",
+        "publisher": "National Institute on Drug Abuse"
+      },
+      {
+        "url": "https://www.apa.org/topics/social-media-internet/social-media",
+        "note": "Supports mental health impacts of social media use.",
+        "title": "Social Media and Mental Health",
+        "publisher": "American Psychological Association"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
   },
   {
-    "id": "6d1effd8-d512-4a06-b0af-fbf351f9a7c4",
-    "slug": "how-do-i-rebuild-my-career-after-addiction",
-    "question": "How do I rebuild my career after addiction?",
+    "id": "b1b2114a-20dc-4dd5-9006-7cdc0bb0ad1d",
+    "slug": "is-it-possible-to-use-substances-occasio-186032-028",
+    "question": "Is it possible to use substances occasionally after addiction?",
     "category": "Addiction & Recovery",
-    "short_answer": "Rebuilding your career after addiction can feel daunting, especially if your addiction affected your work performance, caused you to lose a job, or created gaps in your employment history.",
-    "answer": "Rebuilding your career after addiction can feel daunting, especially if your addiction affected your work performance, caused you to lose a job, or created gaps in your employment history. However, many people successfully rebuild and even advance their careers in recovery. Start by honestly assessing the damage to your professional reputation and skills. Did you lose a job due to addiction? Are there gaps in your resume? Have your skills become outdated? Understanding where you stand helps you create a realistic plan for moving forward. Consider whether you need to address any legal or professional licensing issues related to your addiction. Some professions have specific requirements for people with addiction histories, and it's better to be proactive about addressing these rather than hoping they won't come up. Focus on rebuilding your skills and staying current in your field. This might mean taking classes, earning certifications, volunteering in your field, or doing freelance work to demonstrate your current capabilities. Use your recovery time to invest in your professional development. Be strategic about how you address employment gaps or job loss in interviews. You don't have to volunteer information about addiction, but be prepared with honest explanations if asked directly. Focus on what you've learned, how you've grown, and what you can contribute going forward. Consider starting with positions that might be more understanding of people in recovery. Some companies specifically hire people in recovery, and some industries are more accepting of second chances. Nonprofit organizations, recovery-related businesses, or companies with employee assistance programs might be good starting points. Network within the recovery community. Many people in recovery are willing to help others find employment opportunities. Attend recovery-related professional networking events or connect with others in your field who are also in recovery. Be patient with the process. Rebuilding a career takes time, and you might need to start at a lower level than where you were before. Focus on proving your reliability and competence, and advancement opportunities will likely...",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "short_answer": "For most people who have experienced addiction, occasional or controlled use is difficult and risky. Addiction changes how the brain responds to substances, making moderation hard to sustain. Complete abstinence is usually the safest approach, though individual circumstances vary and an addiction counselor can help you assess your situation honestly.",
+    "answer": "## What may be happening After a period of sobriety, you may wonder whether you can drink or use occasionally without returning to old patterns. Social pressure, nostalgia for past use, or confidence from time sober can make moderation seem possible. For many people with addiction, the brain retains heightened sensitivity to their substance of choice. What starts as \"just one\" can quickly escalate. That thought pattern is so common in recovery that many people treat it as a warning sign rather than a realistic plan. ## What can help Understand that addiction is not simply a willpower problem—it involves brain changes that affect control, craving, and relapse risk. That is why moderation fails for many people who have already crossed into addiction. Most addiction professionals recommend complete abstinence from your drug of choice as the safest path. This is especially true for alcohol if you had alcohol use disorder, or for any substance that previously caused loss of control. If you are seriously considering occasional use, talk openly with an addiction counselor rather than experimenting on your own. They can help you assess your history, current stability, and risk without judgment. Explore what you are really seeking from use—relief, social ease, celebration—and whether those needs can be met in ways that protect your recovery. ## When to get support If you are already experimenting with use or having strong urges to try, reach out to a counselor, sponsor, or treatment provider promptly. Call or text 988 in the U.S. if thoughts about using are contributing to emotional crisis.",
+    "improved_title": "Can You Use Substances Occasionally After Addiction?",
+    "improved_meta_description": "Wondering if moderate use is possible after addiction? Learn why abstinence is usually safest and when to talk with a counselor.",
+    "improved_summary": "For most people who have experienced addiction, occasional or controlled use is difficult and risky. Addiction changes how the brain responds to substances, making moderation hard to sustain. Complete abstinence is usually the safest approach, though individual circumstances vary and an addiction counselor can help you assess your situation honestly.",
+    "answer_sections": [
+      {
+        "body": "After a period of sobriety, you may wonder whether you can drink or use occasionally without returning to old patterns. Social pressure, nostalgia for past use, or confidence from time sober can make moderation seem possible.\n\nFor many people with addiction, the brain retains heightened sensitivity to their substance of choice. What starts as \"just one\" can quickly escalate. That thought pattern is so common in recovery that many people treat it as a warning sign rather than a realistic plan.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Understand that addiction is not simply a willpower problem—it involves brain changes that affect control, craving, and relapse risk. That is why moderation fails for many people who have already crossed into addiction.\n\nMost addiction professionals recommend complete abstinence from your drug of choice as the safest path. This is especially true for alcohol if you had alcohol use disorder, or for any substance that previously caused loss of control.\n\nIf you are seriously considering occasional use, talk openly with an addiction counselor rather than experimenting on your own. They can help you assess your history, current stability, and risk without judgment.\n\nExplore what you are really seeking from use—relief, social ease, celebration—and whether those needs can be met in ways that protect your recovery.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "If you are already experimenting with use or having strong urges to try, reach out to a counselor, sponsor, or treatment provider promptly.\n\nCall or text 988 in the U.S. if thoughts about using are contributing to emotional crisis.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Addiction changes the brain's reward system, making controlled use difficult for many people.",
+      "The idea that you can \"just have one\" is a common and dangerous thought in recovery.",
+      "Complete abstinence is generally the safest recommendation after addiction.",
+      "If you are considering moderate use, discuss it honestly with an addiction professional."
+    ],
+    "care_note": "Questioning whether you can use occasionally is worth taking seriously. An honest conversation with someone who understands addiction can help you protect what you have built in recovery.",
+    "related_questions": [
+      "Should I avoid all mood-altering substances in recovery?",
+      "What should I do if I relapse during recovery?",
+      "How do I know if I'm ready for addiction recovery?",
+      "How do I handle social situations where everyone is drinking?",
+      "How do I handle peer pressure to drink or use drugs?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction",
+        "note": "Supports brain changes that affect control and relapse.",
+        "title": "Drugs, Brains, and Behavior: The Science of Addiction",
+        "publisher": "National Institute on Drug Abuse"
+      },
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "note": "Supports abstinence-based recovery recommendations.",
+        "title": "Treatment and Recovery",
+        "publisher": "National Institute on Drug Abuse"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
   },
   {
-    "id": "bf66a1b5-b363-412c-9470-d0c677cb57f0",
-    "slug": "how-do-i-rebuild-my-relationship-with-my-children-after-addiction",
-    "question": "How do I rebuild my relationship with my children after addiction?",
+    "id": "df107d59-7239-4b8f-83cf-081b25545e4e",
+    "slug": "should-i-avoid-all-mood-altering-substances-in-recovery",
+    "question": "Should I avoid all mood-altering substances in recovery?",
+    "category": "Addiction & Recovery",
+    "short_answer": "Whether to avoid all mood-altering substances in recovery depends on your addiction history, recovery goals, and medical needs. Abstinence from your drug of choice is usually essential. Other substances—from marijuana to certain prescriptions—require honest discussion with clinicians who understand addiction.",
+    "answer": "## What may be happening Recovery raises practical questions beyond your primary substance. You may wonder about alcohol if you were addicted to opioids, marijuana if you quit drinking, or anxiety medication if you want relief without returning to old patterns. There is no single answer for everyone. What matters is whether a substance could trigger relapse, become a substitute addiction, or interfere with developing healthier coping skills. ## What can help Start with your drug of choice. If you had alcohol use disorder, avoiding all alcohol is typically recommended. The same applies to whichever substance caused loss of control in your life. Decide thoughtfully about other mood-altering substances. Some people in recovery avoid marijuana, sedatives, or anything that noticeably shifts mood. Others may use specific medications carefully when medically necessary. For prescription medications—especially those with abuse potential—work with a psychiatrist or prescriber who understands addiction. Many effective options exist for anxiety, depression, and sleep that are less risky for people in recovery. Ask yourself honestly why you want to use a substance. Seeking escape, euphoria, or relief from emotions you do not want to feel may signal that avoidance is safer than experimentation. ## When to get support If you are unsure about a medication or substance, consult your treatment team before using it. Do not make these decisions alone or based on online anecdotes. Call or text 988 in the U.S. if uncertainty about substances or medications is contributing to emotional crisis.",
+    "improved_title": "Should You Avoid All Mood-Altering Substances in Recovery?",
+    "improved_meta_description": "Recovery raises questions about alcohol, marijuana, prescriptions, and more. Learn how to think through what to avoid.",
+    "improved_summary": "Whether to avoid all mood-altering substances in recovery depends on your addiction history, recovery goals, and medical needs. Abstinence from your drug of choice is usually essential. Other substances—from marijuana to certain prescriptions—require honest discussion with clinicians who understand addiction.",
+    "answer_sections": [
+      {
+        "body": "Recovery raises practical questions beyond your primary substance. You may wonder about alcohol if you were addicted to opioids, marijuana if you quit drinking, or anxiety medication if you want relief without returning to old patterns.\n\nThere is no single answer for everyone. What matters is whether a substance could trigger relapse, become a substitute addiction, or interfere with developing healthier coping skills.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Start with your drug of choice. If you had alcohol use disorder, avoiding all alcohol is typically recommended. The same applies to whichever substance caused loss of control in your life.\n\nDecide thoughtfully about other mood-altering substances. Some people in recovery avoid marijuana, sedatives, or anything that noticeably shifts mood. Others may use specific medications carefully when medically necessary.\n\nFor prescription medications—especially those with abuse potential—work with a psychiatrist or prescriber who understands addiction. Many effective options exist for anxiety, depression, and sleep that are less risky for people in recovery.\n\nAsk yourself honestly why you want to use a substance. Seeking escape, euphoria, or relief from emotions you do not want to feel may signal that avoidance is safer than experimentation.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "If you are unsure about a medication or substance, consult your treatment team before using it. Do not make these decisions alone or based on online anecdotes.\n\nCall or text 988 in the U.S. if uncertainty about substances or medications is contributing to emotional crisis.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Complete abstinence from your drug of choice is typically recommended in recovery.",
+      "Some people choose to avoid all mood-altering substances; others use certain medications under medical supervision.",
+      "Prescription mental health medications should be managed with an addiction-informed prescriber.",
+      "Honesty about why you want to use a substance helps clarify whether it supports recovery."
+    ],
+    "care_note": "Recovery is not about suffering unnecessarily—it is about making informed choices that protect your progress. A clinician who understands addiction can help you balance medical needs and sobriety.",
+    "related_questions": [
+      "Is it possible to use substances occasionally after addiction?",
+      "What if I become dependent on anxiety medication?",
+      "How do I handle anxiety without using substances?",
+      "What should I do if I relapse during recovery?",
+      "How do I handle work stress without using substances?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "david-k-gore-phd",
+    "reviewed_at": "2026-03-13",
+    "source_refs": [
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "note": "Supports individualized recovery planning and abstinence principles.",
+        "title": "Treatment and Recovery",
+        "publisher": "National Institute on Drug Abuse"
+      },
+      {
+        "url": "https://nida.nih.gov/research-topics/common-comorbidities-substance-use-disorders",
+        "note": "Supports integrated treatment for co-occurring mental health and substance use.",
+        "title": "Common Comorbidities with Substance Use Disorders Research Report",
+        "publisher": "National Institute on Drug Abuse"
+      }
+    ],
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true
+  },
+  {
+    "id": "7d8bc4cc-c8a5-4e88-8ee0-929f5fa493c6",
+    "slug": "should-i-give-my-addicted-family-member-money-for-basic-needs",
+    "question": "Should I give my addicted family member money for basic needs?",
+    "category": "Family & Parenting",
+    "short_answer": "Giving cash—even for basic needs like rent or food—often enables addiction because money is fungible and paying bills can shield someone from consequences that might motivate change. Alternatives like paying landlords directly, buying groceries, or offering non-cash help may meet needs without fueling use. Painful as it is, sometimes consequences lead people toward treatment.",
+    "answer": "## What may be happening When someone you love is actively using, refusing financial help can feel cruel. You may fear they will go hungry, lose housing, or face utilities shut off. Your instinct to protect them is natural. At the same time, money given during active addiction often does not solve the underlying problem. It may temporarily reduce crisis while allowing use to continue. Watching someone face consequences is painful, but those consequences sometimes become the turning point toward help. ## What can help Consider alternatives to cash. You might pay a landlord or utility directly, buy groceries yourself, provide a meal, or offer gift cards to specific stores rather than handing over money. Set clear boundaries and communicate them calmly. You might offer help with treatment costs, rides to appointments, or emotional support while declining to fund active use. Prepare for guilt trips, anger, or threats when you say no. These reactions are common and often reflect the desperation of addiction rather than the full truth of the relationship. Get guidance from addiction professionals or family support groups. There may be safety exceptions or local resources—shelters, food programs, treatment scholarships—that help without enabling. ## When to get support If financial decisions feel impossible or unsafe, consult a family therapist, addiction counselor, or support group before making major changes. Call or text 988 in the U.S. if stress about your loved one's situation is contributing to emotional crisis.",
+    "improved_title": "Should You Give Money to an Addicted Family Member?",
+    "improved_meta_description": "Giving money for rent or food can feel necessary but may enable addiction. Learn alternatives and boundaries.",
+    "improved_summary": "Giving cash—even for basic needs like rent or food—often enables addiction because money is fungible and paying bills can shield someone from consequences that might motivate change. Alternatives like paying landlords directly, buying groceries, or offering non-cash help may meet needs without fueling use. Painful as it is, sometimes consequences lead people toward treatment.",
+    "answer_sections": [
+      {
+        "body": "When someone you love is actively using, refusing financial help can feel cruel. You may fear they will go hungry, lose housing, or face utilities shut off. Your instinct to protect them is natural.\n\nAt the same time, money given during active addiction often does not solve the underlying problem. It may temporarily reduce crisis while allowing use to continue. Watching someone face consequences is painful, but those consequences sometimes become the turning point toward help.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Consider alternatives to cash. You might pay a landlord or utility directly, buy groceries yourself, provide a meal, or offer gift cards to specific stores rather than handing over money.\n\nSet clear boundaries and communicate them calmly. You might offer help with treatment costs, rides to appointments, or emotional support while declining to fund active use.\n\nPrepare for guilt trips, anger, or threats when you say no. These reactions are common and often reflect the desperation of addiction rather than the full truth of the relationship.\n\nGet guidance from addiction professionals or family support groups. There may be safety exceptions or local resources—shelters, food programs, treatment scholarships—that help without enabling.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "If financial decisions feel impossible or unsafe, consult a family therapist, addiction counselor, or support group before making major changes.\n\nCall or text 988 in the U.S. if stress about your loved one's situation is contributing to emotional crisis.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Cash for \"legitimate\" expenses may still free up money for substances.",
+      "Paying bills can remove consequences that sometimes motivate treatment.",
+      "Non-cash help—groceries, direct bill payment, treatment support—may be safer.",
+      "Family support groups can help you set financial boundaries without isolation."
+    ],
+    "care_note": "Saying no to money is not the same as abandoning someone. You can still offer love, information about resources, and support for recovery efforts.",
+    "related_questions": [
+      "How do I stop enabling my loved one's addiction?",
+      "How do I support a family member who is struggling with addiction?",
+      "How do I support someone in recovery without enabling them?",
+      "How do I help someone who doesn't want help with addiction?",
+      "How do I handle holidays and family gatherings with an addicted relative?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "david-k-gore-phd",
+    "reviewed_at": "2026-03-13",
+    "source_refs": [
+      {
+        "url": "https://www.samhsa.gov/families",
+        "note": "Supports family guidance on enabling and boundaries.",
+        "title": "Resources for Families Coping with Mental and Substance Use Disorders",
+        "publisher": "SAMHSA"
+      },
+      {
+        "url": "https://nida.nih.gov/publications/family-checkup-positive-parenting-prevents-drug-abuse",
+        "note": "Supports understanding how family responses affect substance use.",
+        "title": "Family Checkup: Positive Parenting Prevents Drug Abuse",
+        "publisher": "National Institute on Drug Abuse"
+      }
+    ],
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true
+  },
+  {
+    "id": "8eb1d4f2-a815-497e-a206-523c3f467eeb",
+    "slug": "should-i-stay-in-a-relationship-where-my-partner-is-still-using-substances",
+    "question": "Should I stay in a relationship where my partner is still using substances?",
     "category": "Relationships & Communication",
-    "short_answer": "Rebuilding relationships with your children after addiction is one of the most important and challenging aspects of recovery.",
-    "answer": "Rebuilding relationships with your children after addiction is one of the most important and challenging aspects of recovery. Children are often deeply affected by a parent's addiction, and rebuilding trust and connection takes time, patience, and consistent action. Start by taking full responsibility for how your addiction affected your children without making excuses or blaming the addiction itself. Children need to hear that you understand you hurt them and that you're committed to being a better parent. This acknowledgment is the foundation for rebuilding trust. Focus on consistency in your actions rather than trying to make up for lost time with grand gestures. Show up when you say you will, follow through on commitments, and be emotionally present when you're with them. Small, consistent actions build trust more effectively than sporadic big efforts. Be patient with your children's healing process. They may be angry, hurt, or skeptical about your recovery. They might test your commitment or remain emotionally distant for a while. This is a normal protective response, not a personal attack on your recovery efforts. Consider family therapy with a counselor who specializes in addiction and family dynamics. A neutral professional can help facilitate difficult conversations, teach healthy communication skills, and help everyone process their feelings about the addiction and recovery. Be honest about your recovery in age-appropriate ways. Younger children need simple explanations like \"Daddy was sick and now he's getting better,\" while older children might benefit from more detailed discussions about addiction as a disease and what recovery involves. Don't expect immediate forgiveness or for relationships to return to how they were before addiction. Your children may need time to see that your changes are genuine and lasting. Some relationships may become even stronger through this process of honest communication and rebuilding. Focus on being the parent your children need now rather than trying to make up for past mistakes. You can't change the past, but you can influence the future of your relationship with consistent, loving, sober parenting. Consider...",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "short_answer": "Staying in a relationship where your partner continues using while you are in recovery is a deeply personal and difficult decision. Your sobriety and safety need to come first. Honest assessment of triggers, support for your recovery, overall relationship health, and whether you are enabling can guide your choice.",
+    "answer": "## What may be happening You may love your partner and hope they will change, while also feeling triggered, lonely, or unsafe in the relationship. Their continued use can create constant tension, broken trust, financial chaos, or exposure to environments that threaten your sobriety. If you are in recovery, living with active use nearby may increase cravings, normalize substance use, or pull you back into enabling patterns. Fear of being alone, guilt, or hope can make the decision feel impossible. ## What can help Assess how their use affects your recovery honestly. Are you frequently triggered? Do you think about using when you are around them? Can you maintain meetings, therapy, and sober supports in this relationship? Evaluate whether your partner supports your recovery or undermines it. Respect for your sobriety, not using around you, and encouragement for your recovery efforts look very different from pressure, mockery, or chaos. Look beyond substance use at overall relationship health: emotional or physical abuse, dishonesty, financial instability, or other patterns that make the relationship unsafe or unsustainable. Set clear boundaries—no use in the home, no intoxication around you, or treatment as a condition of staying—and notice whether you are enabling by covering consequences. Talk with a therapist, sponsor, or Al-Anon rather than deciding alone. ## When to get support If the relationship involves abuse or you feel unsafe, prioritize safety planning with a counselor, domestic violence resource, or trusted support network. Call or text 988 in the U.S. if relationship stress is contributing to emotional crisis or thoughts of using again.",
+    "improved_title": "Should You Stay With a Partner Who Still Uses?",
+    "improved_meta_description": "A partner's ongoing substance use can threaten your recovery. Learn questions to ask before deciding to stay or leave.",
+    "improved_summary": "Staying in a relationship where your partner continues using while you are in recovery is a deeply personal and difficult decision. Your sobriety and safety need to come first. Honest assessment of triggers, support for your recovery, overall relationship health, and whether you are enabling can guide your choice.",
+    "answer_sections": [
+      {
+        "body": "You may love your partner and hope they will change, while also feeling triggered, lonely, or unsafe in the relationship. Their continued use can create constant tension, broken trust, financial chaos, or exposure to environments that threaten your sobriety.\n\nIf you are in recovery, living with active use nearby may increase cravings, normalize substance use, or pull you back into enabling patterns. Fear of being alone, guilt, or hope can make the decision feel impossible.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Assess how their use affects your recovery honestly. Are you frequently triggered? Do you think about using when you are around them? Can you maintain meetings, therapy, and sober supports in this relationship?\n\nEvaluate whether your partner supports your recovery or undermines it. Respect for your sobriety, not using around you, and encouragement for your recovery efforts look very different from pressure, mockery, or chaos.\n\nLook beyond substance use at overall relationship health: emotional or physical abuse, dishonesty, financial instability, or other patterns that make the relationship unsafe or unsustainable.\n\nSet clear boundaries—no use in the home, no intoxication around you, or treatment as a condition of staying—and notice whether you are enabling by covering consequences. Talk with a therapist, sponsor, or Al-Anon rather than deciding alone.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "If the relationship involves abuse or you feel unsafe, prioritize safety planning with a counselor, domestic violence resource, or trusted support network.\n\nCall or text 988 in the U.S. if relationship stress is contributing to emotional crisis or thoughts of using again.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Your recovery and safety should be the top priority in this decision.",
+      "A partner who uses around you or undermines recovery poses serious relapse risk.",
+      "Consider whether staying enables their use or protects you from necessary boundaries.",
+      "Therapy, Al-Anon, or trusted supports can help you decide without isolation."
+    ],
+    "care_note": "There is no single right answer for every couple. What matters is whether staying supports your recovery, safety, and long-term wellbeing—not just your hope that things will change.",
+    "related_questions": [
+      "How has my addiction affected my relationships?",
+      "How do I stop enabling my loved one's addiction?",
+      "How long should I wait before making major life decisions in recovery?",
+      "How do I support someone in recovery without enabling them?",
+      "What should I do if I relapse during recovery?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://www.samhsa.gov/families",
+        "note": "Supports family and relationship impacts of substance use.",
+        "title": "Resources for Families Coping with Mental and Substance Use Disorders",
+        "publisher": "SAMHSA"
+      },
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "note": "Supports prioritizing recovery environment and support systems.",
+        "title": "Treatment and Recovery",
+        "publisher": "National Institute on Drug Abuse"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
   },
   {
-    "id": "8c62684e-3dc3-4663-ae38-b350a942ce52",
-    "slug": "how-do-i-rebuild-my-self-esteem-after-addiction",
-    "question": "How do I rebuild my self-esteem after addiction?",
+    "id": "f0aba38f-2a6c-4721-a536-e3d661f53433",
+    "slug": "what-are-some-healthy-ways-to-celebrate-milestones-in-recovery",
+    "question": "What are some healthy ways to celebrate milestones in recovery?",
     "category": "Addiction & Recovery",
-    "short_answer": "Addiction often damages self-esteem through shame, guilt, and the gap between your values and your actions while using.",
-    "answer": "Addiction often damages self-esteem through shame, guilt, and the gap between your values and your actions while using. Rebuilding a healthy sense of self is a crucial part of recovery and takes time, patience, and intentional effort. Start by practicing self-compassion. Treat yourself with the same kindness you'd show a good friend who was struggling. This means acknowledging your mistakes without defining yourself by them. You are not your addiction—you are a person who has a disease and is working to recover. Focus on taking actions that align with your values, even if they're small. Each time you keep a commitment, help someone else, or make a healthy choice, you're building evidence that you're a trustworthy, capable person. These small actions accumulate over time to rebuild your sense of self-worth. Challenge negative self-talk when you notice it. When your inner critic says \"I'm worthless\" or \"I always mess up,\" ask yourself: \"Is this thought helpful? Is it accurate? What would I tell a friend who said this about themselves?\" Replace harsh self-criticism with more balanced, realistic thoughts. Celebrate your recovery milestones and daily victories. Whether it's 30 days sober, completing a difficult conversation without using, or simply getting through a hard day, acknowledge your progress. Keep a recovery journal to track these victories—they're easy to forget when you're struggling. Engage in activities that give you a sense of accomplishment and purpose. This might be volunteering, learning new skills, pursuing hobbies, or helping others in recovery. Contributing to something larger than yourself can help restore your sense of value and meaning. Consider working with a therapist who can help you process shame and develop healthier thought patterns. Sometimes low self-esteem is connected to deeper issues that benefit from professional support.",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "short_answer": "Celebrating recovery milestones can reinforce motivation and acknowledge hard work, but the way you celebrate matters. Sober celebrations with your recovery community, meaningful activities, service, and supportive loved ones can mark progress without triggering relapse. Avoid environments or behaviors that substitute one risky pattern for another.",
+    "answer": "## What may be happening In active addiction, milestones and special occasions often involved substances. In recovery, you may wonder how to mark progress without feeling like something is missing—or without putting your sobriety at risk. Some people skip celebrations entirely, which can make recovery feel joyless. Others celebrate in ways that expose them to triggers or replace drinking with other impulsive behaviors. ## What can help Celebrate with your recovery community. Many people share milestones at support meetings, where others understand what 30 days, 6 months, or multiple years represent. Plan sober activities that fit your new life: a special dinner, a day trip, a concert, hiking, a spa visit, or a class you have wanted to try. Involve supportive family and friends so they can honor your progress too. Consider service as celebration—sponsoring someone, volunteering, or giving back to a recovery organization. Many programs treat service as part of sustained recovery. Create keepsakes or traditions: a journal entry, a photo, planting something, or a letter to your future self. The reflection matters as much as the activity. Steer clear of bars, heavy party environments, and celebrations centered on gambling or excessive spending, which can create new problems. ## When to get support If milestone celebrations feel triggering or you are unsure how to mark progress safely, talk with a sponsor, therapist, or recovery group. Call or text 988 in the U.S. if celebration planning or recovery stress is contributing to emotional crisis.",
+    "improved_title": "Healthy Ways to Celebrate Recovery Milestones",
+    "improved_meta_description": "Celebrating sobriety milestones matters. Learn sober ways to mark progress without risking your recovery.",
+    "improved_summary": "Celebrating recovery milestones can reinforce motivation and acknowledge hard work, but the way you celebrate matters. Sober celebrations with your recovery community, meaningful activities, service, and supportive loved ones can mark progress without triggering relapse. Avoid environments or behaviors that substitute one risky pattern for another.",
+    "answer_sections": [
+      {
+        "body": "In active addiction, milestones and special occasions often involved substances. In recovery, you may wonder how to mark progress without feeling like something is missing—or without putting your sobriety at risk.\n\nSome people skip celebrations entirely, which can make recovery feel joyless. Others celebrate in ways that expose them to triggers or replace drinking with other impulsive behaviors.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Celebrate with your recovery community. Many people share milestones at support meetings, where others understand what 30 days, 6 months, or multiple years represent.\n\nPlan sober activities that fit your new life: a special dinner, a day trip, a concert, hiking, a spa visit, or a class you have wanted to try. Involve supportive family and friends so they can honor your progress too.\n\nConsider service as celebration—sponsoring someone, volunteering, or giving back to a recovery organization. Many programs treat service as part of sustained recovery.\n\nCreate keepsakes or traditions: a journal entry, a photo, planting something, or a letter to your future self. The reflection matters as much as the activity.\n\nSteer clear of bars, heavy party environments, and celebrations centered on gambling or excessive spending, which can create new problems.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "If milestone celebrations feel triggering or you are unsure how to mark progress safely, talk with a sponsor, therapist, or recovery group.\n\nCall or text 988 in the U.S. if celebration planning or recovery stress is contributing to emotional crisis.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Celebrating milestones can strengthen motivation and recognize real achievement.",
+      "Recovery meetings and community celebrations reinforce that you are not alone.",
+      "Sober activities—travel, meals, hobbies, service—can become meaningful traditions.",
+      "Avoid bar-centered celebrations and substitute addictions like gambling or overspending."
+    ],
+    "care_note": "You deserve to recognize what you have accomplished. Celebrating sober can help recovery feel rewarding, not only disciplined.",
+    "related_questions": [
+      "Is it normal to feel bored in early recovery?",
+      "How do I handle holidays and special occasions in recovery?",
+      "How do I handle social events and gatherings in recovery?",
+      "How do I find motivation when recovery feels impossible?",
+      "How do I tell my friends I'm sober without making it weird?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://www.samhsa.gov/find-help/recovery",
+        "note": "Supports recovery community and sustained recovery practices.",
+        "title": "Recovery and Support",
+        "publisher": "SAMHSA"
+      },
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "note": "Supports ongoing recovery activities and community support.",
+        "title": "Treatment and Recovery",
+        "publisher": "National Institute on Drug Abuse"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
   },
   {
-    "id": "1aa98f04-f330-4f9e-ad9a-53defca0e738",
-    "slug": "how-do-i-rebuild-trust-with-family-after-addiction-hurt-them",
-    "question": "How do I rebuild trust with family after addiction hurt them?",
+    "id": "38655aae-423f-4483-94b3-e0ad941d9c9b",
+    "slug": "what-are-the-signs-that-someone-i-love-has-an-addiction",
+    "question": "What are the signs that someone I love has an addiction?",
     "category": "Addiction & Recovery",
-    "short_answer": "Rebuilding trust after addiction requires consistent actions over time, patience with others' healing process, and understanding that forgiveness can't be rushed.",
-    "answer": "Addiction doesn't just hurt the person struggling with it—it often devastates family relationships, breaking trust that may have taken years to build. Family members may have watched you make promises you couldn't keep, lie about your using, or behave in ways that were hurtful or frightening. Even when you're committed to recovery, they may be hesitant to believe that this time is different. Rebuilding trust is a slow process that requires consistent action rather than just words. This means following through on commitments, being transparent about your recovery process, and accepting that family members may need time to feel safe with you again. It also means understanding that their anger, hurt, or skepticism isn't necessarily about your current efforts—it's about their own healing from the trauma of loving someone with addiction. It's important to focus on what you can control—your own recovery, your actions, and your commitment to change—rather than trying to convince others to trust you again. Trust is earned through consistency over time, not through apologies or promises. Some relationships may heal completely, others may remain changed, and some may not survive the damage that was done. While this is painful, accepting these realities can help you focus your energy on building the strongest possible foundation for your recovery and your future relationships.",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "short_answer": "Recognizing addiction in someone you love can be hard because use often starts gradually and may be concealed. Look for patterns across behavior, health, finances, mood, and reliability—not single incidents—and trust your instincts when something feels consistently off.",
+    "answer": "## What may be happening Addiction often develops gradually. Someone may hide use, minimize problems, or become defensive when asked direct questions. That can make early signs easy to dismiss as stress, a rough patch, or personality change. Common behavioral signs include lying about whereabouts, secrecy around phone or money, neglecting work or school, abandoning hobbies, or spending time with a new group that uses substances. Physical signs vary by substance but may include sleep or appetite changes, bloodshot eyes, poor hygiene, unexplained weight change, or frequent illness. Financial strain, missing valuables, requests to borrow money, or finding paraphernalia can also appear. Emotionally, you may see mood swings, irritability, anxiety, depression, or someone seeming like a different person when intoxicated. ## What can help Focus on patterns rather than one bad day. Keep notes if it helps you see whether problems are recurring. Learn about addiction as a health condition so you can respond with concern rather than only blame. Avoid confronting someone while they are intoxicated or in crisis. Choose a calmer moment to express worry using specific examples: \"I've noticed you've missed work three times this month and seem withdrawn.\" Offer support for professional evaluation without making ultimatums you cannot follow through on. Take care of your own wellbeing through family support groups, therapy, or trusted friends. You cannot force someone into recovery, but you can stop enabling harmful behavior and model healthy boundaries. ## When to get support Seek professional guidance if you see escalating use, withdrawal symptoms, overdose risk, violence, or severe mental health decline. If someone is in immediate danger—unconscious, unable to breathe, suicidal, or violent—call local emergency services. In the U.S., you can call or text 988 for emotional crisis support.",
+    "improved_title": "Signs Someone You Love May Have an Addiction",
+    "improved_meta_description": "Addiction often develops gradually and can be hidden. Learn behavioral, physical, and emotional signs—and when to seek help.",
+    "improved_summary": "Recognizing addiction in someone you love can be hard because use often starts gradually and may be concealed. Look for patterns across behavior, health, finances, mood, and reliability—not single incidents—and trust your instincts when something feels consistently off.",
+    "answer_sections": [
+      {
+        "body": "Addiction often develops gradually. Someone may hide use, minimize problems, or become defensive when asked direct questions. That can make early signs easy to dismiss as stress, a rough patch, or personality change.\n\nCommon behavioral signs include lying about whereabouts, secrecy around phone or money, neglecting work or school, abandoning hobbies, or spending time with a new group that uses substances. Physical signs vary by substance but may include sleep or appetite changes, bloodshot eyes, poor hygiene, unexplained weight change, or frequent illness.\n\nFinancial strain, missing valuables, requests to borrow money, or finding paraphernalia can also appear. Emotionally, you may see mood swings, irritability, anxiety, depression, or someone seeming like a different person when intoxicated.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Focus on patterns rather than one bad day. Keep notes if it helps you see whether problems are recurring. Learn about addiction as a health condition so you can respond with concern rather than only blame.\n\nAvoid confronting someone while they are intoxicated or in crisis. Choose a calmer moment to express worry using specific examples: \"I've noticed you've missed work three times this month and seem withdrawn.\" Offer support for professional evaluation without making ultimatums you cannot follow through on.\n\nTake care of your own wellbeing through family support groups, therapy, or trusted friends. You cannot force someone into recovery, but you can stop enabling harmful behavior and model healthy boundaries.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Seek professional guidance if you see escalating use, withdrawal symptoms, overdose risk, violence, or severe mental health decline.\n\nIf someone is in immediate danger—unconscious, unable to breathe, suicidal, or violent—call local emergency services. In the U.S., you can call or text 988 for emotional crisis support.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Addiction signs usually appear as patterns over time, not one isolated event.",
+      "Behavioral changes—secrecy, neglect of responsibilities, new social circles—often show up early.",
+      "Physical, financial, and emotional shifts can all signal a problem depending on the substance.",
+      "Noticing signs is a reason to seek guidance, not to diagnose someone yourself."
+    ],
+    "care_note": "If you feel unsafe or overwhelmed, consider a family support group or therapist. Call or text 988 in the U.S. if you are in emotional crisis.",
+    "related_questions": [
+      "How do I talk to someone about their addiction without pushing them away?",
+      "What is the difference between supporting and enabling?",
+      "How do I set boundaries with someone who has addiction?",
+      "Should I stage an intervention?",
+      "How do I cope with the stress of loving someone with addiction?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://www.samhsa.gov/families",
+        "note": "Supports family guidance on recognizing substance use problems.",
+        "title": "Resources for Families Coping with Mental and Substance Use Disorders",
+        "publisher": "SAMHSA"
+      },
+      {
+        "url": "https://nida.nih.gov/publications/drugfacts/understanding-drug-use-addiction",
+        "note": "Supports addiction-as-disease framing and common signs.",
+        "title": "Understanding Drug Use and Addiction",
+        "publisher": "National Institute on Drug Abuse"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
   },
   {
-    "id": "9b8bacbd-9b71-4e7a-babd-464e1beadfbe",
-    "slug": "how-do-i-rebuild-trust-with-my-partner-after-addiction",
-    "question": "How do I rebuild trust with my partner after addiction?",
-    "category": "Relationships & Communication",
-    "short_answer": "Rebuilding trust with your partner after addiction is one of the most challenging but important aspects of recovery.",
-    "answer": "Rebuilding trust with your partner after addiction is one of the most challenging but important aspects of recovery. Trust is earned through consistent actions over time, and the process requires patience, honesty, and commitment from both partners, though the timeline and outcome can't be guaranteed. Start by taking full responsibility for the damage your addiction caused without making excuses or blaming external factors. Your partner needs to hear that you understand how your actions hurt them and that you're committed to making changes. Avoid phrases like \"I was sick\" or \"It wasn't really me\" that might sound like you're minimizing your responsibility. Be completely honest about your addiction and recovery, even when it's uncomfortable. This includes being transparent about your treatment, support group attendance, triggers, and any struggles you're having. Hiding information, even with good intentions, will only damage trust further. Follow through consistently on all commitments, both big and small. If you say you'll be home at a certain time, be there. If you promise to attend a meeting or therapy session, go. If you commit to helping with household tasks, do them. Trust is rebuilt through countless small actions, not grand gestures. Give your partner access to information about your recovery if they want it. This might include allowing them to attend therapy sessions with you, sharing information about your support group attendance, or being open about your daily activities and whereabouts. Be patient with your partner's healing process and don't pressure them to forgive or trust you on your timeline. They may have good days and bad days, and they might need to express anger or hurt repeatedly as they process their own trauma from your addiction. Consider couples therapy with a counselor who understands addiction and its impact on relationships. A neutral professional can help facilitate difficult conversations, teach healthy communication skills, and guide both of you through the process of rebuilding your relationship. Understand that your partner may have developed their own unhealthy coping mechanisms during your addiction, such as hypervigilance,...",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
-    "review_status": "reviewed",
-    "reviewed_by": "david-k-gore-phd",
-    "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
-    ],
-    "crisis_sensitive": false,
-    "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
-  },
-  {
-    "id": "7b5291a2-1c0e-4dba-a0d9-10cf5e171d93",
-    "slug": "how-do-i-rebuild-trust-with-people-i-hurt-during-my-addiction",
-    "question": "How do I rebuild trust with people I hurt during my addiction?",
+    "id": "8550a90c-f7b8-403c-9bc4-6e189a88e0cd",
+    "slug": "what-does-it-mean-to-be-a-dry-drunk-185759-027",
+    "question": "What does it mean to be a 'dry drunk'?",
     "category": "Addiction & Recovery",
-    "short_answer": "Rebuilding trust after addiction is a gradual process that requires patience, consistency, and acceptance that some relationships may take longer to heal than others.",
-    "answer": "Rebuilding trust after addiction is a gradual process that requires patience, consistency, and acceptance that some relationships may take longer to heal than others. Trust is earned through actions over time, not through apologies alone. Start by taking full responsibility for your actions without making excuses or blaming your addiction. While addiction is a disease, you're still accountable for the harm you caused. A sincere apology acknowledges the specific ways you hurt someone and expresses genuine remorse without expecting immediate forgiveness. Focus on changing your behavior consistently rather than trying to convince people with words. Show up when you say you will, follow through on commitments, and be honest about your recovery process. Small, consistent actions build trust more effectively than grand gestures. Be patient with others' healing process. The people you hurt may need time to see that your changes are genuine and lasting. They might test your commitment or remain guarded for a while. This is a natural protective response, not a personal attack on your recovery. Consider making amends as part of your recovery process, but do this thoughtfully and often with guidance from a sponsor or therapist. Sometimes making amends means giving someone space rather than forcing contact. Accept that some relationships may not be repairable, and that's okay. Focus your energy on the relationships where people are willing to work toward healing. Some of your strongest relationships may actually become deeper through this process of honest communication and rebuilding. Remember that rebuilding trust is a marathon, not a sprint. Celebrate small progress and stay committed to your recovery regardless of others' responses.",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "short_answer": "'Dry drunk' is an informal recovery term for someone who has stopped drinking but has not addressed underlying emotional issues that fueled their addiction. They may remain irritable, resentful, or stuck in old patterns. True recovery often involves emotional growth and new coping skills, not just abstinence.",
+    "answer": "## What may be happening Some people stop drinking but continue to struggle with the attitudes and behaviors that accompanied their addiction—anger, blame, secrecy, emotional immaturity, or chronic dissatisfaction. In recovery communities, this pattern is sometimes called being a 'dry drunk.' The term is not a clinical diagnosis, and it can be used judgmentally. Still, it points to a real experience: sobriety without inner change can feel miserable for the person and those around them. ## What can help Recognize that abstinence is a foundation, not the whole house. Many people need therapy, support groups, trauma work, or spiritual practice to address what drove their drinking in the first place. Notice patterns like resentment, dishonesty, isolation, or constantly white-knuckling through cravings without developing new skills. These may signal that emotional recovery is lagging behind physical sobriety. Build coping tools for stress, relationships, and difficult emotions rather than simply enduring sober life. Exercise, mindfulness, creative outlets, and honest connection can all support deeper change. If you feel stuck despite not drinking, consider deepening therapeutic work or discussing where you feel blocked with a sponsor or counselor. ## When to get support If sobriety feels empty, angry, or unsustainable despite abstinence, reach out to a therapist or addiction counselor for deeper work. Call or text 988 in the U.S. if emotional distress in recovery is contributing to crisis or thoughts of drinking again.",
+    "improved_title": "What Does 'Dry Drunk' Mean in Recovery?",
+    "improved_meta_description": "Dry drunk describes sobriety without emotional growth. Learn what it means and how to move toward fuller recovery.",
+    "improved_summary": "'Dry drunk' is an informal recovery term for someone who has stopped drinking but has not addressed underlying emotional issues that fueled their addiction. They may remain irritable, resentful, or stuck in old patterns. True recovery often involves emotional growth and new coping skills, not just abstinence.",
+    "answer_sections": [
+      {
+        "body": "Some people stop drinking but continue to struggle with the attitudes and behaviors that accompanied their addiction—anger, blame, secrecy, emotional immaturity, or chronic dissatisfaction. In recovery communities, this pattern is sometimes called being a 'dry drunk.'\n\nThe term is not a clinical diagnosis, and it can be used judgmentally. Still, it points to a real experience: sobriety without inner change can feel miserable for the person and those around them.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Recognize that abstinence is a foundation, not the whole house. Many people need therapy, support groups, trauma work, or spiritual practice to address what drove their drinking in the first place.\n\nNotice patterns like resentment, dishonesty, isolation, or constantly white-knuckling through cravings without developing new skills. These may signal that emotional recovery is lagging behind physical sobriety.\n\nBuild coping tools for stress, relationships, and difficult emotions rather than simply enduring sober life. Exercise, mindfulness, creative outlets, and honest connection can all support deeper change.\n\nIf you feel stuck despite not drinking, consider deepening therapeutic work or discussing where you feel blocked with a sponsor or counselor.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "If sobriety feels empty, angry, or unsustainable despite abstinence, reach out to a therapist or addiction counselor for deeper work.\n\nCall or text 988 in the U.S. if emotional distress in recovery is contributing to crisis or thoughts of drinking again.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "'Dry drunk' is informal language, not a clinical diagnosis.",
+      "It describes abstinence without the emotional work that supports lasting change.",
+      "Signs may include irritability, dishonesty, resentment, and white-knuckling sobriety.",
+      "Therapy, step work, and developing coping skills can help move beyond abstinence alone."
+    ],
+    "care_note": "If the term 'dry drunk' feels harsh, focus on the underlying idea: recovery can get easier when you address emotions and patterns, not just the substance.",
+    "related_questions": [
+      "How do I find motivation when recovery feels impossible?",
+      "How do I handle anxiety without using substances?",
+      "How do I find a good therapist for addiction recovery?",
+      "Is it normal to feel bored in early recovery?",
+      "What should I do if I relapse during recovery?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "note": "Supports comprehensive recovery beyond abstinence.",
+        "title": "Treatment and Recovery",
+        "publisher": "National Institute on Drug Abuse"
+      },
+      {
+        "url": "https://www.samhsa.gov/find-help/recovery",
+        "note": "Supports holistic recovery support resources.",
+        "title": "Recovery and Support",
+        "publisher": "SAMHSA"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
   },
   {
-    "id": "517d7692-15b3-4a95-b204-a875e981c7c9",
-    "slug": "how-do-i-socialize-without-drinking-181288-033",
-    "question": "How do I socialize without drinking?",
-    "category": "Addiction & Recovery",
-    "short_answer": "Sober socializing requires finding new activities, supportive friends, and developing confidence in your authentic self without substances.",
-    "answer": "Socializing without drinking can feel challenging at first, especially if your social life previously revolved around alcohol. Start by finding activities that don't center around drinking - coffee dates, hiking, movies, or hobby groups. Be honest with supportive friends about your sobriety goals and ask for their support. Practice responses to offers of drinks ahead of time. Remember that if people only want to spend time with you when you're drinking, they might not be the right friends for your recovery journey.",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "id": "57247ad9-d691-4c83-944b-5bb2c0a1db32",
+    "slug": "what-if-i-become-dependent-on-anxiety-me-181083-058",
+    "question": "What if I become dependent on anxiety medication?",
+    "category": "Anxiety & Stress",
+    "short_answer": "Concerns about dependence on anxiety medication are understandable, especially for people in recovery. Physical dependence and addiction are not the same thing. Working with an informed prescriber, using therapy alongside medication, and discussing risks openly can help you treat anxiety while protecting your recovery.",
+    "answer": "## What may be happening If you are in recovery from substance use, needing medication for anxiety can feel frightening. You may worry that taking a pill will repeat old patterns or that you will become \"addicted\" to something new. Some medications—particularly certain benzodiazepines—do carry meaningful dependence and misuse risk. Other psychiatric medications work differently and may be safer options when prescribed thoughtfully. Confusing physical dependence with addiction can make appropriate treatment harder to access. ## What can help Talk openly with a doctor or psychiatrist who understands both anxiety and addiction history. They can explain benefits, risks, and alternatives without judgment. Understand the distinction: physical dependence means your body adapts and may need a gradual taper to stop safely. Addiction involves loss of control, compulsive use despite harm, and negative life consequences. A person can depend physically on a medication without misusing it. Ask about medications with lower abuse potential, non-medication treatments, and whether therapy—such as CBT—should be part of your plan. Many people do best with combined approaches. Be honest about cravings, dose escalation urges, or using medication to escape emotions rather than treat a condition. Those signals are worth discussing promptly with your prescriber. ## When to get support If you notice yourself taking more than prescribed, doctor-shopping, or using medication to get high, contact your prescriber or addiction counselor right away. Call or text 988 in the U.S. if anxiety or medication worries are contributing to emotional crisis.",
+    "improved_title": "What If You Become Dependent on Anxiety Medication?",
+    "improved_meta_description": "Worried about dependence on anxiety meds? Learn the difference between dependence and addiction and how to work with your doctor.",
+    "improved_summary": "Concerns about dependence on anxiety medication are understandable, especially for people in recovery. Physical dependence and addiction are not the same thing. Working with an informed prescriber, using therapy alongside medication, and discussing risks openly can help you treat anxiety while protecting your recovery.",
+    "answer_sections": [
+      {
+        "body": "If you are in recovery from substance use, needing medication for anxiety can feel frightening. You may worry that taking a pill will repeat old patterns or that you will become \"addicted\" to something new.\n\nSome medications—particularly certain benzodiazepines—do carry meaningful dependence and misuse risk. Other psychiatric medications work differently and may be safer options when prescribed thoughtfully. Confusing physical dependence with addiction can make appropriate treatment harder to access.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Talk openly with a doctor or psychiatrist who understands both anxiety and addiction history. They can explain benefits, risks, and alternatives without judgment.\n\nUnderstand the distinction: physical dependence means your body adapts and may need a gradual taper to stop safely. Addiction involves loss of control, compulsive use despite harm, and negative life consequences. A person can depend physically on a medication without misusing it.\n\nAsk about medications with lower abuse potential, non-medication treatments, and whether therapy—such as CBT—should be part of your plan. Many people do best with combined approaches.\n\nBe honest about cravings, dose escalation urges, or using medication to escape emotions rather than treat a condition. Those signals are worth discussing promptly with your prescriber.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "If you notice yourself taking more than prescribed, doctor-shopping, or using medication to get high, contact your prescriber or addiction counselor right away.\n\nCall or text 988 in the U.S. if anxiety or medication worries are contributing to emotional crisis.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Physical dependence and addiction are related but not identical concepts.",
+      "Some anxiety medications carry higher dependence risk and need careful monitoring.",
+      "Addiction-informed prescribers can often find effective options with lower abuse potential.",
+      "Combining medication with therapy and other coping strategies supports safer outcomes."
+    ],
+    "care_note": "Needing help for anxiety does not mean you failed at recovery. The goal is thoughtful treatment that supports your overall health—not avoiding all medications out of fear.",
+    "related_questions": [
+      "Should I avoid all mood-altering substances in recovery?",
+      "How do I handle anxiety without using substances?",
+      "How do I find a good therapist for addiction recovery?",
+      "Is it possible to use substances occasionally after addiction?",
+      "How do I handle work stress without using substances?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://nida.nih.gov/research-topics/common-comorbidities-substance-use-disorders",
+        "note": "Supports integrated treatment for co-occurring anxiety and substance use.",
+        "title": "Common Comorbidities with Substance Use Disorders Research Report",
+        "publisher": "National Institute on Drug Abuse"
+      },
+      {
+        "url": "https://www.samhsa.gov/mental-health/mental-health-substance-use-co-occurring-disorders",
+        "note": "Supports coordinated mental health and substance use treatment.",
+        "title": "Mental Health and Substance Use Co-Occurring Disorders",
+        "publisher": "SAMHSA"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
   },
   {
-    "id": "d657b4bb-bd7e-41d2-8b1f-efffd46f2ce7",
-    "slug": "how-do-i-stay-motivated-when-recovery-feels-like-a-daily-struggle",
-    "question": "How do I stay motivated when recovery feels like a daily struggle?",
+    "id": "d5ec1afc-5a53-4167-bdfc-c1aa99e61e3e",
+    "slug": "what-if-i-lose-my-job-because-of-my-addiction",
+    "question": "What if I lose my job because of my addiction?",
     "category": "Addiction & Recovery",
-    "short_answer": "Recovery can feel overwhelming when you're taking it one day at a time, especially during difficult periods when sobriety feels like a constant battle.",
-    "answer": "Recovery can feel overwhelming when you're taking it one day at a time, especially during difficult periods when sobriety feels like a constant battle. Remember that this struggle is temporary and that your motivation can be rebuilt and sustained through practical strategies. Break down your recovery into smaller, manageable pieces. Instead of thinking \"I can never drink again,\" focus on \"I don't have to drink today\" or even \"I don't have to drink in the next hour.\" This makes recovery feel less overwhelming and more achievable. Create a list of your personal reasons for recovery and review it regularly. These might include improving your health, rebuilding relationships, being present for your children, achieving career goals, or simply feeling better about yourself. Keep this list somewhere you can access it when motivation is low. Celebrate small victories and milestones. Whether it's one day, one week, or one month sober, acknowledge your progress. Many people find it helpful to mark their calendar, collect chips or tokens, or reward themselves with something special for reaching milestones. Connect with others who understand the struggle. Attend support group meetings, call your sponsor, or participate in online recovery communities. Hearing others share similar struggles and victories can help you feel less alone and more hopeful. Focus on the improvements you've already experienced, even if they're small. Maybe you're sleeping better, your relationships are improving, or you have more energy. These positive changes can fuel your motivation to continue. Remember that motivation often follows action rather than preceding it. Sometimes you have to act your way into feeling motivated rather than waiting to feel motivated to act. Attend a meeting even when you don't want to, call your sponsor even when you don't feel like it, or practice self-care even when it feels pointless. Consider working with a therapist if low motivation persists, as it might be related to depression or other underlying issues.",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "short_answer": "Losing a job because of addiction can feel devastating and add financial stress on top of recovery. Many people prioritize sobriety first, then address unemployment benefits, basic needs, and gradual career rebuilding. Recovery often creates the foundation for more stable employment over time.",
+    "answer": "## What may be happening Job loss tied to addiction can trigger shame, panic, and fear about the future. Financial pressure may increase cravings or make it harder to focus on treatment. For some people, losing a job also removes a major source of stress—or was preceded by performance problems, absences, or workplace incidents linked to substance use. The loss can feel like confirmation that addiction has taken over multiple areas of life. ## What can help Prioritize recovery even when money feels urgent. Without sobriety, employment problems often repeat. Many people use this period to attend treatment, build routines, and stabilize health. Apply for unemployment benefits if you are eligible, and look into local food, housing, or emergency assistance programs. A social worker, case manager, or recovery program staff may know what is available in your area. Ask whether your former employer has an Employee Assistance Program or policies for reinstatement after treatment. Some workplaces will work with employees who are actively addressing addiction. Begin rebuilding gradually: update your resume, explore training, and consider part-time or temporary work that offers income and structure without overwhelming early recovery. Network with people in recovery who may have job leads or understand employment gaps. ## When to get support If you have questions about whether termination was lawful or what protections may apply, consult a qualified employment attorney rather than relying on general information. Career counselors, workforce programs, and peer recovery networks may help with resumes, interviews, and confidence. Call or text 988 in the U.S. if job loss is contributing to emotional crisis or thoughts of using again.",
+    "improved_title": "What to Do If You Lose Your Job Because of Addiction",
+    "improved_meta_description": "Job loss from addiction is painful but recovery can still move forward. Learn practical steps for stability and rebuilding.",
+    "improved_summary": "Losing a job because of addiction can feel devastating and add financial stress on top of recovery. Many people prioritize sobriety first, then address unemployment benefits, basic needs, and gradual career rebuilding. Recovery often creates the foundation for more stable employment over time.",
+    "answer_sections": [
+      {
+        "body": "Job loss tied to addiction can trigger shame, panic, and fear about the future. Financial pressure may increase cravings or make it harder to focus on treatment.\n\nFor some people, losing a job also removes a major source of stress—or was preceded by performance problems, absences, or workplace incidents linked to substance use. The loss can feel like confirmation that addiction has taken over multiple areas of life.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Prioritize recovery even when money feels urgent. Without sobriety, employment problems often repeat. Many people use this period to attend treatment, build routines, and stabilize health.\n\nApply for unemployment benefits if you are eligible, and look into local food, housing, or emergency assistance programs. A social worker, case manager, or recovery program staff may know what is available in your area.\n\nAsk whether your former employer has an Employee Assistance Program or policies for reinstatement after treatment. Some workplaces will work with employees who are actively addressing addiction.\n\nBegin rebuilding gradually: update your resume, explore training, and consider part-time or temporary work that offers income and structure without overwhelming early recovery. Network with people in recovery who may have job leads or understand employment gaps.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "If you have questions about whether termination was lawful or what protections may apply, consult a qualified employment attorney rather than relying on general information.\n\nCareer counselors, workforce programs, and peer recovery networks may help with resumes, interviews, and confidence. Call or text 988 in the U.S. if job loss is contributing to emotional crisis or thoughts of using again.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Maintaining recovery is often the foundation for long-term employment stability.",
+      "Unemployment benefits and local assistance programs may help during the transition.",
+      "Some employers offer EAPs or reinstatement paths after treatment.",
+      "Part-time or temporary work can provide structure without overwhelming early recovery."
+    ],
+    "care_note": "Losing a job is painful, but it does not define your future. Many people rebuild careers after addiction—and recovery is often what makes that possible.",
+    "related_questions": [
+      "How do I explain gaps in my employment history due to addiction?",
+      "How do I handle drug testing at work while in recovery?",
+      "How do I handle work stress without using substances?",
+      "How do I find motivation when recovery feels impossible?",
+      "What should I do if I have legal problems related to my addiction?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://www.samhsa.gov/find-help/recovery",
+        "note": "Supports recovery resources that may include employment support.",
+        "title": "Recovery and Employment",
+        "publisher": "SAMHSA"
+      },
+      {
+        "url": "https://nida.nih.gov/publications/drugfacts/understanding-drug-use-addiction",
+        "note": "Supports addiction-as-health-condition framing relevant to employment recovery.",
+        "title": "Understanding Drug Use and Addiction",
+        "publisher": "National Institute on Drug Abuse"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
-  },
-  {
-    "id": "f6e6ad70-80a5-492b-af8b-76eb5727509e",
-    "slug": "how-do-i-stay-sober-when-all-my-friends--186032-023",
-    "question": "How do I stay sober when all my friends drink?",
-    "category": "Addiction & Recovery",
-    "short_answer": "Staying sober around drinking friends requires planning, having responses ready, and potentially finding new social activities and friendships.",
-    "answer": "Staying sober when your friends drink can be challenging but is definitely possible. Plan ahead by having responses ready for offers to drink, like 'I'm driving' or 'I'm not drinking tonight.' Bring your own non-alcoholic drinks so you have something in your hand. Consider being the designated driver, which gives you a clear reason not to drink. If your friends pressure you or make sobriety difficult, you might need to find new social activities or friendships that don't revolve around alcohol. Remember that true friends will support your sobriety, not undermine it.",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
-    "review_status": "reviewed",
-    "reviewed_by": "david-k-gore-phd",
-    "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
-    ],
-    "crisis_sensitive": false,
-    "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
   }
 ]

@@ -1,338 +1,522 @@
 [
   {
-    "id": "c7a05a48-4ece-455a-b30c-1497810b9590",
-    "slug": "what-should-i-do-if-im-struggling-financially-because-of-my-addiction",
-    "question": "What should I do if I'm struggling financially because of my addiction?",
-    "category": "Addiction & Recovery",
-    "short_answer": "Financial problems are one of the most common consequences of addiction, and addressing them is an important part of rebuilding your life in recovery.",
-    "answer": "Financial problems are one of the most common consequences of addiction, and addressing them is an important part of rebuilding your life in recovery. The good news is that financial situations can improve significantly as you maintain sobriety, but it often takes time and planning. Start by taking an honest inventory of your financial situation. List all debts, assets, income, and expenses. This might feel overwhelming, but you can't create a plan without knowing where you stand. Consider working with a financial counselor or using free resources like those offered by credit unions or nonprofit credit counseling services. Prioritize your basic needs first: housing, food, transportation, and healthcare. If you're behind on rent or utilities, contact your providers to discuss payment plans. Many companies are willing to work with people who are proactively addressing their situation. Look into resources available for people in recovery. Some areas have programs that help with job placement, housing assistance, or emergency financial aid for people in treatment or early recovery. Your treatment center or local social services office can provide information about available resources. Focus on increasing your income through employment or job training programs. Many employers value the honesty, dedication, and problem-solving skills that people in recovery often develop. Consider starting with any job to get income flowing, even if it's not your ideal position. Be patient with the process. It may take months or years to fully recover financially, but each month of sobriety typically improves your financial situation. Avoid get-rich-quick schemes or high-risk financial decisions while you're rebuilding stability. Consider that your financial recovery is closely tied to your addiction recovery—maintaining sobriety is the foundation for all other improvements in your life.",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
-    "review_status": "reviewed",
-    "reviewed_by": "david-k-gore-phd",
-    "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
-    ],
-    "crisis_sensitive": false,
-    "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
-  },
-  {
-    "id": "b1b3e1b9-59cf-4c81-be55-6f9b9e7bea17",
-    "slug": "what-should-i-do-if-im-struggling-with-multiple-addictions",
-    "question": "What should I do if I'm struggling with multiple addictions?",
-    "category": "Addiction & Recovery",
-    "short_answer": "Having multiple addictions, also called cross-addiction or polysubstance use, is more common than many people realize.",
-    "answer": "Having multiple addictions, also called cross-addiction or polysubstance use, is more common than many people realize. Many people struggle with alcohol and drugs simultaneously, or develop new addictions after getting sober from their primary substance. This requires a comprehensive treatment approach that addresses all addictive behaviors. Be honest with your treatment team about all substances and behaviors you're struggling with. This includes alcohol, illegal drugs, prescription medications, gambling, sex, shopping, or any other compulsive behaviors. Your treatment providers need complete information to develop an effective treatment plan. Understand that treating multiple addictions often requires addressing them simultaneously rather than one at a time. Focusing on just one addiction while ignoring others can lead to substitution—replacing one addictive behavior with another. Comprehensive treatment addresses the underlying issues that drive all addictive behaviors. Consider intensive treatment options like residential programs that can provide 24/7 support while you address multiple addictions. Outpatient treatment can also be effective, but you may need more frequent sessions and multiple types of support. Work with professionals who have experience treating co-occurring addictions. Not all addiction counselors are trained to handle multiple addictions, so it's important to find providers who understand the complexity of your situation. Be prepared for a longer and more complex recovery process. Addressing multiple addictions typically takes more time and requires more intensive support than addressing a single addiction. This doesn't mean recovery is impossible—it just means you need to be patient and committed to the process. Consider attending multiple support groups if they're available in your area. For example, you might attend both AA and Gamblers Anonymous if you struggle with both alcohol and gambling. Some areas have support groups specifically for people with multiple addictions. Focus on developing healthy coping skills that can help with all your addictive behaviors. Stress management, emotional regulation, and healthy lifestyle habits...",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
-    "review_status": "reviewed",
-    "reviewed_by": "david-k-gore-phd",
-    "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
-    ],
-    "crisis_sensitive": false,
-    "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
-  },
-  {
-    "id": "1e7fdcba-4c9f-4b55-8e8a-2090ab2fbd8a",
-    "slug": "what-should-i-do-if-my-adult-child-is-addicted-to-drugs",
-    "question": "What should I do if my adult child is addicted to drugs?",
-    "category": "Family & Parenting",
-    "short_answer": "Watching your adult child struggle with addiction is heartbreaking and can leave you feeling helpless, angry, and confused about how to help.",
-    "answer": "Watching your adult child struggle with addiction is heartbreaking and can leave you feeling helpless, angry, and confused about how to help. While your instinct is to protect and fix the situation, supporting an adult child with addiction requires a delicate balance of love and tough boundaries. Recognize that your adult child's addiction is not your fault, and you cannot control or cure it. Addiction is a complex disease influenced by genetics, environment, mental health, and many other factors. Blaming yourself or trying to control their recovery will only cause you more pain and may actually hinder their progress. Stop enabling behaviors immediately, even though this feels counterintuitive to your parental instincts. Enabling includes giving money, paying bills, providing housing without conditions, making excuses for their behavior, or bailing them out of legal or financial consequences. These actions, while well-intentioned, often allow the addiction to continue. Set clear boundaries about what you will and won't do to help. You might offer to pay for treatment directly, provide emotional support, or help them research resources, but refuse to give cash or cover consequences of their addiction. Communicate these boundaries clearly and stick to them consistently. Learn about addiction and available treatment options so you can provide informed support when your child is ready to seek help. Research local treatment centers, support groups, and other resources so you're prepared to act quickly if they express interest in getting help. Take care of your own emotional and physical health. Consider joining a support group like Families Anonymous or Nar-Anon, where you can connect with other parents facing similar challenges. Individual therapy can also help you process your emotions and develop healthy coping strategies. Maintain hope while accepting reality. Recovery is possible, but it has to be your child's choice. Some people need to experience significant consequences before they're motivated to change, and protecting them from these consequences may actually delay their recovery. Consider staging an intervention with professional guidance if your child's...",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
-    "review_status": "reviewed",
-    "reviewed_by": "david-k-gore-phd",
-    "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
-    ],
-    "crisis_sensitive": false,
-    "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
-  },
-  {
-    "id": "9b525ebb-44bd-4483-880e-aaa6246b4c09",
-    "slug": "what-should-i-do-if-my-teenager-is-experimenting-w-187459-006",
-    "question": "What should I do if my teenager is experimenting with drugs or alcohol?",
-    "category": "Teen-Specific Questions",
-    "short_answer": "Stay calm, have honest conversations about risks and safety, and focus on harm reduction rather than punishment alone.",
-    "answer": "Discovering that your teenager is experimenting with drugs or alcohol can be terrifying, but how you respond in this moment is crucial for maintaining their trust and keeping them safe. First, stay calm and avoid reacting with anger or panic, as this will likely cause them to shut down or lie to you in the future. Have an honest, non-judgmental conversation about what you've discovered and why you're concerned. Focus on safety and harm reduction rather than just punishment. Discuss the specific risks associated with the substances they're using, including how they affect developing brains, the dangers of mixing substances, and the importance of never driving under the influence or getting in a car with someone who's been using. Set clear consequences for unsafe behavior while also making sure they know they can call you for help in dangerous situations without fear of immediate punishment. Consider whether their substance use is experimental (trying things a few times with friends) or more concerning (regular use, using alone, or using to cope with emotional problems). If it's the latter, professional help may be needed. Examine your own relationship with substances and the messages you're sending. Most importantly, keep the lines of communication open - teens who feel they can talk to their parents about difficult topics are more likely to make safer choices.",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
-    "review_status": "reviewed",
-    "reviewed_by": "david-k-gore-phd",
-    "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
-    ],
-    "crisis_sensitive": false,
-    "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
-  },
-  {
-    "id": "48f727ef-ef94-486a-85d5-dc04ba528fff",
-    "slug": "whats-the-difference-between-being-sober-and-being-in-recovery",
-    "question": "What's the difference between being sober and being in recovery?",
-    "category": "Addiction & Recovery",
-    "short_answer": "Understanding the difference between sobriety and recovery can help you set more comprehensive goals for your healing journey.",
-    "answer": "Understanding the difference between sobriety and recovery can help you set more comprehensive goals for your healing journey. While these terms are sometimes used interchangeably, they represent different aspects of overcoming addiction. Sobriety typically refers to the absence of alcohol or drugs in your system—essentially, not using substances. This is an important and necessary component of recovery, but it's just one piece of the puzzle. Someone can be sober but still struggling with many of the underlying issues that contributed to their addiction. Recovery is a broader, more holistic process that involves not just abstaining from substances, but actively working to heal the physical, emotional, mental, and spiritual aspects of your life that were affected by addiction. Recovery includes developing new coping skills, addressing underlying mental health issues, rebuilding relationships, and creating a meaningful life without substances. You can think of sobriety as the foundation and recovery as the house you build on that foundation. Without sobriety, recovery isn't possible, but sobriety alone isn't enough for most people to maintain long-term wellness and happiness. Recovery involves ongoing personal growth and development. This might include therapy, support group participation, developing healthy relationships, pursuing meaningful work or hobbies, addressing trauma or mental health issues, and learning to manage stress and emotions without substances. Some people describe being \"dry\" versus being in recovery. Being dry means not drinking or using drugs but not doing the deeper work of recovery. People who are dry but not in recovery often struggle with what's called \"dry drunk syndrome\"—they're not using substances but they're still exhibiting many of the behaviors and thought patterns associated with addiction. True recovery is an ongoing process that continues throughout your life. It's not a destination you reach, but a journey of continuous growth and healing. This perspective helps maintain humility and commitment to the practices that support your wellbeing.",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
-    "review_status": "reviewed",
-    "reviewed_by": "david-k-gore-phd",
-    "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
-    ],
-    "crisis_sensitive": false,
-    "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
-  },
-  {
-    "id": "010c3808-ea3c-4dfa-89c9-8d7cd35ae95a",
-    "slug": "why-do-i-feel-addicted-to-social-media-validation-v7w2x5",
-    "question": "Why do I feel addicted to social media validation?",
-    "category": "Anxiety & Stress",
-    "short_answer": "Social media validation addiction involves dopamine reward cycles and self-worth dependency; awareness and alternative validation sources help.",
-    "answer": "Feeling addicted to social media validation is an increasingly common experience that reflects how these platforms exploit fundamental human needs for connection, approval, and self-worth through sophisticated psychological mechanisms. Social media validation - in the form of likes, comments, shares, and followers - triggers the same reward pathways in your brain as other addictive substances and behaviors, creating cycles of craving, temporary satisfaction, and renewed seeking that can become compulsive and difficult to control. The addiction to social media validation often stems from deeper issues with self-esteem and external validation dependency. If your sense of worth depends heavily on others' approval, social media provides an easily accessible but ultimately unreliable source of validation. The intermittent reinforcement schedule of social media - where you never know when you'll receive likes or positive comments - is particularly addictive because it keeps you checking repeatedly, hoping for the next hit of validation. This unpredictability makes the reward more powerful and the behavior more compulsive. Social media platforms are deliberately designed to maximize engagement through validation-seeking behaviors. The algorithms prioritize content that generates strong reactions, the notification systems are designed to draw you back to the platform, and features like read receipts and view counts create anxiety about how your content is being received. The platforms profit from your attention and engagement, so they have strong incentives to make validation-seeking as addictive as possible. The comparison trap intensifies validation addiction by constantly exposing you to others who appear to be receiving more likes, comments, or social recognition. This can create a competitive dynamic where you feel like you need to post more frequently, more provocatively, or more perfectly to keep up with others' apparent social media success. The curated nature of social media means you're comparing your real experience to others' highlight reels, creating an unfair comparison that can never be truly satisfied. Validation addiction can significantly impact your...",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
-    "review_status": "reviewed",
-    "reviewed_by": "david-k-gore-phd",
-    "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
-    ],
-    "crisis_sensitive": false,
-    "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
-  },
-  {
     "id": "4350e01a-84bb-4f23-8393-e9d06f5c409a",
     "slug": "why-do-i-feel-ashamed-about-needing-help-for-my-addiction",
     "question": "Why do I feel ashamed about needing help for my addiction?",
     "category": "Addiction & Recovery",
-    "short_answer": "Addiction shame often stems from societal stigma and misconceptions; seeking help is actually a sign of strength and self-awareness, not weakness.",
-    "answer": "Shame around addiction is incredibly common and often prevents people from seeking the help they need. This shame is fueled by societal stigma that portrays addiction as a moral failing or lack of willpower rather than the complex medical condition it actually is. You might feel like you should be able to handle this on your own, that needing help makes you weak, or that you're somehow fundamentally flawed for developing an addiction. The truth is that addiction can affect anyone, regardless of intelligence, strength, or moral character. It's a condition that involves changes to brain chemistry and neural pathways that make it extremely difficult to overcome without support. Seeking help isn't a sign of weakness—it's a sign of self-awareness and courage. It takes tremendous strength to admit that you can't handle something alone and to reach out for support. Many people who struggle with addiction are high-functioning individuals who are used to solving their own problems and maintaining control over their lives. Admitting that you need help can feel like admitting failure, but it's actually the first step toward reclaiming your life. The shame you feel is understandable given the messages our culture sends about addiction, but it doesn't reflect the reality of your situation or your worth as a person. Recovery is possible, and you deserve support in achieving it.",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "short_answer": "Shame about needing help for addiction is very common and often fueled by stigma that treats addiction as a moral failing rather than a complex health condition. You may feel you should handle it alone or that asking for help means you are weak. In reality, seeking support often takes courage and self-awareness—and may be one of the most important steps toward recovery.",
+    "answer": "## What may be happening You may feel you should be strong enough to quit on your own, that needing treatment makes you flawed, or that others will judge you if they find out. Cultural messages often portray addiction as a choice or character defect rather than a condition that affects brain chemistry and behavior. If you are used to solving your own problems and maintaining control, admitting you need help can feel like failure—even when it is actually the beginning of reclaiming your life. ## What can help Separate shame from the facts. Addiction can affect anyone regardless of intelligence, success, or values. Needing support is common for many serious health conditions, not just addiction. Talk with someone safe—a therapist, sponsor, peer in recovery, or trusted friend. Shame often shrinks when it is spoken aloud rather than kept secret. Learn how addiction affects the brain. Understanding that willpower alone may not be enough can reduce self-blame and open the door to evidence-based treatment. Notice when shame is keeping you from action. Delaying help because of embarrassment often prolongs suffering. Many people who felt ashamed at first later describe reaching out as the bravest thing they did. Connect with others in recovery who understand this feeling. Hearing similar stories can normalize the experience and reduce isolation. ## When to get support If shame is preventing you from seeking treatment, start with a confidential helpline, your doctor, or a local recovery program. You do not have to share your full story with everyone at once. Call or text 988 in the U.S. if shame or distress is contributing to emotional crisis or thoughts of self-harm.",
+    "improved_title": "Why Shame About Needing Addiction Help Is So Common",
+    "improved_meta_description": "Shame keeps many people from seeking help. Learn why it happens and why reaching out is a sign of strength.",
+    "improved_summary": "Shame about needing help for addiction is very common and often fueled by stigma that treats addiction as a moral failing rather than a complex health condition. You may feel you should handle it alone or that asking for help means you are weak. In reality, seeking support often takes courage and self-awareness—and may be one of the most important steps toward recovery.",
+    "answer_sections": [
+      {
+        "body": "You may feel you should be strong enough to quit on your own, that needing treatment makes you flawed, or that others will judge you if they find out. Cultural messages often portray addiction as a choice or character defect rather than a condition that affects brain chemistry and behavior.\n\nIf you are used to solving your own problems and maintaining control, admitting you need help can feel like failure—even when it is actually the beginning of reclaiming your life.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Separate shame from the facts. Addiction can affect anyone regardless of intelligence, success, or values. Needing support is common for many serious health conditions, not just addiction.\n\nTalk with someone safe—a therapist, sponsor, peer in recovery, or trusted friend. Shame often shrinks when it is spoken aloud rather than kept secret.\n\nLearn how addiction affects the brain. Understanding that willpower alone may not be enough can reduce self-blame and open the door to evidence-based treatment.\n\nNotice when shame is keeping you from action. Delaying help because of embarrassment often prolongs suffering. Many people who felt ashamed at first later describe reaching out as the bravest thing they did.\n\nConnect with others in recovery who understand this feeling. Hearing similar stories can normalize the experience and reduce isolation.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "If shame is preventing you from seeking treatment, start with a confidential helpline, your doctor, or a local recovery program. You do not have to share your full story with everyone at once.\n\nCall or text 988 in the U.S. if shame or distress is contributing to emotional crisis or thoughts of self-harm.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Shame around addiction is common and often reflects cultural stigma, not personal failure.",
+      "Addiction involves brain changes that can make stopping alone extremely difficult.",
+      "Asking for help is often a sign of strength and self-awareness, not weakness.",
+      "Many high-functioning people struggle with admitting they cannot solve this alone."
+    ],
+    "care_note": "The shame you feel is understandable, but it does not define your worth. You deserve support in recovery, and asking for it is not giving up—it is choosing to fight differently.",
+    "related_questions": [
+      "How do I know if I'm ready for addiction recovery?",
+      "How do I find a good therapist for addiction recovery?",
+      "How do I find motivation when recovery feels impossible?",
+      "How do I talk to my employer about my addiction recovery?",
+      "How do I rebuild self-esteem after addiction?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://nida.nih.gov/publications/drugfacts/understanding-drug-use-addiction",
+        "note": "Supports addiction-as-medical-condition framing that counters shame.",
+        "title": "Understanding Drug Use and Addiction",
+        "publisher": "National Institute on Drug Abuse"
+      },
+      {
+        "url": "https://www.samhsa.gov/find-help/recovery/stigma-discrimination",
+        "note": "Supports understanding of stigma as a barrier to seeking help.",
+        "title": "Stigma and Discrimination",
+        "publisher": "SAMHSA"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
   },
   {
     "id": "70b97b0c-c0db-4f3d-8d3b-94dab5c25d2f",
     "slug": "why-do-i-feel-like-i-addicted-to-my-phone-h3i7j4",
     "question": "Why do I feel like I'm addicted to my phone?",
     "category": "Anxiety & Stress",
-    "short_answer": "Phone addiction involves dopamine reward cycles; awareness, boundaries, and alternative activities can help break compulsive usage patterns.",
-    "answer": "Feeling addicted to your phone is a common experience that reflects how these devices are specifically designed to capture and hold your attention through psychological mechanisms similar to those used in gambling and other addictive activities. Your phone provides intermittent variable rewards - likes, messages, notifications, and new content - that trigger dopamine release in your brain's reward system. This creates a cycle where you repeatedly check your phone seeking that next hit of stimulation or validation, even when you consciously want to use it less. The design of smartphones and apps exploits natural human psychological tendencies. The red notification badges, push alerts, and infinite scroll features are deliberately engineered to make you feel like you're missing something important if you're not constantly checking. Social media platforms use algorithms that show you content designed to provoke strong emotional reactions - whether positive or negative - because engagement of any kind keeps you on the platform longer. This isn't accidental; teams of neuroscientists and behavioral psychologists work to make these technologies as compelling as possible. Phone addiction often serves underlying emotional needs. You might reach for your phone when you're bored, anxious, lonely, or avoiding difficult tasks or emotions. The device becomes a way to escape uncomfortable feelings or situations, providing instant distraction and stimulation. Over time, this can create a dependency where you automatically reach for your phone whenever you experience any discomfort, preventing you from developing other coping skills or tolerating normal levels of boredom or anxiety. The constant connectivity can also create anxiety about being unreachable or missing important information. Fear of missing out (FOMO) makes it feel dangerous to disconnect, even briefly. You might worry that something important will happen while your phone is off, or that others will think you're ignoring them if you don't respond immediately to messages. This creates a cycle where the phone becomes both the source of anxiety and the tool you use to manage that anxiety. Physical symptoms of phone...",
-    "improved_title": null,
-    "improved_meta_description": null,
-    "improved_summary": null,
-    "answer_sections": null,
-    "key_takeaways": null,
-    "care_note": null,
-    "related_questions": null,
+    "short_answer": "Feeling addicted to your phone is a common experience. Smartphones and apps use notifications, infinite scroll, and variable rewards to capture attention in ways similar to gambling and other compulsive behaviors. You may reach for your phone to escape boredom, anxiety, or loneliness. Awareness, boundaries, and alternative coping skills may help you use your phone more intentionally.",
+    "answer": "## What may be happening Your phone offers instant stimulation—messages, social feeds, games, videos—that arrives unpredictably. That variable reward pattern can create a cycle of checking, brief satisfaction, and checking again, even when you want to stop. You may also reach for your phone automatically when bored, anxious, lonely, or avoiding difficult tasks. Over time, the device can become your primary way to manage discomfort, making it harder to tolerate normal levels of boredom or stress without scrolling. ## What can help Reduce friction in the opposite direction. Turn off nonessential notifications, remove distracting apps from your home screen, use grayscale mode, or set daily time limits. Create phone-free zones and times—meals, bedtime, first hour of the morning, or social gatherings. Physical distance often matters more than willpower alone. Identify what you are reaching for emotionally. If you are bored, try a short walk. If anxious, try breathing exercises or calling someone. Building offline coping skills reduces automatic phone grabs. Address fear of missing out by setting expectations with friends and colleagues about response times. Most messages do not require instant replies. If phone use is interfering with sleep, work, relationships, or recovery, consider tracking your usage for a week to see patterns clearly before making changes. ## When to get support If you feel unable to reduce phone use despite serious consequences, or if compulsive checking is tied to anxiety or depression, a therapist may help you explore underlying patterns. Call or text 988 in the U.S. if distress about phone use or disconnection is contributing to emotional crisis.",
+    "improved_title": "Why Your Phone Can Feel Addictive",
+    "improved_meta_description": "Compulsive phone checking is common. Learn how design, dopamine, and emotions drive the habit—and what may help.",
+    "improved_summary": "Feeling addicted to your phone is a common experience. Smartphones and apps use notifications, infinite scroll, and variable rewards to capture attention in ways similar to gambling and other compulsive behaviors. You may reach for your phone to escape boredom, anxiety, or loneliness. Awareness, boundaries, and alternative coping skills may help you use your phone more intentionally.",
+    "answer_sections": [
+      {
+        "body": "Your phone offers instant stimulation—messages, social feeds, games, videos—that arrives unpredictably. That variable reward pattern can create a cycle of checking, brief satisfaction, and checking again, even when you want to stop.\n\nYou may also reach for your phone automatically when bored, anxious, lonely, or avoiding difficult tasks. Over time, the device can become your primary way to manage discomfort, making it harder to tolerate normal levels of boredom or stress without scrolling.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Reduce friction in the opposite direction. Turn off nonessential notifications, remove distracting apps from your home screen, use grayscale mode, or set daily time limits.\n\nCreate phone-free zones and times—meals, bedtime, first hour of the morning, or social gatherings. Physical distance often matters more than willpower alone.\n\nIdentify what you are reaching for emotionally. If you are bored, try a short walk. If anxious, try breathing exercises or calling someone. Building offline coping skills reduces automatic phone grabs.\n\nAddress fear of missing out by setting expectations with friends and colleagues about response times. Most messages do not require instant replies.\n\nIf phone use is interfering with sleep, work, relationships, or recovery, consider tracking your usage for a week to see patterns clearly before making changes.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "If you feel unable to reduce phone use despite serious consequences, or if compulsive checking is tied to anxiety or depression, a therapist may help you explore underlying patterns.\n\nCall or text 988 in the U.S. if distress about phone use or disconnection is contributing to emotional crisis.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Phones deliver unpredictable rewards—messages, likes, news—that can trigger repeated checking.",
+      "App design features like notifications and infinite scroll are built to maximize engagement.",
+      "Phone use often fills emotional needs like boredom relief, anxiety escape, or connection.",
+      "Small boundary changes and offline activities may reduce compulsive use over time."
+    ],
+    "care_note": "Feeling hooked on your phone does not mean you lack discipline. These devices are engineered to hold attention—and changing the habit is a process, not a single decision.",
+    "related_questions": [
+      "Why do I feel addicted to social media validation?",
+      "What should I do about my social media addiction?",
+      "How do I manage anxiety without using substances?",
+      "How do I handle boredom in early recovery?",
+      "How do I improve my sleep in recovery?"
+    ],
     "review_status": "reviewed",
     "reviewed_by": "david-k-gore-phd",
     "reviewed_at": "2026-03-13",
-    "source_refs": null,
-    "completeness_score": 0,
-    "missing_fields": [
-      "improved_title",
-      "improved_meta_description",
-      "improved_summary",
-      "answer_sections",
-      "answer_sections>=3",
-      "key_takeaways",
-      "key_takeaways>=3",
-      "care_note",
-      "related_questions>=3",
-      "suggested_schema_question",
-      "suggested_schema_answer",
-      "primary_theme",
-      "related_themes",
-      "source_refs",
-      "source_refs>=2",
-      "content_enriched_at|answer_sections"
+    "source_refs": [
+      {
+        "url": "https://www.apa.org/topics/social-media-mental-health",
+        "note": "Supports understanding of digital device effects on attention and mood.",
+        "title": "Social Media and Mental Health",
+        "publisher": "American Psychological Association"
+      },
+      {
+        "url": "https://www.hhs.gov/surgeongeneral/reports-and-publications/youth-mental-health/social-media/index.html",
+        "note": "Supports discussion of platform design and compulsive engagement patterns.",
+        "title": "Technology and Youth Mental Health",
+        "publisher": "U.S. Department of Health and Human Services"
+      }
     ],
-    "crisis_sensitive": false,
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
     "upgrade_priority": "high",
-    "tier": "legacy-blob",
-    "is_v2": false
+    "tier": "complete",
+    "is_v2": true
+  },
+  {
+    "id": "98edea60-916d-42cb-ab56-8d3c665aaccf",
+    "slug": "why-do-i-keep-relapsing-even-though-i-want-to-stay-sober",
+    "question": "Why do I keep relapsing even though I want to stay sober?",
+    "category": "Addiction & Recovery",
+    "short_answer": "Relapse despite genuine desire for sobriety is common because addiction affects brain stress and reward systems, and many people have not yet built reliable coping tools. Each relapse can reveal triggers and gaps in support—not personal failure.",
+    "answer": "## What may be happening Addiction can leave the brain hypersensitive to cues associated with use—people, places, emotions, even times of day. Stress and untreated depression or anxiety may overwhelm early coping skills. Overconfidence after a stretch of sobriety, social pressure, or believing you can use \"just once\" are frequent patterns. Shame after a slip can lead to hiding use and continuing rather than re-engaging support quickly. ## What can help Treat each relapse as information: What happened in the hours and days before? Were you isolated, sleep-deprived, or skipping meetings? Update your relapse prevention plan with specific if-then strategies. Consider whether you need more intensive care—more therapy, medication for cravings or co-occurring disorders, sober housing, or returning to treatment. Persistence often matters more than a perfect streak. ## When to get support Reach out immediately after a slip—sponsor, therapist, treatment program, or support group. Delay often widens relapse. Seek urgent help for overdose risk, severe withdrawal, or suicidal thoughts. Call or text 988 in the U.S. if you are in emotional crisis.",
+    "improved_title": "Why Relapse Keeps Happening When You Want Sobriety",
+    "improved_meta_description": "Wanting sobriety and relapsing can coexist. Learn common triggers and how to strengthen your recovery plan.",
+    "improved_summary": "Relapse despite genuine desire for sobriety is common because addiction affects brain stress and reward systems, and many people have not yet built reliable coping tools. Each relapse can reveal triggers and gaps in support—not personal failure.",
+    "answer_sections": [
+      {
+        "body": "Addiction can leave the brain hypersensitive to cues associated with use—people, places, emotions, even times of day. Stress and untreated depression or anxiety may overwhelm early coping skills.\n\nOverconfidence after a stretch of sobriety, social pressure, or believing you can use \"just once\" are frequent patterns. Shame after a slip can lead to hiding use and continuing rather than re-engaging support quickly.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Treat each relapse as information: What happened in the hours and days before? Were you isolated, sleep-deprived, or skipping meetings? Update your relapse prevention plan with specific if-then strategies.\n\nConsider whether you need more intensive care—more therapy, medication for cravings or co-occurring disorders, sober housing, or returning to treatment. Persistence often matters more than a perfect streak.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Reach out immediately after a slip—sponsor, therapist, treatment program, or support group. Delay often widens relapse.\n\nSeek urgent help for overdose risk, severe withdrawal, or suicidal thoughts. Call or text 988 in the U.S. if you are in emotional crisis.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Wanting to stay sober and relapsing can happen at the same time.",
+      "Triggers often include stress, isolation, untreated mental health issues, and old environments.",
+      "Relapse data can help you adjust support, not prove you cannot recover.",
+      "Many people achieve long-term sobriety after multiple attempts."
+    ],
+    "care_note": "Relapse is frightening but not the end of recovery. If you used recently or feel out of control, contact your support network today. Call or text 988 in the U.S. if you are in emotional crisis.",
+    "related_questions": [
+      "What if I relapse during recovery?",
+      "How do I deal with relapse and the shame that comes with it?",
+      "What is a relapse prevention plan?",
+      "Why can't I just stop using drugs on my own?",
+      "Should I go back to rehab after a relapse?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "david-k-gore-phd",
+    "reviewed_at": "2026-03-13",
+    "source_refs": [
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "note": "Supports chronic disease and relapse framing.",
+        "title": "Treatment and Recovery",
+        "publisher": "National Institute on Drug Abuse"
+      },
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction",
+        "note": "Supports brain cue reactivity and recovery context.",
+        "title": "Drugs, Brains, and Behavior: The Science of Addiction",
+        "publisher": "National Institute on Drug Abuse"
+      }
+    ],
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": true,
+    "upgrade_priority": "high",
+    "tier": "complete",
+    "is_v2": true
+  },
+  {
+    "id": "350ecc6c-b219-4030-b78c-d9c5284c64ce",
+    "slug": "how-do-i-handle-work-while-in-addiction-treatment",
+    "question": "How do I handle work while in addiction treatment?",
+    "category": "Therapy & Mental Health",
+    "short_answer": "Many people continue working while in addiction treatment, but it takes planning. The goal is to protect recovery first while understanding your options for time off, flexible scheduling, and confidential workplace resources.",
+    "answer": "## What may be happening Treatment often requires appointments, groups, or intensive programs that compete with work hours. Early recovery also lowers stress tolerance, so a full workload on top of treatment can feel unsustainable. Work may also be a stress trigger—or a source of stability. Your plan should fit your job demands and recovery stage. ## Practical options to explore Ask your treatment team about evening, outpatient, telehealth, or stepped-down programs that fit work schedules. Many employers offer an Employee Assistance Program (EAP) with confidential referrals. If you need leave or schedule changes, you may be able to request accommodations or medical leave without sharing every clinical detail—often framed as treatment for a health condition. Document what you need: protected time for appointments, temporary reduced hours, or remote options when appropriate. ## Protect recovery when work pressure rises Tell your sponsor, therapist, or case manager when work stress is climbing. Build a plan for high-risk days: shorter shifts if possible, no after-work drinking environments, and check-ins with support. If your job is safety-sensitive and use could endanger others, follow medical and workplace guidance carefully. When in doubt, prioritize supervised care and honest clinical support over pushing through alone.",
+    "improved_title": "How to Balance Work While You Are in Addiction Treatment",
+    "improved_meta_description": "Treatment and work can coexist with planning. Learn about accommodations, disclosure choices, and schedules that protect recovery.",
+    "improved_summary": "Many people continue working while in addiction treatment, but it takes planning. The goal is to protect recovery first while understanding your options for time off, flexible scheduling, and confidential workplace resources.",
+    "answer_sections": [
+      {
+        "body": "Treatment often requires appointments, groups, or intensive programs that compete with work hours. Early recovery also lowers stress tolerance, so a full workload on top of treatment can feel unsustainable.\n\nWork may also be a stress trigger—or a source of stability. Your plan should fit your job demands and recovery stage.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Ask your treatment team about evening, outpatient, telehealth, or stepped-down programs that fit work schedules.\n\nMany employers offer an Employee Assistance Program (EAP) with confidential referrals. If you need leave or schedule changes, you may be able to request accommodations or medical leave without sharing every clinical detail—often framed as treatment for a health condition.\n\nDocument what you need: protected time for appointments, temporary reduced hours, or remote options when appropriate.",
+        "type": "section",
+        "heading": "Practical options to explore"
+      },
+      {
+        "body": "Tell your sponsor, therapist, or case manager when work stress is climbing. Build a plan for high-risk days: shorter shifts if possible, no after-work drinking environments, and check-ins with support.\n\nIf your job is safety-sensitive and use could endanger others, follow medical and workplace guidance carefully. When in doubt, prioritize supervised care and honest clinical support over pushing through alone.",
+        "type": "section",
+        "heading": "Protect recovery when work pressure rises"
+      }
+    ],
+    "key_takeaways": [
+      "Balancing work and treatment is possible for many people with a structured plan.",
+      "You may have workplace protections for medical leave or reasonable accommodations.",
+      "You choose how much to disclose; focus on what you need, not every detail.",
+      "Reducing workload temporarily in early recovery can lower relapse risk."
+    ],
+    "care_note": "This is general information, not legal or HR advice. For urgent safety concerns related to impairment at work, follow workplace policies and seek immediate medical guidance.",
+    "related_questions": [
+      "How do I handle drug testing at work while in recovery?",
+      "What should I expect in addiction treatment?",
+      "How do I maintain recovery during major life changes?",
+      "How do I handle work stress without using substances?",
+      "What if I lose my job because of my addiction?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "david-k-gore-phd",
+    "reviewed_at": "2026-03-13",
+    "source_refs": [
+      {
+        "url": "https://www.samhsa.gov/find-help",
+        "note": "Supports locating treatment options that may fit work schedules.",
+        "title": "Find Help & Support",
+        "publisher": "SAMHSA"
+      },
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "note": "Supports treatment intensity and recovery planning context.",
+        "title": "Treatment and Recovery",
+        "publisher": "National Institute on Drug Abuse"
+      }
+    ],
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": false,
+    "upgrade_priority": "low",
+    "tier": "complete",
+    "is_v2": true
+  },
+  {
+    "id": "baeade2f-29da-455e-89fa-7b25e0a80338",
+    "slug": "how-do-i-know-when-to-cut-off-contact-with-my-addicted-family-member",
+    "question": "How do I know when to cut off contact with my addicted family member?",
+    "category": "Family & Parenting",
+    "short_answer": "Cutting off contact with an addicted family member is rarely the first step, but it can become necessary when safety, repeated harm, or enabling cycles put you or others at risk. The decision works best when it is planned, supported, and revisitable rather than impulsive.",
+    "answer": "## When distance may be warranted Consider limiting or ending contact if there is physical violence, credible threats, bringing dangerous people or substances into your home, or behavior that traumatizes children. It may also be necessary when repeated contact keeps you in cycles of rescuing, financial harm, or emotional collapse without any movement toward help. ## Alternatives before full cutoff Many families try stepped boundaries first: no money, no lies, no use in the home, or contact only when sober. Family therapy or support groups can clarify what you can live with. A time-limited break—months, not hours in anger—can create space to heal and decide what ongoing relationship is possible. ## How to decide with support Talk with a therapist, Al-Anon/Nar-Anon sponsor, or domestic violence advocate if safety is involved. If you communicate the boundary, keep it simple: you love them and cannot participate in harm. If you or someone else is in immediate danger, contact local emergency services. The National Domestic Violence Hotline (1-800-799-7233) offers confidential support in the U.S.",
+    "improved_title": "When Cutting Off Contact With an Addicted Family Member May Be Necessary",
+    "improved_meta_description": "Limiting contact is a painful decision. Here is how to tell when distance may protect safety, children, and your mental health.",
+    "improved_summary": "Cutting off contact with an addicted family member is rarely the first step, but it can become necessary when safety, repeated harm, or enabling cycles put you or others at risk. The decision works best when it is planned, supported, and revisitable rather than impulsive.",
+    "answer_sections": [
+      {
+        "body": "Consider limiting or ending contact if there is physical violence, credible threats, bringing dangerous people or substances into your home, or behavior that traumatizes children.\n\nIt may also be necessary when repeated contact keeps you in cycles of rescuing, financial harm, or emotional collapse without any movement toward help.",
+        "type": "section",
+        "heading": "When distance may be warranted"
+      },
+      {
+        "body": "Many families try stepped boundaries first: no money, no lies, no use in the home, or contact only when sober. Family therapy or support groups can clarify what you can live with.\n\nA time-limited break—months, not hours in anger—can create space to heal and decide what ongoing relationship is possible.",
+        "type": "section",
+        "heading": "Alternatives before full cutoff"
+      },
+      {
+        "body": "Talk with a therapist, Al-Anon/Nar-Anon sponsor, or domestic violence advocate if safety is involved. If you communicate the boundary, keep it simple: you love them and cannot participate in harm.\n\nIf you or someone else is in immediate danger, contact local emergency services. The National Domestic Violence Hotline (1-800-799-7233) offers confidential support in the U.S.",
+        "type": "section",
+        "heading": "How to decide with support"
+      }
+    ],
+    "key_takeaways": [
+      "Distance is usually a last-resort boundary, not a punishment.",
+      "Safety threats, violence, or child exposure may require immediate separation.",
+      "Contact that prevents consequences can prolong addiction even when intentions are loving.",
+      "Support for yourself helps you tolerate grief and guilt that often follow this choice."
+    ],
+    "care_note": "If you are in immediate danger, call 911 or your local emergency number. For ongoing support with this decision, consider a therapist or family addiction support group.",
+    "related_questions": [
+      "How do I stop enabling my loved one's addiction?",
+      "How do I cope with the stress of loving someone with addiction?",
+      "How do I protect my children from their parent's addiction?",
+      "Should I give my addicted family member money for basic needs?",
+      "How do I rebuild trust with my family after my loved one's addiction?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "david-k-gore-phd",
+    "reviewed_at": "2026-03-13",
+    "source_refs": [
+      {
+        "url": "https://www.samhsa.gov/families",
+        "note": "Supports family boundary and support guidance.",
+        "title": "Resources for Families Coping with Mental and Substance Use Disorders",
+        "publisher": "SAMHSA"
+      },
+      {
+        "url": "https://www.thehotline.org/",
+        "note": "Supports safety planning when violence is present.",
+        "title": "National Domestic Violence Hotline",
+        "publisher": "National Domestic Violence Hotline"
+      }
+    ],
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": false,
+    "upgrade_priority": "low",
+    "tier": "complete",
+    "is_v2": true
+  },
+  {
+    "id": "0e3de0c2-7639-4c1f-931a-b230fbc3c973",
+    "slug": "is-it-okay-to-date-someone-in-early-recovery",
+    "question": "Is it okay to date someone in early recovery?",
+    "category": "Addiction & Recovery",
+    "short_answer": "Dating someone in early recovery can be complicated because both people may have limited emotional stability and recovery needs intense focus. Many clinicians suggest waiting until recovery is more established, though individual circumstances vary.",
+    "answer": "## Why timing matters The first year of recovery often involves rebuilding routines, processing shame, and learning distress tolerance. A new romance can distract from that work or become a source of volatility. Breakups, jealousy, or conflict can trigger cravings if recovery skills are still new. ## If you are considering dating Keep recovery activities non-negotiable: meetings, therapy, sleep, and sober support. Move slowly and be transparent about recovery status. Watch for using the relationship to avoid feelings or isolate from peers. Discuss stress plans for conflict without substances. ## When to talk with support Ask a sponsor, therapist, or recovery group for perspective—they can help you see blind spots. There is no universal rule, but outside input reduces risk. If the relationship becomes chaotic or unsafe, prioritize safety and professional support.",
+    "improved_title": "Should You Date Someone in Early Recovery?",
+    "improved_meta_description": "Early recovery is often a vulnerable period. Here is why many clinicians caution about new relationships—and what to consider if you choose to.",
+    "improved_summary": "Dating someone in early recovery can be complicated because both people may have limited emotional stability and recovery needs intense focus. Many clinicians suggest waiting until recovery is more established, though individual circumstances vary.",
+    "answer_sections": [
+      {
+        "body": "The first year of recovery often involves rebuilding routines, processing shame, and learning distress tolerance. A new romance can distract from that work or become a source of volatility.\n\nBreakups, jealousy, or conflict can trigger cravings if recovery skills are still new.",
+        "type": "section",
+        "heading": "Why timing matters"
+      },
+      {
+        "body": "Keep recovery activities non-negotiable: meetings, therapy, sleep, and sober support. Move slowly and be transparent about recovery status.\n\nWatch for using the relationship to avoid feelings or isolate from peers. Discuss stress plans for conflict without substances.",
+        "type": "section",
+        "heading": "If you are considering dating"
+      },
+      {
+        "body": "Ask a sponsor, therapist, or recovery group for perspective—they can help you see blind spots. There is no universal rule, but outside input reduces risk.\n\nIf the relationship becomes chaotic or unsafe, prioritize safety and professional support.",
+        "type": "section",
+        "heading": "When to talk with support"
+      }
+    ],
+    "key_takeaways": [
+      "Early recovery is often recommended as a time to focus on sobriety and self-regulation.",
+      "New relationships can become a substitute coping tool or add stress that raises relapse risk.",
+      "If dating happens, honesty, slow pacing, and strong outside support matter.",
+      "Two people in early recovery together may struggle to support each other consistently."
+    ],
+    "care_note": "If a relationship involves violence, coercion, or fear, contact local emergency services or the National Domestic Violence Hotline (1-800-799-7233) in the U.S.",
+    "related_questions": [
+      "Is it okay to date someone in early recovery if I am also in recovery?",
+      "How do I rebuild trust with my partner after addiction?",
+      "What are common relapse triggers?",
+      "How do I maintain recovery during major life changes?",
+      "How long should I wait before making major life decisions in recovery?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "david-k-gore-phd",
+    "reviewed_at": "2026-03-13",
+    "source_refs": [
+      {
+        "url": "https://nida.nih.gov/publications/drugs-brains-behavior-science-addiction/treatment-recovery",
+        "note": "Supports early recovery focus and stability.",
+        "title": "Treatment and Recovery",
+        "publisher": "National Institute on Drug Abuse"
+      },
+      {
+        "url": "https://www.samhsa.gov/families",
+        "note": "Supports relationship and family stress context in recovery.",
+        "title": "Resources for Families Coping with Mental and Substance Use Disorders",
+        "publisher": "SAMHSA"
+      }
+    ],
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": false,
+    "upgrade_priority": "low",
+    "tier": "complete",
+    "is_v2": true
+  },
+  {
+    "id": "b90965ad-cbda-4862-b656-d0098e5ceb2e",
+    "slug": "what-if-i-dont-believe-in-god-or-a-higher-power-for-12-step-programs",
+    "question": "What if I don't believe in God or a higher power for 12-step programs?",
+    "category": "General Mental Health",
+    "short_answer": "Many people question the spiritual language in 12-step programs, and that does not mean these programs cannot work for you. The higher power concept is often interpreted broadly—as the group, nature, recovery principles, or anything greater than your own will. Secular alternatives like SMART Recovery and LifeRing also exist if 12-step language does not fit.",
+    "answer": "## What may be happening If you are considering 12-step recovery but do not believe in God or a traditional higher power, you are not alone. Spiritual language in meetings can feel uncomfortable, confusing, or like a barrier to participation. The discomfort often comes from assuming that higher power means a specific religious deity. In practice, many people in 12-step programs interpret the concept in personal, secular, or nontraditional ways while still benefiting from the community, structure, and accountability. ## What can help Redefine higher power in a way that fits your beliefs. Some people use the fellowship itself, the collective wisdom of people in recovery, nature, the universe, love, hope, or the process of recovery. Others use \"Good Orderly Direction\" (G.O.D.) to mean making decisions based on healthy principles rather than impulse. Focus on the practical elements that support sobriety: honest sharing, sponsorship, working steps in your own way, and showing up consistently. You do not have to adopt language that does not resonate. If 12-step spirituality still feels like a poor fit, explore secular alternatives. SMART Recovery emphasizes self-management and motivation; LifeRing focuses on personal responsibility and peer support without spiritual framing. Many people find one approach—or a combination—that they can commit to long term. ## When to get support Talk with a sponsor, therapist, or meeting members about how you interpret spiritual concepts. Many groups include people with diverse beliefs who can share what worked for them. If recovery feels stalled because program fit is a barrier, a counselor familiar with multiple recovery pathways may help you choose and stick with an approach that matches your values.",
+    "improved_title": "12-Step Programs Without Belief in God or a Higher Power",
+    "improved_meta_description": "You can do 12-step recovery without traditional faith. Learn secular interpretations of higher power and alternative programs.",
+    "improved_summary": "Many people question the spiritual language in 12-step programs, and that does not mean these programs cannot work for you. The higher power concept is often interpreted broadly—as the group, nature, recovery principles, or anything greater than your own will. Secular alternatives like SMART Recovery and LifeRing also exist if 12-step language does not fit.",
+    "answer_sections": [
+      {
+        "body": "If you are considering 12-step recovery but do not believe in God or a traditional higher power, you are not alone. Spiritual language in meetings can feel uncomfortable, confusing, or like a barrier to participation.\n\nThe discomfort often comes from assuming that higher power means a specific religious deity. In practice, many people in 12-step programs interpret the concept in personal, secular, or nontraditional ways while still benefiting from the community, structure, and accountability.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Redefine higher power in a way that fits your beliefs. Some people use the fellowship itself, the collective wisdom of people in recovery, nature, the universe, love, hope, or the process of recovery. Others use \"Good Orderly Direction\" (G.O.D.) to mean making decisions based on healthy principles rather than impulse.\n\nFocus on the practical elements that support sobriety: honest sharing, sponsorship, working steps in your own way, and showing up consistently. You do not have to adopt language that does not resonate.\n\nIf 12-step spirituality still feels like a poor fit, explore secular alternatives. SMART Recovery emphasizes self-management and motivation; LifeRing focuses on personal responsibility and peer support without spiritual framing. Many people find one approach—or a combination—that they can commit to long term.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Talk with a sponsor, therapist, or meeting members about how you interpret spiritual concepts. Many groups include people with diverse beliefs who can share what worked for them.\n\nIf recovery feels stalled because program fit is a barrier, a counselor familiar with multiple recovery pathways may help you choose and stick with an approach that matches your values.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Higher power in 12-step programs can mean many things beyond a traditional God.",
+      "Some people use the group, nature, love, or recovery principles as their higher power.",
+      "The core idea is accepting help from outside yourself, not adopting a specific religion.",
+      "Secular programs like SMART Recovery and LifeRing offer evidence-based alternatives."
+    ],
+    "care_note": "Recovery does not require adopting beliefs that are not yours. Finding a program you can honestly commit to matters more than fitting a specific spiritual mold.",
+    "related_questions": [
+      "How do I know if I'm ready for addiction recovery?",
+      "How do I find motivation when recovery feels impossible?",
+      "What should I do if I relapse during recovery?",
+      "How do I handle work stress without using substances?",
+      "How do I support someone in recovery without enabling them?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "david-k-gore-phd",
+    "reviewed_at": "2026-03-13",
+    "source_refs": [
+      {
+        "url": "https://www.samhsa.gov/find-help",
+        "note": "Supports overview of treatment and recovery support options.",
+        "title": "Find Help and Treatment",
+        "publisher": "SAMHSA"
+      },
+      {
+        "url": "https://www.smartrecovery.org/",
+        "note": "Supports secular, evidence-based mutual-support alternative to 12-step programs.",
+        "title": "SMART Recovery",
+        "publisher": "SMART Recovery"
+      }
+    ],
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": false,
+    "upgrade_priority": "low",
+    "tier": "complete",
+    "is_v2": true
+  },
+  {
+    "id": "d9eedcf9-cc48-45b1-a11a-1fd4f1fefe9d",
+    "slug": "what-should-i-do-if-i-suspect-my-employee-has-a-substance-abuse-problem",
+    "question": "What should I do if I suspect my employee has a substance abuse problem?",
+    "category": "Addiction & Recovery",
+    "short_answer": "Suspecting an employee has a substance abuse problem requires balancing compassion, workplace safety, and legal obligations. Focus on documented job performance and behavior rather than diagnosing addiction. HR and legal counsel can help you respond appropriately; Employee Assistance Programs may offer confidential support pathways.",
+    "answer": "## What may be happening You may notice declining performance, absences, safety incidents, mood changes, or signs that suggest impairment. It is natural to wonder about substance use, but managers are generally not in a position to diagnose addiction. How you respond affects employee wellbeing, team safety, and organizational liability. Acting on rumor or stigma without documentation can create legal risk and harm workplace culture. ## What can help Document specific, observable issues: dates, performance problems, policy violations, and safety concerns. Stick to facts and workplace impact rather than speculation about substance use. Consult HR and legal counsel before formal action. Employment laws vary by location, and addiction may involve disability-related protections that require careful handling. If your company has an Employee Assistance Program, mention it as a confidential resource when discussing performance concerns. You might note personal challenges without accusing the employee of using substances. Address performance directly with clear expectations and consequences per policy. If you observe clear impairment—slurred speech, odor of alcohol, erratic behavior—prioritize safety, remove the person from hazardous duties, and follow established impairment protocols. ## When to get support Rely on HR, legal counsel, and company policy for next steps rather than informal discipline or medical conclusions. If there is immediate danger to the employee or others, follow emergency and safety procedures first.",
+    "improved_title": "What to Do If You Suspect an Employee Has a Substance Problem",
+    "improved_meta_description": "Managers face a delicate balance with suspected substance use. Learn performance-focused, compassionate steps and legal caution.",
+    "improved_summary": "Suspecting an employee has a substance abuse problem requires balancing compassion, workplace safety, and legal obligations. Focus on documented job performance and behavior rather than diagnosing addiction. HR and legal counsel can help you respond appropriately; Employee Assistance Programs may offer confidential support pathways.",
+    "answer_sections": [
+      {
+        "body": "You may notice declining performance, absences, safety incidents, mood changes, or signs that suggest impairment. It is natural to wonder about substance use, but managers are generally not in a position to diagnose addiction.\n\nHow you respond affects employee wellbeing, team safety, and organizational liability. Acting on rumor or stigma without documentation can create legal risk and harm workplace culture.",
+        "type": "section",
+        "heading": "What may be happening"
+      },
+      {
+        "body": "Document specific, observable issues: dates, performance problems, policy violations, and safety concerns. Stick to facts and workplace impact rather than speculation about substance use.\n\nConsult HR and legal counsel before formal action. Employment laws vary by location, and addiction may involve disability-related protections that require careful handling.\n\nIf your company has an Employee Assistance Program, mention it as a confidential resource when discussing performance concerns. You might note personal challenges without accusing the employee of using substances.\n\nAddress performance directly with clear expectations and consequences per policy. If you observe clear impairment—slurred speech, odor of alcohol, erratic behavior—prioritize safety, remove the person from hazardous duties, and follow established impairment protocols.",
+        "type": "section",
+        "heading": "What can help"
+      },
+      {
+        "body": "Rely on HR, legal counsel, and company policy for next steps rather than informal discipline or medical conclusions.\n\nIf there is immediate danger to the employee or others, follow emergency and safety procedures first.",
+        "type": "section",
+        "heading": "When to get support"
+      }
+    ],
+    "key_takeaways": [
+      "Address observable performance and behavior, not assumptions about cause.",
+      "Consult HR and legal counsel before taking action—laws and protections vary.",
+      "EAPs can offer confidential support without you diagnosing the problem.",
+      "Clear impairment at work requires immediate safety steps per company policy."
+    ],
+    "care_note": "Compassion and accountability can coexist. Focusing on performance and offering resources respects both the employee and the workplace.",
+    "related_questions": [
+      "How do I handle drug testing at work while in recovery?",
+      "What if I lose my job because of my addiction?",
+      "How do I explain gaps in my employment history due to addiction?",
+      "What should I do if I have legal problems related to my addiction?",
+      "How do I handle work stress without using substances?"
+    ],
+    "review_status": "reviewed",
+    "reviewed_by": "david-k-gore-phd",
+    "reviewed_at": "2026-03-13",
+    "source_refs": [
+      {
+        "url": "https://www.samhsa.gov/workplace",
+        "note": "Supports employer resources on substance use in the workplace.",
+        "title": "Workplace Toolkit",
+        "publisher": "SAMHSA"
+      },
+      {
+        "url": "https://www.samhsa.gov/find-help",
+        "note": "Supports treatment and EAP-related recovery resource context.",
+        "title": "Find Help and Treatment",
+        "publisher": "SAMHSA"
+      }
+    ],
+    "completeness_score": 100,
+    "missing_fields": [],
+    "crisis_sensitive": false,
+    "upgrade_priority": "low",
+    "tier": "complete",
+    "is_v2": true
   }
 ]
