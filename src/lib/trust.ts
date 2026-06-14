@@ -1,18 +1,15 @@
 import type { Question } from './supabase';
+import { reviewerProfiles, reviewerProfilesById, type ReviewerProfile } from '@/data/reviewers';
 import { cleanText } from './content-utils';
+import { siteUrl } from './site';
+
+export type { ReviewerProfile };
+export { reviewerProfiles };
 
 export type SourceRef = {
   title: string;
   url: string;
   publisher: string;
-};
-
-export type ReviewerProfile = {
-  id: string;
-  slug: string;
-  name: string;
-  credentialLine: string;
-  url: string;
 };
 
 const INDEXABLE_REVIEW_STATUSES = new Set(['approved', 'published', 'reviewed']);
@@ -23,19 +20,11 @@ const REVIEWER_ALIASES: Record<string, string> = {
   'david k gore phd': 'david-k-gore-phd',
   'david k. gore phd': 'david-k-gore-phd',
   'david k. gore, phd': 'david-k-gore-phd',
+  'kenneth-w-christian-phd': 'kenneth-w-christian-phd',
+  'kenneth w christian phd': 'kenneth-w-christian-phd',
+  'kenneth w. christian phd': 'kenneth-w-christian-phd',
+  'kenneth w. christian, phd': 'kenneth-w-christian-phd',
 };
-
-export const reviewerProfiles: ReviewerProfile[] = [
-  {
-    id: 'david-k-gore-phd',
-    slug: 'david-k-gore-phd',
-    name: 'David K. Gore, PhD',
-    credentialLine: 'Licensed psychologist · 40+ years clinical experience',
-    url: '/reviewers/david-k-gore-phd/',
-  },
-];
-
-const reviewerProfilesById = new Map(reviewerProfiles.map((profile) => [profile.id, profile]));
 
 function normalizeReviewerLabel(value: string) {
   return value
@@ -97,6 +86,47 @@ export function getReviewerDisplayLabel(question: Question) {
   if (!reviewedBy) return '';
   if (isInternalReviewerLabel(reviewedBy)) return GENERIC_EDITORIAL_REVIEW_LABEL;
   return reviewedBy;
+}
+
+export function isDraftReviewStatus(question: Question) {
+  return getReviewStatusLabel(question) === 'draft';
+}
+
+export function getReviewerAttributionHeadline(question: Question) {
+  const reviewerProfile = getReviewerProfile(question);
+  if (!reviewerProfile) return '';
+
+  if (isDraftReviewStatus(question)) {
+    return `Expert reviewed by ${reviewerProfile.name}`;
+  }
+
+  return `Clinically reviewed by ${reviewerProfile.name}`;
+}
+
+export function getReviewerAttributionDetail(question: Question) {
+  const reviewerProfile = getReviewerProfile(question);
+  if (!reviewerProfile) return '';
+
+  if (isDraftReviewStatus(question)) {
+    return `Reviewed for ${reviewerProfile.specialtyLabel.toLowerCase()} relevance`;
+  }
+
+  return reviewerProfile.specialtyLabel;
+}
+
+export function getReviewerSchemaNode(question: Question) {
+  const reviewerProfile = getReviewerProfile(question);
+  if (!reviewerProfile) return null;
+
+  return {
+    '@type': 'Person',
+    '@id': siteUrl(`/reviewers/${reviewerProfile.slug}/#person`),
+    name: reviewerProfile.name,
+    url: siteUrl(reviewerProfile.url),
+    jobTitle: reviewerProfile.specialtyLabel,
+    knowsAbout: reviewerProfile.expertiseTags,
+    ...(reviewerProfile.sameAs.length > 0 ? { sameAs: reviewerProfile.sameAs } : {}),
+  };
 }
 
 export function isV2Answer(question: Question) {

@@ -1,0 +1,1527 @@
+{
+  "generated_at": "2026-06-14T00:52:24.324Z",
+  "source_table": "public.questions_master",
+  "mode": "apply",
+  "reviewer": "kenneth-w-christian-phd",
+  "reviewed_at": "2026-06-13",
+  "total_answers_scanned": 1099,
+  "performance_answers_identified": 45,
+  "skipped_candidates": 87,
+  "applied_count": 45,
+  "schema_notes": [],
+  "sql_proposal": "update public.questions_master\nset\n  reviewed_by = 'kenneth-w-christian-phd',\n  reviewed_at = '2026-06-13'::date,\n  review_status = case when lower(coalesce(review_status, '')) = 'draft' then review_status else 'reviewed' end\nwhere slug = any(array['can-ai-make-impostor-syndrome-worse', 'every-small-mistake-feels-like-evidence-that-i-am-fundamentally-flawed', 'how-do-i-build-confidence-when-ive-been-181288-019', 'how-do-i-deal-with-feeling-behind-in-life-compared-to-my-peers', 'how-do-i-deal-with-feeling-like-everyone-else-184730-047', 'how-do-i-deal-with-feeling-like-im-behind-in-177941-017', 'how-do-i-deal-with-feeling-like-im-not-smart-enough-184730-093', 'how-do-i-deal-with-feeling-like-im-wasting-184730-024', 'how-do-i-deal-with-imposter-syndrome-at-work-177941-021', 'how-do-i-deal-with-imposter-syndrome-in-my-career-n5o6p7', 'how-do-i-find-my-purpose-when-nothing-feels-meaningful-anymore', 'how-do-i-find-my-purpose-when-nothing-feels-meaningful-h8i9j1', 'how-do-i-find-purpose-in-my-career-181288-025', 'how-do-i-overcome-imposter-syndrome', 'how-do-i-separate-my-self-worth-from-my--184729-013', 'how-do-i-stop-being-so-critical-of-myself-and-othe-187459-015', 'how-do-i-stop-feeling-like-everyone-else-has-177941-031', 'how-do-i-stop-feeling-like-i-need-to-ear-189668-010', 'how-do-i-stop-feeling-like-im-broken-and-need-o7p2q5', 'how-do-i-stop-feeling-like-im-not-living-up-184730-032', 'how-do-i-stop-feeling-like-im-not-worthy-of-184730-083', 'how-do-i-stop-feeling-like-im-wasting-my-potential-d4e8f1', 'how-do-i-stop-my-perfectionism-from-ruining-my-lif-187459-011', 'how-do-i-stop-procrastinating-when-im-afraid-of-no-187459-013', 'how-to-handle-feeling-replaceable-because-of-ai', 'is-it-normal-to-feel-anxious-about-being-181288-009', 'what-do-i-do-when-i-feel-like-giving-up-on-m-177941-012', 'what-do-i-do-when-i-feel-like-im-not-living-177941-028', 'why-do-i-constantly-compare-myself-to-others', 'why-do-i-feel-anxious-about-good-things-happ-177941-022', 'why-do-i-feel-anxious-about-good-things-happening-184730-023', 'why-do-i-feel-anxious-when-things-are-going-177941-010', 'why-do-i-feel-like-a-fraud-even-when-im-181288-016', 'why-do-i-feel-like-everything-has-to-be-perfect-be-187459-018', 'why-do-i-feel-like-i-cant-make-decisions-184730-070', 'why-do-i-feel-like-i-dont-deserve-success-in-my-career', 'why-do-i-feel-like-i-have-to-be-perfect-all-184730-084', 'why-do-i-feel-like-i-have-to-be-the-best-at-everyt-187459-016', 'why-do-i-feel-like-i-have-to-earn-love-a-181083-099', 'why-do-i-feel-like-i-need-to-earn-love-and-184730-064', 'why-do-i-feel-like-im-always-waiting-for-the-r8s3t6', 'why-do-i-feel-like-im-not-living-up-to-my-potential-c2d3e4', 'why-do-i-feel-like-im-pretending-to-be-an-adult-184730-072', 'why-do-i-get-anxious-when-good-things-ha-191368-005', 'why-does-everyone-else-seem-to-have-their-career-figured-out']);",
+  "assigned": [
+    {
+      "id": "104a874b-b591-4860-9962-dd07950a3b56",
+      "slug": "can-ai-make-impostor-syndrome-worse",
+      "question": "Can AI make impostor syndrome worse?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": "AI and impostor feelings",
+      "previous_review_status": "reviewed",
+      "previous_reviewed_by": "codex-seo-review",
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "imposter syndrome"
+      ],
+      "preserve_draft_status": false
+    },
+    {
+      "id": "e3690690-8662-459c-8133-4a3633c73617",
+      "slug": "every-small-mistake-feels-like-evidence-that-i-am-fundamentally-flawed",
+      "question": "Every small mistake feels like evidence that I am fundamentally flawed",
+      "category": "Anxiety & Stress",
+      "primary_theme": "Anxiety & Stress",
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "perfectionism"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "321c3aa2-97f6-4b7e-9c3a-e245c99687a7",
+      "slug": "how-do-i-build-confidence-when-ive-been-181288-019",
+      "question": "How do I build confidence when I've been criticized my whole life?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": "Identity & Self-Worth",
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "self-criticism"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "fbb0850c-5927-4cfe-86a7-757ba0445fd6",
+      "slug": "how-do-i-deal-with-feeling-behind-in-life-compared-to-my-peers",
+      "question": "How do I deal with feeling behind in life compared to my peers?",
+      "category": "Career & Purpose",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "comparison"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "9c875642-5cd6-4201-8f22-d61e575fdada",
+      "slug": "how-do-i-deal-with-feeling-like-everyone-else-184730-047",
+      "question": "How do I deal with feeling like everyone else has it figured out?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "comparison"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "852fed24-91c1-4971-ae0d-d079f2d95f38",
+      "slug": "how-do-i-deal-with-feeling-like-im-behind-in-177941-017",
+      "question": "How do I deal with feeling like I'm behind in life?",
+      "category": "Life Comparison",
+      "primary_theme": "Life Comparison",
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "comparison"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "24504fc2-1626-4b58-9881-3c35afd3e2ae",
+      "slug": "how-do-i-deal-with-feeling-like-im-not-smart-enough-184730-093",
+      "question": "How do I deal with feeling like I'm not smart enough for my job?",
+      "category": "Work & Burnout",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "imposter syndrome"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "66b6eff0-6bd8-409a-aaa8-34b5898f472a",
+      "slug": "how-do-i-deal-with-feeling-like-im-wasting-184730-024",
+      "question": "How do I deal with feeling like I'm wasting my potential?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "underachievement / potential"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "1e993a61-25a3-4c31-bca5-4286576554e2",
+      "slug": "how-do-i-deal-with-imposter-syndrome-at-work-177941-021",
+      "question": "How do I deal with imposter syndrome at work?",
+      "category": "Workplace",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "imposter syndrome"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "a76e4638-6eef-466b-899a-ceced1c52586",
+      "slug": "how-do-i-deal-with-imposter-syndrome-in-my-career-n5o6p7",
+      "question": "How do I deal with imposter syndrome in my career?",
+      "category": "Work & Burnout",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "imposter syndrome"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "d64f585a-8891-4cf9-935d-e1ff15ff4df8",
+      "slug": "how-do-i-find-my-purpose-when-nothing-feels-meaningful-anymore",
+      "question": "How do I find my purpose when nothing feels meaningful anymore?",
+      "category": "Career & Purpose",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "motivation / purpose"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "607b7357-54df-4623-afc6-736059e981e8",
+      "slug": "how-do-i-find-my-purpose-when-nothing-feels-meaningful-h8i9j1",
+      "question": "How do I find my purpose when nothing feels meaningful?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "motivation / purpose"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "74d90aca-d2ae-444f-9ea7-fa330bb4e329",
+      "slug": "how-do-i-find-purpose-in-my-career-181288-025",
+      "question": "How do I find purpose in my career?",
+      "category": "Work & Burnout",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "motivation / purpose"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "0cf60da1-84cb-4005-a0c5-7e9a354e9bd1",
+      "slug": "how-do-i-overcome-imposter-syndrome",
+      "question": "How do I overcome imposter syndrome?",
+      "category": "General Mental Health",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "imposter syndrome"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "6c4eafe5-c105-47fc-b174-32d230ca7732",
+      "slug": "how-do-i-separate-my-self-worth-from-my--184729-013",
+      "question": "How do I separate my self-worth from my job title or career success?",
+      "category": "Work, Stress & Burnout",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "self-worth / deserving"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "ba6736ac-5b1f-4e31-95bb-424c3788ce5c",
+      "slug": "how-do-i-stop-being-so-critical-of-myself-and-othe-187459-015",
+      "question": "How do I stop being so critical of myself and others?",
+      "category": "Perfectionism & Control Issues",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "self-criticism"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "13024627-7be0-419b-839d-3907c2538c68",
+      "slug": "how-do-i-stop-feeling-like-everyone-else-has-177941-031",
+      "question": "How do I stop feeling like everyone else has it figured out?",
+      "category": "Life Comparison",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "comparison"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "5d96f463-9a88-4860-b612-a58268fd29b3",
+      "slug": "how-do-i-stop-feeling-like-i-need-to-ear-189668-010",
+      "question": "How do I stop feeling like I need to earn love through achievement?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "self-worth / deserving"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "be5c168b-f420-47fc-89ed-b7e503300f87",
+      "slug": "how-do-i-stop-feeling-like-im-broken-and-need-o7p2q5",
+      "question": "How do I stop feeling like I'm broken and need to be fixed?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": "Identity & Self-Worth",
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "self-criticism"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "774438d3-653e-47af-bf21-ee915ea6666f",
+      "slug": "how-do-i-stop-feeling-like-im-not-living-up-184730-032",
+      "question": "How do I stop feeling like I'm not living up to my potential?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "underachievement / potential"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "cace00d0-f592-4f5c-bda8-51de7baf3daf",
+      "slug": "how-do-i-stop-feeling-like-im-not-worthy-of-184730-083",
+      "question": "How do I stop feeling like I'm not worthy of good things?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": "Identity & Self-Worth",
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "self-criticism"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "1ce1b3e6-ad1f-412e-8d81-872a26a754b1",
+      "slug": "how-do-i-stop-feeling-like-im-wasting-my-potential-d4e8f1",
+      "question": "How do I stop feeling like I'm wasting my potential?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "underachievement / potential"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "e5fadf6f-4565-4ca5-9614-e4e1b6a85508",
+      "slug": "how-do-i-stop-my-perfectionism-from-ruining-my-lif-187459-011",
+      "question": "How do I stop my perfectionism from ruining my life and relationships?",
+      "category": "Perfectionism & Control Issues",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "perfectionism"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "94f631d0-c9f4-467b-9fd0-4363513d77ce",
+      "slug": "how-do-i-stop-procrastinating-when-im-afraid-of-no-187459-013",
+      "question": "How do I stop procrastinating when I'm afraid of not doing something perfectly?",
+      "category": "Perfectionism & Control Issues",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "procrastination"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "be48553f-b480-4e65-b5e3-84cea990f33c",
+      "slug": "how-to-handle-feeling-replaceable-because-of-ai",
+      "question": "How do I handle feeling replaceable because of AI?",
+      "category": "Work & Burnout",
+      "primary_theme": "AI and self-worth at work",
+      "previous_review_status": "reviewed",
+      "previous_reviewed_by": "codex-seo-review",
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "imposter syndrome"
+      ],
+      "preserve_draft_status": false
+    },
+    {
+      "id": "19d37961-9646-45de-81d0-54fb4fcb2f0e",
+      "slug": "is-it-normal-to-feel-anxious-about-being-181288-009",
+      "question": "Is it normal to feel anxious about being happy?",
+      "category": "Anxiety & Stress",
+      "primary_theme": "Anxiety & Stress",
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "achievement anxiety"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "14c1ff56-bfbc-4f20-9ac5-6aab1adf534d",
+      "slug": "what-do-i-do-when-i-feel-like-giving-up-on-m-177941-012",
+      "question": "What do I do when I feel like giving up on my dreams?",
+      "category": "Life Purpose",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "motivation / purpose"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "5909ec3f-6c5a-4426-9f23-84edcf1a7e8f",
+      "slug": "what-do-i-do-when-i-feel-like-im-not-living-177941-028",
+      "question": "What do I do when I feel like I'm not living up to my potential?",
+      "category": "Self-Actualization",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "underachievement / potential"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "5e4db9a7-353b-4c91-8421-ea0a347476c0",
+      "slug": "why-do-i-constantly-compare-myself-to-others",
+      "question": "Why do I constantly compare myself to others?",
+      "category": "General Mental Health",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "comparison"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "0ef9a887-790d-4e28-8210-ad277898db1d",
+      "slug": "why-do-i-feel-anxious-about-good-things-happ-177941-022",
+      "question": "Why do I feel anxious about good things happening?",
+      "category": "Anxiety & Stress",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "achievement anxiety"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "69b1bdab-33ad-4839-a9e7-06448efa25a5",
+      "slug": "why-do-i-feel-anxious-about-good-things-happening-184730-023",
+      "question": "Why do I feel anxious about good things happening to me?",
+      "category": "Anxiety & Stress",
+      "primary_theme": "Anxiety about positive change",
+      "previous_review_status": "reviewed",
+      "previous_reviewed_by": "codex-seo-review",
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "achievement anxiety"
+      ],
+      "preserve_draft_status": false
+    },
+    {
+      "id": "f2faa128-ad30-42ce-bdd4-8dc904e89a9f",
+      "slug": "why-do-i-feel-anxious-when-things-are-going-177941-010",
+      "question": "Why do I feel anxious when things are going well?",
+      "category": "Anxiety & Stress",
+      "primary_theme": "Anxiety & Stress",
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "imposter syndrome"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "4e220ead-56c9-4191-bc57-c93744ce2b42",
+      "slug": "why-do-i-feel-like-a-fraud-even-when-im-181288-016",
+      "question": "Why do I feel like a fraud even when I'm successful?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "imposter syndrome"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "7464cb4d-3d2a-4cba-aba1-0f7ac207b604",
+      "slug": "why-do-i-feel-like-everything-has-to-be-perfect-be-187459-018",
+      "question": "Why do I feel like everything has to be perfect before I can be happy?",
+      "category": "Perfectionism & Control Issues",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "perfectionism"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "24d498f3-3b14-4a05-a409-e8ca55bedf8f",
+      "slug": "why-do-i-feel-like-i-cant-make-decisions-184730-070",
+      "question": "Why do I feel like I can't make decisions?",
+      "category": "Anxiety & Stress",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "perfectionism"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "94000a9e-4c08-4fc5-84df-9cfd3bc13c0f",
+      "slug": "why-do-i-feel-like-i-dont-deserve-success-in-my-career",
+      "question": "Why do I feel like I don't deserve success in my career?",
+      "category": "Career & Purpose",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "imposter syndrome"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "a19d2cc7-5bea-45a4-a7a9-83b99d5465af",
+      "slug": "why-do-i-feel-like-i-have-to-be-perfect-all-184730-084",
+      "question": "Why do I feel like I have to be perfect all the time?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": "Identity & Self-Worth",
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "perfectionism",
+        "needing to be the best"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "68541ebf-af2c-4f94-a246-024da46577ff",
+      "slug": "why-do-i-feel-like-i-have-to-be-the-best-at-everyt-187459-016",
+      "question": "Why do I feel like I have to be the best at everything I do?",
+      "category": "Perfectionism & Control Issues",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "needing to be the best"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "2c6ce87c-f52c-4e68-bce0-bad29c627903",
+      "slug": "why-do-i-feel-like-i-have-to-earn-love-a-181083-099",
+      "question": "Why do I feel like I have to earn love and affection?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "self-worth / deserving"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "e5e69e60-6696-448e-8986-b08ff0d573d5",
+      "slug": "why-do-i-feel-like-i-need-to-earn-love-and-184730-064",
+      "question": "Why do I feel like I need to earn love and acceptance?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "self-worth / deserving"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "bfa922c5-c5b1-4f8c-898a-0771e7a04143",
+      "slug": "why-do-i-feel-like-im-always-waiting-for-the-r8s3t6",
+      "question": "Why do I feel like I'm always waiting for the other shoe to drop?",
+      "category": "Anxiety & Stress",
+      "primary_theme": "Anxiety & Stress",
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "achievement anxiety"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "37bf16d1-30cf-485d-9fe3-80ce86a07768",
+      "slug": "why-do-i-feel-like-im-not-living-up-to-my-potential-c2d3e4",
+      "question": "Why do I feel like I'm not living up to my potential?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "underachievement / potential"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "9c652cd9-f40f-4909-983f-2d29ccd8f928",
+      "slug": "why-do-i-feel-like-im-pretending-to-be-an-adult-184730-072",
+      "question": "Why do I feel like I'm pretending to be an adult?",
+      "category": "Identity & Self-Worth",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "imposter syndrome"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "906ac635-22ee-4be2-ad09-7c24f67bbd95",
+      "slug": "why-do-i-get-anxious-when-good-things-ha-191368-005",
+      "question": "Why do I get anxious when good things happen?",
+      "category": "Anxiety & Stress",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "imposter syndrome"
+      ],
+      "preserve_draft_status": true
+    },
+    {
+      "id": "708d5588-bb92-4bf0-856b-6c7c985b1b38",
+      "slug": "why-does-everyone-else-seem-to-have-their-career-figured-out",
+      "question": "Why does everyone else seem to have their career figured out?",
+      "category": "Career & Purpose",
+      "primary_theme": null,
+      "previous_review_status": "draft",
+      "previous_reviewed_by": null,
+      "previous_reviewed_at": null,
+      "match_reasons": [
+        "comparison"
+      ],
+      "preserve_draft_status": true
+    }
+  ],
+  "skipped": [
+    {
+      "id": "c9448d08-3fc8-4951-a927-ab452c5fbb60",
+      "slug": "are-there-specific-depression-challenges-for-lgbtq-individuals",
+      "question": "Are there specific depression challenges for LGBTQ+ individuals?",
+      "category": "Depression",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "9debf278-e4ba-4616-8dbf-988b81f6552c",
+      "slug": "can-ai-chatbots-make-delusional-thoughts-worse",
+      "question": "Can AI chatbots make delusional thoughts worse?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "psychosis/mania"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "586965a5-afa8-4f2f-9084-5e1ef40d6cfb",
+      "slug": "can-ai-companions-be-risky-for-lonely-teens",
+      "question": "Can AI companions be risky for lonely teens?",
+      "category": "Teen-Specific Questions",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "5b536e8b-8b7d-4125-98e6-cbc35886eba5",
+      "slug": "can-ai-give-bad-mental-health-advice",
+      "question": "Can AI give bad mental health advice?",
+      "category": "Therapy & Mental Health",
+      "skip_reasons": [
+        "psychosis/mania"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "3c079123-82a7-446a-8180-80f01f822411",
+      "slug": "can-ai-make-isolation-feel-normal",
+      "question": "Can AI make isolation feel normal?",
+      "category": "Loneliness & Isolation",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "8cc8d0f3-c92e-4da4-ad7e-66bfdcb8c1f7",
+      "slug": "can-ai-make-religious-or-spiritual-confusion-worse",
+      "question": "Can AI make religious or spiritual confusion worse?",
+      "category": "Identity & Self-Worth",
+      "skip_reasons": [
+        "psychosis/mania"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "6134da23-54c3-4cf9-a909-f719581d1e41",
+      "slug": "can-ai-reinforce-mania-or-grandiose-thinking",
+      "question": "Can AI reinforce mania or grandiose thinking?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "psychosis/mania"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "6b850fb6-f074-4bb1-937a-93ba2be70a0d",
+      "slug": "can-an-ai-chatbot-make-suicidal-thoughts-worse",
+      "question": "Can an AI chatbot make suicidal thoughts worse?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "2a4e5d5d-3a21-4529-917a-bb4716cfb944",
+      "slug": "can-i-drink-alcohol-while-taking-psychia-181083-061",
+      "question": "Can I drink alcohol while taking psychiatric medication?",
+      "category": "Addiction & Recovery",
+      "skip_reasons": [
+        "psychiatric medication"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "c4206d54-affa-4744-9867-470d7dc5b187",
+      "slug": "can-i-recover-without-going-to-meetings",
+      "question": "Can I recover without going to meetings?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "5beed97f-61a7-410f-9d35-797cb1181e4b",
+      "slug": "can-i-stop-taking-psychiatric-medication-181083-064",
+      "question": "Can I stop taking psychiatric medication if I feel better?",
+      "category": "Depression",
+      "skip_reasons": [
+        "psychiatric medication",
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "ea6f095f-7a38-41de-b9c3-bc5f9bf3dd9a",
+      "slug": "help-someone-believes-ai-is-sending-secret-messages",
+      "question": "How do I help someone who believes an AI chatbot is communicating secret messages?",
+      "category": "Family & Parenting",
+      "skip_reasons": [
+        "psychosis/mania"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "8dacdab8-37b3-4455-869a-75fe0cdfbaa6",
+      "slug": "how-can-i-help-my-teenager-who-seems-depressed",
+      "question": "How can I help my teenager who seems depressed?",
+      "category": "Teens & Identity",
+      "skip_reasons": [
+        "suicide/self-harm crisis",
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "fd494471-5272-492e-a7fb-095b94f1d9b8",
+      "slug": "how-can-i-learn-to-love-myself",
+      "question": "How can I learn to love myself?",
+      "category": "Identity & Self-Worth",
+      "skip_reasons": [
+        "manual weak-fit exclusion"
+      ],
+      "partial_match_reasons": [
+        "self-criticism"
+      ]
+    },
+    {
+      "id": "1de1b7a4-fa75-499e-b490-60e912c8595f",
+      "slug": "how-do-i-come-out-to-my-parents-185759-018",
+      "question": "How do I come out to my parents?",
+      "category": "Teens & Identity",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "8fb44658-98d9-4753-8505-7437e466eed0",
+      "slug": "how-do-i-come-out-when-im-not-sure-how-people-will-react",
+      "question": "How do I come out when I'm not sure how people will react?",
+      "category": "Gender & Sexuality",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "859f488b-026f-48b8-88f7-3cd2b5fa770d",
+      "slug": "how-do-i-cope-with-losing-someone-to-suicide",
+      "question": "How do I cope with losing someone to suicide?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "2132721a-8435-48cb-8808-fce499fdffa8",
+      "slug": "how-do-i-create-a-safety-plan-for-depression",
+      "question": "How do I create a safety plan for depression?",
+      "category": "Depression",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "e6924b53-12e5-450e-978c-6c5e6f043b30",
+      "slug": "how-do-i-deal-with-mismatched-libidos-in-my-relati-186602-020",
+      "question": "How do I deal with mismatched libidos in my relationship?",
+      "category": "Sexuality, Gender Identity, and Intimacy",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "98645912-8be7-436b-8d8b-f3410e11c116",
+      "slug": "how-do-i-deal-with-side-effects-from-psy-181083-065",
+      "question": "How do I deal with side effects from psychiatric medication?",
+      "category": "Depression",
+      "skip_reasons": [
+        "psychiatric medication"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "0fb2d2b9-a9b5-4bb3-8428-9b67937105f3",
+      "slug": "how-do-i-help-my-teenager-who-seems-depressed",
+      "question": "How do I help my teenager who seems depressed?",
+      "category": "Teens & Identity",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "443274c7-9fca-4b22-9b19-f632bef5ac7d",
+      "slug": "how-do-i-know-if-i-need-professional-help-for-my-drinking",
+      "question": "How do I know if I need professional help for my drinking?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "a055b7b0-9d03-4dfd-bc43-be51574bc977",
+      "slug": "how-do-i-know-if-i-need-professional-help-for-u9v2w5",
+      "question": "How do I know if I need professional help for spiritual crisis?",
+      "category": "Identity & Self-Worth",
+      "skip_reasons": [
+        "psychosis/mania"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "f9ba5325-7508-484b-9fc0-7f58b3671a8d",
+      "slug": "how-do-i-know-if-i-need-to-be-hospitalized-for-depression",
+      "question": "How do I know if I need to be hospitalized for depression?",
+      "category": "Depression",
+      "skip_reasons": [
+        "suicide/self-harm crisis",
+        "psychosis/mania"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "bc66af5b-504b-4add-bbf4-57e3a073793b",
+      "slug": "how-do-i-know-if-im-drinking-too-much-190974-009",
+      "question": "How do I know if I'm drinking too much?",
+      "category": "Addiction & Recovery",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "b61be7c2-a15e-4a17-baf8-d02182fe9eb4",
+      "slug": "how-do-i-know-if-im-gay-straight-or-some-186032-013",
+      "question": "How do I know if I'm gay, straight, or something else?",
+      "category": "Teens & Identity",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "0bb1d30d-32d9-4cde-99a8-b34e8bbc9d2c",
+      "slug": "how-do-i-know-if-im-in-an-emotionally-ab-177940-025",
+      "question": "How do I know if I'm in an emotionally abusive relationship?",
+      "category": "Relationship Abuse",
+      "skip_reasons": [
+        "abuse/DV crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "a5835bd3-2699-4587-93b3-8348cf22242b",
+      "slug": "how-do-i-know-if-im-transgender-or-just--184729-007",
+      "question": "How do I know if I'm transgender or just going through a phase?",
+      "category": "Teens & Identity",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "32ba7579-d7a8-49de-8581-b06556dad22c",
+      "slug": "how-do-i-know-if-my-child-is-depressed-or-just-going-through-a-phase",
+      "question": "How do I know if my child is depressed or just going through a phase?",
+      "category": "Family & Parenting",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "156e57fe-8da6-45d7-aec2-9976162da80c",
+      "slug": "how-do-i-know-if-my-depression-is-getting-worse",
+      "question": "How do I know if my depression is getting worse?",
+      "category": "Depression",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "55f58640-3d95-4578-99a0-8d6770185573",
+      "slug": "how-do-i-know-if-my-psychiatric-medicati-181083-062",
+      "question": "How do I know if my psychiatric medication is working?",
+      "category": "Depression",
+      "skip_reasons": [
+        "psychiatric medication"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "103ddcfe-6cef-4ae0-bf4b-62d4a9f2f6d0",
+      "slug": "how-do-i-know-if-my-teenager-has-depression",
+      "question": "How do I know if my teenager has depression?",
+      "category": "Depression",
+      "skip_reasons": [
+        "suicide/self-harm crisis",
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "d234fdc7-17c0-4051-8e49-e732473a62c6",
+      "slug": "how-do-i-make-amends-to-people-i-hurt-during-my-addiction",
+      "question": "How do I make amends to people I hurt during my addiction?",
+      "category": "Addiction & Recovery",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "d06be9aa-cd61-4295-9120-55adb4514f99",
+      "slug": "how-do-i-recognize-depression-in-elderly-parents",
+      "question": "How do I recognize depression in elderly parents?",
+      "category": "Depression",
+      "skip_reasons": [
+        "suicide/self-harm crisis",
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "185c1730-182c-404e-ae5c-05b528f8e7b9",
+      "slug": "how-do-i-support-a-friend-with-depression-without-burning-out",
+      "question": "How do I support a friend with depression without burning out?",
+      "category": "Depression",
+      "skip_reasons": [
+        "manual weak-fit exclusion"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "29787d45-c576-4303-9b3f-5809b5db8c3e",
+      "slug": "how-do-i-support-my-partner-who-is-questioning-the-186602-022",
+      "question": "How do I support my partner who is questioning their gender identity?",
+      "category": "Sexuality, Gender Identity, and Intimacy",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "080e0b49-b933-45c0-8187-a749632ef101",
+      "slug": "how-do-i-talk-to-my-partner-about-sexual-needs-wit-186602-018",
+      "question": "How do I talk to my partner about sexual needs without feeling embarrassed?",
+      "category": "Sexuality, Gender Identity, and Intimacy",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "272854c3-261e-4bf1-9b44-d1c66de103c0",
+      "slug": "how-do-i-talk-to-my-teenager-about-depre-190974-006",
+      "question": "How do I talk to my teenager about depression?",
+      "category": "Parenting",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "adefe2a3-475d-49ad-b350-dcd8ba824449",
+      "slug": "how-is-depression-different-in-elderly-people",
+      "question": "How is depression different in elderly people?",
+      "category": "Depression",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "6088fe2a-0f14-4943-9d1f-3695a8411df3",
+      "slug": "how-long-do-i-have-to-take-psychiatric-m-181083-057",
+      "question": "How long do I have to take psychiatric medication?",
+      "category": "Depression",
+      "skip_reasons": [
+        "psychiatric medication"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "6b4b1f44-ac5a-4307-9ffb-28b7df277a7e",
+      "slug": "how-long-does-it-take-to-feel-normal-again-in-recovery",
+      "question": "How long does it take to feel normal again in recovery?",
+      "category": "Addiction & Recovery",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "bdb666a7-5455-44e3-92cf-d190885e68ec",
+      "slug": "im-afraid-of-becoming-dependent-on-antidepressants-is-this-a-valid-concern",
+      "question": "I'm afraid of becoming dependent on antidepressants. Is this a valid concern?",
+      "category": "Depression",
+      "skip_reasons": [
+        "psychiatric medication",
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "72a0b719-6e5d-4e96-b579-51dd3c4b68a2",
+      "slug": "im-having-thoughts-of-suicide---what-should-i-do-right-now",
+      "question": "I'm having thoughts of suicide - what should I do right now?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "7f7bd4ee-eb43-4598-91b0-61766e0918ba",
+      "slug": "is-it-normal-to-be-scared-of-starting-ps-181083-066",
+      "question": "Is it normal to be scared of starting psychiatric medication?",
+      "category": "Anxiety & Stress",
+      "skip_reasons": [
+        "psychiatric medication"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "116c02be-b735-4f65-950a-c0f811253e5a",
+      "slug": "is-it-normal-to-feel-worse-before-i-feel-better-in-recovery",
+      "question": "Is it normal to feel worse before I feel better in recovery?",
+      "category": "Addiction & Recovery",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "95cf5394-0ac4-48b7-bb14-a43083fdcc63",
+      "slug": "is-it-normal-to-question-your-sexual-orientation-l-186602-019",
+      "question": "Is it normal to question your sexual orientation later in life?",
+      "category": "Sexuality, Gender Identity, and Intimacy",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "02cf3411-f1d7-425d-9d33-5a50faa8ed31",
+      "slug": "should-i-be-concerned-about-my-teenagers-relations-189142-019",
+      "question": "Should I be concerned about my teenager's relationship with AI?",
+      "category": "Parenting",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "8a4d00eb-a3df-4b13-ad4d-0579bff2e895",
+      "slug": "what-are-the-sexual-side-effects-of-antidepressants-and-what-can-i-do-about-them",
+      "question": "What are the sexual side effects of antidepressants and what can I do about them?",
+      "category": "Depression",
+      "skip_reasons": [
+        "psychiatric medication"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "8254311a-a711-4a7c-989a-c9d54b3056ec",
+      "slug": "what-are-the-signs-that-my-child-needs-counseling-after-divorce",
+      "question": "What are the signs that my child needs counseling after divorce?",
+      "category": "Therapy & Mental Health",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "a323dc7f-e683-47cd-913f-1f711698a1d7",
+      "slug": "what-are-the-warning-signs-that-my-depression-is-getting-worse",
+      "question": "What are the warning signs that my depression is getting worse?",
+      "category": "Depression",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "be0e0311-efe4-4a74-b4b4-137027462670",
+      "slug": "what-do-i-do-if-i-think-i-have-depressio-186032-018",
+      "question": "What do I do if I think I have depression?",
+      "category": "Teens & Identity",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "b5acbdcc-5c64-415d-9942-6e7db5fb4a56",
+      "slug": "what-do-i-do-if-i-think-my-child-is-questioning-th-187459-002",
+      "question": "What do I do if I think my child is questioning their gender identity?",
+      "category": "Teen-Specific Questions",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "7c476ccf-cadc-47dc-81bd-8d9508e59979",
+      "slug": "what-do-i-do-if-my-teenager-is-self-harming-187459-010",
+      "question": "What do I do if my teenager is self-harming?",
+      "category": "Teen-Specific Questions",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "72aceb59-e179-4fca-81a5-efed01a66554",
+      "slug": "what-do-i-do-when-i-feel-like-giving-up-177940-012",
+      "question": "What do I do when I feel like giving up on everything?",
+      "category": "Crisis Support",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "2965e169-63ec-46ab-9612-9d6fc4efedb4",
+      "slug": "what-if-antidepressants-change-who-i-am-181083-056",
+      "question": "What if antidepressants change who I am?",
+      "category": "Depression",
+      "skip_reasons": [
+        "psychiatric medication"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "b90965ad-cbda-4862-b656-d0098e5ceb2e",
+      "slug": "what-if-i-dont-believe-in-god-or-a-higher-power-for-12-step-programs",
+      "question": "What if I don't believe in God or a higher power for 12-step programs?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "75240bc8-ac37-4a8c-b8e1-2d806cf3d2ca",
+      "slug": "what-if-my-loved-one-is-using-substances-while-pregnant",
+      "question": "What if my loved one is using substances while pregnant?",
+      "category": "Addiction & Recovery",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "e785d3c1-5f4f-4179-a244-299df958f03a",
+      "slug": "what-if-psychiatric-medication-doesnt-wo-181083-060",
+      "question": "What if psychiatric medication doesn't work for me?",
+      "category": "Depression",
+      "skip_reasons": [
+        "psychiatric medication"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "4939a867-f3de-4bca-bfa3-3363e97c8b9f",
+      "slug": "what-is-ai-psychosis-and-is-it-a-real-diagnosis",
+      "question": "What is AI psychosis and is it a real diagnosis?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "psychosis/mania"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "edb24210-be4b-47ef-a617-1a993ab75926",
+      "slug": "what-is-seasonal-depression-and-how-do-i-treat-it",
+      "question": "What is seasonal depression and how do I treat it?",
+      "category": "Depression",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "88813172-969a-48ec-bd04-243e51722dde",
+      "slug": "what-is-the-difference-between-physical--186032-024",
+      "question": "What is the difference between physical and psychological addiction?",
+      "category": "Addiction & Recovery",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "aed3a076-9424-49f0-aff4-597fd885f13f",
+      "slug": "what-is-treatment-resistant-depression-and-what-are-my-options",
+      "question": "What is treatment-resistant depression and what are my options?",
+      "category": "Depression",
+      "skip_reasons": [
+        "psychiatric medication"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "01673722-dfb4-43b1-a346-1370fe0a90f7",
+      "slug": "what-role-does-exercise-play-in-treating-depression",
+      "question": "What role does exercise play in treating depression?",
+      "category": "Depression",
+      "skip_reasons": [
+        "psychiatric medication"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "49e9f64e-a88f-4b96-a349-ece613604206",
+      "slug": "what-should-i-do-if-i-miss-doses-of-my-p-181083-063",
+      "question": "What should I do if I miss doses of my psychiatric medication?",
+      "category": "Depression",
+      "skip_reasons": [
+        "psychiatric medication"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "be5c3153-7ab4-47f9-b312-bb191d45f542",
+      "slug": "what-should-i-do-if-i-think-my-friend-is-186032-033",
+      "question": "What should I do if I think my friend is in an abusive relationship?",
+      "category": "Relationships & Communication",
+      "skip_reasons": [
+        "abuse/DV crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "29bc882e-efce-4c81-be42-85f359691064",
+      "slug": "what-should-i-do-if-im-having-suicidal-thoughts",
+      "question": "What should I do if I'm having suicidal thoughts?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "5720586b-4ceb-493b-a702-473938d11213",
+      "slug": "what-should-i-do-if-im-having-thoughts-of-suicide",
+      "question": "What should I do if I'm having thoughts of suicide?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "59ce0963-4941-4f06-9c90-90982600ff42",
+      "slug": "what-should-i-do-if-im-having-trouble-sleeping-in-recovery",
+      "question": "What should I do if I'm having trouble sleeping in recovery?",
+      "category": "Addiction & Recovery",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "95771c30-9939-450f-9ae2-c1093949a876",
+      "slug": "what-should-i-expect-from-detox-and-withdrawal",
+      "question": "What should I expect from detox and withdrawal?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "78de166e-36c5-4126-99d5-10b9e6f7c01f",
+      "slug": "what-should-i-expect-from-my-first-aa-or-na-meeting",
+      "question": "What should I expect from my first AA or NA meeting?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "94703dc5-1181-4aba-b000-ab21175bb1df",
+      "slug": "what-should-i-expect-in-addiction-treatm-186032-026",
+      "question": "What should I expect in addiction treatment?",
+      "category": "Addiction & Recovery",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "80516d6d-46a9-4ad4-8138-a34aab4bd177",
+      "slug": "what-should-i-expect-in-my-first-30-days-of-sobriety",
+      "question": "What should I expect in my first 30 days of sobriety?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "69e6f974-c39e-4e62-aaa5-09c212adf495",
+      "slug": "what-to-do-if-my-friend-is-depressed",
+      "question": "What should I do if I think my friend is depressed?",
+      "category": "Depression",
+      "skip_reasons": [
+        "suicide/self-harm crisis"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "a109b726-a170-4462-9436-9ceea7a44ba6",
+      "slug": "whats-the-difference-between-addiction-and-dependence",
+      "question": "What's the difference between addiction and dependence?",
+      "category": "Addiction & Recovery",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "a50d9bc9-f71e-450a-961e-cd109480be2c",
+      "slug": "whats-the-difference-between-depression-and-bipolar-disorder",
+      "question": "What's the difference between depression and bipolar disorder?",
+      "category": "Depression",
+      "skip_reasons": [
+        "psychosis/mania"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "0f83275d-c95c-47c7-8d8a-98368b705668",
+      "slug": "whats-the-difference-between-healthy-and-177940-028",
+      "question": "What's the difference between healthy and toxic masculinity?",
+      "category": "Gender Identity",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "491f6681-0d35-4c99-b99c-9be901efd415",
+      "slug": "whats-the-difference-between-physical-and-psychological-addiction",
+      "question": "What's the difference between physical and psychological addiction?",
+      "category": "Addiction & Recovery",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "3535038e-d7c2-4650-8fc6-f018cd76c39b",
+      "slug": "when-are-ai-related-beliefs-a-mental-health-emergency",
+      "question": "When should AI-related beliefs be treated as a mental health emergency?",
+      "category": "General Mental Health",
+      "skip_reasons": [
+        "suicide/self-harm crisis",
+        "psychosis/mania"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "37123b85-0215-4f2f-b16b-92b2152c4553",
+      "slug": "when-to-seek-professional-help-for-substance-use",
+      "question": "When should someone seek professional help for substance use?",
+      "category": "Addiction & Recovery",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "0ae0b3db-8b3b-4b31-b82a-dabee26b9dae",
+      "slug": "why-cant-i-just-stop-using-drugs-on-my-o-185387-019",
+      "question": "Why can't I just stop using drugs on my own?",
+      "category": "Addiction & Recovery",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "bc727552-b70c-4037-a6d2-33ec2824dac4",
+      "slug": "why-do-i-feel-ashamed-about-my-body-during-intimat-186602-021",
+      "question": "Why do I feel ashamed about my body during intimate moments?",
+      "category": "Sexuality, Gender Identity, and Intimacy",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "91cdd05d-c563-417e-92dd-e80682bd766c",
+      "slug": "why-do-i-feel-guilty-about-my-privilege-as-a-passing-member-of-the-lgbtq-community",
+      "question": "Why do I feel guilty about my privilege as a passing member of the LGBTQ+ community?",
+      "category": "Gender & Sexuality",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "020e8d3f-241a-4979-99cf-af87657359fe",
+      "slug": "why-do-i-feel-guilty-about-taking-psychi-181083-059",
+      "question": "Why do I feel guilty about taking psychiatric medication?",
+      "category": "Identity & Self-Worth",
+      "skip_reasons": [
+        "psychiatric medication"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "18d8084f-d00a-4be3-89a2-c5adee65ad6f",
+      "slug": "why-do-i-feel-like-i-dont-fit-in-anywhere-in-the-lgbtq-community",
+      "question": "Why do I feel like I don't fit in anywhere in the LGBTQ+ community?",
+      "category": "Gender & Sexuality",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "649a4f34-65fb-4f3f-96a8-f009bca2f0ef",
+      "slug": "why-do-i-have-memory-gaps-from-a-traumat-179301-003",
+      "question": "Why do I have memory gaps from a traumatic experience?",
+      "category": "Trauma & Grief",
+      "skip_reasons": [
+        "trauma treatment"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "9234f8f0-484c-4fb9-b267-5f00e982aa2d",
+      "slug": "why-do-i-push-people-away-when-they-get-too-close--186602-010",
+      "question": "Why do I push people away when they get too close to me?",
+      "category": "Attachment Styles & Relationship Dynamics",
+      "skip_reasons": [
+        "substance treatment protocol"
+      ],
+      "partial_match_reasons": []
+    },
+    {
+      "id": "d230f7cd-5e7b-4412-ba93-5fa7ab54d402",
+      "slug": "why-do-i-shut-down-during-intimacy-even-when-i-wan-186602-017",
+      "question": "Why do I shut down during intimacy even when I want to be close?",
+      "category": "Sexuality, Gender Identity, and Intimacy",
+      "skip_reasons": [
+        "sexuality/gender identity"
+      ],
+      "partial_match_reasons": []
+    }
+  ]
+}

@@ -13,6 +13,7 @@
     "content:publish-ai-sprint": "node scripts/publish-phase-1b-drafts.mjs --campaign ai-sprint",
     "content:publish-phase-1b": "node scripts/publish-phase-1b-drafts.mjs",
     "content:review-addiction": "node scripts/review-addiction-answers.mjs",
+    "content:review-performance": "node scripts/review-performance-answers.mjs",
     "content:prepare-addiction-enrichment": "node scripts/prepare-addiction-enrichment-sources.mjs",
     "content:prepare-corpus-enrichment": "node scripts/prepare-corpus-enrichment-sources.mjs",
     "content:apply-corpus-batch-01": "node scripts/apply-enrichment.mjs --apply --campaign enrichment reports/enrichment-corpus/draft-answers/batch-01-drafts.json",

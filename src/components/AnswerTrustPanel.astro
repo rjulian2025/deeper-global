@@ -3,10 +3,12 @@ import { formatDate } from '@/lib/content';
 import {
   getReviewedAt,
   getReviewedByLabel,
+  getReviewerAttributionDetail,
   getReviewerProfile,
   getReviewerDisplayLabel,
   getReviewStatusLabel,
   getSourceRefs,
+  isDraftReviewStatus,
 } from '@/lib/trust';
 
 type Props = {
@@ -19,6 +21,8 @@ const reviewedBy = getReviewedByLabel(question);
 const reviewedAt = getReviewedAt(question);
 const reviewerProfile = getReviewerProfile(question);
 const reviewerDisplayLabel = getReviewerDisplayLabel(question);
+const reviewerDetail = getReviewerAttributionDetail(question);
+const isDraftReview = isDraftReviewStatus(question);
 const reviewStatus = getReviewStatusLabel(question);
 const reviewStatusDisplay = reviewStatus
   ? reviewStatus.replace(/[-_]+/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
@@ -36,9 +40,10 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStat
       {reviewerProfile ? (
         <div class="trust-reviewer">
           <p class="trust-reviewed-by">
-            Clinically reviewed by <a href={reviewerProfile.url}><strong>{reviewerProfile.name}</strong></a>
+            {isDraftReview ? 'Expert reviewed by ' : 'Clinically reviewed by '}
+            <a href={reviewerProfile.url}><strong>{reviewerProfile.name}</strong></a>
           </p>
-          <p class="trust-credentials">{reviewerProfile.credentialLine}</p>
+          <p class="trust-credentials">{reviewerDetail}</p>
         </div>
       ) : reviewerDisplayLabel ? (
         <p class="trust-reviewed-by">
@@ -53,10 +58,20 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStat
         <li>Updated {formatDate(updatedAt)}</li>
       </ul>
 
+      {reviewerProfile ? (
+        <p class="trust-disclaimer">{reviewerProfile.disclaimer}</p>
+      ) : null}
+
       <p class="trust-links">
         <a href="/editorial-policy/">Editorial policy</a>
         <span aria-hidden="true"> · </span>
         <a href="/protocol/">Trust protocol</a>
+        {reviewerProfile ? (
+          <>
+            <span aria-hidden="true"> · </span>
+            <a href={reviewerProfile.url}>Reviewer profile</a>
+          </>
+        ) : null}
       </p>
 
       {sourceRefs.length > 0 ? (
@@ -88,7 +103,8 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStat
   }
 
   .answer-trust-panel .trust-reviewed-by,
-  .answer-trust-panel .trust-credentials {
+  .answer-trust-panel .trust-credentials,
+  .answer-trust-panel .trust-disclaimer {
     margin: 0 0 10px;
     color: var(--ink);
     font-size: 0.9rem;
@@ -105,7 +121,8 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStat
     text-underline-offset: 2px;
   }
 
-  .answer-trust-panel .trust-credentials {
+  .answer-trust-panel .trust-credentials,
+  .answer-trust-panel .trust-disclaimer {
     margin-top: -4px;
     color: var(--stone);
     font-size: 0.82rem;

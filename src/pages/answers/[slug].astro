@@ -28,7 +28,13 @@ import {
 } from '@/lib/content';
 import { getAnswerPractitionerLink } from '@/lib/practitioner-links';
 import { organizationId, siteUrl, websiteId } from '@/lib/site';
-import { getReviewedByLabel, getReviewerDisplayLabel, getSourceRefs, isInternalReviewerLabel } from '@/lib/trust';
+import {
+  getReviewedByLabel,
+  getReviewerDisplayLabel,
+  getReviewerSchemaNode,
+  getSourceRefs,
+  isInternalReviewerLabel,
+} from '@/lib/trust';
 import { getQuestionBySlug, getQuestions, type Question } from '@/lib/supabase';
 
 export async function getStaticPaths() {
@@ -77,11 +83,12 @@ const practitionerLink = getAnswerPractitionerLink(question.slug);
 const isAiMentalHealthAnswer = question.content_prompt_version === 'deeper-ai-concerns-sprint-v1';
 const reviewedBy = getReviewedByLabel(question);
 const reviewerDisplayLabel = getReviewerDisplayLabel(question);
+const reviewerSchemaNode = getReviewerSchemaNode(question);
 const sourceRefs = getSourceRefs(question);
 const sourceCitationUrls = sourceRefs.map((source) => source.url).filter(Boolean);
 const reviewedBySchema = reviewedBy
   ? {
-      reviewedBy: {
+      reviewedBy: reviewerSchemaNode ?? {
         '@type': isInternalReviewerLabel(reviewedBy) ? 'Organization' : 'Person',
         name: reviewerDisplayLabel,
       },
@@ -201,6 +208,7 @@ const jsonLd = {
         },
       ],
     },
+    ...(reviewerSchemaNode ? [reviewerSchemaNode] : []),
   ],
 };
 ---

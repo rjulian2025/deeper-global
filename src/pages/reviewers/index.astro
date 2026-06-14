@@ -12,14 +12,16 @@ import { reviewerProfiles } from '@/lib/trust';
     <p class="eyebrow">Clinical reviewers</p>
     <h1>Clinical reviewers for Deeper Global answers</h1>
     <p class="summary">
-      Some Deeper Global answers include a named clinical reviewer. Those pages show the reviewer, credentials, and last reviewed date recorded for that answer.
+      Some Deeper Global answers include a named clinical reviewer. Those pages show the reviewer, specialty area, and last reviewed date recorded for that answer.
     </p>
 
-    <ul>
+    <ul class="reviewer-directory">
       {
         reviewerProfiles.map((reviewer) => (
           <li>
-            <a href={reviewer.url}>{reviewer.name}</a> — {reviewer.credentialLine}
+            <a href={reviewer.url}><strong>{reviewer.name}</strong></a>
+            <p>{reviewer.specialtyLabel}</p>
+            <p>{reviewer.bio}</p>
           </li>
         ))
       }
@@ -30,3 +32,29 @@ import { reviewerProfiles } from '@/lib/trust';
     </p>
   </main>
 </BaseLayout>
+
+<style>
+  .reviewer-directory {
+    display: grid;
+    gap: 24px;
+    padding: 0;
+    margin: 24px 0 32px;
+    list-style: none;
+  }
+
+  .reviewer-directory li p {
+    margin: 8px 0 0;
+    color: var(--stone);
+    line-height: 1.55;
+  }
+
+  .reviewer-directory a {
+    color: var(--ocean);
+    text-decoration: none;
+  }
+
+  .reviewer-directory a:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>

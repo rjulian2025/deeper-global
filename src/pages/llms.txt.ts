@@ -25,6 +25,7 @@ export async function GET() {
     `- [Topics](${siteUrl('/categories')}): Public topic hubs.`,
     `- [Entities](${siteUrl('/entities')}): Canonical mental health entity map.`,
     `- [Protocol](${siteUrl('/protocol')}): Content governance and trust protocol.`,
+    `- [Reviewers](${siteUrl('/reviewers')}): Named clinical reviewers for selected answers.`,
     `- [Privacy](${siteUrl('/privacy')}): Privacy posture for mental health intent data.`,
     `- [Answer JSON index](${siteUrl('/llms/answers.json')}): Canonical answer inventory with review, risk, citation, and summary metadata.`,
     `- [Entity JSON index](${siteUrl('/llms/entities.json')}): Topic map, aliases, counts, and representative answer slugs.`,

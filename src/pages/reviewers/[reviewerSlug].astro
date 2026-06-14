@@ -1,35 +1,89 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { reviewerProfiles, type ReviewerProfile } from '@/lib/trust';
+import { getQuestions } from '@/lib/supabase';
+import { getReviewedByLabel } from '@/lib/trust';
+import { reviewerProfilesBySlug, type ReviewerProfile } from '@/data/reviewers';
 
-export function getStaticPaths() {
-  return reviewerProfiles.map((reviewer) => ({
+export async function getStaticPaths() {
+  return Array.from(reviewerProfilesBySlug.values()).map((reviewer) => ({
     params: { reviewerSlug: reviewer.slug },
     props: { reviewer },
   }));
 }
 
 const reviewer = Astro.props.reviewer as ReviewerProfile;
+const questions = await getQuestions();
+const reviewedAnswers = questions
+  .filter((question) => getReviewedByLabel(question) === reviewer.id)
+  .sort((a, b) => a.question.localeCompare(b.question));
 ---
 
 <BaseLayout
   title={`${reviewer.name} | Clinical Reviewer | Deeper Global`}
-  description={`${reviewer.name} is listed as a clinical reviewer for selected Deeper Global mental health answers.`}
+  description={`${reviewer.name} reviews selected Deeper Global answers related to ${reviewer.specialtyLabel.toLowerCase()}.`}
   canonicalPath={`/reviewers/${reviewer.slug}`}
 >
   <main class="content">
     <p class="eyebrow">Clinical reviewer</p>
     <h1>{reviewer.name}</h1>
-    <p class="summary">{reviewer.credentialLine}</p>
+    <p class="summary">{reviewer.specialtyLabel}</p>
 
-    <p>
-      {reviewer.name} is recorded as the clinical reviewer for selected Deeper Global answers when an answer page lists this reviewer by name.
-    </p>
-    <p>
-      Named review signals appear only on answers where review metadata is present in the source record, along with a last reviewed date when available.
-    </p>
+    <section aria-label="Reviewer biography">
+      <p>{reviewer.bio}</p>
+    </section>
+
+    <section aria-labelledby="expertise-title">
+      <h2 id="expertise-title">Areas of expertise</h2>
+      <ul>
+        {reviewer.expertiseTags.map((tag) => <li>{tag}</li>)}
+      </ul>
+    </section>
+
+    {
+      reviewer.sameAs.length > 0 && (
+        <section aria-labelledby="links-title">
+          <h2 id="links-title">External profiles</h2>
+          <ul>
+            {reviewer.sameAs.map((url) => (
+              <li>
+                <a href={url} rel="me noopener noreferrer">
+                  {url}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      reviewedAnswers.length > 0 && (
+        <section aria-labelledby="reviewed-answers-title">
+          <h2 id="reviewed-answers-title">Selected reviewed answers</h2>
+          <ul>
+            {reviewedAnswers.map((answer) => (
+              <li>
+                <a href={`/answers/${answer.slug}/`}>{answer.improved_title || answer.question}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <p class="reviewer-disclaimer">{reviewer.disclaimer}</p>
+
     <p>
       See the <a href="/editorial-policy/">editorial policy</a> for how Deeper Global handles reviewer attribution, sources, and updates.
     </p>
   </main>
 </BaseLayout>
+
+<style>
+  .reviewer-disclaimer {
+    margin-top: 24px;
+    color: var(--stone);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+</style>
