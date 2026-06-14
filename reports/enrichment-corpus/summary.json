@@ -1,101 +1,101 @@
 {
-  "generated_at": "2026-06-13T23:57:56.465Z",
+  "generated_at": "2026-06-14T00:04:46.054Z",
   "total_scanned": 1099,
-  "needs_upgrade": 978,
+  "needs_upgrade": 933,
   "upgrade_with_gsc": 0,
-  "average_completeness_all": 18,
-  "average_completeness_needs_upgrade": 8,
+  "average_completeness_all": 23,
+  "average_completeness_needs_upgrade": 9,
   "gsc_available": false,
   "gsc_reason": "Missing GSC_CLIENT_EMAIL/GSC_PRIVATE_KEY or GA4_CLIENT_EMAIL/GA4_PRIVATE_KEY.",
   "gsc_date_range": {
-    "startDate": "2026-05-13",
-    "endDate": "2026-06-10",
+    "startDate": "2026-05-14",
+    "endDate": "2026-06-11",
     "lagDays": 3,
     "windowDays": 28
   },
-  "batch_count": 66,
-  "batch_size": 15,
+  "batch_count": 38,
+  "batch_size": 25,
   "min_score": 100,
   "top_10": [
     {
-      "slug": "how-do-i-know-if-i-need-medication-for-m-177940-017",
+      "slug": "why-do-i-feel-disconnected-from-my-emoti-177940-014",
       "score": 0,
-      "priority_score": 1220,
+      "priority_score": 930,
       "gsc_clicks": 0,
       "gsc_impressions": 0,
-      "demand_proxy_rank": 1
+      "demand_proxy_rank": 54
     },
     {
-      "slug": "how-do-i-know-if-i-need-professional-hel-186032-001",
+      "slug": "why-do-i-feel-guilty-about-my-trauma-181288-028",
       "score": 0,
-      "priority_score": 1205,
+      "priority_score": 925,
       "gsc_clicks": 0,
       "gsc_impressions": 0,
-      "demand_proxy_rank": 4
+      "demand_proxy_rank": 55
     },
     {
-      "slug": "how-do-i-cope-with-losing-someone-to-suicide",
+      "slug": "why-do-i-feel-guilty-about-taking-psychi-181083-059",
       "score": 0,
-      "priority_score": 1200,
+      "priority_score": 920,
       "gsc_clicks": 0,
       "gsc_impressions": 0,
-      "demand_proxy_rank": 5
+      "demand_proxy_rank": 56
     },
     {
-      "slug": "how-do-i-create-a-safety-plan-for-depression",
-      "score": 0,
-      "priority_score": 1195,
+      "slug": "can-ai-companions-be-risky-for-lonely-teens",
+      "score": 94,
+      "priority_score": 916,
       "gsc_clicks": 0,
       "gsc_impressions": 0,
-      "demand_proxy_rank": 6
+      "demand_proxy_rank": 43
     },
     {
-      "slug": "how-do-i-help-my-teenager-who-seems-depressed",
+      "slug": "why-do-i-feel-like-i-cant-trust-anyone-184730-050",
       "score": 0,
-      "priority_score": 1190,
+      "priority_score": 910,
       "gsc_clicks": 0,
       "gsc_impressions": 0,
-      "demand_proxy_rank": 7
+      "demand_proxy_rank": 58
     },
     {
-      "slug": "why-do-i-feel-guilty-when-im-happy-177941-002",
+      "slug": "why-do-i-feel-like-im-always-waiting-for-something-184730-104",
       "score": 0,
-      "priority_score": 1190,
+      "priority_score": 910,
       "gsc_clicks": 0,
       "gsc_impressions": 0,
-      "demand_proxy_rank": 2
+      "demand_proxy_rank": 63
     },
     {
-      "slug": "how-do-i-cope-with-losing-a-pet-190974-003",
-      "score": 0,
-      "priority_score": 1185,
+      "slug": "what-to-do-if-my-friend-is-depressed",
+      "score": 94,
+      "priority_score": 906,
       "gsc_clicks": 0,
       "gsc_impressions": 0,
-      "demand_proxy_rank": 3
+      "demand_proxy_rank": 45
     },
     {
-      "slug": "what-do-i-do-if-i-think-i-have-depressio-186032-018",
+      "slug": "why-do-i-feel-like-i-cant-trust-anyone-completely-g8h2j5",
       "score": 0,
-      "priority_score": 1180,
+      "priority_score": 905,
       "gsc_clicks": 0,
       "gsc_impressions": 0,
-      "demand_proxy_rank": 9
+      "demand_proxy_rank": 59
     },
     {
-      "slug": "what-do-i-do-if-my-teenager-is-self-harming-187459-010",
+      "slug": "why-do-i-feel-like-im-always-waiting-for-the-r8s3t6",
       "score": 0,
-      "priority_score": 1175,
+      "priority_score": 905,
       "gsc_clicks": 0,
       "gsc_impressions": 0,
-      "demand_proxy_rank": 10
+      "demand_proxy_rank": 64
     },
     {
-      "slug": "im-having-thoughts-of-suicide---what-should-i-do-right-now",
+      "slug": "why-do-i-feel-like-i-cant-trust-my-own-184730-076",
       "score": 0,
-      "priority_score": 1170,
+      "priority_score": 900,
       "gsc_clicks": 0,
       "gsc_impressions": 0,
-      "demand_proxy_rank": 11
+      "demand_proxy_rank": 60
     }
   ]
 }

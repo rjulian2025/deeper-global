@@ -3,7 +3,7 @@
  * Score the full corpus and build GSC/demand-prioritized enrichment batches.
  *
  *   npm run content:prepare-corpus-enrichment
- *   npm run content:prepare-corpus-enrichment -- --min-score 90 --batch-size 15
+ *   npm run content:prepare-corpus-enrichment -- --min-score 100 --batch-size 25
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createClient } from '@supabase/supabase-js';
@@ -24,7 +24,7 @@ const DEMAND_REPORT = 'reports/authority/content-upgrade/top-100-demand-risk-sel
 const ADDICTION_REVIEW = 'reports/review-updates/addiction-review-2026-03-13.json';
 const PROMPT_PATH = `${OUT_DIR}/corpus-enrichment-codex-prompt.md`;
 const PAGE_SIZE = 1000;
-const DEFAULT_BATCH_SIZE = 15;
+const DEFAULT_BATCH_SIZE = 25;
 const DEFAULT_MIN_SCORE = 100;
 
 const SELECT_COLUMNS = [
