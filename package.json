@@ -10,6 +10,7 @@
     "check": "astro build",
     "audit:authority": "node scripts/audit-authority-data.mjs",
     "audit:data-integrity": "node scripts/audit-data-integrity.mjs",
+    "db:apply-review-integrity": "node scripts/apply-review-integrity-migration.mjs",
     "content:audit-candidates": "node scripts/audit-content-candidates.mjs",
     "content:publish-ai-sprint": "node scripts/publish-phase-1b-drafts.mjs --campaign ai-sprint",
     "content:publish-phase-1b": "node scripts/publish-phase-1b-drafts.mjs",
