@@ -1,0 +1,30 @@
+name: Data Integrity Audit
+
+on:
+  push:
+    branches:
+      - main
+      - production/astro
+  pull_request:
+    branches:
+      - main
+      - production/astro
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run data integrity audit
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: npm run audit:data-integrity -- --fail-on-critical

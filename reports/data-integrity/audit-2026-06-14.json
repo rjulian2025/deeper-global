@@ -1,0 +1,243 @@
+{
+  "generated_at": "2026-06-14T02:21:33.900Z",
+  "source": "questions_master",
+  "summary": {
+    "total_rows": 1099,
+    "build_floor": {
+      "pass": true,
+      "minimum": 950
+    },
+    "completeness": {
+      "all_100": true,
+      "at_100": 1099,
+      "distribution": {
+        "100-109": 1099
+      },
+      "tiers": {
+        "complete": 1099
+      }
+    },
+    "slug_uniqueness": {
+      "pass": true,
+      "duplicates": 0
+    },
+    "jsonb_integrity": {
+      "pass": true
+    },
+    "reviewer_attribution": {
+      "pass": true,
+      "orphan_count": 0
+    },
+    "enrichment_consistency": {
+      "pass": true
+    },
+    "promote_alignment": {
+      "pass": true,
+      "reports_checked": 3,
+      "details": [
+        {
+          "path": "reports/enrichment-corpus/promote-updates/enrichment-2026-06-13.json",
+          "slug_count": 15,
+          "missing": 0,
+          "not_enriched": 0
+        },
+        {
+          "path": "reports/enrichment-corpus/promote-updates/enrichment-2026-06-14.json",
+          "slug_count": 25,
+          "missing": 0,
+          "not_enriched": 0
+        },
+        {
+          "path": "reports/enrichment-addiction/promote-updates/addiction-enrichment-2026-06-13.json",
+          "slug_count": 8,
+          "missing": 0,
+          "not_enriched": 0
+        }
+      ]
+    },
+    "indexability": {
+      "pass": false,
+      "indexable": 250,
+      "non_indexable": 849
+    },
+    "issue_counts": {
+      "critical": 0,
+      "warning": 16,
+      "info": 1092
+    },
+    "review_status_distribution": [
+      [
+        "draft",
+        849
+      ],
+      [
+        "reviewed",
+        250
+      ]
+    ],
+    "duplicate_questions": [
+      [
+        "how do i find motivation when i m depressed ",
+        [
+          "how-do-i-find-motivation-when-im-depressed-z8a9b1",
+          "how-do-i-find-motivation-when-im-depress-190648-011"
+        ]
+      ],
+      [
+        "why do i feel empty even when my life looks good on paper ",
+        [
+          "why-do-i-feel-empty-even-when-my-life-looks-good-on-paper-t2u3v4",
+          "why-do-i-feel-empty-even-when-my-life-looks-177941-018"
+        ]
+      ],
+      [
+        "why do i feel guilty when i m happy ",
+        [
+          "why-do-i-feel-guilty-when-im-happy-i8j9k1",
+          "why-do-i-feel-guilty-when-im-happy-177941-002"
+        ]
+      ],
+      [
+        "why do i feel like i m pretending to be someone i m not ",
+        [
+          "why-do-i-feel-like-im-pretending-to-be-someone-im-not-r8s9t1",
+          "why-do-i-feel-like-im-pretending-to-be-s-177940-018"
+        ]
+      ],
+      [
+        "why do i feel like i m failing at everything ",
+        [
+          "why-do-i-feel-like-im-failing-at-everything-b2c3d4",
+          "why-do-i-feel-like-im-failing-at-everyth-177940-030"
+        ]
+      ],
+      [
+        "how do i stop overthinking every conversation i have ",
+        [
+          "how-do-i-stop-overthinking-every-conversation-i-have-e5f6g7",
+          "how-do-i-stop-overthinking-every-conversation-i-have"
+        ]
+      ],
+      [
+        "how do i stop feeling guilty about setting boundaries ",
+        [
+          "how-do-i-stop-feeling-guilty-about-setting-boundaries-q8r9s1",
+          "how-do-i-stop-feeling-guilty-about-setti-177940-013"
+        ]
+      ],
+      [
+        "why do i feel so lonely even when i m surrounded by people ",
+        [
+          "why-do-i-feel-so-lonely-even-when-im-surrounded-by-people-p7q8r9",
+          "why-do-i-feel-so-lonely-even-when-im-surrounded-by-people"
+        ]
+      ]
+    ],
+    "addiction_slug_count": 113,
+    "overall_status": "PASS WITH WARNINGS"
+  },
+  "issues": [
+    {
+      "id": "duplicate_question_text",
+      "severity": "warning",
+      "message": "Duplicate question text (2 slugs)",
+      "field": "question",
+      "count": 16,
+      "examples": [
+        "how-do-i-find-motivation-when-im-depressed-z8a9b1",
+        "why-do-i-feel-empty-even-when-my-life-looks-good-on-paper-t2u3v4",
+        "why-do-i-feel-guilty-when-im-happy-i8j9k1",
+        "why-do-i-feel-like-im-pretending-to-be-someone-im-not-r8s9t1",
+        "why-do-i-feel-like-im-failing-at-everything-b2c3d4",
+        "how-do-i-stop-overthinking-every-conversation-i-have-e5f6g7",
+        "how-do-i-stop-feeling-guilty-about-setting-boundaries-q8r9s1",
+        "why-do-i-feel-so-lonely-even-when-im-surrounded-by-people-p7q8r9"
+      ],
+      "sample_value": null
+    },
+    {
+      "id": "schema_question_equals_original",
+      "severity": "info",
+      "message": "suggested_schema_question identical to question (may be intentional fallback)",
+      "field": "suggested_schema_question",
+      "count": 1092,
+      "examples": [
+        "can-ai-reinforce-mania-or-grandiose-thinking",
+        "why-keep-going-back-to-ai-even-when-it-feels-worse",
+        "why-ai-makes-me-question-what-makes-me-human",
+        "can-ai-make-burnout-worse",
+        "how-to-cope-with-ai-change-fatigue-at-work",
+        "can-ai-make-doomscrolling-worse",
+        "can-ai-companions-be-risky-for-lonely-teens",
+        "how-to-handle-feeling-replaceable-because-of-ai",
+        "how-managers-can-talk-about-ai-without-increasing-anxiety",
+        "how-to-know-if-teenager-is-too-attached-to-ai",
+        "rebuild-real-world-connection-after-relying-on-ai",
+        "can-ai-make-health-anxiety-worse",
+        "can-ai-make-impostor-syndrome-worse",
+        "should-parents-limit-ai-companion-use-for-teens",
+        "why-ai-at-work-makes-me-feel-less-in-control"
+      ],
+      "sample_value": null
+    }
+  ],
+  "schema_documentation": "### Question type (src/lib/supabase.ts)\nCore fields: `question`, `short_answer`, `answer`, `slug`, `category`/`raw_category`, timestamps.\nEnrichment fields: `improved_title`, `improved_meta_description`, `improved_summary`, `answer_sections[]`, `key_takeaways[]`, `care_note`, `related_questions[]`, `suggested_schema_question`, `suggested_schema_answer`, `primary_theme`, `related_themes[]`, `content_prompt_version`, `content_enriched_at`.\nTrust fields: `review_status`, `reviewed_by`, `reviewed_at`, `source_refs[]`.\nEntity fields: `primary_entities[]`, `related_entities[]`.\n\n### Completeness gate (scripts/lib/content-enrichment-utils.mjs)\n16 checks → score 0–100. Promotion expects 100: title, meta, summary, ≥3 sections, ≥3 takeaways, care_note, ≥3 related_questions, schema Q/A, primary_theme, related_themes, ≥2 source_refs, content_enriched_at|sections.\n\n### Site consumption\n- `[slug].astro`: MedicalWebPage, Article, Question, Answer, DefinedTerm, BreadcrumbList JSON-LD; uses improved_* with legacy fallbacks.\n- `shouldIndexQuestion`: indexable when review_status empty or in {approved, published, reviewed}.\n- Reviewers: david-k-gore-phd, kenneth-w-christian-phd (+ codex-seo-review internal).\n- `indexation_instruction` is draft-only metadata, not a DB column.\n\n### DB constraints (docs/supabase-structured-content.sql)\nJSONB fields must be arrays when non-null.",
+  "recommendations": [
+    {
+      "title": "Add Supabase CHECK constraints for review_status",
+      "detail": "ALTER TABLE to enforce review_status IN ('draft','reviewed','approved','published') and require reviewed_at when reviewed_by is a clinical reviewer."
+    },
+    {
+      "title": "Gate static build on completeness floor",
+      "detail": "Add CI step running this audit; fail build if any enriched row has completeness < 100 or critical JSONB/section issues."
+    },
+    {
+      "title": "Resolve duplicate question text",
+      "detail": "8 normalized question clusters need canonical slug decisions or redirects."
+    }
+  ],
+  "site_consumption": {
+    "answer_page": "src/pages/answers/[slug].astro",
+    "json_ld_types": [
+      "MedicalWebPage",
+      "Article",
+      "Question",
+      "Answer",
+      "DefinedTerm",
+      "BreadcrumbList",
+      "Person"
+    ],
+    "llms_indexes": [
+      "src/pages/llms.txt.ts",
+      "src/pages/llms/answers.json.ts",
+      "src/pages/llms/entities.json.ts"
+    ],
+    "trust_module": "src/lib/trust.ts",
+    "content_module": "src/lib/content.ts"
+  },
+  "cross_reference": {
+    "addiction_slugs_expected": 113,
+    "promote_reports": [
+      {
+        "path": "reports/enrichment-corpus/promote-updates/enrichment-2026-06-13.json",
+        "slug_count": 15,
+        "missing": 0,
+        "not_enriched": 0
+      },
+      {
+        "path": "reports/enrichment-corpus/promote-updates/enrichment-2026-06-14.json",
+        "slug_count": 25,
+        "missing": 0,
+        "not_enriched": 0
+      },
+      {
+        "path": "reports/enrichment-addiction/promote-updates/addiction-enrichment-2026-06-13.json",
+        "slug_count": 8,
+        "missing": 0,
+        "not_enriched": 0
+      }
+    ],
+    "supabase_slugs": 1099,
+    "build_static_paths": 1099
+  }
+}

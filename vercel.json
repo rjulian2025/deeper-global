@@ -218,6 +218,46 @@
       "source": "/answers/why-does-my-throat-feel-tight-when-im-stressed",
       "destination": "/answers/why-does-my-throat-feel-tight-when-im-st-181083-008/",
       "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-find-motivation-when-im-depress-190648-011",
+      "destination": "/answers/how-do-i-find-motivation-when-im-depressed-z8a9b1/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-stop-feeling-guilty-about-setti-177940-013",
+      "destination": "/answers/how-do-i-stop-feeling-guilty-about-setting-boundaries-q8r9s1/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-stop-overthinking-every-conversation-i-have-e5f6g7",
+      "destination": "/answers/how-do-i-stop-overthinking-every-conversation-i-have/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-empty-even-when-my-life-looks-177941-018",
+      "destination": "/answers/why-do-i-feel-empty-even-when-my-life-looks-good-on-paper-t2u3v4/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-guilty-when-im-happy-177941-002",
+      "destination": "/answers/why-do-i-feel-guilty-when-im-happy-i8j9k1/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-like-im-failing-at-everyth-177940-030",
+      "destination": "/answers/why-do-i-feel-like-im-failing-at-everything-b2c3d4/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-like-im-pretending-to-be-s-177940-018",
+      "destination": "/answers/why-do-i-feel-like-im-pretending-to-be-someone-im-not-r8s9t1/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-so-lonely-even-when-im-surrounded-by-people-p7q8r9",
+      "destination": "/answers/why-do-i-feel-so-lonely-even-when-im-surrounded-by-people/",
+      "permanent": true
     }
   ]
 }

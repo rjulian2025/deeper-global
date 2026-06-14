@@ -4,6 +4,9 @@
  *
  *   npm run content:apply-enrichment -- reports/enrichment-addiction/draft-answers/batch-01-drafts.json
  *   npm run content:apply-enrichment -- --apply reports/enrichment-addiction/draft-answers/batch-01-drafts.json
+ *
+ * After promoting enriched content, run the integrity audit gate:
+ *   npm run content:promote-with-audit -- --apply <draft-json-paths...>
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createClient } from '@supabase/supabase-js';
