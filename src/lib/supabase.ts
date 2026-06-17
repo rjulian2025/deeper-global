@@ -6,6 +6,7 @@ export type Question = {
   improved_title?: string | null;
   improved_meta_description?: string | null;
   improved_summary?: string | null;
+  staging_lede?: string | null;
   short_answer: string;
   answer: string;
   answer_sections?: AnswerSection[] | null;

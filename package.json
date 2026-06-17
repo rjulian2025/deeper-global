@@ -57,6 +57,9 @@
     "content:apply-corpus-batch-38": "node scripts/apply-enrichment.mjs --apply --campaign enrichment reports/enrichment-corpus/draft-answers/batch-38-drafts.json",
     "content:patch-source-refs": "node scripts/patch-source-refs.mjs",
     "content:report-completeness": "node scripts/report-completeness.mjs",
+    "content:rewrite-answers-claude": "node scripts/rewrite-answers-claude.mjs",
+    "content:rewrite-answers-claude:all": "node scripts/rewrite-answers-claude.mjs --apply --all",
+    "content:qa-answer-rewrite": "node scripts/qa-answer-rewrite-batch.mjs",
     "content:promote-enrichment": "node scripts/promote-enrichment-drafts.mjs",
     "content:apply-enrichment": "node scripts/apply-enrichment.mjs",
     "content:apply-integrity-fixes": "node scripts/apply-data-integrity-fixes.mjs",
@@ -75,6 +78,7 @@
     "seo:p1-sources": "node scripts/prepare-p1-enrichment-sources.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.104.2",
     "@astrojs/sitemap": "^3.7.2",
     "@supabase/supabase-js": "^2.54.0",
     "astro": "^6.2.0",

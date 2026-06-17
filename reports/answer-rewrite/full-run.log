@@ -1,0 +1,86 @@
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm.
+
+> deeper-global@1.0.0 content:rewrite-answers-claude:all
+> node scripts/rewrite-answers-claude.mjs --apply --all
+
+{
+  "mode": "apply",
+  "pending_records": 1000,
+  "batch_size": 10,
+  "batch_delay_ms": 1000,
+  "limit": 10000,
+  "model": "claude-sonnet-4-6",
+  "prompt_version": "deeper-health-copywriter-v1",
+  "csv_path": "reports/answer-rewrite/rewrite-run-2026-06-17T13-37-24-577Z.csv"
+}
+[success] id=05d5e7be-e56e-4e83-b4da-bba3d56b7104 slug=why-do-i-feel-like-i-cant-trust-anyone-completely-g8h2j5
+[success] id=06b8f0e7-2f7a-42a5-af90-23215279ea23 slug=why-do-i-feel-guilty-for-taking-care-of-184730-001
+[success] id=06c9b672-6364-4b1f-8b43-9b2f7900d575 slug=is-it-normal-to-feel-bored-or-empty-after-getting-sober
+[success] id=06e782ea-c47e-47f8-bf53-ceaaa9858bd5 slug=how-do-i-deal-with-the-physical-effects-of-long-term-substance-use
+[success] id=076b4b79-7750-4f55-be64-2202513acc6c slug=whats-the-difference-between-a-sponsor-and-a-therapist
+[success] id=07a7cb65-cb71-4481-a169-ebb3779eefe6 slug=what-do-i-do-when-im-losing-faith-in-everything-i--186602-023
+[success] id=07db9977-19ac-4f2b-adb1-d0840e7aed9d slug=how-do-i-handle-social-events-and-gatherings-in-recovery
+[success] id=07fd8f5e-0a24-45b1-b775-ad75a5cb4ae9 slug=how-do-i-know-if-i-have-clinical-depression-versus-just-feeling-sad
+[success] id=080e0b49-b933-45c0-8187-a749632ef101 slug=how-do-i-talk-to-my-partner-about-sexual-needs-wit-186602-018
+[success] id=081a7fd9-bb0a-4f75-a55d-963ecf06efa3 slug=what-should-i-expect-if-my-loved-one-goes-to-treatment
+[success] id=084f6675-7e12-473c-bd46-9ddb9419cca1 slug=how-do-i-handle-child-support-and-custody-disagreements
+[success] id=0851206b-ac4e-455c-bf23-a7ae6581347f slug=why-do-i-feel-guilty-about-not-speaking-my-p7q1r4
+[success] id=08fa9984-cc42-443e-ac40-5a8b3d4edf75 slug=how-do-i-find-peace-with-uncertainty-in-my-life-o5p6q7
+[success] id=091b1651-4080-4a45-9890-c07d55e7d3e8 slug=how-can-i-improve-communication-with-my-teenager
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm.
+
+> deeper-global@1.0.0 content:rewrite-answers-claude:all
+> node scripts/rewrite-answers-claude.mjs --apply --all
+
+{
+  "mode": "apply",
+  "pending_records": 1060,
+  "batch_size": 10,
+  "batch_delay_ms": 1000,
+  "limit": 10000,
+  "model": "claude-sonnet-4-6",
+  "prompt_version": "deeper-health-copywriter-v1",
+  "csv_path": "reports/answer-rewrite/rewrite-run-2026-06-17T13-44-24-072Z.csv"
+}
+[success] id=097008df-6aad-4e4d-86ad-0f728a1de682 slug=can-ai-help-me-process-grief-or-trauma-189142-018
+[success] id=09bcc008-1495-4794-b40b-545b1da890d8 slug=what-should-i-do-when-i-feel-like-im-not-good-enough
+[success] id=09d5d4f9-0419-4bca-ae44-3152bb333de5 slug=why-do-i-wake-up-at-3am-with-anxiety-eve-181083-045
+[success] id=09f03ea3-7b70-4f70-ac02-9555bcd33774 slug=what-is-anticipatory-grief-and-how-do-i--185387-007
+[success] id=0a23465b-7daf-4571-9452-ff4fc341d987 slug=how-do-i-stop-feeling-like-im-in-danger-when-im-actually-safe
+[success] id=0a49ecfa-bc35-4955-a77c-96bf121e3cbd slug=what-should-i-know-about-depression-in-older-adults
+[success] id=0a6d7f13-461b-4a0c-a3ee-bfd7dc9e1f02 slug=how-do-i-know-if-im-in-a-toxic-relationship-184730-020
+[success] id=0a74a1f4-2f77-49fe-a93b-523554f67bb2 slug=why-do-i-feel-safer-being-vulnerable-with-ai-than--189142-006
+[success] id=0a756a7a-378b-466f-a2e6-d377f6681cbe slug=whats-the-difference-between-feeling-sad-and-being-clinically-depressed
+[success] id=0abb94ef-b473-48c1-af40-68d4632138c8 slug=warning-signs-ai-use-is-hurting-my-mental-health
+[success] id=0ae0b3db-8b3b-4b31-b82a-dabee26b9dae slug=why-cant-i-just-stop-using-drugs-on-my-o-185387-019
+[success] id=0aef7211-890d-427b-a6f4-2926878d2747 slug=why-do-i-feel-overwhelmed-by-simple-dail-190648-007
+[success] id=0b1b90da-9b2d-496a-82f4-87522c937ae1 slug=how-can-i-improve-my-communication-skills-in-relationships
+[success] id=0b21d842-c733-48d0-8c58-c13128727de1 slug=why-do-i-feel-like-im-faking-my-personal-186032-012
+[success] id=0b4555ce-ace3-410b-85aa-3cb6cb8e712c slug=is-it-normal-to-feel-nothing-after-someo-186032-004
+[success] id=0babfbe2-9c3b-4f84-a6cb-44c93903290d slug=what-should-i-do-if-i-have-legal-problems-related-to-my-addiction
+[success] id=0bb1d30d-32d9-4cde-99a8-b34e8bbc9d2c slug=how-do-i-know-if-im-in-an-emotionally-ab-177940-025
+[success] id=0befbe52-ae75-43fa-9080-39ddc52d4143 slug=is-it-bad-to-take-naps-when-im-depressed-181083-052
+[success] id=0bf42f26-6cd8-4bac-aea8-6ddb8a86d7ce slug=how-do-i-handle-holidays-and-special-occasions-in-recovery
+[success] id=0c09862f-d896-4af9-987f-f83682149089 slug=how-do-i-deal-with-the-pressure-to-document-j5k8l2
+[success] id=0ce9cb9f-970c-4da7-8f58-822cc06f00d3 slug=how-do-i-handle-family-rejection-after-changing-my-186602-028
+[success] id=0cf60da1-84cb-4005-a0c5-7e9a354e9bd1 slug=how-do-i-overcome-imposter-syndrome
+[success] id=0d471d1f-74fb-4b60-812f-4d1117e01536 slug=why-do-i-feel-guilty-for-laughing-or-hav-186032-010
+[success] id=0d7b8b7c-3037-4d73-b11c-f36f2a8a91d0 slug=what-is-a-process-addiction-and-can-i-be-185759-023
+[success] id=0daf3668-4678-483a-922a-faa3a7d8e9b9 slug=what-if-my-child-does-not-want-to-talk-about-feelings
+[success] id=0df53126-62c8-4e04-8352-298e5c67a370 slug=whats-the-difference-between-stress-and-anxiety
+[success] id=0e3de0c2-7639-4c1f-931a-b230fbc3c973 slug=is-it-okay-to-date-someone-in-early-recovery
+[success] id=0ece6d07-f015-432b-81e6-fb0a5337a3aa slug=how-do-i-deal-with-the-stigma-of-being-in-recovery
+[success] id=0ef8e222-ea7a-4e8d-8907-b160f3cc6842 slug=why-do-i-feel-guilty-for-having-anxiety-when-others-have-it-worse
+[success] id=0ef9a887-790d-4e28-8210-ad277898db1d slug=why-do-i-feel-anxious-about-good-things-happ-177941-022
+[success] id=0f22d2f7-c6bc-4948-83d2-e602c80294d3 slug=rebuild-real-world-connection-after-relying-on-ai
+[success] id=0f3eeced-fa24-41a9-892e-1b5c0e20f23e slug=what-does-it-mean-if-i-feel-more-connected-to-z5a2b7
+[success] id=0f724dee-d99b-4b2b-9d57-b7e88f5a4713 slug=how-do-i-rebuild-trust-after-my-partner-cheated
+[success] id=0f83275d-c95c-47c7-8d8a-98368b705668 slug=whats-the-difference-between-healthy-and-177940-028
+[success] id=0fb2d2b9-a9b5-4bb3-8428-9b67937105f3 slug=how-do-i-help-my-teenager-who-seems-depressed
+[success] id=0fb51651-4bc3-42a1-829d-76f85c10e6e7 slug=why-do-i-feel-like-im-pretending-to-be-someone-im-not-r8s9t1
+[success] id=0fe7f838-30e0-4b2c-a8a2-8dbb8bfff198 slug=why-do-i-feel-anxious-when-i-have-nothing-to-177941-034
+[success] id=103ddcfe-6cef-4ae0-bf4b-62d4a9f2f6d0 slug=how-do-i-know-if-my-teenager-has-depression
+[success] id=104a874b-b591-4860-9962-dd07950a3b56 slug=can-ai-make-impostor-syndrome-worse
+[success] id=10da97d4-5d19-416f-8f07-76200c59e951 slug=how-do-i-make-friends-as-an-adult-when-it-feels-impossible
+[success] id=1153a9fc-324f-4f51-909a-403a22848a79 slug=why-do-i-feel-lonely-even-when-im-in-a-r-190648-009
+[success] id=116c02be-b735-4f65-950a-c0f811253e5a slug=is-it-normal-to-feel-worse-before-i-feel-better-in-recovery
