@@ -766,7 +766,6 @@ h3 {
   color: #34302c;
 }
 
-.key-takeaways li::before,
 .follow-up-card li::before {
   content: "";
   position: absolute;
