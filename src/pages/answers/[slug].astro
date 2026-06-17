@@ -256,7 +256,12 @@ const jsonLd = {
             <section class="key-takeaways" aria-labelledby="key-takeaways-title" data-ai-section="key-takeaways">
               <h2 id="key-takeaways-title">Key takeaways</h2>
               <ul>
-                {keyTakeaways.map((takeaway) => <li>{takeaway}</li>)}
+                {keyTakeaways.map((takeaway) => (
+                  <li>
+                    <span class="takeaway-mark" aria-hidden="true">—</span>
+                    {takeaway}
+                  </li>
+                ))}
               </ul>
             </section>
           )
@@ -496,21 +501,14 @@ const jsonLd = {
     padding-left: 0;
   }
 
-  .answer-main .key-takeaways ul li::before {
-    content: "—";
-    display: inline;
-    position: static;
+  .answer-main .key-takeaways .takeaway-mark {
     color: var(--brass);
     margin-right: var(--space-3);
     font-family: Georgia, 'Times New Roman', serif;
     font-weight: 600;
-    background: none;
-    width: auto;
-    height: auto;
-    line-height: inherit;
-    vertical-align: baseline;
   }
 
+  .answer-main .key-takeaways ul li::before,
   .answer-main .key-takeaways ul li::marker {
     content: none;
   }
