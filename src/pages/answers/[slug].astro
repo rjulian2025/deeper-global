@@ -488,30 +488,27 @@ const jsonLd = {
   }
 
   .answer-main .key-takeaways ul li {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-3);
     list-style: none !important;
     font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
     font-size: 0.9375rem;
     line-height: var(--leading-relaxed);
     color: var(--ink);
     padding-left: 0;
-    position: relative;
   }
 
   .answer-main .key-takeaways ul li::before {
     content: "—";
-    color: var(--brass);
+    display: inline;
     position: static;
-    display: block;
-    flex: 0 0 auto;
+    color: var(--brass);
+    margin-right: var(--space-3);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 600;
+    background: none;
     width: auto;
     height: auto;
-    line-height: var(--leading-relaxed);
-    background: none;
-    border-radius: 0;
-    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    line-height: inherit;
+    vertical-align: baseline;
   }
 
   .answer-main .key-takeaways ul li::marker {
