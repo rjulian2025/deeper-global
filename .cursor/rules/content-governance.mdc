@@ -1,0 +1,49 @@
+---
+description: Deeper Global answer copy and design governance — rewrite spec, QA gates, promote workflow
+globs: "{src/**/*.{astro,ts,tsx},scripts/**/*.{mjs,js},DESIGN.md}"
+alwaysApply: false
+---
+
+# Content governance
+
+Read `DESIGN.md` and `scripts/lib/answer-rewrite-system-prompt.mjs` before any answer copy or answer-page UI work.
+
+## Canonical answer contract
+
+All mental-health answers use the 7-field staging contract:
+
+- `staging_primary_term`
+- `staging_canonical_answer`
+- `staging_lede`
+- `staging_key_takeaways` (exactly 5)
+- `staging_what_you_might_be_experiencing`
+- `staging_what_can_help`
+- `staging_when_to_reach_out`
+
+Prompt version: `deeper-health-copywriter-v1` (`ANSWER_REWRITE_PROMPT_VERSION`).
+
+## Required pipeline
+
+1. **Rewrite** — `npm run content:rewrite-answers-claude` (never skip for new answers)
+2. **QA** — `npm run content:qa-answer-rewrite` (FAIL blocks promote)
+3. **Promote** — `npm run content:promote-answer-rewrite:safe` (staging → live fields)
+4. **Publish** — existing review/index gates
+
+Do not promote enrichment drafts directly to live answer fields without running the rewrite pipeline.
+
+## Live field mapping (promote)
+
+- `staging_lede` → `short_answer`, `improved_summary`
+- `staging_canonical_answer` → `suggested_schema_answer`
+- `staging_key_takeaways` → `key_takeaways`
+- staging body sections → `answer_sections` (preserve `\n\n` paragraph breaks)
+- `staging_primary_term` → `primary_theme`
+- `content_prompt_version` → `staging_rewrite_prompt_version`
+
+## UI display
+
+Answer pages prefer staging via `getDisplayLede`, `getDisplayKeyTakeaways`, `getDisplayAnswerHtml` in `src/lib/content.ts`. Use DESIGN.md tokens only — no arbitrary colors, spacing, or font sizes.
+
+## Legacy paths
+
+`content:apply-enrichment` and `content:promote-enrichment` are legacy seed paths only. New or updated answers must go through rewrite → QA → promote.

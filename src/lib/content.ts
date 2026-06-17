@@ -76,11 +76,79 @@ export function getAnswerSummary(question: Question) {
   return cleanText(question.improved_summary) || question.short_answer;
 }
 
+export function getDisplayLede(question: Question) {
+  const staged = cleanText(question.staging_lede);
+  if (staged) return staged;
+  return getAnswerSummary(question);
+}
+
+export function getDisplayKeyTakeaways(question: Question) {
+  const staged = getStringList(question.staging_key_takeaways);
+  if (staged.length >= 5) return staged.slice(0, 5);
+  return getKeyTakeaways(question);
+}
+
+function hasStagingBody(question: Question) {
+  return Boolean(
+    cleanText(question.staging_what_you_might_be_experiencing) &&
+      cleanText(question.staging_what_can_help) &&
+      cleanText(question.staging_when_to_reach_out)
+  );
+}
+
+export function getDisplayAnswerSections(question: Question): AnswerSection[] {
+  if (!hasStagingBody(question)) {
+    return getStructuredAnswerSections(question);
+  }
+
+  return [
+    {
+      type: 'what-you-might-be-experiencing',
+      heading: 'What you might be experiencing',
+      body: cleanText(question.staging_what_you_might_be_experiencing),
+    },
+    {
+      type: 'what-can-help',
+      heading: 'What can help',
+      body: cleanText(question.staging_what_can_help),
+    },
+    {
+      type: 'when-to-reach-out',
+      heading: 'When to reach out',
+      body: cleanText(question.staging_when_to_reach_out),
+    },
+  ];
+}
+
+export function getDisplayAnswerHtml(question: Question) {
+  const sections = getDisplayAnswerSections(question);
+
+  if (sections.length) {
+    return sections
+      .map((section) => {
+        const heading = section.heading
+          ? `<h2 data-answer-section="${escapeHtml(section.type || slugify(section.heading))}">${escapeHtml(section.heading)}</h2>`
+          : '';
+        const body = paragraphizeText(section.body)
+          .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+          .join('');
+
+        return `<section class="answer-section">${heading}${body}</section>`;
+      })
+      .join('');
+  }
+
+  return formatAnswerHtml(question);
+}
+
 export function getAnswerSchemaQuestion(question: Question) {
   return cleanText(question.suggested_schema_question) || question.question;
 }
 
 export function getAnswerSchemaAnswer(question: Question) {
+  const stagedCanonical = cleanText(question.staging_canonical_answer);
+  if (stagedCanonical) return stagedCanonical;
+
   return cleanText(question.suggested_schema_answer) || getAnswerPlainText(question);
 }
 

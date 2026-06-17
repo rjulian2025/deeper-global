@@ -7,6 +7,14 @@ export type Question = {
   improved_meta_description?: string | null;
   improved_summary?: string | null;
   staging_lede?: string | null;
+  staging_key_takeaways?: string[] | null;
+  staging_canonical_answer?: string | null;
+  staging_primary_term?: string | null;
+  staging_what_you_might_be_experiencing?: string | null;
+  staging_what_can_help?: string | null;
+  staging_when_to_reach_out?: string | null;
+  staging_rewrite_at?: string | null;
+  staging_rewrite_prompt_version?: string | null;
   short_answer: string;
   answer: string;
   answer_sections?: AnswerSection[] | null;

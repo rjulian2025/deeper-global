@@ -7,7 +7,6 @@ import {
   answerPath,
   categoryPath,
   displayCategory,
-  formatAnswerHtml,
   formatDate,
   getAnswerMetaDescription,
   getAnswerPlainText,
@@ -16,8 +15,10 @@ import {
   getAnswerSchemaQuestion,
   getAnswerSummary,
   getCareNote,
+  getDisplayAnswerHtml,
+  getDisplayKeyTakeaways,
+  getDisplayLede,
   getFollowUpQuestions,
-  getKeyTakeaways,
   getPrimaryTheme,
   getQuestionCitation,
   getRelatedQuestions,
@@ -59,7 +60,7 @@ const displayTitle = getAnswerDisplayTitle(question);
 const summary = getAnswerSummary(question);
 const schemaQuestion = getAnswerSchemaQuestion(question);
 const schemaAnswerText = getAnswerSchemaAnswer(question);
-const keyTakeaways = getKeyTakeaways(question);
+const keyTakeaways = getDisplayKeyTakeaways(question);
 const followUpQuestions = getFollowUpQuestions(question);
 const primaryTheme = getPrimaryTheme(question);
 const updatedAt = question.updated_at || question.created_at;
@@ -68,7 +69,7 @@ const careNote = getCareNote(question, crisisSensitive);
 const title = `${displayTitle} | Deeper Global`;
 const description = getAnswerMetaDescription(question);
 const citation = getQuestionCitation(question);
-const answerHtml = formatAnswerHtml(question);
+const answerHtml = getDisplayAnswerHtml(question);
 const answerText = getAnswerPlainText(question);
 const extractableAnswer = truncate(schemaAnswerText || answerText, 700);
 const answerUrl = siteUrl(`/answers/${question.slug}`);
@@ -86,7 +87,7 @@ const reviewerDisplayLabel = getReviewerDisplayLabel(question);
 const reviewerSchemaNode = getReviewerSchemaNode(question);
 const sourceRefs = getSourceRefs(question);
 const sourceCitationUrls = sourceRefs.map((source) => source.url).filter(Boolean);
-const stagedLede = (question as any).staging_lede ?? null;
+const displayLede = getDisplayLede(question);
 const reviewedBySchema = reviewedBy
   ? {
       reviewedBy: reviewerSchemaNode ?? {
@@ -248,7 +249,7 @@ const jsonLd = {
           aria-label="Structured answer summary"
           data-ai-section="answer-summary"
         >
-          <p class="summary">{stagedLede ?? summary}</p>
+          <p class="summary">{displayLede}</p>
         </section>
         {
           keyTakeaways.length > 0 && (

@@ -19,6 +19,7 @@ import {
   ANSWER_REWRITE_PROMPT_VERSION,
   ANSWER_REWRITE_SYSTEM_PROMPT,
 } from './lib/answer-rewrite-system-prompt.mjs';
+import { sanitizeRewritePayload } from './lib/answer-rewrite-utils.mjs';
 import { answerTextFromSections, cleanText } from './lib/content-enrichment-utils.mjs';
 import { loadLocalEnv, resolveSupabaseConfig } from './lib/supabase-env.mjs';
 
@@ -341,7 +342,7 @@ async function rewriteRecord(client, record, model) {
     throw new Error('Claude response did not include text content.');
   }
 
-  const payload = parseModelJson(textBlock.text);
+  const payload = sanitizeRewritePayload(parseModelJson(textBlock.text));
   validateRewritePayload(payload);
 
   return {
