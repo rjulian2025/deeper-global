@@ -1,5 +1,6 @@
 ---
 import AnswerTrustPanel from '@/components/AnswerTrustPanel.astro';
+import AnswerTrustStrip from '@/components/AnswerTrustStrip.astro';
 import CrisisBanner from '@/components/CrisisBanner.astro';
 import PractitionerCallout from '@/components/PractitionerCallout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -243,6 +244,7 @@ const jsonLd = {
       <div class="answer-main">
         <a class="answer-topic-badge" href={categoryPath(category)}>{category}</a>
         <h1 itemprop="headline">{displayTitle}</h1>
+        <AnswerTrustStrip question={question} updatedAt={updatedAt} />
         <section
           class="ai-answer-summary"
           id="answer-summary"
@@ -426,13 +428,7 @@ const jsonLd = {
     line-height: var(--leading-tight);
     color: var(--navy);
     margin: var(--space-4) 0 var(--space-6);
-    max-width: 22rem;
-  }
-
-  @media (min-width: 768px) {
-    .answer-main h1 {
-      max-width: 100%;
-    }
+    max-width: 100%;
   }
 
   .answer-main .ai-answer-summary {
@@ -495,10 +491,16 @@ const jsonLd = {
   .answer-main .key-takeaways ul li {
     list-style: none !important;
     font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
-    font-size: 0.9375rem;
+    font-size: 1rem;
     line-height: var(--leading-relaxed);
     color: var(--ink);
     padding-left: 0;
+  }
+
+  @media (max-width: 640px) {
+    .key-takeaways {
+      padding: var(--space-5) var(--space-4);
+    }
   }
 
   .answer-main .key-takeaways .takeaway-mark {

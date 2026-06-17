@@ -69,6 +69,7 @@ const structuredData = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0e1f33" />
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex,follow" />}
@@ -124,7 +125,10 @@ const structuredData = {
             <a href="/protocol/">Protocol</a>
             <a href="/about/">About</a>
           </div>
-          <a class="nav-cta" href="/answers/">Ask anything</a>
+          <a class="nav-cta" href="/answers/">
+            <span class="nav-cta-full">Ask anything</span>
+            <span class="nav-cta-short" aria-hidden="true">Ask</span>
+          </a>
         </nav>
       </header>
       <slot />

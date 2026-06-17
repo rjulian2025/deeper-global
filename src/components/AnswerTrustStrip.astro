@@ -1,0 +1,59 @@
+---
+import { formatDate } from '@/lib/content';
+import {
+  getReviewedAt,
+  getReviewedByLabel,
+  getReviewerDisplayLabel,
+  getSourceRefs,
+} from '@/lib/trust';
+
+type Props = {
+  question: import('@/lib/supabase').Question;
+  updatedAt: string;
+};
+
+const { question, updatedAt } = Astro.props;
+const reviewedBy = getReviewedByLabel(question);
+const reviewedAt = getReviewedAt(question);
+const reviewerLabel = getReviewerDisplayLabel(question);
+const sourceRefs = getSourceRefs(question);
+
+const parts: string[] = [];
+
+if (reviewerLabel || reviewedBy) {
+  parts.push(reviewerLabel ? `Reviewed by ${reviewerLabel}` : 'Clinically reviewed');
+} else if (reviewedAt) {
+  parts.push('Clinically reviewed');
+}
+
+parts.push(`Updated ${formatDate(reviewedAt || updatedAt)}`);
+
+if (sourceRefs.length > 0) {
+  parts.push(`${sourceRefs.length} source${sourceRefs.length === 1 ? '' : 's'}`);
+}
+---
+
+{
+  parts.length > 0 && (
+    <p class="answer-trust-strip" aria-label="Editorial trust summary">
+      {parts.join(' · ')}
+    </p>
+  )
+}
+
+<style>
+  .answer-trust-strip {
+    display: none;
+    margin: calc(var(--space-2) * -1) 0 var(--space-5);
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: var(--stone);
+  }
+
+  @media (max-width: 919px) {
+    .answer-trust-strip {
+      display: block;
+    }
+  }
+</style>

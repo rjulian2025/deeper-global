@@ -1,8 +1,11 @@
 <aside class="crisis" aria-label="Crisis support">
   <div class="container crisis-inner">
     <p class="crisis-lead">
-      <strong>Immediate support:</strong> If you may hurt yourself or someone else, call or text <a href="tel:988">988</a> in the U.S. for crisis support.
+      <strong>Immediate support:</strong> If you may hurt yourself or someone else, get crisis help now.
     </p>
+    <a class="crisis-call" href="tel:988">
+      Call or text 988 (U.S. Suicide &amp; Crisis Lifeline)
+    </a>
     <p class="crisis-detail">
       If danger is immediate, call emergency services. Outside the U.S., contact your local crisis helpline or emergency number.
     </p>
@@ -12,7 +15,7 @@
 <style>
   .crisis-inner {
     display: grid;
-    gap: 8px;
+    gap: 10px;
   }
 
   .crisis-lead,
@@ -20,8 +23,39 @@
     margin: 0;
   }
 
+  .crisis-call {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 18px;
+    border-radius: 8px;
+    background: #8d2f2f;
+    color: #fffdf9;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.3;
+    text-align: center;
+    text-decoration: none;
+    width: min(100%, 28rem);
+  }
+
+  .crisis-call:hover,
+  .crisis-call:focus-visible {
+    background: #742626;
+    color: #fffdf9;
+    outline: 2px solid #4e1f1f;
+    outline-offset: 2px;
+  }
+
   .crisis-detail {
     font-size: 0.94rem;
     opacity: 0.92;
+  }
+
+  @media (max-width: 640px) {
+    .crisis-call {
+      width: 100%;
+    }
   }
 </style>

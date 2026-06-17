@@ -105,6 +105,7 @@ input {
   top: 0;
   z-index: 20;
   backdrop-filter: blur(16px);
+  padding-top: env(safe-area-inset-top, 0);
 }
 
 .nav {
@@ -165,13 +166,18 @@ input {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 36px;
+  min-height: 44px;
   padding: 0 16px;
   border-radius: 999px;
   background: var(--white);
   color: var(--navy);
   font-size: 0.88rem;
   font-weight: 800;
+  white-space: nowrap;
+}
+
+.nav-cta-short {
+  display: none;
 }
 
 .home-hero {
@@ -1105,13 +1111,36 @@ h3 {
     gap: 12px;
   }
 
-  .nav-cta {
+  .nav-cta-full {
     display: none;
+  }
+
+  .nav-cta-short {
+    display: inline;
+  }
+
+  .nav-cta {
+    min-width: 44px;
+    padding: 0 14px;
+  }
+
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-block: 4px;
   }
 
   .nav-links {
     gap: 14px;
     font-size: 0.86rem;
+  }
+
+  .answer-breadcrumbs a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-block: 2px;
   }
 
   .home-hero {
