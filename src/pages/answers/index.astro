@@ -211,12 +211,12 @@ const searchIndex = questions.map((question) => {
       return `
       <article class="answer-card">
         <a class="answer-card-link" href="${escapeHtml(item.url)}" data-search-result="true" data-search-result-position="${index + 1}" data-search-result-category="${escapeHtml(item.category)}">
-          <h2>${escapeHtml(item.title)}</h2>
+          <h2 class="answer-card-title">${escapeHtml(item.title)}</h2>
         </a>
-        <p>${escapeHtml(item.summary)}</p>
+        <p class="answer-card-summary">${escapeHtml(item.summary)}</p>
         <div class="meta-row">
-          <a class="pill" href="${escapeHtml(item.categoryUrl)}">${escapeHtml(item.category)}</a>
-          <span class="pill">Updated ${escapeHtml(item.updated)}</span>
+          <a class="pill pill--category" href="${escapeHtml(item.categoryUrl)}">${escapeHtml(item.category)}</a>
+          <span class="pill pill--date">Updated ${escapeHtml(item.updated)}</span>
         </div>
       </article>
     `;
@@ -282,4 +282,93 @@ const searchIndex = questions.map((question) => {
       });
     });
   </script>
+
+  <style is:global>
+    #answer-results .answer-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--ocean);
+      border-radius: 6px;
+      padding: var(--space-6) var(--space-8);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      transition: box-shadow 0.2s ease, border-left-color 0.2s ease;
+    }
+
+    #answer-results .answer-card:hover {
+      box-shadow: var(--shadow);
+      border-left-color: var(--brass);
+    }
+
+    #answer-results .answer-card-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    #answer-results .answer-card-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: var(--text-lg);
+      font-weight: 600;
+      line-height: var(--leading-snug);
+      color: var(--navy);
+      margin: 0;
+      transition: color 0.15s ease;
+    }
+
+    #answer-results .answer-card-link:hover .answer-card-title {
+      color: var(--ocean);
+    }
+
+    #answer-results .answer-card-summary {
+      font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.9375rem;
+      line-height: var(--leading-relaxed);
+      color: var(--stone);
+      margin: 0;
+      max-width: 34rem;
+    }
+
+    #answer-results .meta-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    #answer-results .pill {
+      font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      padding: var(--space-2) var(--space-3);
+      border-radius: 100px;
+      text-decoration: none;
+      line-height: var(--leading-normal);
+      display: inline-block;
+    }
+
+    #answer-results .pill--category {
+      background: var(--mist);
+      color: var(--ocean);
+      border: 1px solid transparent;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    #answer-results .pill--category:hover {
+      background: var(--white);
+      border-color: var(--ocean);
+    }
+
+    #answer-results .pill--date {
+      color: var(--stone);
+      background: transparent;
+      font-weight: 400;
+    }
+
+    #answer-results .answer-card:focus-within .answer-card-link:focus {
+      outline: 2px solid var(--ocean);
+      outline-offset: 3px;
+    }
+  </style>
 </BaseLayout>

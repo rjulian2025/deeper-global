@@ -53,7 +53,7 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStat
       ) : null}
 
       <ul class="trust-meta">
-        {reviewStatusDisplay ? <li>Review status: {reviewStatusDisplay}</li> : null}
+        {reviewStatusDisplay && !isDraftReview ? <li>Review status: {reviewStatusDisplay}</li> : null}
         {reviewedAt ? <li>Last reviewed: {formatDate(reviewedAt)}</li> : null}
         <li>Updated {formatDate(updatedAt)}</li>
       </ul>

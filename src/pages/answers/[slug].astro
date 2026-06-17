@@ -429,18 +429,30 @@ const jsonLd = {
     }
   }
 
-  .summary {
+  .answer-main .ai-answer-summary {
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 0 var(--space-6);
+  }
+
+  .answer-main .ai-answer-summary .summary,
+  .answer-main .summary {
     font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
     font-size: var(--text-md);
     line-height: var(--leading-loose);
     color: var(--ink);
-    font-style: normal;
+    font-style: normal !important;
     font-weight: 400;
     max-width: 36rem;
     margin: 0 0 var(--space-8);
-    border: none;
-    background: none;
-    padding: 0;
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
   }
 
   .key-takeaways {
@@ -465,8 +477,8 @@ const jsonLd = {
     padding: 0;
   }
 
-  .key-takeaways ul {
-    list-style: none;
+  .answer-main .key-takeaways ul {
+    list-style: none !important;
     margin: 0;
     padding: 0;
     display: flex;
@@ -474,7 +486,8 @@ const jsonLd = {
     gap: var(--space-3);
   }
 
-  .key-takeaways li {
+  .answer-main .key-takeaways ul li {
+    list-style: none !important;
     font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
     font-size: 0.9375rem;
     line-height: var(--leading-relaxed);
@@ -483,11 +496,16 @@ const jsonLd = {
     position: relative;
   }
 
-  .key-takeaways li::before {
+  .answer-main .key-takeaways ul li::before {
     content: "—";
     color: var(--brass);
     position: absolute;
     left: 0;
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .answer-main .key-takeaways ul li::marker {
+    content: none;
   }
 
   .accepted-answer h2 {
