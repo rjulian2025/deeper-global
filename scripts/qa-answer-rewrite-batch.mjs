@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 /**
- * QA the latest answer-rewrite batch CSV against staging content in Supabase.
+ * QA answer-rewrite staging content in Supabase.
  *
  *   npm run content:qa-answer-rewrite
+ *   npm run content:qa-answer-rewrite -- --all
  */
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { readdirSync, readFileSync, statSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { createClient } from '@supabase/supabase-js';
+import { ANSWER_REWRITE_PROMPT_VERSION } from './lib/answer-rewrite-system-prompt.mjs';
 import { evaluateStagingRewrite } from './lib/answer-rewrite-qa.mjs';
+import { hasCompleteStaging } from './lib/answer-rewrite-utils.mjs';
 import { resolveSupabaseConfig } from './lib/supabase-env.mjs';
 
 const OUT_DIR = 'reports/answer-rewrite';
@@ -48,31 +51,40 @@ function truncate(text, max = 60) {
   return t.length <= max ? t : `${t.slice(0, max - 1)}…`;
 }
 
-async function main() {
-  const csvPath = latestCsvPath();
-  const runTimestamp = csvPath.split('/').pop().replace('rewrite-run-', '').replace('.csv', '');
-  const csvRows = parseCsv(readFileSync(csvPath, 'utf8'));
-  const ids = csvRows.filter((r) => r.status === 'success').map((r) => r.record_id);
+const STAGING_SELECT =
+  'id,slug,question,staging_rewrite_at,staging_rewrite_error,staging_rewrite_prompt_version,staging_primary_term,staging_canonical_answer,staging_lede,staging_key_takeaways,staging_what_you_might_be_experiencing,staging_what_can_help,staging_when_to_reach_out';
 
-  if (!ids.length) throw new Error('No successful rows in CSV.');
+async function fetchAllStagedRows(supabase) {
+  const pageSize = 200;
+  const rows = [];
 
-  const { url, key } = resolveSupabaseConfig();
-  const supabase = createClient(url, key, { auth: { persistSession: false } });
-  const { data, error } = await supabase
-    .from('questions_master')
-    .select('id,slug,question,staging_primary_term,staging_canonical_answer,staging_lede,staging_key_takeaways,staging_what_you_might_be_experiencing,staging_what_can_help,staging_when_to_reach_out,staging_rewrite_error')
-    .in('id', ids);
+  for (let offset = 0; offset < 10000; offset += pageSize) {
+    const { data, error } = await supabase
+      .from('questions_master')
+      .select(STAGING_SELECT)
+      .not('staging_rewrite_at', 'is', null)
+      .is('staging_rewrite_error', null)
+      .eq('staging_rewrite_prompt_version', ANSWER_REWRITE_PROMPT_VERSION)
+      .order('slug', { ascending: true })
+      .range(offset, offset + pageSize - 1);
 
-  if (error) throw new Error(error.message);
+    if (error) throw new Error(error.message);
+    const page = data ?? [];
+    rows.push(...page.filter((row) => hasCompleteStaging(row)));
+    if (page.length < pageSize) break;
+  }
 
-  const byId = new Map((data ?? []).map((row) => [String(row.id), row]));
-  const results = ids.map((id) => ({ id, row: byId.get(String(id)), ...evaluateStagingRewrite(byId.get(String(id)) ?? {}) }));
+  return rows;
+}
+
+function printReport({ scope, runTimestamp, results }) {
 
   const pass = results.filter((r) => r.score === 'PASS').length;
   const warn = results.filter((r) => r.score === 'WARN').length;
   const fail = results.filter((r) => r.score === 'FAIL').length;
 
   console.log('BATCH QA REPORT');
+  console.log(`Scope: ${scope}`);
   console.log(`Run timestamp: ${runTimestamp}`);
   console.log(`Records reviewed: ${results.length}`);
   console.log(`Pass: ${pass} | Warn: ${warn} | Fail: ${fail}`);
@@ -121,6 +133,66 @@ async function main() {
   if (fail) console.log('HALT — safety or structural failures require human review before any further processing');
   else if (warn) console.log('TUNE — fix system prompt issues noted above, rerun QA batch');
   else console.log('PROCEED — batch quality sufficient, run full volume');
+
+  return { pass, warn, fail, results };
+}
+
+async function main() {
+  const all = process.argv.includes('--all');
+  const { url, key } = resolveSupabaseConfig();
+  const supabase = createClient(url, key, { auth: { persistSession: false } });
+
+  let results;
+  let runTimestamp;
+  let scope;
+
+  if (all) {
+    scope = 'full-corpus';
+    runTimestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const rows = await fetchAllStagedRows(supabase);
+    results = rows.map((row) => ({ id: row.id, row, ...evaluateStagingRewrite(row) }));
+  } else {
+    scope = 'latest-csv';
+    const csvPath = latestCsvPath();
+    runTimestamp = csvPath.split('/').pop().replace('rewrite-run-', '').replace('.csv', '');
+    const csvRows = parseCsv(readFileSync(csvPath, 'utf8'));
+    const ids = csvRows.filter((r) => r.status === 'success').map((r) => r.record_id);
+    if (!ids.length) throw new Error('No successful rows in CSV.');
+
+    const { data, error } = await supabase.from('questions_master').select(STAGING_SELECT).in('id', ids);
+    if (error) throw new Error(error.message);
+
+    const byId = new Map((data ?? []).map((row) => [String(row.id), row]));
+    results = ids.map((id) => ({ id, row: byId.get(String(id)), ...evaluateStagingRewrite(byId.get(String(id)) ?? {}) }));
+  }
+
+  const summary = printReport({ scope, runTimestamp, results });
+
+  if (all) {
+    mkdirSync(OUT_DIR, { recursive: true });
+    const reportPath = join(OUT_DIR, `qa-full-${runTimestamp}.json`);
+    writeFileSync(
+      reportPath,
+      JSON.stringify(
+        {
+          generated_at: new Date().toISOString(),
+          scope,
+          pass: summary.pass,
+          warn: summary.warn,
+          fail: summary.fail,
+          rows: summary.results.map(({ id, row, score, issues }) => ({
+            id,
+            slug: row?.slug,
+            score,
+            issues,
+          })),
+        },
+        null,
+        2
+      )
+    );
+    console.log(`Report: ${reportPath}`);
+  }
 }
 
 main().catch((error) => {

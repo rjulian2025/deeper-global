@@ -1,12 +1,12 @@
 ---
 description: Deeper Global answer copy and design governance — rewrite spec, QA gates, promote workflow
-globs: "{src/**/*.{astro,ts,tsx},scripts/**/*.{mjs,js},DESIGN.md}"
+globs: "{src/**/*.{astro,ts,tsx},scripts/**/*.{mjs,js},DESIGN.md,docs/content-governance.md}"
 alwaysApply: false
 ---
 
 # Content governance
 
-Read `DESIGN.md` and `scripts/lib/answer-rewrite-system-prompt.mjs` before any answer copy or answer-page UI work.
+Read `DESIGN.md`, `docs/content-governance.md`, and `scripts/lib/answer-rewrite-system-prompt.mjs` before any answer copy or answer-page UI work.
 
 ## Canonical answer contract
 
@@ -22,12 +22,18 @@ All mental-health answers use the 7-field staging contract:
 
 Prompt version: `deeper-health-copywriter-v1` (`ANSWER_REWRITE_PROMPT_VERSION`).
 
-## Required pipeline
+## Required pipeline (every batch)
 
-1. **Rewrite** — `npm run content:rewrite-answers-claude` (never skip for new answers)
-2. **QA** — `npm run content:qa-answer-rewrite` (FAIL blocks promote)
-3. **Promote** — `npm run content:promote-answer-rewrite:safe` (staging → live fields)
-4. **Publish** — existing review/index gates
+1. **Rewrite** — `npm run content:rewrite-answers-claude` / `:all`
+2. **Sanitize** — `npm run content:sanitize-staging-emdash -- --apply` (if em-dash FAILs)
+3. **Repair** — `npm run content:repair-staging-rewrite -- --apply` (blocked rows)
+4. **QA full** — `npm run content:qa-answer-rewrite:all` (0 FAIL before promote)
+5. **Promote dry-run** — `npm run content:promote-answer-rewrite -- --all --allow-warn`
+6. **Promote apply** — `npm run content:promote-answer-rewrite -- --apply --all --allow-warn`
+7. **Deploy** — `npx vercel --prod`
+8. **Git commit** — commit `scripts/`, `package.json`, `docs/content-governance.md`, and this rule when tooling or protocol changes; never commit `reports/answer-rewrite/` artifacts
+
+Retry failures: `npm run content:reset-staging-rewrite -- --slug <slug> --apply` then rewrite again.
 
 Do not promote enrichment drafts directly to live answer fields without running the rewrite pipeline.
 
@@ -46,4 +52,4 @@ Answer pages prefer staging via `getDisplayLede`, `getDisplayKeyTakeaways`, `get
 
 ## Legacy paths
 
-`content:apply-enrichment` and `content:promote-enrichment` are legacy seed paths only. New or updated answers must go through rewrite → QA → promote.
+`content:apply-enrichment` and `content:promote-enrichment` are legacy seed paths only. New or updated answers must go through rewrite → sanitize → repair → QA → promote → deploy → git commit.

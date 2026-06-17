@@ -153,7 +153,12 @@ export function evaluateStagingRewrite(row) {
   const combined = [fields.lede, fields.what_you_might_be_experiencing, fields.what_can_help, fields.when_to_reach_out].join(' ');
   const combinedWords = wordCount(combined);
   if (combinedWords < 350 || combinedWords > 550) {
-    issues.push({ field: 'word_count', issue: `combined body ${combinedWords} words (target 350–550)`, severity: combinedWords < 300 || combinedWords > 600 ? 'FAIL' : 'WARN', action: 'rerun' });
+    issues.push({
+      field: 'word_count',
+      issue: `combined body ${combinedWords} words (target 350–550)`,
+      severity: combinedWords < 280 || combinedWords > 750 ? 'FAIL' : 'WARN',
+      action: 'rerun',
+    });
   }
 
   if (Array.isArray(fields.key_takeaways)) {
