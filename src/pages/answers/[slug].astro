@@ -8,8 +8,11 @@ import { isAdhdHubSlug } from '@/lib/adhd-hub';
 import { getModalityCardsForAnswer, modalityPath } from '@/lib/modality-hub';
 import {
   answerPath,
+  bodyTextToParagraphHtml,
+  buildPhraseIndex,
   categoryPath,
   displayCategory,
+  formatAnswerHtml,
   formatDate,
   getAnswerMetaDescription,
   getAnswerPlainText,
@@ -18,17 +21,18 @@ import {
   getAnswerSchemaQuestion,
   getAnswerSummary,
   getCareNote,
-  getDisplayAnswerHtml,
   getDisplayKeyTakeaways,
   getDisplayLede,
   getPrimaryTheme,
   getQuestionCitation,
   getRelatedQuestions,
+  insertContextualLinks,
   resolveFollowUpQuestions,
   isCrisisSensitive,
   shouldIndexQuestion,
   slugify,
   truncate,
+  type PhraseIndex,
 } from '@/lib/content';
 import { getAnswerPractitionerLink } from '@/lib/practitioner-links';
 import { organizationId, siteUrl, websiteId } from '@/lib/site';
@@ -43,20 +47,36 @@ import { getQuestionBySlug, getQuestions, getModalities, type Question } from '@
 
 export async function getStaticPaths() {
   const questions = await getQuestions();
+  const phraseIndex = buildPhraseIndex(questions);
+
   return questions.map((question) => ({
     params: { slug: question.slug },
-    props: { question },
+    props: {
+      question,
+      allQuestions: questions,
+      phraseIndex: Object.fromEntries(phraseIndex),
+    },
   }));
 }
 
-const suppliedQuestion = Astro.props.question as Question | undefined;
+const {
+  question: suppliedQuestion,
+  allQuestions: suppliedQuestions,
+  phraseIndex: suppliedPhraseIndex,
+} = Astro.props as {
+  question?: Question;
+  allQuestions?: Question[];
+  phraseIndex?: Record<string, string>;
+};
+
 const question = suppliedQuestion ?? (await getQuestionBySlug(Astro.params.slug ?? ''));
 
 if (!question) {
   return Astro.redirect('/answers');
 }
 
-const allQuestions = await getQuestions();
+const allQuestions = suppliedQuestions ?? (await getQuestions());
+const linkIndex = new Map(Object.entries(suppliedPhraseIndex ?? {})) as PhraseIndex;
 const allModalities = await getModalities();
 const relatedQuestions = getRelatedQuestions(question, allQuestions);
 const relatedModalities = getModalityCardsForAnswer(question.slug, allModalities);
@@ -74,7 +94,19 @@ const careNote = getCareNote(question, crisisSensitive);
 const title = `${displayTitle} | Deeper Global`;
 const description = getAnswerMetaDescription(question);
 const citation = getQuestionCitation(question);
-const answerHtml = getDisplayAnswerHtml(question);
+const stagedExperiencing = question.staging_what_you_might_be_experiencing?.trim() ?? '';
+const stagedCanHelp = question.staging_what_can_help?.trim() ?? '';
+const stagedReachOut = question.staging_when_to_reach_out?.trim() ?? '';
+const linkedExperiencing = stagedExperiencing
+  ? insertContextualLinks(bodyTextToParagraphHtml(stagedExperiencing), linkIndex)
+  : null;
+const linkedCanHelp = stagedCanHelp
+  ? insertContextualLinks(bodyTextToParagraphHtml(stagedCanHelp), linkIndex)
+  : null;
+const linkedReachOut = stagedReachOut
+  ? insertContextualLinks(bodyTextToParagraphHtml(stagedReachOut), linkIndex)
+  : null;
+const answerHtml = insertContextualLinks(formatAnswerHtml(question), linkIndex);
 const answerText = getAnswerPlainText(question);
 const extractableAnswer = truncate(schemaAnswerText || answerText, 700);
 const answerUrl = siteUrl(`/answers/${question.slug}`);
@@ -281,7 +313,26 @@ const jsonLd = {
           data-ai-extract={extractableAnswer}
           itemprop="articleBody"
         >
-          <div set:html={answerHtml} />
+          {
+            linkedExperiencing && linkedCanHelp && linkedReachOut ? (
+              <div class="enriched-answer">
+                <section class="answer-section" data-ai-section="experiencing">
+                  <h2>What you might be experiencing</h2>
+                  <div set:html={linkedExperiencing} />
+                </section>
+                <section class="answer-section" data-ai-section="can-help">
+                  <h2>What can help</h2>
+                  <div set:html={linkedCanHelp} />
+                </section>
+                <section class="answer-section" data-ai-section="reach-out">
+                  <h2>When to reach out</h2>
+                  <div set:html={linkedReachOut} />
+                </section>
+              </div>
+            ) : (
+              <div set:html={answerHtml} />
+            )
+          }
         </section>
       </div>
 

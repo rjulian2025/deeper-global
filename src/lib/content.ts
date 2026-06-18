@@ -66,6 +66,99 @@ export function answerPath(slug: string) {
   return `/answers/${slug}/`;
 }
 
+export type PhraseIndex = Map<string, string>;
+
+export function buildPhraseIndex(questions: Question[], currentSlug?: string): PhraseIndex {
+  const index = new Map<string, string>();
+
+  for (const q of questions) {
+    if (q.slug === currentSlug) continue;
+    if (!q.slug) continue;
+
+    const path = answerPath(q.slug);
+    const candidates: string[] = [];
+
+    if (q.primary_theme) {
+      candidates.push(q.primary_theme.trim());
+    }
+
+    if (q.improved_title) {
+      const words = q.improved_title
+        .replace(/[?.,!]/g, '')
+        .trim()
+        .split(/\s+/)
+        .slice(0, 5);
+      if (words.length >= 3) {
+        candidates.push(words.join(' '));
+      }
+    }
+
+    if (q.question) {
+      const words = q.question
+        .replace(/[?.,!]/g, '')
+        .trim()
+        .split(/\s+/)
+        .slice(0, 5);
+      if (words.length >= 3) {
+        candidates.push(words.join(' '));
+      }
+    }
+
+    for (const phrase of candidates) {
+      const key = phrase.toLowerCase().trim();
+      if (key.length >= 3 && !index.has(key)) {
+        index.set(key, path);
+      }
+    }
+  }
+
+  return new Map([...index.entries()].sort((a, b) => b[0].length - a[0].length));
+}
+
+export function bodyTextToParagraphHtml(text: string) {
+  const trimmed = typeof text === 'string' ? text.trim() : '';
+  if (!trimmed) return '';
+
+  return trimmed
+    .split(/\n\n+/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
+    .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+    .join('');
+}
+
+export function insertContextualLinks(html: string, phraseIndex: PhraseIndex, maxLinks = 6): string {
+  if (!html || phraseIndex.size === 0) return html;
+
+  let linksInserted = 0;
+  let result = html;
+  const usedPhrases = new Set<string>();
+
+  for (const [phrase, path] of phraseIndex) {
+    if (linksInserted >= maxLinks) break;
+    if (usedPhrases.has(phrase)) continue;
+
+    const escaped = phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(?<!<a[^>]*>)(?<!href=")\\b(${escaped})\\b(?![^<]*<\\/a>)`, 'i');
+
+    result = result.replace(/<p>(.*?)<\/p>/gs, (match, content) => {
+      if (linksInserted >= maxLinks) return match;
+      if (content.includes('<a ')) return match;
+
+      const linked = content.replace(regex, (matched: string) => {
+        if (linksInserted >= maxLinks) return matched;
+        linksInserted += 1;
+        usedPhrases.add(phrase);
+        return `<a href="${path}" class="answer-body-link" data-link-type="contextual">${matched}</a>`;
+      });
+
+      return `<p>${linked}</p>`;
+    });
+  }
+
+  return result;
+}
+
 export function displayCategory(question: Question) {
   return question.category || question.raw_category || 'General';
 }
