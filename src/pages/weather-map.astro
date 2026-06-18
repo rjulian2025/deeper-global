@@ -103,6 +103,60 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
       const MIN_RADIUS = 8;
       const MAX_RADIUS = 40;
 
+      const US_STATE_CENTROIDS = {
+        AL: { lng: -86.9023, lat: 32.3182 },
+        AK: { lng: -152.4044, lat: 61.3707 },
+        AZ: { lng: -111.0937, lat: 34.0489 },
+        AR: { lng: -92.3731, lat: 34.9697 },
+        CA: { lng: -119.4179, lat: 36.7783 },
+        CO: { lng: -105.7821, lat: 39.5501 },
+        CT: { lng: -72.7554, lat: 41.6032 },
+        DE: { lng: -75.5277, lat: 38.9108 },
+        DC: { lng: -77.0369, lat: 38.9072 },
+        FL: { lng: -81.5158, lat: 27.6648 },
+        GA: { lng: -83.5007, lat: 32.1656 },
+        HI: { lng: -155.5828, lat: 19.8968 },
+        ID: { lng: -114.742, lat: 44.0682 },
+        IL: { lng: -89.3985, lat: 40.6331 },
+        IN: { lng: -86.1349, lat: 40.2672 },
+        IA: { lng: -93.0977, lat: 41.878 },
+        KS: { lng: -98.4842, lat: 39.0119 },
+        KY: { lng: -84.27, lat: 37.8393 },
+        LA: { lng: -91.8749, lat: 30.9843 },
+        ME: { lng: -69.4455, lat: 45.2538 },
+        MD: { lng: -76.6413, lat: 39.0458 },
+        MA: { lng: -71.3824, lat: 42.4072 },
+        MI: { lng: -84.5361, lat: 44.3148 },
+        MN: { lng: -94.6859, lat: 46.7296 },
+        MS: { lng: -89.3985, lat: 32.3547 },
+        MO: { lng: -91.8318, lat: 37.9643 },
+        MT: { lng: -110.3626, lat: 46.8797 },
+        NE: { lng: -99.9018, lat: 41.4925 },
+        NV: { lng: -116.4194, lat: 38.8026 },
+        NH: { lng: -71.5724, lat: 43.1939 },
+        NJ: { lng: -74.4057, lat: 40.0583 },
+        NM: { lng: -105.8701, lat: 34.5199 },
+        NY: { lng: -75.5268, lat: 43.2994 },
+        NC: { lng: -79.0193, lat: 35.7596 },
+        ND: { lng: -101.002, lat: 47.5515 },
+        OH: { lng: -82.9071, lat: 40.4173 },
+        OK: { lng: -97.0929, lat: 35.0078 },
+        OR: { lng: -120.5542, lat: 43.8041 },
+        PA: { lng: -77.1945, lat: 41.2033 },
+        RI: { lng: -71.4774, lat: 41.5801 },
+        SC: { lng: -81.1637, lat: 33.8361 },
+        SD: { lng: -99.9018, lat: 43.9695 },
+        TN: { lng: -86.5804, lat: 35.5175 },
+        TX: { lng: -99.9018, lat: 31.9686 },
+        UT: { lng: -111.0937, lat: 39.321 },
+        VT: { lng: -72.5778, lat: 44.5588 },
+        VA: { lng: -78.6569, lat: 37.4316 },
+        WA: { lng: -120.7401, lat: 47.7511 },
+        WV: { lng: -80.4549, lat: 38.5976 },
+        WI: { lng: -89.6165, lat: 43.7844 },
+        WY: { lng: -107.2903, lat: 43.076 },
+      };
+
       const US_STATE_NAMES = {
         AL: 'Alabama',
         AK: 'Alaska',
@@ -167,8 +221,20 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
 
       if (!mapRoot || !tooltip || !stateCard || !stateCardTitle || !stateCardList || !searchForm || !searchInput) return;
 
+      function showMapError(message) {
+        let banner = document.getElementById('weather-map-error');
+        if (!banner) {
+          banner = document.createElement('div');
+          banner.id = 'weather-map-error';
+          banner.className = 'weather-map-error';
+          mapRoot.parentElement?.appendChild(banner);
+        }
+        banner.textContent = message;
+        banner.hidden = false;
+      }
+
       if (!MAPBOX_TOKEN) {
-        mapRoot.textContent = 'Map unavailable: missing PUBLIC_MAPBOX_TOKEN.';
+        showMapError('Map unavailable: missing PUBLIC_MAPBOX_TOKEN.');
         return;
       }
 
@@ -178,7 +244,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
         container: mapRoot,
         style: 'mapbox://styles/mapbox/dark-v11',
         center: [-98, 38],
-        zoom: 4,
+        zoom: 3.5,
         projection: 'globe',
       });
 
@@ -186,6 +252,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
 
       map.on('error', (e) => {
         console.error('mapbox_error', e.error);
+        showMapError('Map tiles failed to load. Please try again later.');
       });
 
       const geocodeCache = new Map();
@@ -347,9 +414,27 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
       function geocodeQuery(row) {
         const parts = [];
         if (row.city != null && row.city !== '') parts.push(row.city);
-        if (row.state != null && row.state !== '') parts.push(row.state);
+        if (row.state != null && row.state !== '') {
+          if (row.country === 'US' && US_STATE_NAMES[row.state]) {
+            parts.push(US_STATE_NAMES[row.state]);
+          } else {
+            parts.push(row.state);
+          }
+        }
         if (row.country != null && row.country !== '') parts.push(row.country);
         return parts.join(', ');
+      }
+
+      function resolveStaticCoords(row) {
+        if (Number.isFinite(row.lat) && Number.isFinite(row.lng)) {
+          return { lng: row.lng, lat: row.lat };
+        }
+
+        if (row.country === 'US' && row.state && US_STATE_CENTROIDS[row.state]) {
+          return US_STATE_CENTROIDS[row.state];
+        }
+
+        return null;
       }
 
       async function geocodeLocation(row) {
@@ -358,12 +443,21 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
           return geocodeCache.get(cacheKey);
         }
 
+        const staticCoords = resolveStaticCoords(row);
+        if (staticCoords) {
+          geocodeCache.set(cacheKey, staticCoords);
+          return staticCoords;
+        }
+
         const query = encodeURIComponent(geocodeQuery(row));
         const country = row.country ? `&country=${encodeURIComponent(row.country)}` : '';
         const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?access_token=${MAPBOX_TOKEN}&limit=1${country}`;
 
         const response = await fetch(url);
-        if (!response.ok) throw new Error(`Geocoding failed for ${geocodeQuery(row)}`);
+        if (!response.ok) {
+          console.warn('weather_map_geocode_failed', geocodeQuery(row), response.status);
+          return null;
+        }
 
         const payload = await response.json();
         const feature = payload.features?.[0];
@@ -372,6 +466,30 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
         const coords = { lng: feature.center[0], lat: feature.center[1] };
         geocodeCache.set(cacheKey, coords);
         return coords;
+      }
+
+      async function geocodeUniqueLocations(rows) {
+        const locations = new Map();
+        for (const row of rows) {
+          const key = locationKey(row);
+          if (!locations.has(key)) locations.set(key, row);
+        }
+
+        const coordsByKey = new Map();
+        const pending = [...locations.entries()];
+        const batchSize = 8;
+
+        for (let index = 0; index < pending.length; index += batchSize) {
+          const batch = pending.slice(index, index + batchSize);
+          await Promise.all(
+            batch.map(async ([key, row]) => {
+              const coords = await geocodeLocation(row);
+              if (coords) coordsByKey.set(key, coords);
+            })
+          );
+        }
+
+        return coordsByKey;
       }
 
       function showTooltip(marker, row) {
@@ -439,25 +557,22 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
         const counts = aggregated.map((row) => row.event_count);
         const minCount = Math.min(...counts);
         const maxCount = Math.max(...counts);
-
-        const located = await Promise.all(
-          aggregated.map(async (row) => {
-            if (Number.isFinite(row.lat) && Number.isFinite(row.lng)) {
-              return { row, coords: { lat: row.lat, lng: row.lng } };
-            }
-
-            const coords = await geocodeLocation(row);
-            return coords ? { row, coords } : null;
-          })
-        );
+        const coordsByKey = await geocodeUniqueLocations(aggregated);
 
         const groups = new Map();
 
-        for (const item of located) {
-          if (!item) continue;
-          const key = `${item.coords.lng}|${item.coords.lat}`;
+        for (const row of aggregated) {
+          const coords = coordsByKey.get(locationKey(row));
+          if (!coords) continue;
+
+          const key = `${coords.lng}|${coords.lat}`;
           if (!groups.has(key)) groups.set(key, []);
-          groups.get(key).push(item);
+          groups.get(key).push({ row, coords });
+        }
+
+        if (!groups.size) {
+          showMapError('Unable to place map signals on the map.');
+          return;
         }
 
         for (const group of groups.values()) {
@@ -498,6 +613,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
       });
 
       map.on('load', async () => {
+        map.resize();
         map.setFog({});
 
         try {
@@ -507,7 +623,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
           await updateStateSummary();
         } catch (error) {
           console.error('weather_map_load_error', error);
-          mapRoot.textContent = 'Unable to load weather map data.';
+          showMapError('Unable to load weather map data.');
         }
       });
 
@@ -522,7 +638,12 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
 
     if (typeof mapboxgl === 'undefined') {
       const mapRoot = document.getElementById('weather-map-root');
-      if (mapRoot) mapRoot.textContent = 'Map unavailable: Mapbox GL failed to load.';
+      if (mapRoot) {
+        const banner = document.createElement('div');
+        banner.className = 'weather-map-error';
+        banner.textContent = 'Map unavailable: Mapbox GL failed to load.';
+        mapRoot.parentElement?.appendChild(banner);
+      }
     } else if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initWeatherMap);
     } else {
@@ -580,6 +701,25 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
       overflow: hidden;
       border: 1px solid var(--line-strong);
       background: #0b1220;
+    }
+
+    .weather-map-error {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 4;
+      transform: translate(-50%, -50%);
+      max-width: min(90%, 420px);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      background: rgba(14, 31, 51, 0.96);
+      color: #f8fafc;
+      font-size: var(--text-sm);
+      line-height: 1.45;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: var(--shadow);
+      pointer-events: none;
     }
 
     .weather-map-search {
