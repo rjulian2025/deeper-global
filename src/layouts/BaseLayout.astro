@@ -117,8 +117,21 @@ const structuredData = {
           <a class="brand" href="/" aria-label="Deeper Global home">
             <span class="brand-word">Deeper</span><span class="brand-dot">.</span>
           </a>
-          <div class="nav-links">
+          <button
+            type="button"
+            class="nav-hamburger"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="nav-drawer"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="site-nav-links">
             <a href="/answers/">Answers</a>
+            <a href="/modalities/">Modalities</a>
+            <a href="/adhd/">ADHD</a>
             <a href="/ai-mental-health/">AI mental health</a>
             <a href="/categories/">Topics</a>
             <a href="/entities/">Themes</a>
@@ -131,6 +144,19 @@ const structuredData = {
           </a>
         </nav>
       </header>
+      <nav id="nav-drawer" class="nav-drawer" aria-label="Site navigation" aria-hidden="true">
+        <div class="nav-drawer-inner">
+          <a href="/answers/">Answers</a>
+          <a href="/modalities/">Modalities</a>
+          <a href="/adhd/">ADHD</a>
+          <a href="/categories/">Topics</a>
+          <a href="/entities/">Themes</a>
+          <a href="/protocol/">Protocol</a>
+          <a href="/about/">About</a>
+          <a href="/ai-mental-health/">AI mental health</a>
+        </div>
+      </nav>
+      <div class="nav-overlay" aria-hidden="true"></div>
       <slot />
       <footer class="footer">
         <div class="container footer-row">
@@ -280,6 +306,77 @@ const structuredData = {
           window.deeperTrackEvent('editorial_policy_viewed');
         }
 
+        const inferHubSlug = () => {
+          if (path === '/' || path === '') return 'home';
+          if (path.startsWith('/adhd')) return 'adhd';
+          if (path.startsWith('/ai-mental-health')) return 'ai-mental-health';
+          if (path.startsWith('/modalities')) return 'modalities';
+          if (path === '/answers/') return 'answers-index';
+          return undefined;
+        };
+
+        const hubSlug = inferHubSlug();
+        if (hubSlug) {
+          window.deeperTrackEvent('hub_viewed', { hub_slug: hubSlug });
+        }
+
+        const scrollMilestones = new Set();
+        const trackScrollDepth = () => {
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (docHeight <= 0) return;
+          const pct = Math.round((window.scrollY / docHeight) * 100);
+          for (const milestone of [25, 50, 75, 90]) {
+            if (pct >= milestone && !scrollMilestones.has(milestone)) {
+              scrollMilestones.add(milestone);
+              window.deeperTrackEvent('scroll_depth', {
+                depth_pct: milestone,
+                hub_slug: inferHubSlug(),
+              });
+            }
+          }
+        };
+
+        window.addEventListener('scroll', () => requestAnimationFrame(trackScrollDepth), { passive: true });
+        trackScrollDepth();
+
+        const hamburger = document.querySelector('.nav-hamburger');
+        const drawer = document.getElementById('nav-drawer');
+        const overlay = document.querySelector('.nav-overlay');
+
+        const openDrawer = () => {
+          if (!drawer || !hamburger || !overlay) return;
+          drawer.setAttribute('aria-hidden', 'false');
+          hamburger.setAttribute('aria-expanded', 'true');
+          hamburger.setAttribute('aria-label', 'Close menu');
+          overlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        };
+
+        const closeDrawer = () => {
+          if (!drawer || !hamburger || !overlay) return;
+          drawer.setAttribute('aria-hidden', 'true');
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.setAttribute('aria-label', 'Open menu');
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+        };
+
+        hamburger?.addEventListener('click', () => {
+          const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+          if (isOpen) closeDrawer();
+          else openDrawer();
+        });
+
+        overlay?.addEventListener('click', closeDrawer);
+
+        drawer?.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', closeDrawer);
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeDrawer();
+        });
+
         if (document.querySelector('.crisis')) {
           window.deeperTrackEvent('crisis_banner_seen', { risk_class: 'crisis-sensitive' });
         }
@@ -295,11 +392,25 @@ const structuredData = {
           const href = link.getAttribute('href') ?? '';
           const label = clean(link.textContent ?? '', 80);
 
+          if (link.closest('.site-nav-links, .nav-drawer-inner') && href.startsWith('/')) {
+            window.deeperTrackEvent('hub_link_clicked', {
+              link_label: label,
+              target_path: href,
+            });
+          }
+
           if (link.closest('.crisis')) {
             window.deeperTrackEvent('crisis_resource_clicked', {
               link_label: label,
               outbound_domain: href.startsWith('tel:') ? 'phone' : undefined,
               risk_class: 'crisis-sensitive',
+            });
+          }
+
+          if (link.closest('[data-ai-section="follow-up-questions"]')) {
+            window.deeperTrackEvent('follow_up_question_clicked', {
+              link_label: label,
+              target_path: href.startsWith('/') ? href : undefined,
             });
           }
 
