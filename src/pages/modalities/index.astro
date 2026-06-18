@@ -13,13 +13,6 @@ import { getModalities, getQuestions } from '@/lib/supabase';
 
 const [modalities, questions] = await Promise.all([getModalities(), getQuestions()]);
 
-const grouped = modalities.reduce<Record<string, typeof modalities>>((acc, modality) => {
-  if (!acc[modality.category]) acc[modality.category] = [];
-  acc[modality.category].push(modality);
-  return acc;
-}, {});
-
-const categoryOrder = ['evidence-based', 'somatic', 'integrative', 'emerging'];
 const modalitiesBySlug = new Map(modalities.map((modality) => [modality.slug, modality]));
 const featuredModalities = modalityFeaturedSlugs
   .map((slug) => modalitiesBySlug.get(slug))
@@ -60,15 +53,15 @@ const jsonLd = {
 ---
 
 <BaseLayout
-  title="Therapy Modalities | Deeper Global"
-  description="A structured guide to therapy approaches — what they are, what they treat, and what to expect."
+  title="How Therapy Actually Works | Deeper Global"
+  description="A structured guide to therapy approaches — what happens in sessions, what conditions they treat, and what the evidence says."
   canonicalPath="/modalities"
   jsonLd={jsonLd}
 >
   <main class="modalities-index">
     <header class="modalities-header">
       <p class="eyebrow">Treatment approaches</p>
-      <h1>Therapy modalities explained.</h1>
+      <h1>How therapy actually works.</h1>
       <p class="modalities-intro">
         A structured guide to how different therapy approaches work — what happens in sessions, what conditions they treat,
         and what the evidence says.
@@ -103,9 +96,9 @@ const jsonLd = {
     <section class="modality-section" aria-labelledby="explore-by-concern-title">
       <div class="modality-section-header">
         <p class="eyebrow">Explore by concern</p>
-        <h2 id="explore-by-concern-title">Find approaches by what you are navigating</h2>
+        <h2 id="explore-by-concern-title">Find the right approach for what you're going through</h2>
         <p class="modality-section-copy">
-          Concern-based clusters link modalities and related answers — same card pattern throughout for easier scanning.
+          Start with the concern you're carrying — each cluster links therapy approaches and related answers so you can orient without wading through a glossary.
         </p>
       </div>
 
@@ -155,40 +148,22 @@ const jsonLd = {
       </div>
     </section>
 
-    <section class="modality-section" aria-labelledby="browse-by-type-title">
-      <div class="modality-section-header">
-        <p class="eyebrow">Browse by type</p>
-        <h2 id="browse-by-type-title">All therapy modalities</h2>
-        <p class="modality-section-copy">The complete index grouped by clinical tradition and evidence maturity.</p>
-      </div>
-
-      <div class="modality-cluster-stack">
+    <section class="modality-section modality-index-section" aria-labelledby="all-modalities-title">
+      <p class="eyebrow" id="all-modalities-title">All modalities</p>
+      <ul class="modality-alpha-list">
         {
-          categoryOrder.map((category) =>
-            grouped[category] ? (
-              <article class="modality-cluster" id={category}>
-                <div class="modality-cluster-header">
-                  <h3>{modalityCategoryLabels[category]}</h3>
-                </div>
-                <div class="modality-grid">
-                  {
-                    grouped[category].map((modality) => (
-                      <a class="modality-card" href={`${modalityPath(modality.slug)}/`}>
-                        <span class="pill pill--category">{modalityCategoryLabels[modality.category] ?? modality.category}</span>
-                        <strong>{modality.name}</strong>
-                        {modality.also_known_as?.length ? (
-                          <span class="modality-card-aka">{modality.also_known_as[0]}</span>
-                        ) : null}
-                        {modality.schema_description ? <p>{modality.schema_description}</p> : null}
-                      </a>
-                    ))
-                  }
-                </div>
-              </article>
-            ) : null
-          )
+          [...modalities]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((modality) => (
+              <li>
+                <a href={`${modalityPath(modality.slug)}/`}>{modality.name}</a>
+                {modality.also_known_as?.[0] ? (
+                  <span class="alpha-aka">— {modality.also_known_as[0]}</span>
+                ) : null}
+              </li>
+            ))
         }
-      </div>
+      </ul>
     </section>
   </main>
 </BaseLayout>
@@ -374,5 +349,64 @@ const jsonLd = {
       overflow: visible;
       -webkit-line-clamp: unset;
     }
+  }
+
+  .modality-index-section {
+    border-top: 1px solid var(--line);
+    padding-top: var(--space-12);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .modality-alpha-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 640px) {
+    .modality-alpha-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .modality-alpha-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .modality-alpha-list li {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+  }
+
+  .modality-alpha-list a {
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--ocean);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .modality-alpha-list a:hover {
+    color: var(--ocean-bright);
+    text-decoration: underline;
+  }
+
+  .alpha-aka {
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-sm);
+    color: var(--stone);
+    font-style: italic;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 </style>
