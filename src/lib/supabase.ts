@@ -48,6 +48,60 @@ export type AnswerSection = {
   body: string;
 };
 
+export type ModalitySourceRef = {
+  title?: string | null;
+  url?: string | null;
+  publisher?: string | null;
+  note?: string | null;
+};
+
+export type Modality = {
+  id: string;
+  created_at: string;
+  updated_at?: string | null;
+  slug: string;
+  name: string;
+  also_known_as?: string[] | null;
+  category: string;
+  status: string;
+  canonical_definition?: string | null;
+  lede?: string | null;
+  what_it_is?: string | null;
+  what_a_session_looks_like?: string | null;
+  what_it_treats?: string | null;
+  what_the_evidence_says?: string | null;
+  who_it_is_for?: string | null;
+  how_to_find_a_practitioner?: string | null;
+  key_takeaways?: string[] | null;
+  primary_term?: string | null;
+  canonical_answer?: string | null;
+  schema_description?: string | null;
+  reviewed_by?: string | null;
+  reviewed_at?: string | null;
+  review_status?: string | null;
+  source_refs?: ModalitySourceRef[] | null;
+  staging_lede?: string | null;
+  staging_what_it_is?: string | null;
+  staging_what_a_session_looks_like?: string | null;
+  staging_what_it_treats?: string | null;
+  staging_what_the_evidence_says?: string | null;
+  staging_who_it_is_for?: string | null;
+  staging_how_to_find_a_practitioner?: string | null;
+  staging_key_takeaways?: string[] | null;
+  staging_canonical_answer?: string | null;
+  staging_rewrite_at?: string | null;
+  staging_rewrite_error?: string | null;
+  staging_rewrite_model?: string | null;
+  staging_rewrite_prompt_version?: string | null;
+  ymyl_flagged: boolean;
+  related_question_slugs?: string[] | null;
+  related_modality_slugs?: string[] | null;
+  practitioner_specialty_tags?: string[] | null;
+  seo_title?: string | null;
+  meta_description?: string | null;
+  noindex: boolean;
+};
+
 /** Fail production builds if Supabase returns fewer answers than this floor. */
 export const MIN_ANSWER_COUNT = 950;
 
@@ -148,4 +202,56 @@ export async function getQuestionBySlug(slug: string) {
 export async function getQuestionsByCategory(category: string) {
   const questions = await getQuestions();
   return questions.filter((question) => question.category === category);
+}
+
+function isMissingModalitiesTableError(error: { code?: string; message?: string } | null) {
+  if (!error) return false;
+  const message = error.message?.toLowerCase() ?? '';
+  return (
+    error.code === '42P01' ||
+    error.code === 'PGRST205' ||
+    message.includes('modalities') && (message.includes('does not exist') || message.includes('could not find'))
+  );
+}
+
+export async function getModalities(): Promise<Modality[]> {
+  if (!hasSupabaseConfig) {
+    return [];
+  }
+
+  const { data, error } = await requireSupabase()
+    .from('modalities')
+    .select('*')
+    .eq('status', 'published')
+    .order('name', { ascending: true });
+
+  if (error) {
+    if (isMissingModalitiesTableError(error)) {
+      return [];
+    }
+    throw error;
+  }
+
+  return (data ?? []) as Modality[];
+}
+
+export async function getModalityBySlug(slug: string): Promise<Modality | null> {
+  if (!hasSupabaseConfig) {
+    return null;
+  }
+
+  const { data, error } = await requireSupabase()
+    .from('modalities')
+    .select('*')
+    .eq('slug', slug)
+    .maybeSingle();
+
+  if (error) {
+    if (isMissingModalitiesTableError(error)) {
+      return null;
+    }
+    throw error;
+  }
+
+  return data as Modality | null;
 }
