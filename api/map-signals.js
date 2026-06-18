@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 const SEED_FILE = join(dirname(fileURLToPath(import.meta.url)), '../src/data/map-signals-seed.json');
 const TREND_EVENT_NAME = 'trend_region_sync';
 const PAGE_SIZE = 1000;
+const MAX_PAGES = 10;
 
 function useSeedData() {
   return process.env.USE_SEED_DATA === 'true';
@@ -70,26 +71,24 @@ async function fetchTrendSignalsFromSupabase() {
   }
 
   const allRows = [];
-  let rangeStart = 0;
 
-  while (true) {
-    const page = await fetchTrendSignalsPage(supabaseUrl, supabaseServiceRoleKey, rangeStart);
+  for (let page = 0; page < MAX_PAGES; page++) {
+    const rangeStart = page * PAGE_SIZE;
+    const result = await fetchTrendSignalsPage(supabaseUrl, supabaseServiceRoleKey, rangeStart);
 
-    if (!page.ok) {
-      return { ok: false, reason: page.reason };
+    if (!result.ok) {
+      return { ok: false, reason: result.reason };
     }
 
-    if (page.data.length === 0) {
+    if (result.data.length === 0) {
       break;
     }
 
-    allRows.push(...page.data);
+    allRows.push(...result.data);
 
-    if (page.data.length < PAGE_SIZE) {
+    if (result.data.length < PAGE_SIZE) {
       break;
     }
-
-    rangeStart += PAGE_SIZE;
   }
 
   return { ok: true, data: allRows.map(normalizeTrendEventRow) };
