@@ -9,6 +9,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
   description="Explore aggregate mental health question demand by geography and topic across Deeper Global."
   canonicalPath="/weather-map"
 >
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css" />
   <main class="content weather-map-page">
     <p class="eyebrow">Psychology Weather Map</p>
     <h1>Where mental health questions cluster.</h1>
@@ -75,11 +76,10 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
     </section>
   </main>
 
-  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css" />
   <script is:inline src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
 
   <script define:vars={{ MAPBOX_TOKEN }}>
-    (() => {
+    function initWeatherMap() {
       const CATEGORY_COLORS = {
         'Anxiety & Stress': '#F5A623',
         'Depression': '#4A90D9',
@@ -172,11 +172,6 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
         return;
       }
 
-      if (typeof mapboxgl === 'undefined') {
-        mapRoot.textContent = 'Map unavailable: Mapbox GL failed to load.';
-        return;
-      }
-
       mapboxgl.accessToken = MAPBOX_TOKEN;
 
       const map = new mapboxgl.Map({
@@ -188,6 +183,10 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
       });
 
       map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'bottom-right');
+
+      map.on('error', (e) => {
+        console.error('mapbox_error', e.error);
+      });
 
       const geocodeCache = new Map();
       const reverseGeocodeCache = new Map();
@@ -519,7 +518,16 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
       map.on('zoomend', () => {
         updateStateSummary();
       });
-    })();
+    }
+
+    if (typeof mapboxgl === 'undefined') {
+      const mapRoot = document.getElementById('weather-map-root');
+      if (mapRoot) mapRoot.textContent = 'Map unavailable: Mapbox GL failed to load.';
+    } else if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initWeatherMap);
+    } else {
+      initWeatherMap();
+    }
   </script>
 
   <script is:inline>
