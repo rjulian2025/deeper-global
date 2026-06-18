@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const SEED_FILE = join(dirname(fileURLToPath(import.meta.url)), '../src/data/map-signals-seed.json');
 const TREND_EVENT_NAME = 'trend_region_sync';
+const PAGE_SIZE = 1000;
 
 function useSeedData() {
   return process.env.USE_SEED_DATA === 'true';
@@ -34,18 +35,12 @@ function normalizeTrendEventRow(row) {
   };
 }
 
-async function fetchTrendSignalsFromSupabase() {
-  const { supabaseUrl, supabaseServiceRoleKey } = getSupabaseReadConfig();
-
-  if (!supabaseUrl || !supabaseServiceRoleKey) {
-    return { ok: false, reason: 'missing_supabase_service_role_key' };
-  }
-
+async function fetchTrendSignalsPage(supabaseUrl, supabaseServiceRoleKey, rangeStart) {
+  const rangeEnd = rangeStart + PAGE_SIZE - 1;
   const params = new URLSearchParams({
     select: 'region_country,region_state,region_city,category,occurred_at,event_count:metadata->>trend_score',
     event_name: `eq.${TREND_EVENT_NAME}`,
     order: 'occurred_at.desc',
-    limit: '5000',
   });
 
   const response = await fetch(`${supabaseUrl}/rest/v1/intent_events?${params.toString()}`, {
@@ -54,6 +49,8 @@ async function fetchTrendSignalsFromSupabase() {
       apikey: supabaseServiceRoleKey,
       Authorization: `Bearer ${supabaseServiceRoleKey}`,
       Accept: 'application/json',
+      'Range-Unit': 'items',
+      Range: `${rangeStart}-${rangeEnd}`,
     },
   });
 
@@ -62,7 +59,40 @@ async function fetchTrendSignalsFromSupabase() {
   }
 
   const rows = await response.json();
-  return { ok: true, data: Array.isArray(rows) ? rows.map(normalizeTrendEventRow) : [] };
+  return { ok: true, data: Array.isArray(rows) ? rows : [] };
+}
+
+async function fetchTrendSignalsFromSupabase() {
+  const { supabaseUrl, supabaseServiceRoleKey } = getSupabaseReadConfig();
+
+  if (!supabaseUrl || !supabaseServiceRoleKey) {
+    return { ok: false, reason: 'missing_supabase_service_role_key' };
+  }
+
+  const allRows = [];
+  let rangeStart = 0;
+
+  while (true) {
+    const page = await fetchTrendSignalsPage(supabaseUrl, supabaseServiceRoleKey, rangeStart);
+
+    if (!page.ok) {
+      return { ok: false, reason: page.reason };
+    }
+
+    if (page.data.length === 0) {
+      break;
+    }
+
+    allRows.push(...page.data);
+
+    if (page.data.length < PAGE_SIZE) {
+      break;
+    }
+
+    rangeStart += PAGE_SIZE;
+  }
+
+  return { ok: true, data: allRows.map(normalizeTrendEventRow) };
 }
 
 export default async function handler(req, res) {
