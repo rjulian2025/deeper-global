@@ -45,6 +45,7 @@ async function fetchTrendSignalsFromSupabase() {
     select: 'region_country,region_state,region_city,category,occurred_at,event_count:metadata->>trend_score',
     event_name: `eq.${TREND_EVENT_NAME}`,
     order: 'occurred_at.desc',
+    limit: '5000',
   });
 
   const response = await fetch(`${supabaseUrl}/rest/v1/intent_events?${params.toString()}`, {
