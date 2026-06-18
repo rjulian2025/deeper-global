@@ -166,6 +166,36 @@ export function getFollowUpQuestions(question: Question) {
   return getStringList(question.related_questions).slice(0, 6);
 }
 
+export function resolveFollowUpQuestions(
+  question: Question,
+  allQuestions: Question[]
+): Question[] {
+  const rawFollowUps = getFollowUpQuestions(question);
+  const index = buildQuestionTextIndex(allQuestions);
+  const seen = new Set<string>();
+  const resolved: Question[] = [];
+
+  for (const text of rawFollowUps) {
+    const normalized = text.trim().toLowerCase().replace(/[?.,!]/g, '');
+
+    let match =
+      allQuestions.find((q) => {
+        const qText = (q.question ?? '').trim().toLowerCase().replace(/[?.,!]/g, '');
+        const qTitle = (q.improved_title ?? '').trim().toLowerCase().replace(/[?.,!]/g, '');
+
+        return qText === normalized || qTitle === normalized;
+      }) ?? findQuestionForFollowUpText(text, allQuestions, index);
+
+    if (!match || match.slug === question.slug || seen.has(match.slug)) continue;
+
+    seen.add(match.slug);
+    resolved.push(match);
+    if (resolved.length >= 6) break;
+  }
+
+  return resolved;
+}
+
 export function getCareNote(question: Question, crisisSensitive = false) {
   const explicitCareNote = cleanText(question.care_note);
 

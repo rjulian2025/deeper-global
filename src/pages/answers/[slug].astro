@@ -24,7 +24,7 @@ import {
   getPrimaryTheme,
   getQuestionCitation,
   getRelatedQuestions,
-  resolveFollowUpQuestionLinks,
+  resolveFollowUpQuestions,
   isCrisisSensitive,
   shouldIndexQuestion,
   slugify,
@@ -66,7 +66,7 @@ const summary = getAnswerSummary(question);
 const schemaQuestion = getAnswerSchemaQuestion(question);
 const schemaAnswerText = getAnswerSchemaAnswer(question);
 const keyTakeaways = getDisplayKeyTakeaways(question);
-const followUpLinks = resolveFollowUpQuestionLinks(question, allQuestions);
+const followUpQuestions = resolveFollowUpQuestions(question, allQuestions);
 const primaryTheme = getPrimaryTheme(question);
 const updatedAt = question.updated_at || question.created_at;
 const crisisSensitive = isCrisisSensitive(question);
@@ -346,13 +346,15 @@ const jsonLd = {
         }
 
         {
-          followUpLinks.length > 0 && (
-            <section class="sidebar-card follow-up-card" data-ai-section="follow-up-questions">
+          followUpQuestions.length > 0 && (
+            <section class="sidebar-card follow-up-card" data-ai-section="related-questions">
               <p class="sidebar-label">Questions people ask next</p>
-              <ul class="sidebar-link-list">
-                {followUpLinks.map((followUp) => (
+              <ul class="follow-up-list">
+                {followUpQuestions.map((q) => (
                   <li>
-                    <a href={followUp.href}>{followUp.label}</a>
+                    <a href={answerPath(q.slug)} class="follow-up-link">
+                      {q.improved_title ?? q.question}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -749,5 +751,29 @@ const jsonLd = {
     margin: 0 0 var(--space-8);
     border: none;
     padding: 0;
+  }
+
+  .follow-up-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .follow-up-link {
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--ocean);
+    text-decoration: none;
+    display: block;
+    transition: color 0.15s ease;
+  }
+
+  .follow-up-link:hover {
+    color: var(--ocean-bright);
+    text-decoration: underline;
   }
 </style>
