@@ -17,8 +17,8 @@
 import { randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { createClient } from '@supabase/supabase-js';
+import { resolveSupabaseConfig } from './lib/supabase-env.mjs';
 
-const ENV_PATH = '.vercel/.env.production.local';
 const REVIEWED_BY = 'codex-seo-review';
 const CAMPAIGNS = {
   'phase-1b': {
@@ -29,65 +29,11 @@ const CAMPAIGNS = {
     promptVersion: 'deeper-ai-concerns-sprint-v1',
     citationNote: 'AI mental health concerns sprint promotion.',
   },
+  'adhd-hub': {
+    promptVersion: 'deeper-adhd-hub-v1',
+    citationNote: 'ADHD authority hub seed batch promotion.',
+  },
 };
-
-function parseEnv(path) {
-  return Object.fromEntries(
-    readFileSync(path, 'utf8')
-      .split(/\r?\n/)
-      .filter(Boolean)
-      .filter((line) => !line.startsWith('#'))
-      .map((line) => {
-        const index = line.indexOf('=');
-        const key = line.slice(0, index);
-        let value = line.slice(index + 1);
-        if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
-          value = value.slice(1, -1);
-        }
-        return [key, value];
-      })
-  );
-}
-
-function resolveSupabaseConfig({ requireWrite = false } = {}) {
-  const fileEnv = (() => {
-    try {
-      return parseEnv(ENV_PATH);
-    } catch {
-      return {};
-    }
-  })();
-
-  const firstPresent = (...values) => values.find((value) => typeof value === 'string' && value.trim());
-  const serviceRoleKey = firstPresent(process.env.SUPABASE_SERVICE_ROLE_KEY, fileEnv.SUPABASE_SERVICE_ROLE_KEY);
-  const url = firstPresent(
-    process.env.SUPABASE_URL,
-    process.env.PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    fileEnv.SUPABASE_URL,
-    fileEnv.PUBLIC_SUPABASE_URL,
-    fileEnv.NEXT_PUBLIC_SUPABASE_URL
-  );
-  const key = firstPresent(
-    serviceRoleKey,
-    process.env.SUPABASE_ANON_KEY,
-    process.env.PUBLIC_SUPABASE_ANON_KEY,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    fileEnv.SUPABASE_ANON_KEY,
-    fileEnv.PUBLIC_SUPABASE_ANON_KEY,
-    fileEnv.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  );
-
-  if (!url || !key) {
-    throw new Error('Missing Supabase credentials. Set SUPABASE_URL and SUPABASE_ANON_KEY, or use .vercel/.env.production.local.');
-  }
-
-  if (requireWrite && !serviceRoleKey) {
-    throw new Error('Publishing requires SUPABASE_SERVICE_ROLE_KEY because questions_master rejects anon-key inserts under RLS.');
-  }
-
-  return { url, key };
-}
 
 function cleanText(value) {
   return typeof value === 'string' ? value.replace(/\s+/g, ' ').trim() : '';

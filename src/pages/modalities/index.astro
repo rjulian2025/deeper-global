@@ -1,0 +1,366 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { answerPath, displayCategory, getAnswerDisplayTitle } from '@/lib/content';
+import {
+  getModalityExploreClusterCards,
+  modalityCategoryLabels,
+  modalityFeaturedSlugs,
+  modalityPath,
+  MODALITIES_HUB_PATH,
+} from '@/lib/modality-hub';
+import { siteUrl, websiteId } from '@/lib/site';
+import { getModalities, getQuestions } from '@/lib/supabase';
+
+const [modalities, questions] = await Promise.all([getModalities(), getQuestions()]);
+
+const grouped = modalities.reduce<Record<string, typeof modalities>>((acc, modality) => {
+  if (!acc[modality.category]) acc[modality.category] = [];
+  acc[modality.category].push(modality);
+  return acc;
+}, {});
+
+const categoryOrder = ['evidence-based', 'somatic', 'integrative', 'emerging'];
+const modalitiesBySlug = new Map(modalities.map((modality) => [modality.slug, modality]));
+const featuredModalities = modalityFeaturedSlugs
+  .map((slug) => modalitiesBySlug.get(slug))
+  .filter((modality): modality is NonNullable<typeof modality> => Boolean(modality));
+const exploreClusters = getModalityExploreClusterCards(modalities, questions);
+
+const jsonLd = {
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      '@id': `${siteUrl(MODALITIES_HUB_PATH)}#collection`,
+      url: siteUrl(MODALITIES_HUB_PATH),
+      name: 'Therapy modalities explained',
+      description:
+        'A structured Deeper Global guide to therapy approaches — what they are, what they treat, session expectations, and evidence summaries.',
+      isPartOf: { '@id': websiteId() },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: modalities.length,
+        itemListElement: modalities.map((modality, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          url: siteUrl(modalityPath(modality.slug)),
+          name: modality.name,
+        })),
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${siteUrl(MODALITIES_HUB_PATH)}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Deeper Global', item: siteUrl() },
+        { '@type': 'ListItem', position: 2, name: 'Modalities', item: siteUrl(MODALITIES_HUB_PATH) },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Therapy Modalities | Deeper Global"
+  description="A structured guide to therapy approaches — what they are, what they treat, and what to expect."
+  canonicalPath="/modalities"
+  jsonLd={jsonLd}
+>
+  <main class="modalities-index">
+    <header class="modalities-header">
+      <p class="eyebrow">Treatment approaches</p>
+      <h1>Therapy modalities explained.</h1>
+      <p class="modalities-intro">
+        A structured guide to how different therapy approaches work — what happens in sessions, what conditions they treat,
+        and what the evidence says.
+      </p>
+    </header>
+
+    {
+      featuredModalities.length ? (
+        <section class="modality-section">
+          <div class="modality-section-header">
+            <p class="eyebrow">Start here</p>
+            <h2>Most searched therapy approaches</h2>
+          </div>
+          <div class="modality-grid">
+            {
+              featuredModalities.map((modality) => (
+                <a class="modality-card" href={`${modalityPath(modality.slug)}/`}>
+                  <span class="pill pill--category">{modalityCategoryLabels[modality.category] ?? modality.category}</span>
+                  <strong>{modality.name}</strong>
+                  {modality.also_known_as?.length ? (
+                    <span class="modality-card-aka">{modality.also_known_as[0]}</span>
+                  ) : null}
+                  {modality.schema_description ? <p>{modality.schema_description}</p> : null}
+                </a>
+              ))
+            }
+          </div>
+        </section>
+      ) : null
+    }
+
+    <section class="modality-section" aria-labelledby="explore-by-concern-title">
+      <div class="modality-section-header">
+        <p class="eyebrow">Explore by concern</p>
+        <h2 id="explore-by-concern-title">Find approaches by what you are navigating</h2>
+        <p class="modality-section-copy">
+          Concern-based clusters link modalities and related answers — same card pattern throughout for easier scanning.
+        </p>
+      </div>
+
+      <div class="modality-cluster-stack">
+        {
+          exploreClusters.map((cluster) =>
+            cluster.modalities.length ? (
+              <article class="modality-cluster" id={cluster.id}>
+                <div class="modality-cluster-header">
+                  <h3>{cluster.name}</h3>
+                  <p>{cluster.description}</p>
+                </div>
+
+                <div class="modality-grid">
+                  {
+                    cluster.modalities.map((modality) => (
+                      <a class="modality-card" href={`${modalityPath(modality.slug)}/`}>
+                        <span class="pill pill--category">{modalityCategoryLabels[modality.category] ?? modality.category}</span>
+                        <strong>{modality.name}</strong>
+                        {modality.schema_description ? <p>{modality.schema_description}</p> : null}
+                      </a>
+                    ))
+                  }
+                </div>
+
+                {
+                  cluster.questions.length ? (
+                    <div class="modality-cluster-answers">
+                      <p class="sidebar-label">Related answers</p>
+                      <div class="rabbit-grid">
+                        {
+                          cluster.questions.map((question) => (
+                            <a class="rabbit-card" href={answerPath(question.slug)}>
+                              <span>{displayCategory(question)}</span>
+                              <strong>{getAnswerDisplayTitle(question)}</strong>
+                            </a>
+                          ))
+                        }
+                      </div>
+                    </div>
+                  ) : null
+                }
+              </article>
+            ) : null
+          )
+        }
+      </div>
+    </section>
+
+    <section class="modality-section" aria-labelledby="browse-by-type-title">
+      <div class="modality-section-header">
+        <p class="eyebrow">Browse by type</p>
+        <h2 id="browse-by-type-title">All therapy modalities</h2>
+        <p class="modality-section-copy">The complete index grouped by clinical tradition and evidence maturity.</p>
+      </div>
+
+      <div class="modality-cluster-stack">
+        {
+          categoryOrder.map((category) =>
+            grouped[category] ? (
+              <article class="modality-cluster" id={category}>
+                <div class="modality-cluster-header">
+                  <h3>{modalityCategoryLabels[category]}</h3>
+                </div>
+                <div class="modality-grid">
+                  {
+                    grouped[category].map((modality) => (
+                      <a class="modality-card" href={`${modalityPath(modality.slug)}/`}>
+                        <span class="pill pill--category">{modalityCategoryLabels[modality.category] ?? modality.category}</span>
+                        <strong>{modality.name}</strong>
+                        {modality.also_known_as?.length ? (
+                          <span class="modality-card-aka">{modality.also_known_as[0]}</span>
+                        ) : null}
+                        {modality.schema_description ? <p>{modality.schema_description}</p> : null}
+                      </a>
+                    ))
+                  }
+                </div>
+              </article>
+            ) : null
+          )
+        }
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .modalities-index {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: var(--space-16) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+
+  .modalities-header {
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .modalities-header h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: var(--text-4xl);
+    font-weight: 600;
+    line-height: var(--leading-tight);
+    color: var(--navy);
+    margin: 0;
+  }
+
+  .modalities-intro {
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-md);
+    line-height: var(--leading-loose);
+    color: var(--stone);
+    margin: 0;
+    max-width: 36rem;
+  }
+
+  .modality-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .modality-section-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 640px;
+  }
+
+  .modality-section-header h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    color: var(--navy);
+    margin: 0;
+  }
+
+  .modality-section-copy {
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--stone);
+    margin: 0;
+    max-width: 36rem;
+  }
+
+  .modality-cluster-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .modality-cluster {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .modality-cluster-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .modality-cluster-header h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: var(--text-xl);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    color: var(--navy);
+    margin: 0;
+  }
+
+  .modality-cluster-header p {
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--stone);
+    margin: 0;
+    max-width: 36rem;
+  }
+
+  .modality-cluster-answers {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .modality-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 640px) {
+    .modality-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .modality-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .modality-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--ocean);
+    border-radius: 6px;
+    padding: var(--space-6) var(--space-8);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    transition:
+      box-shadow 0.2s ease,
+      border-left-color 0.2s ease;
+  }
+
+  .modality-card:hover {
+    box-shadow: var(--shadow);
+    border-left-color: var(--brass);
+  }
+
+  .modality-card strong {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--navy);
+    line-height: var(--leading-snug);
+  }
+
+  .modality-card-aka {
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-xs);
+    color: var(--stone);
+    font-style: italic;
+  }
+
+  .modality-card p {
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    color: var(--stone);
+    margin: 0;
+  }
+</style>

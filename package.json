@@ -13,6 +13,8 @@
     "db:apply-review-integrity": "node scripts/apply-review-integrity-migration.mjs",
     "content:audit-candidates": "node scripts/audit-content-candidates.mjs",
     "content:publish-ai-sprint": "node scripts/publish-phase-1b-drafts.mjs --campaign ai-sprint",
+    "content:publish-adhd-hub": "node scripts/publish-phase-1b-drafts.mjs --campaign adhd-hub",
+    "content:generate-adhd-hub-drafts": "node scripts/generate-adhd-hub-drafts.mjs",
     "content:publish-phase-1b": "node scripts/publish-phase-1b-drafts.mjs",
     "content:review-addiction": "node scripts/review-addiction-answers.mjs",
     "content:review-performance": "node scripts/review-performance-answers.mjs",

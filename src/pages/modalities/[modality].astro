@@ -1,0 +1,405 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { answerPath, displayCategory, getAnswerDisplayTitle } from '@/lib/content';
+import {
+  buildModalityDetailJsonLd,
+  getRelatedModalities,
+  getRelatedQuestionsForModality,
+  modalityCategoryAnchor,
+  modalityCategoryLabels,
+  modalityPath,
+} from '@/lib/modality-hub';
+import { getModalities, getQuestions, type Modality } from '@/lib/supabase';
+
+export async function getStaticPaths() {
+  const modalities = await getModalities();
+  return modalities.map((modality) => ({
+    params: { modality: modality.slug },
+    props: { modality },
+  }));
+}
+
+const { modality } = Astro.props as { modality: Modality };
+
+const [allModalities, questions] = await Promise.all([getModalities(), getQuestions()]);
+const relatedModalities = getRelatedModalities(modality, allModalities);
+const relatedQuestions = getRelatedQuestionsForModality(modality, questions);
+
+const displayLede = modality.staging_lede ?? modality.lede ?? null;
+const displayWhatItIs = modality.staging_what_it_is ?? modality.what_it_is ?? null;
+const displaySession = modality.staging_what_a_session_looks_like ?? modality.what_a_session_looks_like ?? null;
+const displayTreats = modality.staging_what_it_treats ?? modality.what_it_treats ?? null;
+const displayEvidence = modality.staging_what_the_evidence_says ?? modality.what_the_evidence_says ?? null;
+const displayWhoFor = modality.staging_who_it_is_for ?? modality.who_it_is_for ?? null;
+const displayHowToFind = modality.staging_how_to_find_a_practitioner ?? modality.how_to_find_a_practitioner ?? null;
+const displayTakeaways = modality.staging_key_takeaways ?? modality.key_takeaways ?? null;
+
+const title = `${modality.name} | Deeper Global`;
+const description = modality.meta_description ?? modality.schema_description ?? '';
+const sourceRefs = Array.isArray(modality.source_refs) ? modality.source_refs : [];
+const categoryLabel = modalityCategoryLabels[modality.category] ?? modality.category;
+const jsonLd = buildModalityDetailJsonLd({ modality, relatedModalities, relatedQuestions });
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={modalityPath(modality.slug)}
+  noindex={modality.noindex}
+  jsonLd={jsonLd}
+>
+  <main>
+    <nav class="answer-breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Deeper Global</a>
+      <span aria-hidden="true">/</span>
+      <a href="/modalities/">Modalities</a>
+      <span aria-hidden="true">/</span>
+      <span>{modality.name}</span>
+    </nav>
+
+    <article class="modality-layout">
+      <div class="modality-main">
+        <a class="answer-topic-badge" href={modalityCategoryAnchor(modality.category)}>{categoryLabel}</a>
+
+        <h1>{modality.name}</h1>
+
+        {
+          modality.also_known_as?.length ? (
+            <p class="modality-aka">Also known as: {modality.also_known_as.join(', ')}</p>
+          ) : null
+        }
+
+        {displayLede ? <p class="summary">{displayLede}</p> : null}
+
+        {
+          displayTakeaways?.length ? (
+            <section class="key-takeaways" aria-labelledby="takeaways-title">
+              <h2 id="takeaways-title">Key takeaways</h2>
+              <ul>
+                {displayTakeaways.map((takeaway) => <li>{takeaway}</li>)}
+              </ul>
+            </section>
+          ) : null
+        }
+
+        {
+          displayWhatItIs ? (
+            <section class="modality-section" id="what-it-is">
+              <h2>What it is</h2>
+              {displayWhatItIs.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+            </section>
+          ) : null
+        }
+
+        {
+          displaySession ? (
+            <section class="modality-section" id="what-a-session-looks-like">
+              <h2>What a session looks like</h2>
+              {displaySession.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+            </section>
+          ) : null
+        }
+
+        {
+          displayTreats ? (
+            <section class="modality-section" id="what-it-treats">
+              <h2>What it treats</h2>
+              {displayTreats.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+            </section>
+          ) : null
+        }
+
+        {
+          displayEvidence ? (
+            <section class="modality-section" id="what-the-evidence-says">
+              <h2>What the evidence says</h2>
+              {displayEvidence.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+            </section>
+          ) : null
+        }
+
+        {
+          displayWhoFor ? (
+            <section class="modality-section" id="who-it-is-for">
+              <h2>Who it is for</h2>
+              {displayWhoFor.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+            </section>
+          ) : null
+        }
+
+        {
+          displayHowToFind ? (
+            <section class="modality-section" id="how-to-find-a-practitioner">
+              <h2>How to find a practitioner</h2>
+              {displayHowToFind.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+            </section>
+          ) : null
+        }
+
+        {
+          relatedModalities.length ? (
+            <section class="modality-related-section" aria-labelledby="related-modalities-title">
+              <p class="eyebrow">Related approaches</p>
+              <h2 id="related-modalities-title">Compare nearby modalities</h2>
+              <div class="rabbit-grid">
+                {
+                  relatedModalities.map((related) => (
+                    <a class="rabbit-card" href={modalityPath(related.slug) + '/'}>
+                      <span>{modalityCategoryLabels[related.category] ?? related.category}</span>
+                      <strong>{related.name}</strong>
+                      {related.schema_description ? <p>{related.schema_description}</p> : null}
+                    </a>
+                  ))
+                }
+              </div>
+            </section>
+          ) : null
+        }
+
+        {
+          relatedQuestions.length ? (
+            <section class="modality-related-section" aria-labelledby="related-questions-title">
+              <p class="eyebrow">Related questions</p>
+              <h2 id="related-questions-title">Answers people read alongside {modality.name}</h2>
+              <div class="rabbit-grid">
+                {
+                  relatedQuestions.map((question) => (
+                    <a class="rabbit-card" href={answerPath(question.slug)}>
+                      <span>{displayCategory(question)}</span>
+                      <strong>{getAnswerDisplayTitle(question)}</strong>
+                    </a>
+                  ))
+                }
+              </div>
+            </section>
+          ) : null
+        }
+      </div>
+
+      <aside class="modality-sidebar">
+        <section class="sidebar-card">
+          <p class="sidebar-label">Browse cluster</p>
+          <a class="sidebar-entity" href="/modalities/">All therapy modalities</a>
+          <p>Explore evidence-based, somatic, integrative, and emerging approaches.</p>
+          <a class="text-link" href={modalityCategoryAnchor(modality.category)}>More {categoryLabel.toLowerCase()}</a>
+        </section>
+
+        {
+          relatedModalities.length ? (
+            <section class="sidebar-card">
+              <p class="sidebar-label">Related modalities</p>
+              <ul class="sidebar-link-list">
+                {
+                  relatedModalities.map((related) => (
+                    <li>
+                      <a href={modalityPath(related.slug) + '/'}>{related.name}</a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </section>
+          ) : null
+        }
+
+        {
+          relatedQuestions.length ? (
+            <section class="sidebar-card">
+              <p class="sidebar-label">Related questions</p>
+              <ul class="sidebar-link-list">
+                {
+                  relatedQuestions.map((question) => (
+                    <li>
+                      <a href={answerPath(question.slug)}>{getAnswerDisplayTitle(question)}</a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </section>
+          ) : null
+        }
+
+        <section class="sidebar-card modality-cta-card">
+          <p class="sidebar-label">Find a therapist</p>
+          <p>Browse therapists on Deeper who list training in {modality.name}.</p>
+          <a class="cta-link" href="/answers/">Browse on Deeper</a>
+        </section>
+
+        {
+          modality.ymyl_flagged ? (
+            <div class="ymyl-notice">
+              <p class="sidebar-label">Clinical guidance recommended</p>
+              <p>
+                This treatment involves medical or safety considerations. Consult a qualified professional before pursuing
+                this approach.
+              </p>
+            </div>
+          ) : null
+        }
+
+        {
+          sourceRefs.length ? (
+            <section class="citation-panel">
+              <h2>Sources</h2>
+              <ul>
+                {
+                  sourceRefs.map((ref) => (
+                    <li>
+                      {
+                        ref.url ? (
+                          <a href={ref.url} target="_blank" rel="noopener noreferrer">
+                            {ref.title}
+                          </a>
+                        ) : (
+                          ref.title
+                        )
+                      }
+                      {ref.publisher ? ` — ${ref.publisher}` : null}
+                    </li>
+                  ))
+                }
+              </ul>
+            </section>
+          ) : null
+        }
+      </aside>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .modality-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: var(--space-10) var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .modality-layout {
+      grid-template-columns: minmax(0, 1fr) 320px;
+    }
+  }
+
+  .modality-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .modality-main h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    line-height: var(--leading-tight);
+    color: var(--navy);
+    margin: 0;
+  }
+
+  .modality-aka {
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-sm);
+    color: var(--stone);
+    margin: 0;
+    font-style: italic;
+  }
+
+  .modality-section,
+  .modality-related-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .modality-related-section {
+    margin-top: var(--space-4);
+  }
+
+  .modality-section h2,
+  .modality-related-section h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    color: var(--navy);
+    margin: 0;
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .modality-section p {
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-base);
+    line-height: var(--leading-loose);
+    color: var(--ink);
+    max-width: 38rem;
+    margin: 0;
+  }
+
+  .modality-related-section .rabbit-card p {
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    color: var(--stone);
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .modality-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .modality-cta-card {
+    background: var(--mist);
+    border: none;
+  }
+
+  .modality-cta-card p {
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .cta-link {
+    display: inline-block;
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--ocean);
+    text-decoration: none;
+    margin-top: var(--space-2);
+    transition: color 0.15s ease;
+  }
+
+  .cta-link:hover {
+    color: var(--ocean-bright);
+    text-decoration: underline;
+  }
+
+  .ymyl-notice {
+    background: var(--clay-soft);
+    border-left: 3px solid var(--clay);
+    border-radius: 6px;
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .ymyl-notice p {
+    font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .ymyl-notice .sidebar-label {
+    color: var(--clay);
+  }
+</style>

@@ -1,3 +1,5 @@
+import { adhdHubSlugs, isAdhdHubSlug } from './adhd-hub';
+import { isModalityAnswerSlug } from './modality-hub';
 import type { AnswerSection, Question } from './supabase';
 import { siteUrl } from './site';
 
@@ -407,11 +409,159 @@ export function pluralizeAnswer(count: number) {
   return `${count} answer${count === 1 ? '' : 's'}`;
 }
 
+export type FollowUpLink = {
+  label: string;
+  href: string;
+  slug: string | null;
+  matched: boolean;
+};
+
+function normalizeMatchText(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[^\w\s]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function buildQuestionTextIndex(questions: Question[]) {
+  const index = new Map<string, Question>();
+
+  for (const question of questions) {
+    index.set(normalizeMatchText(question.question), question);
+    const title = question.improved_title?.trim();
+    if (title) index.set(normalizeMatchText(title), question);
+  }
+
+  return index;
+}
+
+function looksLikeSlug(value: string) {
+  return /^[a-z0-9]+(?:-[a-z0-9]+)+$/.test(value);
+}
+
+function findQuestionForFollowUpText(text: string, questions: Question[], index: Map<string, Question>) {
+  const trimmed = text.trim();
+  if (!trimmed) return null;
+
+  if (looksLikeSlug(trimmed)) {
+    return questions.find((question) => question.slug === trimmed) ?? null;
+  }
+
+  const normalized = normalizeMatchText(trimmed);
+  const exact = index.get(normalized);
+  if (exact) return exact;
+
+  let best: { question: Question; score: number } | null = null;
+
+  for (const question of questions) {
+    const candidates = [normalizeMatchText(question.question)];
+    if (question.improved_title?.trim()) {
+      candidates.push(normalizeMatchText(question.improved_title));
+    }
+
+    for (const candidate of candidates) {
+      if (!candidate) continue;
+      if (candidate === normalized) return question;
+      if (candidate.includes(normalized) || normalized.includes(candidate)) {
+        const score = Math.min(candidate.length, normalized.length);
+        if (!best || score > best.score) best = { question, score };
+      }
+    }
+  }
+
+  return best?.question ?? null;
+}
+
+export function resolveFollowUpQuestionLinks(
+  question: Question,
+  questions: Question[],
+  limit = 6
+): FollowUpLink[] {
+  const index = buildQuestionTextIndex(questions);
+  const links: FollowUpLink[] = [];
+  const seen = new Set<string>();
+
+  for (const text of getFollowUpQuestions(question)) {
+    const match = findQuestionForFollowUpText(text, questions, index);
+    if (match && match.slug !== question.slug && !seen.has(match.slug)) {
+      seen.add(match.slug);
+      links.push({
+        label: getAnswerDisplayTitle(match),
+        href: answerPath(match.slug),
+        slug: match.slug,
+        matched: true,
+      });
+      continue;
+    }
+
+    links.push({
+      label: text,
+      href: `/answers/?q=${encodeURIComponent(text)}`,
+      slug: null,
+      matched: false,
+    });
+  }
+
+  return links.slice(0, limit);
+}
+
+function sharedThemeScore(current: Question, candidate: Question) {
+  const currentThemes = new Set(
+    [getPrimaryTheme(current), ...getRelatedThemeNames(current), displayCategory(current)]
+      .map((theme) => normalizeMatchText(theme))
+      .filter(Boolean)
+  );
+
+  let score = 0;
+  for (const theme of [getPrimaryTheme(candidate), ...getRelatedThemeNames(candidate)]) {
+    if (currentThemes.has(normalizeMatchText(theme))) score += 3;
+  }
+  return score;
+}
+
 export function getRelatedQuestions(current: Question, questions: Question[], limit = 4) {
-  return questions
+  const followUpSlugs = new Set(
+    resolveFollowUpQuestionLinks(current, questions)
+      .map((link) => link.slug)
+      .filter((slug): slug is string => Boolean(slug))
+  );
+
+  const scored = questions
     .filter((question) => question.slug !== current.slug)
-    .filter((question) => displayCategory(question) === displayCategory(current))
-    .slice(0, limit);
+    .map((question) => {
+      let score = 0;
+
+      if (displayCategory(question) === displayCategory(current)) score += 2;
+      score += sharedThemeScore(current, question);
+      if (followUpSlugs.has(question.slug)) score += 6;
+      if (isAdhdHubSlug(current.slug) && isAdhdHubSlug(question.slug)) score += 5;
+      if (isModalityAnswerSlug(current.slug) && isModalityAnswerSlug(question.slug)) score += 4;
+
+      const currentInAdhdCluster = adhdHubSlugs.includes(current.slug);
+      const candidateInAdhdCluster = adhdHubSlugs.includes(question.slug);
+      if (currentInAdhdCluster && candidateInAdhdCluster) score += 3;
+
+      return { question, score };
+    })
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score || a.question.slug.localeCompare(b.question.slug));
+
+  const results = scored.slice(0, limit).map((entry) => entry.question);
+
+  if (results.length < limit) {
+    const filler = questions
+      .filter(
+        (question) =>
+          question.slug !== current.slug &&
+          displayCategory(question) === displayCategory(current) &&
+          !results.some((picked) => picked.slug === question.slug)
+      )
+      .slice(0, limit - results.length);
+    results.push(...filler);
+  }
+
+  return results.slice(0, limit);
 }
 
 export function getEntitySummaries(questions: Question[]): EntitySummary[] {

@@ -21,6 +21,8 @@ export async function GET() {
     '',
     `- [Home](${siteUrl()}): Deeper Global mission and public intelligence layer.`,
     `- [Answers](${siteUrl('/answers')}): Complete answer library.`,
+    `- [Modalities](${siteUrl('/modalities')}): Structured psychoeducation hub for therapy approaches — EMDR, CBT, DBT, IFS, somatic therapies, couples work, and emerging treatments with cross-links to related answers.`,
+    `- [ADHD hub](${siteUrl('/adhd')}): Curated cluster for adult ADHD diagnosis, executive dysfunction, emotional overwhelm, medication, work accommodations, and daily coping.`,
     `- [AI mental health hub](${siteUrl('/ai-mental-health')}): Curated cluster for AI psychosis, chatbot dependency, AI companions, teens, work anxiety, deepfakes, and safety boundaries.`,
     `- [Topics](${siteUrl('/categories')}): Public topic hubs.`,
     `- [Entities](${siteUrl('/entities')}): Canonical mental health entity map.`,
