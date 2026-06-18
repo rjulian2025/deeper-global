@@ -1,0 +1,23 @@
+{
+  "mode": "apply",
+  "pending_records": 5,
+  "batch_size": 5,
+  "batch_delay_ms": 1000,
+  "limit": 5,
+  "model": "claude-sonnet-4-6",
+  "prompt_version": "deeper-modality-generation-v1",
+  "csv_path": "reports/modality-generate/generate-run-2026-06-17T23-10-01-290Z.csv"
+}
+[success] id=5ab4a4b0-632f-4cb8-8e53-9c9ec0eabcd8 slug=act-therapy
+[success] id=135723ec-f1ed-4211-92fd-489baafafbe9 slug=aedp-therapy
+[success] id=d159020c-7526-4ec9-a28e-283c61f79760 slug=brainspotting-therapy
+[success] id=0b6ba0df-b324-4b60-bae8-066d679823f4 slug=cbt-therapy
+[success] id=5d7faa5e-869e-4a4a-a258-28bed08737f5 slug=cpt-therapy
+{
+  "mode": "apply",
+  "processed": 5,
+  "successes": 5,
+  "failures": 0,
+  "csv_path": "reports/modality-generate/generate-run-2026-06-17T23-10-01-290Z.csv",
+  "failures_detail": []
+}

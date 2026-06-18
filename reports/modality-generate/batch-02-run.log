@@ -1,0 +1,23 @@
+{
+  "mode": "apply",
+  "pending_records": 5,
+  "batch_size": 5,
+  "batch_delay_ms": 1000,
+  "limit": 5,
+  "model": "claude-sonnet-4-6",
+  "prompt_version": "deeper-modality-generation-v1",
+  "csv_path": "reports/modality-generate/generate-run-2026-06-17T23-15-34-845Z.csv"
+}
+[success] id=3b932937-a6b0-453f-abaf-2df3d4abcbf8 slug=dbt-therapy
+[success] id=296caf28-c181-4bd1-8d43-2b3a63169f2b slug=eft-therapy
+[success] id=00f4244d-2b5a-4916-8d17-7a44c9e0ff5d slug=emdr-therapy
+[success] id=fe9844c5-0a0a-4c26-8012-a1c79a3a6484 slug=ifs-therapy
+[success] id=48936b9f-4c7a-4e06-b0e2-a009ecebd55b slug=imago-therapy
+{
+  "mode": "apply",
+  "processed": 5,
+  "successes": 5,
+  "failures": 0,
+  "csv_path": "reports/modality-generate/generate-run-2026-06-17T23-15-34-845Z.csv",
+  "failures_detail": []
+}

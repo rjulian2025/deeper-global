@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-06-17T23:00:31.875Z",
+  "mode": "applied",
+  "prompt_version": "deeper-health-copywriter-v1",
+  "candidates": [
+    {
+      "slug": "how-do-adhd-medications-work",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 717 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    }
+  ]
+}

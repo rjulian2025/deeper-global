@@ -1,0 +1,100 @@
+{
+  "generated_at": "2026-06-17T16:02:15.512Z",
+  "mode": "dry-run",
+  "prompt_version": "deeper-health-copywriter-v1",
+  "candidates": [
+    {
+      "slug": "how-do-i-stop-feeling-like-i-need-to-earn-184730-095",
+      "qa_score": "FAIL",
+      "qa_issues": [
+        {
+          "field": "lede",
+          "issue": "contains em-dash",
+          "severity": "FAIL",
+          "action": "rerun"
+        },
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 563 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": false
+    },
+    {
+      "slug": "how-do-i-deal-with-feeling-like-i-dont-have-anyone-who-really-gets-me",
+      "qa_score": "FAIL",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 687 words (target 350–550)",
+          "severity": "FAIL",
+          "action": "rerun"
+        }
+      ],
+      "promoted": false
+    },
+    {
+      "slug": "what-is-gaslighting-and-how-do-i-recogni-186032-030",
+      "qa_score": "FAIL",
+      "qa_issues": [
+        {
+          "field": "canonical_answer",
+          "issue": "contains em-dash",
+          "severity": "FAIL",
+          "action": "rerun"
+        },
+        {
+          "field": "lede",
+          "issue": "contains em-dash",
+          "severity": "FAIL",
+          "action": "rerun"
+        },
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 605 words (target 350–550)",
+          "severity": "FAIL",
+          "action": "rerun"
+        }
+      ],
+      "promoted": false
+    }
+  ]
+}

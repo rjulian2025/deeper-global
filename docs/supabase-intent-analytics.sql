@@ -23,6 +23,7 @@ create table if not exists public.intent_events (
   sensitivity text[] not null default array['standard']::text[],
   region_country text,
   region_state text,
+  region_city text,
   device_type text,
   metadata jsonb not null default '{}'::jsonb,
   created_at timestamptz not null default now()
@@ -97,6 +98,7 @@ begin
     sensitivity,
     region_country,
     region_state,
+    region_city,
     device_type,
     metadata
   )
@@ -114,6 +116,7 @@ begin
     case when array_length(sensitivity_value, 1) is null then array['standard']::text[] else sensitivity_value end,
     nullif(upper(left(coalesce(event->>'region_country', ''), 2)), ''),
     nullif(left(coalesce(event->>'region_state', ''), 80), ''),
+    nullif(left(coalesce(event->>'region_city', ''), 80), ''),
     nullif(left(coalesce(event->>'device_type', ''), 40), ''),
     case when jsonb_typeof(event->'metadata') = 'object' then event->'metadata' else '{}'::jsonb end
   );
@@ -207,3 +210,27 @@ comment on view public.intent_internal_daily_rollups is
 
 comment on view public.intent_public_macro_rollups is
   'Public-safe macro rollups with state suppression for sensitive categories and higher minimum thresholds.';
+
+create materialized view public.map_signals as
+select
+  region_country as country,
+  region_state as state,
+  region_city as city,
+  category,
+  occurred_at::date as day,
+  count(*)::integer as event_count,
+  null::double precision as lat,
+  null::double precision as lng
+from public.intent_events
+where event_name = 'answer_viewed'
+  and region_country is not null
+  and not (sensitivity && array['crisis-sensitive', 'abuse', 'minor', 'addiction', 'medication']::text[])
+group by
+  region_country,
+  region_state,
+  region_city,
+  category,
+  occurred_at::date;
+
+comment on materialized view public.map_signals is
+  'Psychology Weather Map signal rollups: daily answer_viewed counts by country, state, city, and category. Excludes null-country rows and sensitive-topic events. lat/lng reserved for downstream geocoding.';

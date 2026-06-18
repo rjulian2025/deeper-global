@@ -1,0 +1,24 @@
+{
+  "mode": "apply",
+  "pending_records": 6,
+  "batch_size": 5,
+  "batch_delay_ms": 1000,
+  "limit": 6,
+  "model": "claude-sonnet-4-6",
+  "prompt_version": "deeper-modality-generation-v1",
+  "csv_path": "reports/modality-generate/generate-run-2026-06-17T23-20-37-581Z.csv"
+}
+[success] id=853e074d-3baf-4adf-a573-2cf0923b43e7 slug=mbsr-therapy
+[success] id=53f7bc3f-cf89-4b08-8f43-e79ce6a3b8a0 slug=narrative-therapy
+[success] id=9b04ed21-579b-401b-b78e-2398314eb344 slug=prolonged-exposure-therapy
+[success] id=ce85d283-b380-4562-89fe-a38466541bda slug=psychedelic-assisted-therapy
+[success] id=8845a9ca-504e-4626-8593-6038e9fc6c96 slug=sensorimotor-psychotherapy
+[success] id=2817389f-a756-494b-ac85-792b9cc5c9c7 slug=somatic-experiencing
+{
+  "mode": "apply",
+  "processed": 6,
+  "successes": 6,
+  "failures": 0,
+  "csv_path": "reports/modality-generate/generate-run-2026-06-17T23-20-37-581Z.csv",
+  "failures_detail": []
+}

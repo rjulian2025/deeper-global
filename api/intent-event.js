@@ -121,6 +121,7 @@ function sanitizeEvent(payload, req) {
   const sensitivity = cleanSensitivity(params.sensitivity);
   const regionCountry = cleanRegion(req.headers['x-vercel-ip-country'], 2);
   const regionState = cleanRegion(req.headers['x-vercel-ip-country-region'], 80);
+  const regionCity = cleanRegion(req.headers['x-vercel-ip-city'], 80);
 
   return {
     event_name: eventName,
@@ -136,6 +137,7 @@ function sanitizeEvent(payload, req) {
     sensitivity,
     region_country: regionCountry,
     region_state: regionState,
+    region_city: regionCity,
     device_type: cleanEnum(params.device_type, ALLOWED_DEVICE_TYPES, 'unknown'),
     metadata: {
       ...sanitizedMetadata(params),

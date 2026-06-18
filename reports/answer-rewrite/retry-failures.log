@@ -1,0 +1,27 @@
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm.
+
+> deeper-global@1.0.0 content:rewrite-answers-claude
+> node scripts/rewrite-answers-claude.mjs --apply --limit 10
+
+{
+  "mode": "apply",
+  "pending_records": 4,
+  "batch_size": 10,
+  "batch_delay_ms": 1000,
+  "limit": 10,
+  "model": "claude-sonnet-4-6",
+  "prompt_version": "deeper-health-copywriter-v1",
+  "csv_path": "reports/answer-rewrite/rewrite-run-2026-06-17T21-56-21-466Z.csv"
+}
+[success] id=2567f59c-767d-47b4-85f2-fc4272568a2a slug=how-do-i-maintain-my-recovery-during-major-life-changes
+[success] id=781c97dd-ebe2-452e-aba9-fec6a2e8377f slug=how-do-i-deal-with-body-image-issues-186032-015
+[success] id=aed3a076-9424-49f0-aff4-597fd885f13f slug=what-is-treatment-resistant-depression-and-what-are-my-options
+[success] id=af160f2b-b556-46ae-b7b9-2238534710b6 slug=what-should-i-do-if-my-partner-shuts-down-during-arguments
+{
+  "mode": "apply",
+  "processed": 4,
+  "successes": 4,
+  "failures": 0,
+  "csv_path": "reports/answer-rewrite/rewrite-run-2026-06-17T21-56-21-466Z.csv",
+  "failures_detail": []
+}

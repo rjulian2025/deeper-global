@@ -1,0 +1,2015 @@
+{
+  "generated_at": "2026-06-17T22:04:22.123Z",
+  "mode": "applied",
+  "prompt_version": "deeper-health-copywriter-v1",
+  "candidates": [
+    {
+      "slug": "what-is-workplace-anxiety-and-how-do-i-m-186032-041",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 697 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-handle-anxiety-without-using-substances",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 594 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "is-it-normal-to-feel-bored-or-empty-after-getting-sober",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 713 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-do-i-do-when-im-losing-faith-in-everything-i--186602-023",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 710 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-guilty-about-not-speaking-my-p7q1r4",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 672 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-wake-up-at-3am-with-anxiety-eve-181083-045",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 690 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "warning-signs-ai-use-is-hurting-my-mental-health",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 651 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-stop-feeling-like-everyone-else-has-177941-031",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 696 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-like-i-dont-fit-in-anywhere-in-the-lgbtq-community",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 610 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-know-if-i-have-adhd-as-an-adult",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 718 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-deal-with-feeling-like-im-not-smart-enough-184730-093",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 735 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-if-i-think-an-ai-chatbot-is-sentient",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 637 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-deal-with-relapse-and-the-shame-185759-024",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 717 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-deal-with-trauma-triggers-in-ev-190219-011",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 683 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-deal-with-feeling-disconnected-from-my-o9p4q2",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 687 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-natural-remedies-help-with-seasonal-depression",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 619 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-guilty-for-doubting-my-fai-181083-035",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 731 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "whats-the-difference-between-ssris-and-snris-for-depression",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 703 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-like-ill-never-find-love-a-181083-083",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 687 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "is-it-my-responsibility-to-make-my-partn-185759-035",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 614 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-guilty-about-being-depress-190219-003",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 676 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-cope-with-the-death-of-a-parent-177940-007",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 690 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-like-im-pretending-to-be-s-189668-003",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 704 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-should-i-do-if-i-miss-doses-of-my-p-181083-063",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 644 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-is-dependent-personality-disorder-and-how-is-it-different-from-being-needy",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 675 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-deal-with-people-who-dont-suppo-181288-035",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 702 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-know-if-my-psychiatric-medicati-181083-062",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 653 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-if-i-become-dependent-on-anxiety-me-181083-058",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 735 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "can-i-stop-taking-psychiatric-medication-181083-064",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 661 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-constantly-compare-myself-to-others",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 654 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-are-the-different-types-of-depression",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 733 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-long-do-i-have-to-take-psychiatric-m-181083-057",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 659 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "whats-the-difference-between-therapy-typ-185387-025",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 704 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-should-i-do-if-my-doctor-prescribed-addictive-medication",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 660 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "can-an-ai-chatbot-make-suicidal-thoughts-worse",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 707 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-survive-a-toxic-work-environment",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 655 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-know-if-my-therapist-is-right-for-me-s5t9u1",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 695 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-like-im-always-pretending-to-be-x2y5z8",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 702 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-disconnected-from-my-emoti-177940-014",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 623 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        },
+        {
+          "field": "key_takeaways[3]",
+          "issue": "14 words (target 15–35)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-deal-with-fear-of-hell-after-le-181083-036",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 710 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-does-everyone-else-seem-to-have-their-career-figured-out",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 724 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "can-anxiety-make-me-feel-like-i-cant-bre-181083-011",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 675 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-deal-with-anxiety-when-i-cant-i-181288-010",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 680 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-like-im-living-someone-els-177940-010",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 704 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-anxious-even-when-nothing-190648-005",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 741 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-dizzy-when-im-overwhelmed-181083-006",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 677 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "should-i-give-my-addicted-family-member-money-for-basic-needs",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 724 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "is-it-normal-to-be-scared-of-starting-ps-181083-066",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 654 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-help-someone-who-doesnt-want-he-186032-025",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 683 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-are-the-signs-that-my-child-needs-counseling-after-divorce",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 695 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-should-i-do-if-im-around-substances-unexpectedly",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 612 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-deal-with-feeling-like-im-behind-in-177941-017",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 682 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-does-it-mean-to-be-a-dry-drunk-185759-027",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 621 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-cope-with-losing-someone-to-suicide",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 689 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-deal-with-feeling-like-im-not-living-184730-077",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 670 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-like-im-constantly-disappointing-people-184730-045",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 698 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-deal-with-postpartum-depression",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 675 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "is-it-normal-to-dread-going-to-work-ever-181288-024",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 695 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-stop-overthinking-everything",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 653 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-stop-enabling-my-loved-ones-addiction",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 665 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-keep-relapsing-even-though-i-want-to-stay-sober",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 563 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-know-if-my-relationship-is-wort-181288-011",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 662 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-like-i-need-to-fix-everyones-184730-037",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 722 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-deal-with-feeling-like-everyone-else-184730-047",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 723 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-cope-with-feeling-lost-and-uncertain-duri-187459-019",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 697 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-know-if-im-transgender-or-just--184729-007",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 602 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-does-it-mean-if-i-feel-more-spiritual-in-n2o5p8",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 665 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-like-i-cant-be-happy-when-others-z3a6b9",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 685 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-deal-with-feeling-invisible-in-181083-094",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 638 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-like-i-dont-belong-in-my-own-r8s3t6",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 697 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-handle-work-or-school-while-in-treatment",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 658 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-stop-money-from-controlling-my-181083-029",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 708 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-deal-with-existential-anxiety-about-s6t9u3",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 711 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-like-im-losing-myself-in-184730-046",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 645 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-know-if-im-drinking-too-much-190974-009",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 664 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-empty-even-when-my-life-184730-007",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 686 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-do-i-do-if-i-think-i-have-depressio-186032-018",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 674 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "is-it-okay-to-use-ai-to-talk-to-someone-who-died",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 680 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-deal-with-a-toxic-work-environment",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 742 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-stop-feeling-like-im-a-disappointment-to-184730-079",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 721 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-is-social-anxiety-and-how-do-i-overcome-it",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 666 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-should-i-do-if-my-child-doesnt-want-to-visit-their-other-parent",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 703 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-cope-with-depression-when-i-have-a-chronic-illness",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 673 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-tell-my-family-im-going-to-treatment",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 698 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-stop-feeling-like-im-not-worthy-of-184730-083",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 707 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-does-it-mean-to-have-a-spiritual-awakening-j3k6l9",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 585 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-know-if-someone-i-love-is-using-186032-021",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 682 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-should-i-do-if-my-antidepressants-arent-working",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 660 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-feel-empty-even-when-good-thing-181288-001",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 701 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-handle-grief-during-holidays-an-185387-010",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 693 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-i-get-triggered-by-things-that-se-181288-026",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 659 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "when-should-i-consider-switching-antidepressants",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 634 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-know-if-my-spiritual-experiences-are-p5q9r3",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 670 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-stop-feeling-jealous-of-people-181083-073",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 682 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        },
+        {
+          "field": "key_takeaways[0]",
+          "issue": "36 words (target 15–35)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    }
+  ]
+}

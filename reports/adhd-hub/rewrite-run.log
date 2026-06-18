@@ -1,0 +1,42 @@
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm.
+
+> deeper-global@1.0.0 content:rewrite-answers-claude
+> node scripts/rewrite-answers-claude.mjs --apply --limit 25
+
+{
+  "mode": "apply",
+  "pending_records": 19,
+  "batch_size": 10,
+  "batch_delay_ms": 1000,
+  "limit": 25,
+  "model": "claude-sonnet-4-6",
+  "prompt_version": "deeper-health-copywriter-v1",
+  "csv_path": "reports/answer-rewrite/rewrite-run-2026-06-17T22-51-33-698Z.csv"
+}
+[success] id=02ec3dd4-2aae-46bc-9ab2-6c638362c103 slug=how-do-i-manage-adhd-burnout
+[success] id=3c07024f-f076-4c52-93b2-15e38b682927 slug=how-do-i-study-with-adhd
+[success] id=5c00d051-cbe2-48db-9701-73795f50f177 slug=what-is-adhd-and-how-is-it-different-from-just-being-distracted
+[success] id=61c4b80d-440e-4f98-8cd9-f6dd102e9a04 slug=how-do-i-build-routines-with-adhd
+[success] id=650addc1-1202-4518-b5bf-1ee480586cf0 slug=is-hyperfocus-a-symptom-of-adhd
+[success] id=6f6f56ce-ea45-4e70-9e03-3c712030c1d2 slug=can-adhd-cause-anxiety-and-depression
+[success] id=741188a5-d594-4a63-b7d1-49024a1d8cd3 slug=what-are-the-signs-of-adhd-in-women
+[success] id=744d9c6c-e500-4321-84b4-c9670da8be7d slug=can-trauma-look-like-adhd
+[success] id=759cf4ad-8e40-4d1e-bf82-0fe059bf2bcd slug=how-do-adhd-medications-work
+[success] id=948f98e5-c43e-4ad3-9d2d-8e912ebfe54b slug=what-should-i-tell-my-partner-about-adhd
+[success] id=9c4d3e75-9d3d-4d9b-8d65-de8c3163f858 slug=how-do-i-stay-focused-at-work-with-adhd
+[success] id=a4bbf53f-251f-48bd-ba84-f5113855e920 slug=what-workplace-accommodations-help-adults-with-adhd
+[success] id=a69457b9-4a8f-4915-98c3-a2198999234e slug=what-is-the-difference-between-adhd-and-bipolar-disorder
+[success] id=b150e12f-4722-4db8-aab6-87a9bc812e95 slug=how-do-i-get-tested-for-adhd-as-an-adult
+[success] id=cbf65e92-e32d-4fe8-84a9-aea5cf2e32fe slug=what-is-rejection-sensitive-dysphoria-and-adhd
+[success] id=cde08a3a-547c-416b-81d5-2053a9b8ec82 slug=how-do-i-stop-forgetting-things-with-adhd
+[success] id=eec13b56-1408-4fd8-b708-d43874b6970f slug=how-do-i-manage-adhd-in-relationships
+[success] id=f366393b-9836-4647-a73a-6bea8ad198f6 slug=how-do-i-explain-adhd-to-my-employer
+[success] id=fa6adc93-c81d-4db0-9268-1dd9fa3ef0b4 slug=how-do-i-cope-with-adhd-time-blindness
+{
+  "mode": "apply",
+  "processed": 19,
+  "successes": 19,
+  "failures": 0,
+  "csv_path": "reports/answer-rewrite/rewrite-run-2026-06-17T22-51-33-698Z.csv",
+  "failures_detail": []
+}

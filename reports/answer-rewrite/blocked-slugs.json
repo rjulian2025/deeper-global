@@ -1,0 +1,1071 @@
+[
+  {
+    "slug": "can-an-ai-chatbot-make-suicidal-thoughts-worse",
+    "issues": [
+      {
+        "field": "when_to_reach_out",
+        "issue": "YMYL topic missing professional evaluation recommendation",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "can-anxiety-make-me-feel-like-i-cant-bre-181083-011",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 759 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "can-i-stop-taking-psychiatric-medication-181083-064",
+    "issues": [
+      {
+        "field": "when_to_reach_out",
+        "issue": "YMYL topic missing professional evaluation recommendation",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-cope-with-depression-when-i-have-a-chronic-illness",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 768 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-cope-with-feeling-lost-and-uncertain-duri-187459-019",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 789 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-cope-with-losing-someone-to-suicide",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 757 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-cope-with-the-death-of-a-parent-177940-007",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "52 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-deal-with-anxiety-when-i-cant-i-181288-010",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 752 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-deal-with-a-toxic-work-environment",
+    "issues": [
+      {
+        "field": "lede",
+        "issue": "does not open with canonical_answer verbatim",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-deal-with-existential-anxiety-about-s6t9u3",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 808 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-deal-with-fear-of-hell-after-le-181083-036",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "54 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-deal-with-feeling-disconnected-from-my-o9p4q2",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 752 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-deal-with-feeling-invisible-in-181083-094",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 761 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-deal-with-feeling-like-everyone-else-184730-047",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "55 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-deal-with-feeling-like-im-behind-in-177941-017",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "59 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      },
+      {
+        "field": "word_count",
+        "issue": "combined body 757 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-deal-with-feeling-like-im-not-living-184730-077",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "51 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-deal-with-feeling-like-im-not-smart-enough-184730-093",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "55 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-deal-with-people-who-dont-suppo-181288-035",
+    "issues": [
+      {
+        "field": "lede",
+        "issue": "does not open with canonical_answer verbatim",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-deal-with-postpartum-depression",
+    "issues": [
+      {
+        "field": "when_to_reach_out",
+        "issue": "YMYL topic missing professional evaluation recommendation",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-deal-with-relapse-and-the-shame-185759-024",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 773 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-deal-with-trauma-triggers-in-ev-190219-011",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 761 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-handle-anxiety-without-using-substances",
+    "issues": [
+      {
+        "field": "lede",
+        "issue": "does not open with canonical_answer verbatim",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-handle-grief-during-holidays-an-185387-010",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 751 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-handle-work-or-school-while-in-treatment",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "52 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-help-someone-who-doesnt-want-he-186032-025",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 771 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-know-if-i-have-adhd-as-an-adult",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "57 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-know-if-im-drinking-too-much-190974-009",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "54 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-know-if-im-transgender-or-just--184729-007",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "55 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-know-if-my-psychiatric-medicati-181083-062",
+    "issues": [
+      {
+        "field": "when_to_reach_out",
+        "issue": "YMYL topic missing professional evaluation recommendation",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-know-if-my-relationship-is-wort-181288-011",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "52 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-know-if-my-spiritual-experiences-are-p5q9r3",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "52 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-know-if-my-therapist-is-right-for-me-s5t9u1",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 769 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-know-if-someone-i-love-is-using-186032-021",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 769 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-stop-enabling-my-loved-ones-addiction",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "53 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-stop-feeling-jealous-of-people-181083-073",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "54 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-stop-feeling-like-everyone-else-has-177941-031",
+    "issues": [
+      {
+        "field": "lede",
+        "issue": "does not open with canonical_answer verbatim",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-stop-feeling-like-im-a-disappointment-to-184730-079",
+    "issues": [
+      {
+        "field": "lede",
+        "issue": "does not open with canonical_answer verbatim",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-stop-feeling-like-im-not-worthy-of-184730-083",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 798 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-stop-money-from-controlling-my-181083-029",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "54 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-stop-overthinking-everything",
+    "issues": [
+      {
+        "field": "key_takeaways",
+        "issue": "opens with rhetorical question",
+        "severity": "FAIL"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-survive-a-toxic-work-environment",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 762 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-do-i-tell-my-family-im-going-to-treatment",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "52 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "how-long-do-i-have-to-take-psychiatric-m-181083-057",
+    "issues": [
+      {
+        "field": "when_to_reach_out",
+        "issue": "YMYL topic missing professional evaluation recommendation",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "is-it-my-responsibility-to-make-my-partn-185759-035",
+    "issues": [
+      {
+        "field": "lede",
+        "issue": "does not open with canonical_answer verbatim",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "is-it-normal-to-be-scared-of-starting-ps-181083-066",
+    "issues": [
+      {
+        "field": "when_to_reach_out",
+        "issue": "YMYL topic missing professional evaluation recommendation",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "is-it-normal-to-dread-going-to-work-ever-181288-024",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 765 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "is-it-normal-to-feel-bored-or-empty-after-getting-sober",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 774 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "is-it-okay-to-use-ai-to-talk-to-someone-who-died",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "53 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "should-i-give-my-addicted-family-member-money-for-basic-needs",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "55 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "warning-signs-ai-use-is-hurting-my-mental-health",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 797 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-are-the-different-types-of-depression",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 778 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-are-the-signs-that-my-child-needs-counseling-after-divorce",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 770 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-does-it-mean-if-i-feel-more-spiritual-in-n2o5p8",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "54 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-does-it-mean-to-be-a-dry-drunk-185759-027",
+    "issues": [
+      {
+        "field": "lede",
+        "issue": "does not open with canonical_answer verbatim",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-does-it-mean-to-have-a-spiritual-awakening-j3k6l9",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "51 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-do-i-do-if-i-think-i-have-depressio-186032-018",
+    "issues": [
+      {
+        "field": "lede",
+        "issue": "does not open with canonical_answer verbatim",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-do-i-do-when-im-losing-faith-in-everything-i--186602-023",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 753 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-if-i-become-dependent-on-anxiety-me-181083-058",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "52 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      },
+      {
+        "field": "word_count",
+        "issue": "combined body 816 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-if-i-think-an-ai-chatbot-is-sentient",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 757 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-is-dependent-personality-disorder-and-how-is-it-different-from-being-needy",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "52 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-is-social-anxiety-and-how-do-i-overcome-it",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 760 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-is-workplace-anxiety-and-how-do-i-m-186032-041",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 769 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-natural-remedies-help-with-seasonal-depression",
+    "issues": [
+      {
+        "field": "lede",
+        "issue": "does not open with canonical_answer verbatim",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-should-i-do-if-im-around-substances-unexpectedly",
+    "issues": [
+      {
+        "field": "lede",
+        "issue": "does not open with canonical_answer verbatim",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-should-i-do-if-i-miss-doses-of-my-p-181083-063",
+    "issues": [
+      {
+        "field": "when_to_reach_out",
+        "issue": "YMYL topic missing professional evaluation recommendation",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-should-i-do-if-my-antidepressants-arent-working",
+    "issues": [
+      {
+        "field": "when_to_reach_out",
+        "issue": "YMYL topic missing professional evaluation recommendation",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-should-i-do-if-my-child-doesnt-want-to-visit-their-other-parent",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 777 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "what-should-i-do-if-my-doctor-prescribed-addictive-medication",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "53 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "whats-the-difference-between-ssris-and-snris-for-depression",
+    "issues": [
+      {
+        "field": "when_to_reach_out",
+        "issue": "YMYL topic missing professional evaluation recommendation",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "whats-the-difference-between-therapy-typ-185387-025",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 772 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "when-should-i-consider-switching-antidepressants",
+    "issues": [
+      {
+        "field": "when_to_reach_out",
+        "issue": "YMYL topic missing professional evaluation recommendation",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-does-everyone-else-seem-to-have-their-career-figured-out",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 798 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-constantly-compare-myself-to-others",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 751 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-anxious-even-when-nothing-190648-005",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "52 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-disconnected-from-my-emoti-177940-014",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "54 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-dizzy-when-im-overwhelmed-181083-006",
+    "issues": [
+      {
+        "field": "lede",
+        "issue": "does not open with canonical_answer verbatim",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-empty-even-when-good-thing-181288-001",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "60 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-empty-even-when-my-life-184730-007",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "55 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      },
+      {
+        "field": "word_count",
+        "issue": "combined body 855 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-guilty-about-being-depress-190219-003",
+    "issues": [
+      {
+        "field": "lede",
+        "issue": "does not open with canonical_answer verbatim",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-guilty-about-not-speaking-my-p7q1r4",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "51 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-guilty-for-doubting-my-fai-181083-035",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "52 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-like-i-cant-be-happy-when-others-z3a6b9",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 757 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-like-i-dont-belong-in-my-own-r8s3t6",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 787 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-like-i-dont-fit-in-anywhere-in-the-lgbtq-community",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "55 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-like-ill-never-find-love-a-181083-083",
+    "issues": [
+      {
+        "field": "lede",
+        "issue": "does not open with canonical_answer verbatim",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-like-im-always-pretending-to-be-x2y5z8",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "53 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      },
+      {
+        "field": "word_count",
+        "issue": "combined body 788 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-like-im-constantly-disappointing-people-184730-045",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 755 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-like-im-living-someone-els-177940-010",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "52 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-like-im-losing-myself-in-184730-046",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "52 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-like-im-pretending-to-be-s-189668-003",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "54 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      },
+      {
+        "field": "word_count",
+        "issue": "combined body 767 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-feel-like-i-need-to-fix-everyones-184730-037",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 795 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-get-triggered-by-things-that-se-181288-026",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "51 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      },
+      {
+        "field": "word_count",
+        "issue": "combined body 764 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-keep-relapsing-even-though-i-want-to-stay-sober",
+    "issues": [
+      {
+        "field": "canonical_answer",
+        "issue": "54 words (max 50)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  },
+  {
+    "slug": "why-do-i-wake-up-at-3am-with-anxiety-eve-181083-045",
+    "issues": [
+      {
+        "field": "word_count",
+        "issue": "combined body 777 words (target 350–550)",
+        "severity": "FAIL",
+        "action": "rerun"
+      }
+    ]
+  }
+]

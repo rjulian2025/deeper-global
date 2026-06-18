@@ -18,6 +18,10 @@ The first-party Supabase layer becomes active after `docs/supabase-intent-analyt
 4. The Vercel Function adds coarse region context from Vercel headers:
    - `x-vercel-ip-country`
    - `x-vercel-ip-country-region`
+   - `x-vercel-ip-city`
+
+   **Geo note (June 2026):** `region_city` was added for the Psychology Weather Map feature. City is stored for aggregate city-level rollups only. City-level aggregation remains the privacy boundary — no individual identification, no user-level profiles, and no public reporting below thresholded aggregates.
+
 5. The function calls Supabase RPC `record_intent_event`.
 6. Supabase stores sanitized rows in `intent_events`.
 7. Reports read from thresholded rollup views, not raw events.

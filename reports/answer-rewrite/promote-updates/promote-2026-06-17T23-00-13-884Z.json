@@ -1,0 +1,350 @@
+{
+  "generated_at": "2026-06-17T23:00:13.884Z",
+  "mode": "applied",
+  "prompt_version": "deeper-health-copywriter-v1",
+  "candidates": [
+    {
+      "slug": "how-do-i-manage-adhd-burnout",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 597 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-study-with-adhd",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 574 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-is-adhd-and-how-is-it-different-from-just-being-distracted",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 607 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-build-routines-with-adhd",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 680 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "is-hyperfocus-a-symptom-of-adhd",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 689 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "can-adhd-cause-anxiety-and-depression",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "unresolved hedge: \"Therapy that addresses shame, avoidance, and executive function — such as cognitive behavioral therapy adapted for ADHD …\"",
+          "severity": "WARN",
+          "action": "system prompt fix"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 656 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-are-the-signs-of-adhd-in-women",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 712 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "can-trauma-look-like-adhd",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 621 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-adhd-medications-work",
+      "qa_score": "FAIL",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 699 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "YMYL topic missing professional evaluation recommendation",
+          "severity": "FAIL",
+          "action": "rerun"
+        }
+      ],
+      "promoted": false
+    },
+    {
+      "slug": "what-should-i-tell-my-partner-about-adhd",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 597 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-stay-focused-at-work-with-adhd",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 648 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-workplace-accommodations-help-adults-with-adhd",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 638 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-is-the-difference-between-adhd-and-bipolar-disorder",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 615 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-get-tested-for-adhd-as-an-adult",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-is-rejection-sensitive-dysphoria-and-adhd",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 702 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-stop-forgetting-things-with-adhd",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 604 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-manage-adhd-in-relationships",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 622 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-explain-adhd-to-my-employer",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 584 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-cope-with-adhd-time-blindness",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "unresolved hedge: \"For moderate to severe time blindness that is affecting work, relationships, or health routines, professional support ma…\"",
+          "severity": "WARN",
+          "action": "system prompt fix"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 697 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    }
+  ]
+}
