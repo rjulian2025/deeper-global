@@ -1,0 +1,197 @@
+import type { AuthorityProfile } from '@/lib/authorities';
+
+const PEACHTREE = 'https://peachtreepsychology.com';
+
+export const alexCrenshawPhd: AuthorityProfile = {
+  slug: 'alex-crenshaw-phd',
+  reviewerId: 'alex-crenshaw-phd',
+  name: 'Dr. Alex Crenshaw',
+  credentials: 'PhD',
+  displayName: 'Dr. Alex Crenshaw, PhD',
+  designation: 'Clinical Authority for Adult ADHD Testing & Psychological Evaluation',
+  role: 'Licensed Psychologist',
+  academicAffiliation: 'Assistant Professor of Psychology, Kennesaw State University',
+  practiceName: 'Peachtree Psychology',
+  practiceUrl: PEACHTREE,
+  practiceProfilePath: '/therapists/alex-crenshaw',
+  phone: '678-381-1687',
+  phoneTel: 'tel:+16783811687',
+  location: {
+    street: '555 Sun Valley Drive, Suite M-2',
+    city: 'Roswell',
+    state: 'GA',
+    zip: '30076',
+  },
+  testingNote:
+    'Adult psychological testing is conducted in person at Peachtree Psychology\'s Roswell office only.',
+  insuranceNote: 'Evaluations are self-pay. Insurance is not billed directly.',
+  image: '/authorities/alex-crenshaw-phd.png',
+  imageAlt: 'Dr. Alex Crenshaw, PhD — licensed psychologist and clinical authority for adult ADHD testing',
+  bio:
+    'Dr. Alex Crenshaw is a licensed psychologist with a PhD in clinical psychology. He conducts adult psychological testing and evidence-based psychotherapy at Peachtree Psychology in Roswell, Georgia, and serves as Assistant Professor of Psychology at Kennesaw State University.',
+  overviewParagraphs: [
+    'Dr. Crenshaw provides structured psychological testing for adults seeking diagnostic clarity around ADHD, OCD, anxiety, depression, PTSD, and related conditions. Evaluations combine clinical interview, standardized measures, and written reports designed to support treatment planning and documentation when clinically appropriate.',
+    'His work emphasizes evidence-based assessment and treatment — including CBT, ACT, DBT, Integrative Behavioral Couple Therapy (IBCT), Prolonged Exposure (PE), Cognitive Processing Therapy (CPT), Cognitive Behavioral Conjoint Therapy (CBCT), and Exposure and Response Prevention (ERP).',
+    'Testing at Peachtree Psychology begins with a phone screening to determine which evaluation fits your concerns. All assessments listed below are conducted in person at the Roswell office.',
+  ],
+  expertiseDomains: [
+    { id: 'adhd-testing', label: 'Adult ADHD Testing', description: 'Comprehensive multi-method ADHD evaluation for adults.' },
+    { id: 'diagnostic-evaluation', label: 'Diagnostic Evaluation', description: 'Focused assessment for diagnostic clarity across conditions.' },
+    { id: 'ocd', label: 'OCD', description: 'Structured OCD evaluation with ERP-informed recommendations.' },
+    { id: 'anxiety', label: 'Anxiety', description: 'Differentiating anxiety presentations and co-occurring conditions.' },
+    { id: 'depression', label: 'Depression', description: 'Clinical assessment of depressive symptoms and overlapping factors.' },
+    { id: 'ptsd', label: 'PTSD', description: 'Trauma-related assessment integrated with evidence-based care.' },
+    { id: 'psychological-testing', label: 'Psychological Testing', description: 'Adult testing for complex, overlapping presentations.' },
+    { id: 'evidence-based-therapy', label: 'Evidence-Based Therapy', description: 'Research-informed psychotherapy for adults and couples.' },
+  ],
+  modalities: ['CBT', 'ACT', 'DBT', 'IBCT', 'PE', 'CPT', 'CBCT', 'ERP'],
+  affiliations: [
+    'Association for Behavioral and Cognitive Therapies',
+    'Society for a Science of Clinical Psychology',
+    'Society for the Improvement of Psychological Science',
+  ],
+  knowsAbout: [
+    'Adult ADHD Testing',
+    'Psychological Testing',
+    'Diagnostic Evaluation',
+    'Obsessive-Compulsive Disorder',
+    'Anxiety Disorders',
+    'Depression',
+    'Post-Traumatic Stress Disorder',
+    'Evidence-Based Psychotherapy',
+  ],
+  serviceOfferings: [
+    {
+      name: 'Full ADHD Assessment',
+      price: '$2,300',
+      description: 'Comprehensive multi-method ADHD evaluation for adults when a full diagnostic workup is clinically warranted.',
+      href: `${PEACHTREE}/service/adhd-testing`,
+    },
+    {
+      name: 'Standalone Diagnostic Evaluation',
+      price: '$700',
+      description: 'Focused evaluation for adults seeking diagnostic clarity before treatment or when documentation is needed.',
+      href: `${PEACHTREE}/service/diagnostic-evaluation`,
+    },
+    {
+      name: 'OCD Evaluation',
+      price: '$700',
+      description: 'Targeted assessment for adults who suspect OCD or need clarity before ERP-based treatment.',
+      href: `${PEACHTREE}/service/ocd-testing`,
+    },
+    {
+      name: 'Anxiety Evaluation',
+      price: '$700',
+      description: 'Structured assessment to identify specific anxiety presentations and treatment direction.',
+      href: `${PEACHTREE}/service/anxiety-assessment`,
+    },
+    {
+      name: 'Depression Evaluation',
+      price: '$700',
+      description: 'Clinical assessment to identify depressive presentation and rule out overlapping conditions.',
+      href: `${PEACHTREE}/service/depression-evaluation`,
+    },
+  ],
+  serviceFitCards: [
+    {
+      id: 'adhd-testing',
+      label: 'I need ADHD testing',
+      description: 'You want a formal adult ADHD evaluation with a written report.',
+      destinationUrl: `${PEACHTREE}/service/adhd-testing`,
+      destinationLabel: 'Learn about ADHD testing',
+      specialty: 'Adult ADHD Testing',
+      isExternal: true,
+    },
+    {
+      id: 'diagnostic-clarity',
+      label: 'I need diagnostic clarity',
+      description: 'You are unsure what condition fits and want a structured evaluation first.',
+      destinationUrl: `${PEACHTREE}/service/diagnostic-evaluation`,
+      destinationLabel: 'Standalone diagnostic evaluation',
+      specialty: 'Diagnostic Evaluation',
+      isExternal: true,
+    },
+    {
+      id: 'anxiety-adhd',
+      label: 'I think it may be anxiety or ADHD',
+      description: 'Your symptoms overlap and you need differential assessment.',
+      destinationUrl: `${PEACHTREE}/service/diagnostic-evaluation`,
+      destinationLabel: 'Request diagnostic evaluation',
+      specialty: 'Anxiety and ADHD',
+      isExternal: true,
+    },
+    {
+      id: 'documentation',
+      label: 'I need documentation',
+      description: 'You may need a written clinical report for accommodations or records.',
+      destinationUrl: `${PEACHTREE}/service/diagnostic-evaluation`,
+      destinationLabel: 'Evaluation with written report',
+      specialty: 'Documentation',
+      isExternal: true,
+    },
+    {
+      id: 'treatment',
+      label: 'I want evidence-based treatment',
+      description: 'You have clarity on your goals and want research-informed psychotherapy.',
+      destinationUrl: `${PEACHTREE}/therapists/alex-crenshaw`,
+      destinationLabel: 'View practice profile',
+      specialty: 'Evidence-Based Psychotherapy',
+      isExternal: true,
+    },
+  ],
+  reviewedContentGroups: [
+    {
+      name: 'ADHD',
+      slugs: [
+        'how-do-i-know-if-i-have-adhd-as-an-adult',
+        'how-do-i-get-tested-for-adhd-as-an-adult',
+        'what-are-the-signs-of-adhd-in-women',
+        'can-trauma-look-like-adhd',
+      ],
+    },
+    {
+      name: 'Testing',
+      slugs: [
+        'how-do-i-get-tested-for-adhd-as-an-adult',
+        'what-is-adhd-and-how-is-it-different-from-just-being-distracted',
+      ],
+    },
+    {
+      name: 'Anxiety',
+      slugs: [
+        'how-do-i-function-when-anxiety-makes-everything-feel-overwhelming',
+        'can-adhd-cause-anxiety-and-depression',
+      ],
+    },
+    {
+      name: 'OCD',
+      slugs: ['can-trauma-look-like-adhd'],
+    },
+  ],
+  referralLinks: [
+    { label: 'Peachtree profile', href: `${PEACHTREE}/therapists/alex-crenshaw`, description: 'Practice biography, therapy, and testing overview' },
+    { label: 'ADHD testing', href: `${PEACHTREE}/service/adhd-testing` },
+    { label: 'Psychological testing', href: `${PEACHTREE}/service/psychological-testing` },
+    { label: 'Diagnostic evaluation', href: `${PEACHTREE}/service/diagnostic-evaluation` },
+    { label: 'OCD evaluation', href: `${PEACHTREE}/service/ocd-testing` },
+    { label: 'Anxiety evaluation', href: `${PEACHTREE}/service/anxiety-assessment` },
+    { label: 'Depression evaluation', href: `${PEACHTREE}/service/depression-evaluation` },
+  ],
+  hubConnections: {
+    hubPath: '/adhd/',
+    hubLabel: 'ADHD Hub',
+    summary:
+      'Explore evidence-informed answers about adult ADHD — signs, testing, executive dysfunction, and daily life — clinically reviewed within the Deeper knowledge graph.',
+  },
+  videoPlaceholder: {
+    headline: 'Meet Dr. Alex Crenshaw, PhD',
+    subtitle: 'Adult ADHD Testing & Psychological Evaluation',
+    statusLabel: 'Video Coming Soon',
+  },
+  disclaimers: [
+    'All testing is conducted in person at Peachtree Psychology\'s Roswell office (555 Sun Valley Drive, Suite M-2).',
+    'Evaluations are self-pay. Insurance is not billed directly.',
+    'Autism assessment, online testing, and Marietta testing locations are not offered.',
+  ],
+  sameAs: [`${PEACHTREE}/therapists/alex-crenshaw`],
+};

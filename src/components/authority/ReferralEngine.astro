@@ -1,0 +1,112 @@
+---
+import type { AuthorityProfile } from '@/lib/authorities';
+
+type Props = {
+  authority: AuthorityProfile;
+};
+
+const { authority } = Astro.props;
+---
+
+<section class="section authority-referral" aria-labelledby="referral-title">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Referral routing</p>
+        <h2 id="referral-title">Schedule testing or therapy at Peachtree Psychology</h2>
+      </div>
+    </div>
+    <ul class="referral-list">
+      {
+        authority.referralLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              rel="noopener noreferrer"
+              target="_blank"
+              data-authority-event={link.label.toLowerCase().includes('profile') ? 'outbound_practice_profile_click' : 'peachtree_referral_click'}
+              data-destination={link.href}
+              data-cta-label={link.label}
+            >
+              <strong>{link.label}</strong>
+              {link.description ? <span>{link.description}</span> : null}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="referral-phone">
+      <a
+        href={authority.phoneTel}
+        data-authority-event="phone_click"
+        data-destination={authority.phoneTel}
+        data-cta-label="Call Peachtree Psychology"
+      >
+        {authority.phone}
+      </a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .authority-referral {
+    background: var(--mist);
+  }
+
+  .referral-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .referral-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .referral-list a {
+    display: grid;
+    gap: var(--space-1);
+    padding: var(--space-5);
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--ocean);
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-left-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .referral-list a:hover {
+    border-left-color: var(--brass);
+    box-shadow: var(--shadow);
+  }
+
+  .referral-list strong {
+    color: var(--navy);
+    font-size: var(--text-md);
+  }
+
+  .referral-list span {
+    color: var(--stone);
+    font-size: var(--text-sm);
+  }
+
+  .referral-phone {
+    margin: var(--space-6) 0 0;
+    font-size: var(--text-xl);
+    font-weight: 600;
+  }
+
+  .referral-phone a {
+    color: var(--ocean);
+    text-decoration: none;
+  }
+
+  .referral-phone a:hover {
+    text-decoration: underline;
+  }
+</style>

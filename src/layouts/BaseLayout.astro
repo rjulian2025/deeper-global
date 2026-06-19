@@ -208,6 +208,7 @@ const structuredData = {
           if (path.startsWith('/answers/')) return path === '/answers/' ? 'search' : 'answer';
           if (path.startsWith('/categories/')) return 'category';
           if (path.startsWith('/entities/')) return 'entity';
+          if (path.startsWith('/authorities/')) return 'authority';
           if (path === '/editorial-policy/') return 'policy';
           return 'hub';
         };
@@ -318,6 +319,15 @@ const structuredData = {
         const hubSlug = inferHubSlug();
         if (hubSlug) {
           window.deeperTrackEvent('hub_viewed', { hub_slug: hubSlug });
+        }
+
+        const authorityPage = document.querySelector('.authority-page');
+        if (authorityPage) {
+          window.deeperTrackEvent('clinical_authority_profile_view', {
+            content_type: 'authority',
+            clinician_slug: authorityPage.getAttribute('data-clinician-slug') ?? undefined,
+            source_page: path,
+          });
         }
 
         const scrollMilestones = new Set();
@@ -435,6 +445,33 @@ const structuredData = {
               link_label: label,
               outbound_domain: outboundDomain,
             });
+          }
+
+          if (link.closest('.answer-trust-panel') && href.startsWith('/authorities/')) {
+            window.deeperTrackEvent('reviewed_answer_click', {
+              content_type: 'answer',
+              link_label: label,
+              destination: href,
+              target_path: href,
+            });
+          }
+
+          const authorityTarget = event.target instanceof Element ? event.target.closest('[data-authority-event]') : null;
+          if (authorityTarget) {
+            const eventName = authorityTarget.getAttribute('data-authority-event');
+            if (eventName) {
+              window.deeperTrackEvent(eventName, {
+                content_type: 'authority',
+                clinician_slug:
+                  document.querySelector('.authority-page')?.getAttribute('data-clinician-slug') ??
+                  document.querySelector('[data-clinician-slug]')?.getAttribute('data-clinician-slug') ??
+                  undefined,
+                specialty: authorityTarget.getAttribute('data-specialty') ?? undefined,
+                destination: authorityTarget.getAttribute('data-destination') ?? (href.startsWith('/') || /^https?:\/\//.test(href) ? href : undefined),
+                cta_label: authorityTarget.getAttribute('data-cta-label') ?? label,
+                source_page: path,
+              });
+            }
           }
 
           if (/^https?:\/\//.test(href)) {

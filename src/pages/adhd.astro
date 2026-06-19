@@ -1,6 +1,8 @@
 ---
 import AnswerCard from '@/components/AnswerCard.astro';
+import ClinicalAuthorityBlock from '@/components/authority/ClinicalAuthorityBlock.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { alexCrenshawPhd } from '@/data/authorities/alex-crenshaw-phd';
 import {
   adhdFeaturedSlugs,
   ADHD_HUB_PATH,
@@ -85,6 +87,8 @@ const jsonLd = {
         <a class="button secondary" href="/categories/neurodivergence-and-attention">Topic hub</a>
       </div>
     </section>
+
+    <ClinicalAuthorityBlock authority={alexCrenshawPhd} />
 
     <section class="section">
       <div class="container hub-intro-grid">

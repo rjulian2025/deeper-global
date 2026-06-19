@@ -1,0 +1,124 @@
+---
+import type { AuthorityProfile } from '@/lib/authorities';
+import { ADHD_HUB_PATH } from '@/lib/adhd-hub';
+
+type Props = {
+  authority: AuthorityProfile;
+};
+
+const { authority } = Astro.props;
+---
+
+<section class="authority-hero">
+  <div class="container authority-hero-grid">
+    <div class="authority-hero-copy">
+      <p class="eyebrow">Clinical Authority</p>
+      <h1>{authority.displayName}</h1>
+      <p class="authority-designation">{authority.designation}</p>
+      <p class="authority-meta">
+        {authority.role} · {authority.practiceName} · {authority.location.city}, {authority.location.state}
+      </p>
+      <p class="authority-meta subtle">{authority.academicAffiliation}</p>
+      <div class="authority-hero-actions">
+        <a
+          class="button"
+          href={authority.serviceOfferings[0]?.href ?? authority.practiceUrl}
+          data-authority-event="clinical_authority_cta_click"
+          data-cta-label="Learn About ADHD Testing"
+          data-destination={authority.serviceOfferings[0]?.href}
+          rel="noopener noreferrer"
+        >
+          Learn About ADHD Testing
+        </a>
+        <a
+          class="button secondary"
+          href="#reviewed-knowledge"
+          data-authority-event="clinical_authority_cta_click"
+          data-cta-label="View Reviewed ADHD Answers"
+          data-destination="#reviewed-knowledge"
+        >
+          View Reviewed ADHD Answers
+        </a>
+        <a
+          class="button secondary"
+          href={authority.phoneTel}
+          data-authority-event="phone_click"
+          data-cta-label="Call Peachtree Psychology"
+          data-destination={authority.phoneTel}
+        >
+          Call Peachtree Psychology
+        </a>
+      </div>
+    </div>
+    <figure class="authority-hero-photo">
+      <img src={authority.image} alt={authority.imageAlt} width="480" height="600" loading="eager" />
+    </figure>
+  </div>
+</section>
+
+<style>
+  .authority-hero {
+    background: var(--navy);
+    padding: var(--space-16) var(--space-6) var(--space-12);
+  }
+
+  .authority-hero-grid {
+    display: grid;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .authority-hero-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+
+  .authority-hero .eyebrow {
+    color: var(--ocean-bright);
+  }
+
+  .authority-hero h1 {
+    color: var(--white);
+    margin: 0 0 var(--space-3);
+  }
+
+  .authority-designation {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    margin: 0 0 var(--space-4);
+    max-width: 34rem;
+  }
+
+  .authority-meta {
+    color: rgba(255, 255, 255, 0.78);
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-sm);
+  }
+
+  .authority-meta.subtle {
+    color: rgba(255, 255, 255, 0.58);
+    margin-bottom: var(--space-6);
+  }
+
+  .authority-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .authority-hero-photo {
+    margin: 0;
+    justify-self: center;
+    max-width: 22rem;
+  }
+
+  .authority-hero-photo img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    object-fit: cover;
+    aspect-ratio: 4 / 5;
+  }
+</style>

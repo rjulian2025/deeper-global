@@ -69,7 +69,7 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStat
         {reviewerProfile ? (
           <>
             <span aria-hidden="true"> · </span>
-            <a href={reviewerProfile.url}>Reviewer profile</a>
+            <a href={reviewerProfile.url}>{'isAuthority' in reviewerProfile && reviewerProfile.isAuthority ? 'Authority profile' : 'Reviewer profile'}</a>
           </>
         ) : null}
       </p>

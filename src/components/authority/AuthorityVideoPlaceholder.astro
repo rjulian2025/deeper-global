@@ -1,0 +1,111 @@
+---
+import type { AuthorityProfile } from '@/lib/authorities';
+
+type Props = {
+  authority: AuthorityProfile;
+};
+
+const { authority } = Astro.props;
+const { videoPlaceholder } = authority;
+---
+
+<section class="section authority-video-section" aria-label="Introduction video">
+  <div class="container">
+    <button
+      type="button"
+      class="video-placeholder"
+      data-authority-event="video_placeholder_click"
+      data-cta-label={videoPlaceholder.statusLabel}
+      aria-label={`${videoPlaceholder.headline}. ${videoPlaceholder.statusLabel}`}
+    >
+      <span class="video-play" aria-hidden="true">▶</span>
+      <span class="video-copy">
+        <strong>{videoPlaceholder.headline}</strong>
+        <span>{videoPlaceholder.subtitle}</span>
+        <em>{videoPlaceholder.statusLabel}</em>
+      </span>
+    </button>
+    <p class="video-subtitle">{videoPlaceholder.statusLabel} — A short introduction to adult ADHD testing, diagnostic clarity, and evidence-based care.</p>
+  </div>
+</section>
+
+<style>
+  .authority-video-section {
+    padding-top: var(--space-10);
+  }
+
+  .video-placeholder {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-6);
+    align-items: center;
+    padding: var(--space-8);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--ocean);
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--white), var(--mist));
+    cursor: pointer;
+    text-align: left;
+    font: inherit;
+  }
+
+  .video-placeholder:hover {
+    border-left-color: var(--brass);
+    box-shadow: var(--shadow);
+  }
+
+  .video-play {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 1.25rem;
+  }
+
+  .video-copy {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .video-copy strong {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: var(--text-xl);
+    color: var(--navy);
+  }
+
+  .video-copy span {
+    color: var(--stone);
+    font-size: var(--text-sm);
+  }
+
+  .video-copy em {
+    color: var(--ocean);
+    font-style: normal;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .video-subtitle {
+    margin: var(--space-4) 0 0;
+    color: var(--stone);
+    font-size: var(--text-sm);
+    max-width: 42rem;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.video-placeholder').forEach((button) => {
+    button.addEventListener('click', () => {
+      window.deeperTrackEvent?.('video_placeholder_click', {
+        content_type: 'authority',
+        cta_label: button.getAttribute('data-cta-label') ?? 'Video Coming Soon',
+      });
+    });
+  });
+</script>

@@ -1,0 +1,99 @@
+---
+import type { AuthorityProfile } from '@/lib/authorities';
+
+type Props = {
+  authority: AuthorityProfile;
+};
+
+const { authority } = Astro.props;
+---
+
+<section class="section" aria-labelledby="expertise-map-title">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Expertise map</p>
+        <h2 id="expertise-map-title">Clinical focus areas</h2>
+      </div>
+    </div>
+    <div class="expertise-map" role="list">
+      {
+        authority.expertiseDomains.map((domain) => (
+          <button
+            type="button"
+            class="expertise-node card"
+            role="listitem"
+            data-authority-event="expertise_map_interaction"
+            data-specialty={domain.label}
+            data-destination={`#expertise-${domain.id}`}
+            aria-describedby={`expertise-desc-${domain.id}`}
+          >
+            <span class="expertise-label">{domain.label}</span>
+            <span class="expertise-desc" id={`expertise-desc-${domain.id}`}>{domain.description}</span>
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .expertise-map {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 768px) {
+    .expertise-map {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .expertise-map {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .expertise-node {
+    display: grid;
+    gap: var(--space-2);
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    width: 100%;
+    transition: border-left-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .expertise-node:hover,
+  .expertise-node:focus-visible {
+    border-left-color: var(--brass);
+    box-shadow: var(--shadow);
+    outline: none;
+  }
+
+  .expertise-label {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: var(--text-md);
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .expertise-desc {
+    color: var(--stone);
+    font-size: 0.875rem;
+    line-height: var(--leading-relaxed);
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.expertise-node').forEach((node) => {
+    node.addEventListener('click', () => {
+      window.deeperTrackEvent?.('expertise_map_interaction', {
+        content_type: 'authority',
+        specialty: node.getAttribute('data-specialty') ?? undefined,
+        destination: node.getAttribute('data-destination') ?? undefined,
+      });
+    });
+  });
+</script>

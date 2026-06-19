@@ -23,6 +23,8 @@ export async function GET() {
     `- [Answers](${siteUrl('/answers')}): Complete answer library.`,
     `- [Modalities](${siteUrl('/modalities')}): Structured psychoeducation hub for therapy approaches — EMDR, CBT, DBT, IFS, somatic therapies, couples work, and emerging treatments with cross-links to related answers.`,
     `- [ADHD hub](${siteUrl('/adhd')}): Curated cluster for adult ADHD diagnosis, executive dysfunction, emotional overwhelm, medication, work accommodations, and daily coping.`,
+    `- [Clinical authorities](${siteUrl('/authorities/')}): Named clinical authority profiles connecting reviewed educational content with qualified in-person care pathways.`,
+    `- [Dr. Alex Crenshaw, PhD — Clinical Authority](${siteUrl('/authorities/alex-crenshaw-phd/')}): Founding authority partner for adult ADHD testing and psychological evaluation (Peachtree Psychology, Roswell, GA).`,
     `- [AI mental health hub](${siteUrl('/ai-mental-health')}): Curated cluster for AI psychosis, chatbot dependency, AI companions, teens, work anxiety, deepfakes, and safety boundaries.`,
     `- [Topics](${siteUrl('/categories')}): Public topic hubs.`,
     `- [Entities](${siteUrl('/entities')}): Canonical mental health entity map.`,

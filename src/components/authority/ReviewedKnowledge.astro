@@ -1,0 +1,82 @@
+---
+import AnswerCard from '@/components/AnswerCard.astro';
+import type { AuthorityProfile } from '@/lib/authorities';
+import type { Question } from '@/lib/supabase';
+
+type Props = {
+  authority: AuthorityProfile;
+  questionsBySlug: Map<string, Question>;
+};
+
+const { authority, questionsBySlug } = Astro.props;
+---
+
+<section class="section" id="reviewed-knowledge" aria-labelledby="reviewed-knowledge-title">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Reviewed knowledge</p>
+        <h2 id="reviewed-knowledge-title">Clinically Reviewed by {authority.displayName}</h2>
+      </div>
+    </div>
+    {
+      authority.reviewedContentGroups.map((group) => {
+        const questions = group.slugs
+          .map((slug) => questionsBySlug.get(slug))
+          .filter((question): question is Question => Boolean(question));
+        if (!questions.length) return null;
+        return (
+          <div class="reviewed-group">
+            <h3>{group.name}</h3>
+            <div class="question-grid">
+              {questions.map((question) => (
+                <div
+                  class="reviewed-answer-wrap"
+                  data-authority-event="authority_answer_click"
+                  data-destination={`/answers/${question.slug}/`}
+                >
+                  <AnswerCard question={question} headingLevel={3} />
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style>
+  .reviewed-group {
+    margin-bottom: var(--space-10);
+  }
+
+  .reviewed-group h3 {
+    margin: 0 0 var(--space-5);
+    color: var(--navy);
+    font-size: var(--text-xl);
+  }
+
+  .question-grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 768px) {
+    .question-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.reviewed-answer-wrap a').forEach((link) => {
+    link.addEventListener('click', () => {
+      const wrap = link.closest('.reviewed-answer-wrap');
+      window.deeperTrackEvent?.('authority_answer_click', {
+        content_type: 'authority',
+        destination: wrap?.getAttribute('data-destination') ?? link.getAttribute('href') ?? undefined,
+      });
+    });
+  });
+</script>
