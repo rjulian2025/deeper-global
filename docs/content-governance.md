@@ -37,6 +37,8 @@ Rewrite → Sanitize → Repair → QA (full) → Promote (dry-run) → Promote 
 | QA (full corpus) | `npm run content:qa-answer-rewrite:all` | All staged rows; JSON report in `reports/answer-rewrite/qa-full-*.json` |
 | Promote dry-run | `npm run content:promote-answer-rewrite -- --all --allow-warn` | No DB writes; JSON report in `promote-updates/` |
 | Promote apply | `npm run content:promote-answer-rewrite -- --apply --all --allow-warn` | Copies staging → live columns |
+| GSC weekly plan | `npm run content:gsc-weekly-plan` | Writes `reports/gsc-weekly/content-plan-{date}.*` and `rewrite-batch.json` |
+| GSC-targeted rewrite | `npm run content:rewrite-answers-claude -- --apply --slugs-file reports/gsc-weekly/rewrite-batch.json` | Rewrites only approved/GSC-prioritized slugs |
 | Deploy | `npx vercel --prod` | After promote apply |
 | Post-rewrite watcher | `./scripts/post-rewrite-pipeline.sh` | Waits for rewrite, runs QA + promote dry-run |
 
