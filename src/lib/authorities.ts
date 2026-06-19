@@ -31,10 +31,21 @@ export type ReviewedContentGroup = {
   slugs: string[];
 };
 
-export type ReferralLink = {
-  label: string;
-  href: string;
-  description?: string;
+export type ClinicalPerspective = {
+  id: string;
+  text: string;
+};
+
+export type DiagnosticJourneyStep = {
+  title: string;
+  description: string;
+};
+
+export type AuthorityVideoModule = {
+  title: string;
+  subtitle: string;
+  statusLabel: string;
+  previewBullets: string[];
 };
 
 export type AuthorityProfile = {
@@ -76,23 +87,34 @@ export type AuthorityProfile = {
     hubLabel: string;
     summary: string;
   };
-  videoCarousel: {
-    eyebrow: string;
+  videoModule: AuthorityVideoModule;
+  clinicalPerspectives: ClinicalPerspective[];
+  whyDrCrenshaw: {
+    title: string;
+    points: string[];
+  };
+  diagnosticJourney: {
+    title: string;
+    steps: DiagnosticJourneyStep[];
+    cta: {
+      label: string;
+      href: string;
+    };
+  };
+  knowledgeNetwork: {
     title: string;
     description: string;
-    slides: AuthorityVideoSlide[];
+    ctaLabel: string;
   };
+  reviewedKnowledgeIntro: string;
+  expertiseSectionTitle: string;
   disclaimers: string[];
   sameAs: string[];
 };
 
-export type AuthorityVideoSlide = {
-  id: string;
-  topic: string;
-  headline: string;
-  subtitle: string;
-  statusLabel: string;
-  thumbnailAccent: 'navy' | 'ocean' | 'clay';
+export type ReviewedGroupCount = {
+  name: string;
+  count: number;
 };
 
 const authorityProfiles: AuthorityProfile[] = [alexCrenshawPhd];
@@ -195,6 +217,21 @@ export function buildAuthorityJsonLd(profile: AuthorityProfile) {
       },
     ],
   };
+}
+
+export function getReviewedGroupCounts(profile: AuthorityProfile): ReviewedGroupCount[] {
+  return profile.reviewedContentGroups.map((group) => ({
+    name: group.name,
+    count: group.slugs.length,
+  }));
+}
+
+export function getUniqueReviewedSlugCount(profile: AuthorityProfile): number {
+  const slugs = new Set<string>();
+  for (const group of profile.reviewedContentGroups) {
+    for (const slug of group.slugs) slugs.add(slug);
+  }
+  return slugs.size;
 }
 
 export function authorityToTrustAdapter(profile: AuthorityProfile) {

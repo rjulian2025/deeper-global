@@ -1,11 +1,14 @@
 ---
 import AuthorityHero from '@/components/authority/AuthorityHero.astro';
 import AuthorityVideoPlaceholder from '@/components/authority/AuthorityVideoPlaceholder.astro';
-import ClinicalAuthorityBlock from '@/components/authority/ClinicalAuthorityBlock.astro';
+import ClinicalPerspective from '@/components/authority/ClinicalPerspective.astro';
+import DiagnosticJourney from '@/components/authority/DiagnosticJourney.astro';
 import ExpertiseMap from '@/components/authority/ExpertiseMap.astro';
+import KnowledgeNetwork from '@/components/authority/KnowledgeNetwork.astro';
 import ReferralEngine from '@/components/authority/ReferralEngine.astro';
 import ReviewedKnowledge from '@/components/authority/ReviewedKnowledge.astro';
 import ServiceFitCards from '@/components/authority/ServiceFitCards.astro';
+import WhyDrCrenshaw from '@/components/authority/WhyDrCrenshaw.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import {
   authorityPath,
@@ -26,6 +29,10 @@ const authority = Astro.props.authority as AuthorityProfile;
 const questions = await getQuestions();
 const questionsBySlug = new Map(questions.map((question) => [question.slug, question]));
 const jsonLd = buildAuthorityJsonLd(authority);
+
+const perspectiveAfterVideo = authority.clinicalPerspectives.find((p) => p.id === 'after-video');
+const perspectiveNearServiceFit = authority.clinicalPerspectives.find((p) => p.id === 'near-service-fit');
+const perspectiveBeforeTesting = authority.clinicalPerspectives.find((p) => p.id === 'before-testing');
 ---
 
 <BaseLayout
@@ -39,7 +46,11 @@ const jsonLd = buildAuthorityJsonLd(authority);
   <main class="authority-page" data-clinician-slug={authority.slug} data-content-type="authority">
     <AuthorityHero authority={authority} />
     <AuthorityVideoPlaceholder authority={authority} />
+    {perspectiveAfterVideo && <ClinicalPerspective text={perspectiveAfterVideo.text} />}
+    <WhyDrCrenshaw authority={authority} />
     <ServiceFitCards authority={authority} />
+    {perspectiveNearServiceFit && <ClinicalPerspective text={perspectiveNearServiceFit.text} />}
+    <DiagnosticJourney authority={authority} />
 
     <section class="section" aria-labelledby="authority-overview-title">
       <div class="container content">
@@ -50,7 +61,7 @@ const jsonLd = buildAuthorityJsonLd(authority);
     </section>
 
     <ExpertiseMap authority={authority} />
-
+    <KnowledgeNetwork authority={authority} />
     <ReviewedKnowledge authority={authority} questionsBySlug={questionsBySlug} />
 
     <section class="section authority-hub-link" aria-labelledby="adhd-hub-link-title">
@@ -65,6 +76,8 @@ const jsonLd = buildAuthorityJsonLd(authority);
         </div>
       </div>
     </section>
+
+    {perspectiveBeforeTesting && <ClinicalPerspective text={perspectiveBeforeTesting.text} />}
 
     <section class="section" aria-labelledby="service-pathway-title">
       <div class="container">

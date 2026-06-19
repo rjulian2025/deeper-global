@@ -1,0 +1,83 @@
+---
+import type { AuthorityProfile } from '@/lib/authorities';
+
+type Props = {
+  authority: AuthorityProfile;
+};
+
+const { authority } = Astro.props;
+const { whyDrCrenshaw } = authority;
+---
+
+<section class="section why-section" aria-labelledby="why-dr-crenshaw-title">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-intro">
+        <p class="eyebrow">Clinical credibility</p>
+        <h2 id="why-dr-crenshaw-title">{whyDrCrenshaw.title}</h2>
+        <p class="why-lede">
+          Dr. Crenshaw’s authority on this profile reflects focused training in adult assessment, academic
+          research, and evidence-based care — not general directory positioning.
+        </p>
+      </div>
+      <ul class="why-points">
+        {whyDrCrenshaw.points.map((point) => <li>{point}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-section {
+    background: var(--paper);
+  }
+
+  .why-grid {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 900px) {
+    .why-grid {
+      grid-template-columns: 0.95fr 1.05fr;
+      align-items: start;
+    }
+  }
+
+  .why-lede {
+    margin: var(--space-4) 0 0;
+    color: var(--stone);
+    line-height: var(--leading-relaxed);
+    max-width: 34rem;
+  }
+
+  .why-points {
+    margin: 0;
+    padding: var(--space-6);
+    list-style: none;
+    display: grid;
+    gap: var(--space-4);
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--ocean);
+    border-radius: 8px;
+  }
+
+  .why-points li {
+    position: relative;
+    padding-left: 1.4rem;
+    color: var(--ink);
+    line-height: var(--leading-relaxed);
+  }
+
+  .why-points li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: var(--brass);
+  }
+</style>

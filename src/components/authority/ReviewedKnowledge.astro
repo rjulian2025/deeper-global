@@ -11,13 +11,17 @@ type Props = {
 const { authority, questionsBySlug } = Astro.props;
 ---
 
-<section class="section" id="reviewed-knowledge" aria-labelledby="reviewed-knowledge-title">
+<section class="section reviewed-knowledge-section" id="reviewed-knowledge" aria-labelledby="reviewed-knowledge-title">
   <div class="container">
-    <div class="section-header">
+    <div class="reviewed-knowledge-header">
       <div>
         <p class="eyebrow">Reviewed knowledge</p>
-        <h2 id="reviewed-knowledge-title">Clinically Reviewed by {authority.displayName}</h2>
+        <h2 id="reviewed-knowledge-title">Evidence-informed answers</h2>
+        <p class="reviewed-knowledge-intro">{authority.reviewedKnowledgeIntro}</p>
       </div>
+      <p class="reviewed-by-badge" aria-label={`Clinically reviewed by ${authority.displayName}`}>
+        Clinically reviewed by {authority.displayName}
+      </p>
     </div>
     {
       authority.reviewedContentGroups.map((group) => {
@@ -27,7 +31,12 @@ const { authority, questionsBySlug } = Astro.props;
         if (!questions.length) return null;
         return (
           <div class="reviewed-group">
-            <h3>{group.name}</h3>
+            <div class="reviewed-group-head">
+              <h3>{group.name}</h3>
+              <span class="reviewed-group-count">
+                {questions.length} {questions.length === 1 ? 'answer' : 'answers'}
+              </span>
+            </div>
             <div class="question-grid">
               {questions.map((question) => (
                 <div
@@ -47,14 +56,76 @@ const { authority, questionsBySlug } = Astro.props;
 </section>
 
 <style>
+  .reviewed-knowledge-section {
+    background: linear-gradient(180deg, var(--mist) 0%, var(--paper) 100%);
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .reviewed-knowledge-header {
+    display: grid;
+    gap: var(--space-6);
+    margin-bottom: var(--space-10);
+  }
+
+  @media (min-width: 900px) {
+    .reviewed-knowledge-header {
+      grid-template-columns: 1fr auto;
+      align-items: start;
+    }
+  }
+
+  .reviewed-knowledge-intro {
+    margin: var(--space-4) 0 0;
+    max-width: 42rem;
+    color: var(--stone);
+    line-height: var(--leading-relaxed);
+    font-size: var(--text-md);
+  }
+
+  .reviewed-by-badge {
+    margin: 0;
+    padding: var(--space-4) var(--space-5);
+    background: var(--navy);
+    color: var(--white);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    border-radius: 8px;
+    max-width: 18rem;
+  }
+
   .reviewed-group {
     margin-bottom: var(--space-10);
   }
 
-  .reviewed-group h3 {
-    margin: 0 0 var(--space-5);
+  .reviewed-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .reviewed-group-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .reviewed-group-head h3 {
+    margin: 0;
     color: var(--navy);
     font-size: var(--text-xl);
+  }
+
+  .reviewed-group-count {
+    font-size: var(--text-sm);
+    color: var(--stone);
+    font-weight: 600;
   }
 
   .question-grid {
@@ -67,16 +138,8 @@ const { authority, questionsBySlug } = Astro.props;
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
-</style>
 
-<script>
-  document.querySelectorAll('.reviewed-answer-wrap a').forEach((link) => {
-    link.addEventListener('click', () => {
-      const wrap = link.closest('.reviewed-answer-wrap');
-      window.deeperTrackEvent?.('authority_answer_click', {
-        content_type: 'authority',
-        destination: wrap?.getAttribute('data-destination') ?? link.getAttribute('href') ?? undefined,
-      });
-    });
-  });
-</script>
+  .reviewed-answer-wrap :global(.card) {
+    height: 100%;
+  }
+</style>

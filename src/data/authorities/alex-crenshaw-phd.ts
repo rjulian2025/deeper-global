@@ -35,14 +35,46 @@ export const alexCrenshawPhd: AuthorityProfile = {
     'Testing at Peachtree Psychology begins with a phone screening to determine which evaluation fits your concerns. All assessments listed below are conducted in person at the Roswell office.',
   ],
   expertiseDomains: [
-    { id: 'adhd-testing', label: 'Adult ADHD Testing', description: 'Comprehensive multi-method ADHD evaluation for adults.' },
-    { id: 'diagnostic-evaluation', label: 'Diagnostic Evaluation', description: 'Focused assessment for diagnostic clarity across conditions.' },
-    { id: 'ocd', label: 'OCD', description: 'Structured OCD evaluation with ERP-informed recommendations.' },
-    { id: 'anxiety', label: 'Anxiety', description: 'Differentiating anxiety presentations and co-occurring conditions.' },
-    { id: 'depression', label: 'Depression', description: 'Clinical assessment of depressive symptoms and overlapping factors.' },
-    { id: 'ptsd', label: 'PTSD', description: 'Trauma-related assessment integrated with evidence-based care.' },
-    { id: 'psychological-testing', label: 'Psychological Testing', description: 'Adult testing for complex, overlapping presentations.' },
-    { id: 'evidence-based-therapy', label: 'Evidence-Based Therapy', description: 'Research-informed psychotherapy for adults and couples.' },
+    {
+      id: 'adhd-testing',
+      label: 'Adult ADHD Testing',
+      description: 'Focus, executive function, emotional regulation, and diagnostic confirmation.',
+    },
+    {
+      id: 'diagnostic-evaluation',
+      label: 'Diagnostic Evaluation',
+      description: 'When symptoms overlap and the question is “what is actually going on?”',
+    },
+    {
+      id: 'ocd',
+      label: 'OCD',
+      description: 'Intrusive thoughts, compulsive patterns, and ERP-informed treatment direction.',
+    },
+    {
+      id: 'anxiety',
+      label: 'Anxiety',
+      description: 'Worry, avoidance, panic, and anxiety that may overlap with attention concerns.',
+    },
+    {
+      id: 'depression',
+      label: 'Depression',
+      description: 'Low motivation, emotional fatigue, and mood symptoms that can complicate diagnosis.',
+    },
+    {
+      id: 'ptsd',
+      label: 'PTSD',
+      description: 'Trauma-related symptoms that may affect attention, sleep, mood, and threat response.',
+    },
+    {
+      id: 'psychological-testing',
+      label: 'Psychological Testing',
+      description: 'Structured evaluation, clinical interviews, written reports, and treatment recommendations.',
+    },
+    {
+      id: 'evidence-based-therapy',
+      label: 'Evidence-Based Therapy',
+      description: 'CBT, ACT, DBT, IBCT, PE, CPT, CBCT, ERP.',
+    },
   ],
   modalities: ['CBT', 'ACT', 'DBT', 'IBCT', 'PE', 'CPT', 'CBCT', 'ERP'],
   affiliations: [
@@ -183,38 +215,74 @@ export const alexCrenshawPhd: AuthorityProfile = {
     summary:
       'Explore evidence-informed answers about adult ADHD — signs, testing, executive dysfunction, and daily life — clinically reviewed within the Deeper knowledge graph.',
   },
-  videoCarousel: {
-    eyebrow: 'Suggested video topics',
+  videoModule: {
     title: 'Meet Dr. Alex Crenshaw, PhD',
-    description:
-      'Short introductions to adult ADHD testing, diagnostic clarity, and evidence-based care — video series coming soon.',
-    slides: [
-      {
-        id: 'adhd-testing-overview',
-        topic: 'Adult ADHD Testing',
-        headline: 'What a full ADHD evaluation includes',
-        subtitle: 'Testing process, report, and what to expect in Roswell',
-        statusLabel: 'Video Coming Soon',
-        thumbnailAccent: 'navy',
-      },
-      {
-        id: 'adhd-in-women',
-        topic: 'ADHD in Women',
-        headline: 'Signs, masking, and late diagnosis',
-        subtitle: 'Why adult women are often diagnosed later — and what testing clarifies',
-        statusLabel: 'Video Coming Soon',
-        thumbnailAccent: 'clay',
-      },
-      {
-        id: 'anxiety-vs-adhd',
-        topic: 'Anxiety vs ADHD',
-        headline: 'When symptoms overlap',
-        subtitle: 'How structured evaluation helps separate anxiety, ADHD, or both',
-        statusLabel: 'Video Coming Soon',
-        thumbnailAccent: 'ocean',
-      },
+    subtitle: 'A short introduction to adult ADHD testing, diagnostic clarity, and evidence-based care.',
+    statusLabel: 'Video Coming Soon',
+    previewBullets: [
+      'When adult ADHD testing may be useful',
+      'How diagnostic clarity can guide treatment',
+      'What to expect from an evidence-based evaluation',
     ],
   },
+  clinicalPerspectives: [
+    {
+      id: 'after-video',
+      text: 'Many adults seek ADHD testing after years of wondering why effort, focus, and follow-through feel harder than they should.',
+    },
+    {
+      id: 'near-service-fit',
+      text: 'Good evaluation is not just about assigning a label. It is about understanding what is driving the symptoms and what kind of care is most likely to help.',
+    },
+    {
+      id: 'before-testing',
+      text: 'Diagnostic clarity can reduce shame. It helps people stop treating every struggle as a character flaw.',
+    },
+  ],
+  whyDrCrenshaw: {
+    title: 'Why Dr. Crenshaw',
+    points: [
+      'Licensed psychologist with PhD-level training',
+      'Assistant Professor of Psychology at Kennesaw State University',
+      'Focused on adult psychological testing and diagnostic clarity',
+      'Experienced with ADHD, anxiety, OCD, depression, and PTSD presentations',
+      'Uses evidence-based assessment and treatment frameworks',
+    ],
+  },
+  diagnosticJourney: {
+    title: 'From uncertainty to a treatment direction',
+    steps: [
+      {
+        title: 'Symptoms are interfering with life',
+        description: 'Focus, mood, anxiety, or compulsive patterns are affecting work, relationships, or daily functioning.',
+      },
+      {
+        title: 'Patterns are unclear or overlapping',
+        description: 'It can be hard to tell whether ADHD, anxiety, trauma, OCD, or depression is driving what you feel.',
+      },
+      {
+        title: 'Evaluation creates diagnostic clarity',
+        description: 'Structured testing and clinical interview help clarify what fits — and what does not.',
+      },
+      {
+        title: 'Findings guide treatment, documentation, and next steps',
+        description: 'A written report supports treatment planning and documentation when clinically appropriate.',
+      },
+    ],
+    cta: {
+      label: 'Compare evaluation options',
+      href: `${PEACHTREE}/service/psychological-testing`,
+    },
+  },
+  knowledgeNetwork: {
+    title: 'Dr. Crenshaw’s Knowledge Network',
+    description:
+      'Deeper connects clinical expertise to high-intent mental health questions, so readers can move from general education toward trusted next steps.',
+    ctaLabel: 'Browse reviewed answers',
+  },
+  reviewedKnowledgeIntro:
+    'These answers are clinically reviewed for accuracy, clarity, and educational value — connecting evidence-informed guidance to the questions adults ask before seeking evaluation or care.',
+  expertiseSectionTitle: 'Clinical authority domains',
   disclaimers: [
     'All testing is conducted in person at Peachtree Psychology\'s Roswell office (555 Sun Valley Drive, Suite M-2).',
     'Evaluations are self-pay. Insurance is not billed directly.',

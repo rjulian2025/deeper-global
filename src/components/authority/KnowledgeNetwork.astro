@@ -1,0 +1,95 @@
+---
+import { getReviewedGroupCounts, type AuthorityProfile } from '@/lib/authorities';
+
+type Props = {
+  authority: AuthorityProfile;
+};
+
+const { authority } = Astro.props;
+const { knowledgeNetwork } = authority;
+const groupCounts = getReviewedGroupCounts(authority);
+---
+
+<section class="section knowledge-network" aria-labelledby="knowledge-network-title">
+  <div class="container">
+    <div class="knowledge-network-intro">
+      <p class="eyebrow">Reviewed knowledge ecosystem</p>
+      <h2 id="knowledge-network-title">{knowledgeNetwork.title}</h2>
+      <p>{knowledgeNetwork.description}</p>
+    </div>
+    <div class="knowledge-metrics">
+      {
+        groupCounts.map((group) => (
+          <article class="metric-card card">
+            <p class="metric-count">
+              {group.count} {group.name} {group.count === 1 ? 'answer' : 'answers'} reviewed
+            </p>
+          </article>
+        ))
+      }
+    </div>
+    <a
+      class="button secondary knowledge-network-cta"
+      href="#reviewed-knowledge"
+      data-authority-event="clinical_authority_cta_click"
+      data-cta-label="browse_reviewed_answers"
+      data-destination="#reviewed-knowledge"
+    >
+      {knowledgeNetwork.ctaLabel}
+    </a>
+  </div>
+</section>
+
+<style>
+  .knowledge-network {
+    background: var(--paper);
+  }
+
+  .knowledge-network-intro {
+    max-width: 42rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .knowledge-network-intro p:last-child {
+    margin: var(--space-4) 0 0;
+    color: var(--stone);
+    line-height: var(--leading-relaxed);
+  }
+
+  .knowledge-metrics {
+    display: grid;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .knowledge-metrics {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .knowledge-metrics {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .metric-card {
+    padding: var(--space-5) var(--space-6);
+    min-height: 5.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .metric-count {
+    margin: 0;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    color: var(--navy);
+  }
+
+  .knowledge-network-cta {
+    display: inline-flex;
+  }
+</style>
