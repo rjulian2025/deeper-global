@@ -1,5 +1,7 @@
 export const SITE_URL = 'https://www.deeper.global';
 export const SITE_NAME = 'Deeper Global';
+export const CONTENT_LICENSE_NAME = 'CC BY 4.0';
+export const CONTENT_LICENSE_URL = 'https://creativecommons.org/licenses/by/4.0/';
 
 export function normalizePath(path = '/') {
   const value = path.startsWith('/') ? path : `/${path}`;

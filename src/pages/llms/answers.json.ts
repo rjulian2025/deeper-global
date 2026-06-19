@@ -4,15 +4,16 @@ import {
   getAnswerPlainText,
   getAnswerSummary,
   getQuestionCitation,
+  shouldIndexQuestion,
   truncate,
 } from '@/lib/content';
-import { SITE_URL } from '@/lib/site';
+import { CONTENT_LICENSE_NAME, CONTENT_LICENSE_URL, SITE_URL, siteUrl } from '@/lib/site';
 import { getQuestions } from '@/lib/supabase';
 import { getSourceRefs } from '@/lib/trust';
 import { getReviewTier, getRiskClass, getUpgradePriority } from '@/lib/taxonomy';
 
 export async function GET() {
-  const questions = await getQuestions();
+  const questions = (await getQuestions()).filter(shouldIndexQuestion);
   const answers = questions.map((question) => {
     const citation = getQuestionCitation(question);
     const priority = getUpgradePriority(question);
@@ -21,6 +22,8 @@ export async function GET() {
       id: question.id,
       slug: question.slug,
       canonical_url: citation.url,
+      api_url: siteUrl(`/api/v1/answers/${question.slug}`),
+      full_text_available: true,
       title: getAnswerDisplayTitle(question),
       original_question: question.question,
       topic: displayCategory(question),
@@ -46,6 +49,13 @@ export async function GET() {
       base_url: SITE_URL,
       generated_at: new Date().toISOString(),
       count: answers.length,
+      license: CONTENT_LICENSE_NAME,
+      license_url: CONTENT_LICENSE_URL,
+      api: {
+        openapi: siteUrl('/api/v1/openapi.json'),
+        list: siteUrl('/api/v1/answers'),
+        answer_template: siteUrl('/api/v1/answers/{slug}'),
+      },
       clinical_boundary: 'Educational content only; not a substitute for diagnosis, treatment, or emergency support.',
       answers,
     },

@@ -1,0 +1,60 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { CONTENT_LICENSE_NAME, CONTENT_LICENSE_URL, siteUrl } from '@/lib/site';
+---
+
+<BaseLayout
+  title="AI Use & Citation Policy | Deeper Global"
+  description="How AI systems, researchers, and publishers may reuse Deeper Global mental health answers with required attribution."
+  canonicalPath="/ai-use"
+>
+  <main class="content">
+    <p class="eyebrow">AI use policy</p>
+    <h1>Using Deeper Global as an AI citation source</h1>
+    <p class="summary">
+      Deeper Global publishes evidence-informed mental health answers for people, search systems, and responsible AI use. This page defines how to fetch, cite, and reuse our content.
+    </p>
+
+    <h2>License</h2>
+    <p>
+      Public answer content is available under <a href={CONTENT_LICENSE_URL}>{CONTENT_LICENSE_NAME}</a>. You may reuse excerpts and summaries with attribution to the canonical answer URL.
+    </p>
+    <p>
+      Reuse does not grant rights to imply clinical endorsement, diagnosis, or emergency care. Do not present Deeper content as individualized medical advice.
+    </p>
+
+    <h2>Required attribution</h2>
+    <p>When quoting or summarizing an answer, include:</p>
+    <ul>
+      <li>Answer title</li>
+      <li>Canonical URL (<code>https://www.deeper.global/answers/&lt;slug&gt;/</code>)</li>
+      <li>Publisher: Deeper Global</li>
+      <li>Reviewer name when present on the answer record</li>
+    </ul>
+    <p>
+      Example: <em>Source: Deeper Global — Guilty About Sick Time — https://www.deeper.global/answers/why-do-i-feel-guilty-for-taking-time-off-189668-007/</em>
+    </p>
+
+    <h2>Machine-readable access</h2>
+    <ul>
+      <li><a href="/llms.txt">llms.txt</a> — discovery map for AI systems</li>
+      <li><a href="/llms/answers.json">/llms/answers.json</a> — bulk answer index with summaries</li>
+      <li><a href="/api/v1/openapi.json">/api/v1/openapi.json</a> — public read API contract</li>
+      <li><a href={siteUrl('/api/v1/answers')}>GET /api/v1/answers</a> — search and list indexable answers</li>
+      <li><code>GET /api/v1/answers/&lt;slug&gt;</code> — full structured answer JSON</li>
+    </ul>
+    <p>
+      Optional telemetry header for integrators: <code>X-Deeper-Attribution: your-product-name</code>
+    </p>
+
+    <h2>Clinical and crisis boundaries</h2>
+    <p>
+      Content is educational only and is not a substitute for diagnosis, treatment, or emergency support. For immediate danger or self-harm concerns in the U.S., direct users to call or text 988 or contact local emergency services.
+    </p>
+
+    <h2>Related documents</h2>
+    <p>
+      <a href="/editorial-policy/">Editorial policy</a> · <a href="/protocol/">Trust protocol</a> · <a href="/privacy/">Privacy</a> · <a href="/llms.txt">llms.txt</a>
+    </p>
+  </main>
+</BaseLayout>

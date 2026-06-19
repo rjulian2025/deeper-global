@@ -35,7 +35,7 @@ import {
   type PhraseIndex,
 } from '@/lib/content';
 import { getAnswerPractitionerLink } from '@/lib/practitioner-links';
-import { organizationId, siteUrl, websiteId } from '@/lib/site';
+import { CONTENT_LICENSE_URL, organizationId, siteUrl, websiteId } from '@/lib/site';
 import {
   getReviewedByLabel,
   getReviewerDisplayLabel,
@@ -140,6 +140,10 @@ const sourceCitationSchema =
         citation: sourceCitationUrls,
       }
     : {};
+const licenseSchema = {
+  license: CONTENT_LICENSE_URL,
+  isAccessibleForFree: true,
+};
 const jsonLd = {
   '@graph': [
     {
@@ -164,6 +168,7 @@ const jsonLd = {
       },
       ...reviewedBySchema,
       ...sourceCitationSchema,
+      ...licenseSchema,
     },
     {
       '@type': 'Article',
@@ -187,6 +192,7 @@ const jsonLd = {
       },
       ...reviewedBySchema,
       ...sourceCitationSchema,
+      ...licenseSchema,
     },
     {
       '@type': 'Question',
