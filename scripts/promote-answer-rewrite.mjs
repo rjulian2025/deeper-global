@@ -47,6 +47,8 @@ function parseArgs(argv) {
     unpromotedOnly: true,
     allowWarn: false,
     preserveReview: true,
+    reviewer: null,
+    reviewedAt: null,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -69,6 +71,28 @@ function parseArgs(argv) {
     }
     if (arg === '--overwrite-review') {
       args.preserveReview = false;
+      continue;
+    }
+    if (arg === '--reviewer') {
+      const value = argv[index + 1];
+      if (!value) throw new Error('--reviewer requires a value.');
+      args.reviewer = value;
+      index += 1;
+      continue;
+    }
+    if (arg.startsWith('--reviewer=')) {
+      args.reviewer = arg.slice('--reviewer='.length);
+      continue;
+    }
+    if (arg === '--reviewed-at') {
+      const value = argv[index + 1];
+      if (!value) throw new Error('--reviewed-at requires a value.');
+      args.reviewedAt = value;
+      index += 1;
+      continue;
+    }
+    if (arg.startsWith('--reviewed-at=')) {
+      args.reviewedAt = arg.slice('--reviewed-at='.length);
       continue;
     }
     if (arg === '--slug') {
@@ -190,7 +214,11 @@ async function main() {
 
   const updates = promotable.map(({ row }) => ({
     slug: row.slug,
-    ...buildPromotionUpdateFromStaging(row, { preserveReview: args.preserveReview }),
+    ...buildPromotionUpdateFromStaging(row, {
+      preserveReview: args.preserveReview,
+      reviewer: args.reviewer,
+      reviewedAt: args.reviewedAt,
+    }),
   }));
 
   if (!args.apply) {

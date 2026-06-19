@@ -69,6 +69,7 @@
     "content:reset-staging-rewrite": "node scripts/reset-staging-rewrite.mjs",
     "content:promote-answer-rewrite": "node scripts/promote-answer-rewrite.mjs",
     "content:promote-answer-rewrite:safe": "npm run content:qa-answer-rewrite && node scripts/promote-answer-rewrite.mjs --apply --allow-warn",
+    "content:approve-unreviewed-corpus": "node scripts/approve-unreviewed-corpus.mjs",
     "content:promote-enrichment": "node scripts/promote-enrichment-drafts.mjs",
     "content:apply-enrichment": "node scripts/apply-enrichment.mjs",
     "content:apply-integrity-fixes": "node scripts/apply-data-integrity-fixes.mjs",
