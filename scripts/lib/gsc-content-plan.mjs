@@ -228,8 +228,10 @@ export async function buildWeeklyContentPlan({
   mode = 'recommend',
   maxBatchSize = MAX_BATCH_SIZE,
   includeQueryGaps = false,
+  windowDays = 28,
+  lagDays = 3,
 } = {}) {
-  const gsc = await fetchAnswerPageMetricsComparison({ includeQueries: includeQueryGaps });
+  const gsc = await fetchAnswerPageMetricsComparison({ includeQueries: includeQueryGaps, windowDays, lagDays });
   const questions = await fetchAllQuestions(supabaseClient);
   const { bySlug, questionTexts } = buildSlugIndex(questions);
 
@@ -335,6 +337,8 @@ export async function buildWeeklyContentPlan({
       available: gsc.available,
       reason: gsc.available ? null : gsc.reason,
       site_url: gsc.siteUrl,
+      window_days: windowDays,
+      lag_days: lagDays,
       current_range: gsc.current.dateRange,
       prior_range: gsc.prior.dateRange,
       answer_pages_with_signal: candidates.length,
@@ -366,6 +370,7 @@ export function planMarkdown(plan) {
     '',
     `Generated: ${plan.generated_at}`,
     `Mode: **${plan.mode}** (scope: ${plan.scope})`,
+    `Window: **${plan.gsc.window_days ?? 28} days** (lag: ${plan.gsc.lag_days ?? 3} days)`,
     `Primary success metric: **${plan.success_metric}**`,
     '',
     '## GSC status',
