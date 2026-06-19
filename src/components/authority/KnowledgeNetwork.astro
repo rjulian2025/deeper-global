@@ -1,13 +1,18 @@
 ---
-import { getReviewedGroupCounts, type AuthorityProfile } from '@/lib/authorities';
+import AccentCallout from '@/components/authority/AccentCallout.astro';
+import { getResolvedReviewedGroupCounts, type AuthorityProfile } from '@/lib/authorities';
+import type { Question } from '@/lib/supabase';
 
 type Props = {
   authority: AuthorityProfile;
+  questionsBySlug: Map<string, Question>;
 };
 
-const { authority } = Astro.props;
+const { authority, questionsBySlug } = Astro.props;
 const { knowledgeNetwork } = authority;
-const groupCounts = getReviewedGroupCounts(authority);
+const groupCounts = getResolvedReviewedGroupCounts(authority, questionsBySlug).filter(
+  (group) => group.count > 0
+);
 
 function metricLabel(name: string, count: number): string {
   const topic = name === 'OCD' && count === 1 ? 'OCD Answer' : `${name} Answers`;
@@ -22,14 +27,16 @@ function metricLabel(name: string, count: number): string {
         <p class="eyebrow">Reviewed knowledge ecosystem</p>
         <h2 id="knowledge-network-title">{knowledgeNetwork.title}</h2>
         <p class="knowledge-network-lede">{knowledgeNetwork.description}</p>
-        <p class="knowledge-network-value">{knowledgeNetwork.valueExplanation}</p>
+        <AccentCallout tone="ocean" padded class="knowledge-network-value-callout">
+          <p class="knowledge-network-value">{knowledgeNetwork.valueExplanation}</p>
+        </AccentCallout>
       </div>
       <div class="knowledge-metrics">
         {
           groupCounts.map((group) => (
-            <article class="metric-card card">
+            <AccentCallout tone="brass" class="metric-card accent-callout--card">
               <p class="metric-count">{metricLabel(group.name, group.count)}</p>
-            </article>
+            </AccentCallout>
           ))
         }
       </div>
@@ -71,12 +78,13 @@ function metricLabel(name: string, count: number): string {
     line-height: var(--leading-relaxed);
   }
 
-  .knowledge-network-value {
-    margin: var(--space-4) 0 0;
-    padding: var(--space-5) var(--space-5) var(--space-5) var(--accent-inset);
-    border-left: var(--accent-bar-width) solid var(--ocean);
+  .knowledge-network-value-callout {
+    margin-top: var(--space-4);
     background: var(--white);
-    border-radius: 0 8px 8px 0;
+  }
+
+  .knowledge-network-value {
+    margin: 0;
     color: var(--ink);
     line-height: var(--leading-relaxed);
     font-size: var(--text-md);
@@ -94,12 +102,9 @@ function metricLabel(name: string, count: number): string {
   }
 
   .metric-card {
-    padding: var(--space-5) var(--space-6);
     min-height: 5.5rem;
     display: flex;
     align-items: center;
-    border-left: var(--accent-bar-width) solid var(--brass);
-    padding-left: var(--accent-inset);
   }
 
   .metric-count {
@@ -112,12 +117,5 @@ function metricLabel(name: string, count: number): string {
 
   .knowledge-network-cta {
     display: inline-flex;
-  }
-
-  @media (max-width: 640px) {
-    .knowledge-network-value,
-    .metric-card {
-      padding-left: calc(var(--space-5) + var(--accent-bar-gap));
-    }
   }
 </style>

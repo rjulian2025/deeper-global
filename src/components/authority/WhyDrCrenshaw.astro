@@ -1,4 +1,5 @@
 ---
+import AccentCallout from '@/components/authority/AccentCallout.astro';
 import type { AuthorityProfile } from '@/lib/authorities';
 
 type Props = {
@@ -19,10 +20,10 @@ const { whyDrCrenshaw } = authority;
     <div class="why-cards">
       {
         whyDrCrenshaw.cards.map((card) => (
-          <article class="why-card card">
+          <AccentCallout tone="brass" class="why-card accent-callout--card">
             <h3>{card.title}</h3>
             <p>{card.description}</p>
-          </article>
+          </AccentCallout>
         ))
       }
     </div>
@@ -56,15 +57,8 @@ const { whyDrCrenshaw } = authority;
     }
   }
 
-  .why-card {
-    padding: var(--space-6) var(--space-6) var(--space-6) var(--accent-inset);
-    border-left: var(--accent-bar-width) solid var(--brass);
-    display: grid;
-    gap: var(--space-3);
-  }
-
   .why-card h3 {
-    margin: 0;
+    margin: 0 0 var(--space-3);
     font-size: var(--text-lg);
     color: var(--navy);
   }
@@ -74,11 +68,5 @@ const { whyDrCrenshaw } = authority;
     color: var(--stone);
     line-height: var(--leading-relaxed);
     font-size: 0.9375rem;
-  }
-
-  @media (max-width: 640px) {
-    .why-card {
-      padding-left: calc(var(--space-5) + var(--accent-bar-gap));
-    }
   }
 </style>

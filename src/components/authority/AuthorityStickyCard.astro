@@ -1,23 +1,31 @@
 ---
-import { getReviewedGroupCounts, type AuthorityProfile } from '@/lib/authorities';
+import AccentCallout from '@/components/authority/AccentCallout.astro';
+import { getResolvedUniqueReviewedCount, type AuthorityProfile } from '@/lib/authorities';
+import type { Question } from '@/lib/supabase';
 
 type Props = {
   authority: AuthorityProfile;
+  questionsBySlug: Map<string, Question>;
 };
 
-const { authority } = Astro.props;
-const groupCounts = getReviewedGroupCounts(authority);
-const adhdCount = groupCounts.find((group) => group.name === 'ADHD')?.count ?? 0;
+const { authority, questionsBySlug } = Astro.props;
+const reviewedAnswerCount = getResolvedUniqueReviewedCount(authority, questionsBySlug);
 ---
 
 <aside class="authority-sticky-card" aria-label="Authority summary">
-  <div class="sticky-card-inner">
+  <AccentCallout tone="brass" class="sticky-card-callout accent-callout--card">
     <p class="sticky-name">{authority.displayName}</p>
     <ul class="sticky-facts">
       <li>Adult ADHD Testing</li>
       <li>Diagnostic Evaluation</li>
       <li>Assistant Professor</li>
-      {adhdCount > 0 ? <li>{adhdCount} ADHD Answers Reviewed</li> : null}
+      {
+        reviewedAnswerCount > 0 ? (
+          <li>
+            {reviewedAnswerCount} {reviewedAnswerCount === 1 ? 'Answer' : 'Answers'} Reviewed
+          </li>
+        ) : null
+      }
     </ul>
     <div class="sticky-actions">
       <a
@@ -41,7 +49,7 @@ const adhdCount = groupCounts.find((group) => group.name === 'ADHD')?.count ?? 0
         Call
       </a>
     </div>
-  </div>
+  </AccentCallout>
 </aside>
 
 <style>
@@ -60,13 +68,8 @@ const adhdCount = groupCounts.find((group) => group.name === 'ADHD')?.count ?? 0
       pointer-events: none;
     }
 
-    .sticky-card-inner {
+    .sticky-card-callout {
       pointer-events: auto;
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-left: var(--accent-bar-width) solid var(--brass);
-      border-radius: 8px;
-      padding: var(--space-5) var(--space-5) var(--space-5) var(--accent-inset);
       box-shadow: var(--shadow);
     }
 

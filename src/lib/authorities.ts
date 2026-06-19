@@ -246,6 +246,29 @@ export function getReviewedGroupCounts(profile: AuthorityProfile): ReviewedGroup
   }));
 }
 
+export function getResolvedReviewedGroupCounts(
+  profile: AuthorityProfile,
+  questionsBySlug: Map<string, Question>
+): ReviewedGroupCount[] {
+  return profile.reviewedContentGroups.map((group) => ({
+    name: group.name,
+    count: group.slugs.filter((slug) => questionsBySlug.has(slug)).length,
+  }));
+}
+
+export function getResolvedUniqueReviewedCount(
+  profile: AuthorityProfile,
+  questionsBySlug: Map<string, Question>
+): number {
+  const slugs = new Set<string>();
+  for (const group of profile.reviewedContentGroups) {
+    for (const slug of group.slugs) {
+      if (questionsBySlug.has(slug)) slugs.add(slug);
+    }
+  }
+  return slugs.size;
+}
+
 export function getUniqueReviewedSlugCount(profile: AuthorityProfile): number {
   const slugs = new Set<string>();
   for (const group of profile.reviewedContentGroups) {

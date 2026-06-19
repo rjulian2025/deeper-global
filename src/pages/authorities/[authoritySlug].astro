@@ -45,7 +45,7 @@ const perspectiveBeforeTesting = authority.clinicalPerspectives.find((p) => p.id
   jsonLd={jsonLd}
 >
   <main class="authority-page" data-clinician-slug={authority.slug} data-content-type="authority">
-    <AuthorityStickyCard authority={authority} />
+    <AuthorityStickyCard authority={authority} questionsBySlug={questionsBySlug} />
     <AuthorityHero authority={authority} />
     <AuthorityVideoPlaceholder authority={authority} />
     {perspectiveAfterVideo && <ClinicalPerspective text={perspectiveAfterVideo.text} />}
@@ -63,7 +63,7 @@ const perspectiveBeforeTesting = authority.clinicalPerspectives.find((p) => p.id
     </section>
 
     <ExpertiseMap authority={authority} />
-    <KnowledgeNetwork authority={authority} />
+    <KnowledgeNetwork authority={authority} questionsBySlug={questionsBySlug} />
     <ReviewedKnowledge authority={authority} questionsBySlug={questionsBySlug} />
 
     <section class="section authority-hub-link" aria-labelledby="adhd-hub-link-title">
