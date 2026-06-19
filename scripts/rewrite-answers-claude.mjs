@@ -12,7 +12,7 @@
  *   npm run content:rewrite-answers-claude -- --apply
  *   npm run content:rewrite-answers-claude -- --apply --all
  */
-import { appendFileSync, mkdirSync, writeFileSync } from 'node:fs';
+import { appendFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import Anthropic from '@anthropic-ai/sdk';
 import { createClient } from '@supabase/supabase-js';
 import {
@@ -58,6 +58,7 @@ function parseArgs(argv) {
     limit: DEFAULT_LIMIT,
     batchSize: DEFAULT_BATCH_SIZE,
     model: process.env.ANTHROPIC_MODEL?.trim() || DEFAULT_MODEL,
+    slugsFile: null,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -95,6 +96,15 @@ function parseArgs(argv) {
     }
     if (arg.startsWith('--model=')) {
       args.model = arg.slice('--model='.length);
+      continue;
+    }
+    if (arg === '--slugs-file') {
+      args.slugsFile = argv[index + 1] ?? null;
+      index += 1;
+      continue;
+    }
+    if (arg.startsWith('--slugs-file=')) {
+      args.slugsFile = arg.slice('--slugs-file='.length);
     }
   }
 
@@ -320,6 +330,36 @@ async function fetchPendingRecords(supabase, limit) {
   return records;
 }
 
+function loadSlugsFromFile(path) {
+  const payload = JSON.parse(readFileSync(path, 'utf8'));
+  if (Array.isArray(payload)) return payload.map((slug) => cleanText(slug)).filter(Boolean);
+  if (Array.isArray(payload.slugs)) return payload.slugs.map((slug) => cleanText(slug)).filter(Boolean);
+  if (Array.isArray(payload.auto_stage_slugs)) {
+    return payload.auto_stage_slugs.map((slug) => cleanText(slug)).filter(Boolean);
+  }
+  throw new Error('Slugs file must be a JSON array or { slugs: [] } object.');
+}
+
+async function fetchRecordsBySlugs(supabase, slugs) {
+  if (!slugs.length) return [];
+
+  const { data, error } = await supabase
+    .from(TABLE)
+    .select(SELECT_COLUMNS)
+    .in('slug', slugs)
+    .is('staging_rewrite_at', null)
+    .not('question', 'is', null);
+
+  if (error) {
+    throw new Error(`Failed to fetch slug records: ${error.message}`);
+  }
+
+  const bySlug = new Map((data ?? []).map((record) => [record.slug, record]));
+  return slugs
+    .map((slug) => bySlug.get(slug))
+    .filter((record) => record && currentAnswerText(record));
+}
+
 async function rewriteRecord(client, record, model) {
   const startedAt = Date.now();
   const userMessage = buildUserMessage(record);
@@ -462,7 +502,9 @@ async function main() {
   const supabase = createClient(url, key, { auth: { persistSession: false } });
   const anthropic = anthropicApiKey ? new Anthropic({ apiKey: anthropicApiKey }) : null;
 
-  const records = await fetchPendingRecords(supabase, args.limit);
+  const records = args.slugsFile
+    ? await fetchRecordsBySlugs(supabase, loadSlugsFromFile(args.slugsFile))
+    : await fetchPendingRecords(supabase, args.limit);
   if (!records.length) {
     console.log(JSON.stringify({ message: 'No pending records found.', processed: 0 }, null, 2));
     return;
