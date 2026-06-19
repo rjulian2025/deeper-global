@@ -183,10 +183,37 @@ export const alexCrenshawPhd: AuthorityProfile = {
     summary:
       'Explore evidence-informed answers about adult ADHD — signs, testing, executive dysfunction, and daily life — clinically reviewed within the Deeper knowledge graph.',
   },
-  videoPlaceholder: {
-    headline: 'Meet Dr. Alex Crenshaw, PhD',
-    subtitle: 'Adult ADHD Testing & Psychological Evaluation',
-    statusLabel: 'Video Coming Soon',
+  videoCarousel: {
+    eyebrow: 'Suggested video topics',
+    title: 'Meet Dr. Alex Crenshaw, PhD',
+    description:
+      'Short introductions to adult ADHD testing, diagnostic clarity, and evidence-based care — video series coming soon.',
+    slides: [
+      {
+        id: 'adhd-testing-overview',
+        topic: 'Adult ADHD Testing',
+        headline: 'What a full ADHD evaluation includes',
+        subtitle: 'Testing process, report, and what to expect in Roswell',
+        statusLabel: 'Video Coming Soon',
+        thumbnailAccent: 'navy',
+      },
+      {
+        id: 'adhd-in-women',
+        topic: 'ADHD in Women',
+        headline: 'Signs, masking, and late diagnosis',
+        subtitle: 'Why adult women are often diagnosed later — and what testing clarifies',
+        statusLabel: 'Video Coming Soon',
+        thumbnailAccent: 'clay',
+      },
+      {
+        id: 'anxiety-vs-adhd',
+        topic: 'Anxiety vs ADHD',
+        headline: 'When symptoms overlap',
+        subtitle: 'How structured evaluation helps separate anxiety, ADHD, or both',
+        statusLabel: 'Video Coming Soon',
+        thumbnailAccent: 'ocean',
+      },
+    ],
   },
   disclaimers: [
     'All testing is conducted in person at Peachtree Psychology\'s Roswell office (555 Sun Valley Drive, Suite M-2).',

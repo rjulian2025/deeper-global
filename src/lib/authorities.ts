@@ -76,13 +76,23 @@ export type AuthorityProfile = {
     hubLabel: string;
     summary: string;
   };
-  videoPlaceholder: {
-    headline: string;
-    subtitle: string;
-    statusLabel: string;
+  videoCarousel: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    slides: AuthorityVideoSlide[];
   };
   disclaimers: string[];
   sameAs: string[];
+};
+
+export type AuthorityVideoSlide = {
+  id: string;
+  topic: string;
+  headline: string;
+  subtitle: string;
+  statusLabel: string;
+  thumbnailAccent: 'navy' | 'ocean' | 'clay';
 };
 
 const authorityProfiles: AuthorityProfile[] = [alexCrenshawPhd];
