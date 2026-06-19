@@ -16,7 +16,7 @@ const { authority, questionsBySlug } = Astro.props;
     <div class="reviewed-knowledge-header">
       <div>
         <p class="eyebrow">Reviewed knowledge</p>
-        <h2 id="reviewed-knowledge-title">Evidence-informed answers</h2>
+        <h2 id="reviewed-knowledge-title">{authority.reviewedKnowledgeTitle}</h2>
         <p class="reviewed-knowledge-intro">{authority.reviewedKnowledgeIntro}</p>
       </div>
       <p class="reviewed-by-badge" aria-label={`Clinically reviewed by ${authority.displayName}`}>
@@ -77,6 +77,11 @@ const { authority, questionsBySlug } = Astro.props;
     }
   }
 
+  .reviewed-knowledge-header h2 {
+    font-size: clamp(1.75rem, 3vw, var(--text-3xl));
+    max-width: 16ch;
+  }
+
   .reviewed-knowledge-intro {
     margin: var(--space-4) 0 0;
     max-width: 42rem;
@@ -87,7 +92,8 @@ const { authority, questionsBySlug } = Astro.props;
 
   .reviewed-by-badge {
     margin: 0;
-    padding: var(--space-4) var(--space-5);
+    padding: var(--space-5) var(--space-6);
+    padding-left: var(--accent-inset);
     background: var(--navy);
     color: var(--white);
     font-size: var(--text-sm);
@@ -95,6 +101,7 @@ const { authority, questionsBySlug } = Astro.props;
     line-height: var(--leading-snug);
     border-radius: 8px;
     max-width: 18rem;
+    border-left: var(--accent-bar-width) solid var(--brass);
   }
 
   .reviewed-group {

@@ -8,25 +8,31 @@ type Props = {
 const { authority } = Astro.props;
 const { knowledgeNetwork } = authority;
 const groupCounts = getReviewedGroupCounts(authority);
+
+function metricLabel(name: string, count: number): string {
+  const topic = name === 'OCD' && count === 1 ? 'OCD Answer' : `${name} Answers`;
+  return `${count} ${topic} Reviewed`;
+}
 ---
 
 <section class="section knowledge-network" aria-labelledby="knowledge-network-title">
   <div class="container">
-    <div class="knowledge-network-intro">
-      <p class="eyebrow">Reviewed knowledge ecosystem</p>
-      <h2 id="knowledge-network-title">{knowledgeNetwork.title}</h2>
-      <p>{knowledgeNetwork.description}</p>
-    </div>
-    <div class="knowledge-metrics">
-      {
-        groupCounts.map((group) => (
-          <article class="metric-card card">
-            <p class="metric-count">
-              {group.count} {group.name} {group.count === 1 ? 'answer' : 'answers'} reviewed
-            </p>
-          </article>
-        ))
-      }
+    <div class="knowledge-network-grid">
+      <div class="knowledge-network-intro">
+        <p class="eyebrow">Reviewed knowledge ecosystem</p>
+        <h2 id="knowledge-network-title">{knowledgeNetwork.title}</h2>
+        <p class="knowledge-network-lede">{knowledgeNetwork.description}</p>
+        <p class="knowledge-network-value">{knowledgeNetwork.valueExplanation}</p>
+      </div>
+      <div class="knowledge-metrics">
+        {
+          groupCounts.map((group) => (
+            <article class="metric-card card">
+              <p class="metric-count">{metricLabel(group.name, group.count)}</p>
+            </article>
+          ))
+        }
+      </div>
     </div>
     <a
       class="button secondary knowledge-network-cta"
@@ -43,34 +49,47 @@ const groupCounts = getReviewedGroupCounts(authority);
 <style>
   .knowledge-network {
     background: var(--paper);
+    border-top: 1px solid var(--line);
   }
 
-  .knowledge-network-intro {
-    max-width: 42rem;
+  .knowledge-network-grid {
+    display: grid;
+    gap: var(--space-8);
     margin-bottom: var(--space-6);
   }
 
-  .knowledge-network-intro p:last-child {
+  @media (min-width: 1024px) {
+    .knowledge-network-grid {
+      grid-template-columns: 1fr 1.05fr;
+      align-items: start;
+    }
+  }
+
+  .knowledge-network-lede {
     margin: var(--space-4) 0 0;
     color: var(--stone);
     line-height: var(--leading-relaxed);
   }
 
+  .knowledge-network-value {
+    margin: var(--space-4) 0 0;
+    padding: var(--space-5) var(--space-5) var(--space-5) var(--accent-inset);
+    border-left: var(--accent-bar-width) solid var(--ocean);
+    background: var(--white);
+    border-radius: 0 8px 8px 0;
+    color: var(--ink);
+    line-height: var(--leading-relaxed);
+    font-size: var(--text-md);
+  }
+
   .knowledge-metrics {
     display: grid;
     gap: var(--space-4);
-    margin-bottom: var(--space-6);
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     .knowledge-metrics {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .knowledge-metrics {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 
@@ -79,6 +98,8 @@ const groupCounts = getReviewedGroupCounts(authority);
     min-height: 5.5rem;
     display: flex;
     align-items: center;
+    border-left: var(--accent-bar-width) solid var(--brass);
+    padding-left: var(--accent-inset);
   }
 
   .metric-count {
@@ -91,5 +112,12 @@ const groupCounts = getReviewedGroupCounts(authority);
 
   .knowledge-network-cta {
     display: inline-flex;
+  }
+
+  @media (max-width: 640px) {
+    .knowledge-network-value,
+    .metric-card {
+      padding-left: calc(var(--space-5) + var(--accent-bar-gap));
+    }
   }
 </style>

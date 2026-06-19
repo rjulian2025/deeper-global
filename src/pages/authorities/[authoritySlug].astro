@@ -1,5 +1,6 @@
 ---
 import AuthorityHero from '@/components/authority/AuthorityHero.astro';
+import AuthorityStickyCard from '@/components/authority/AuthorityStickyCard.astro';
 import AuthorityVideoPlaceholder from '@/components/authority/AuthorityVideoPlaceholder.astro';
 import ClinicalPerspective from '@/components/authority/ClinicalPerspective.astro';
 import DiagnosticJourney from '@/components/authority/DiagnosticJourney.astro';
@@ -44,6 +45,7 @@ const perspectiveBeforeTesting = authority.clinicalPerspectives.find((p) => p.id
   jsonLd={jsonLd}
 >
   <main class="authority-page" data-clinician-slug={authority.slug} data-content-type="authority">
+    <AuthorityStickyCard authority={authority} />
     <AuthorityHero authority={authority} />
     <AuthorityVideoPlaceholder authority={authority} />
     {perspectiveAfterVideo && <ClinicalPerspective text={perspectiveAfterVideo.text} />}
@@ -65,7 +67,7 @@ const perspectiveBeforeTesting = authority.clinicalPerspectives.find((p) => p.id
     <ReviewedKnowledge authority={authority} questionsBySlug={questionsBySlug} />
 
     <section class="section authority-hub-link" aria-labelledby="adhd-hub-link-title">
-      <div class="container card">
+      <div class="container authority-hub-card card">
         <p class="eyebrow">ADHD ecosystem</p>
         <h2 id="adhd-hub-link-title">Clinical Authority for ADHD Testing</h2>
         <p>{authority.hubConnections.summary}</p>
@@ -79,12 +81,33 @@ const perspectiveBeforeTesting = authority.clinicalPerspectives.find((p) => p.id
 
     {perspectiveBeforeTesting && <ClinicalPerspective text={perspectiveBeforeTesting.text} />}
 
+    <section class="section authority-trust" aria-labelledby="trust-layer-title">
+      <div class="container authority-trust-card card">
+        <p class="eyebrow">Trust layer</p>
+        <h2 id="trust-layer-title">Credentials and affiliations</h2>
+        <ul class="trust-facts">
+          <li><strong>{authority.role}</strong>, {authority.credentials}</li>
+          <li>{authority.academicAffiliation}</li>
+          <li>{authority.practiceName} · {authority.location.street}, {authority.location.city}, {authority.location.state} {authority.location.zip}</li>
+          <li>{authority.testingNote}</li>
+          <li>{authority.insuranceNote}</li>
+        </ul>
+        <p class="trust-modalities"><strong>Evidence-based modalities:</strong> {authority.modalities.join(', ')}</p>
+        <ul class="trust-affiliations">
+          {authority.affiliations.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+
     <section class="section" aria-labelledby="service-pathway-title">
       <div class="container">
         <div class="section-header">
           <div>
             <p class="eyebrow">Service pathway</p>
             <h2 id="service-pathway-title">Testing options and fees</h2>
+            <p class="service-pathway-lede">
+              Self-pay evaluations conducted in person at Peachtree Psychology’s Roswell office.
+            </p>
           </div>
         </div>
         <div class="service-pathway-grid">
@@ -117,34 +140,35 @@ const perspectiveBeforeTesting = authority.clinicalPerspectives.find((p) => p.id
       </div>
     </section>
 
-    <section class="section authority-trust" aria-labelledby="trust-layer-title">
-      <div class="container card">
-        <p class="eyebrow">Trust layer</p>
-        <h2 id="trust-layer-title">Credentials and affiliations</h2>
-        <ul class="trust-facts">
-          <li><strong>{authority.role}</strong>, {authority.credentials}</li>
-          <li>{authority.academicAffiliation}</li>
-          <li>{authority.practiceName} · {authority.location.street}, {authority.location.city}, {authority.location.state} {authority.location.zip}</li>
-          <li>{authority.testingNote}</li>
-          <li>{authority.insuranceNote}</li>
-        </ul>
-        <p class="trust-modalities"><strong>Evidence-based modalities:</strong> {authority.modalities.join(', ')}</p>
-        <ul class="trust-affiliations">
-          {authority.affiliations.map((item) => <li>{item}</li>)}
-        </ul>
-      </div>
-    </section>
-
     <ReferralEngine authority={authority} />
   </main>
 </BaseLayout>
 
 <style>
+  @media (min-width: 1280px) {
+    .authority-page {
+      padding-right: 18rem;
+    }
+  }
+
+  .authority-hub-card,
+  .authority-trust-card {
+    padding-left: var(--accent-inset);
+    border-left: var(--accent-bar-width) solid var(--ocean);
+  }
+
   .authority-hub-link .hub-link-row,
   .service-pathway-grid {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-4);
+  }
+
+  .service-pathway-lede {
+    margin: var(--space-4) 0 0;
+    color: var(--stone);
+    line-height: var(--leading-relaxed);
+    max-width: 34rem;
   }
 
   .service-pathway-grid {
@@ -183,15 +207,16 @@ const perspectiveBeforeTesting = authority.clinicalPerspectives.find((p) => p.id
 
   .service-disclaimers {
     margin: var(--space-6) 0 0;
-    padding-left: 1.1rem;
+    padding-left: calc(1.1rem + var(--accent-bar-gap));
     color: var(--stone);
     display: grid;
     gap: var(--space-2);
+    border-left: var(--accent-bar-width) solid var(--brass);
   }
 
   .authority-trust .trust-facts,
   .authority-trust .trust-affiliations {
-    padding-left: 1.1rem;
+    padding-left: calc(1.1rem + var(--accent-bar-gap));
     color: var(--ink);
     display: grid;
     gap: var(--space-2);
@@ -199,6 +224,7 @@ const perspectiveBeforeTesting = authority.clinicalPerspectives.find((p) => p.id
 
   .trust-modalities {
     margin: var(--space-5) 0;
+    padding-left: var(--accent-bar-gap);
     color: var(--stone);
     line-height: var(--leading-relaxed);
   }
@@ -211,5 +237,12 @@ const perspectiveBeforeTesting = authority.clinicalPerspectives.find((p) => p.id
 
   .hub-link-row a:hover {
     text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .authority-hub-card,
+    .authority-trust-card {
+      padding-left: calc(var(--space-5) + var(--accent-bar-gap));
+    }
   }
 </style>

@@ -46,6 +46,19 @@ export type AuthorityVideoModule = {
   subtitle: string;
   statusLabel: string;
   previewBullets: string[];
+  metadataTags: string[];
+};
+
+export type WhyDrCrenshawCard = {
+  title: string;
+  description: string;
+};
+
+export type ReferralLink = {
+  label: string;
+  href: string;
+  description?: string;
+  isSecondary?: boolean;
 };
 
 export type AuthorityProfile = {
@@ -91,7 +104,8 @@ export type AuthorityProfile = {
   clinicalPerspectives: ClinicalPerspective[];
   whyDrCrenshaw: {
     title: string;
-    points: string[];
+    lede: string;
+    cards: WhyDrCrenshawCard[];
   };
   diagnosticJourney: {
     title: string;
@@ -104,9 +118,15 @@ export type AuthorityProfile = {
   knowledgeNetwork: {
     title: string;
     description: string;
+    valueExplanation: string;
     ctaLabel: string;
   };
+  reviewedKnowledgeTitle: string;
   reviewedKnowledgeIntro: string;
+  referralPrimaryCta: {
+    label: string;
+    href: string;
+  };
   expertiseSectionTitle: string;
   disclaimers: string[];
   sameAs: string[];

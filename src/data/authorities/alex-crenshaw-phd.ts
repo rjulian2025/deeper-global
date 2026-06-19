@@ -218,11 +218,18 @@ export const alexCrenshawPhd: AuthorityProfile = {
   videoModule: {
     title: 'Meet Dr. Alex Crenshaw, PhD',
     subtitle: 'A short introduction to adult ADHD testing, diagnostic clarity, and evidence-based care.',
-    statusLabel: 'Video Coming Soon',
+    statusLabel: 'Coming Soon',
     previewBullets: [
       'When adult ADHD testing may be useful',
       'How diagnostic clarity can guide treatment',
       'What to expect from an evidence-based evaluation',
+    ],
+    metadataTags: [
+      'Coming Soon',
+      '2-minute introduction',
+      'Adult ADHD Testing',
+      'Diagnostic Evaluation',
+      'Evidence-Based Care',
     ],
   },
   clinicalPerspectives: [
@@ -240,13 +247,27 @@ export const alexCrenshawPhd: AuthorityProfile = {
     },
   ],
   whyDrCrenshaw: {
-    title: 'Why Dr. Crenshaw',
-    points: [
-      'Licensed psychologist with PhD-level training',
-      'Assistant Professor of Psychology at Kennesaw State University',
-      'Focused on adult psychological testing and diagnostic clarity',
-      'Experienced with ADHD, anxiety, OCD, depression, and PTSD presentations',
-      'Uses evidence-based assessment and treatment frameworks',
+    title: 'Why Patients Choose Dr. Crenshaw',
+    lede:
+      'A clinical authority profile built around assessment expertise, reviewed knowledge, and clear referral pathways — not a generic directory listing.',
+    cards: [
+      {
+        title: 'Specialized Adult Assessment',
+        description:
+          'Formal diagnostic evaluation for ADHD, anxiety, OCD, depression, and related concerns.',
+      },
+      {
+        title: 'Academic + Clinical Perspective',
+        description: 'Assistant Professor and practicing psychologist.',
+      },
+      {
+        title: 'Evidence Before Assumptions',
+        description: 'Testing designed to create clarity before treatment decisions.',
+      },
+      {
+        title: 'Clear Next Steps',
+        description: 'Evaluation, diagnosis, treatment recommendations, and referral guidance.',
+      },
     ],
   },
   diagnosticJourney: {
@@ -278,10 +299,17 @@ export const alexCrenshawPhd: AuthorityProfile = {
     title: 'Dr. Crenshaw’s Knowledge Network',
     description:
       'Deeper connects clinical expertise to high-intent mental health questions, so readers can move from general education toward trusted next steps.',
+    valueExplanation:
+      'These answers help connect people seeking information with evidence-informed guidance and appropriate clinical pathways.',
     ctaLabel: 'Browse reviewed answers',
   },
+  reviewedKnowledgeTitle: 'Clinically Reviewed Knowledge',
   reviewedKnowledgeIntro:
-    'These answers are clinically reviewed for accuracy, clarity, and educational value — connecting evidence-informed guidance to the questions adults ask before seeking evaluation or care.',
+    'Expert guidance reviewed for accuracy, clarity, and educational value — connecting evidence-informed answers to the questions adults ask before seeking evaluation or care.',
+  referralPrimaryCta: {
+    label: 'Learn About ADHD Testing',
+    href: `${PEACHTREE}/service/adhd-testing`,
+  },
   expertiseSectionTitle: 'Clinical authority domains',
   disclaimers: [
     'All testing is conducted in person at Peachtree Psychology\'s Roswell office (555 Sun Valley Drive, Suite M-2).',

@@ -77,8 +77,8 @@ const { authority } = Astro.props;
     font: inherit;
     width: 100%;
     min-height: 8.5rem;
-    padding: var(--space-5) var(--space-6);
-    border-left: 4px solid var(--ocean);
+    padding: var(--space-5) var(--space-6) var(--space-5) var(--accent-inset);
+    border-left: var(--accent-bar-width) solid var(--ocean);
     transition: border-left-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
 
@@ -100,6 +100,12 @@ const { authority } = Astro.props;
     color: var(--stone);
     font-size: 0.875rem;
     line-height: var(--leading-relaxed);
+  }
+
+  @media (max-width: 640px) {
+    .expertise-node {
+      padding-left: calc(var(--space-5) + var(--accent-bar-gap));
+    }
   }
 </style>
 

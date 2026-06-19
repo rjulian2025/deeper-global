@@ -15,14 +15,17 @@ const { diagnosticJourney } = authority;
       <div>
         <p class="eyebrow">Your path</p>
         <h2 id="diagnostic-journey-title">{diagnosticJourney.title}</h2>
+        <p class="journey-summary">
+          Symptoms → uncertainty → evaluation → clarity → treatment direction
+        </p>
       </div>
     </div>
     <ol class="journey-steps">
       {
         diagnosticJourney.steps.map((step, index) => (
           <li class="journey-step card">
-            <span class="journey-number">{index + 1}</span>
-            <div>
+            <span class="journey-number" aria-hidden="true">{index + 1}</span>
+            <div class="journey-step-copy">
               <h3>{step.title}</h3>
               <p>{step.description}</p>
             </div>
@@ -51,6 +54,14 @@ const { diagnosticJourney } = authority;
     background: var(--mist);
   }
 
+  .journey-summary {
+    margin: var(--space-4) 0 0;
+    color: var(--ocean);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
   .journey-steps {
     list-style: none;
     margin: 0;
@@ -61,20 +72,38 @@ const { diagnosticJourney } = authority;
 
   @media (min-width: 900px) {
     .journey-steps {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      display: flex;
+      align-items: stretch;
+      gap: var(--space-8);
+    }
+
+    .journey-step + .journey-step::before {
+      content: '→';
+      position: absolute;
+      left: calc(-1 * var(--space-5));
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--brass);
+      font-size: var(--text-xl);
+      font-weight: 700;
     }
   }
 
   .journey-step {
+    position: relative;
     display: grid;
     grid-template-columns: auto 1fr;
     gap: var(--space-4);
     align-items: start;
+    padding: var(--space-5) var(--space-5) var(--space-5) var(--accent-inset);
+    border-left: var(--accent-bar-width) solid var(--ocean);
+    flex: 1;
+    min-width: 0;
   }
 
   .journey-number {
-    width: 2rem;
-    height: 2rem;
+    width: 2.25rem;
+    height: 2.25rem;
     border-radius: 999px;
     display: grid;
     place-items: center;
@@ -99,6 +128,12 @@ const { diagnosticJourney } = authority;
   }
 
   .journey-cta-wrap {
-    margin-top: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  @media (max-width: 640px) {
+    .journey-step {
+      padding-left: calc(var(--space-5) + var(--accent-bar-gap));
+    }
   }
 </style>

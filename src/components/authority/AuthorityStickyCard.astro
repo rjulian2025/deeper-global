@@ -1,0 +1,106 @@
+---
+import { getReviewedGroupCounts, type AuthorityProfile } from '@/lib/authorities';
+
+type Props = {
+  authority: AuthorityProfile;
+};
+
+const { authority } = Astro.props;
+const groupCounts = getReviewedGroupCounts(authority);
+const adhdCount = groupCounts.find((group) => group.name === 'ADHD')?.count ?? 0;
+---
+
+<aside class="authority-sticky-card" aria-label="Authority summary">
+  <div class="sticky-card-inner">
+    <p class="sticky-name">{authority.displayName}</p>
+    <ul class="sticky-facts">
+      <li>Adult ADHD Testing</li>
+      <li>Diagnostic Evaluation</li>
+      <li>Assistant Professor</li>
+      {adhdCount > 0 ? <li>{adhdCount} ADHD Answers Reviewed</li> : null}
+    </ul>
+    <div class="sticky-actions">
+      <a
+        class="button sticky-primary"
+        href={authority.referralPrimaryCta.href}
+        rel="noopener noreferrer"
+        target="_blank"
+        data-authority-event="clinical_authority_cta_click"
+        data-destination={authority.referralPrimaryCta.href}
+        data-cta-label="ADHD Testing"
+      >
+        ADHD Testing
+      </a>
+      <a
+        class="button secondary sticky-secondary"
+        href={authority.phoneTel}
+        data-authority-event="phone_click"
+        data-destination={authority.phoneTel}
+        data-cta-label="Call"
+      >
+        Call
+      </a>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .authority-sticky-card {
+    display: none;
+  }
+
+  @media (min-width: 1280px) {
+    .authority-sticky-card {
+      display: block;
+      position: fixed;
+      top: 6.5rem;
+      right: max(1rem, calc((100vw - var(--max)) / 2 - 19rem));
+      width: min(17rem, calc(100vw - var(--max) - 2rem));
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    .sticky-card-inner {
+      pointer-events: auto;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-left: var(--accent-bar-width) solid var(--brass);
+      border-radius: 8px;
+      padding: var(--space-5) var(--space-5) var(--space-5) var(--accent-inset);
+      box-shadow: var(--shadow);
+    }
+
+    .sticky-name {
+      margin: 0 0 var(--space-4);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: var(--leading-snug);
+    }
+
+    .sticky-facts {
+      margin: 0 0 var(--space-5);
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: var(--space-2);
+      color: var(--stone);
+      font-size: var(--text-sm);
+      line-height: var(--leading-relaxed);
+    }
+
+    .sticky-actions {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .sticky-primary,
+    .sticky-secondary {
+      justify-content: center;
+      text-align: center;
+      font-size: var(--text-sm);
+      padding: var(--space-3) var(--space-4);
+    }
+  }
+</style>

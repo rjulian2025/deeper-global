@@ -22,8 +22,8 @@ const { text } = Astro.props;
 
   .clinical-perspective-inner {
     max-width: 46rem;
-    padding: var(--space-6) var(--space-7);
-    border-left: 4px solid var(--brass);
+    padding: var(--space-6) var(--space-7) var(--space-6) var(--accent-inset);
+    border-left: var(--accent-bar-width) solid var(--brass);
     background: linear-gradient(90deg, rgba(169, 130, 59, 0.08), rgba(255, 255, 255, 0));
     border-radius: 0 8px 8px 0;
   }
@@ -43,5 +43,12 @@ const { text } = Astro.props;
     font-size: clamp(1.25rem, 2.2vw, 1.55rem);
     line-height: var(--leading-relaxed);
     color: var(--navy);
+  }
+
+  @media (max-width: 640px) {
+    .clinical-perspective-inner {
+      padding-left: calc(var(--space-5) + var(--accent-bar-gap));
+      padding-right: var(--space-5);
+    }
   }
 </style>

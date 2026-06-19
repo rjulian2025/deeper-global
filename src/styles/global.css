@@ -43,6 +43,9 @@
   --space-16: 4rem;
   --space-20: 5rem;
   --space-24: 6rem;
+  --accent-bar-width: 4px;
+  --accent-bar-gap: 1rem;
+  --accent-inset: calc(var(--space-6) + var(--accent-bar-gap));
   --bp-sm: 480px;
   --bp-md: 640px;
   --bp-lg: 768px;
