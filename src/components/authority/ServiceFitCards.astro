@@ -1,0 +1,86 @@
+---
+import type { AuthorityProfile } from '@/lib/authorities';
+
+type Props = {
+  authority: AuthorityProfile;
+};
+
+const { authority } = Astro.props;
+---
+
+<section class="section" aria-labelledby="service-fit-title">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Find your path</p>
+        <h2 id="service-fit-title">When evaluation may help</h2>
+      </div>
+    </div>
+    <div class="service-fit-grid">
+      {
+        authority.serviceFitCards.map((card) => (
+          <a
+            class="card service-fit-card"
+            href={card.destinationUrl}
+            {...card.isExternal ? { rel: 'noopener noreferrer', target: '_blank' } : {}}
+            data-authority-event="service_fit_card_click"
+            data-specialty={card.specialty}
+            data-destination={card.destinationUrl}
+            data-cta-label={card.label}
+          >
+            <h3>{card.label}</h3>
+            <p>{card.description}</p>
+            <span class="text-link">{card.destinationLabel} →</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-fit-grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 768px) {
+    .service-fit-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .service-fit-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .service-fit-card {
+    display: grid;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: inherit;
+    padding-left: var(--accent-inset);
+    border-left: var(--accent-bar-width) solid var(--line);
+    transition: box-shadow 0.2s ease, border-left-color 0.2s ease;
+  }
+
+  .service-fit-card:hover {
+    box-shadow: var(--shadow);
+    border-left-color: var(--brass);
+  }
+
+  .service-fit-card h3 {
+    margin: 0;
+    font-size: var(--text-lg);
+    color: var(--navy);
+  }
+
+  .service-fit-card p {
+    margin: 0;
+    color: var(--stone);
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+  }
+</style>

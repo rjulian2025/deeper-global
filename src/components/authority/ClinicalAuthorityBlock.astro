@@ -1,0 +1,117 @@
+---
+import type { AuthorityProfile } from '@/lib/authorities';
+import { authorityPath } from '@/lib/authorities';
+
+type Props = {
+  authority: AuthorityProfile;
+  variant?: 'hub' | 'compact';
+};
+
+const { authority, variant = 'hub' } = Astro.props;
+const profileHref = authorityPath(authority.slug);
+---
+
+<section class:list={['clinical-authority-block', variant === 'compact' && 'compact']} aria-label="Clinical authority">
+  <div class="container">
+    <article class="card authority-block-card">
+      <div class="authority-block-grid">
+        <img src={authority.image} alt={authority.imageAlt} width="120" height="120" loading="lazy" class="authority-block-photo" />
+        <div>
+          <p class="eyebrow">Clinical Authority</p>
+          <h2>{authority.displayName}</h2>
+          <p class="authority-block-summary">{authority.designation}</p>
+          <p class="authority-block-note">{authority.testingNote}</p>
+          <div class="authority-block-links">
+            <a
+              href={profileHref}
+              data-authority-event="adhd_hub_authority_click"
+              data-destination={profileHref}
+              data-cta-label="Authority Profile"
+            >
+              Authority Profile
+            </a>
+            <a
+              href={authority.serviceOfferings[0]?.href}
+              rel="noopener noreferrer"
+              target="_blank"
+              data-authority-event="adhd_hub_authority_click"
+              data-destination={authority.serviceOfferings[0]?.href}
+              data-cta-label="ADHD Testing"
+            >
+              ADHD Testing
+            </a>
+            <a
+              href={`${authority.practiceUrl}/service/psychological-testing`}
+              rel="noopener noreferrer"
+              target="_blank"
+              data-authority-event="adhd_hub_authority_click"
+              data-destination={`${authority.practiceUrl}/service/psychological-testing`}
+              data-cta-label="Peachtree Testing"
+            >
+              Peachtree Testing
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  .clinical-authority-block {
+    padding: var(--space-10) 0;
+    background: var(--paper);
+  }
+
+  .authority-block-card {
+    padding: var(--space-8);
+  }
+
+  .authority-block-grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .authority-block-grid {
+      grid-template-columns: 120px 1fr;
+    }
+  }
+
+  .authority-block-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 999px;
+    object-fit: cover;
+  }
+
+  .authority-block-summary {
+    color: var(--ink);
+    margin: 0 0 var(--space-3);
+    line-height: var(--leading-relaxed);
+  }
+
+  .authority-block-note {
+    color: var(--stone);
+    font-size: var(--text-sm);
+    margin: 0 0 var(--space-4);
+  }
+
+  .authority-block-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .authority-block-links a {
+    color: var(--ocean);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .authority-block-links a:hover {
+    color: var(--brass);
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,152 @@
+---
+import AnswerCard from '@/components/AnswerCard.astro';
+import type { AuthorityProfile } from '@/lib/authorities';
+import type { Question } from '@/lib/supabase';
+
+type Props = {
+  authority: AuthorityProfile;
+  questionsBySlug: Map<string, Question>;
+};
+
+const { authority, questionsBySlug } = Astro.props;
+---
+
+<section class="section reviewed-knowledge-section" id="reviewed-knowledge" aria-labelledby="reviewed-knowledge-title">
+  <div class="container">
+    <div class="reviewed-knowledge-header">
+      <div>
+        <p class="eyebrow">Reviewed knowledge</p>
+        <h2 id="reviewed-knowledge-title">{authority.reviewedKnowledgeTitle}</h2>
+        <p class="reviewed-knowledge-intro">{authority.reviewedKnowledgeIntro}</p>
+      </div>
+      <p class="reviewed-by-badge" aria-label={`Clinically reviewed by ${authority.displayName}`}>
+        Clinically reviewed by {authority.displayName}
+      </p>
+    </div>
+    {
+      authority.reviewedContentGroups.map((group) => {
+        const questions = group.slugs
+          .map((slug) => questionsBySlug.get(slug))
+          .filter((question): question is Question => Boolean(question));
+        if (!questions.length) return null;
+        return (
+          <div class="reviewed-group">
+            <div class="reviewed-group-head">
+              <h3>{group.name}</h3>
+              <span class="reviewed-group-count">
+                {questions.length} {questions.length === 1 ? 'answer' : 'answers'}
+              </span>
+            </div>
+            <div class="question-grid">
+              {questions.map((question) => (
+                <div
+                  class="reviewed-answer-wrap"
+                  data-authority-event="authority_answer_click"
+                  data-destination={`/answers/${question.slug}/`}
+                >
+                  <AnswerCard question={question} headingLevel={3} />
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</section>
+
+<style>
+  .reviewed-knowledge-section {
+    background: linear-gradient(180deg, var(--mist) 0%, var(--paper) 100%);
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .reviewed-knowledge-header {
+    display: grid;
+    gap: var(--space-6);
+    margin-bottom: var(--space-10);
+  }
+
+  @media (min-width: 900px) {
+    .reviewed-knowledge-header {
+      grid-template-columns: 1fr auto;
+      align-items: start;
+    }
+  }
+
+  .reviewed-knowledge-header h2 {
+    font-size: clamp(1.75rem, 3vw, var(--text-3xl));
+    max-width: 16ch;
+  }
+
+  .reviewed-knowledge-intro {
+    margin: var(--space-4) 0 0;
+    max-width: 42rem;
+    color: var(--stone);
+    line-height: var(--leading-relaxed);
+    font-size: var(--text-md);
+  }
+
+  .reviewed-by-badge {
+    margin: 0;
+    padding: var(--space-5) var(--space-6);
+    padding-left: var(--accent-inset);
+    background: var(--navy);
+    color: var(--white);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    line-height: var(--leading-snug);
+    border-radius: 8px;
+    max-width: 18rem;
+    border-left: var(--accent-bar-width) solid var(--brass);
+  }
+
+  .reviewed-group {
+    margin-bottom: var(--space-10);
+  }
+
+  .reviewed-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .reviewed-group-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .reviewed-group-head h3 {
+    margin: 0;
+    color: var(--navy);
+    font-size: var(--text-xl);
+  }
+
+  .reviewed-group-count {
+    font-size: var(--text-sm);
+    color: var(--stone);
+    font-weight: 600;
+  }
+
+  .question-grid {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 768px) {
+    .question-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .reviewed-answer-wrap :global(.card) {
+    height: 100%;
+  }
+</style>

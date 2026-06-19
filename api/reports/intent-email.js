@@ -835,18 +835,24 @@ async function fetchSiteKpis(sinceDate) {
 
 function searchConsoleConfig() {
   const siteUrl = cleanText(process.env.GSC_SITE_URL, DEFAULT_GSC_SITE_URL);
+  const proxyUrl = cleanText(process.env.GSC_PROXY_URL);
+  const proxySecret = cleanText(process.env.GSC_PROXY_SECRET);
   const clientEmail = cleanText(process.env.GSC_CLIENT_EMAIL, cleanText(process.env.GA4_CLIENT_EMAIL));
   const privateKey = normalizeGooglePrivateKey(process.env.GSC_PRIVATE_KEY ?? process.env.GA4_PRIVATE_KEY);
+
+  if (proxyUrl && proxySecret) {
+    return { ok: true, authMode: 'proxy', siteUrl, proxyUrl, proxySecret };
+  }
 
   if (!clientEmail || !privateKey) {
     return {
       ok: false,
-      reason: 'Missing GSC_CLIENT_EMAIL/GSC_PRIVATE_KEY or GA4_CLIENT_EMAIL/GA4_PRIVATE_KEY fallback credentials.',
+      reason: 'Missing GSC proxy credentials or GSC_CLIENT_EMAIL/GSC_PRIVATE_KEY or GA4_CLIENT_EMAIL/GA4_PRIVATE_KEY fallback credentials.',
       siteUrl,
     };
   }
 
-  return { ok: true, siteUrl, clientEmail, privateKey };
+  return { ok: true, authMode: 'service_account_key', siteUrl, clientEmail, privateKey };
 }
 
 async function runSearchConsoleQuery({ siteUrl, accessToken, startDate, endDate, dimensions = [], rowLimit = 10 }) {
@@ -868,6 +874,31 @@ async function runSearchConsoleQuery({ siteUrl, accessToken, startDate, endDate,
 
   if (!response.ok) {
     throw new Error(`Search Console query failed: ${payload?.error?.message ?? response.statusText}`);
+  }
+
+  return payload;
+}
+
+async function runSearchConsoleProxyQuery({ proxyUrl, proxySecret, siteUrl, startDate, endDate, dimensions = [], rowLimit = 10 }) {
+  const response = await fetch(proxyUrl, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${proxySecret}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      siteUrl,
+      startDate,
+      endDate,
+      dimensions,
+      rowLimit,
+      dataState: 'final',
+    }),
+  });
+  const payload = await response.json().catch(() => ({}));
+
+  if (!response.ok || payload.ok === false) {
+    throw new Error(`Search Console proxy query failed: ${payload?.error ?? response.statusText}`);
   }
 
   return payload;
@@ -902,24 +933,31 @@ async function fetchSearchConsoleMetrics() {
   if (!config.ok) return { available: false, reason: config.reason, siteUrl: config.siteUrl, dateRange };
 
   try {
-    const accessToken = await fetchGoogleAccessToken(config, { scope: GSC_SCOPE, label: 'Search Console' });
     const common = {
       siteUrl: config.siteUrl,
-      accessToken,
       startDate,
       endDate,
     };
+    const querySearchConsole = (query) =>
+      config.authMode === 'proxy'
+        ? runSearchConsoleProxyQuery({ ...common, ...query, proxyUrl: config.proxyUrl, proxySecret: config.proxySecret })
+        : runSearchConsoleQuery({ ...common, ...query, accessToken: common.accessToken });
+
+    if (config.authMode !== 'proxy') {
+      common.accessToken = await fetchGoogleAccessToken(config, { scope: GSC_SCOPE, label: 'Search Console' });
+    }
+
     const [summary, topQueries, topPages, countries, devices] = await Promise.all([
-      runSearchConsoleQuery({ ...common, rowLimit: 1 }),
-      runSearchConsoleQuery({ ...common, dimensions: ['query'], rowLimit: 10 }),
-      runSearchConsoleQuery({ ...common, dimensions: ['page'], rowLimit: 10 }),
-      runSearchConsoleQuery({ ...common, dimensions: ['country'], rowLimit: 10 }),
-      runSearchConsoleQuery({ ...common, dimensions: ['device'], rowLimit: 10 }),
+      querySearchConsole({ rowLimit: 1 }),
+      querySearchConsole({ dimensions: ['query'], rowLimit: 10 }),
+      querySearchConsole({ dimensions: ['page'], rowLimit: 10 }),
+      querySearchConsole({ dimensions: ['country'], rowLimit: 10 }),
+      querySearchConsole({ dimensions: ['device'], rowLimit: 10 }),
     ]);
 
     return {
       available: true,
-      source: 'Google Search Console API',
+      source: config.authMode === 'proxy' ? 'Google Search Console API via proxy' : 'Google Search Console API',
       siteUrl: config.siteUrl,
       dateRange,
       summary: firstSearchConsoleSummary(summary),

@@ -12,9 +12,23 @@ const ALLOWED_EVENTS = new Set([
   'external_referral_clicked',
   'editorial_policy_viewed',
   'answer_related_clicked',
+  'clinical_authority_profile_view',
+  'clinical_authority_cta_click',
+  'video_placeholder_click',
+  'service_fit_card_click',
+  'expertise_map_interaction',
+  'authority_answer_click',
+  'peachtree_referral_click',
+  'outbound_practice_profile_click',
+  'phone_click',
+  'adhd_hub_authority_click',
+  'reviewed_answer_click',
+  'hub_viewed',
+  'scroll_depth',
+  'hub_link_clicked',
 ]);
 
-const ALLOWED_CONTENT_TYPES = new Set(['answer', 'category', 'entity', 'hub', 'policy', 'search', 'external_referral']);
+const ALLOWED_CONTENT_TYPES = new Set(['answer', 'category', 'entity', 'hub', 'policy', 'search', 'external_referral', 'authority']);
 const ALLOWED_RISK_CLASSES = new Set(['standard', 'crisis-sensitive', 'unknown']);
 const ALLOWED_INTENT_STAGES = new Set([
   'understanding_symptom',
@@ -35,6 +49,14 @@ const METADATA_KEYS = new Set([
   'search_token_count',
   'outbound_domain',
   'target_path',
+  'clinician_slug',
+  'specialty',
+  'destination',
+  'cta_label',
+  'source_page',
+  'hub_slug',
+  'depth_pct',
+  'link_label',
 ]);
 
 function cleanText(value, maxLength = 120) {

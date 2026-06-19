@@ -63,6 +63,23 @@ Allowed uses:
 
 `/api/reports/intent-email` sends a weekly private intent report through Resend. It is scheduled in `vercel.json` for Mondays at 13:00 UTC and reads thresholded intent rollup views plus aggregate-only GA4 site KPIs and Google Search Console performance metrics when Google service-account credentials are configured.
 
+## Scheduled Content Ops Report
+
+`/api/reports/content-ops-email` sends a separate Tuesday tactical queue through Resend. It is scheduled in `vercel.json` for Tuesdays at 14:00 UTC (9:00 AM ET). The report ranks existing `/answers/{slug}` upgrade candidates from GSC click movement and confidence thresholds. It does not create new pages in v1 and does not auto-promote or deploy.
+
+Generate the same plan locally with:
+
+```bash
+npm run content:gsc-weekly-plan
+```
+
+Optional production environment variables:
+
+- `CONTENT_OPS_EMAIL_TO`: recipient for the Tuesday content-ops email. Defaults to `REPORT_EMAIL_TO`.
+- `CONTENT_OPS_MODE`: `recommend` (default) or `auto-stage`. Keep `recommend` for the first 2–3 cycles; `auto-stage` only marks slugs as auto-stage eligible in the report payload — promote/deploy remain manual until you wire a separate staging job.
+
+GSC credentials are a hard prerequisite for this loop. Run `npm run env:check` and confirm `ready_for_gsc_content_ops: true` (proxy or private-key path) before trusting weekly recommendations.
+
 Required production environment variables:
 
 - `CRON_SECRET`: authorizes the Vercel Cron request.
@@ -83,18 +100,21 @@ Optional GA4 KPI environment variables:
 
 Optional Google Search Console environment variables:
 
-- `GSC_SITE_URL`: Search Console property URL. Defaults to `https://www.deeper.global/`. Use the exact URL-prefix or domain property value registered in Search Console.
-- `GSC_CLIENT_EMAIL`: Google service-account client email with Search Console access. Defaults to `GA4_CLIENT_EMAIL` when unset.
-- `GSC_PRIVATE_KEY`: Google service-account private key. Defaults to `GA4_PRIVATE_KEY` when unset, and escaped newlines (`\n`) are supported for Vercel env storage.
+- `GSC_SITE_URL`: Search Console property URL. Defaults to `https://www.deeper.global/`. Production uses the domain property `sc-domain:deeper.global`.
+- `GSC_PROXY_URL`: Preferred keyless Search Console proxy endpoint when service-account key creation is blocked by Google Cloud org policy.
+- `GSC_PROXY_SECRET`: Shared bearer secret for the keyless Search Console proxy.
+- `GSC_CLIENT_EMAIL`: Google service-account client email with Search Console access. Defaults to `GA4_CLIENT_EMAIL` when unset. Used only with the private-key fallback path.
+- `GSC_PRIVATE_KEY`: Google service-account private key. Defaults to `GA4_PRIVATE_KEY` when unset. Use only when a key exception is explicitly approved.
 
-The weekly GA4 Data API queries filter on GA4's `hostName` dimension so site KPIs exclude shared-property, preview, staging, or other noisy host traffic. Search Console queries use the read-only `https://www.googleapis.com/auth/webmasters.readonly` scope against `https://searchconsole.googleapis.com/webmasters/v3/sites/{siteUrl}/searchAnalytics/query`.
+The weekly GA4 Data API queries filter on GA4's `hostName` dimension so site KPIs exclude shared-property, preview, staging, or other noisy host traffic. Search Console queries use the read-only `https://www.googleapis.com/auth/webmasters.readonly` scope against `https://searchconsole.googleapis.com/webmasters/v3/sites/{siteUrl}/searchAnalytics/query`. In production, Vercel should call the GSC proxy when `GSC_PROXY_URL` and `GSC_PROXY_SECRET` are present; the proxy runs on Google Cloud with an attached service account and does not require a downloadable service-account key. Proxy source lives in `cloud-run/gsc-proxy/`.
 
 To enable Search Console in the report:
 
 - Enable the Google Search Console API in the Google Cloud project that owns the service account.
 - Add the service account email as a user on the relevant Search Console property, or otherwise grant it access to the property used by `GSC_SITE_URL`.
 - Configure `GSC_SITE_URL` only if the default `https://www.deeper.global/` is not the exact Search Console property to query.
-- Reuse the GA4 service account credentials if that same account has both GA4 Viewer and Search Console property access, or set separate `GSC_CLIENT_EMAIL` and `GSC_PRIVATE_KEY` values.
+- Prefer `GSC_PROXY_URL` and `GSC_PROXY_SECRET` when service-account key creation is blocked by `iam.disableServiceAccountKeyCreation`.
+- Reuse the GA4 service account credentials only when the private-key fallback path is approved.
 
 If any GA4 env var is missing, or if the GA4 Data API request fails, the email still sends the intent rollup and Search Console sections and includes a "site KPI data unavailable" note. If Search Console credentials are missing, the API is disabled, the site property is not verified/shared with the service account, or the query fails, the email still sends the other sections and includes a "Search Console data unavailable" note with a non-secret reason. If the Supabase intent rollup views have not been applied yet, the email still sends the site KPI and Search Console sections and includes an "intent rollup data unavailable" setup note.
 
@@ -191,5 +211,5 @@ order by date desc, no_result_searches desc;
 - Confirm thresholded rows appear only after minimum counts are met.
 - Configure `CRON_SECRET`, `RESEND_API_KEY`, and `REPORT_EMAIL_FROM` in Vercel production.
 - To include site KPIs, configure `GA4_PROPERTY_ID`, `GA4_CLIENT_EMAIL`, and `GA4_PRIVATE_KEY` in Vercel production and grant the service account Viewer access to the GA4 property. Leave `GA4_REPORT_HOSTNAME` unset for the default `www.deeper.global` filter unless production traffic intentionally spans more hosts.
-- To include Search Console metrics, enable the Search Console API, grant the service account access to the Search Console property, and set `GSC_SITE_URL` if the default `https://www.deeper.global/` does not match the property exactly. Set separate `GSC_CLIENT_EMAIL` and `GSC_PRIVATE_KEY` only when reusing the GA4 credentials is not appropriate.
+- To include Search Console metrics, enable the Search Console API, grant the service account access to the Search Console property, set `GSC_SITE_URL` to the exact property (`sc-domain:deeper.global` in production), and prefer `GSC_PROXY_URL` + `GSC_PROXY_SECRET` when org policy blocks downloadable keys.
 - Keep public reporting national/state-level and aggregate-only.

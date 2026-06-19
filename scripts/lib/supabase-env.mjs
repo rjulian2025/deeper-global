@@ -106,11 +106,20 @@ export function resolveCronSecret() {
 export function envStatus() {
   loadLocalEnv({ force: true });
 
+  const gscProxyCredentials = Boolean(firstPresent(process.env.GSC_PROXY_URL) && firstPresent(process.env.GSC_PROXY_SECRET));
+  const gscKeyCredentials = Boolean(
+    firstPresent(process.env.GSC_CLIENT_EMAIL, process.env.GA4_CLIENT_EMAIL) &&
+      firstPresent(process.env.GSC_PRIVATE_KEY, process.env.GA4_PRIVATE_KEY)
+  );
+
   const checks = {
     supabase_url: Boolean(firstPresent(process.env.SUPABASE_URL)),
     supabase_anon_key: Boolean(firstPresent(process.env.SUPABASE_ANON_KEY, process.env.PUBLIC_SUPABASE_ANON_KEY)),
     supabase_service_role_key: Boolean(firstPresent(process.env.SUPABASE_SERVICE_ROLE_KEY)),
     cron_secret: Boolean(resolveCronSecret()),
+    gsc_proxy_credentials: gscProxyCredentials,
+    gsc_key_credentials: gscKeyCredentials,
+    gsc_credentials: gscProxyCredentials || gscKeyCredentials,
     sources: {
       userSecrets: existsSync(ENV_PATHS.userSecrets),
       projectLocal: existsSync(ENV_PATHS.projectLocal),
@@ -121,6 +130,7 @@ export function envStatus() {
   checks.ready_for_read = checks.supabase_url && checks.supabase_anon_key;
   checks.ready_for_write = checks.ready_for_read && checks.supabase_service_role_key;
   checks.ready_for_remote_apply = Boolean(checks.cron_secret);
+  checks.ready_for_gsc_content_ops = checks.ready_for_read && checks.gsc_credentials;
 
   return checks;
 }

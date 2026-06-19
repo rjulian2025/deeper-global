@@ -1,0 +1,248 @@
+---
+import AuthorityHero from '@/components/authority/AuthorityHero.astro';
+import AuthorityStickyCard from '@/components/authority/AuthorityStickyCard.astro';
+import AuthorityVideoPlaceholder from '@/components/authority/AuthorityVideoPlaceholder.astro';
+import ClinicalPerspective from '@/components/authority/ClinicalPerspective.astro';
+import DiagnosticJourney from '@/components/authority/DiagnosticJourney.astro';
+import ExpertiseMap from '@/components/authority/ExpertiseMap.astro';
+import KnowledgeNetwork from '@/components/authority/KnowledgeNetwork.astro';
+import ReferralEngine from '@/components/authority/ReferralEngine.astro';
+import ReviewedKnowledge from '@/components/authority/ReviewedKnowledge.astro';
+import ServiceFitCards from '@/components/authority/ServiceFitCards.astro';
+import WhyDrCrenshaw from '@/components/authority/WhyDrCrenshaw.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import {
+  authorityPath,
+  authorityProfilesBySlug,
+  buildAuthorityJsonLd,
+  type AuthorityProfile,
+} from '@/lib/authorities';
+import { getQuestions } from '@/lib/supabase';
+
+export async function getStaticPaths() {
+  return Array.from(authorityProfilesBySlug.values()).map((authority) => ({
+    params: { authoritySlug: authority.slug },
+    props: { authority },
+  }));
+}
+
+const authority = Astro.props.authority as AuthorityProfile;
+const questions = await getQuestions();
+const questionsBySlug = new Map(questions.map((question) => [question.slug, question]));
+const jsonLd = buildAuthorityJsonLd(authority);
+
+const perspectiveAfterVideo = authority.clinicalPerspectives.find((p) => p.id === 'after-video');
+const perspectiveNearServiceFit = authority.clinicalPerspectives.find((p) => p.id === 'near-service-fit');
+const perspectiveBeforeTesting = authority.clinicalPerspectives.find((p) => p.id === 'before-testing');
+---
+
+<BaseLayout
+  title={`${authority.displayName} | Clinical Authority | Deeper Global`}
+  description={`${authority.designation}. Evidence-informed authority profile connecting educational resources with in-person adult psychological testing at Peachtree Psychology, Roswell, GA.`}
+  canonicalPath={authorityPath(authority.slug)}
+  imagePath={authority.image}
+  imageAlt={authority.imageAlt}
+  jsonLd={jsonLd}
+>
+  <main class="authority-page" data-clinician-slug={authority.slug} data-content-type="authority">
+    <AuthorityStickyCard authority={authority} questionsBySlug={questionsBySlug} />
+    <AuthorityHero authority={authority} />
+    <AuthorityVideoPlaceholder authority={authority} />
+    {perspectiveAfterVideo && <ClinicalPerspective text={perspectiveAfterVideo.text} />}
+    <WhyDrCrenshaw authority={authority} />
+    <ServiceFitCards authority={authority} />
+    {perspectiveNearServiceFit && <ClinicalPerspective text={perspectiveNearServiceFit.text} />}
+    <DiagnosticJourney authority={authority} />
+
+    <section class="section" aria-labelledby="authority-overview-title">
+      <div class="container content">
+        <p class="eyebrow">Clinical overview</p>
+        <h2 id="authority-overview-title">Assessment and diagnostic expertise</h2>
+        {authority.overviewParagraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </section>
+
+    <ExpertiseMap authority={authority} />
+    <KnowledgeNetwork authority={authority} questionsBySlug={questionsBySlug} />
+    <ReviewedKnowledge authority={authority} questionsBySlug={questionsBySlug} />
+
+    <section class="section authority-hub-link" aria-labelledby="adhd-hub-link-title">
+      <div class="container authority-hub-card card">
+        <p class="eyebrow">ADHD ecosystem</p>
+        <h2 id="adhd-hub-link-title">Clinical Authority for ADHD Testing</h2>
+        <p>{authority.hubConnections.summary}</p>
+        <div class="hub-link-row">
+          <a href={authority.hubConnections.hubPath}>{authority.hubConnections.hubLabel}</a>
+          <a href="#reviewed-knowledge">Reviewed ADHD answers</a>
+          <a href={authority.serviceOfferings[0]?.href} rel="noopener noreferrer" target="_blank">ADHD testing at Peachtree</a>
+        </div>
+      </div>
+    </section>
+
+    {perspectiveBeforeTesting && <ClinicalPerspective text={perspectiveBeforeTesting.text} />}
+
+    <section class="section authority-trust" aria-labelledby="trust-layer-title">
+      <div class="container authority-trust-card card">
+        <p class="eyebrow">Trust layer</p>
+        <h2 id="trust-layer-title">Credentials and affiliations</h2>
+        <ul class="trust-facts">
+          <li><strong>{authority.role}</strong>, {authority.credentials}</li>
+          <li>{authority.academicAffiliation}</li>
+          <li>{authority.practiceName} · {authority.location.street}, {authority.location.city}, {authority.location.state} {authority.location.zip}</li>
+          <li>{authority.testingNote}</li>
+          <li>{authority.insuranceNote}</li>
+        </ul>
+        <p class="trust-modalities"><strong>Evidence-based modalities:</strong> {authority.modalities.join(', ')}</p>
+        <ul class="trust-affiliations">
+          {authority.affiliations.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="service-pathway-title">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Service pathway</p>
+            <h2 id="service-pathway-title">Testing options and fees</h2>
+            <p class="service-pathway-lede">
+              Self-pay evaluations conducted in person at Peachtree Psychology’s Roswell office.
+            </p>
+          </div>
+        </div>
+        <div class="service-pathway-grid">
+          {
+            authority.serviceOfferings.map((service) => (
+              <article class="card service-pathway-card">
+                <div class="service-pathway-head">
+                  <h3>{service.name}</h3>
+                  <p class="service-price">{service.price}</p>
+                </div>
+                <p>{service.description}</p>
+                <a
+                  class="text-link"
+                  href={service.href}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  data-authority-event="peachtree_referral_click"
+                  data-destination={service.href}
+                  data-cta-label={service.name}
+                >
+                  View at Peachtree Psychology →
+                </a>
+              </article>
+            ))
+          }
+        </div>
+        <ul class="service-disclaimers">
+          {authority.disclaimers.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <ReferralEngine authority={authority} />
+  </main>
+</BaseLayout>
+
+<style>
+  @media (min-width: 1280px) {
+    .authority-page {
+      padding-right: 18rem;
+    }
+  }
+
+  .authority-hub-card,
+  .authority-trust-card {
+    padding-left: var(--accent-inset);
+    border-left: var(--accent-bar-width) solid var(--ocean);
+  }
+
+  .authority-hub-link .hub-link-row,
+  .service-pathway-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .service-pathway-lede {
+    margin: var(--space-4) 0 0;
+    color: var(--stone);
+    line-height: var(--leading-relaxed);
+    max-width: 34rem;
+  }
+
+  .service-pathway-grid {
+    display: grid;
+  }
+
+  @media (min-width: 768px) {
+    .service-pathway-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .service-pathway-card {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .service-pathway-head {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    align-items: baseline;
+  }
+
+  .service-pathway-head h3 {
+    margin: 0;
+    font-size: var(--text-lg);
+  }
+
+  .service-price {
+    margin: 0;
+    color: var(--ocean);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .service-disclaimers {
+    margin: var(--space-6) 0 0;
+    padding-left: calc(1.1rem + var(--accent-bar-gap));
+    color: var(--stone);
+    display: grid;
+    gap: var(--space-2);
+    border-left: var(--accent-bar-width) solid var(--brass);
+  }
+
+  .authority-trust .trust-facts,
+  .authority-trust .trust-affiliations {
+    padding-left: calc(1.1rem + var(--accent-bar-gap));
+    color: var(--ink);
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .trust-modalities {
+    margin: var(--space-5) 0;
+    padding-left: var(--accent-bar-gap);
+    color: var(--stone);
+    line-height: var(--leading-relaxed);
+  }
+
+  .hub-link-row a {
+    color: var(--ocean);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .hub-link-row a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .authority-hub-card,
+    .authority-trust-card {
+      padding-left: calc(var(--space-5) + var(--accent-bar-gap));
+    }
+  }
+</style>

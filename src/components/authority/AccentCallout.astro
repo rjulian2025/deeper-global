@@ -1,0 +1,26 @@
+---
+type Props = {
+  tone?: 'brass' | 'ocean';
+  padded?: boolean;
+  tinted?: boolean;
+  class?: string;
+};
+
+const { tone = 'brass', padded = false, tinted = false, class: className = '' } = Astro.props;
+const classes = [
+  'accent-callout',
+  `accent-callout--${tone}`,
+  padded ? 'accent-callout--padded' : '',
+  tinted ? 'accent-callout--tinted' : '',
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<div class={classes}>
+  <div class="accent-callout-bar" aria-hidden="true"></div>
+  <div class="accent-callout-body">
+    <slot />
+  </div>
+</div>

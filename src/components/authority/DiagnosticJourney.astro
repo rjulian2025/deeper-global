@@ -1,0 +1,139 @@
+---
+import type { AuthorityProfile } from '@/lib/authorities';
+
+type Props = {
+  authority: AuthorityProfile;
+};
+
+const { authority } = Astro.props;
+const { diagnosticJourney } = authority;
+---
+
+<section class="section diagnostic-journey" aria-labelledby="diagnostic-journey-title">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Your path</p>
+        <h2 id="diagnostic-journey-title">{diagnosticJourney.title}</h2>
+        <p class="journey-summary">
+          Symptoms → uncertainty → evaluation → clarity → treatment direction
+        </p>
+      </div>
+    </div>
+    <ol class="journey-steps">
+      {
+        diagnosticJourney.steps.map((step, index) => (
+          <li class="journey-step card">
+            <span class="journey-number" aria-hidden="true">{index + 1}</span>
+            <div class="journey-step-copy">
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+    <div class="journey-cta-wrap">
+      <a
+        class="button"
+        href={diagnosticJourney.cta.href}
+        rel="noopener noreferrer"
+        target="_blank"
+        data-authority-event="clinical_authority_cta_click"
+        data-cta-label="compare_evaluation_options"
+        data-destination={diagnosticJourney.cta.href}
+      >
+        {diagnosticJourney.cta.label}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .diagnostic-journey {
+    background: var(--mist);
+  }
+
+  .journey-summary {
+    margin: var(--space-4) 0 0;
+    color: var(--ocean);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .journey-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 900px) {
+    .journey-steps {
+      display: flex;
+      align-items: stretch;
+      gap: var(--space-8);
+    }
+
+    .journey-step + .journey-step::before {
+      content: '→';
+      position: absolute;
+      left: calc(-1 * var(--space-5));
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--brass);
+      font-size: var(--text-xl);
+      font-weight: 700;
+    }
+  }
+
+  .journey-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-4);
+    align-items: start;
+    padding: var(--space-5) var(--space-5) var(--space-5) var(--accent-inset);
+    border-left: var(--accent-bar-width) solid var(--ocean);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .journey-number {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: var(--navy);
+    color: var(--white);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .journey-step h3 {
+    margin: 0 0 var(--space-2);
+    font-size: var(--text-md);
+    color: var(--navy);
+  }
+
+  .journey-step p {
+    margin: 0;
+    color: var(--stone);
+    line-height: var(--leading-relaxed);
+    font-size: 0.9375rem;
+  }
+
+  .journey-cta-wrap {
+    margin-top: var(--space-8);
+  }
+
+  @media (max-width: 640px) {
+    .journey-step {
+      padding-left: calc(var(--space-5) + var(--accent-bar-gap));
+    }
+  }
+</style>

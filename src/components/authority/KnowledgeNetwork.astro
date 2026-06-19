@@ -1,0 +1,121 @@
+---
+import AccentCallout from '@/components/authority/AccentCallout.astro';
+import { getResolvedReviewedGroupCounts, type AuthorityProfile } from '@/lib/authorities';
+import type { Question } from '@/lib/supabase';
+
+type Props = {
+  authority: AuthorityProfile;
+  questionsBySlug: Map<string, Question>;
+};
+
+const { authority, questionsBySlug } = Astro.props;
+const { knowledgeNetwork } = authority;
+const groupCounts = getResolvedReviewedGroupCounts(authority, questionsBySlug).filter(
+  (group) => group.count > 0
+);
+
+function metricLabel(name: string, count: number): string {
+  const topic = name === 'OCD' && count === 1 ? 'OCD Answer' : `${name} Answers`;
+  return `${count} ${topic} Reviewed`;
+}
+---
+
+<section class="section knowledge-network" aria-labelledby="knowledge-network-title">
+  <div class="container">
+    <div class="knowledge-network-grid">
+      <div class="knowledge-network-intro">
+        <p class="eyebrow">Reviewed knowledge ecosystem</p>
+        <h2 id="knowledge-network-title">{knowledgeNetwork.title}</h2>
+        <p class="knowledge-network-lede">{knowledgeNetwork.description}</p>
+        <AccentCallout tone="ocean" padded class="knowledge-network-value-callout">
+          <p class="knowledge-network-value">{knowledgeNetwork.valueExplanation}</p>
+        </AccentCallout>
+      </div>
+      <div class="knowledge-metrics">
+        {
+          groupCounts.map((group) => (
+            <AccentCallout tone="brass" class="metric-card accent-callout--card">
+              <p class="metric-count">{metricLabel(group.name, group.count)}</p>
+            </AccentCallout>
+          ))
+        }
+      </div>
+    </div>
+    <a
+      class="button secondary knowledge-network-cta"
+      href="#reviewed-knowledge"
+      data-authority-event="clinical_authority_cta_click"
+      data-cta-label="browse_reviewed_answers"
+      data-destination="#reviewed-knowledge"
+    >
+      {knowledgeNetwork.ctaLabel}
+    </a>
+  </div>
+</section>
+
+<style>
+  .knowledge-network {
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+  }
+
+  .knowledge-network-grid {
+    display: grid;
+    gap: var(--space-8);
+    margin-bottom: var(--space-6);
+  }
+
+  @media (min-width: 1024px) {
+    .knowledge-network-grid {
+      grid-template-columns: 1fr 1.05fr;
+      align-items: start;
+    }
+  }
+
+  .knowledge-network-lede {
+    margin: var(--space-4) 0 0;
+    color: var(--stone);
+    line-height: var(--leading-relaxed);
+  }
+
+  .knowledge-network-value-callout {
+    margin-top: var(--space-4);
+    background: var(--white);
+  }
+
+  .knowledge-network-value {
+    margin: 0;
+    color: var(--ink);
+    line-height: var(--leading-relaxed);
+    font-size: var(--text-md);
+  }
+
+  .knowledge-metrics {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 640px) {
+    .knowledge-metrics {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .metric-card {
+    min-height: 5.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .metric-count {
+    margin: 0;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    color: var(--navy);
+  }
+
+  .knowledge-network-cta {
+    display: inline-flex;
+  }
+</style>

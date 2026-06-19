@@ -1,0 +1,168 @@
+---
+import type { AuthorityProfile } from '@/lib/authorities';
+
+type Props = {
+  authority: AuthorityProfile;
+};
+
+const { authority } = Astro.props;
+const { referralPrimaryCta } = authority;
+
+const secondaryLinks = authority.referralLinks.filter(
+  (link) =>
+    !link.label.toLowerCase().includes('profile') &&
+    link.href !== referralPrimaryCta.href
+);
+---
+
+<section class="section authority-referral" aria-labelledby="referral-title">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Referral routing</p>
+        <h2 id="referral-title">Schedule testing or therapy at Peachtree Psychology</h2>
+        <p class="referral-lede">
+          Start with the evaluation path that fits your concern — all testing is in person at Peachtree’s Roswell office.
+        </p>
+      </div>
+    </div>
+
+    <div class="referral-primary">
+      <a
+        class="button referral-primary-cta"
+        href={referralPrimaryCta.href}
+        rel="noopener noreferrer"
+        target="_blank"
+        data-authority-event="clinical_authority_cta_click"
+        data-destination={referralPrimaryCta.href}
+        data-cta-label={referralPrimaryCta.label}
+      >
+        {referralPrimaryCta.label}
+      </a>
+    </div>
+
+    <p class="referral-secondary-label">Other evaluation paths</p>
+    <ul class="referral-list">
+      {
+        secondaryLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              rel="noopener noreferrer"
+              target="_blank"
+              data-authority-event="peachtree_referral_click"
+              data-destination={link.href}
+              data-cta-label={link.label}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="referral-phone">
+      <a
+        href={authority.phoneTel}
+        data-authority-event="phone_click"
+        data-destination={authority.phoneTel}
+        data-cta-label="Call Peachtree Psychology"
+      >
+        Call Peachtree Psychology · {authority.phone}
+      </a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .authority-referral {
+    background: var(--mist);
+  }
+
+  .referral-lede {
+    margin: var(--space-4) 0 0;
+    max-width: 36rem;
+    color: var(--stone);
+    line-height: var(--leading-relaxed);
+  }
+
+  .referral-primary {
+    margin: var(--space-8) 0 var(--space-6);
+  }
+
+  .referral-primary-cta {
+    font-size: var(--text-md);
+    padding: var(--space-4) var(--space-8);
+  }
+
+  .referral-secondary-label {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ocean);
+  }
+
+  .referral-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .referral-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .referral-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .referral-list a {
+    display: block;
+    padding: var(--space-4) var(--space-5) var(--space-4) var(--accent-inset);
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-left: var(--accent-bar-width) solid var(--ocean);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--navy);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    transition: border-left-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .referral-list a:hover {
+    border-left-color: var(--brass);
+    box-shadow: var(--shadow);
+  }
+
+  .referral-phone {
+    margin: var(--space-8) 0 0;
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--line);
+    font-size: var(--text-md);
+    font-weight: 600;
+  }
+
+  .referral-phone a {
+    color: var(--ocean);
+    text-decoration: none;
+  }
+
+  .referral-phone a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .referral-list a {
+      padding-left: calc(var(--space-5) + var(--accent-bar-gap));
+    }
+  }
+</style>

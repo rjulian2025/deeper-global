@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { authorityProfilesBySlug, authorityPath } from '@/lib/authorities';
+import { siteUrl } from '@/lib/site';
+
+const authorities = Array.from(authorityProfilesBySlug.values());
+---
+
+<BaseLayout
+  title="Clinical Authorities | Deeper Global"
+  description="Named clinical authorities who review Deeper Global educational content and connect readers with qualified in-person care pathways."
+  canonicalPath="/authorities/"
+  noindex={true}
+>
+  <main class="content container">
+    <p class="eyebrow">Clinical authorities</p>
+    <h1>Founding authority partners</h1>
+    <p>Deeper clinical authorities review educational content, anchor specialty hubs, and route readers to qualified care when appropriate.</p>
+    <ul>
+      {
+        authorities.map((authority) => (
+          <li>
+            <a href={authorityPath(authority.slug)}>{authority.displayName}</a> — {authority.designation}
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</BaseLayout>

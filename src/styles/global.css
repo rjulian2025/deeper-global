@@ -43,6 +43,10 @@
   --space-16: 4rem;
   --space-20: 5rem;
   --space-24: 6rem;
+  --accent-bar-width: 4px;
+  /* Fixed 20px gutter between accent rule and text — do not use border-left + gradient on same box */
+  --accent-bar-gap: 1.25rem;
+  --accent-inset: calc(var(--accent-bar-width) + var(--accent-bar-gap) + var(--space-5));
   --bp-sm: 480px;
   --bp-md: 640px;
   --bp-lg: 768px;
@@ -55,6 +59,57 @@
 
 h1, h2, h3, h4, .display {
   font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+}
+
+/* Authority accent callouts — bar column + gap column + content (never border-left on tinted boxes) */
+.accent-callout {
+  display: grid;
+  grid-template-columns: var(--accent-bar-width) minmax(0, 1fr);
+  column-gap: var(--accent-bar-gap);
+  align-items: stretch;
+  max-width: 100%;
+}
+
+.accent-callout-bar {
+  width: 100%;
+  min-height: 2.5rem;
+  border-radius: 2px;
+  background: var(--accent-callout-color, var(--brass));
+}
+
+.accent-callout-body {
+  min-width: 0;
+}
+
+.accent-callout--brass {
+  --accent-callout-color: var(--brass);
+}
+
+.accent-callout--ocean {
+  --accent-callout-color: var(--ocean);
+}
+
+.accent-callout--padded {
+  padding: var(--space-7) var(--space-8);
+  border-radius: 0 8px 8px 0;
+}
+
+.accent-callout--tinted {
+  background: rgba(169, 130, 59, 0.06);
+}
+
+.accent-callout--card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: var(--space-6);
+}
+
+@media (max-width: 640px) {
+  .accent-callout--padded,
+  .accent-callout--card {
+    padding: var(--space-6) var(--space-5);
+  }
 }
 
 * {

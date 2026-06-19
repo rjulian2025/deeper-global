@@ -1,0 +1,109 @@
+---
+import AccentCallout from '@/components/authority/AccentCallout.astro';
+import { getResolvedUniqueReviewedCount, type AuthorityProfile } from '@/lib/authorities';
+import type { Question } from '@/lib/supabase';
+
+type Props = {
+  authority: AuthorityProfile;
+  questionsBySlug: Map<string, Question>;
+};
+
+const { authority, questionsBySlug } = Astro.props;
+const reviewedAnswerCount = getResolvedUniqueReviewedCount(authority, questionsBySlug);
+---
+
+<aside class="authority-sticky-card" aria-label="Authority summary">
+  <AccentCallout tone="brass" class="sticky-card-callout accent-callout--card">
+    <p class="sticky-name">{authority.displayName}</p>
+    <ul class="sticky-facts">
+      <li>Adult ADHD Testing</li>
+      <li>Diagnostic Evaluation</li>
+      <li>Assistant Professor</li>
+      {
+        reviewedAnswerCount > 0 ? (
+          <li>
+            {reviewedAnswerCount} {reviewedAnswerCount === 1 ? 'Answer' : 'Answers'} Reviewed
+          </li>
+        ) : null
+      }
+    </ul>
+    <div class="sticky-actions">
+      <a
+        class="button sticky-primary"
+        href={authority.referralPrimaryCta.href}
+        rel="noopener noreferrer"
+        target="_blank"
+        data-authority-event="clinical_authority_cta_click"
+        data-destination={authority.referralPrimaryCta.href}
+        data-cta-label="ADHD Testing"
+      >
+        ADHD Testing
+      </a>
+      <a
+        class="button secondary sticky-secondary"
+        href={authority.phoneTel}
+        data-authority-event="phone_click"
+        data-destination={authority.phoneTel}
+        data-cta-label="Call"
+      >
+        Call
+      </a>
+    </div>
+  </AccentCallout>
+</aside>
+
+<style>
+  .authority-sticky-card {
+    display: none;
+  }
+
+  @media (min-width: 1280px) {
+    .authority-sticky-card {
+      display: block;
+      position: fixed;
+      top: 6.5rem;
+      right: max(1rem, calc((100vw - var(--max)) / 2 - 19rem));
+      width: min(17rem, calc(100vw - var(--max) - 2rem));
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    .sticky-card-callout {
+      pointer-events: auto;
+      box-shadow: var(--shadow);
+    }
+
+    .sticky-name {
+      margin: 0 0 var(--space-4);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: var(--leading-snug);
+    }
+
+    .sticky-facts {
+      margin: 0 0 var(--space-5);
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: var(--space-2);
+      color: var(--stone);
+      font-size: var(--text-sm);
+      line-height: var(--leading-relaxed);
+    }
+
+    .sticky-actions {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .sticky-primary,
+    .sticky-secondary {
+      justify-content: center;
+      text-align: center;
+      font-size: var(--text-sm);
+      padding: var(--space-3) var(--space-4);
+    }
+  }
+</style>

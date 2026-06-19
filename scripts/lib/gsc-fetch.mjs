@@ -52,18 +52,28 @@ function createServiceAccountJwt({ clientEmail, privateKey, scope }) {
 export function searchConsoleConfig() {
   loadLocalEnv();
   const siteUrl = cleanText(process.env.GSC_SITE_URL, DEFAULT_GSC_SITE_URL);
+  const proxyUrl = cleanText(process.env.GSC_PROXY_URL);
+  const proxySecret = cleanText(process.env.GSC_PROXY_SECRET);
   const clientEmail = cleanText(process.env.GSC_CLIENT_EMAIL, cleanText(process.env.GA4_CLIENT_EMAIL));
   const privateKey = normalizeGooglePrivateKey(process.env.GSC_PRIVATE_KEY ?? process.env.GA4_PRIVATE_KEY);
+
+  if (proxyUrl && proxySecret) {
+    return { ok: true, authMode: 'proxy', siteUrl, proxyUrl, proxySecret };
+  }
 
   if (!clientEmail || !privateKey) {
     return {
       ok: false,
-      reason: 'Missing GSC_CLIENT_EMAIL/GSC_PRIVATE_KEY or GA4_CLIENT_EMAIL/GA4_PRIVATE_KEY.',
+      reason: 'Missing GSC proxy credentials or GSC_CLIENT_EMAIL/GSC_PRIVATE_KEY or GA4_CLIENT_EMAIL/GA4_PRIVATE_KEY.',
       siteUrl,
     };
   }
 
-  return { ok: true, siteUrl, clientEmail, privateKey };
+  return { ok: true, authMode: 'service_account_key', siteUrl, clientEmail, privateKey };
+}
+
+function gscSourceLabel(authMode) {
+  return authMode === 'proxy' ? 'Google Search Console API via proxy' : 'Google Search Console API';
 }
 
 async function fetchAccessToken(config) {
@@ -115,65 +125,218 @@ async function runSearchConsoleQuery({ siteUrl, accessToken, startDate, endDate,
   return payload;
 }
 
+async function runSearchConsoleProxyQuery({ proxyUrl, proxySecret, siteUrl, startDate, endDate, dimensions = [], rowLimit = 1000, startRow = 0 }) {
+  const response = await fetch(proxyUrl, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${proxySecret}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      siteUrl,
+      startDate,
+      endDate,
+      dimensions,
+      rowLimit,
+      startRow,
+      dataState: 'final',
+    }),
+  });
+  const payload = await response.json().catch(() => ({}));
+
+  if (!response.ok || payload.ok === false) {
+    throw new Error(`Search Console proxy query failed: ${payload?.error ?? response.statusText}`);
+  }
+
+  return payload;
+}
+
+async function runGscQuery(config, params, accessToken = null) {
+  if (config.authMode === 'proxy') {
+    return runSearchConsoleProxyQuery({
+      ...params,
+      proxyUrl: config.proxyUrl,
+      proxySecret: config.proxySecret,
+    });
+  }
+
+  const token = accessToken ?? (await fetchAccessToken(config));
+  return runSearchConsoleQuery({ ...params, accessToken: token });
+}
+
 function slugFromAnswerPath(pagePath) {
-  const match = cleanText(pagePath).match(/^\/answers\/([^/?#]+)\/?$/i);
+  const match = cleanText(pagePath).match(/\/answers\/([^/?#]+)\/?$/i);
   return match ? match[1] : null;
+}
+
+function parsePageRows(payload) {
+  const bySlug = new Map();
+
+  for (const row of payload.rows ?? []) {
+    const page = cleanText(row.keys?.[0]);
+    const slug = slugFromAnswerPath(page);
+    if (!slug) continue;
+
+    const metrics = {
+      page,
+      clicks: Number(row.clicks ?? 0),
+      impressions: Number(row.impressions ?? 0),
+      ctr: Number(row.ctr ?? 0),
+      position: Number(row.position ?? 0),
+    };
+
+    const existing = bySlug.get(slug);
+    if (!existing || metrics.impressions > existing.impressions) {
+      bySlug.set(slug, metrics);
+    }
+  }
+
+  return bySlug;
+}
+
+function parseQueryRows(payload) {
+  return (payload.rows ?? []).map((row) => ({
+    query: cleanText(row.keys?.[0]),
+    clicks: Number(row.clicks ?? 0),
+    impressions: Number(row.impressions ?? 0),
+    ctr: Number(row.ctr ?? 0),
+    position: Number(row.position ?? 0),
+  }));
+}
+
+async function fetchPeriodMetrics(config, { startDate, endDate, rowLimit, includeQueries = false, accessToken = null }) {
+  const common = { siteUrl: config.siteUrl, startDate, endDate, rowLimit };
+  const pagePayload = await runGscQuery(config, { ...common, dimensions: ['page'] }, accessToken);
+
+  const result = {
+    dateRange: { startDate, endDate },
+    rowCount: pagePayload.rows?.length ?? 0,
+    bySlug: parsePageRows(pagePayload),
+    queries: [],
+  };
+
+  if (includeQueries) {
+    const queryPayload = await runGscQuery(config, { ...common, dimensions: ['query'] }, accessToken);
+    result.queries = parseQueryRows(queryPayload);
+  }
+
+  return result;
 }
 
 /**
  * Fetch GSC page metrics keyed by answer slug.
- * Returns { available, reason, dateRange, bySlug: Map<slug, { clicks, impressions, ctr, position, page }> }
+ * Returns { available, reason, dateRange, bySlug, queries }
  */
-export async function fetchAnswerPageMetrics({ rowLimit = 1000, lagDays = DEFAULT_LAG_DAYS, windowDays = DEFAULT_WINDOW_DAYS } = {}) {
+export async function fetchAnswerPageMetrics({
+  rowLimit = 1000,
+  lagDays = DEFAULT_LAG_DAYS,
+  windowDays = DEFAULT_WINDOW_DAYS,
+  includeQueries = false,
+} = {}) {
   const config = searchConsoleConfig();
   const endDate = isoDateDaysAgo(lagDays);
   const startDate = isoDateDaysBefore(endDate, windowDays);
   const dateRange = { startDate, endDate, lagDays, windowDays };
 
   if (!config.ok) {
-    return { available: false, reason: config.reason, dateRange, bySlug: new Map() };
+    return { available: false, reason: config.reason, dateRange, bySlug: new Map(), queries: [] };
   }
 
   try {
-    const accessToken = await fetchAccessToken(config);
-    const payload = await runSearchConsoleQuery({
-      siteUrl: config.siteUrl,
-      accessToken,
+    const accessToken = config.authMode === 'proxy' ? null : await fetchAccessToken(config);
+    const period = await fetchPeriodMetrics(config, {
       startDate,
       endDate,
-      dimensions: ['page'],
       rowLimit,
+      includeQueries,
+      accessToken,
     });
-
-    const bySlug = new Map();
-    for (const row of payload.rows ?? []) {
-      const page = cleanText(row.keys?.[0]);
-      const slug = slugFromAnswerPath(page);
-      if (!slug) continue;
-
-      const metrics = {
-        page,
-        clicks: Number(row.clicks ?? 0),
-        impressions: Number(row.impressions ?? 0),
-        ctr: Number(row.ctr ?? 0),
-        position: Number(row.position ?? 0),
-      };
-
-      const existing = bySlug.get(slug);
-      if (!existing || metrics.impressions > existing.impressions) {
-        bySlug.set(slug, metrics);
-      }
-    }
 
     return {
       available: true,
-      source: 'Google Search Console API',
+      source: gscSourceLabel(config.authMode),
       siteUrl: config.siteUrl,
       dateRange,
-      rowCount: payload.rows?.length ?? 0,
-      bySlug,
+      rowCount: period.rowCount,
+      bySlug: period.bySlug,
+      queries: period.queries,
     };
   } catch (error) {
-    return { available: false, reason: error.message, dateRange, bySlug: new Map() };
+    return { available: false, reason: error.message, dateRange, bySlug: new Map(), queries: [] };
+  }
+}
+
+/**
+ * Fetch current and prior GSC windows for WoW comparison.
+ */
+export async function fetchAnswerPageMetricsComparison({
+  rowLimit = 1000,
+  lagDays = DEFAULT_LAG_DAYS,
+  windowDays = DEFAULT_WINDOW_DAYS,
+  includeQueries = false,
+} = {}) {
+  const config = searchConsoleConfig();
+  const currentEnd = isoDateDaysAgo(lagDays);
+  const currentStart = isoDateDaysBefore(currentEnd, windowDays);
+  const priorEnd = isoDateDaysBefore(currentStart, 1);
+  const priorStart = isoDateDaysBefore(priorEnd, windowDays);
+
+  const emptyPeriod = (startDate, endDate) => ({
+    dateRange: { startDate, endDate, lagDays, windowDays },
+    bySlug: new Map(),
+    queries: [],
+    rowCount: 0,
+  });
+
+  if (!config.ok) {
+    return {
+      available: false,
+      reason: config.reason,
+      siteUrl: config.siteUrl,
+      current: emptyPeriod(currentStart, currentEnd),
+      prior: emptyPeriod(priorStart, priorEnd),
+    };
+  }
+
+  try {
+    const accessToken = config.authMode === 'proxy' ? null : await fetchAccessToken(config);
+    const [current, prior] = await Promise.all([
+      fetchPeriodMetrics(config, {
+        startDate: currentStart,
+        endDate: currentEnd,
+        rowLimit,
+        includeQueries,
+        accessToken,
+      }),
+      fetchPeriodMetrics(config, {
+        startDate: priorStart,
+        endDate: priorEnd,
+        rowLimit,
+        includeQueries: false,
+        accessToken,
+      }),
+    ]);
+
+    return {
+      available: true,
+      source: gscSourceLabel(config.authMode),
+      siteUrl: config.siteUrl,
+      current: {
+        ...current,
+        dateRange: { startDate: currentStart, endDate: currentEnd, lagDays, windowDays },
+      },
+      prior: {
+        ...prior,
+        dateRange: { startDate: priorStart, endDate: priorEnd, lagDays, windowDays },
+      },
+    };
+  } catch (error) {
+    return {
+      available: false,
+      reason: error.message,
+      siteUrl: config.siteUrl,
+      current: emptyPeriod(currentStart, currentEnd),
+      prior: emptyPeriod(priorStart, priorEnd),
+    };
   }
 }

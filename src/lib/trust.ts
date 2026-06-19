@@ -1,5 +1,11 @@
 import type { Question } from './supabase';
 import { reviewerProfiles, reviewerProfilesById, type ReviewerProfile } from '@/data/reviewers';
+import {
+  authorityToTrustAdapter,
+  getAuthorityByReviewerId,
+  getAuthorityForAnswer,
+  type AuthorityTrustProfile,
+} from './authorities';
 import { cleanText } from './content-utils';
 import { siteUrl } from './site';
 
@@ -24,7 +30,29 @@ const REVIEWER_ALIASES: Record<string, string> = {
   'kenneth w christian phd': 'kenneth-w-christian-phd',
   'kenneth w. christian phd': 'kenneth-w-christian-phd',
   'kenneth w. christian, phd': 'kenneth-w-christian-phd',
+  'alex-crenshaw-phd': 'alex-crenshaw-phd',
+  'alex crenshaw phd': 'alex-crenshaw-phd',
+  'dr. alex crenshaw, phd': 'alex-crenshaw-phd',
+  'dr alex crenshaw phd': 'alex-crenshaw-phd',
 };
+
+export type TrustProfile = (ReviewerProfile & { isAuthority?: false }) | AuthorityTrustProfile;
+
+function resolveTrustProfile(question: Question): TrustProfile | null {
+  const authority = getAuthorityForAnswer(question);
+  if (authority) return authorityToTrustAdapter(authority);
+
+  const reviewedBy = getReviewedByLabel(question);
+  if (!reviewedBy) return null;
+
+  const authorityByLabel = getAuthorityByReviewerId(reviewedBy);
+  if (authorityByLabel) return authorityToTrustAdapter(authorityByLabel);
+
+  const reviewerId = REVIEWER_ALIASES[reviewedBy.toLowerCase().trim()] ?? REVIEWER_ALIASES[normalizeReviewerLabel(reviewedBy)];
+  if (!reviewerId) return null;
+
+  return reviewerProfilesById.get(reviewerId) ?? null;
+}
 
 function normalizeReviewerLabel(value: string) {
   return value
@@ -68,14 +96,8 @@ export function isInternalReviewerLabel(label: string) {
   return INTERNAL_REVIEWER_LABELS.has(label.toLowerCase().trim());
 }
 
-export function getReviewerProfile(question: Question) {
-  const reviewedBy = getReviewedByLabel(question);
-  if (!reviewedBy) return null;
-
-  const reviewerId = REVIEWER_ALIASES[reviewedBy.toLowerCase().trim()] ?? REVIEWER_ALIASES[normalizeReviewerLabel(reviewedBy)];
-  if (!reviewerId) return null;
-
-  return reviewerProfilesById.get(reviewerId) ?? null;
+export function getReviewerProfile(question: Question): TrustProfile | null {
+  return resolveTrustProfile(question);
 }
 
 export function getReviewerDisplayLabel(question: Question) {
@@ -118,11 +140,16 @@ export function getReviewerSchemaNode(question: Question) {
   const reviewerProfile = getReviewerProfile(question);
   if (!reviewerProfile) return null;
 
+  const profileUrl = siteUrl(reviewerProfile.url);
+  const personId = reviewerProfile.isAuthority
+    ? `${profileUrl}#person`
+    : siteUrl(`/reviewers/${reviewerProfile.slug}/#person`);
+
   return {
     '@type': 'Person',
-    '@id': siteUrl(`/reviewers/${reviewerProfile.slug}/#person`),
+    '@id': personId,
     name: reviewerProfile.name,
-    url: siteUrl(reviewerProfile.url),
+    url: profileUrl,
     jobTitle: reviewerProfile.specialtyLabel,
     knowsAbout: reviewerProfile.expertiseTags,
     ...(reviewerProfile.sameAs.length > 0 ? { sameAs: reviewerProfile.sameAs } : {}),
@@ -135,7 +162,12 @@ export function isV2Answer(question: Question) {
 }
 
 export function hasClinicalReviewSignal(question: Question) {
-  return Boolean(getReviewedByLabel(question) || getReviewedAt(question) || getSourceRefs(question).length);
+  return Boolean(
+    getReviewedByLabel(question) ||
+      getReviewedAt(question) ||
+      getSourceRefs(question).length ||
+      getAuthorityForAnswer(question)
+  );
 }
 
 export function getReviewStatusLabel(question: Question) {

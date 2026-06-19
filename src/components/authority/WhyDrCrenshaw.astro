@@ -1,0 +1,72 @@
+---
+import AccentCallout from '@/components/authority/AccentCallout.astro';
+import type { AuthorityProfile } from '@/lib/authorities';
+
+type Props = {
+  authority: AuthorityProfile;
+};
+
+const { authority } = Astro.props;
+const { whyDrCrenshaw } = authority;
+---
+
+<section class="section why-section" aria-labelledby="why-dr-crenshaw-title">
+  <div class="container">
+    <div class="why-header">
+      <p class="eyebrow">Clinical credibility</p>
+      <h2 id="why-dr-crenshaw-title">{whyDrCrenshaw.title}</h2>
+      <p class="why-lede">{whyDrCrenshaw.lede}</p>
+    </div>
+    <div class="why-cards">
+      {
+        whyDrCrenshaw.cards.map((card) => (
+          <AccentCallout tone="brass" class="why-card accent-callout--card">
+            <h3>{card.title}</h3>
+            <p>{card.description}</p>
+          </AccentCallout>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-section {
+    background: var(--paper);
+  }
+
+  .why-header {
+    max-width: 40rem;
+    margin-bottom: var(--space-8);
+  }
+
+  .why-lede {
+    margin: var(--space-4) 0 0;
+    color: var(--stone);
+    line-height: var(--leading-relaxed);
+  }
+
+  .why-cards {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 768px) {
+    .why-cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .why-card h3 {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-lg);
+    color: var(--navy);
+  }
+
+  .why-card p {
+    margin: 0;
+    color: var(--stone);
+    line-height: var(--leading-relaxed);
+    font-size: 0.9375rem;
+  }
+</style>
