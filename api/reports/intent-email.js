@@ -1,4 +1,10 @@
 import { createHash, createSign } from 'node:crypto';
+import { createClient } from '@supabase/supabase-js';
+import {
+  apiCitationHtmlSection,
+  apiCitationTextLines,
+  fetchApiCitationStats,
+} from '../../scripts/lib/api-citation-stats.mjs';
 
 const DEFAULT_REPORT_TO = 'rjulian@qvbrands.com';
 const REPORT_WINDOW_DAYS = 30;
@@ -991,7 +997,7 @@ function splitKey(value) {
   return String(value).split('||');
 }
 
-function buildReport({ internalRows, publicRows, sinceDate, siteKpis, searchConsole, intentRollups }) {
+function buildReport({ internalRows, publicRows, sinceDate, siteKpis, searchConsole, intentRollups, apiCitation }) {
   const topSearchTopics = sumRows(
     publicRows,
     (row) => row.category,
@@ -1034,6 +1040,7 @@ function buildReport({ internalRows, publicRows, sinceDate, siteKpis, searchCons
     siteKpis,
     searchConsole,
     intentRollups,
+    apiCitation,
     rawRollupRows: {
       internal: internalRows.length,
       public: publicRows.length,
@@ -1369,6 +1376,8 @@ function reportHtml(report) {
     <h2>Google Search Console</h2>
     ${searchConsoleHtml(report.searchConsole)}
 
+    ${apiCitationHtmlSection(report.apiCitation)}
+
     ${intentRollupHtml(report.intentRollups)}
 
     <h2>Top searched topics</h2>
@@ -1545,6 +1554,8 @@ function reportText(report) {
     '',
     ...searchConsoleTextLines(report.searchConsole),
     '',
+    ...apiCitationTextLines(report.apiCitation),
+    '',
     ...(report.intentRollups?.available
       ? []
       : [
@@ -1617,11 +1628,26 @@ export default async function handler(req, res) {
 
   try {
     const sinceDate = isoDateDaysAgo(REPORT_WINDOW_DAYS);
-    const [internalRollups, publicRollups, siteKpis, searchConsole] = await Promise.all([
+    const { url, key } = supabaseConfig();
+    const supabaseClient = url && key ? createClient(url, key, { auth: { persistSession: false } }) : null;
+    const [internalRollups, publicRollups, siteKpis, searchConsole, apiCitation] = await Promise.all([
       fetchRollupsSafe('intent_internal_daily_rollups', sinceDate),
       fetchRollupsSafe('intent_public_macro_rollups', sinceDate),
       fetchSiteKpis(sinceDate),
       fetchSearchConsoleMetrics(),
+      supabaseClient
+        ? fetchApiCitationStats(supabaseClient, { windowDays: REPORT_WINDOW_DAYS })
+        : Promise.resolve({
+            available: false,
+            reason: 'missing_supabase_report_credentials',
+            window_days: REPORT_WINDOW_DAYS,
+            total_events: 0,
+            answer_fetches: 0,
+            list_requests: 0,
+            unique_answers_fetched: 0,
+            top_answer_slugs: [],
+            note: 'Missing Supabase credentials for API citation telemetry.',
+          }),
     ]);
     const intentRollups = {
       available: !internalRollups.error && !publicRollups.error,
@@ -1635,6 +1661,7 @@ export default async function handler(req, res) {
       siteKpis,
       searchConsole,
       intentRollups,
+      apiCitation,
     });
 
     if (req.query?.dryRun === '1') {

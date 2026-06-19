@@ -3,6 +3,11 @@ import {
   isCrisisSensitive,
   cleanText,
 } from './content-enrichment-utils.mjs';
+import {
+  apiCitationHtmlSection,
+  apiCitationMarkdownSection,
+  fetchApiCitationStats,
+} from './api-citation-stats.mjs';
 import { fetchAnswerPageMetricsComparison } from './gsc-fetch.mjs';
 
 export const PLAN_VERSION = 'gsc-content-ops-v1';
@@ -326,6 +331,9 @@ export async function buildWeeklyContentPlan({
 
   const totalClicks = [...gsc.current.bySlug.values()].reduce((sum, row) => sum + Number(row.clicks ?? 0), 0);
   const priorTotalClicks = [...gsc.prior.bySlug.values()].reduce((sum, row) => sum + Number(row.clicks ?? 0), 0);
+  const apiCitation = supabaseClient
+    ? await fetchApiCitationStats(supabaseClient, { windowDays: Math.min(windowDays, 28) })
+    : null;
 
   return {
     version: PLAN_VERSION,
@@ -361,6 +369,7 @@ export async function buildWeeklyContentPlan({
       slugs: recommended.map((row) => row.slug),
       auto_stage_slugs: autoStage.map((row) => row.slug),
     },
+    api_citation: apiCitation,
   };
 }
 
@@ -382,6 +391,7 @@ export function planMarkdown(plan) {
     `| Prior window | ${plan.gsc.prior_range?.startDate ?? '—'} → ${plan.gsc.prior_range?.endDate ?? '—'} |`,
     `| Answer pages with signal | ${plan.gsc.answer_pages_with_signal} |`,
     `| Total clicks (current / prior / delta) | ${plan.gsc.total_clicks_current} / ${plan.gsc.total_clicks_prior} / ${plan.gsc.total_clicks_delta >= 0 ? '+' : ''}${plan.gsc.total_clicks_delta} |`,
+    apiCitationMarkdownSection(plan.api_citation),
     '',
     '## Summary',
     '',
@@ -455,6 +465,7 @@ export function planEmailHtml(plan) {
   <h1 style="font-size:22px;margin-bottom:8px;">Deeper Global — weekly content ops</h1>
   <p style="color:#4b5563;margin-top:0;">${new Date(plan.generated_at).toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })} UTC</p>
   <p>${gscNote}</p>
+  ${apiCitationHtmlSection(plan.api_citation)}
   <p><strong>Mode:</strong> ${escapeHtml(plan.mode)} · <strong>Scope:</strong> upgrade existing answers only · <strong>Metric:</strong> GSC clicks</p>
   <p>Recommended: ${plan.summary.recommended_count} · Confidence-qualified: ${plan.summary.confident_count} · Auto-stage: ${plan.summary.auto_stage_count}</p>
   <table style="width:100%;border-collapse:collapse;font-size:14px;">

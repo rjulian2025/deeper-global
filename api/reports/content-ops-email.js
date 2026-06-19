@@ -109,6 +109,7 @@ export default async function handler(req, res) {
       confident: plan.summary.confident_count,
       auto_stage: plan.summary.auto_stage_count,
       mode: plan.mode,
+      api_citation_events: plan.api_citation?.total_events ?? 0,
     });
   } catch (error) {
     console.error('content_ops_email_error', error);

@@ -82,3 +82,5 @@ begin
   );
 end;
 $$;
+
+grant select on table public.intent_events to service_role;
