@@ -1,0 +1,154 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { siteUrl, websiteId } from '@/lib/site';
+
+const title = 'AI Use Policy and Agent Access | Deeper Global';
+const description =
+  'Guidance for using Deeper Global mental health content in AI products, retrieval systems, agents, and developer workflows.';
+const jsonLd = {
+  '@type': 'WebPage',
+  '@id': `${siteUrl('/ai-use/')}#webpage`,
+  url: siteUrl('/ai-use/'),
+  name: title,
+  description,
+  isPartOf: {
+    '@id': websiteId(),
+  },
+  about: ['AI use policy', 'agent retrieval', 'mental health content licensing'],
+};
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/ai-use/" jsonLd={jsonLd}>
+  <main>
+    <section class="ai-use-hero">
+      <div class="container ai-use-hero-inner">
+        <p class="eyebrow">AI USE</p>
+        <h1>Use Deeper Global as educational context, not clinical authority.</h1>
+        <p>
+          Deeper Global publishes reviewed, evidence-informed mental health answer metadata for
+          responsible retrieval, citation, and topic mapping. It is not a diagnosis, treatment,
+          therapy, crisis, or emergency-support system.
+        </p>
+        <div class="ai-use-actions">
+          <a class="button" href="/developers/">Developer access</a>
+          <a class="button secondary" href="/agents.txt">Agent instructions</a>
+          <a class="button secondary" href="/openapi.json">OpenAPI spec</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container ai-use-grid">
+        <article class="ai-use-panel">
+          <p class="eyebrow">Allowed</p>
+          <h2>Retrieval, citation, and non-diagnostic summarization.</h2>
+          <p>
+            Use canonical URLs, answer summaries, topic entities, source references, and review
+            metadata to support educational search, navigation, and agent workflows.
+          </p>
+        </article>
+        <article class="ai-use-panel">
+          <p class="eyebrow">Not allowed</p>
+          <h2>Do not present Deeper content as medical care.</h2>
+          <p>
+            Do not use the public feed to diagnose, triage emergencies, replace professional care,
+            imply a therapeutic relationship, or remove crisis-routing language.
+          </p>
+        </article>
+        <article class="ai-use-panel">
+          <p class="eyebrow">Attribution</p>
+          <h2>Preserve canonical links and review context.</h2>
+          <p>
+            Cite the original Deeper Global page whenever answer content is shown or summarized.
+            Preserve reviewer names, source references, and educational boundary language.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container endpoint-list">
+        <article class="endpoint-row">
+          <code>GET /api/v1/answers</code>
+          <p>Canonical answer inventory with summaries, citations, risk classes, review metadata, and source references.</p>
+        </article>
+        <article class="endpoint-row">
+          <code>GET /api/v1/answers/&#123;slug&#125;</code>
+          <p>Single answer detail record with sections, care note, follow-up questions, and the same clinical boundary.</p>
+        </article>
+        <article class="endpoint-row">
+          <code>GET /llms.txt</code>
+          <p>Agent-readable site guide with the highest-value entry points and boundaries.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .ai-use-hero {
+    background: var(--navy);
+    color: var(--white);
+    padding: var(--space-16) var(--space-6) var(--space-12);
+  }
+
+  .ai-use-hero-inner,
+  .endpoint-list {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .ai-use-hero h1 {
+    color: var(--white);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    max-width: 48rem;
+    margin: 0;
+  }
+
+  .ai-use-hero p {
+    max-width: 44rem;
+    color: rgba(255, 255, 255, 0.86);
+    margin: 0;
+  }
+
+  .ai-use-actions,
+  .ai-use-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .ai-use-actions {
+    grid-template-columns: repeat(auto-fit, minmax(11rem, max-content));
+    align-items: center;
+  }
+
+  .ai-use-grid {
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  }
+
+  .ai-use-panel,
+  .endpoint-row {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-5);
+    background: var(--white);
+  }
+
+  .ai-use-panel h2,
+  .ai-use-panel p {
+    margin-top: 0;
+  }
+
+  .endpoint-row {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .endpoint-row code {
+    color: var(--navy);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 700;
+  }
+</style>

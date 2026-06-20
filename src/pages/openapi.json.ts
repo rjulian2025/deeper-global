@@ -38,13 +38,80 @@ const openApiDocument = {
     },
   ],
   paths: {
+    '/api/v1/answers': {
+      get: {
+        tags: ['Answer intelligence'],
+        operationId: 'listV1Answers',
+        summary: 'List reviewed Deeper Global answers',
+        description:
+          'Returns the canonical v1 answer inventory with slugs, titles, canonical URLs, summaries, extracts, risk classes, review metadata, source references, and upgrade-priority signals.',
+        responses: {
+          '200': {
+            description: 'Answer inventory',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/AnswerIndexResponse',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/api/v1/answers/{slug}': {
+      get: {
+        tags: ['Answer intelligence'],
+        operationId: 'getV1AnswerBySlug',
+        summary: 'Get one reviewed answer by slug',
+        description:
+          'Returns a single answer detail record with canonical URL, API URL, summary, extract, answer sections, care note, follow-up questions, risk class, review metadata, and source references.',
+        parameters: [
+          {
+            name: 'slug',
+            in: 'path',
+            required: true,
+            schema: {
+              type: 'string',
+              example: 'how-do-i-know-if-i-have-adhd-as-an-adult',
+            },
+          },
+        ],
+        responses: {
+          '200': {
+            description: 'Answer detail',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/AnswerDetailResponse',
+                },
+              },
+            },
+          },
+          '404': {
+            description: 'Answer not found',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    error: { type: 'string' },
+                    message: { type: 'string' },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
     '/llms/answers.json': {
       get: {
         tags: ['Answer intelligence'],
         operationId: 'listAnswers',
-        summary: 'List reviewed Deeper Global answers',
+        summary: 'List reviewed Deeper Global answers as an agent index',
         description:
-          'Returns the canonical answer inventory with slugs, titles, canonical URLs, summaries, extracts, risk classes, review metadata, source references, and upgrade-priority signals.',
+          'Returns the same canonical answer inventory as /api/v1/answers for agents and llms.txt discovery workflows.',
         responses: {
           '200': {
             description: 'Answer inventory',
@@ -165,6 +232,7 @@ const openApiDocument = {
           id: { type: ['string', 'number'] },
           slug: { type: 'string' },
           canonical_url: { type: 'string', format: 'uri' },
+          api_url: { type: 'string', format: 'uri' },
           title: { type: 'string' },
           original_question: { type: 'string' },
           topic: { type: 'string' },
@@ -181,7 +249,41 @@ const openApiDocument = {
             items: { $ref: '#/components/schemas/SourceRef' },
           },
         },
-        required: ['slug', 'canonical_url', 'title', 'topic', 'summary', 'extract'],
+        required: ['slug', 'canonical_url', 'api_url', 'title', 'topic', 'summary', 'extract'],
+      },
+      AnswerSection: {
+        type: 'object',
+        additionalProperties: true,
+        properties: {
+          type: { type: ['string', 'null'] },
+          heading: { type: ['string', 'null'] },
+          body: { type: 'string' },
+        },
+      },
+      AnswerDetailResponse: {
+        allOf: [
+          { $ref: '#/components/schemas/AnswerRecord' },
+          {
+            type: 'object',
+            additionalProperties: true,
+            properties: {
+              key_takeaways: {
+                type: 'array',
+                items: { type: 'string' },
+              },
+              care_note: { type: 'string' },
+              answer_sections: {
+                type: 'array',
+                items: { $ref: '#/components/schemas/AnswerSection' },
+              },
+              follow_up_questions: {
+                type: 'array',
+                items: { type: 'string' },
+              },
+              clinical_boundary: { type: 'string' },
+            },
+          },
+        ],
       },
       AnswerIndexResponse: {
         type: 'object',

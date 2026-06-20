@@ -27,7 +27,7 @@ const jsonLd = {
         </p>
         <div class="developer-actions">
           <a class="button" href="/openapi.json">OpenAPI spec</a>
-          <a class="button secondary" href="/llms/answers.json">Answer index</a>
+          <a class="button secondary" href="/api/v1/answers">Answer API</a>
           <a class="button secondary" href="/agents.txt">Agent instructions</a>
         </div>
       </div>
@@ -64,8 +64,16 @@ const jsonLd = {
         </div>
         <div class="endpoint-list">
           <article class="endpoint-row">
+            <code>GET /api/v1/answers</code>
+            <p>Canonical answer inventory with summaries, extracts, source references, risk classes, and reviewer metadata.</p>
+          </article>
+          <article class="endpoint-row">
+            <code>GET /api/v1/answers/&#123;slug&#125;</code>
+            <p>Single answer detail record with sections, key takeaways, care note, and follow-up questions.</p>
+          </article>
+          <article class="endpoint-row">
             <code>GET /llms/answers.json</code>
-            <p>Reviewed answer inventory with canonical URLs, summaries, extracts, risk and review metadata.</p>
+            <p>Agent-discovery mirror of the answer inventory for llms.txt workflows.</p>
           </article>
           <article class="endpoint-row">
             <code>GET /llms/entities.json</code>
@@ -91,11 +99,11 @@ const jsonLd = {
       <div class="container code-grid">
         <article class="developer-panel">
           <p class="eyebrow">curl</p>
-          <pre><code>curl https://www.deeper.global/llms/answers.json</code></pre>
+          <pre><code>curl https://www.deeper.global/api/v1/answers</code></pre>
         </article>
         <article class="developer-panel">
           <p class="eyebrow">JavaScript</p>
-          <pre><code>const res = await fetch('https://www.deeper.global/llms/answers.json');
+          <pre><code>const res = await fetch('https://www.deeper.global/api/v1/answers');
 const data = await res.json();
 const adhd = data.answers.filter((answer) =>
 	  [answer.title, answer.topic, answer.summary].join(' ').toLowerCase().includes('adhd')
@@ -106,7 +114,7 @@ const adhd = data.answers.filter((answer) =>
           <pre><code>import requests
 
 data = requests.get(
-    "https://www.deeper.global/llms/answers.json",
+    "https://www.deeper.global/api/v1/answers",
     timeout=20,
 ).json()
 
