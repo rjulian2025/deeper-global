@@ -90,12 +90,14 @@ const jsonLd = {
   jsonLd={jsonLd}
   noindex={true}
 >
-  <main>
-    <section class="hero">
+  <main class="discovery-surface categories-page">
+    <section class="catalog-hero">
       <div class="container">
         <p class="eyebrow">Topic hub</p>
-        <h1>{resolvedCategory} questions and answers.</h1>
-        <p class="lede">A focused topic hub for common questions, patterns, and care-seeking language around {resolvedCategory.toLowerCase()}.</p>
+        <h1>{resolvedCategory}</h1>
+        <p class="lede">
+          Common questions, patterns, and care-seeking language around {resolvedCategory.toLowerCase()}.
+        </p>
       </div>
     </section>
 
@@ -103,28 +105,28 @@ const jsonLd = {
       <div class="container">
         {
           hubSections.length ? (
-            <div class="cluster-grid category-hub-grid">
+            <div class="hub-sections">
               {hubSections.map((section) => (
-                <article class="card hub-cluster-card">
-                  <p class="eyebrow">
+                <section class="hub-section">
+                  <p class="hub-section-eyebrow">
                     <a href={section.hubPath}>{section.hubTitle}</a>
                   </p>
-                  <h3>{section.clusterName}</h3>
-                  <p>{section.clusterDescription}</p>
-                  <ul>
+                  <h2 class="hub-section-title">{section.clusterName}</h2>
+                  <p class="hub-section-desc">{section.clusterDescription}</p>
+                  <ul class="hub-section-questions">
                     {section.questions.map((question) => (
                       <li>
                         <a href={answerPath(question.slug)}>{getAnswerDisplayTitle(question)}</a>
                       </li>
                     ))}
                   </ul>
-                </article>
+                </section>
               ))}
             </div>
           ) : null
         }
 
-        <div class="answer-list">
+        <div class="discovery-list answer-list">
           {featuredAnswers.map((question) => <AnswerCard question={question} />)}
         </div>
       </div>

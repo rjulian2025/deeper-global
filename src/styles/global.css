@@ -2286,6 +2286,97 @@ body:has(.discovery-surface) {
   margin: 0;
 }
 
+.discovery-surface .section {
+  padding: var(--space-12) 0 var(--space-16);
+}
+
+.discovery-surface .category-directory-row .discovery-summary {
+  max-width: 36rem;
+}
+
+.discovery-surface .hub-sections {
+  display: grid;
+  gap: var(--space-10);
+  margin-bottom: var(--space-12);
+  padding-bottom: var(--space-12);
+  border-bottom: 1px solid var(--d-line);
+}
+
+.discovery-surface .hub-section {
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid var(--d-line);
+}
+
+.discovery-surface .hub-section:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.discovery-surface .hub-section-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--d-sidebar-muted);
+  margin: 0 0 var(--space-3);
+}
+
+.discovery-surface .hub-section-eyebrow a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.discovery-surface .hub-section-eyebrow a:hover {
+  color: var(--d-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.discovery-surface .hub-section-title {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--d-heading);
+  margin: 0 0 var(--space-3);
+}
+
+.discovery-surface .hub-section-desc {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--d-muted);
+  margin: 0 0 var(--space-5);
+  max-width: var(--d-measure);
+}
+
+.discovery-surface .hub-section-questions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+
+.discovery-surface .hub-section-questions a {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--d-heading);
+  text-decoration: none;
+}
+
+.discovery-surface .hub-section-questions a:hover {
+  color: var(--d-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.discovery-surface .answer-list {
+  gap: 0;
+}
+
 /* Homepage discovery links (replaces trending chips) */
 .discovery-links {
   display: flex;

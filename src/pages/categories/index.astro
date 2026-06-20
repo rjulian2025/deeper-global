@@ -14,25 +14,35 @@ const categories = getCategorySummaries(questions);
   canonicalPath="/categories"
   noindex={true}
 >
-  <main>
-    <section class="hero">
+  <main class="discovery-surface categories-page">
+    <section class="catalog-hero">
       <div class="container">
-        <p class="eyebrow">Topic map</p>
-        <h1>Mental health topic hubs.</h1>
-        <p class="lede">Categories are the public navigation layer and the early intelligence layer for understanding care-seeking demand.</p>
+        <p class="eyebrow">Browse by topic</p>
+        <h1>What are you carrying right now?</h1>
+        <p class="lede">
+          Every topic below is a territory — a place to start when you need language, context, or a clearer next step.
+        </p>
       </div>
     </section>
 
     <section class="section">
-      <div class="container grid">
+      <div class="container">
         {
           categories.length ? (
-            categories.map((category) => (
-              <a class="card" href={categoryPath(category.name)}>
-                <h3>{category.name}</h3>
-                <p>{category.description}</p>
-              </a>
-            ))
+            <div class="discovery-list category-directory">
+              {
+                categories.map((category) => (
+                  <article class="discovery-row category-directory-row">
+                    <h2 class="discovery-row-title">
+                      <a href={categoryPath(category.name)}>{category.name}</a>
+                    </h2>
+                    <p class="discovery-summary">
+                      Explore answers about {category.name.toLowerCase()}.
+                    </p>
+                  </article>
+                ))
+              }
+            </div>
           ) : (
             <EmptyState
               title="No topic data available yet"
