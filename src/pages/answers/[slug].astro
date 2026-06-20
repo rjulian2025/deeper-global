@@ -5,6 +5,7 @@ import CrisisBanner from '@/components/CrisisBanner.astro';
 import PractitionerCallout from '@/components/PractitionerCallout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { isAdhdHubSlug } from '@/lib/adhd-hub';
+import { isAiMentalHealthSprintQuestion } from '@/lib/ai-mental-health-hub';
 import { getModalityCardsForAnswer, modalityPath } from '@/lib/modality-hub';
 import {
   answerPath,
@@ -44,9 +45,10 @@ import {
   isInternalReviewerLabel,
 } from '@/lib/trust';
 import { getQuestionBySlug, getQuestions, getModalities, type Question } from '@/lib/supabase';
+import { filterPublishableQuestions } from '@/lib/indexing-policy';
 
 export async function getStaticPaths() {
-  const questions = await getQuestions();
+  const questions = filterPublishableQuestions(await getQuestions());
   const phraseIndex = buildPhraseIndex(questions);
 
   return questions.map((question) => ({
@@ -118,7 +120,7 @@ const articleId = `${answerUrl}#article`;
 const pageId = `${answerUrl}#webpage`;
 const shouldIndex = shouldIndexQuestion(question);
 const practitionerLink = getAnswerPractitionerLink(question.slug);
-const isAiMentalHealthAnswer = question.content_prompt_version === 'deeper-ai-concerns-sprint-v1';
+const isAiMentalHealthAnswer = isAiMentalHealthSprintQuestion(question);
 const isAdhdHubAnswer = isAdhdHubSlug(question.slug);
 const reviewedBy = getReviewedByLabel(question);
 const reviewerDisplayLabel = getReviewerDisplayLabel(question);

@@ -15,8 +15,9 @@ import {
   getRelatedThemeNames,
 } from '@/lib/content';
 import { getQuestions } from '@/lib/supabase';
+import { filterPublishableQuestions } from '@/lib/indexing-policy';
 
-const questions = await getQuestions();
+const questions = filterPublishableQuestions(await getQuestions());
 const pageSize = 48;
 const visibleQuestions = questions.slice(0, pageSize);
 const totalPages = Math.ceil(questions.length / pageSize);

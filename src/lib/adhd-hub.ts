@@ -55,7 +55,7 @@ export const adhdHubClusters = [
       'how-do-adhd-medications-work',
       'how-do-i-build-routines-with-adhd',
       'how-do-i-manage-adhd-burnout',
-      'how-do-i-find-motivation-when-im-depress-190648-011',
+      'how-do-i-find-motivation-when-im-depressed-z8a9b1',
     ],
   },
   {

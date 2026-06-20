@@ -1,4 +1,5 @@
 import { adhdHubSlugs, isAdhdHubSlug } from './adhd-hub';
+import { aiMentalHealthHubSlugs, isAiMentalHealthHubSlug } from './ai-mental-health-hub';
 import { isModalityAnswerSlug } from './modality-hub';
 import type { AnswerSection, Question } from './supabase';
 import { siteUrl } from './site';
@@ -659,11 +660,16 @@ export function getRelatedQuestions(current: Question, questions: Question[], li
       score += sharedThemeScore(current, question);
       if (followUpSlugs.has(question.slug)) score += 6;
       if (isAdhdHubSlug(current.slug) && isAdhdHubSlug(question.slug)) score += 5;
+      if (isAiMentalHealthHubSlug(current.slug) && isAiMentalHealthHubSlug(question.slug)) score += 5;
       if (isModalityAnswerSlug(current.slug) && isModalityAnswerSlug(question.slug)) score += 4;
 
       const currentInAdhdCluster = adhdHubSlugs.includes(current.slug);
       const candidateInAdhdCluster = adhdHubSlugs.includes(question.slug);
       if (currentInAdhdCluster && candidateInAdhdCluster) score += 3;
+
+      const currentInAiCluster = aiMentalHealthHubSlugs.includes(current.slug);
+      const candidateInAiCluster = aiMentalHealthHubSlugs.includes(question.slug);
+      if (currentInAiCluster && candidateInAiCluster) score += 3;
 
       return { question, score };
     })

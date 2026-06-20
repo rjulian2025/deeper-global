@@ -4,16 +4,16 @@ import {
   getAnswerPlainText,
   getAnswerSummary,
   getQuestionCitation,
-  shouldIndexQuestion,
   truncate,
 } from '@/lib/content';
 import { CONTENT_LICENSE_NAME, CONTENT_LICENSE_URL, SITE_URL, siteUrl } from '@/lib/site';
 import { getQuestions } from '@/lib/supabase';
+import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { getSourceRefs } from '@/lib/trust';
 import { getReviewTier, getRiskClass, getUpgradePriority } from '@/lib/taxonomy';
 
 export async function GET() {
-  const questions = (await getQuestions()).filter(shouldIndexQuestion);
+  const questions = filterPublishableQuestions(await getQuestions());
   const answers = questions.map((question) => {
     const citation = getQuestionCitation(question);
     const priority = getUpgradePriority(question);
