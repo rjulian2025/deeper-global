@@ -1,0 +1,77 @@
+{
+  "info": {
+    "name": "Deeper API",
+    "description": "Reviewed, evidence-informed mental health answer metadata for agents, search products, and developer tools. Educational content only; not a diagnosis, therapy, treatment, crisis, emergency, or care-delivery API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "List answers",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": {
+          "raw": "{{base_url}}/api/v1/answers",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "answers"]
+        },
+        "description": "Canonical answer inventory with summaries, extracts, canonical URLs, review metadata, source references, and risk classes."
+      }
+    },
+    {
+      "name": "Get answer by slug",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": {
+          "raw": "{{base_url}}/api/v1/answers/how-do-i-know-if-i-have-adhd-as-an-adult",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "answers", "how-do-i-know-if-i-have-adhd-as-an-adult"]
+        },
+        "description": "Single answer detail record with key takeaways, answer sections, care note, follow-up questions, and educational boundary."
+      }
+    },
+    {
+      "name": "OpenAPI specification",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": {
+          "raw": "{{base_url}}/openapi.json",
+          "host": ["{{base_url}}"],
+          "path": ["openapi.json"]
+        }
+      }
+    },
+    {
+      "name": "Agent instructions",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "text/plain" }],
+        "url": {
+          "raw": "{{base_url}}/agents.txt",
+          "host": ["{{base_url}}"],
+          "path": ["agents.txt"]
+        }
+      }
+    },
+    {
+      "name": "llms.txt",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "text/plain" }],
+        "url": {
+          "raw": "{{base_url}}/llms.txt",
+          "host": ["{{base_url}}"],
+          "path": ["llms.txt"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://www.deeper.global"
+    }
+  ]
+}
