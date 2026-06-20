@@ -36,13 +36,16 @@ async function applyViaManagementApi(sql) {
     throw new Error('Missing Supabase access token. Run `supabase login` or set SUPABASE_ACCESS_TOKEN.');
   }
 
-  const response = await fetch(`https://api.supabase.com/v1/projects/${PROJECT_REF}/database/query`, {
+  const response = await fetch(`https://api.supabase.com/v1/projects/${PROJECT_REF}/database/migrations`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ query: sql }),
+    body: JSON.stringify({
+      name: 'semantic_enrichment_v1_column',
+      query: sql,
+    }),
   });
 
   const body = await response.text();
