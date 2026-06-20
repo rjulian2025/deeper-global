@@ -33,6 +33,10 @@ Public developer preview endpoints currently require no API key. For monetizatio
 - Pro: 100,000 requests/month for production apps.
 - Enterprise: custom feeds, private licensing, higher rate limits, and support.
 
+## Public Preview Rate Limits
+
+The direct public preview may return `429` with `Retry-After`, `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset` headers. RapidAPI plans should enforce marketplace-specific limits separately.
+
 ## Primary Endpoints
 
 - `GET /api/v1/answers`
@@ -41,10 +45,26 @@ Public developer preview endpoints currently require no API key. For monetizatio
 - `GET /agents.txt`
 - `GET /llms.txt`
 
+## Query Parameters
+
+`GET /api/v1/answers` supports:
+
+- `q`: search across title, question, summary, extract, slug, and topic.
+- `topic`: filter by topic/category text.
+- `reviewed`: `true` for answers with reviewer metadata, `false` for answers without reviewer metadata.
+- `limit`: default `50`, maximum `100`.
+- `offset`: zero-based pagination offset.
+
 ## Sample Request
 
 ```bash
 curl https://www.deeper.global/api/v1/answers
+```
+
+## Sample Search Request
+
+```bash
+curl "https://www.deeper.global/api/v1/answers?q=ADHD%20testing&limit=10"
 ```
 
 ## Sample Detail Request
@@ -64,6 +84,7 @@ curl https://www.deeper.global/api/v1/answers/how-do-i-know-if-i-have-adhd-as-an
 ## Submission Assets
 
 - Developer page: `https://www.deeper.global/developers/`
+- API terms: `https://www.deeper.global/api-terms/`
 - OpenAPI: `https://www.deeper.global/openapi.json`
 - AI use policy: `https://www.deeper.global/ai-use/`
 - Agent instructions: `https://www.deeper.global/agents.txt`

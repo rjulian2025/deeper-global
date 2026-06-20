@@ -30,6 +30,7 @@ const jsonLd = {
           <a class="button secondary" href="/api/v1/answers">Answer API</a>
           <a class="button secondary" href="/agents.txt">Agent instructions</a>
           <a class="button secondary" href="https://github.com/rjulian2025/deeper-api-examples">Examples</a>
+          <a class="button secondary" href="/api-terms/">API terms</a>
         </div>
       </div>
     </section>
@@ -66,7 +67,7 @@ const jsonLd = {
         <div class="endpoint-list">
           <article class="endpoint-row">
             <code>GET /api/v1/answers</code>
-            <p>Canonical answer inventory with summaries, extracts, source references, risk classes, and reviewer metadata.</p>
+            <p>Paginated answer inventory with summaries, extracts, source references, risk classes, and reviewer metadata. Supports <code>q</code>, <code>topic</code>, <code>reviewed</code>, <code>limit</code>, and <code>offset</code>.</p>
           </article>
           <article class="endpoint-row">
             <code>GET /api/v1/answers/&#123;slug&#125;</code>
@@ -141,7 +142,8 @@ anxiety = [
         <h2>Building with Deeper API?</h2>
         <p>
           The public endpoints are a developer preview. For commercial licensing, bulk use,
-          custom feeds, private keys, or MCP integration support, contact Deeper Global.
+          custom feeds, private keys, or MCP integration support, review the
+          <a href="/api-terms/">API terms</a> and contact Deeper Global.
         </p>
       </div>
     </section>

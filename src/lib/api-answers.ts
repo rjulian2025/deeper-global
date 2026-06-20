@@ -65,6 +65,10 @@ export function answerIndexResponse(questions: Question[]) {
     base_url: SITE_URL,
     generated_at: new Date().toISOString(),
     count: answers.length,
+    total_count: answers.length,
+    limit: answers.length,
+    offset: 0,
+    next_offset: null,
     clinical_boundary: DEEPER_API_BOUNDARY,
     answers,
   };

@@ -25,6 +25,7 @@ export async function GET() {
     `- [ADHD hub](${siteUrl('/adhd')}): Curated cluster for adult ADHD diagnosis, executive dysfunction, emotional overwhelm, medication, work accommodations, and daily coping.`,
     `- [AI mental health hub](${siteUrl('/ai-mental-health')}): Curated cluster for AI psychosis, chatbot dependency, AI companions, teens, work anxiety, deepfakes, and safety boundaries.`,
     `- [AI use policy](${siteUrl('/ai-use')}): Public boundaries for agent, retrieval, and developer use of Deeper Global content.`,
+    `- [API terms](${siteUrl('/api-terms')}): Developer preview terms, attribution requirements, commercial-use boundary, and rate-limit expectations.`,
     `- [Topics](${siteUrl('/categories')}): Public topic hubs.`,
     `- [Entities](${siteUrl('/entities')}): Canonical mental health entity map.`,
     `- [Protocol](${siteUrl('/protocol')}): Content governance and trust protocol.`,

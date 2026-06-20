@@ -1,8 +1,13 @@
 const SITE_URL = 'https://www.deeper.global';
 const PAGE_SIZE = 1000;
 const MIN_ANSWER_COUNT = 950;
+const DEFAULT_LIMIT = 50;
+const MAX_LIMIT = 100;
+const RATE_LIMIT_WINDOW_MS = 60 * 1000;
+const RATE_LIMIT_MAX = 120;
 const CLINICAL_BOUNDARY =
   'Educational content only; not a substitute for diagnosis, treatment, therapy, crisis support, or emergency care.';
+const rateLimitBuckets = new Map();
 
 function getSupabaseConfig() {
   const supabaseUrl =
@@ -20,6 +25,11 @@ function getSupabaseConfig() {
 
 function cleanText(value) {
   return typeof value === 'string' ? value.replace(/\s+/g, ' ').trim() : '';
+}
+
+function firstParam(value) {
+  if (Array.isArray(value)) return value[0];
+  return typeof value === 'string' ? value : '';
 }
 
 function stripHtml(value) {
@@ -122,6 +132,104 @@ function upgradePriority(row) {
   }
 
   return { score, reasons };
+}
+
+function parsePositiveInt(value, fallback, max = Number.POSITIVE_INFINITY) {
+  const parsed = Number.parseInt(firstParam(value), 10);
+  if (!Number.isFinite(parsed) || parsed < 0) return fallback;
+  return Math.min(parsed, max);
+}
+
+function boolParam(value) {
+  const normalized = firstParam(value).toLowerCase().trim();
+  if (['1', 'true', 'yes', 'reviewed'].includes(normalized)) return true;
+  if (['0', 'false', 'no', 'unreviewed'].includes(normalized)) return false;
+  return null;
+}
+
+function haystack(row) {
+  return [
+    row.slug,
+    row.question,
+    row.improved_title,
+    row.short_answer,
+    row.improved_summary,
+    row.category,
+    row.raw_category,
+    row.primary_theme,
+    answerPlainText(row),
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+}
+
+export function applyAnswerQuery(rows, query = {}) {
+  const q = cleanText(firstParam(query.q)).toLowerCase();
+  const topic = cleanText(firstParam(query.topic)).toLowerCase();
+  const reviewed = boolParam(query.reviewed);
+  const limit = parsePositiveInt(query.limit, DEFAULT_LIMIT, MAX_LIMIT);
+  const offset = parsePositiveInt(query.offset, 0);
+
+  let filtered = rows;
+
+  if (q) {
+    const tokens = q.split(/\s+/).filter(Boolean);
+    filtered = filtered.filter((row) => {
+      const text = haystack(row);
+      return tokens.every((token) => text.includes(token));
+    });
+  }
+
+  if (topic) {
+    filtered = filtered.filter((row) => displayCategory(row).toLowerCase().includes(topic));
+  }
+
+  if (reviewed !== null) {
+    filtered = filtered.filter((row) => Boolean(row.reviewed_by && row.review_status) === reviewed);
+  }
+
+  return {
+    rows: filtered.slice(offset, offset + limit),
+    total_count: filtered.length,
+    limit,
+    offset,
+    next_offset: offset + limit < filtered.length ? offset + limit : null,
+  };
+}
+
+export function checkRateLimit(req) {
+  const forwarded = req.headers['x-forwarded-for'];
+  const ip = Array.isArray(forwarded) ? forwarded[0] : forwarded?.split(',')[0]?.trim();
+  const key = ip || req.socket?.remoteAddress || 'unknown';
+  const now = Date.now();
+  const bucket = rateLimitBuckets.get(key);
+
+  if (!bucket || bucket.resetAt <= now) {
+    const next = { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS };
+    rateLimitBuckets.set(key, next);
+    return {
+      limited: false,
+      limit: RATE_LIMIT_MAX,
+      remaining: RATE_LIMIT_MAX - 1,
+      reset: Math.ceil(next.resetAt / 1000),
+    };
+  }
+
+  bucket.count += 1;
+
+  return {
+    limited: bucket.count > RATE_LIMIT_MAX,
+    limit: RATE_LIMIT_MAX,
+    remaining: Math.max(0, RATE_LIMIT_MAX - bucket.count),
+    reset: Math.ceil(bucket.resetAt / 1000),
+  };
+}
+
+export function setRateLimitHeaders(res, rateLimit) {
+  res.setHeader('X-RateLimit-Limit', String(rateLimit.limit));
+  res.setHeader('X-RateLimit-Remaining', String(rateLimit.remaining));
+  res.setHeader('X-RateLimit-Reset', String(rateLimit.reset));
 }
 
 export function serializeAnswerRecord(row) {
@@ -232,14 +340,25 @@ export async function fetchQuestionBySlug(slug) {
   return Array.isArray(rows) ? rows[0] ?? null : null;
 }
 
-export function answerIndexResponse(rows) {
-  const answers = rows.map(serializeAnswerRecord);
+export function answerIndexResponse(rows, queryResult = null) {
+  const result = queryResult ?? {
+    rows,
+    total_count: rows.length,
+    limit: rows.length,
+    offset: 0,
+    next_offset: null,
+  };
+  const answers = result.rows.map(serializeAnswerRecord);
 
   return {
     name: 'Deeper Global Answer Index',
     base_url: SITE_URL,
     generated_at: new Date().toISOString(),
     count: answers.length,
+    total_count: result.total_count,
+    limit: result.limit,
+    offset: result.offset,
+    next_offset: result.next_offset,
     clinical_boundary: CLINICAL_BOUNDARY,
     answers,
   };

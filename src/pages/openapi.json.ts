@@ -13,8 +13,8 @@ const openApiDocument = {
       url: SITE_URL,
     },
     license: {
-      name: 'Developer preview - contact for commercial terms',
-      url: `${SITE_URL}/developers/`,
+      name: 'Developer preview terms',
+      url: `${SITE_URL}/api-terms/`,
     },
   },
   servers: [
@@ -44,15 +44,102 @@ const openApiDocument = {
         operationId: 'listV1Answers',
         summary: 'List reviewed Deeper Global answers',
         description:
-          'Returns the canonical v1 answer inventory with slugs, titles, canonical URLs, summaries, extracts, risk classes, review metadata, source references, and upgrade-priority signals.',
+          'Returns the canonical v1 answer inventory with slugs, titles, canonical URLs, summaries, extracts, risk classes, review metadata, source references, and upgrade-priority signals. Supports lightweight search, topic filtering, reviewed-only filtering, and offset pagination.',
+        parameters: [
+          {
+            name: 'q',
+            in: 'query',
+            required: false,
+            description: 'Search across title, question, summary, extract, slug, and topic text.',
+            schema: { type: 'string', example: 'ADHD testing' },
+          },
+          {
+            name: 'topic',
+            in: 'query',
+            required: false,
+            description: 'Filter by topic/category text.',
+            schema: { type: 'string', example: 'Anxiety' },
+          },
+          {
+            name: 'reviewed',
+            in: 'query',
+            required: false,
+            description: 'When true, return answers with reviewer metadata. When false, return answers without reviewer metadata.',
+            schema: { type: 'boolean', example: true },
+          },
+          {
+            name: 'limit',
+            in: 'query',
+            required: false,
+            description: 'Maximum records to return. Defaults to 50; maximum 100.',
+            schema: { type: 'integer', minimum: 0, maximum: 100, default: 50 },
+          },
+          {
+            name: 'offset',
+            in: 'query',
+            required: false,
+            description: 'Zero-based offset for pagination.',
+            schema: { type: 'integer', minimum: 0, default: 0 },
+          },
+        ],
         responses: {
           '200': {
             description: 'Answer inventory',
+            headers: {
+              'X-RateLimit-Limit': { $ref: '#/components/headers/XRateLimitLimit' },
+              'X-RateLimit-Remaining': { $ref: '#/components/headers/XRateLimitRemaining' },
+              'X-RateLimit-Reset': { $ref: '#/components/headers/XRateLimitReset' },
+            },
             content: {
               'application/json': {
                 schema: {
                   $ref: '#/components/schemas/AnswerIndexResponse',
                 },
+                examples: {
+                  adhdSearch: {
+                    summary: 'Search for ADHD testing answers',
+                    value: {
+                      name: 'Deeper Global Answer Index',
+                      base_url: SITE_URL,
+                      generated_at: '2026-06-20T00:00:00.000Z',
+                      count: 1,
+                      total_count: 12,
+                      limit: 1,
+                      offset: 0,
+                      next_offset: 1,
+                      clinical_boundary:
+                        'Educational content only; not a substitute for diagnosis, treatment, therapy, crisis support, or emergency care.',
+                      answers: [
+                        {
+                          slug: 'how-do-i-know-if-i-have-adhd-as-an-adult',
+                          canonical_url: `${SITE_URL}/answers/how-do-i-know-if-i-have-adhd-as-an-adult/`,
+                          api_url: `${SITE_URL}/api/v1/answers/how-do-i-know-if-i-have-adhd-as-an-adult`,
+                          title: 'How do I know if I have ADHD as an adult?',
+                          topic: 'Neurodivergence and Attention',
+                          summary: 'A reviewed educational answer about adult ADHD signs and evaluation.',
+                          extract: 'Adult ADHD can show up as persistent patterns with attention, organization, time, impulsivity, and emotional regulation.',
+                        },
+                      ],
+                    },
+                  },
+                },
+              },
+            },
+          },
+          '429': {
+            description: 'Rate limited',
+            headers: {
+              'Retry-After': {
+                description: 'Seconds until the client should retry.',
+                schema: { type: 'integer' },
+              },
+              'X-RateLimit-Limit': { $ref: '#/components/headers/XRateLimitLimit' },
+              'X-RateLimit-Remaining': { $ref: '#/components/headers/XRateLimitRemaining' },
+              'X-RateLimit-Reset': { $ref: '#/components/headers/XRateLimitReset' },
+            },
+            content: {
+              'application/json': {
+                schema: { $ref: '#/components/schemas/ErrorResponse' },
               },
             },
           },
@@ -80,10 +167,31 @@ const openApiDocument = {
         responses: {
           '200': {
             description: 'Answer detail',
+            headers: {
+              'X-RateLimit-Limit': { $ref: '#/components/headers/XRateLimitLimit' },
+              'X-RateLimit-Remaining': { $ref: '#/components/headers/XRateLimitRemaining' },
+              'X-RateLimit-Reset': { $ref: '#/components/headers/XRateLimitReset' },
+            },
             content: {
               'application/json': {
                 schema: {
                   $ref: '#/components/schemas/AnswerDetailResponse',
+                },
+                examples: {
+                  adhdAnswer: {
+                    summary: 'Adult ADHD detail response',
+                    value: {
+                      slug: 'how-do-i-know-if-i-have-adhd-as-an-adult',
+                      canonical_url: `${SITE_URL}/answers/how-do-i-know-if-i-have-adhd-as-an-adult/`,
+                      api_url: `${SITE_URL}/api/v1/answers/how-do-i-know-if-i-have-adhd-as-an-adult`,
+                      title: 'How do I know if I have ADHD as an adult?',
+                      topic: 'Neurodivergence and Attention',
+                      summary: 'A reviewed educational answer about adult ADHD signs and evaluation.',
+                      key_takeaways: ['Adult ADHD requires a professional evaluation.'],
+                      clinical_boundary:
+                        'Educational content only; not a substitute for diagnosis, treatment, therapy, crisis support, or emergency care.',
+                    },
+                  },
                 },
               },
             },
@@ -93,12 +201,25 @@ const openApiDocument = {
             content: {
               'application/json': {
                 schema: {
-                  type: 'object',
-                  properties: {
-                    error: { type: 'string' },
-                    message: { type: 'string' },
-                  },
+                  $ref: '#/components/schemas/ErrorResponse',
                 },
+              },
+            },
+          },
+          '429': {
+            description: 'Rate limited',
+            headers: {
+              'Retry-After': {
+                description: 'Seconds until the client should retry.',
+                schema: { type: 'integer' },
+              },
+              'X-RateLimit-Limit': { $ref: '#/components/headers/XRateLimitLimit' },
+              'X-RateLimit-Remaining': { $ref: '#/components/headers/XRateLimitRemaining' },
+              'X-RateLimit-Reset': { $ref: '#/components/headers/XRateLimitReset' },
+            },
+            content: {
+              'application/json': {
+                schema: { $ref: '#/components/schemas/ErrorResponse' },
               },
             },
           },
@@ -214,6 +335,20 @@ const openApiDocument = {
     },
   },
   components: {
+    headers: {
+      XRateLimitLimit: {
+        description: 'Maximum requests allowed during the current public-preview window.',
+        schema: { type: 'integer' },
+      },
+      XRateLimitRemaining: {
+        description: 'Requests remaining in the current public-preview window.',
+        schema: { type: 'integer' },
+      },
+      XRateLimitReset: {
+        description: 'Unix timestamp when the current public-preview rate limit window resets.',
+        schema: { type: 'integer' },
+      },
+    },
     schemas: {
       SourceRef: {
         type: 'object',
@@ -293,13 +428,26 @@ const openApiDocument = {
           base_url: { type: 'string', format: 'uri' },
           generated_at: { type: 'string', format: 'date-time' },
           count: { type: 'integer' },
+          total_count: { type: 'integer' },
+          limit: { type: 'integer' },
+          offset: { type: 'integer' },
+          next_offset: { type: ['integer', 'null'] },
           clinical_boundary: { type: 'string' },
           answers: {
             type: 'array',
             items: { $ref: '#/components/schemas/AnswerRecord' },
           },
         },
-        required: ['name', 'base_url', 'generated_at', 'count', 'clinical_boundary', 'answers'],
+        required: ['name', 'base_url', 'generated_at', 'count', 'total_count', 'limit', 'offset', 'next_offset', 'clinical_boundary', 'answers'],
+      },
+      ErrorResponse: {
+        type: 'object',
+        additionalProperties: true,
+        properties: {
+          error: { type: 'string' },
+          message: { type: 'string' },
+        },
+        required: ['error'],
       },
     },
   },

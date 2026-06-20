@@ -19,6 +19,24 @@
       }
     },
     {
+      "name": "Search answers",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": {
+          "raw": "{{base_url}}/api/v1/answers?q=ADHD%20testing&limit=10&offset=0",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "answers"],
+          "query": [
+            { "key": "q", "value": "ADHD testing" },
+            { "key": "limit", "value": "10" },
+            { "key": "offset", "value": "0" }
+          ]
+        },
+        "description": "Search the answer inventory with pagination. Supported query params: q, topic, reviewed, limit, offset."
+      }
+    },
+    {
       "name": "Get answer by slug",
       "request": {
         "method": "GET",
@@ -64,6 +82,18 @@
           "raw": "{{base_url}}/llms.txt",
           "host": ["{{base_url}}"],
           "path": ["llms.txt"]
+        }
+      }
+    },
+    {
+      "name": "API terms",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "text/html" }],
+        "url": {
+          "raw": "{{base_url}}/api-terms/",
+          "host": ["{{base_url}}"],
+          "path": ["api-terms", ""]
         }
       }
     }
