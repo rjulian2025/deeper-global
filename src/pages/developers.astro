@@ -1,0 +1,235 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { siteUrl } from '@/lib/site';
+
+const title = 'Deeper API for Developers and AI Agents | Deeper Global';
+const description =
+  'Use Deeper API to retrieve reviewed mental health answer metadata, topic maps, source references, and agent-readable context for educational AI products.';
+const jsonLd = {
+  '@type': 'TechArticle',
+  '@id': `${siteUrl('/developers/')}#api-docs`,
+  headline: 'Deeper API for Developers and AI Agents',
+  description,
+  url: siteUrl('/developers/'),
+  about: ['mental health answer API', 'AI agent retrieval', 'structured mental health content'],
+};
+---
+
+<BaseLayout title={title} description={description} canonicalPath="/developers/" jsonLd={jsonLd}>
+  <main>
+    <section class="developer-hero">
+      <div class="container developer-hero-inner">
+        <p class="eyebrow">DEVELOPER PREVIEW</p>
+        <h1>Deeper API for agents, apps, and mental health search.</h1>
+        <p>
+          Structured, reviewed mental health answer metadata built for AI retrieval, topic mapping,
+          citation, and responsible educational products.
+        </p>
+        <div class="developer-actions">
+          <a class="button" href="/openapi.json">OpenAPI spec</a>
+          <a class="button secondary" href="/llms/answers.json">Answer index</a>
+          <a class="button secondary" href="/agents.txt">Agent instructions</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container developer-grid">
+        <article class="developer-panel">
+          <p class="eyebrow">What it is</p>
+          <h2>Agent-ready mental health content infrastructure.</h2>
+          <p>
+            Deeper API exposes canonical answer URLs, titles, summaries, extracts, risk classes,
+            review metadata, source references, topic entities, and priority signals.
+          </p>
+        </article>
+        <article class="developer-panel">
+          <p class="eyebrow">Boundary</p>
+          <h2>Education, not care delivery.</h2>
+          <p>
+            Deeper API is not a diagnosis, treatment, crisis, or therapy API. Products using it
+            should preserve the educational boundary and route emergencies to appropriate support.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Endpoints</p>
+            <h2>Start with read-only indexes.</h2>
+          </div>
+        </div>
+        <div class="endpoint-list">
+          <article class="endpoint-row">
+            <code>GET /llms/answers.json</code>
+            <p>Reviewed answer inventory with canonical URLs, summaries, extracts, risk and review metadata.</p>
+          </article>
+          <article class="endpoint-row">
+            <code>GET /llms/entities.json</code>
+            <p>Topic map with aliases, answer counts, canonical URLs, and representative answer slugs.</p>
+          </article>
+          <article class="endpoint-row">
+            <code>GET /llms/priority.json</code>
+            <p>Ranked quality and authority queue for agents working on content, review, or indexing tasks.</p>
+          </article>
+          <article class="endpoint-row">
+            <code>GET /llms.txt</code>
+            <p>Agent-readable site guide with high-value entry points and usage boundaries.</p>
+          </article>
+          <article class="endpoint-row">
+            <code>GET /agents.txt</code>
+            <p>Agent usage instructions, citation expectations, and clinical safety boundaries.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container code-grid">
+        <article class="developer-panel">
+          <p class="eyebrow">curl</p>
+          <pre><code>curl https://www.deeper.global/llms/answers.json</code></pre>
+        </article>
+        <article class="developer-panel">
+          <p class="eyebrow">JavaScript</p>
+          <pre><code>const res = await fetch('https://www.deeper.global/llms/answers.json');
+const data = await res.json();
+const adhd = data.answers.filter((answer) =>
+	  [answer.title, answer.topic, answer.summary].join(' ').toLowerCase().includes('adhd')
+);</code></pre>
+        </article>
+        <article class="developer-panel">
+          <p class="eyebrow">Python</p>
+          <pre><code>import requests
+
+data = requests.get(
+    "https://www.deeper.global/llms/answers.json",
+    timeout=20,
+).json()
+
+anxiety = [
+    answer for answer in data["answers"]
+    if "anxiety" in " ".join([
+        answer["title"],
+        answer["topic"],
+        answer["summary"],
+    ]).lower()
+]</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section class="section developer-band">
+      <div class="container">
+        <p class="eyebrow">Commercial access</p>
+        <h2>Building with Deeper API?</h2>
+        <p>
+          The public endpoints are a developer preview. For commercial licensing, bulk use,
+          custom feeds, private keys, or MCP integration support, contact Deeper Global.
+        </p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .developer-hero {
+    background: var(--navy);
+    color: var(--white);
+    padding: var(--space-16) var(--space-6) var(--space-12);
+  }
+
+  .developer-hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .developer-hero h1 {
+    color: var(--white);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    max-width: 48rem;
+    margin: 0;
+  }
+
+  .developer-hero p {
+    max-width: 42rem;
+    color: rgba(255, 255, 255, 0.86);
+    margin: 0;
+  }
+
+  .developer-actions,
+  .developer-grid,
+  .code-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .developer-actions {
+    grid-template-columns: repeat(auto-fit, minmax(11rem, max-content));
+    align-items: center;
+  }
+
+  .developer-grid,
+  .code-grid {
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  }
+
+  .developer-panel,
+  .endpoint-row {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-5);
+    background: var(--white);
+  }
+
+  .developer-panel h2,
+  .developer-panel p {
+    margin-top: 0;
+  }
+
+  .endpoint-list {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .endpoint-row {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .endpoint-row code,
+  pre {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .endpoint-row code {
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  pre {
+    overflow-x: auto;
+    border-radius: var(--radius-sm);
+    background: var(--navy);
+    color: var(--white);
+    padding: var(--space-4);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+
+  .developer-band {
+    background: var(--mist);
+  }
+
+  @media (max-width: 640px) {
+    .developer-hero h1 {
+      font-size: var(--text-3xl);
+    }
+  }
+</style>
