@@ -1,0 +1,34 @@
+---
+import type { EditorialTopicGroup } from '@/lib/topic-directory';
+
+type Props = {
+  groups: EditorialTopicGroup[];
+};
+
+const { groups } = Astro.props;
+---
+
+<div class="topic-directory">
+  {
+    groups.map((group) => (
+      <section class="topic-directory-group" aria-labelledby={`topic-group-${group.name.replace(/\s+/g, '-').toLowerCase()}`}>
+        <h3 class="topic-directory-group-title" id={`topic-group-${group.name.replace(/\s+/g, '-').toLowerCase()}`}>
+          {group.name}
+        </h3>
+        <ul class="topic-directory-list">
+          {
+            group.topics.map((topic) => (
+              <li>
+                <a class="topic-directory-row" href={topic.href}>
+                  <span class="topic-directory-name">{topic.name}</span>
+                  <span class="topic-directory-leader" aria-hidden="true" />
+                  <span class="topic-directory-count">{topic.count.toLocaleString()}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    ))
+  }
+</div>

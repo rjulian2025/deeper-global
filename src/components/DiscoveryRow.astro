@@ -1,0 +1,39 @@
+---
+import { answerPath, displayCategory, formatDate, getAnswerDisplayTitle, getAnswerSummary, truncate } from '@/lib/content';
+import type { Question } from '@/lib/supabase';
+
+type Props = {
+  question: Question;
+  headingLevel?: 2 | 3;
+  searchResult?: boolean;
+  searchPosition?: number;
+  summaryMaxLength?: number;
+};
+
+const { question, headingLevel = 2, searchResult = false, searchPosition, summaryMaxLength } = Astro.props;
+const Heading = `h${headingLevel}` as const;
+const category = displayCategory(question);
+const title = getAnswerDisplayTitle(question);
+const summary = summaryMaxLength ? truncate(getAnswerSummary(question), summaryMaxLength) : getAnswerSummary(question);
+const updated = formatDate(question.updated_at || question.created_at);
+const url = answerPath(question.slug);
+---
+
+<article class="discovery-row">
+  <Heading class="discovery-row-title">
+    <a
+      href={url}
+      data-search-result={searchResult ? 'true' : undefined}
+      data-search-result-position={searchPosition}
+      data-search-result-category={searchResult ? category : undefined}
+    >
+      {title}
+    </a>
+  </Heading>
+  <p class="discovery-summary">{summary}</p>
+  <p class="editorial-meta discovery-meta">
+    {category}
+    <span class="meta-sep" aria-hidden="true">·</span>
+    Updated {updated}
+  </p>
+</article>

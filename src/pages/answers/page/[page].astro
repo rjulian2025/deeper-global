@@ -1,5 +1,5 @@
 ---
-import AnswerCard from '@/components/AnswerCard.astro';
+import DiscoveryRow from '@/components/DiscoveryRow.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getQuestions, type Question } from '@/lib/supabase';
 import { filterPublishableQuestions } from '@/lib/indexing-policy';
@@ -38,18 +38,23 @@ const nextPath = page < totalPages ? `/answers/page/${page + 1}/` : null;
   description={`Browse page ${page} of Deeper Global's evidence-informed mental health answer library.`}
   canonicalPath={`/answers/page/${page}`}
 >
-  <main>
-    <section class="hero">
+  <main class="discovery-surface">
+    <section class="catalog-hero">
       <div class="container">
         <p class="eyebrow">Answer library</p>
         <h1>Mental health questions and answers.</h1>
         <p class="lede">Page {page} of {totalPages} in Deeper Global's structured answer library.</p>
+        <p class="editorial-meta discovery-meta">
+          <a href="/answers/">Browse all answers</a>
+        </p>
       </div>
     </section>
 
     <section class="section">
-      <div class="container answer-list">
-        {questions.map((question) => <AnswerCard question={question} />)}
+      <div class="container">
+        <div class="discovery-list answer-list">
+          {questions.map((question) => <DiscoveryRow question={question} />)}
+        </div>
         <nav class="pagination" aria-label="Answer library pages">
           <a href={previousPath}>Previous</a>
           <span>Page {page} of {totalPages}</span>

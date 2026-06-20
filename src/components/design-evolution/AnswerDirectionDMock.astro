@@ -1,0 +1,105 @@
+---
+/** Direction D answer mock — optical alignment variants share this markup. */
+
+export type DirectionDMock = {
+  title: string;
+  topic: string;
+  reviewer: string;
+  updated: string;
+  sources: number;
+  ref: string;
+  lede: string;
+  takeaways: string[];
+  sections: { id: string; title: string; body: string }[];
+  related: string[];
+  care: string;
+};
+
+type Props = {
+  mock: DirectionDMock;
+  variant: 'baseline' | 'd3-a' | 'd3-b' | 'd3-c';
+  tag: string;
+  note: string;
+};
+
+const { mock, variant, tag, note } = Astro.props;
+const panelClass = variant === 'baseline' ? 'dd-main-panel' : `dd-main-panel dd-main-panel--${variant}`;
+---
+
+<section class="dd3-variant" id={variant === 'baseline' ? 'baseline' : variant}>
+  <div class="dd3-variant-label">
+    <p class="dd3-variant-tag">{tag}</p>
+    <p class="dd3-variant-note">{note}</p>
+  </div>
+
+  <article class="dd-answer dd3-answer">
+    <div class={panelClass}>
+      <div class={variant === 'd3-c' ? 'dd-reading-column' : variant === 'd3-a' ? 'dd-measure-wrap' : 'dd-panel-flow'}>
+        <nav class="dd-breadcrumb" aria-label="Breadcrumb">
+          {mock.topic} / Answer
+        </nav>
+
+        <h1 class="dd-title">{mock.title}</h1>
+        <p class="dd-meta">
+          {mock.topic}
+          <span class="dd-meta-sep">·</span>
+          {mock.reviewer}
+          <span class="dd-meta-sep">·</span>
+          {mock.updated}
+          <span class="dd-meta-sep">·</span>
+          Ref {mock.ref}
+        </p>
+
+        <p class="dd-lede">{mock.lede}</p>
+
+        <aside class="dd-takeaways" aria-labelledby={`${variant}-takeaways`}>
+          <p class="dd-takeaways-label" id={`${variant}-takeaways`}>Key takeaways</p>
+          <ul>
+            {mock.takeaways.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </aside>
+
+        {
+          mock.sections.map((section) => (
+            <section id={`${variant}-${section.id}`}>
+              <h2 class="dd-section-title">{section.title}</h2>
+              <div class="dd-body">
+                <p>{section.body}</p>
+              </div>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+
+    <aside class="dd-sidebar" aria-label="Answer context">
+      <section class="dd-sidebar-block">
+        <p class="dd-sidebar-heading">Trust</p>
+        <p class="dd-sidebar-text">
+          {mock.reviewer}<br />
+          Clinical Reviewer<br />
+          {mock.topic}<br />
+          <br />
+          Reviewed {mock.updated}<br />
+          {mock.sources} cited sources
+        </p>
+      </section>
+
+      <section class="dd-sidebar-block">
+        <p class="dd-sidebar-heading">Related</p>
+        <ul class="dd-sidebar-list">
+          {mock.related.map((q) => (
+            <li><a href="#">{q}</a></li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="dd-sidebar-block dd-care-block">
+        <p class="dd-sidebar-heading">Care</p>
+        <p class="dd-sidebar-text">{mock.care}</p>
+      </section>
+    </aside>
+  </article>
+</section>

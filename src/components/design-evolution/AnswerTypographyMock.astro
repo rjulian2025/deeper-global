@@ -1,0 +1,192 @@
+---
+/** Shared answer mock — layout classes only; typography scoped by parent wrapper. */
+
+type Mock = {
+  title: string;
+  topic: string;
+  reviewer: string;
+  updated: string;
+  sources: number;
+  lede: string;
+  takeaways: string[];
+  sections: { id: string; title: string; body: string }[];
+  related: string[];
+  care: string;
+};
+
+type Props = {
+  mock: Mock;
+  layout: 'a' | 'b' | 'd';
+  frameLabel: string;
+  takeawaysCount?: number;
+  showGraticule?: boolean;
+  showConditions?: boolean;
+  sidebarPalette?: boolean;
+};
+
+const {
+  mock,
+  layout,
+  frameLabel,
+  takeawaysCount = 5,
+  showGraticule = true,
+  showConditions = true,
+  sidebarPalette = false,
+} = Astro.props;
+const takeaways = mock.takeaways.slice(0, takeawaysCount);
+const layoutClass = layout === 'd' ? 'de-d' : layout === 'b' ? 'de-b' : 'de-a';
+const innerClass = ['de-answer', 'de-answer-inner', layout === 'a' && showGraticule ? 'de-graticule' : ''].filter(Boolean).join(' ');
+---
+
+<div class={`de-frame ${layoutClass}`}>
+  <div class="de-frame-bar" aria-hidden="true">
+    <span></span><span></span><span></span>
+    {frameLabel}
+  </div>
+  <article class={innerClass}>
+    {
+      layout === 'b' ? (
+        <>
+          <nav class="de-breadcrumb" aria-label="Breadcrumb">
+            <a href="#">Deeper Global</a> / <a href="#">{mock.topic}</a>
+          </nav>
+          {showConditions ? (
+            <p class="de-conditions">
+              Conditions in <strong>{mock.topic}</strong> · aggregate topic context · not a personal reading
+            </p>
+          ) : null}
+        </>
+      ) : layout === 'd' && !sidebarPalette ? (
+        <nav class="de-breadcrumb" aria-label="Breadcrumb">
+          <a href="#">Deeper Global</a> / <a href="#">{mock.topic}</a> / {mock.title}
+        </nav>
+      ) : layout === 'a' ? (
+        <nav class="de-breadcrumb" aria-label="Breadcrumb">
+          <a href="#">Deeper Global</a> / <a href="#">{mock.topic}</a> / {mock.title}
+        </nav>
+      ) : null
+    }
+
+    {
+      layout === 'd' && showConditions && !sidebarPalette ? (
+        <p class="de-conditions de-conditions--hybrid">
+          Conditions in <strong>{mock.topic}</strong> · editorial answer · aggregate context
+        </p>
+      ) : null
+    }
+
+    <div class="de-main-col">
+      {
+        layout === 'd' && sidebarPalette ? (
+          <nav class="de-breadcrumb" aria-label="Breadcrumb">
+            {mock.topic} / Answer
+          </nav>
+        ) : null
+      }
+      <h1 class="de-title">{mock.title}</h1>
+      {
+        sidebarPalette ? (
+          <p class="de-meta">
+            {mock.topic}
+            <span class="de-meta-sep">·</span>
+            {mock.reviewer}
+            <span class="de-meta-sep">·</span>
+            {mock.updated}
+            <span class="de-meta-sep">·</span>
+            Ref ANX-042
+          </p>
+        ) : (
+          <p class="de-meta">
+            <a href="#">{mock.topic}</a>
+            <span class="de-meta-sep">·</span>
+            Reviewed by <a href="#">{mock.reviewer}</a>
+            <span class="de-meta-sep">·</span>
+            Updated {mock.updated}
+            <span class="de-meta-sep">·</span>
+            {mock.sources} sources
+          </p>
+        )
+      }
+
+      <p class="de-lede">{mock.lede}</p>
+
+      <aside class="de-takeaways" aria-labelledby={`${frameLabel}-takeaways`}>
+        <p class="de-takeaways-label" id={`${frameLabel}-takeaways`}>Key takeaways</p>
+        <ul>
+          {takeaways.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </aside>
+
+      {
+        mock.sections.map((section) => (
+          <>
+            <h2 class="de-section-title">{section.title}</h2>
+            <div class="de-body">
+              <p>{section.body}</p>
+            </div>
+          </>
+        ))
+      }
+    </div>
+
+    <aside class="de-sidebar" aria-label="Answer context">
+      {
+        layout === 'b' ? (
+          <p class="de-pressure-note">
+            Related questions in this concern cluster share similar language patterns — not identical experiences.
+          </p>
+        ) : null
+      }
+      {
+        sidebarPalette ? (
+          <>
+            <div class="de-sidebar-block">
+              <p class="de-sidebar-heading">Trust</p>
+              <p class="de-care de-care--emphasis">
+                Reviewed by <a href="#">{mock.reviewer}</a><br />
+                Updated {mock.updated}<br />
+                {mock.sources} cited sources
+              </p>
+            </div>
+            <div class="de-sidebar-block">
+              <p class="de-sidebar-heading">Related</p>
+              <ul class="de-sidebar-list">
+                {mock.related.map((q) => (
+                  <li><a href="#">{q}</a></li>
+                ))}
+              </ul>
+            </div>
+            <div class="de-sidebar-block de-care-block">
+              <p class="de-sidebar-heading">Care</p>
+              <p class="de-care">{mock.care}</p>
+            </div>
+          </>
+        ) : (
+          <>
+            <div class="de-sidebar-block">
+              <p class="de-sidebar-heading">Review</p>
+              <p class="de-care de-care--emphasis">
+                Clinically reviewed by <a href="#">{mock.reviewer}</a>
+              </p>
+              <p class="de-care">Last reviewed {mock.updated}</p>
+            </div>
+            <div class="de-sidebar-block">
+              <p class="de-sidebar-heading">Questions people ask next</p>
+              <ul class="de-sidebar-list">
+                {mock.related.map((q) => (
+                  <li><a href="#">{q}</a></li>
+                ))}
+              </ul>
+            </div>
+            <div class="de-sidebar-block">
+              <p class="de-sidebar-heading">Not a substitute for care</p>
+              <p class="de-care">{mock.care}</p>
+            </div>
+          </>
+        )
+      }
+    </aside>
+  </article>
+</div>

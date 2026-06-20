@@ -1,0 +1,318 @@
+/**
+ * Direction D2 — editorial landscape
+ * Atlantic + Mayo Clinic + Psychological Weather Map
+ * De-boxed · contour dividers · increased pacing
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+Display:wght@500;600&display=swap');
+
+body:has(.dd2-page) {
+  background: #fafafa;
+}
+
+.dd2-page {
+  --dd2-page: #fafafa;
+  --dd2-surface: #ffffff;
+  --dd2-ink: #111111;
+  --dd2-heading: #111111;
+  --dd2-muted: #6b7280;
+  --dd2-line: #e5e7eb;
+  --dd2-link: #2563eb;
+  --dd2-link-hover: #1d4ed8;
+  --dd2-care-bg: #f5e6de;
+  --dd2-care-text: #6b5f58;
+  --dd2-contour: #191716;
+  --dd2-serif: 'Noto Serif Display', Georgia, 'Times New Roman', serif;
+  --dd2-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* +15% vertical rhythm vs Direction D */
+  --dd2-space-xs: calc(var(--space-2) * 1.15);
+  --dd2-space-sm: calc(var(--space-3) * 1.15);
+  --dd2-space-md: calc(var(--space-4) * 1.15);
+  --dd2-space-lg: calc(var(--space-5) * 1.15);
+  --dd2-space-xl: calc(var(--space-6) * 1.15);
+  --dd2-space-2xl: calc(var(--space-8) * 1.15);
+  --dd2-space-3xl: calc(var(--space-10) * 1.15);
+  --dd2-space-4xl: calc(var(--space-12) * 1.15);
+
+  --dd2-contour-tile: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23191716' stroke-opacity='0.045' stroke-width='1'%3E%3Cellipse cx='400' cy='380' rx='340' ry='210'/%3E%3Cellipse cx='400' cy='380' rx='280' ry='170'/%3E%3Cellipse cx='400' cy='380' rx='220' ry='130'/%3E%3Cellipse cx='400' cy='380' rx='160' ry='92'/%3E%3Cellipse cx='400' cy='380' rx='100' ry='58'/%3E%3C/g%3E%3C/svg%3E");
+  --dd2-ridge-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='28' viewBox='0 0 96 28'%3E%3Cpath fill='none' stroke='%23191716' stroke-opacity='0.14' stroke-width='1' d='M0 22 C18 8 34 14 48 10 S78 6 96 12'/%3E%3Cpath fill='none' stroke='%23191716' stroke-opacity='0.08' stroke-width='1' d='M0 18 C22 12 44 16 64 13 S86 10 96 16'/%3E%3C/svg%3E");
+  --dd2-divider-wide: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='32' viewBox='0 0 640 32' preserveAspectRatio='none'%3E%3Cpath fill='none' stroke='%23191716' stroke-opacity='0.1' stroke-width='1' d='M0 24 C80 8 160 20 240 14 S400 6 480 16 S560 22 640 10'/%3E%3Cpath fill='none' stroke='%23191716' stroke-opacity='0.06' stroke-width='1' d='M0 20 C100 14 200 18 320 12 S480 8 640 18'/%3E%3C/svg%3E");
+
+  width: min(100% - var(--space-8), 980px);
+  margin: 0 auto;
+  padding: var(--dd2-space-4xl) var(--space-6);
+  font-family: var(--dd2-sans);
+  color: var(--dd2-ink);
+  background-color: var(--dd2-page);
+  background-image: var(--dd2-contour-tile);
+  background-size: 800px 800px;
+  background-position: center -120px;
+}
+
+.dd2-page,
+.dd2-page * {
+  box-sizing: border-box;
+}
+
+.dd2-page a {
+  color: var(--dd2-link);
+  text-decoration: none;
+}
+
+.dd2-page a:hover {
+  color: var(--dd2-link-hover);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ─── Page chrome (prototype labels only) ─── */
+.dd2-eyebrow {
+  margin: 0 0 var(--dd2-space-md);
+  font-family: var(--dd2-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dd2-muted);
+}
+
+.dd2-intro h1 {
+  font-family: var(--dd2-serif);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  line-height: 1.22;
+  color: var(--dd2-heading);
+  margin: 0 0 var(--dd2-space-md);
+}
+
+.dd2-intro-lede {
+  font-size: var(--text-md);
+  line-height: 1.65;
+  color: var(--dd2-muted);
+  max-width: 42rem;
+  margin: 0 0 var(--dd2-space-3xl);
+}
+
+.dd2-footer-links {
+  margin-top: var(--dd2-space-3xl);
+}
+
+/* ─── Answer layout — no outer frame, no panel box ─── */
+.dd2-answer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 168px;
+  gap: var(--dd2-space-4xl);
+  align-items: start;
+  padding: var(--dd2-space-3xl) 0 var(--dd2-space-4xl);
+  border-top: 1px solid var(--dd2-line);
+}
+
+.dd2-main {
+  min-width: 0;
+}
+
+.dd2-breadcrumb {
+  margin: 0 0 var(--dd2-space-2xl);
+  font-family: var(--dd2-sans);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--dd2-muted);
+}
+
+/* +20% headline vs Direction D (2rem → 2.4rem) */
+.dd2-title {
+  font-family: var(--dd2-serif);
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1.18;
+  color: var(--dd2-heading);
+  margin: 0 0 var(--dd2-space-lg);
+  max-width: 18ch;
+}
+
+.dd2-meta {
+  margin: 0 0 var(--dd2-space-2xl);
+  font-family: var(--dd2-sans);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--dd2-muted);
+}
+
+.dd2-meta-sep {
+  margin: 0 0.35rem;
+}
+
+.dd2-lede {
+  margin: 0 0 var(--dd2-space-3xl);
+  font-family: var(--dd2-sans);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--dd2-ink);
+  max-width: 42rem;
+}
+
+/* Topographic divider — reusable */
+.dd2-divider {
+  height: 28px;
+  margin: 0 0 var(--dd2-space-2xl);
+  background: var(--dd2-ridge-mark) left center / 96px 28px no-repeat;
+  border: none;
+}
+
+.dd2-divider--wide {
+  height: 32px;
+  margin: var(--dd2-space-3xl) 0;
+  background: var(--dd2-divider-wide) left center / 100% 32px no-repeat;
+}
+
+.dd2-takeaways {
+  margin: 0 0 var(--dd2-space-3xl);
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.dd2-takeaways-label {
+  margin: 0 0 var(--dd2-space-lg);
+  font-family: var(--dd2-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dd2-muted);
+}
+
+.dd2-takeaways ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--dd2-space-md);
+  max-width: 42rem;
+}
+
+.dd2-takeaways li {
+  position: relative;
+  padding-left: 1rem;
+  font-family: var(--dd2-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--dd2-ink);
+}
+
+.dd2-takeaways li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--dd2-muted);
+}
+
+/* Landscape section separators */
+.dd2-section {
+  margin-top: var(--dd2-space-4xl);
+}
+
+.dd2-section-title {
+  font-family: var(--dd2-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--dd2-heading);
+  margin: 0 0 var(--dd2-space-lg);
+  padding: 0;
+  border: none;
+}
+
+.dd2-section-title::before {
+  content: '';
+  display: block;
+  width: 96px;
+  height: 28px;
+  margin-bottom: var(--dd2-space-lg);
+  background: var(--dd2-ridge-mark) left center / 96px 28px no-repeat;
+}
+
+.dd2-body {
+  font-family: var(--dd2-sans);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--dd2-ink);
+  max-width: 42rem;
+}
+
+.dd2-body p {
+  margin: 0 0 var(--dd2-space-lg);
+}
+
+.dd2-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ─── Minimal sidebar — no cards ─── */
+.dd2-aside {
+  align-self: start;
+  position: sticky;
+  top: var(--dd2-space-2xl);
+  padding-top: 5.5rem;
+  font-family: var(--dd2-sans);
+}
+
+.dd2-aside-label {
+  margin: 0 0 var(--dd2-space-md);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dd2-muted);
+}
+
+.dd2-related {
+  margin: 0 0 var(--dd2-space-3xl);
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--dd2-space-md);
+}
+
+.dd2-related a {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--dd2-link);
+}
+
+.dd2-care {
+  margin: 0;
+  padding: var(--dd2-space-lg) 0 var(--dd2-space-lg) var(--dd2-space-lg);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--dd2-care-text);
+  background: linear-gradient(90deg, var(--dd2-care-bg) 0%, transparent 100%);
+  border-left: 2px solid rgba(107, 95, 88, 0.25);
+}
+
+@media (max-width: 900px) {
+  .dd2-answer {
+    grid-template-columns: 1fr;
+    gap: var(--dd2-space-3xl);
+  }
+
+  .dd2-aside {
+    position: static;
+    padding-top: var(--dd2-space-2xl);
+    border-top: 1px solid var(--dd2-line);
+  }
+
+  .dd2-title {
+    font-size: 2.1rem;
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dd2-section-title::before,
+  .dd2-divider,
+  .dd2-divider--wide {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,203 @@
+---
+import AnswerTypographyMock from '@/components/design-evolution/AnswerTypographyMock.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import '@/styles/design-evolution.css';
+import '@/styles/typography-round.css';
+
+const mock = {
+  title: 'What does anxiety actually feel like?',
+  topic: 'Anxiety',
+  reviewer: 'Dr. Ken Christian',
+  updated: 'June 2026',
+  sources: 3,
+  lede:
+    'Anxiety is not only worry in your thoughts. For many people it shows up in the body first — tight chest, restlessness, difficulty sleeping — before they have language for what is happening.',
+  takeaways: [
+    'Physical symptoms (racing heart, shallow breathing, muscle tension) are common and real.',
+    'Anxiety and stress overlap, but anxiety often persists after the immediate trigger passes.',
+    'Naming the sensation can reduce fear of the sensation itself — a core loop in many anxiety patterns.',
+    'When symptoms interfere with sleep, work, or relationships for weeks, professional evaluation helps.',
+    'This answer describes patterns, not a diagnosis of your experience.',
+  ],
+  sections: [
+    {
+      id: 'experiencing',
+      title: 'What you might be experiencing',
+      body:
+        'People often describe a sense of impending danger without a clear source. Your nervous system may feel switched on — hypervigilant, irritable, or unable to settle. Some notice gastrointestinal discomfort, headaches, or tingling. Others describe emotional numbness alternating with sudden fear.',
+    },
+    {
+      id: 'help',
+      title: 'What can help',
+      body:
+        'Grounding in the body (slow breathing, orienting to the room, reducing caffeine late in the day) can lower acute activation. Structured routines around sleep and movement often stabilize baseline arousal. Therapy approaches such as CBT can address the thought patterns that maintain anxiety over time.',
+    },
+  ],
+  related: [
+    'Why do I feel anxious for no reason?',
+    'How do I know if I need therapy?',
+    'What is the difference between stress and anxiety?',
+  ],
+  care:
+    'This answer is for understanding, not crisis care. If you are in immediate danger or thinking about harming yourself, contact emergency services or 988 in the U.S.',
+};
+
+const variants = [
+  { id: 'baseline', tag: 'Reference', name: 'Current — Cormorant + Jost', layout: 'a' as const, classes: 'typo-baseline typo-round', note: 'Existing DESIGN.md pairing on Direction A layout' },
+  { id: 'a1', tag: 'A1', name: 'Noto Serif Display + Inter', layout: 'a' as const, classes: 'typo-noto typo-round', note: 'Direction A · standard editorial scale' },
+  { id: 'a2', tag: 'A2', name: 'Noto Serif Display + Inter · Spacious', layout: 'a' as const, classes: 'typo-noto typo-round typo-a2', note: 'Direction A · larger type, longer measure, more whitespace' },
+  { id: 'b1', tag: 'B1', name: 'Noto Serif Display + Inter', layout: 'b' as const, classes: 'typo-noto typo-round', note: 'Direction B · topographic dividers retained' },
+  { id: 'd', tag: 'D ★', name: 'Hybrid · Noto Serif Display + Inter', layout: 'd' as const, classes: 'typo-noto typo-round typo-a2 de-leading dd-palette-scope', note: 'Boxed clinical palette · see /design-evolution/direction-d/ · evolved in /design-evolution/direction-d2/', leading: true, sidebarPalette: true, showConditions: false },
+  { id: 'nr-a1', tag: 'NR-A1', name: 'Newsreader + Inter', layout: 'a' as const, classes: 'typo-newsreader typo-round', note: 'Newsreader headline test · Direction A scale' },
+  { id: 'nr-a2', tag: 'NR-A2', name: 'Newsreader + Inter · Spacious', layout: 'a' as const, classes: 'typo-newsreader typo-round typo-a2', note: 'Newsreader headline test · spacious rhythm' },
+  { id: 'nr-b1', tag: 'NR-B1', name: 'Newsreader + Inter', layout: 'b' as const, classes: 'typo-newsreader typo-round', note: 'Newsreader headline test · Direction B' },
+  { id: 'nr-d', tag: 'NR-D ★', name: 'Hybrid · Newsreader + Inter', layout: 'd' as const, classes: 'typo-newsreader typo-round', note: 'Hybrid layout · Newsreader headline comparison to D' },
+];
+---
+
+<BaseLayout
+  title="Typography Round — Noto Serif Display & Newsreader | Deeper Global"
+  description="Typography study comparing Noto Serif Display + Inter and Newsreader + Inter against Cormorant + Jost on Direction A/B/D layouts."
+  canonicalPath="/design-evolution/typography-round"
+  noindex={true}
+>
+  <main class="de-index typo-round typo-noto">
+    <p class="eyebrow">Typography round · exploration only</p>
+    <h1>Serif study: authority &amp; trust</h1>
+    <p class="de-index-lede">
+      Layouts unchanged from Direction A / B / D. Only type family, size, weight, line height, measure, and vertical rhythm
+      vary. Target: NYT + Mayo Clinic + modern research institute — not luxury magazine, SaaS, or wellness blog.
+    </p>
+
+    <nav class="de-round-nav" aria-label="Jump to variant">
+      <a href="/design-evolution/direction-d/">Direction D ★ (boxed)</a>
+      ·
+      <a href="/design-evolution/direction-d2/">Direction D2 (editorial)</a>
+      <a href="#baseline">Baseline</a>
+      <a href="#a1">A1</a>
+      <a href="#a2">A2</a>
+      <a href="#b1">B1</a>
+      <a href="#d">D ★</a>
+      <a href="#nr-a1">NR-A1</a>
+      <a href="#nr-a2">NR-A2</a>
+      <a href="#nr-b1">NR-B1</a>
+      <a href="#nr-d">NR-D</a>
+      <a href="#assessment">Assessment</a>
+    </nav>
+
+    {
+      variants.map((variant) => (
+        <section class={`de-comparison-section ${variant.classes}`} id={variant.id}>
+          <div class="de-direction-label">
+            <h2>
+              <span class="de-variant-tag">{variant.tag}</span>
+              {variant.name}
+            </h2>
+            <p>{variant.note}</p>
+          </div>
+          <AnswerTypographyMock
+            mock={mock}
+            layout={variant.layout}
+            frameLabel={`deeper.global/answers/… — ${variant.tag}`}
+            takeawaysCount={variant.layout === 'b' ? 4 : 5}
+            sidebarPalette={variant.sidebarPalette ?? false}
+            showConditions={variant.showConditions ?? true}
+          />
+        </section>
+      ))
+    }
+
+    <section class="de-comparison-section de-assessment" id="assessment">
+      <div class="de-direction-label">
+        <h2>Assessment</h2>
+        <p>Scored 1–5 · higher is better · typography only</p>
+      </div>
+
+      <table class="de-score-table">
+        <thead>
+          <tr>
+            <th>Criterion</th>
+            <th>Cormorant + Jost</th>
+            <th>Noto Display + Inter</th>
+            <th>Newsreader + Inter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Trust</td>
+            <td class="de-score">3.5</td>
+            <td class="de-score de-winner">4.5</td>
+            <td class="de-score">4.5</td>
+          </tr>
+          <tr>
+            <td>Readability</td>
+            <td class="de-score">4.0</td>
+            <td class="de-score de-winner">4.5</td>
+            <td class="de-score">4.5</td>
+          </tr>
+          <tr>
+            <td>Clinical credibility</td>
+            <td class="de-score">3.5</td>
+            <td class="de-score de-winner">4.5</td>
+            <td class="de-score">4.5</td>
+          </tr>
+          <tr>
+            <td>Editorial quality</td>
+            <td class="de-score">4.0</td>
+            <td class="de-score">4.5</td>
+            <td class="de-score de-winner">5.0</td>
+          </tr>
+          <tr>
+            <td>Distinctiveness</td>
+            <td class="de-score de-winner">4.0</td>
+            <td class="de-score">3.5</td>
+            <td class="de-score">4.0</td>
+          </tr>
+          <tr>
+            <td>Long-form comfort</td>
+            <td class="de-score">4.0</td>
+            <td class="de-score de-winner">4.5</td>
+            <td class="de-score">4.5</td>
+          </tr>
+          <tr>
+            <td><strong>Total (avg)</strong></td>
+            <td class="de-score"><strong>3.8</strong></td>
+            <td class="de-score de-winner"><strong>4.3</strong></td>
+            <td class="de-score"><strong>4.3</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="de-body" style="max-width: 44rem;">
+        <h2 class="de-section-title" style="margin-top: 0;">Recommendation</h2>
+        <p>
+          <strong>Winner for production: Noto Serif Display + Inter</strong> on <strong>Variant D</strong> (hybrid layout,
+          typography round unchanged). Noto reads as institutional and calm — closer to Mayo Clinic patient education and
+          research publishing than Cormorant’s literary warmth, which can skew luxury or therapy-blog at large sizes.
+        </p>
+        <p>
+          <strong>Newsreader + Inter</strong> ties on most scores and wins editorial quality outright — it is the strongest
+          NYT-adjacent choice. For Deeper’s clinical credibility priority, Noto’s slightly more neutral serif tone edges ahead;
+          Newsreader remains the alternate if editorial voice becomes the top brand signal.
+        </p>
+        <p>
+          <strong>Variant A2</strong> (spacious Noto) is the recommended type scale for answer pages: 44px-class h1, 18px body,
+          42rem measure, increased section breaks. Apply to D hybrid first.
+        </p>
+        <p>
+          <strong>Drop Cormorant + Jost</strong> for public answer surfaces once validated — keep Jost only if migration cost
+          is high; Inter is neutral enough to disappear into the reading experience.
+        </p>
+        <p>
+          Full rationale: <code>TYPOGRAPHY_ROUND.md</code>
+        </p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style is:global>
+  .de-index .eyebrow {
+    margin-bottom: var(--space-4);
+  }
+</style>

@@ -1,0 +1,177 @@
+/**
+ * Direction D3 — optical alignment variants
+ * Extends direction-d.css · typography, spacing, palette unchanged
+ */
+
+@import './direction-d.css';
+
+.dd3-page {
+  width: min(100% - var(--space-8), 980px);
+}
+
+.dd3-audit {
+  margin: 0 0 var(--space-12);
+  max-width: 44rem;
+}
+
+.dd3-audit h2 {
+  font-family: var(--dd-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--dd-heading);
+  margin: var(--space-10) 0 var(--space-4);
+}
+
+.dd3-audit p,
+.dd3-audit li {
+  font-family: var(--dd-sans);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--dd-ink);
+}
+
+.dd3-audit ul {
+  margin: 0 0 var(--space-6);
+  padding-left: 1.25rem;
+}
+
+.dd3-audit li {
+  margin-bottom: var(--space-2);
+}
+
+.dd3-audit strong {
+  font-weight: 600;
+}
+
+.dd3-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--dd-sans);
+  font-size: 0.8125rem;
+  margin: var(--space-6) 0 var(--space-10);
+}
+
+.dd3-compare-table th,
+.dd3-compare-table td {
+  border: 1px solid var(--dd-line);
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  vertical-align: top;
+}
+
+.dd3-compare-table th {
+  background: var(--dd-surface);
+  font-weight: 600;
+  color: var(--dd-muted);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dd3-variant {
+  margin-bottom: var(--space-16);
+  padding-bottom: var(--space-16);
+  border-bottom: 1px solid var(--dd-line);
+}
+
+.dd3-variant:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.dd3-variant-label {
+  margin-bottom: var(--space-6);
+}
+
+.dd3-variant-tag {
+  margin: 0 0 var(--space-2);
+  font-family: var(--dd-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dd-muted);
+}
+
+.dd3-variant-note {
+  margin: 0;
+  font-family: var(--dd-sans);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--dd-ink);
+  max-width: 40rem;
+}
+
+.dd3-answer {
+  padding: 0;
+}
+
+/* ─── Baseline (current Direction D panel) ─── */
+.dd-main-panel .dd-panel-flow {
+  /* Full-bleed text within symmetric panel padding — current production behavior */
+}
+
+/* ─── D3-A: Symmetric reading measure ───
+   All prose locked to one measure, centered as a block inside the panel.
+   Headline, meta, lede, takeaways, and body share the same width. */
+.dd-main-panel--d3-a {
+  padding: var(--space-10) var(--space-8);
+}
+
+.dd-main-panel--d3-a .dd-measure-wrap {
+  max-width: 38rem;
+  margin-inline: auto;
+}
+
+.dd-main-panel--d3-a .dd-title {
+  max-width: none;
+  text-wrap: balance;
+}
+
+/* ─── D3-B: Increased left padding ───
+   Compensates for serif left stem weight and bullet indent mass.
+   Asymmetric panel padding — more air on the left gutter. */
+.dd-main-panel--d3-b {
+  padding: var(--space-10) var(--space-10) var(--space-10) calc(var(--space-12) + var(--space-5));
+}
+
+.dd-main-panel--d3-b .dd-panel-flow {
+  max-width: 40rem;
+}
+
+/* ─── D3-C: Centered reading column ───
+   Panel breathes symmetrically; an independent column is optically centered.
+   Narrower measure — premium publication column. */
+.dd-main-panel--d3-c {
+  padding: var(--space-12) var(--space-8);
+  display: flex;
+  justify-content: center;
+}
+
+.dd-main-panel--d3-c .dd-reading-column {
+  width: 100%;
+  max-width: 34rem;
+  margin-inline: auto;
+}
+
+.dd-main-panel--d3-c .dd-title {
+  text-wrap: balance;
+}
+
+@media (max-width: 900px) {
+  .dd-main-panel--d3-a,
+  .dd-main-panel--d3-b,
+  .dd-main-panel--d3-c {
+    padding: var(--space-8);
+  }
+
+  .dd-main-panel--d3-b {
+    padding: var(--space-8);
+  }
+
+  .dd-main-panel--d3-a .dd-measure-wrap,
+  .dd-main-panel--d3-b .dd-panel-flow,
+  .dd-main-panel--d3-c .dd-reading-column {
+    max-width: none;
+  }
+}

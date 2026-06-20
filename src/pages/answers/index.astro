@@ -1,5 +1,5 @@
 ---
-import AnswerCard from '@/components/AnswerCard.astro';
+import DiscoveryRow from '@/components/DiscoveryRow.astro';
 import EmptyState from '@/components/EmptyState.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import {
@@ -60,17 +60,20 @@ const searchIndex = questions.map((question) => {
   description="Browse Deeper Global's evidence-informed mental health answer library, organized for people seeking clear language before, during, or after care."
   canonicalPath="/answers"
 >
-  <main>
-    <section class="hero">
+  <main class="discovery-surface">
+    <section class="catalog-hero">
       <div class="container">
         <p class="eyebrow">Answer library</p>
         <h1>Mental health questions and answers.</h1>
         <p class="lede">A structured library of clear, vetted answers for people seeking context before, during, or after care.</p>
-        <form class="hero-search answer-search" action="/answers/" method="get" role="search" aria-label="Search mental health answers">
-          <input id="answer-search-input" name="q" type="search" placeholder="Search answers..." autocomplete="off" />
-          <button type="submit" aria-label="Search answers">
-            <span aria-hidden="true">⌕</span>
-          </button>
+        <form class="catalog-search answer-search" action="/answers/" method="get" role="search" aria-label="Search mental health answers">
+          <input
+            id="answer-search-input"
+            name="q"
+            type="search"
+            placeholder="Search the answer library"
+            autocomplete="off"
+          />
         </form>
       </div>
     </section>
@@ -79,23 +82,27 @@ const searchIndex = questions.map((question) => {
       <div class="container">
         <p class="search-status" id="answer-search-status" hidden></p>
       </div>
-      <div class="container answer-list" id="answer-results">
-        {
-          visibleQuestions.length ? (
-            visibleQuestions.map((question) => <AnswerCard question={question} />)
-          ) : (
-            <EmptyState
-              title="No live answers available yet"
-              message="This build did not have Supabase credentials. Configure the environment and rebuild to generate the answer library."
-            />
-          )
-        }
+      <div class="container">
+        <div class="discovery-list answer-list" id="answer-results">
+          {
+            visibleQuestions.length ? (
+              visibleQuestions.map((question) => <DiscoveryRow question={question} />)
+            ) : (
+              <EmptyState
+                title="No live answers available yet"
+                message="This build did not have Supabase credentials. Configure the environment and rebuild to generate the answer library."
+              />
+            )
+          }
+        </div>
         {
           totalPages > 1 && (
-            <nav class="pagination" aria-label="Answer library pages" id="answer-pagination">
-              <span>Page 1 of {totalPages}</span>
-              <a href="/answers/page/2/">Next</a>
-            </nav>
+            <div class="container">
+              <nav class="pagination" aria-label="Answer library pages" id="answer-pagination">
+                <span>Page 1 of {totalPages}</span>
+                <a href="/answers/page/2/">Next</a>
+              </nav>
+            </div>
           )
         }
       </div>
@@ -217,15 +224,16 @@ const searchIndex = questions.map((question) => {
       index: number
     ) {
       return `
-      <article class="answer-card">
-        <a class="answer-card-link" href="${escapeHtml(item.url)}" data-search-result="true" data-search-result-position="${index + 1}" data-search-result-category="${escapeHtml(item.category)}">
-          <h2 class="answer-card-title">${escapeHtml(item.title)}</h2>
-        </a>
-        <p class="answer-card-summary">${escapeHtml(item.summary)}</p>
-        <div class="meta-row">
-          <a class="pill pill--category" href="${escapeHtml(item.categoryUrl)}">${escapeHtml(item.category)}</a>
-          <span class="pill pill--date">Updated ${escapeHtml(item.updated)}</span>
-        </div>
+      <article class="discovery-row">
+        <h2 class="discovery-row-title">
+          <a href="${escapeHtml(item.url)}" data-search-result="true" data-search-result-position="${index + 1}" data-search-result-category="${escapeHtml(item.category)}">${escapeHtml(item.title)}</a>
+        </h2>
+        <p class="discovery-summary">${escapeHtml(item.summary)}</p>
+        <p class="editorial-meta discovery-meta">
+          ${escapeHtml(item.category)}
+          <span class="meta-sep" aria-hidden="true">·</span>
+          Updated ${escapeHtml(item.updated)}
+        </p>
       </article>
     `;
     }
@@ -270,7 +278,7 @@ const searchIndex = questions.map((question) => {
 
       resultsElement.innerHTML = results.length
         ? results.map(resultTemplate).join('')
-        : '<article class="answer-card"><h2>No matching answers found.</h2><p>Try a broader search term or browse the full answer library.</p></article>';
+        : '<article class="discovery-row"><h2 class="discovery-row-title">No matching answers found</h2><p class="discovery-summary">Try a broader search term or browse the full answer library.</p></article>';
     }
 
     const initialQuery = new URLSearchParams(window.location.search).get('q') ?? '';
@@ -290,93 +298,4 @@ const searchIndex = questions.map((question) => {
       });
     });
   </script>
-
-  <style is:global>
-    #answer-results .answer-card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-left: 3px solid var(--ocean);
-      border-radius: 6px;
-      padding: var(--space-6) var(--space-8);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-5);
-      transition: box-shadow 0.2s ease, border-left-color 0.2s ease;
-    }
-
-    #answer-results .answer-card:hover {
-      box-shadow: var(--shadow);
-      border-left-color: var(--brass);
-    }
-
-    #answer-results .answer-card-link {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    #answer-results .answer-card-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: var(--text-lg);
-      font-weight: 600;
-      line-height: var(--leading-snug);
-      color: var(--navy);
-      margin: 0;
-      transition: color 0.15s ease;
-    }
-
-    #answer-results .answer-card-link:hover .answer-card-title {
-      color: var(--ocean);
-    }
-
-    #answer-results .answer-card-summary {
-      font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
-      font-size: 0.9375rem;
-      line-height: var(--leading-relaxed);
-      color: var(--stone);
-      margin: 0;
-      max-width: 34rem;
-    }
-
-    #answer-results .meta-row {
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      flex-wrap: wrap;
-    }
-
-    #answer-results .pill {
-      font-family: 'Jost', ui-sans-serif, system-ui, sans-serif;
-      font-size: var(--text-xs);
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      padding: var(--space-2) var(--space-3);
-      border-radius: 100px;
-      text-decoration: none;
-      line-height: var(--leading-normal);
-      display: inline-block;
-    }
-
-    #answer-results .pill--category {
-      background: var(--mist);
-      color: var(--ocean);
-      border: 1px solid transparent;
-      transition: background 0.15s ease, border-color 0.15s ease;
-    }
-
-    #answer-results .pill--category:hover {
-      background: var(--white);
-      border-color: var(--ocean);
-    }
-
-    #answer-results .pill--date {
-      color: var(--stone);
-      background: transparent;
-      font-weight: 400;
-    }
-
-    #answer-results .answer-card:focus-within .answer-card-link:focus {
-      outline: 2px solid var(--ocean);
-      outline-offset: 3px;
-    }
-  </style>
 </BaseLayout>

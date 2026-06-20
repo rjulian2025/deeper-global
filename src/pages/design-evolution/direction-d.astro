@@ -1,0 +1,142 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import '@/styles/direction-d.css';
+
+const mock = {
+  title: 'What does anxiety actually feel like?',
+  topic: 'Anxiety',
+  reviewer: 'Dr. Ken Christian',
+  updated: 'June 2026',
+  sources: 3,
+  ref: 'ANX-042',
+  lede:
+    'Anxiety is not only worry in your thoughts. For many people it shows up in the body first — tight chest, restlessness, difficulty sleeping — before they have language for what is happening.',
+  takeaways: [
+    'Physical symptoms (racing heart, shallow breathing, muscle tension) are common and real.',
+    'Anxiety and stress overlap, but anxiety often persists after the immediate trigger passes.',
+    'Naming the sensation can reduce fear of the sensation itself — a core loop in many anxiety patterns.',
+    'When symptoms interfere with sleep, work, or relationships for weeks, professional evaluation helps.',
+  ],
+  sections: [
+    {
+      id: 'experiencing',
+      title: 'What you might be experiencing',
+      body:
+        'People often describe a sense of impending danger without a clear source. Your nervous system may feel switched on — hypervigilant, irritable, or unable to settle. Some notice gastrointestinal discomfort, headaches, or tingling. Others describe emotional numbness alternating with sudden fear.',
+    },
+    {
+      id: 'help',
+      title: 'What can help',
+      body:
+        'Grounding in the body (slow breathing, orienting to the room, reducing caffeine late in the day) can lower acute activation. Structured routines around sleep and movement often stabilize baseline arousal. Therapy approaches such as CBT can address the thought patterns that maintain anxiety over time.',
+    },
+  ],
+  related: [
+    'Why do I feel anxious for no reason?',
+    'How do I know if I need therapy?',
+    'What is the difference between stress and anxiety?',
+  ],
+  care:
+    'This answer is for understanding, not crisis care. If you are in immediate danger or thinking about harming yourself, contact emergency services or 988 in the U.S.',
+};
+---
+
+<BaseLayout
+  title="Direction D — Noto Serif Display + Inter | Deeper Global"
+  description="Direction D: two-column layout, Noto Serif Display + Inter, clinical palette."
+  canonicalPath="/design-evolution/direction-d"
+  noindex={true}
+>
+  <main class="dd-page">
+    <p class="dd-eyebrow">Direction D ★</p>
+    <div class="dd-intro">
+      <h1>Noto Serif Display + Inter</h1>
+      <p class="dd-intro-lede">
+        Two-column layout · goal clinical palette · white reading surface on cool gray field.
+      </p>
+    </div>
+
+    <div class="dd-frame">
+      <div class="dd-frame-bar" aria-hidden="true">
+        <span></span><span></span><span></span>
+        deeper.global/answers/what-does-anxiety-feel-like — Direction D
+      </div>
+
+      <article class="dd-answer">
+        <div class="dd-main-panel">
+          <div class="dd-reading-column">
+          <nav class="dd-breadcrumb" aria-label="Breadcrumb">
+            {mock.topic} / Answer
+          </nav>
+
+          <h1 class="dd-title">{mock.title}</h1>
+          <p class="dd-meta">
+            {mock.topic}
+            <span class="dd-meta-sep">·</span>
+            {mock.reviewer}
+            <span class="dd-meta-sep">·</span>
+            {mock.updated}
+            <span class="dd-meta-sep">·</span>
+            Ref {mock.ref}
+          </p>
+
+          <p class="dd-lede">{mock.lede}</p>
+
+          <aside class="dd-takeaways" aria-labelledby="dd-takeaways-label">
+            <p class="dd-takeaways-label" id="dd-takeaways-label">Key takeaways</p>
+            <ul>
+              {mock.takeaways.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </aside>
+
+          {
+            mock.sections.map((section) => (
+              <>
+                <h2 class="dd-section-title">{section.title}</h2>
+                <div class="dd-body">
+                  <p>{section.body}</p>
+                </div>
+              </>
+            ))
+          }
+          </div>
+        </div>
+
+        <aside class="dd-sidebar" aria-label="Answer context">
+          <section class="dd-sidebar-block">
+            <p class="dd-sidebar-heading">Trust</p>
+            <p class="dd-sidebar-text">
+              Reviewed by {mock.reviewer}<br />
+              Updated {mock.updated}<br />
+              {mock.sources} cited sources
+            </p>
+          </section>
+
+          <section class="dd-sidebar-block">
+            <p class="dd-sidebar-heading">Related</p>
+            <ul class="dd-sidebar-list">
+              {mock.related.map((q) => (
+                <li><a href="#">{q}</a></li>
+              ))}
+            </ul>
+          </section>
+
+          <section class="dd-sidebar-block dd-care-block">
+            <p class="dd-sidebar-heading">Care</p>
+            <p class="dd-sidebar-text">{mock.care}</p>
+          </section>
+        </aside>
+      </article>
+    </div>
+
+    <p class="dd-intro-lede dd-footer-links">
+      <a href="/design-evolution/direction-d3-optical/">Direction D3 optical →</a>
+      ·
+      <a href="/design-evolution/direction-d2/">Direction D2</a>
+      ·
+      <a href="/design-evolution/typography-round/#d">Typography round</a>
+    </p>
+  </main>
+</BaseLayout>

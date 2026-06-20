@@ -1,0 +1,122 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import '@/styles/direction-d2.css';
+
+const mock = {
+  title: 'What does anxiety actually feel like?',
+  topic: 'Anxiety',
+  reviewer: 'Dr. Ken Christian',
+  updated: 'June 2026',
+  sources: 3,
+  ref: 'ANX-042',
+  lede:
+    'Anxiety is not only worry in your thoughts. For many people it shows up in the body first — tight chest, restlessness, difficulty sleeping — before they have language for what is happening.',
+  takeaways: [
+    'Physical symptoms (racing heart, shallow breathing, muscle tension) are common and real.',
+    'Anxiety and stress overlap, but anxiety often persists after the immediate trigger passes.',
+    'Naming the sensation can reduce fear of the sensation itself — a core loop in many anxiety patterns.',
+    'When symptoms interfere with sleep, work, or relationships for weeks, professional evaluation helps.',
+  ],
+  sections: [
+    {
+      id: 'experiencing',
+      title: 'What you might be experiencing',
+      body:
+        'People often describe a sense of impending danger without a clear source. Your nervous system may feel switched on — hypervigilant, irritable, or unable to settle. Some notice gastrointestinal discomfort, headaches, or tingling. Others describe emotional numbness alternating with sudden fear.',
+    },
+    {
+      id: 'help',
+      title: 'What can help',
+      body:
+        'Grounding in the body (slow breathing, orienting to the room, reducing caffeine late in the day) can lower acute activation. Structured routines around sleep and movement often stabilize baseline arousal. Therapy approaches such as CBT can address the thought patterns that maintain anxiety over time.',
+    },
+  ],
+  related: [
+    'Why do I feel anxious for no reason?',
+    'How do I know if I need therapy?',
+    'What is the difference between stress and anxiety?',
+  ],
+  care:
+    'This answer is for understanding, not crisis care. If you are in immediate danger or thinking about harming yourself, contact emergency services or 988 in the U.S.',
+};
+---
+
+<BaseLayout
+  title="Direction D2 — Editorial Landscape | Deeper Global"
+  description="Direction D2: de-boxed editorial answer, Noto Serif Display + Inter, topographic dividers."
+  canonicalPath="/design-evolution/direction-d2"
+  noindex={true}
+>
+  <main class="dd2-page">
+    <p class="dd2-eyebrow">Direction D2</p>
+    <div class="dd2-intro">
+      <h1>Editorial landscape</h1>
+      <p class="dd2-intro-lede">
+        Noto Serif Display + Inter · de-boxed · contour dividers · Atlantic pacing on clinical ground.
+        Evolves Direction D — less software, more publication.
+      </p>
+    </div>
+
+    <article class="dd2-answer">
+      <div class="dd2-main">
+        <nav class="dd2-breadcrumb" aria-label="Breadcrumb">
+          {mock.topic} / Answer
+        </nav>
+
+        <h1 class="dd2-title">{mock.title}</h1>
+        <p class="dd2-meta">
+          {mock.topic}
+          <span class="dd2-meta-sep">·</span>
+          {mock.reviewer}
+          <span class="dd2-meta-sep">·</span>
+          {mock.updated}
+          <span class="dd2-meta-sep">·</span>
+          Ref {mock.ref}
+        </p>
+
+        <p class="dd2-lede">{mock.lede}</p>
+
+        <div class="dd2-divider" aria-hidden="true"></div>
+
+        <aside class="dd2-takeaways" aria-labelledby="dd2-takeaways-label">
+          <p class="dd2-takeaways-label" id="dd2-takeaways-label">Key takeaways</p>
+          <ul>
+            {mock.takeaways.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </aside>
+
+        <div class="dd2-divider dd2-divider--wide" aria-hidden="true"></div>
+
+        {
+          mock.sections.map((section) => (
+            <section class="dd2-section" id={section.id}>
+              <h2 class="dd2-section-title">{section.title}</h2>
+              <div class="dd2-body">
+                <p>{section.body}</p>
+              </div>
+            </section>
+          ))
+        }
+      </div>
+
+      <aside class="dd2-aside" aria-label="Answer context">
+        <p class="dd2-aside-label">Related</p>
+        <ul class="dd2-related">
+          {mock.related.map((q) => (
+            <li><a href="#">{q}</a></li>
+          ))}
+        </ul>
+
+        <p class="dd2-care">{mock.care}</p>
+      </aside>
+    </article>
+
+    <p class="dd2-intro-lede dd2-footer-links">
+      <a href="/design-evolution/direction-d/">← Direction D</a>
+      ·
+      <a href="/design-evolution/typography-round/#d">Typography round</a>
+    </p>
+  </main>
+</BaseLayout>
