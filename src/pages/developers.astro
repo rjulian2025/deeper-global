@@ -29,6 +29,7 @@ const jsonLd = {
           <a class="button" href="/openapi.json">OpenAPI spec</a>
           <a class="button secondary" href="/api/v1/answers">Answer API</a>
           <a class="button secondary" href="/agents.txt">Agent instructions</a>
+          <a class="button secondary" href="https://github.com/rjulian2025/deeper-api-examples">Examples</a>
         </div>
       </div>
     </section>
@@ -92,6 +93,10 @@ const jsonLd = {
             <p>Agent usage instructions, citation expectations, and clinical safety boundaries.</p>
           </article>
         </div>
+        <p class="developer-note">
+          Example curl, JavaScript, and Python clients are available at
+          <a href="https://github.com/rjulian2025/deeper-api-examples">github.com/rjulian2025/deeper-api-examples</a>.
+        </p>
       </div>
     </section>
 
@@ -204,6 +209,10 @@ anxiety = [
   .endpoint-list {
     display: grid;
     gap: var(--space-3);
+  }
+
+  .developer-note {
+    margin-top: var(--space-4);
   }
 
   .endpoint-row {

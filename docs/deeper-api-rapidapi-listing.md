@@ -67,4 +67,4 @@ curl https://www.deeper.global/api/v1/answers/how-do-i-know-if-i-have-adhd-as-an
 - OpenAPI: `https://www.deeper.global/openapi.json`
 - AI use policy: `https://www.deeper.global/ai-use/`
 - Agent instructions: `https://www.deeper.global/agents.txt`
-- Examples repo: pending GitHub URL after publish.
+- Examples repo: `https://github.com/rjulian2025/deeper-api-examples`
