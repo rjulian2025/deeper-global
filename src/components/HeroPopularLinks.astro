@@ -1,0 +1,64 @@
+---
+export type HeroPopularLink = {
+  href: string;
+  label: string;
+};
+
+type Props = {
+  links: HeroPopularLink[];
+  variant?: 'before' | 'a' | 'b' | 'c';
+};
+
+const { links, variant = 'c' } = Astro.props;
+const fallbackLinks: HeroPopularLink[] = [
+  { href: '/answers/', label: 'Anxiety at work' },
+  { href: '/answers/', label: 'Panic attacks' },
+  { href: '/answers/', label: 'Do I need therapy?' },
+  { href: '/answers/', label: 'Relationship anxiety' },
+];
+const items = links.length ? links : fallbackLinks;
+---
+
+{
+  variant === 'before' ? (
+    <div class="discovery-links" aria-label="Popular answers">
+      <span class="discovery-links-label">Popular</span>
+      {items.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </div>
+  ) : variant === 'a' ? (
+    <aside class="hero-popular hero-popular--a" aria-label="Editor's reading recommendations">
+      <p class="hero-popular-eyebrow">Editor's picks</p>
+      <ul class="hero-popular-list">
+        {items.map((link) => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  ) : variant === 'b' ? (
+    <aside class="hero-popular hero-popular--b" aria-label="Common starting points">
+      <p class="hero-popular-eyebrow">People often start with</p>
+      <ul class="hero-popular-grid">
+        {items.map((link) => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  ) : (
+    <aside class="hero-popular hero-popular--c" aria-label="Start here recommendations">
+      <p class="hero-popular-heading">Start here</p>
+      <ul class="hero-popular-start-list">
+        {items.map((link) => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  )
+}

@@ -1,6 +1,7 @@
 ---
 import DiscoveryRow from '@/components/DiscoveryRow.astro';
 import EmptyState from '@/components/EmptyState.astro';
+import HeroPopularLinks from '@/components/HeroPopularLinks.astro';
 import TopicDirectory from '@/components/TopicDirectory.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { answerPath, categoryPath, displayCategory, formatDate, getAnswerDisplayTitle, getAnswerSummary, getCategorySummaries, truncate } from '@/lib/content';
@@ -41,6 +42,8 @@ const popularLinks = trendingQuestions.map((question) => ({
             Evidence-informed, human-written answers for the real questions people carry.
           </p>
 
+          <HeroPopularLinks links={popularLinks} variant="c" />
+
           <form class="hero-search" action="/answers/" method="get" role="search" aria-label="Search mental health answers">
             <input
               id="ask"
@@ -53,21 +56,6 @@ const popularLinks = trendingQuestions.map((question) => ({
               <span aria-hidden="true">⌕</span>
             </button>
           </form>
-
-          <div class="discovery-links" aria-label="Popular answers">
-            <span class="discovery-links-label">Popular</span>
-            {
-              popularLinks.length ? (
-                popularLinks.map((link) => (
-                  <a href={link.href}>{link.label}</a>
-                ))
-              ) : (
-                ['Anxiety at work', 'Panic attacks', 'Do I need therapy?', 'Relationship anxiety'].map((label) => (
-                  <a href="/answers/">{label}</a>
-                ))
-              )
-            }
-          </div>
 
           <div class="hero-stats" aria-label="Deeper Global content coverage">
             {heroStats.map((stat) => (
@@ -111,19 +99,21 @@ const popularLinks = trendingQuestions.map((question) => ({
           <div class="container">
             <div class="featured-editorial featured-editorial--home">
               <div class="featured-editorial-intro">
-                <p class="eyebrow">Featured answer</p>
+                <p class="eyebrow">Editor's pick</p>
                 <h2>{getAnswerDisplayTitle(featuredQuestion)}</h2>
-                <a class="featured-editorial-cta" href={answerPath(featuredQuestion.slug)}>
-                  Read the full answer<span aria-hidden="true"> →</span>
-                </a>
               </div>
               <div class="featured-editorial-body">
-                <p>{truncate(getAnswerSummary(featuredQuestion), 280)}</p>
-                <p class="editorial-meta discovery-meta">
-                  {featuredCategory}
-                  <span class="meta-sep" aria-hidden="true">·</span>
-                  Updated {formatDate(featuredQuestion.updated_at || featuredQuestion.created_at)}
-                </p>
+                <p>{truncate(getAnswerSummary(featuredQuestion), 180)}</p>
+                <div class="featured-editorial-footer">
+                  <p class="editorial-meta discovery-meta">
+                    {featuredCategory}
+                    <span class="meta-sep" aria-hidden="true">·</span>
+                    Updated {formatDate(featuredQuestion.updated_at || featuredQuestion.created_at)}
+                  </p>
+                  <a class="featured-editorial-cta" href={answerPath(featuredQuestion.slug)}>
+                    Read the full answer<span aria-hidden="true"> →</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -142,19 +132,22 @@ const popularLinks = trendingQuestions.map((question) => ({
         </div>
         {
           topicDirectory.length ? (
-            <TopicDirectory groups={topicDirectory} />
+            <TopicDirectory groups={topicDirectory} variant="c" questionsLabel="people-often-ask" />
           ) : (
             <TopicDirectory
               groups={[
                 {
                   name: 'Common concerns',
+                  description: 'Everyday questions about mood, relationships, and finding support.',
                   topics: [
                     { name: 'Anxiety', slug: 'anxiety', count: 0, href: categoryPath('Anxiety') },
                     { name: 'Depression', slug: 'depression', count: 0, href: categoryPath('Depression') },
                     { name: 'Relationships', slug: 'relationships', count: 0, href: '/categories/' },
                   ],
+                  discoveryLinks: [],
                 },
               ]}
+              variant="c"
             />
           )
         }

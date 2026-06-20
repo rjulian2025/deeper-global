@@ -1,0 +1,110 @@
+---
+import TopicDirectory from '@/components/TopicDirectory.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getQuestions } from '@/lib/supabase';
+import { getEditorialTopicDirectory, TOPIC_QUESTIONS_LABELS, type TopicQuestionsLabel } from '@/lib/topic-directory';
+import '@/styles/topic-directory-compare.css';
+
+const questions = await getQuestions();
+const groups = getEditorialTopicDirectory(questions);
+
+const variants = [
+  {
+    id: 'baseline',
+    title: 'Baseline — topics only',
+    rec: false,
+    note: 'Clean but sparse. Categories float without context or depth cues.',
+  },
+  {
+    id: 'a',
+    title: 'A — Category descriptors',
+    rec: false,
+    note: 'Territory is clearer. Feels more like a map, though depth is still implied not shown.',
+  },
+  {
+    id: 'b',
+    title: 'B — Related questions only',
+    rec: false,
+    note: 'Strong discoverability, but categories alone can feel thin without framing.',
+  },
+  {
+    id: 'c',
+    title: 'C — Hybrid (descriptor + questions)',
+    rec: true,
+    note: 'Descriptor orients; three curated questions prove depth. Best knowledge-map feel without clutter.',
+  },
+] as const;
+
+const questionLabels: Array<{ id: TopicQuestionsLabel; rec: boolean }> = [
+  { id: 'people-often-ask', rec: true },
+  { id: 'common-questions', rec: false },
+  { id: 'frequently-explored', rec: false },
+];
+---
+
+<BaseLayout
+  title="Topic Directory Comparison | Deeper Global"
+  description="Compare taxonomy enrichment concepts for the homepage topic directory."
+  canonicalPath="/design-evolution/topic-directory"
+  noindex={true}
+>
+  <main class="td-page">
+    <p class="eyebrow">Design evolution · topic directory</p>
+    <h1>Taxonomy enrichment concepts</h1>
+    <p class="td-lede">
+      Make the directory feel like a mental health knowledge map — richer and more comprehensive without counts, pills, or cards.
+    </p>
+
+    <aside class="td-verdict" aria-label="Recommendation">
+      <h2>Recommendation: Concept C + “People often ask”</h2>
+      <p>
+        A one-line descriptor orients each territory. Three curated questions beneath give concrete entry points — rewritten as natural language, not article titles — without competing with primary topic links.
+      </p>
+    </aside>
+
+    {
+      variants.map((variant) => (
+        <section class="td-section" aria-labelledby={`td-${variant.id}`}>
+          <div class="td-section-head">
+            <h2 id={`td-${variant.id}`}>{variant.title}</h2>
+            {variant.rec ? <span class="td-rec">Production</span> : null}
+          </div>
+          <div class={`td-panel ${variant.rec ? 'td-panel--winner' : ''}`}>
+            <TopicDirectory
+              groups={groups}
+              variant={variant.id}
+              questionsLabel={variant.id === 'c' || variant.id === 'b' ? 'people-often-ask' : undefined}
+            />
+          </div>
+          <p class="td-note">{variant.note}</p>
+        </section>
+      ))
+    }
+
+    <section class="td-section" aria-labelledby="td-labels">
+      <div class="td-section-head">
+        <h2 id="td-labels">Question label alternatives (Hybrid C)</h2>
+      </div>
+      <p class="td-note td-note--lead">
+        Same three curated questions per category — only the section label changes. “People often ask” reads most editorial; “Common questions” is direct; “Frequently explored” is slightly more neutral.
+      </p>
+      {
+        questionLabels.map((label) => (
+          <div class="td-label-block">
+            <div class="td-section-head td-section-head--compact">
+              <h3>{TOPIC_QUESTIONS_LABELS[label.id]}</h3>
+              {label.rec ? <span class="td-rec">Production</span> : null}
+            </div>
+            <div class={`td-panel ${label.rec ? 'td-panel--winner' : ''}`}>
+              <TopicDirectory groups={groups} variant="c" questionsLabel={label.id} />
+            </div>
+          </div>
+        ))
+      }
+    </section>
+
+    <p class="td-back">
+      <a href="/">← Live homepage</a>
+    </p>
+  </main>
+</BaseLayout>

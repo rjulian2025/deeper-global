@@ -1,0 +1,131 @@
+---
+import HeroPopularLinks from '@/components/HeroPopularLinks.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import '@/styles/hero-popular.css';
+
+const mockLinks = [
+  { href: '/answers/', label: "Finding a Therapist Who's Right for You" },
+  { href: '/answers/', label: 'CBT vs DBT vs Psychodynamic Therapy' },
+  { href: '/answers/', label: 'Could I Have ADHD as an Adult?' },
+  { href: '/answers/', label: 'Executive Dysfunction in Daily Life' },
+];
+
+const concepts = [
+  {
+    id: 'before',
+    title: 'Before — inline Popular row',
+    rec: false,
+    note: 'Wraps past the search column, reads like nav tags, weak hierarchy.',
+  },
+  {
+    id: 'a',
+    title: "A — Editor's picks list",
+    rec: false,
+    note: 'Clear column, hairline dividers, serif titles. Calm but slightly catalog-like.',
+  },
+  {
+    id: 'b',
+    title: 'B — Two-column prompts',
+    rec: false,
+    note: 'Efficient for four short links; long titles wrap awkwardly in narrow cells.',
+  },
+  {
+    id: 'c',
+    title: 'C — Start here',
+    rec: true,
+    note: 'Strongest editorial signal. Numbered recommendations feel curated and scannable.',
+  },
+] as const;
+---
+
+<BaseLayout
+  title="Hero Popular Links Comparison | Deeper Global"
+  description="Compare hero discovery link concepts and topic directory refinements."
+  canonicalPath="/design-evolution/hero-popular"
+  noindex={true}
+>
+  <main class="hp-page">
+    <p class="eyebrow">Design evolution · hero discovery</p>
+    <h1>Popular links &amp; topic directory</h1>
+    <p class="hp-lede">
+      Refine hero recommendations and simplify the topic directory for emotional discovery, not inventory reporting.
+    </p>
+
+    <aside class="hp-verdict" aria-label="Recommendation">
+      <h2>Recommendation</h2>
+      <p><strong>Hero:</strong> Concept C — “Start here” numbered list, constrained to the 560px search column.</p>
+      <p><strong>Topic directory:</strong> Remove counts and leader lines; keep counts in link <code>title</code> tooltips only.</p>
+    </aside>
+
+    <section aria-labelledby="hero-concepts">
+      <h2 id="hero-concepts" style="font-family: var(--font-serif); margin-bottom: var(--space-8);">Hero concepts</h2>
+      <div class="hp-grid">
+        {
+          concepts.map((concept) => (
+            <div class={`hp-panel ${concept.rec ? 'hp-winner' : ''}`}>
+              <div class="hp-panel-label">
+                <strong>{concept.title}</strong>
+                {concept.rec ? <span class="hp-rec">Production</span> : null}
+              </div>
+              <div class="hp-hero-mock">
+                <h3>Answers to the questions you ask before you seek care.</h3>
+                <form class="hero-search" action="/answers/" method="get" role="search" aria-label="Search preview">
+                  <input type="search" placeholder="What does anxiety actually feel like?" readonly tabindex="-1" />
+                  <button type="button" aria-hidden="true" tabindex="-1"><span aria-hidden="true">⌕</span></button>
+                </form>
+                <HeroPopularLinks links={mockLinks} variant={concept.id} />
+              </div>
+              <p class="hp-note">{concept.note}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section aria-labelledby="topic-refine">
+      <h2 id="topic-refine" style="font-family: var(--font-serif); margin-bottom: var(--space-8);">Topic directory</h2>
+      <div class="hp-grid">
+        <div class="hp-panel">
+          <div class="hp-panel-label"><strong>Before — counts &amp; leaders</strong></div>
+          <div class="hp-topic-before">
+            <h4>Mood &amp; emotional health</h4>
+            <a class="topic-directory-row" href="/categories/">
+              <span class="topic-directory-name">Anxiety &amp; Stress</span>
+              <span class="topic-directory-leader" aria-hidden="true" />
+              <span class="topic-directory-count">146</span>
+            </a>
+            <a class="topic-directory-row" href="/categories/">
+              <span class="topic-directory-name">Depression</span>
+              <span class="topic-directory-leader" aria-hidden="true" />
+              <span class="topic-directory-count">114</span>
+            </a>
+            <a class="topic-directory-row" href="/categories/">
+              <span class="topic-directory-name">Grief &amp; Loss</span>
+              <span class="topic-directory-leader" aria-hidden="true" />
+              <span class="topic-directory-count">36</span>
+            </a>
+          </div>
+        </div>
+        <div class="hp-panel hp-winner">
+          <div class="hp-panel-label">
+            <strong>After — topic names only</strong>
+            <span class="hp-rec">Production</span>
+          </div>
+          <div class="hp-topic-after">
+            <h4>Mood &amp; emotional health</h4>
+            <ul class="topic-directory-list" style="gap: var(--space-5);">
+              <li><a class="topic-directory-link" href="/categories/" title="146 answers in Anxiety &amp; Stress">Anxiety &amp; Stress</a></li>
+              <li><a class="topic-directory-link" href="/categories/" title="114 answers in Depression">Depression</a></li>
+              <li><a class="topic-directory-link" href="/categories/" title="36 answers in Grief &amp; Loss">Grief &amp; Loss</a></li>
+            </ul>
+          </div>
+          <p class="hp-note">Counts available on hover via native tooltip — useful for power users without competing visually.</p>
+        </div>
+      </div>
+    </section>
+
+    <p style="font-size: var(--text-sm); color: var(--d-muted);">
+      <a href="/" style="color: var(--d-link);">← Live homepage</a>
+    </p>
+  </main>
+</BaseLayout>
