@@ -2,9 +2,11 @@
 import AnswerTrustPanel from '@/components/AnswerTrustPanel.astro';
 import AnswerTrustStrip from '@/components/AnswerTrustStrip.astro';
 import CrisisBanner from '@/components/CrisisBanner.astro';
+import QuestionContextPanel from '@/components/QuestionContextPanel.astro';
 import PractitionerCallout from '@/components/PractitionerCallout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { isAdhdHubSlug } from '@/lib/adhd-hub';
+import { isAiMentalHealthSprintQuestion } from '@/lib/ai-mental-health-hub';
 import { getModalityCardsForAnswer, modalityPath } from '@/lib/modality-hub';
 import {
   answerPath,
@@ -35,7 +37,8 @@ import {
   type PhraseIndex,
 } from '@/lib/content';
 import { getAnswerPractitionerLink } from '@/lib/practitioner-links';
-import { organizationId, siteUrl, websiteId } from '@/lib/site';
+import { resolveSemanticEnrichmentSync, getPilotEnrichmentBySlug } from '@/lib/semantic-enrichment';
+import { CONTENT_LICENSE_URL, organizationId, siteUrl, websiteId } from '@/lib/site';
 import {
   getReviewedByLabel,
   getReviewerDisplayLabel,
@@ -44,9 +47,10 @@ import {
   isInternalReviewerLabel,
 } from '@/lib/trust';
 import { getQuestionBySlug, getQuestions, getModalities, type Question } from '@/lib/supabase';
+import { filterPublishableQuestions } from '@/lib/indexing-policy';
 
 export async function getStaticPaths() {
-  const questions = await getQuestions();
+  const questions = filterPublishableQuestions(await getQuestions());
   const phraseIndex = buildPhraseIndex(questions);
 
   return questions.map((question) => ({
@@ -118,8 +122,9 @@ const articleId = `${answerUrl}#article`;
 const pageId = `${answerUrl}#webpage`;
 const shouldIndex = shouldIndexQuestion(question);
 const practitionerLink = getAnswerPractitionerLink(question.slug);
-const isAiMentalHealthAnswer = question.content_prompt_version === 'deeper-ai-concerns-sprint-v1';
+const isAiMentalHealthAnswer = isAiMentalHealthSprintQuestion(question);
 const isAdhdHubAnswer = isAdhdHubSlug(question.slug);
+const semanticEnrichment = resolveSemanticEnrichmentSync(question, getPilotEnrichmentBySlug());
 const reviewedBy = getReviewedByLabel(question);
 const reviewerDisplayLabel = getReviewerDisplayLabel(question);
 const reviewerSchemaNode = getReviewerSchemaNode(question);
@@ -140,6 +145,10 @@ const sourceCitationSchema =
         citation: sourceCitationUrls,
       }
     : {};
+const licenseSchema = {
+  license: CONTENT_LICENSE_URL,
+  isAccessibleForFree: true,
+};
 const jsonLd = {
   '@graph': [
     {
@@ -164,6 +173,7 @@ const jsonLd = {
       },
       ...reviewedBySchema,
       ...sourceCitationSchema,
+      ...licenseSchema,
     },
     {
       '@type': 'Article',
@@ -187,6 +197,7 @@ const jsonLd = {
       },
       ...reviewedBySchema,
       ...sourceCitationSchema,
+      ...licenseSchema,
     },
     {
       '@type': 'Question',
@@ -338,6 +349,7 @@ const jsonLd = {
 
       <aside class="answer-sidebar" aria-label="Answer context">
         <AnswerTrustPanel question={question} updatedAt={updatedAt} />
+        {semanticEnrichment ? <QuestionContextPanel enrichment={semanticEnrichment} /> : null}
         <section class="sidebar-card">
           <p class="sidebar-label">Related theme</p>
           <a class="sidebar-entity" href={categoryPath(category)}>{category}</a>

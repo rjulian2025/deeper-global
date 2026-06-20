@@ -67,7 +67,7 @@ export function buildAnswerSectionsFromStaging(row) {
   }));
 }
 
-export function buildPromotionUpdateFromStaging(row, { preserveReview = true } = {}) {
+export function buildPromotionUpdateFromStaging(row, { preserveReview = true, reviewer = null, reviewedAt = null } = {}) {
   const now = new Date().toISOString();
   const lede = String(row.staging_lede ?? '').trim();
   const update = {
@@ -84,6 +84,10 @@ export function buildPromotionUpdateFromStaging(row, { preserveReview = true } =
 
   if (!preserveReview) {
     update.review_status = 'reviewed';
+    if (reviewer) {
+      update.reviewed_by = reviewer;
+      update.reviewed_at = reviewedAt || now;
+    }
   }
 
   return update;

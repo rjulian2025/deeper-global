@@ -1,14 +1,24 @@
 import {
+  buildAnswerPayload,
   checkRateLimit,
   fetchQuestionBySlug,
-  serializeAnswerDetail,
+  jsonResponse,
   setRateLimitHeaders,
-} from '../../lib/deeper-api.js';
+  shouldIndexQuestion,
+} from '../../lib/answer-api.mjs';
+import { readAttributionHeader, readReferrerDomain, recordApiAccess } from '../../lib/record-api-access.mjs';
 
 export default async function handler(req, res) {
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Deeper-Attribution');
+    return res.status(204).end();
+  }
+
   if (req.method !== 'GET') {
-    res.setHeader('Allow', 'GET');
-    return res.status(405).json({ error: 'method_not_allowed' });
+    res.setHeader('Allow', 'GET, OPTIONS');
+    return jsonResponse(res, 405, { error: 'method_not_allowed' });
   }
 
   const rateLimit = checkRateLimit(req);
@@ -16,28 +26,53 @@ export default async function handler(req, res) {
 
   if (rateLimit.limited) {
     res.setHeader('Retry-After', String(Math.max(1, rateLimit.reset - Math.ceil(Date.now() / 1000))));
-    return res.status(429).json({
-      error: 'rate_limited',
-      message: 'Too many requests. Please retry after the rate limit window resets.',
-    });
+    return jsonResponse(
+      res,
+      429,
+      {
+        error: 'rate_limited',
+        message: 'Too many requests. Please retry after the rate limit window resets.',
+      },
+      { cacheSeconds: 0 }
+    );
+  }
+
+  const slug = cleanSlug(req.query.slug);
+  if (!slug) {
+    return jsonResponse(res, 400, { error: 'missing_slug' });
   }
 
   try {
-    const slug = typeof req.query.slug === 'string' ? req.query.slug : req.query.slug?.[0];
-    const question = slug ? await fetchQuestionBySlug(slug) : null;
-
+    const question = await fetchQuestionBySlug(slug);
     if (!question) {
-      res.setHeader('Cache-Control', 'public, max-age=300');
-      return res.status(404).json({
-        error: 'not_found',
-        message: 'No Deeper Global answer exists for this slug.',
-      });
+      return jsonResponse(res, 404, { error: 'answer_not_found', slug });
     }
 
-    res.setHeader('Cache-Control', 'public, max-age=3600');
-    return res.status(200).json(serializeAnswerDetail(question));
+    if (!shouldIndexQuestion(question)) {
+      return jsonResponse(res, 404, { error: 'answer_not_available', slug });
+    }
+
+    recordApiAccess({
+      eventName: 'api_answer_fetched',
+      slug,
+      attribution: readAttributionHeader(req),
+      referrerDomain: readReferrerDomain(req),
+    }).catch(() => {});
+
+    return jsonResponse(res, 200, buildAnswerPayload(question));
   } catch (error) {
-    console.error('deeper_api_answer_detail_failed', error);
-    return res.status(500).json({ error: 'answer_query_failed' });
+    console.error('answer_api_error', slug, error);
+    return jsonResponse(
+      res,
+      500,
+      { error: 'internal_error', message: error instanceof Error ? error.message : 'unknown_error' },
+      { cacheSeconds: 0 }
+    );
   }
+}
+
+function cleanSlug(value) {
+  if (typeof value !== 'string') return null;
+  const slug = value.replace(/\s+/g, '').trim();
+  return slug || null;
 }

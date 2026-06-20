@@ -1,155 +1,65 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { siteUrl, websiteId } from '@/lib/site';
-
-const title = 'AI Use Policy and Agent Access | Deeper Global';
-const description =
-  'Guidance for using Deeper Global mental health content in AI products, retrieval systems, agents, and developer workflows.';
-const jsonLd = {
-  '@type': 'WebPage',
-  '@id': `${siteUrl('/ai-use/')}#webpage`,
-  url: siteUrl('/ai-use/'),
-  name: title,
-  description,
-  isPartOf: {
-    '@id': websiteId(),
-  },
-  about: ['AI use policy', 'agent retrieval', 'mental health content licensing'],
-};
+import { CONTENT_LICENSE_NAME, CONTENT_LICENSE_URL, siteUrl } from '@/lib/site';
 ---
 
-<BaseLayout title={title} description={description} canonicalPath="/ai-use/" jsonLd={jsonLd}>
-  <main>
-    <section class="ai-use-hero">
-      <div class="container ai-use-hero-inner">
-        <p class="eyebrow">AI USE</p>
-        <h1>Use Deeper Global as educational context, not clinical authority.</h1>
-        <p>
-          Deeper Global publishes reviewed, evidence-informed mental health answer metadata for
-          responsible retrieval, citation, and topic mapping. It is not a diagnosis, treatment,
-          therapy, crisis, or emergency-support system.
-        </p>
-        <div class="ai-use-actions">
-          <a class="button" href="/developers/">Developer access</a>
-          <a class="button secondary" href="/agents.txt">Agent instructions</a>
-          <a class="button secondary" href="/openapi.json">OpenAPI spec</a>
-          <a class="button secondary" href="/api-terms/">API terms</a>
-        </div>
-      </div>
-    </section>
+<BaseLayout
+  title="AI Use & Citation Policy | Deeper Global"
+  description="How AI systems, researchers, and publishers may reuse Deeper Global mental health answers with required attribution."
+  canonicalPath="/ai-use"
+>
+  <main class="content">
+    <p class="eyebrow">AI use policy</p>
+    <h1>Using Deeper Global as an AI citation source</h1>
+    <p class="summary">
+      Deeper Global publishes evidence-informed mental health answers for people, search systems, and responsible AI use. This page defines how to fetch, cite, and reuse our content.
+    </p>
 
-    <section class="section">
-      <div class="container ai-use-grid">
-        <article class="ai-use-panel">
-          <p class="eyebrow">Allowed</p>
-          <h2>Retrieval, citation, and non-diagnostic summarization.</h2>
-          <p>
-            Use canonical URLs, answer summaries, topic entities, source references, and review
-            metadata to support educational search, navigation, and agent workflows.
-          </p>
-        </article>
-        <article class="ai-use-panel">
-          <p class="eyebrow">Not allowed</p>
-          <h2>Do not present Deeper content as medical care.</h2>
-          <p>
-            Do not use the public feed to diagnose, triage emergencies, replace professional care,
-            imply a therapeutic relationship, or remove crisis-routing language.
-          </p>
-        </article>
-        <article class="ai-use-panel">
-          <p class="eyebrow">Attribution</p>
-          <h2>Preserve canonical links and review context.</h2>
-          <p>
-            Cite the original Deeper Global page whenever answer content is shown or summarized.
-            Preserve reviewer names, source references, and educational boundary language.
-          </p>
-        </article>
-      </div>
-    </section>
+    <h2>License</h2>
+    <p>
+      Public answer content is available under <a href={CONTENT_LICENSE_URL}>{CONTENT_LICENSE_NAME}</a>. You may reuse excerpts and summaries with attribution to the canonical answer URL.
+    </p>
+    <p>
+      Reuse does not grant rights to imply clinical endorsement, diagnosis, or emergency care. Do not present Deeper content as individualized medical advice.
+    </p>
 
-    <section class="section">
-      <div class="container endpoint-list">
-        <article class="endpoint-row">
-          <code>GET /api/v1/answers</code>
-          <p>Canonical answer inventory with summaries, citations, risk classes, review metadata, and source references.</p>
-        </article>
-        <article class="endpoint-row">
-          <code>GET /api/v1/answers/&#123;slug&#125;</code>
-          <p>Single answer detail record with sections, care note, follow-up questions, and the same clinical boundary.</p>
-        </article>
-        <article class="endpoint-row">
-          <code>GET /llms.txt</code>
-          <p>Agent-readable site guide with the highest-value entry points and boundaries.</p>
-        </article>
-      </div>
-    </section>
+    <h2>Required attribution</h2>
+    <p>When quoting or summarizing an answer, include:</p>
+    <ul>
+      <li>Answer title</li>
+      <li>Canonical URL (<code>https://www.deeper.global/answers/&lt;slug&gt;/</code>)</li>
+      <li>Publisher: Deeper Global</li>
+      <li>Reviewer name when present on the answer record</li>
+    </ul>
+    <p>
+      Example: <em>Source: Deeper Global — Guilty About Sick Time — https://www.deeper.global/answers/why-do-i-feel-guilty-for-taking-time-off-189668-007/</em>
+    </p>
+
+    <h2>Machine-readable access</h2>
+    <ul>
+      <li><a href="/llms.txt">llms.txt</a> — discovery map for AI systems</li>
+      <li><a href="/llms/answers.json">/llms/answers.json</a> — bulk answer index with summaries</li>
+      <li><a href="/api/v1/openapi.json">/api/v1/openapi.json</a> — public read API contract</li>
+      <li><a href={siteUrl('/api/v1/answers')}>GET /api/v1/answers</a> — search and list indexable answers</li>
+      <li><code>GET /api/v1/answers/&lt;slug&gt;</code> — full structured answer JSON</li>
+    </ul>
+    <p>
+      Optional telemetry header for integrators: <code>X-Deeper-Attribution: your-product-name</code>
+    </p>
+
+    <h2>Clinical and crisis boundaries</h2>
+    <p>
+      Content is educational only and is not a substitute for diagnosis, treatment, or emergency support. For immediate danger or self-harm concerns in the U.S., direct users to call or text 988 or contact local emergency services.
+    </p>
+
+    <h2>Commercial and public preview terms</h2>
+    <p>
+      Public endpoints may enforce rate limits and are provided for developer preview. See <a href="/api-terms/">API terms</a> for attribution, commercial-use, and prohibited-use boundaries.
+    </p>
+
+    <h2>Related documents</h2>
+    <p>
+      <a href="/editorial-policy/">Editorial policy</a> · <a href="/protocol/">Trust protocol</a> · <a href="/privacy/">Privacy</a> · <a href="/llms.txt">llms.txt</a> · <a href="/api-terms/">API terms</a>
+    </p>
   </main>
 </BaseLayout>
-
-<style>
-  .ai-use-hero {
-    background: var(--navy);
-    color: var(--white);
-    padding: var(--space-16) var(--space-6) var(--space-12);
-  }
-
-  .ai-use-hero-inner,
-  .endpoint-list {
-    display: grid;
-    gap: var(--space-4);
-  }
-
-  .ai-use-hero h1 {
-    color: var(--white);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: var(--text-4xl);
-    line-height: var(--leading-tight);
-    max-width: 48rem;
-    margin: 0;
-  }
-
-  .ai-use-hero p {
-    max-width: 44rem;
-    color: rgba(255, 255, 255, 0.86);
-    margin: 0;
-  }
-
-  .ai-use-actions,
-  .ai-use-grid {
-    display: grid;
-    gap: var(--space-4);
-  }
-
-  .ai-use-actions {
-    grid-template-columns: repeat(auto-fit, minmax(11rem, max-content));
-    align-items: center;
-  }
-
-  .ai-use-grid {
-    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-  }
-
-  .ai-use-panel,
-  .endpoint-row {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: var(--space-5);
-    background: var(--white);
-  }
-
-  .ai-use-panel h2,
-  .ai-use-panel p {
-    margin-top: 0;
-  }
-
-  .endpoint-row {
-    display: grid;
-    gap: var(--space-2);
-  }
-
-  .endpoint-row code {
-    color: var(--navy);
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-weight: 700;
-  }
-</style>

@@ -1,4 +1,10 @@
 import { createHash, createSign } from 'node:crypto';
+import { createClient } from '@supabase/supabase-js';
+import {
+  apiCitationHtmlSection,
+  apiCitationTextLines,
+  fetchApiCitationStats,
+} from '../../scripts/lib/api-citation-stats.mjs';
 
 const DEFAULT_REPORT_TO = 'rjulian@qvbrands.com';
 const REPORT_WINDOW_DAYS = 30;
@@ -835,18 +841,24 @@ async function fetchSiteKpis(sinceDate) {
 
 function searchConsoleConfig() {
   const siteUrl = cleanText(process.env.GSC_SITE_URL, DEFAULT_GSC_SITE_URL);
+  const proxyUrl = cleanText(process.env.GSC_PROXY_URL);
+  const proxySecret = cleanText(process.env.GSC_PROXY_SECRET);
   const clientEmail = cleanText(process.env.GSC_CLIENT_EMAIL, cleanText(process.env.GA4_CLIENT_EMAIL));
   const privateKey = normalizeGooglePrivateKey(process.env.GSC_PRIVATE_KEY ?? process.env.GA4_PRIVATE_KEY);
+
+  if (proxyUrl && proxySecret) {
+    return { ok: true, authMode: 'proxy', siteUrl, proxyUrl, proxySecret };
+  }
 
   if (!clientEmail || !privateKey) {
     return {
       ok: false,
-      reason: 'Missing GSC_CLIENT_EMAIL/GSC_PRIVATE_KEY or GA4_CLIENT_EMAIL/GA4_PRIVATE_KEY fallback credentials.',
+      reason: 'Missing GSC proxy credentials or GSC_CLIENT_EMAIL/GSC_PRIVATE_KEY or GA4_CLIENT_EMAIL/GA4_PRIVATE_KEY fallback credentials.',
       siteUrl,
     };
   }
 
-  return { ok: true, siteUrl, clientEmail, privateKey };
+  return { ok: true, authMode: 'service_account_key', siteUrl, clientEmail, privateKey };
 }
 
 async function runSearchConsoleQuery({ siteUrl, accessToken, startDate, endDate, dimensions = [], rowLimit = 10 }) {
@@ -868,6 +880,31 @@ async function runSearchConsoleQuery({ siteUrl, accessToken, startDate, endDate,
 
   if (!response.ok) {
     throw new Error(`Search Console query failed: ${payload?.error?.message ?? response.statusText}`);
+  }
+
+  return payload;
+}
+
+async function runSearchConsoleProxyQuery({ proxyUrl, proxySecret, siteUrl, startDate, endDate, dimensions = [], rowLimit = 10 }) {
+  const response = await fetch(proxyUrl, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${proxySecret}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      siteUrl,
+      startDate,
+      endDate,
+      dimensions,
+      rowLimit,
+      dataState: 'final',
+    }),
+  });
+  const payload = await response.json().catch(() => ({}));
+
+  if (!response.ok || payload.ok === false) {
+    throw new Error(`Search Console proxy query failed: ${payload?.error ?? response.statusText}`);
   }
 
   return payload;
@@ -902,24 +939,31 @@ async function fetchSearchConsoleMetrics() {
   if (!config.ok) return { available: false, reason: config.reason, siteUrl: config.siteUrl, dateRange };
 
   try {
-    const accessToken = await fetchGoogleAccessToken(config, { scope: GSC_SCOPE, label: 'Search Console' });
     const common = {
       siteUrl: config.siteUrl,
-      accessToken,
       startDate,
       endDate,
     };
+    const querySearchConsole = (query) =>
+      config.authMode === 'proxy'
+        ? runSearchConsoleProxyQuery({ ...common, ...query, proxyUrl: config.proxyUrl, proxySecret: config.proxySecret })
+        : runSearchConsoleQuery({ ...common, ...query, accessToken: common.accessToken });
+
+    if (config.authMode !== 'proxy') {
+      common.accessToken = await fetchGoogleAccessToken(config, { scope: GSC_SCOPE, label: 'Search Console' });
+    }
+
     const [summary, topQueries, topPages, countries, devices] = await Promise.all([
-      runSearchConsoleQuery({ ...common, rowLimit: 1 }),
-      runSearchConsoleQuery({ ...common, dimensions: ['query'], rowLimit: 10 }),
-      runSearchConsoleQuery({ ...common, dimensions: ['page'], rowLimit: 10 }),
-      runSearchConsoleQuery({ ...common, dimensions: ['country'], rowLimit: 10 }),
-      runSearchConsoleQuery({ ...common, dimensions: ['device'], rowLimit: 10 }),
+      querySearchConsole({ rowLimit: 1 }),
+      querySearchConsole({ dimensions: ['query'], rowLimit: 10 }),
+      querySearchConsole({ dimensions: ['page'], rowLimit: 10 }),
+      querySearchConsole({ dimensions: ['country'], rowLimit: 10 }),
+      querySearchConsole({ dimensions: ['device'], rowLimit: 10 }),
     ]);
 
     return {
       available: true,
-      source: 'Google Search Console API',
+      source: config.authMode === 'proxy' ? 'Google Search Console API via proxy' : 'Google Search Console API',
       siteUrl: config.siteUrl,
       dateRange,
       summary: firstSearchConsoleSummary(summary),
@@ -953,7 +997,7 @@ function splitKey(value) {
   return String(value).split('||');
 }
 
-function buildReport({ internalRows, publicRows, sinceDate, siteKpis, searchConsole, intentRollups }) {
+function buildReport({ internalRows, publicRows, sinceDate, siteKpis, searchConsole, intentRollups, apiCitation }) {
   const topSearchTopics = sumRows(
     publicRows,
     (row) => row.category,
@@ -996,6 +1040,7 @@ function buildReport({ internalRows, publicRows, sinceDate, siteKpis, searchCons
     siteKpis,
     searchConsole,
     intentRollups,
+    apiCitation,
     rawRollupRows: {
       internal: internalRows.length,
       public: publicRows.length,
@@ -1331,6 +1376,8 @@ function reportHtml(report) {
     <h2>Google Search Console</h2>
     ${searchConsoleHtml(report.searchConsole)}
 
+    ${apiCitationHtmlSection(report.apiCitation)}
+
     ${intentRollupHtml(report.intentRollups)}
 
     <h2>Top searched topics</h2>
@@ -1507,6 +1554,8 @@ function reportText(report) {
     '',
     ...searchConsoleTextLines(report.searchConsole),
     '',
+    ...apiCitationTextLines(report.apiCitation),
+    '',
     ...(report.intentRollups?.available
       ? []
       : [
@@ -1579,11 +1628,26 @@ export default async function handler(req, res) {
 
   try {
     const sinceDate = isoDateDaysAgo(REPORT_WINDOW_DAYS);
-    const [internalRollups, publicRollups, siteKpis, searchConsole] = await Promise.all([
+    const { url, key } = supabaseConfig();
+    const supabaseClient = url && key ? createClient(url, key, { auth: { persistSession: false } }) : null;
+    const [internalRollups, publicRollups, siteKpis, searchConsole, apiCitation] = await Promise.all([
       fetchRollupsSafe('intent_internal_daily_rollups', sinceDate),
       fetchRollupsSafe('intent_public_macro_rollups', sinceDate),
       fetchSiteKpis(sinceDate),
       fetchSearchConsoleMetrics(),
+      supabaseClient
+        ? fetchApiCitationStats(supabaseClient, { windowDays: REPORT_WINDOW_DAYS })
+        : Promise.resolve({
+            available: false,
+            reason: 'missing_supabase_report_credentials',
+            window_days: REPORT_WINDOW_DAYS,
+            total_events: 0,
+            answer_fetches: 0,
+            list_requests: 0,
+            unique_answers_fetched: 0,
+            top_answer_slugs: [],
+            note: 'Missing Supabase credentials for API citation telemetry.',
+          }),
     ]);
     const intentRollups = {
       available: !internalRollups.error && !publicRollups.error,
@@ -1597,6 +1661,7 @@ export default async function handler(req, res) {
       siteKpis,
       searchConsole,
       intentRollups,
+      apiCitation,
     });
 
     if (req.query?.dryRun === '1') {

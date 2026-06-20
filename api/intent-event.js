@@ -12,6 +12,8 @@ const ALLOWED_EVENTS = new Set([
   'external_referral_clicked',
   'editorial_policy_viewed',
   'answer_related_clicked',
+  'api_answer_fetched',
+  'api_answers_listed',
 ]);
 
 const ALLOWED_CONTENT_TYPES = new Set(['answer', 'category', 'entity', 'hub', 'policy', 'search', 'external_referral']);

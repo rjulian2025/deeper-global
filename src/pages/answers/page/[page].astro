@@ -2,12 +2,13 @@
 import AnswerCard from '@/components/AnswerCard.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getQuestions, type Question } from '@/lib/supabase';
+import { filterPublishableQuestions } from '@/lib/indexing-policy';
 
 const pageSize = 48;
 
 export async function getStaticPaths() {
   const pageSize = 48;
-  const questions = await getQuestions();
+  const questions = filterPublishableQuestions(await getQuestions());
   const totalPages = Math.ceil(questions.length / pageSize);
 
   return Array.from({ length: Math.max(totalPages - 1, 0) }, (_, index) => {

@@ -40,6 +40,7 @@ export type Question = {
   slug: string;
   created_at: string;
   updated_at: string | null;
+  semantic_enrichment_v1?: unknown | null;
 };
 
 export type AnswerSection = {
