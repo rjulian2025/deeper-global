@@ -50,7 +50,7 @@ const OPENAPI = {
             in: 'path',
             required: true,
             schema: { type: 'string' },
-            example: 'why-do-i-feel-guilty-for-taking-time-off-189668-007',
+            example: 'how-do-i-know-if-i-have-adhd-as-an-adult',
           },
         ],
         responses: {
@@ -125,6 +125,63 @@ const OPENAPI = {
           profile_url: { type: 'string', nullable: true },
         },
       },
+      SemanticEnrichmentV1: {
+        type: 'object',
+        description:
+          'Educational semantic metadata centered on the human question. Supports discovery and self-understanding; does not diagnose the reader.',
+        required: [
+          'canonical_question',
+          'intended_next_step',
+          'safety_disclaimer',
+          'enrichment_status',
+          'enrichment_updated_at',
+        ],
+        properties: {
+          canonical_question: { type: 'string', example: 'How do I know if I have ADHD as an adult?' },
+          alternate_questions: { type: 'array', items: { type: 'string' } },
+          emotional_phrasings: { type: 'array', items: { type: 'string' } },
+          related_symptoms: { type: 'array', items: { type: 'string' } },
+          possible_interpretations: {
+            type: 'array',
+            items: { type: 'string' },
+            description: 'Broad meaning frames; not diagnoses',
+          },
+          differential_considerations: {
+            type: 'array',
+            items: { type: 'string' },
+            description: 'Topics that may overlap; for educational context only',
+          },
+          user_situations: { type: 'array', items: { type: 'string' } },
+          ai_prompt_variants: { type: 'array', items: { type: 'string' } },
+          related_entities: { type: 'array', items: { type: 'string' } },
+          primary_hub: { type: 'string', example: '/adhd/' },
+          secondary_hubs: { type: 'array', items: { type: 'string' } },
+          reviewer_id: { type: 'string', nullable: true },
+          intended_next_step: {
+            type: 'string',
+            enum: [
+              'self_education',
+              'self_reflection',
+              'professional_evaluation',
+              'therapy',
+              'crisis_support',
+              'medical_consult',
+              'relationship_support',
+              'no_specific_next_step',
+            ],
+          },
+          safety_disclaimer: { type: 'string' },
+          enrichment_status: {
+            type: 'string',
+            enum: ['not_started', 'ai_generated', 'human_reviewed', 'clinically_reviewed', 'needs_review'],
+          },
+          enrichment_updated_at: { type: 'string', format: 'date-time' },
+          semantic_boundary: {
+            type: 'string',
+            description: 'API reminder that semantic fields are not diagnostic',
+          },
+        },
+      },
       Answer: {
         type: 'object',
         required: ['api_version', 'slug', 'canonical_url', 'api_url', 'title', 'sections', 'license', 'citation_required'],
@@ -161,6 +218,11 @@ const OPENAPI = {
           attribution: { type: 'string' },
           clinical_boundary: { type: 'string' },
           crisis_boundary: { type: 'string' },
+          semantic_enrichment_v1: {
+            allOf: [{ $ref: '#/components/schemas/SemanticEnrichmentV1' }],
+            nullable: true,
+            description: 'Present only when semantic enrichment has been attached to the answer.',
+          },
         },
       },
       Error: {

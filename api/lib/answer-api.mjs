@@ -1,3 +1,5 @@
+import { getSemanticEnrichmentForApi, getSemanticSearchHaystack } from './semantic-enrichment.mjs';
+
 const SITE_URL = 'https://www.deeper.global';
 const INDEXABLE_REVIEW_STATUSES = new Set(['approved', 'published', 'reviewed']);
 const REVIEWER_PROFILES = {
@@ -258,6 +260,7 @@ function matchesQuery(question, query) {
     getAnswerSummary(question),
     cleanText(question.primary_theme),
     displayCategory(question),
+    getSemanticSearchHaystack(question),
   ]
     .join(' ')
     .toLowerCase();
@@ -396,8 +399,9 @@ export function listAnswers({ rows, topic = '', q = '', limit = 25, cursor = 0 }
 export function buildAnswerPayload(question) {
   const citationUrl = `${SITE_URL}/answers/${question.slug}/`;
   const reviewer = getReviewer(question);
+  const semantic_enrichment_v1 = getSemanticEnrichmentForApi(question);
 
-  return {
+  const payload = {
     api_version: 'v1',
     id: question.id,
     slug: question.slug,
@@ -431,6 +435,12 @@ export function buildAnswerPayload(question) {
     clinical_boundary: API_CONSTANTS.clinical_boundary,
     crisis_boundary: API_CONSTANTS.crisis_boundary,
   };
+
+  if (semantic_enrichment_v1) {
+    payload.semantic_enrichment_v1 = semantic_enrichment_v1;
+  }
+
+  return payload;
 }
 
 export function jsonResponse(res, status, body, { cacheSeconds = 3600 } = {}) {

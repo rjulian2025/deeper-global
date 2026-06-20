@@ -1,0 +1,140 @@
+---
+import {
+  getNextStepLabel,
+  getPublicSemanticEnrichment,
+  type SemanticEnrichmentV1,
+} from '@/lib/semantic-enrichment';
+
+type Props = {
+  enrichment: SemanticEnrichmentV1;
+};
+
+const { enrichment } = Astro.props;
+const publicView = getPublicSemanticEnrichment(enrichment);
+const alternateQuestions = publicView.alternate_questions.slice(0, 4);
+const emotionalPhrasings = publicView.emotional_phrasings.slice(0, 3);
+const relatedConcerns = publicView.related_concerns.slice(0, 5);
+const hasAlternate = alternateQuestions.length > 0;
+const hasEmotional = emotionalPhrasings.length > 0;
+const hasConcerns = relatedConcerns.length > 0;
+
+if (!hasAlternate && !hasEmotional && !hasConcerns) {
+  return null;
+}
+---
+
+<section class="sidebar-card question-context-panel" aria-label="Related ways people ask this question" data-ai-section="question-context">
+  <p class="sidebar-label">Related ways people ask this question</p>
+  <p class="question-context-lede">People often ask this question in different ways. The labels below describe related concerns — not a diagnosis.</p>
+
+  {
+    hasAlternate ? (
+      <div class="question-context-block">
+        <h3>Other ways to ask</h3>
+        <ul>
+          {alternateQuestions.map((question) => (
+            <li>{question}</li>
+          ))}
+        </ul>
+      </div>
+    ) : null
+  }
+
+  {
+    hasEmotional ? (
+      <div class="question-context-block">
+        <h3>How it can sound emotionally</h3>
+        <ul>
+          {emotionalPhrasings.map((phrase) => (
+            <li>{phrase}</li>
+          ))}
+        </ul>
+      </div>
+    ) : null
+  }
+
+  {
+    hasConcerns ? (
+      <div class="question-context-block">
+        <h3>Related concerns may include</h3>
+        <ul class="concern-tags">
+          {relatedConcerns.map((concern) => (
+            <li><span class="concern-tag">{concern}</span></li>
+          ))}
+        </ul>
+      </div>
+    ) : null
+  }
+
+  <div class="question-context-block next-step-block">
+    <h3>A next step to consider</h3>
+    <p>{publicView.intended_next_step_label}</p>
+  </div>
+
+  <p class="question-context-disclaimer">{publicView.safety_disclaimer}</p>
+</section>
+
+<style>
+  .question-context-panel {
+    margin-top: 1rem;
+  }
+
+  .question-context-lede {
+    margin: 0 0 1rem;
+    color: var(--muted, #5a6b7d);
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .question-context-block + .question-context-block {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(14, 31, 51, 0.08);
+  }
+
+  .question-context-block h3 {
+    margin: 0 0 0.5rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted, #5a6b7d);
+  }
+
+  .question-context-block ul {
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+
+  .question-context-block li {
+    margin-bottom: 0.35rem;
+    line-height: 1.45;
+  }
+
+  .concern-tags {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .concern-tag {
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(14, 31, 51, 0.06);
+    font-size: 0.88rem;
+  }
+
+  .next-step-block p {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .question-context-disclaimer {
+    margin: 1rem 0 0;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: var(--muted, #5a6b7d);
+  }
+</style>

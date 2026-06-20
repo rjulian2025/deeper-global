@@ -16,8 +16,10 @@ import {
 } from '@/lib/content';
 import { getQuestions } from '@/lib/supabase';
 import { filterPublishableQuestions } from '@/lib/indexing-policy';
+import { getPilotEnrichmentBySlug, getSemanticSearchTerms, resolveSemanticEnrichmentSync } from '@/lib/semantic-enrichment';
 
 const questions = filterPublishableQuestions(await getQuestions());
+const pilotBySlug = getPilotEnrichmentBySlug();
 const pageSize = 48;
 const visibleQuestions = questions.slice(0, pageSize);
 const totalPages = Math.ceil(questions.length / pageSize);
@@ -25,6 +27,8 @@ const searchIndex = questions.map((question) => {
   const category = displayCategory(question);
   const title = getAnswerDisplayTitle(question);
   const summary = getAnswerSummary(question);
+  const enrichment = resolveSemanticEnrichmentSync(question, pilotBySlug);
+  const searchTerms = getSemanticSearchTerms(enrichment);
   const searchableText = [
     question.question,
     title,
@@ -34,6 +38,9 @@ const searchIndex = questions.map((question) => {
     ...getRelatedThemeNames(question),
     ...getFollowUpQuestions(question),
     getAnswerPlainText(question),
+    ...searchTerms.high,
+    ...searchTerms.medium,
+    ...searchTerms.low,
   ].join(' ');
 
   return {

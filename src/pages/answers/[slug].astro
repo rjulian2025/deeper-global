@@ -2,6 +2,7 @@
 import AnswerTrustPanel from '@/components/AnswerTrustPanel.astro';
 import AnswerTrustStrip from '@/components/AnswerTrustStrip.astro';
 import CrisisBanner from '@/components/CrisisBanner.astro';
+import QuestionContextPanel from '@/components/QuestionContextPanel.astro';
 import PractitionerCallout from '@/components/PractitionerCallout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { isAdhdHubSlug } from '@/lib/adhd-hub';
@@ -36,6 +37,7 @@ import {
   type PhraseIndex,
 } from '@/lib/content';
 import { getAnswerPractitionerLink } from '@/lib/practitioner-links';
+import { resolveSemanticEnrichmentSync, getPilotEnrichmentBySlug } from '@/lib/semantic-enrichment';
 import { CONTENT_LICENSE_URL, organizationId, siteUrl, websiteId } from '@/lib/site';
 import {
   getReviewedByLabel,
@@ -122,6 +124,7 @@ const shouldIndex = shouldIndexQuestion(question);
 const practitionerLink = getAnswerPractitionerLink(question.slug);
 const isAiMentalHealthAnswer = isAiMentalHealthSprintQuestion(question);
 const isAdhdHubAnswer = isAdhdHubSlug(question.slug);
+const semanticEnrichment = resolveSemanticEnrichmentSync(question, getPilotEnrichmentBySlug());
 const reviewedBy = getReviewedByLabel(question);
 const reviewerDisplayLabel = getReviewerDisplayLabel(question);
 const reviewerSchemaNode = getReviewerSchemaNode(question);
@@ -346,6 +349,7 @@ const jsonLd = {
 
       <aside class="answer-sidebar" aria-label="Answer context">
         <AnswerTrustPanel question={question} updatedAt={updatedAt} />
+        {semanticEnrichment ? <QuestionContextPanel enrichment={semanticEnrichment} /> : null}
         <section class="sidebar-card">
           <p class="sidebar-label">Related theme</p>
           <a class="sidebar-entity" href={categoryPath(category)}>{category}</a>
