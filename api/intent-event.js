@@ -9,6 +9,7 @@ const ALLOWED_EVENTS = new Set([
   'source_ref_clicked',
   'practitioner_callout_viewed',
   'practitioner_callout_clicked',
+  'deeper_outbound_click',
   'external_referral_clicked',
   'editorial_policy_viewed',
   'answer_related_clicked',
@@ -36,6 +37,13 @@ const METADATA_KEYS = new Set([
   'search_result_position',
   'search_token_count',
   'outbound_domain',
+  'destination_domain',
+  'placement',
+  'source_page',
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_content',
   'target_path',
 ]);
 

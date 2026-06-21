@@ -395,6 +395,21 @@ const structuredData = {
 
           const href = link.getAttribute('href') ?? '';
           const label = clean(link.textContent ?? '', 80);
+          const trackDeeperOutboundClick = (target, placement) => {
+            const destinationDomain = target.hostname.replace(/^www\./, '');
+            window.deeperTrackEvent('deeper_outbound_click', {
+              content_type: 'external_referral',
+              link_label: label,
+              destination_domain: destinationDomain,
+              outbound_domain: target.hostname,
+              placement,
+              source_page: window.location.pathname,
+              utm_source: target.searchParams.get('utm_source') ?? undefined,
+              utm_medium: target.searchParams.get('utm_medium') ?? undefined,
+              utm_campaign: target.searchParams.get('utm_campaign') ?? undefined,
+              utm_content: target.searchParams.get('utm_content') ?? undefined,
+            });
+          };
 
           if (link.closest('.site-nav-links, .nav-drawer-inner') && href.startsWith('/')) {
             window.deeperTrackEvent('hub_link_clicked', {
@@ -447,6 +462,7 @@ const structuredData = {
           if (/^https?:\/\//.test(href)) {
             const target = new URL(href);
             if (target.hostname !== sameHost) {
+              trackDeeperOutboundClick(target, link.closest('.practitioner-card') ? 'practitioner-card' : 'external-link');
               window.deeperTrackEvent('external_referral_clicked', {
                 content_type: 'external_referral',
                 link_label: label,

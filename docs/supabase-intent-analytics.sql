@@ -61,6 +61,7 @@ declare
     'source_ref_clicked',
     'practitioner_callout_viewed',
     'practitioner_callout_clicked',
+    'deeper_outbound_click',
     'external_referral_clicked',
     'editorial_policy_viewed',
     'answer_related_clicked'
