@@ -78,6 +78,8 @@ export type ReviewerProfile = {
 };
 
 const PEACHTREE = 'https://peachtreepsychology.com';
+const peachtreeReferralUrl = (path: string, content: string) =>
+  `${PEACHTREE}${path}?utm_source=deeper_global&utm_medium=referral&utm_campaign=deeper_network&utm_content=${content}`;
 
 export const reviewerProfiles: ReviewerProfile[] = [
   {
@@ -209,44 +211,50 @@ export const reviewerProfiles: ReviewerProfile[] = [
         price: '$2,300',
         description:
           'Comprehensive multi-method ADHD evaluation for adults when a full diagnostic workup is clinically warranted.',
-        href: `${PEACHTREE}/service/adhd-testing`,
+        href: peachtreeReferralUrl('/service/adhd-testing', 'alex_crenshaw_service_adhd_testing'),
       },
       {
         name: 'Standalone Diagnostic Evaluation',
         price: '$700',
         description:
           'Focused evaluation for adults seeking diagnostic clarity before treatment or when documentation is needed.',
-        href: `${PEACHTREE}/service/diagnostic-evaluation`,
+        href: peachtreeReferralUrl('/service/diagnostic-evaluation', 'alex_crenshaw_service_diagnostic_evaluation'),
       },
       {
         name: 'OCD Evaluation',
         price: '$700',
         description: 'Targeted assessment for adults who suspect OCD or need clarity before ERP-based treatment.',
-        href: `${PEACHTREE}/service/ocd-testing`,
+        href: peachtreeReferralUrl('/service/ocd-testing', 'alex_crenshaw_service_ocd_testing'),
       },
       {
         name: 'Anxiety Evaluation',
         price: '$700',
         description: 'Structured assessment to identify specific anxiety presentations and treatment direction.',
-        href: `${PEACHTREE}/service/anxiety-assessment`,
+        href: peachtreeReferralUrl('/service/anxiety-assessment', 'alex_crenshaw_service_anxiety_assessment'),
       },
       {
         name: 'Depression Evaluation',
         price: '$700',
         description: 'Clinical assessment to identify depressive presentation and rule out overlapping conditions.',
-        href: `${PEACHTREE}/service/depression-evaluation`,
+        href: peachtreeReferralUrl('/service/depression-evaluation', 'alex_crenshaw_service_depression_evaluation'),
       },
     ],
-    serviceOverviewHref: `${PEACHTREE}/service/psychological-testing`,
+    serviceOverviewHref: peachtreeReferralUrl('/service/psychological-testing', 'alex_crenshaw_service_overview'),
     referralLinks: [
       {
         label: 'Peachtree profile',
-        href: `${PEACHTREE}/therapists/alex-crenshaw`,
+        href: peachtreeReferralUrl('/therapists/alex-crenshaw', 'alex_crenshaw_referral_profile'),
         description: 'Practice biography, therapy, and testing overview',
       },
-      { label: 'ADHD testing', href: `${PEACHTREE}/service/adhd-testing` },
-      { label: 'Psychological testing', href: `${PEACHTREE}/service/psychological-testing` },
-      { label: 'Diagnostic evaluation', href: `${PEACHTREE}/service/diagnostic-evaluation` },
+      { label: 'ADHD testing', href: peachtreeReferralUrl('/service/adhd-testing', 'alex_crenshaw_referral_adhd_testing') },
+      {
+        label: 'Psychological testing',
+        href: peachtreeReferralUrl('/service/psychological-testing', 'alex_crenshaw_referral_psychological_testing'),
+      },
+      {
+        label: 'Diagnostic evaluation',
+        href: peachtreeReferralUrl('/service/diagnostic-evaluation', 'alex_crenshaw_referral_diagnostic_evaluation'),
+      },
     ],
     practiceNotes: [
       'Adult psychological testing is conducted in person at Peachtree Psychology\'s Roswell office only.',
@@ -254,7 +262,7 @@ export const reviewerProfiles: ReviewerProfile[] = [
     ],
     primaryCta: {
       label: 'Learn about ADHD testing',
-      href: `${PEACHTREE}/service/adhd-testing`,
+      href: peachtreeReferralUrl('/service/adhd-testing', 'alex_crenshaw_primary_cta'),
     },
     disclaimer: 'Clinical review is educational and does not create a therapist-client relationship.',
     sameAs: [`${PEACHTREE}/therapists/alex-crenshaw`],
