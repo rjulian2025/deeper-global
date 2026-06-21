@@ -3,6 +3,7 @@ import AnswersLibraryLayout from '@/components/answers-library/AnswersLibraryLay
 import DiscoveryRow from '@/components/DiscoveryRow.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { buildAnswersSidebarData } from '@/lib/answers-sidebar';
+import { orderAnswersLibrary } from '@/lib/answers-library-order';
 import { getQuestions, type Question } from '@/lib/supabase';
 import { filterPublishableQuestions } from '@/lib/indexing-policy';
 
@@ -10,7 +11,7 @@ const pageSize = 48;
 
 export async function getStaticPaths() {
   const pageSize = 48;
-  const questions = filterPublishableQuestions(await getQuestions());
+  const questions = orderAnswersLibrary(filterPublishableQuestions(await getQuestions()));
   const sidebar = buildAnswersSidebarData(questions);
   const totalPages = Math.ceil(questions.length / pageSize);
 

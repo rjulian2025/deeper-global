@@ -4,6 +4,7 @@ import DiscoveryRow from '@/components/DiscoveryRow.astro';
 import EmptyState from '@/components/EmptyState.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { buildAnswersSidebarData } from '@/lib/answers-sidebar';
+import { orderAnswersLibrary } from '@/lib/answers-library-order';
 import {
   answerPath,
   categoryPath,
@@ -20,7 +21,7 @@ import { getQuestions } from '@/lib/supabase';
 import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { getPilotEnrichmentBySlug, getSemanticSearchTerms, resolveSemanticEnrichmentSync } from '@/lib/semantic-enrichment';
 
-const questions = filterPublishableQuestions(await getQuestions());
+const questions = orderAnswersLibrary(filterPublishableQuestions(await getQuestions()));
 const sidebar = buildAnswersSidebarData(questions);
 const pilotBySlug = getPilotEnrichmentBySlug();
 const pageSize = 48;
