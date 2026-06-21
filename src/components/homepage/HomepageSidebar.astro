@@ -28,23 +28,6 @@ const { sidebar } = Astro.props;
     }
 
     {
-      sidebar.unexpectedOverlaps.length > 0 && (
-        <section class="homepage-sidebar-block" aria-labelledby="homepage-sidebar-overlaps">
-          <p class="homepage-sidebar-label" id="homepage-sidebar-overlaps">Unexpected overlaps</p>
-          <ul class="homepage-sidebar-overlap-list">
-            {
-              sidebar.unexpectedOverlaps.map((link) => (
-                <li>
-                  <a href={link.href}>{link.title}</a>
-                </li>
-              ))
-            }
-          </ul>
-        </section>
-      )
-    }
-
-    {
       sidebar.startingPoints.length > 0 && (
         <nav class="homepage-sidebar-block" aria-labelledby="homepage-sidebar-start">
           <p class="homepage-sidebar-label" id="homepage-sidebar-start">Start where you are</p>

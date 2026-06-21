@@ -2888,10 +2888,20 @@ body:has(.home-page) .container {
   padding: var(--space-8) 0;
 }
 
+.home-page .homepage-main .discovery-row {
+  padding: 14px 0;
+}
+
 .home-page .discovery-row-title {
   font-size: 1.375rem;
   line-height: 1.32;
   margin-bottom: var(--space-3);
+}
+
+.home-page .homepage-main .discovery-row-title {
+  font-size: 1.125rem;
+  line-height: 1.35;
+  margin-bottom: 6px;
 }
 
 .home-page .discovery-summary {
@@ -2900,6 +2910,16 @@ body:has(.home-page) .container {
   margin-bottom: var(--space-4);
   max-width: 52rem;
   color: var(--d-muted);
+}
+
+.home-page .homepage-main .discovery-summary {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  margin-bottom: 6px;
+  max-width: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .home-page .discovery-meta {

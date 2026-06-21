@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 32px;
+  padding-bottom: var(--space-12);
 }
 
 @media (min-width: 900px) {
@@ -29,10 +30,6 @@
   min-width: 0;
 }
 
-.homepage-body-layout {
-  padding-bottom: var(--space-12);
-}
-
 .homepage-sidebar {
   display: grid;
   gap: 0;
@@ -49,37 +46,36 @@
 }
 
 .homepage-sidebar-block + .homepage-sidebar-block {
-  margin-top: 14px;
-  padding-top: 14px;
+  margin-top: 0;
+  padding-top: 20px;
   border-top: 0.5px solid var(--border-tertiary-token, rgba(25, 23, 22, 0.08));
 }
 
 .homepage-sidebar-label {
-  margin: 0 0 9px;
+  margin: 0 0 8px;
   font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-secondary-token, var(--d-muted));
 }
 
 .homepage-sidebar-featured-list,
-.homepage-sidebar-overlap-list,
 .homepage-sidebar-start-list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 9px;
+  gap: 8px;
 }
 
 .homepage-sidebar-featured-list a,
-.homepage-sidebar-overlap-list a {
+.homepage-sidebar-start-list a {
   display: block;
   font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 400;
   line-height: 1.4;
   color: var(--text-primary-token, var(--d-heading));
   text-decoration: underline;
@@ -88,22 +84,6 @@
 }
 
 .homepage-sidebar-featured-list a:hover,
-.homepage-sidebar-overlap-list a:hover {
-  text-decoration-color: var(--text-primary-token, var(--d-heading));
-}
-
-.homepage-sidebar-start-list a {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--text-primary-token, var(--d-heading));
-  text-decoration: underline;
-  text-decoration-color: var(--border-secondary-token, var(--d-line));
-  text-underline-offset: 3px;
-}
-
 .homepage-sidebar-start-list a:hover {
   text-decoration-color: var(--text-primary-token, var(--d-heading));
 }
@@ -113,7 +93,7 @@
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 9px;
+  gap: 8px;
 }
 
 .homepage-sidebar-recent-list a {
