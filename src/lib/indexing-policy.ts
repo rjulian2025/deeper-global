@@ -72,3 +72,14 @@ export function shouldIncludeAnswerPathInSitemap(pathname: string) {
   if (segment === 'page') return true;
   return !isRedirectSourceSlug(segment);
 }
+
+/** Paths excluded from sitemap.xml — URLs remain live; crawl budget only. */
+export function shouldIncludePathInSitemap(pathname: string) {
+  const path = pathname.endsWith('/') || pathname.includes('.') ? pathname : `${pathname}/`;
+
+  if (path.startsWith('/entities/') || path.startsWith('/categories/')) return false;
+  if (path.startsWith('/design-evolution/')) return false;
+  if (path === '/answers/random/') return false;
+
+  return shouldIncludeAnswerPathInSitemap(path);
+}

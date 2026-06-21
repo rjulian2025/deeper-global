@@ -41,6 +41,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# supabase cli cache
+supabase/.temp/
+
 # legacy nested path (post-hoist local artifacts only)
 Documents/
 

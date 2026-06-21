@@ -1,6 +1,6 @@
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
-import { shouldIncludeAnswerPathInSitemap } from './src/lib/indexing-policy.ts';
+import { shouldIncludePathInSitemap } from './src/lib/indexing-policy.ts';
 
 export default defineConfig({
   site: 'https://www.deeper.global',
@@ -8,12 +8,11 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => {
-        if (page.includes('/entities/') || page.includes('/categories/')) return false;
         try {
           const pathname = new URL(page).pathname;
-          return shouldIncludeAnswerPathInSitemap(pathname);
+          return shouldIncludePathInSitemap(pathname);
         } catch {
-          return true;
+          return false;
         }
       },
     }),
