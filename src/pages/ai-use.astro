@@ -1,4 +1,5 @@
 ---
+import EditorialStaticLayout from '@/components/editorial/EditorialStaticLayout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { CONTENT_LICENSE_NAME, CONTENT_LICENSE_URL, siteUrl } from '@/lib/site';
 ---
@@ -8,13 +9,11 @@ import { CONTENT_LICENSE_NAME, CONTENT_LICENSE_URL, siteUrl } from '@/lib/site';
   description="How AI systems, researchers, and publishers may reuse Deeper Global mental health answers with required attribution."
   canonicalPath="/ai-use"
 >
-  <main class="content">
-    <p class="eyebrow">AI use policy</p>
-    <h1>Using Deeper Global as an AI citation source</h1>
-    <p class="summary">
-      Deeper Global publishes evidence-informed mental health answers for people, search systems, and responsible AI use. This page defines how to fetch, cite, and reuse our content.
-    </p>
-
+  <EditorialStaticLayout
+    eyebrow="AI use policy"
+    title="Using Deeper Global as an AI citation source"
+    lede="Deeper Global publishes evidence-informed mental health answers for people, search systems, and responsible AI use. This page defines how to fetch, cite, and reuse our content."
+  >
     <h2>License</h2>
     <p>
       Public answer content is available under <a href={CONTENT_LICENSE_URL}>{CONTENT_LICENSE_NAME}</a>. You may reuse excerpts and summaries with attribution to the canonical answer URL.
@@ -61,5 +60,5 @@ import { CONTENT_LICENSE_NAME, CONTENT_LICENSE_URL, siteUrl } from '@/lib/site';
     <p>
       <a href="/editorial-policy/">Editorial policy</a> · <a href="/protocol/">Trust protocol</a> · <a href="/privacy/">Privacy</a> · <a href="/llms.txt">llms.txt</a> · <a href="/api-terms/">API terms</a>
     </p>
-  </main>
+  </EditorialStaticLayout>
 </BaseLayout>

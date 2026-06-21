@@ -1,4 +1,5 @@
 ---
+import EditorialStaticLayout from '@/components/editorial/EditorialStaticLayout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 ---
 
@@ -7,13 +8,11 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
   description="Deeper Global's privacy posture for a mental health information platform."
   canonicalPath="/privacy"
 >
-  <main class="content">
-    <p class="eyebrow">Privacy</p>
-    <h1>Privacy is part of the product.</h1>
-    <p class="summary">
-      Deeper Global should be architected to learn from aggregate demand without turning sensitive mental health intent into careless tracking.
-    </p>
-
+  <EditorialStaticLayout
+    eyebrow="Privacy"
+    title="Privacy is part of the product."
+    lede="Deeper Global should be architected to learn from aggregate demand without turning sensitive mental health intent into careless tracking."
+  >
     <h2>Current posture</h2>
     <p>
       The v1 site is a public information resource. It does not require user accounts, personal health records, or self-reported symptom profiles.
@@ -34,5 +33,5 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     <p>
       Referrals, sponsored placements, and partner analytics should be designed around aggregate signals, clear disclosures, and strict separation from personally identifiable health data.
     </p>
-  </main>
+  </EditorialStaticLayout>
 </BaseLayout>

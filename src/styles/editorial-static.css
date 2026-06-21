@@ -1,0 +1,133 @@
+/* Editorial static pages — policy, about, specialty docs */
+.editorial-static-page {
+  font-family: var(--font-sans);
+  color: var(--d-ink);
+  background: var(--d-page);
+}
+
+.editorial-static-hero {
+  padding: var(--space-12) 0 var(--space-8);
+  border-bottom: 1px solid var(--d-line);
+}
+
+.editorial-static-eyebrow {
+  margin: 0 0 var(--space-3);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary-token, var(--d-muted));
+}
+
+.editorial-static-hero h1 {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--d-heading);
+  max-width: 42rem;
+}
+
+.editorial-static-lede {
+  margin: 0;
+  max-width: 42rem;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--d-muted);
+}
+
+.editorial-static-body {
+  padding: var(--space-10) 0 var(--space-16);
+}
+
+.editorial-static-prose {
+  max-width: 42rem;
+}
+
+.editorial-static-wide {
+  max-width: var(--max, 1120px);
+}
+
+.editorial-static-prose :is(h2, h3) {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--d-heading);
+  margin: var(--space-10) 0 var(--space-4);
+  line-height: 1.25;
+}
+
+.editorial-static-prose h2 {
+  font-size: 1.375rem;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--d-line);
+}
+
+.editorial-static-prose h3 {
+  font-size: 1.125rem;
+}
+
+.editorial-static-prose :is(p, li) {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--d-ink);
+}
+
+.editorial-static-prose p {
+  margin: 0 0 var(--space-4);
+}
+
+.editorial-static-prose ul {
+  margin: 0 0 var(--space-4);
+  padding-left: 1.25rem;
+}
+
+.editorial-static-prose li + li {
+  margin-top: var(--space-2);
+}
+
+.editorial-static-prose a {
+  color: var(--d-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.editorial-static-prose a:hover {
+  color: var(--d-link-hover);
+}
+
+.editorial-static-prose code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.875em;
+}
+
+/* Specialty pages keep local panels inside editorial shell */
+.editorial-static-page .developer-hero,
+.editorial-static-page .terms-hero {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.editorial-static-page .developer-hero-inner,
+.editorial-static-page .terms-hero-inner {
+  padding: 0;
+}
+
+.editorial-static-page .developer-grid,
+.editorial-static-page .terms-grid {
+  margin-top: var(--space-8);
+}
+
+.editorial-static-page .developer-panel,
+.editorial-static-page .terms-panel {
+  border-top: 1px solid var(--d-line);
+  padding-top: var(--space-6);
+}
+
+.editorial-static-page .developer-panel h2,
+.editorial-static-page .terms-panel h2 {
+  margin-top: 0;
+  border: none;
+  padding: 0;
+}

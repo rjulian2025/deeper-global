@@ -1,4 +1,5 @@
 ---
+import SourceRefsBlock from '@/components/sidebar/SourceRefsBlock.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { answerPath, getAnswerDisplayTitle } from '@/lib/content';
 import {
@@ -9,6 +10,7 @@ import {
   modalityCategoryLabels,
   modalityPath,
 } from '@/lib/modality-hub';
+import type { SourceRef } from '@/lib/trust';
 import { getModalities, getQuestions, type Modality } from '@/lib/supabase';
 
 export async function getStaticPaths() {
@@ -36,7 +38,17 @@ const displayTakeaways = modality.staging_key_takeaways ?? modality.key_takeaway
 
 const title = `${modality.name} | Deeper Global`;
 const description = modality.meta_description ?? modality.schema_description ?? '';
-const sourceRefs = Array.isArray(modality.source_refs) ? modality.source_refs : [];
+const sourceRefs: SourceRef[] = (Array.isArray(modality.source_refs) ? modality.source_refs : [])
+  .map((item) => {
+    if (!item || typeof item !== 'object') return null;
+    const record = item as Record<string, unknown>;
+    const refTitle = typeof record.title === 'string' ? record.title.trim() : '';
+    const url = typeof record.url === 'string' ? record.url.trim() : '';
+    const publisher = typeof record.publisher === 'string' ? record.publisher.trim() : '';
+    if (!refTitle && !url) return null;
+    return { title: refTitle || url, url, publisher };
+  })
+  .filter((item): item is SourceRef => Boolean(item));
 const categoryLabel = modalityCategoryLabels[modality.category] ?? modality.category;
 const jsonLd = buildModalityDetailJsonLd({ modality, relatedModalities, relatedQuestions });
 ---
@@ -48,136 +60,102 @@ const jsonLd = buildModalityDetailJsonLd({ modality, relatedModalities, relatedQ
   noindex={modality.noindex}
   jsonLd={jsonLd}
 >
-  <main class="discovery-surface modality-page">
-    <div class="container">
-      <nav class="modality-breadcrumbs" aria-label="Breadcrumb">
-        <a href="/">Deeper Global</a>
-        <span aria-hidden="true">/</span>
-        <a href="/modalities/">Modalities</a>
-        <span aria-hidden="true">/</span>
-        <span>{modality.name}</span>
-      </nav>
-    </div>
+  <main class="answer-page answer-page--direction-d modality-page">
+    <nav class="answer-breadcrumbs container" aria-label="Breadcrumb">
+      <a href="/">Deeper Global</a>
+      <span aria-hidden="true">/</span>
+      <a href="/modalities/">Modalities</a>
+      <span aria-hidden="true">/</span>
+      <span>{modality.name}</span>
+    </nav>
 
-    <article class="container modality-page-layout">
-      <div class="modality-page-main">
-        <p class="editorial-meta discovery-meta">
-          <a href={modalityCategoryAnchor(modality.category)}>{categoryLabel}</a>
-        </p>
+    <article class="answer-layout answer-layout--direction-d container modality-page-layout">
+      <div class="answer-reading-panel modality-page-main">
+        <div class="answer-reading-column">
+          <p class="editorial-meta">
+            <a href={modalityCategoryAnchor(modality.category)}>{categoryLabel}</a>
+            {
+              modality.also_known_as?.length ? (
+                <>
+                  <span class="meta-sep" aria-hidden="true">·</span>
+                  Also known as: {modality.also_known_as.join(', ')}
+                </>
+              ) : null
+            }
+          </p>
 
-        <h1>{modality.name}</h1>
+          <h1>{modality.name}</h1>
 
-        {
-          modality.also_known_as?.length ? (
-            <p class="editorial-meta discovery-meta">Also known as: {modality.also_known_as.join(', ')}</p>
-          ) : null
-        }
+          {displayLede ? <p class="answer-lede">{displayLede}</p> : null}
 
-        {displayLede ? <p class="answer-lede">{displayLede}</p> : null}
+          {
+            displayTakeaways?.length ? (
+              <section class="takeaways-rule" aria-labelledby="modality-takeaways-title">
+                <h2 class="takeaways-rule-label" id="modality-takeaways-title">Key takeaways</h2>
+                <ul>
+                  {displayTakeaways.map((takeaway) => <li>{takeaway}</li>)}
+                </ul>
+              </section>
+            ) : null
+          }
 
-        {
-          displayTakeaways?.length ? (
-            <section class="takeaways-rule" aria-labelledby="takeaways-title">
-              <h2 id="takeaways-title" class="takeaways-rule-label">Key takeaways</h2>
-              <ul>
-                {displayTakeaways.map((takeaway) => <li>{takeaway}</li>)}
-              </ul>
-            </section>
-          ) : null
-        }
+          {
+            displayWhatItIs ? (
+              <section class="answer-section modality-content-section" id="what-it-is">
+                <h2>What it is</h2>
+                {displayWhatItIs.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+              </section>
+            ) : null
+          }
 
-        {
-          displayWhatItIs ? (
-            <section class="modality-content-section" id="what-it-is">
-              <h2>What it is</h2>
-              {displayWhatItIs.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
-            </section>
-          ) : null
-        }
+          {
+            displaySession ? (
+              <section class="answer-section modality-content-section" id="what-a-session-looks-like">
+                <h2>What a session looks like</h2>
+                {displaySession.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+              </section>
+            ) : null
+          }
 
-        {
-          displaySession ? (
-            <section class="modality-content-section" id="what-a-session-looks-like">
-              <h2>What a session looks like</h2>
-              {displaySession.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
-            </section>
-          ) : null
-        }
+          {
+            displayTreats ? (
+              <section class="answer-section modality-content-section" id="what-it-treats">
+                <h2>What it treats</h2>
+                {displayTreats.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+              </section>
+            ) : null
+          }
 
-        {
-          displayTreats ? (
-            <section class="modality-content-section" id="what-it-treats">
-              <h2>What it treats</h2>
-              {displayTreats.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
-            </section>
-          ) : null
-        }
+          {
+            displayEvidence ? (
+              <section class="answer-section modality-content-section" id="what-the-evidence-says">
+                <h2>What the evidence says</h2>
+                {displayEvidence.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+              </section>
+            ) : null
+          }
 
-        {
-          displayEvidence ? (
-            <section class="modality-content-section" id="what-the-evidence-says">
-              <h2>What the evidence says</h2>
-              {displayEvidence.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
-            </section>
-          ) : null
-        }
+          {
+            displayWhoFor ? (
+              <section class="answer-section modality-content-section" id="who-it-is-for">
+                <h2>Who it is for</h2>
+                {displayWhoFor.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+              </section>
+            ) : null
+          }
 
-        {
-          displayWhoFor ? (
-            <section class="modality-content-section" id="who-it-is-for">
-              <h2>Who it is for</h2>
-              {displayWhoFor.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
-            </section>
-          ) : null
-        }
-
-        {
-          displayHowToFind ? (
-            <section class="modality-content-section" id="how-to-find-a-practitioner">
-              <h2>How to find a practitioner</h2>
-              {displayHowToFind.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
-            </section>
-          ) : null
-        }
-
-        {
-          relatedModalities.length ? (
-            <section class="modality-content-section" aria-labelledby="related-modalities-title">
-              <p class="eyebrow">Related approaches</p>
-              <h2 id="related-modalities-title">Compare nearby modalities</h2>
-              <ul class="hub-section-questions">
-                {
-                  relatedModalities.map((related) => (
-                    <li>
-                      <a href={`${modalityPath(related.slug)}/`}>{related.name}</a>
-                    </li>
-                  ))
-                }
-              </ul>
-            </section>
-          ) : null
-        }
-
-        {
-          relatedQuestions.length ? (
-            <section class="modality-content-section" aria-labelledby="related-questions-title">
-              <p class="eyebrow">Related questions</p>
-              <h2 id="related-questions-title">Answers people read alongside {modality.name}</h2>
-              <ul class="hub-section-questions">
-                {
-                  relatedQuestions.map((question) => (
-                    <li>
-                      <a href={answerPath(question.slug)}>{getAnswerDisplayTitle(question)}</a>
-                    </li>
-                  ))
-                }
-              </ul>
-            </section>
-          ) : null
-        }
+          {
+            displayHowToFind ? (
+              <section class="answer-section modality-content-section" id="how-to-find-a-practitioner">
+                <h2>How to find a practitioner</h2>
+                {displayHowToFind.split('\n\n').map((paragraph) => <p>{paragraph}</p>)}
+              </section>
+            ) : null
+          }
+        </div>
       </div>
 
-      <aside class="modality-page-sidebar">
+      <aside class="answer-sidebar modality-page-sidebar" aria-label="Modality context">
         <section class="sidebar-block">
           <p class="sidebar-block-heading">Browse cluster</p>
           <p class="sidebar-block-text">
@@ -208,7 +186,7 @@ const jsonLd = buildModalityDetailJsonLd({ modality, relatedModalities, relatedQ
 
         {
           relatedQuestions.length ? (
-            <section class="sidebar-block">
+            <section class="sidebar-block" data-ai-section="related-questions">
               <p class="sidebar-block-heading">Related questions</p>
               <ul class="sidebar-block-list">
                 {
@@ -223,6 +201,8 @@ const jsonLd = buildModalityDetailJsonLd({ modality, relatedModalities, relatedQ
           ) : null
         }
 
+        <SourceRefsBlock sources={sourceRefs} />
+
         <section class="sidebar-block sidebar-block--care">
           <p class="sidebar-block-heading">Find a therapist</p>
           <p class="sidebar-block-text">Browse therapists on Deeper who list training in {modality.name}.</p>
@@ -231,38 +211,12 @@ const jsonLd = buildModalityDetailJsonLd({ modality, relatedModalities, relatedQ
 
         {
           modality.ymyl_flagged ? (
-            <div class="modality-ymyl">
+            <section class="sidebar-block sidebar-block--care modality-ymyl">
               <p class="sidebar-block-heading">Clinical guidance recommended</p>
-              <p>
+              <p class="sidebar-block-text">
                 This treatment involves medical or safety considerations. Consult a qualified professional before pursuing
                 this approach.
               </p>
-            </div>
-          ) : null
-        }
-
-        {
-          sourceRefs.length ? (
-            <section class="sidebar-block">
-              <p class="sidebar-block-heading">Sources</p>
-              <ul class="sidebar-block-list">
-                {
-                  sourceRefs.map((ref) => (
-                    <li>
-                      {
-                        ref.url ? (
-                          <a href={ref.url} target="_blank" rel="noopener noreferrer">
-                            {ref.title}
-                          </a>
-                        ) : (
-                          ref.title
-                        )
-                      }
-                      {ref.publisher ? ` — ${ref.publisher}` : null}
-                    </li>
-                  ))
-                }
-              </ul>
             </section>
           ) : null
         }

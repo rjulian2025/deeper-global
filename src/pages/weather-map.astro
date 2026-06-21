@@ -1,4 +1,5 @@
 ---
+import EditorialStaticLayout from '@/components/editorial/EditorialStaticLayout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 
 const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
@@ -10,13 +11,13 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
   canonicalPath="/weather-map"
 >
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css" />
-  <main class="content weather-map-page">
-    <p class="eyebrow">Psychology Weather Map</p>
-    <h1>Where mental health questions cluster.</h1>
-    <p class="summary">
-      Aggregate answer-view signals by city, state, and topic. No individual identification.
-    </p>
-
+  <EditorialStaticLayout
+    eyebrow="Psychology Weather Map"
+    title="Where mental health questions cluster."
+    lede="Aggregate answer-view signals by city, state, and topic. No individual identification."
+    class="editorial-static-page editorial-static-page--weather-map weather-map-page"
+    wide={true}
+  >
     <div class="weather-map-shell">
       <form class="weather-map-search" id="weather-map-search" role="search" aria-label="Search city or ZIP code">
         <label class="sr-only" for="weather-map-search-input">City or ZIP code</label>
@@ -74,7 +75,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
         <ul id="weather-map-insights-list" class="weather-map-insights-list" hidden></ul>
       </div>
     </section>
-  </main>
+  </EditorialStaticLayout>
 
   <script is:inline src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
 

@@ -1,4 +1,5 @@
 ---
+import EditorialStaticLayout from '@/components/editorial/EditorialStaticLayout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 ---
 
@@ -7,13 +8,11 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
   description="How Deeper Global creates, reviews, and publishes evidence-informed mental health answers."
   canonicalPath="/editorial-policy"
 >
-  <main class="content">
-    <p class="eyebrow">Editorial policy</p>
-    <h1>How Deeper Global publishes mental health answers</h1>
-    <p class="summary">
-      Deeper Global is an educational mental health answer engine. This policy describes how content is created, reviewed, and updated without overclaiming clinical authority.
-    </p>
-
+  <EditorialStaticLayout
+    eyebrow="Editorial policy"
+    title="How Deeper Global publishes mental health answers"
+    lede="Deeper Global is an educational mental health answer engine. This policy describes how content is created, reviewed, and updated without overclaiming clinical authority."
+  >
     <h2>Educational purpose</h2>
     <p>
       Answers are written to help people understand common mental health questions in clear language. They are not a substitute for diagnosis, treatment, or emergency care.
@@ -46,5 +45,5 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     <p>
       <a href="/protocol/">Trust Protocol</a> · <a href="/about/">About Deeper Global</a> · <a href="/ai-use/">AI use policy</a> · <a href="/llms.txt">llms.txt</a> · <a href="/privacy/">Privacy</a>
     </p>
-  </main>
+  </EditorialStaticLayout>
 </BaseLayout>

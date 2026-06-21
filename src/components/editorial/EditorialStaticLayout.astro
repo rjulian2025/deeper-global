@@ -1,0 +1,29 @@
+---
+import '@/styles/editorial-static.css';
+
+type Props = {
+  eyebrow: string;
+  title: string;
+  lede?: string;
+  class?: string;
+  wide?: boolean;
+};
+
+const { eyebrow, title, lede, class: className, wide = false } = Astro.props;
+---
+
+<main class:list={['discovery-surface editorial-static-page', className]}>
+  <section class="editorial-static-hero">
+    <div class="container">
+      <p class="editorial-static-eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      {lede ? <p class="editorial-static-lede">{lede}</p> : null}
+    </div>
+  </section>
+
+  <section class="editorial-static-body">
+    <div class:list={['container', wide ? 'editorial-static-wide' : 'editorial-static-prose']}>
+      <slot />
+    </div>
+  </section>
+</main>

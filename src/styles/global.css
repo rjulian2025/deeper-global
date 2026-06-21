@@ -1851,6 +1851,39 @@ body:has(.answer-page--direction-d) {
   text-underline-offset: 2px;
 }
 
+.sidebar-source-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.sidebar-source-list li {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--d-ink);
+}
+
+.sidebar-source-list a {
+  color: var(--d-link);
+  text-decoration: none;
+}
+
+.sidebar-source-list a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sidebar-source-publisher {
+  color: var(--d-sidebar-muted);
+}
+
+.answer-page--direction-d .sidebar-block--sources {
+  margin-top: var(--space-1);
+}
+
 .sidebar-block-list {
   margin: 0;
   padding: 0;
@@ -2569,7 +2602,51 @@ body:has(.discovery-surface) {
   max-width: 36rem;
 }
 
-/* Modality detail pages */
+/* Modality detail — Direction D answer shell */
+.modality-page.answer-page--direction-d .answer-breadcrumbs.container {
+  width: min(100% - var(--space-8), 960px);
+  margin-inline: auto;
+}
+
+.modality-page.answer-page--direction-d .modality-page-layout.container {
+  width: min(100% - var(--space-8), 960px);
+  padding-top: 0;
+}
+
+.modality-page.answer-page--direction-d .answer-section h2,
+.modality-page.answer-page--direction-d .modality-content-section h2 {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--d-heading);
+  margin: var(--space-10) 0 var(--space-4);
+  padding: 0 0 var(--space-3);
+  border: none;
+  border-bottom: 1px solid var(--d-line);
+}
+
+.modality-page.answer-page--direction-d .answer-section p,
+.modality-page.answer-page--direction-d .modality-content-section p {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--d-ink);
+  margin: 0 0 var(--space-4);
+  max-width: var(--d-measure);
+}
+
+.modality-page.answer-page--direction-d .editorial-meta a {
+  color: var(--d-link);
+  text-decoration: none;
+}
+
+.modality-page.answer-page--direction-d .editorial-meta a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Legacy modality rules (hub index and older selectors) */
 .discovery-surface .modality-page-layout {
   display: grid;
   grid-template-columns: 1fr;

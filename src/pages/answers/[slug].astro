@@ -3,6 +3,7 @@ import CrisisBanner from '@/components/CrisisBanner.astro';
 import DiscoveryRow from '@/components/DiscoveryRow.astro';
 import QuestionContextPanel from '@/components/QuestionContextPanel.astro';
 import PractitionerCallout from '@/components/PractitionerCallout.astro';
+import SourceRefsBlock from '@/components/sidebar/SourceRefsBlock.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { isAdhdHubSlug } from '@/lib/adhd-hub';
 import { isAiMentalHealthSprintQuestion } from '@/lib/ai-mental-health-hub';
@@ -507,6 +508,8 @@ const jsonLd = {
             </section>
           )
         }
+
+        <SourceRefsBlock sources={sourceRefs} />
 
         <section class="sidebar-block sidebar-block--care" aria-label="Care guidance">
           <p class="sidebar-block-heading">Care</p>

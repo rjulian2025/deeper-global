@@ -1,0 +1,36 @@
+---
+import type { SourceRef } from '@/lib/trust';
+
+type Props = {
+  sources: SourceRef[];
+  heading?: string;
+};
+
+const { sources, heading = 'Sources' } = Astro.props;
+---
+
+{
+  sources.length > 0 && (
+    <section class="sidebar-block sidebar-block--sources" aria-label="Reference sources" data-ai-section="source-references">
+      <p class="sidebar-block-heading">{heading}</p>
+      <ul class="sidebar-source-list">
+        {
+          sources.map((source) => (
+            <li>
+              {
+                source.url ? (
+                  <a href={source.url} target="_blank" rel="noopener noreferrer">
+                    {source.title}
+                  </a>
+                ) : (
+                  <span>{source.title}</span>
+                )
+              }
+              {source.publisher ? <span class="sidebar-source-publisher"> — {source.publisher}</span> : null}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  )
+}

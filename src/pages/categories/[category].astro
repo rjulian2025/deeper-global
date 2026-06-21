@@ -1,8 +1,12 @@
 ---
 import DiscoveryRow from '@/components/DiscoveryRow.astro';
+import TopicHubPage from '@/components/topic-hub/TopicHubPage.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildCategoryTopicHubConfig, shouldUseCategoryTopicHub } from '@/lib/category-topic-hub';
 import { displayCategory, answerPath, getAnswerDisplayTitle, getCategoryMetaDescription, getCategorySummaries, slugify } from '@/lib/content';
 import { getCategoryFeaturedAnswers, getCategoryHubSections } from '@/lib/category-hub-links';
+import { buildTopicHubPageData } from '@/lib/topic-hub';
+import { buildTopicHubJsonLd } from '@/lib/topic-hub-jsonld';
 import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { siteUrl, websiteId } from '@/lib/site';
 import { getQuestions, type Question } from '@/lib/supabase';
@@ -23,8 +27,6 @@ export async function getStaticPaths() {
 const categoryName = Astro.props.categoryName as string | undefined;
 const questions = (Astro.props.questions ?? []) as Question[];
 const allQuestions = filterPublishableQuestions(await getQuestions());
-const hubSections = categoryName ? getCategoryHubSections(categoryName, allQuestions) : [];
-const featuredAnswers = categoryName ? getCategoryFeaturedAnswers(categoryName, questions) : questions;
 
 if (!categoryName && !questions.length) {
   return Astro.redirect('/categories');
@@ -33,7 +35,14 @@ if (!categoryName && !questions.length) {
 const resolvedCategory = categoryName ?? Astro.params.category ?? 'Topic';
 const categoryUrl = siteUrl(`/categories/${slugify(resolvedCategory)}`);
 const description = getCategoryMetaDescription(resolvedCategory, questions.length);
-const jsonLd = {
+const useTopicHub = shouldUseCategoryTopicHub(resolvedCategory, questions);
+const topicHubConfig = useTopicHub ? buildCategoryTopicHubConfig(resolvedCategory, questions) : null;
+const topicHub = topicHubConfig ? buildTopicHubPageData(topicHubConfig, allQuestions) : null;
+
+const hubSections = !useTopicHub && categoryName ? getCategoryHubSections(categoryName, allQuestions) : [];
+const featuredAnswers = !useTopicHub && categoryName ? getCategoryFeaturedAnswers(categoryName, questions) : questions;
+
+const fallbackJsonLd = {
   '@graph': [
     {
       '@type': 'CollectionPage',
@@ -81,16 +90,23 @@ const jsonLd = {
     },
   ],
 };
+
+const pageJsonLd =
+  useTopicHub && topicHubConfig && topicHub ? buildTopicHubJsonLd(topicHubConfig, topicHub) : fallbackJsonLd;
 ---
 
 <BaseLayout
   title={`${resolvedCategory} Questions and Answers | Deeper Global`}
   description={description}
   canonicalPath={`/categories/${slugify(resolvedCategory)}`}
-  jsonLd={jsonLd}
+  jsonLd={pageJsonLd}
   noindex={true}
 >
-  <main class="discovery-surface categories-page">
+  {
+    useTopicHub && topicHubConfig && topicHub ? (
+      <TopicHubPage config={topicHubConfig} hub={topicHub} />
+    ) : (
+      <main class="discovery-surface categories-page">
     <section class="catalog-hero">
       <div class="container">
         <p class="eyebrow">Topic hub</p>
@@ -131,5 +147,7 @@ const jsonLd = {
         </div>
       </div>
     </section>
-  </main>
+      </main>
+    )
+  }
 </BaseLayout>

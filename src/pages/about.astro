@@ -1,4 +1,5 @@
 ---
+import EditorialStaticLayout from '@/components/editorial/EditorialStaticLayout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 ---
 
@@ -7,13 +8,11 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
   description="Learn about Deeper Global's mission to make trusted mental health answers more accessible."
   canonicalPath="/about"
 >
-  <main class="content">
-    <p class="eyebrow">About</p>
-    <h1>Deeper Global helps people find clear, trustworthy answers to mental health questions.</h1>
-    <p class="summary">
-      Our goal is simple: make it easier to understand what you may be feeling, what it might mean, and what kinds of support could help.
-    </p>
-
+  <EditorialStaticLayout
+    eyebrow="About"
+    title="Deeper Global helps people find clear, trustworthy answers to mental health questions."
+    lede="Our goal is simple: make it easier to understand what you may be feeling, what it might mean, and what kinds of support could help."
+  >
     <h2>What We're Building</h2>
     <p>
       Deeper Global is a mental health resource built around real questions people ask when they are stressed, overwhelmed, uncertain, or trying to understand themselves better.
@@ -37,5 +36,5 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
     <p>
       But the foundation will stay the same: helping people feel more informed, less alone, and better prepared to take the next step.
     </p>
-  </main>
+  </EditorialStaticLayout>
 </BaseLayout>
