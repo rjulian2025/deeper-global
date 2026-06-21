@@ -1,0 +1,18 @@
+---
+import HomepageSidebar from '@/components/homepage/HomepageSidebar.astro';
+import type { HomepageSidebarData } from '@/lib/homepage-sidebar';
+import '@/styles/homepage-sidebar.css';
+
+type Props = {
+  sidebar: HomepageSidebarData;
+};
+
+const { sidebar } = Astro.props;
+---
+
+<div class="homepage-body-layout">
+  <div class="homepage-main">
+    <slot />
+  </div>
+  <HomepageSidebar sidebar={sidebar} />
+</div>
