@@ -26,6 +26,8 @@
     min-width: 0;
     width: 100%;
     max-width: 220px;
+    overflow: hidden;
+    isolation: isolate;
   }
 }
 

@@ -2888,6 +2888,18 @@ body:has(.home-page) .container {
   padding: var(--space-8) 0;
 }
 
+.home-page .homepage-main {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.home-page .homepage-main .discovery-list,
+.home-page .homepage-main .discovery-row {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .home-page .homepage-main .discovery-row {
   padding: 14px 0;
 }
@@ -2901,7 +2913,9 @@ body:has(.home-page) .container {
 .home-page .homepage-main .discovery-row-title {
   font-size: 1.125rem;
   line-height: 1.35;
-  margin-bottom: 6px;
+  margin: 0 0 6px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .home-page .discovery-summary {
@@ -2913,13 +2927,16 @@ body:has(.home-page) .container {
 }
 
 .home-page .homepage-main .discovery-summary {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
   font-size: 0.9375rem;
   line-height: 1.5;
   margin-bottom: 6px;
   max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .home-page .homepage-main .discovery-row-title a {
@@ -2927,6 +2944,7 @@ body:has(.home-page) .container {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: 100%;
 }
 
 .home-page .discovery-meta {
