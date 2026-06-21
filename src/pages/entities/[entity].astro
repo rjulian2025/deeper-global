@@ -1,5 +1,5 @@
 ---
-import AnswerCard from '@/components/AnswerCard.astro';
+import DiscoveryRow from '@/components/DiscoveryRow.astro';
 import PractitionerCallout from '@/components/PractitionerCallout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { categoryPath, displayCategory, getAnswerDisplayTitle, getEntitySummaries, slugify } from '@/lib/content';
@@ -98,7 +98,7 @@ const jsonLd = {
 
     <section class="section">
       <div class="container discovery-list answer-list">
-        {questions.map((question) => <AnswerCard question={question} />)}
+        {questions.map((question) => <DiscoveryRow question={question} />)}
       </div>
     </section>
   </main>

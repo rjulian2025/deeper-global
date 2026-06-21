@@ -135,7 +135,7 @@ const structuredData = {
             <a href="/adhd/">ADHD</a>
             <a href="/ai-mental-health/">AI mental health</a>
             <a href="/categories/">Topics</a>
-            <a href="/entities/">Themes</a>
+            <a href="/themes/">Themes</a>
             <a href="/protocol/">Protocol</a>
             <a href="/about/">About</a>
           </div>
@@ -151,7 +151,7 @@ const structuredData = {
           <a href="/modalities/">Modalities</a>
           <a href="/adhd/">ADHD</a>
           <a href="/categories/">Topics</a>
-          <a href="/entities/">Themes</a>
+          <a href="/themes/">Themes</a>
           <a href="/protocol/">Protocol</a>
           <a href="/about/">About</a>
           <a href="/ai-mental-health/">AI mental health</a>
@@ -211,7 +211,7 @@ const structuredData = {
           if (document.querySelector('.answer-layout')) return 'answer';
           if (path.startsWith('/answers/')) return path === '/answers/' ? 'search' : 'answer';
           if (path.startsWith('/categories/')) return 'category';
-          if (path.startsWith('/entities/')) return 'entity';
+          if (path.startsWith('/entities/') || path.startsWith('/themes/')) return 'entity';
           if (path === '/editorial-policy/') return 'policy';
           return 'hub';
         };
@@ -418,7 +418,10 @@ const structuredData = {
             });
           }
 
-          if (link.closest('[data-ai-section="related-questions"]') || link.classList.contains('rabbit-card')) {
+          if (
+            link.closest('[data-ai-section="related-questions"]') ||
+            link.closest('[data-ai-section="related-questions-bottom"]')
+          ) {
             window.deeperTrackEvent('answer_related_clicked', {
               link_label: label,
               target_path: href.startsWith('/') ? href : undefined,

@@ -1,0 +1,73 @@
+---
+import EmptyState from '@/components/EmptyState.astro';
+import GroupedDirectoryClusters from '@/components/grouped-directory/GroupedDirectoryClusters.astro';
+import GroupedDirectoryLayout from '@/components/grouped-directory/GroupedDirectoryLayout.astro';
+import GroupedDirectorySidebar from '@/components/grouped-directory/GroupedDirectorySidebar.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getEntitySummaries } from '@/lib/content';
+import { buildGroupedThemeClusters, getTrendingThemeEntries } from '@/lib/theme-directory';
+import { siteUrl } from '@/lib/site';
+import { getQuestions } from '@/lib/supabase';
+import '@/styles/grouped-directory.css';
+
+type Props = {
+  canonicalPath?: string;
+};
+
+const { canonicalPath = '/entities/' } = Astro.props;
+
+const questions = await getQuestions();
+const entities = getEntitySummaries(questions);
+const clusters = buildGroupedThemeClusters(entities);
+const trendingThemes = getTrendingThemeEntries(questions, entities, 3);
+
+const jsonLd = {
+  '@type': 'DefinedTermSet',
+  name: 'Deeper Global Mental Health Topic Map',
+  url: siteUrl(canonicalPath),
+  hasDefinedTerm: entities.map((entity) => ({
+    '@type': 'DefinedTerm',
+    name: entity.name,
+    url: siteUrl(`/entities/${entity.slug}`),
+    alternateName: entity.sameAs,
+  })),
+};
+---
+
+<BaseLayout
+  title="Mental Health Themes | Deeper Global"
+  description="Mental health themes that organize Deeper Global answers into clearer paths for exploration and understanding."
+  canonicalPath={canonicalPath}
+  jsonLd={jsonLd}
+  noindex={true}
+>
+  <main class="discovery-surface grouped-directory-page" data-grouped-directory>
+    <section class="grouped-directory-hero">
+      <div class="container">
+        <p class="grouped-directory-eyebrow">Themes</p>
+        <h1>Explore the patterns behind mental health questions</h1>
+        <p class="grouped-directory-lede">
+          Themes connect related questions, language, and answers so you can keep exploring what feels relevant to you.
+        </p>
+      </div>
+    </section>
+
+    <div class="grouped-directory-body">
+      <div class="container">
+        {
+          entities.length ? (
+            <GroupedDirectoryLayout>
+              <GroupedDirectoryClusters clusters={clusters} />
+              <GroupedDirectorySidebar slot="sidebar" clusters={clusters} trendingThemes={trendingThemes} />
+            </GroupedDirectoryLayout>
+          ) : (
+            <EmptyState
+              title="No theme data available yet"
+              message="Themes are generated from Supabase categories when corpus credentials are available."
+            />
+          )
+        }
+      </div>
+    </div>
+  </main>
+</BaseLayout>

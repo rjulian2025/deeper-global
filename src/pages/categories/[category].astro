@@ -1,5 +1,5 @@
 ---
-import AnswerCard from '@/components/AnswerCard.astro';
+import DiscoveryRow from '@/components/DiscoveryRow.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { displayCategory, answerPath, getAnswerDisplayTitle, getCategoryMetaDescription, getCategorySummaries, slugify } from '@/lib/content';
 import { getCategoryFeaturedAnswers, getCategoryHubSections } from '@/lib/category-hub-links';
@@ -127,7 +127,7 @@ const jsonLd = {
         }
 
         <div class="discovery-list answer-list">
-          {featuredAnswers.map((question) => <AnswerCard question={question} />)}
+          {featuredAnswers.map((question) => <DiscoveryRow question={question} />)}
         </div>
       </div>
     </section>

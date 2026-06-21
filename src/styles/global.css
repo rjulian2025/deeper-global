@@ -2082,38 +2082,47 @@ body:has(.answer-page--direction-d) {
   margin-top: 0.125rem;
 }
 
-/* Bottom related band — de-emphasize card SaaS on answer pages */
-.answer-page--direction-d .related-section {
+/* Bottom related band — discovery list rows (Direction D) */
+.answer-page--direction-d .answer-related-section {
+  margin-top: var(--space-12);
+  padding: var(--space-12) 0 var(--space-16);
+  border-top: 1px solid var(--d-line);
   background: var(--d-page);
+}
+
+.answer-page--direction-d .answer-related-section .tier-index {
+  margin: 0 0 var(--space-2);
+}
+
+.answer-page--direction-d .answer-related-section .tier-heading {
+  margin: 0 0 var(--space-8);
+  font-size: 1.5rem;
+  line-height: 1.25;
+  color: var(--d-heading);
+}
+
+.answer-page--direction-d .answer-related-list {
   border-top: 1px solid var(--d-line);
 }
 
-.answer-page--direction-d .related-section .eyebrow {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  color: var(--d-sidebar-muted);
+.answer-page--direction-d .answer-related-list .discovery-row {
+  padding: var(--space-6) 0;
+  border-bottom: 1px solid var(--d-line);
 }
 
-.answer-page--direction-d .rabbit-card {
-  border-radius: 2px;
-  border-left: none;
-  box-shadow: none;
+.answer-page--direction-d .answer-related-list .discovery-row-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
 }
 
-.answer-page--direction-d .rabbit-card:hover {
-  box-shadow: none;
-  border-color: var(--d-line);
+.answer-page--direction-d .answer-related-list .discovery-summary {
+  margin-bottom: var(--space-2);
 }
 
-.answer-page--direction-d .rabbit-card span {
-  background: transparent;
-  color: var(--d-sidebar-muted);
-  padding: 0;
-  border-radius: 0;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: 0.6875rem;
+.answer-page--direction-d .answer-related-list .discovery-meta {
+  font-size: 0.75rem;
+  color: var(--d-muted);
 }
 
 @media (max-width: 900px) {

@@ -1,0 +1,67 @@
+---
+type Props = {
+  class?: string;
+};
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['grouped-directory-layout', className]} data-grouped-directory-layout>
+  <div class="grouped-directory-main">
+    <slot />
+  </div>
+  <slot name="sidebar" />
+</div>
+
+<script>
+  function initGroupedDirectory(root: Document | HTMLElement = document) {
+    const layout = root.querySelector('[data-grouped-directory]');
+    if (!layout || layout.getAttribute('data-grouped-directory-init') === 'true') return;
+    layout.setAttribute('data-grouped-directory-init', 'true');
+
+    const searchInput = layout.querySelector<HTMLInputElement>('[data-grouped-directory-search]');
+    const clustersRoot = layout.querySelector('[data-grouped-directory-clusters]');
+    const emptyState = layout.querySelector<HTMLElement>('[data-grouped-directory-empty]');
+
+    const filterThemes = () => {
+      if (!clustersRoot) return;
+      const query = searchInput?.value.trim().toLowerCase() ?? '';
+      let visibleThemes = 0;
+
+      clustersRoot.querySelectorAll<HTMLElement>('[data-cluster-section]').forEach((section) => {
+        let sectionVisible = 0;
+
+        section.querySelectorAll<HTMLElement>('[data-theme-item]').forEach((item) => {
+          const name = item.getAttribute('data-theme-name') ?? '';
+          const match = !query || name.includes(query);
+          item.hidden = !match;
+          if (match) sectionVisible += 1;
+        });
+
+        section.hidden = sectionVisible === 0;
+        visibleThemes += sectionVisible;
+      });
+
+      if (emptyState) {
+        emptyState.hidden = visibleThemes > 0;
+      }
+    };
+
+    searchInput?.addEventListener('input', filterThemes);
+
+    layout.querySelectorAll<HTMLAnchorElement>('[data-cluster-jump]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const href = link.getAttribute('href');
+        if (!href?.startsWith('#')) return;
+        const target = layout.querySelector(href);
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', href);
+      });
+    });
+  }
+
+  initGroupedDirectory();
+  document.addEventListener('astro:page-load', () => initGroupedDirectory());
+</script>

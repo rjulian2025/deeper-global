@@ -1,0 +1,47 @@
+---
+import type { GroupedThemeCluster } from '@/lib/theme-directory';
+
+type Props = {
+  clusters: GroupedThemeCluster[];
+};
+
+const { clusters } = Astro.props;
+---
+
+<div class="grouped-directory-clusters" data-grouped-directory-clusters>
+  {
+    clusters.map((cluster) => (
+      <section
+        class="grouped-directory-cluster grouped-directory-cluster-boundary"
+        id={cluster.anchorId}
+        data-cluster-section
+        data-cluster={cluster.slug}
+        aria-labelledby={`${cluster.anchorId}-label`}
+      >
+        <h2 class="grouped-directory-cluster-eyebrow" id={`${cluster.anchorId}-label`}>
+          {cluster.name}
+        </h2>
+        <ul class="grouped-directory-theme-grid">
+          {
+            cluster.themes.map((theme) => (
+              <li data-theme-item data-theme-name={theme.name.toLowerCase()}>
+                <a class="grouped-directory-theme-link" href={theme.href} data-ai-entity={theme.name}>
+                  {theme.name}
+                </a>
+                {
+                  theme.themeDescription ? (
+                    <p class="grouped-directory-theme-description">{theme.themeDescription}</p>
+                  ) : null
+                }
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    ))
+  }
+</div>
+
+<p class="grouped-directory-empty-filter" data-grouped-directory-empty hidden>
+  No themes match your search.
+</p>

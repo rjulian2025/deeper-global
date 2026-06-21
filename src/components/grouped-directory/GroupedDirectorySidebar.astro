@@ -1,0 +1,66 @@
+---
+import type { GroupedThemeCluster, ThemeDirectoryEntry } from '@/lib/theme-directory';
+import { themeClusterJumpHref } from '@/lib/theme-directory';
+
+type Props = {
+  clusters: GroupedThemeCluster[];
+  trendingThemes: ThemeDirectoryEntry[];
+  searchInputId?: string;
+};
+
+const { clusters, trendingThemes, searchInputId = 'grouped-directory-search' } = Astro.props;
+---
+
+<aside class="grouped-directory-sidebar-wrap" aria-label="Directory navigation">
+  <div class="grouped-directory-sidebar">
+    <div class="grouped-directory-sidebar-block grouped-directory-search">
+      <label class="visually-hidden" for={searchInputId}>Search themes</label>
+      <input
+        id={searchInputId}
+        type="search"
+        placeholder="Search themes"
+        autocomplete="off"
+        data-grouped-directory-search
+      />
+    </div>
+
+    {
+      clusters.length > 0 && (
+        <nav class="grouped-directory-sidebar-block" aria-label="Jump to category">
+          <p class="grouped-directory-sidebar-label">Jump to category</p>
+          <ul class="grouped-directory-jump-list">
+            {
+              clusters.map((cluster) => (
+                <li>
+                  <a href={themeClusterJumpHref(cluster.anchorId)} data-cluster-jump>
+                    {cluster.name}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      )
+    }
+
+    {
+      trendingThemes.length > 0 && (
+        <div class="grouped-directory-sidebar-block">
+          <p class="grouped-directory-sidebar-label">Trending this week</p>
+          <ul class="grouped-directory-trending-list">
+            {
+              trendingThemes.map((theme) => (
+                <li>
+                  <a href={theme.href} data-ai-entity={theme.name}>{theme.name}</a>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="grouped-directory-trending-note">
+            Based on editorial high-intent answers. TODO: wire to analytics-backed theme traffic.
+          </p>
+        </div>
+      )
+    }
+  </div>
+</aside>

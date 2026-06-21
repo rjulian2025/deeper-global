@@ -1,5 +1,6 @@
 ---
 import CrisisBanner from '@/components/CrisisBanner.astro';
+import DiscoveryRow from '@/components/DiscoveryRow.astro';
 import QuestionContextPanel from '@/components/QuestionContextPanel.astro';
 import PractitionerCallout from '@/components/PractitionerCallout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -516,16 +517,17 @@ const jsonLd = {
 
     {
       relatedQuestions.length > 0 && (
-        <section class="section related-section">
+        <section
+          class="section answer-related-section"
+          aria-labelledby="answer-related-heading"
+          data-ai-section="related-questions-bottom"
+        >
           <div class="container">
-            <p class="eyebrow">Related questions</p>
-            <h2>More answers in {category}</h2>
-            <div class="rabbit-grid">
+            <p class="tier-index">Related questions</p>
+            <h2 class="tier-heading" id="answer-related-heading">More answers in {category}</h2>
+            <div class="discovery-list answer-related-list">
               {relatedQuestions.map((related) => (
-                <a class="rabbit-card" href={answerPath(related.slug)}>
-                  <span>{displayCategory(related)}</span>
-                  <strong>{related.question}</strong>
-                </a>
+                <DiscoveryRow question={related} headingLevel={3} summaryMaxLength={168} />
               ))}
             </div>
           </div>
