@@ -1,4 +1,5 @@
 ---
+import type { UnexpectedOverlapLink } from '@/lib/unexpected-overlaps';
 import type { GroupedThemeCluster, ThemeDirectoryEntry } from '@/lib/theme-directory';
 import { themeClusterJumpHref } from '@/lib/theme-directory';
 
@@ -6,19 +7,35 @@ type Props = {
   clusters: GroupedThemeCluster[];
   trendingThemes: ThemeDirectoryEntry[];
   searchInputId?: string;
+  searchPlaceholder?: string;
+  searchLabel?: string;
+  unexpectedOverlaps?: UnexpectedOverlapLink[];
+  askAnything?: {
+    lead: string;
+    href: string;
+    label: string;
+  };
 };
 
-const { clusters, trendingThemes, searchInputId = 'grouped-directory-search' } = Astro.props;
+const {
+  clusters,
+  trendingThemes,
+  searchInputId = 'grouped-directory-search',
+  searchPlaceholder = 'Search themes',
+  searchLabel = 'Search themes',
+  unexpectedOverlaps = [],
+  askAnything,
+} = Astro.props;
 ---
 
 <aside class="grouped-directory-sidebar-wrap" aria-label="Directory navigation">
   <div class="grouped-directory-sidebar">
     <div class="grouped-directory-sidebar-block grouped-directory-search">
-      <label class="visually-hidden" for={searchInputId}>Search themes</label>
+      <label class="visually-hidden" for={searchInputId}>{searchLabel}</label>
       <input
         id={searchInputId}
         type="search"
-        placeholder="Search themes"
+        placeholder={searchPlaceholder}
         autocomplete="off"
         data-grouped-directory-search
       />
@@ -44,6 +61,23 @@ const { clusters, trendingThemes, searchInputId = 'grouped-directory-search' } =
     }
 
     {
+      unexpectedOverlaps.length > 0 && (
+        <section class="grouped-directory-sidebar-block" aria-labelledby={`${searchInputId}-overlaps`}>
+          <p class="grouped-directory-sidebar-label" id={`${searchInputId}-overlaps`}>Unexpected overlaps</p>
+          <ul class="grouped-directory-overlap-list">
+            {
+              unexpectedOverlaps.map((link) => (
+                <li>
+                  <a href={link.href}>{link.title}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      )
+    }
+
+    {
       trendingThemes.length > 0 && (
         <div class="grouped-directory-sidebar-block">
           <p class="grouped-directory-sidebar-label">Trending this week</p>
@@ -60,6 +94,15 @@ const { clusters, trendingThemes, searchInputId = 'grouped-directory-search' } =
             Based on editorial high-intent answers. TODO: wire to analytics-backed theme traffic.
           </p>
         </div>
+      )
+    }
+
+    {
+      askAnything && (
+        <section class="grouped-directory-sidebar-block" aria-labelledby={`${searchInputId}-ask`}>
+          <p class="grouped-directory-ask-lead" id={`${searchInputId}-ask`}>{askAnything.lead}</p>
+          <a class="grouped-directory-ask-link" href={askAnything.href}>{askAnything.label}</a>
+        </section>
       )
     }
   </div>

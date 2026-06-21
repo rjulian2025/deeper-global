@@ -49,7 +49,7 @@ export function getBrowseTopicLinks(asOf: Date = new Date()): AnswersSidebarLink
     .slice(0, 3)
     .map((cluster) => ({
       title: cluster.name,
-      href: `/themes/#theme-cluster-${cluster.slug}`,
+      href: `/categories/#topic-cluster-${cluster.slug}`,
     }));
 }
 

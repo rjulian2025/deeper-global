@@ -3,9 +3,10 @@ import type { GroupedThemeCluster } from '@/lib/theme-directory';
 
 type Props = {
   clusters: GroupedThemeCluster[];
+  emptyFilterMessage?: string;
 };
 
-const { clusters } = Astro.props;
+const { clusters, emptyFilterMessage = 'No themes match your search.' } = Astro.props;
 ---
 
 <div class="grouped-directory-clusters" data-grouped-directory-clusters>
@@ -21,6 +22,7 @@ const { clusters } = Astro.props;
         <h2 class="grouped-directory-cluster-eyebrow" id={`${cluster.anchorId}-label`}>
           {cluster.name}
         </h2>
+        <p class="grouped-directory-cluster-description">{cluster.description}</p>
         <ul class="grouped-directory-theme-grid">
           {
             cluster.themes.map((theme) => (
@@ -43,5 +45,5 @@ const { clusters } = Astro.props;
 </div>
 
 <p class="grouped-directory-empty-filter" data-grouped-directory-empty hidden>
-  No themes match your search.
+  {emptyFilterMessage}
 </p>

@@ -1,4 +1,4 @@
-import { displayCategory, slugify, type EntitySummary } from './content';
+import { categoryPath, displayCategory, type CategorySummary, type EntitySummary } from './content';
 import { getTrendingQuestions } from './engagement';
 import { getCanonicalTopic, normalizeTopicKey } from './taxonomy';
 import type { Question } from './supabase';
@@ -31,18 +31,65 @@ export type ThemeClusterDefinition = {
   slug: ThemeClusterSlug;
   name: string;
   order: number;
+  /** One editorial line per meta-cluster — not repeated on individual entries. */
+  description: string;
 };
 
 export const themeClusters: ThemeClusterDefinition[] = [
-  { slug: 'anxiety-and-mood', name: 'Anxiety & mood', order: 1 },
-  { slug: 'relationships-and-connection', name: 'Relationships & connection', order: 2 },
-  { slug: 'family-and-parenting', name: 'Family & parenting', order: 3 },
-  { slug: 'identity-and-self-worth', name: 'Identity & self-worth', order: 4 },
-  { slug: 'trauma-and-safety', name: 'Trauma & safety', order: 5 },
-  { slug: 'work-and-purpose', name: 'Work & purpose', order: 6 },
-  { slug: 'spirituality-and-meaning', name: 'Spirituality & meaning', order: 7 },
-  { slug: 'care-and-therapy', name: 'Care & therapy', order: 8 },
-  { slug: 'life-transitions-and-change', name: 'Life transitions & change', order: 9 },
+  {
+    slug: 'anxiety-and-mood',
+    name: 'Anxiety & mood',
+    order: 1,
+    description: 'Worry, panic, low mood, and the physical ways stress shows up in daily life.',
+  },
+  {
+    slug: 'relationships-and-connection',
+    name: 'Relationships & connection',
+    order: 2,
+    description: 'Partners, intimacy, loneliness, communication, and feeling misunderstood by people close to you.',
+  },
+  {
+    slug: 'family-and-parenting',
+    name: 'Family & parenting',
+    order: 3,
+    description: 'Parenting stress, family roles, teens, and caring for people you love without losing yourself.',
+  },
+  {
+    slug: 'identity-and-self-worth',
+    name: 'Identity & self-worth',
+    order: 4,
+    description: 'Self-criticism, belonging, confidence, and questions about who you are becoming.',
+  },
+  {
+    slug: 'trauma-and-safety',
+    name: 'Trauma & safety',
+    order: 5,
+    description: 'Aftermath of harm, hypervigilance, addiction, recovery, and rebuilding a sense of safety.',
+  },
+  {
+    slug: 'work-and-purpose',
+    name: 'Work & purpose',
+    order: 6,
+    description: 'Burnout, career doubt, performance pressure, and finding work that still fits your life.',
+  },
+  {
+    slug: 'spirituality-and-meaning',
+    name: 'Spirituality & meaning',
+    order: 7,
+    description: 'Faith doubt, emptiness, existential questions, and searching for what still feels worth it.',
+  },
+  {
+    slug: 'care-and-therapy',
+    name: 'Care & therapy',
+    order: 8,
+    description: 'Finding care, understanding treatment options, neurodivergence, and navigating the mental health system.',
+  },
+  {
+    slug: 'life-transitions-and-change',
+    name: 'Life transitions & change',
+    order: 9,
+    description: 'Grief, loss, major life shifts, and the disorientation that comes when everything changes at once.',
+  },
 ];
 
 const canonicalTopicCluster: Record<string, ThemeClusterSlug> = {
@@ -115,8 +162,23 @@ export function buildThemeDirectoryEntries(entities: EntitySummary[]): ThemeDire
   }));
 }
 
-export function buildGroupedThemeClusters(entities: EntitySummary[]): GroupedThemeCluster[] {
-  const entries = buildThemeDirectoryEntries(entities);
+export function buildTopicDirectoryEntries(categories: CategorySummary[]): ThemeDirectoryEntry[] {
+  return categories.map((category) => ({
+    ...category,
+    type: 'Topic',
+    canonicalUrl: categoryPath(category.name),
+    sameAs: [],
+    relatedQuestionSlugs: [],
+    cluster: getThemeClusterForCategory(category.name),
+    href: categoryPath(category.name),
+    themeDescription: null,
+  }));
+}
+
+function groupEntriesByCluster(
+  entries: ThemeDirectoryEntry[],
+  anchorPrefix: 'theme-cluster' | 'topic-cluster'
+): GroupedThemeCluster[] {
   const byCluster = new Map<ThemeClusterSlug, ThemeDirectoryEntry[]>();
 
   for (const entry of entries) {
@@ -133,11 +195,19 @@ export function buildGroupedThemeClusters(entities: EntitySummary[]): GroupedThe
 
       return {
         ...cluster,
-        anchorId: `theme-cluster-${cluster.slug}`,
+        anchorId: `${anchorPrefix}-${cluster.slug}`,
         themes,
       };
     })
     .filter((cluster) => cluster.themes.length > 0);
+}
+
+export function buildGroupedThemeClusters(entities: EntitySummary[]): GroupedThemeCluster[] {
+  return groupEntriesByCluster(buildThemeDirectoryEntries(entities), 'theme-cluster');
+}
+
+export function buildGroupedTopicClusters(categories: CategorySummary[]): GroupedThemeCluster[] {
+  return groupEntriesByCluster(buildTopicDirectoryEntries(categories), 'topic-cluster');
 }
 
 /**
@@ -165,6 +235,35 @@ export function getTrendingThemeEntries(
   if (trending.length >= limit) return trending;
 
   for (const entry of buildThemeDirectoryEntries(entities)) {
+    if (seen.has(entry.slug)) continue;
+    trending.push(entry);
+    if (trending.length >= limit) break;
+  }
+
+  return trending;
+}
+
+export function getTrendingTopicEntries(
+  questions: Question[],
+  categories: CategorySummary[],
+  limit = 3
+): ThemeDirectoryEntry[] {
+  const entriesByName = new Map(buildTopicDirectoryEntries(categories).map((entry) => [entry.name, entry]));
+  const seen = new Set<string>();
+  const trending: ThemeDirectoryEntry[] = [];
+
+  for (const question of getTrendingQuestions(questions, 12)) {
+    const category = displayCategory(question);
+    const entry = entriesByName.get(category);
+    if (!entry || seen.has(entry.slug)) continue;
+    seen.add(entry.slug);
+    trending.push(entry);
+    if (trending.length >= limit) break;
+  }
+
+  if (trending.length >= limit) return trending;
+
+  for (const entry of buildTopicDirectoryEntries(categories)) {
     if (seen.has(entry.slug)) continue;
     trending.push(entry);
     if (trending.length >= limit) break;

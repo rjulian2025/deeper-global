@@ -1,0 +1,92 @@
+---
+import EmptyState from '@/components/EmptyState.astro';
+import GroupedDirectoryClosing from '@/components/grouped-directory/GroupedDirectoryClosing.astro';
+import GroupedDirectoryClusters from '@/components/grouped-directory/GroupedDirectoryClusters.astro';
+import GroupedDirectoryLayout from '@/components/grouped-directory/GroupedDirectoryLayout.astro';
+import GroupedDirectorySidebar from '@/components/grouped-directory/GroupedDirectorySidebar.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCategorySummaries } from '@/lib/content';
+import { buildGroupedTopicClusters, getTrendingTopicEntries } from '@/lib/theme-directory';
+import { siteUrl } from '@/lib/site';
+import { getUnexpectedOverlapLinks } from '@/lib/unexpected-overlaps';
+import { getQuestions } from '@/lib/supabase';
+import '@/styles/grouped-directory.css';
+
+const questions = await getQuestions();
+const categories = getCategorySummaries(questions);
+const clusters = buildGroupedTopicClusters(categories);
+const trendingTopics = getTrendingTopicEntries(questions, categories, 3);
+const unexpectedOverlaps = getUnexpectedOverlapLinks(questions, new Date(), 3);
+
+const jsonLd = {
+  '@type': 'DefinedTermSet',
+  name: 'Deeper Global Mental Health Topics',
+  url: siteUrl('/categories/'),
+  hasDefinedTerm: categories.map((category) => ({
+    '@type': 'DefinedTerm',
+    name: category.name,
+    url: siteUrl(`/categories/${category.slug}`),
+  })),
+};
+
+const closingLinks = [
+  { label: 'Ask anything', href: '/answers/#answer-search-input' },
+  { label: 'Browse therapy approaches', href: '/modalities/' },
+  { label: 'Meet clinical reviewers', href: '/reviewers/' },
+];
+---
+
+<BaseLayout
+  title="Mental Health Topics | Deeper Global"
+  description="Browse Deeper Global mental health topics organized into clearer paths for exploration and understanding."
+  canonicalPath="/categories/"
+  jsonLd={jsonLd}
+  noindex={true}
+>
+  <main class="discovery-surface grouped-directory-page grouped-directory-page--topics" data-grouped-directory>
+    <section class="grouped-directory-hero">
+      <div class="container">
+        <p class="grouped-directory-eyebrow">Topics</p>
+        <h1>What are you carrying right now?</h1>
+        <p class="grouped-directory-lede">
+          Every topic below is a territory — a place to start when you need language, context, or a clearer next step.
+        </p>
+      </div>
+    </section>
+
+    <div class="grouped-directory-body">
+      <div class="container">
+        {
+          categories.length ? (
+            <GroupedDirectoryLayout>
+              <GroupedDirectoryClusters clusters={clusters} emptyFilterMessage="No topics match your search." />
+              <GroupedDirectoryClosing
+                prompt="Found what you're carrying? Here's where people usually go next."
+                links={closingLinks}
+              />
+              <GroupedDirectorySidebar
+                slot="sidebar"
+                clusters={clusters}
+                trendingThemes={trendingTopics}
+                searchInputId="topics-directory-search"
+                searchPlaceholder="Search topics"
+                searchLabel="Search topics"
+                unexpectedOverlaps={unexpectedOverlaps}
+                askAnything={{
+                  lead: 'Still looking for the right words for this?',
+                  href: '/answers/#answer-search-input',
+                  label: 'Ask anything →',
+                }}
+              />
+            </GroupedDirectoryLayout>
+          ) : (
+            <EmptyState
+              title="No topic data available yet"
+              message="Topic hubs are generated from Supabase categories once content credentials are available during build."
+            />
+          )
+        }
+      </div>
+    </div>
+  </main>
+</BaseLayout>

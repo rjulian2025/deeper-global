@@ -33,7 +33,7 @@
 @media (min-width: 900px) {
   .grouped-directory-layout {
     grid-template-columns: minmax(0, 1fr) 220px;
-    align-items: stretch;
+    align-items: start;
     gap: 32px;
   }
 
@@ -112,12 +112,22 @@
 }
 
 .grouped-directory-cluster-eyebrow {
-  margin: 0 0 14px;
+  margin: 0 0 8px;
   font-family: var(--font-sans);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--text-secondary-token, var(--d-muted));
+}
+
+.grouped-directory-cluster-description {
+  margin: 0 0 14px;
+  max-width: 42rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.55;
   color: var(--text-secondary-token, var(--d-muted));
 }
 
@@ -131,6 +141,10 @@
 }
 
 @media (max-width: 899px) {
+  .grouped-directory-sidebar-wrap {
+    order: -1;
+  }
+
   .grouped-directory-theme-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -275,4 +289,104 @@
   font-size: 11px;
   line-height: 1.45;
   color: var(--gd-text-tertiary);
+}
+
+.grouped-directory-overlap-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.grouped-directory-overlap-list a {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--text-secondary-token, var(--d-muted));
+  text-decoration: none;
+}
+
+.grouped-directory-overlap-list a:hover {
+  color: var(--gd-text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--gd-border-secondary);
+  text-underline-offset: 3px;
+}
+
+.grouped-directory-ask-lead {
+  margin: 0 0 8px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--text-secondary-token, var(--d-muted));
+}
+
+.grouped-directory-ask-link {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--text-secondary-token, var(--d-muted));
+  text-decoration: none;
+}
+
+.grouped-directory-ask-link:hover {
+  color: var(--gd-text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--gd-border-secondary);
+  text-underline-offset: 3px;
+}
+
+/* Topics index — tighter link grid per spec */
+.grouped-directory-page--topics .grouped-directory-theme-grid {
+  --gd-cluster-col-gap: 24px;
+}
+
+.grouped-directory-page--topics .grouped-directory-theme-link {
+  font-size: 15px;
+}
+
+.grouped-directory-closing {
+  margin-top: var(--space-12);
+  padding-top: var(--space-10);
+  border-top: 0.5px solid var(--gd-border-tertiary);
+}
+
+.grouped-directory-closing-prompt {
+  margin: 0 0 var(--space-6);
+  max-width: 32rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--gd-text-primary);
+}
+
+.grouped-directory-closing-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-8);
+}
+
+.grouped-directory-closing-links a {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--d-link, #2563eb);
+  text-decoration: none;
+}
+
+.grouped-directory-closing-links a:hover {
+  color: var(--d-link-hover, #1d4ed8);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
