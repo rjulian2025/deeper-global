@@ -1,0 +1,74 @@
+---
+import type { AnswersSidebarData } from '@/lib/answers-sidebar';
+
+type Props = {
+  sidebar: AnswersSidebarData;
+};
+
+const { sidebar } = Astro.props;
+---
+
+<aside class="answers-library-sidebar-wrap" aria-label="Answer library navigation">
+  <div class="answers-library-sidebar">
+    {
+      sidebar.featuredAnswers.length > 0 && (
+        <section class="answers-library-sidebar-block" aria-labelledby="answers-sidebar-featured">
+          <p class="answers-library-sidebar-label" id="answers-sidebar-featured">Trending this week</p>
+          <ul class="answers-library-featured-list">
+            {
+              sidebar.featuredAnswers.map((link) => (
+                <li>
+                  <a href={link.href}>{link.title}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      sidebar.recentlyAdded.length > 0 && (
+        <section class="answers-library-sidebar-block" aria-labelledby="answers-sidebar-recent">
+          <p class="answers-library-sidebar-label" id="answers-sidebar-recent">Recently added</p>
+          <ul class="answers-library-recent-list">
+            {
+              sidebar.recentlyAdded.map((link) => (
+                <li>
+                  <a href={link.href}>{link.title}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      sidebar.browseTopics.length > 0 && (
+        <nav class="answers-library-sidebar-block" aria-labelledby="answers-sidebar-topics">
+          <p class="answers-library-sidebar-label" id="answers-sidebar-topics">Browse by topic</p>
+          <ul class="answers-library-topic-list">
+            {
+              sidebar.browseTopics.map((link) => (
+                <li>
+                  <a href={link.href}>{link.title}</a>
+                </li>
+              ))
+            }
+          </ul>
+          <a class="answers-library-see-all" href="/themes/">See all themes →</a>
+        </nav>
+      )
+    }
+
+    <section class="answers-library-sidebar-block" aria-labelledby="answers-sidebar-ask">
+      <p class="answers-library-ask-text" id="answers-sidebar-ask">Can't find what you're looking for?</p>
+      <a class="answers-library-ask-link" href={sidebar.askAnythingHref}>Ask anything →</a>
+    </section>
+
+    <section class="answers-library-sidebar-block">
+      <a class="answers-library-random-link" href={sidebar.randomAnswerHref}>Read a random answer →</a>
+    </section>
+  </div>
+</aside>

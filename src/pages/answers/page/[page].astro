@@ -1,6 +1,8 @@
 ---
+import AnswersLibraryLayout from '@/components/answers-library/AnswersLibraryLayout.astro';
 import DiscoveryRow from '@/components/DiscoveryRow.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildAnswersSidebarData } from '@/lib/answers-sidebar';
 import { getQuestions, type Question } from '@/lib/supabase';
 import { filterPublishableQuestions } from '@/lib/indexing-policy';
 
@@ -9,6 +11,7 @@ const pageSize = 48;
 export async function getStaticPaths() {
   const pageSize = 48;
   const questions = filterPublishableQuestions(await getQuestions());
+  const sidebar = buildAnswersSidebarData(questions);
   const totalPages = Math.ceil(questions.length / pageSize);
 
   return Array.from({ length: Math.max(totalPages - 1, 0) }, (_, index) => {
@@ -21,14 +24,18 @@ export async function getStaticPaths() {
         page,
         totalPages,
         questions: questions.slice(start, start + pageSize),
+        sidebar,
       },
     };
   });
 }
 
+import type { AnswersSidebarData } from '@/lib/answers-sidebar';
+
 const page = Number(Astro.props.page ?? Astro.params.page ?? 1);
 const totalPages = Number(Astro.props.totalPages ?? page);
 const questions = (Astro.props.questions ?? []) as Question[];
+const sidebar = Astro.props.sidebar as AnswersSidebarData;
 const previousPath = page === 2 ? '/answers/' : `/answers/page/${page - 1}/`;
 const nextPath = page < totalPages ? `/answers/page/${page + 1}/` : null;
 ---
@@ -50,16 +57,18 @@ const nextPath = page < totalPages ? `/answers/page/${page + 1}/` : null;
       </div>
     </section>
 
-    <section class="section">
+    <section class="section answers-library-body">
       <div class="container">
-        <div class="discovery-list answer-list">
-          {questions.map((question) => <DiscoveryRow question={question} />)}
-        </div>
-        <nav class="pagination" aria-label="Answer library pages">
-          <a href={previousPath}>Previous</a>
-          <span>Page {page} of {totalPages}</span>
-          {nextPath && <a href={nextPath}>Next</a>}
-        </nav>
+        <AnswersLibraryLayout sidebar={sidebar}>
+          <div class="discovery-list answer-list">
+            {questions.map((question) => <DiscoveryRow question={question} />)}
+          </div>
+          <nav class="pagination" aria-label="Answer library pages">
+            <a href={previousPath}>Previous</a>
+            <span>Page {page} of {totalPages}</span>
+            {nextPath && <a href={nextPath}>Next</a>}
+          </nav>
+        </AnswersLibraryLayout>
       </div>
     </section>
   </main>

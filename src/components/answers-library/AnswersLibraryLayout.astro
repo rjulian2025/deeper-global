@@ -1,0 +1,18 @@
+---
+import AnswersSidebar from '@/components/answers-library/AnswersSidebar.astro';
+import type { AnswersSidebarData } from '@/lib/answers-sidebar';
+import '@/styles/answers-library.css';
+
+type Props = {
+  sidebar: AnswersSidebarData;
+};
+
+const { sidebar } = Astro.props;
+---
+
+<div class="answers-library-layout">
+  <AnswersSidebar sidebar={sidebar} />
+  <div class="answers-library-main">
+    <slot />
+  </div>
+</div>

@@ -1,7 +1,11 @@
 import { answerPath, getAnswerDisplayTitle } from './content';
 import type { Question } from './supabase';
 
-/** Editorial high-intent answers — proxy for "trending" until GA4 rollup feeds build. */
+/**
+ * Editorial high-intent answers — proxy for "Trending this week" in sidebars until
+ * a GA4 / page-view rollup feeds the build. Do not present as live traffic data.
+ * TODO(analytics): replace with real trending signal when pipeline exists.
+ */
 export const trendingAnswerSlugs = [
   'how-do-i-find-a-therapist-thats-right-fo-184729-014',
   'whats-the-difference-between-therapy-typ-185387-025',

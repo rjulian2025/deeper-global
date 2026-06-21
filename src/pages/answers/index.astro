@@ -1,7 +1,9 @@
 ---
+import AnswersLibraryLayout from '@/components/answers-library/AnswersLibraryLayout.astro';
 import DiscoveryRow from '@/components/DiscoveryRow.astro';
 import EmptyState from '@/components/EmptyState.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildAnswersSidebarData } from '@/lib/answers-sidebar';
 import {
   answerPath,
   categoryPath,
@@ -19,6 +21,7 @@ import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { getPilotEnrichmentBySlug, getSemanticSearchTerms, resolveSemanticEnrichmentSync } from '@/lib/semantic-enrichment';
 
 const questions = filterPublishableQuestions(await getQuestions());
+const sidebar = buildAnswersSidebarData(questions);
 const pilotBySlug = getPilotEnrichmentBySlug();
 const pageSize = 48;
 const visibleQuestions = questions.slice(0, pageSize);
@@ -78,33 +81,31 @@ const searchIndex = questions.map((question) => {
       </div>
     </section>
 
-    <section class="section">
+    <section class="section answers-library-body">
       <div class="container">
-        <p class="search-status" id="answer-search-status" hidden></p>
-      </div>
-      <div class="container">
-        <div class="discovery-list answer-list" id="answer-results">
+        <AnswersLibraryLayout sidebar={sidebar}>
+          <p class="search-status" id="answer-search-status" hidden></p>
+          <div class="discovery-list answer-list" id="answer-results">
+            {
+              visibleQuestions.length ? (
+                visibleQuestions.map((question) => <DiscoveryRow question={question} />)
+              ) : (
+                <EmptyState
+                  title="No live answers available yet"
+                  message="This build did not have Supabase credentials. Configure the environment and rebuild to generate the answer library."
+                />
+              )
+            }
+          </div>
           {
-            visibleQuestions.length ? (
-              visibleQuestions.map((question) => <DiscoveryRow question={question} />)
-            ) : (
-              <EmptyState
-                title="No live answers available yet"
-                message="This build did not have Supabase credentials. Configure the environment and rebuild to generate the answer library."
-              />
-            )
-          }
-        </div>
-        {
-          totalPages > 1 && (
-            <div class="container">
+            totalPages > 1 && (
               <nav class="pagination" aria-label="Answer library pages" id="answer-pagination">
                 <span>Page 1 of {totalPages}</span>
                 <a href="/answers/page/2/">Next</a>
               </nav>
-            </div>
-          )
-        }
+            )
+          }
+        </AnswersLibraryLayout>
       </div>
     </section>
   </main>

@@ -1,0 +1,53 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { filterPublishableQuestions } from '@/lib/indexing-policy';
+import { getQuestions } from '@/lib/supabase';
+
+const questions = filterPublishableQuestions(await getQuestions());
+const slugs = questions.map((question) => question.slug);
+---
+
+<BaseLayout
+  title="Random Answer | Deeper Global"
+  description="Open a randomly selected mental health answer from the Deeper Global library."
+  canonicalPath="/answers/random"
+  noindex={true}
+>
+  <main class="discovery-surface answers-random-page">
+    <div class="container">
+      <p class="answers-random-message">Opening a random answer…</p>
+      <p class="answers-random-fallback">
+        <a href="/answers/">Browse the answer library</a>
+      </p>
+    </div>
+  </main>
+
+  <script define:vars={{ slugs }}>
+    if (Array.isArray(slugs) && slugs.length > 0) {
+      const slug = slugs[Math.floor(Math.random() * slugs.length)];
+      window.location.replace(`/answers/${slug}/`);
+    }
+  </script>
+</BaseLayout>
+
+<style>
+  .answers-random-page {
+    padding: var(--space-16) 0;
+    font-family: var(--font-sans);
+    color: var(--d-muted);
+  }
+
+  .answers-random-message {
+    margin: 0 0 var(--space-3);
+    font-size: 1rem;
+  }
+
+  .answers-random-fallback {
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .answers-random-fallback a {
+    color: var(--d-link);
+  }
+</style>
