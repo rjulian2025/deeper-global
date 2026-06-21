@@ -2916,10 +2916,17 @@ body:has(.home-page) .container {
   font-size: 0.9375rem;
   line-height: 1.5;
   margin-bottom: 6px;
-  max-width: none;
+  max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.home-page .homepage-main .discovery-row-title a {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .home-page .discovery-meta {
