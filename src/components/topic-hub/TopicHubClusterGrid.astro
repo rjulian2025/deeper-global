@@ -1,0 +1,124 @@
+---
+import { answerPath, getAnswerDisplayTitle } from '@/lib/content';
+import { TOPIC_HUB_SEE_ALL_THRESHOLD } from '@/lib/topic-hub';
+import type { TopicHubClusterModule } from '@/lib/topic-hub';
+
+type Props = {
+  modules: TopicHubClusterModule[];
+};
+
+const { modules } = Astro.props;
+---
+
+<div class="topic-hub-cluster-grid">
+  {
+    modules.map((module, index) => {
+      const moduleNumber = String(index + 1).padStart(2, '0');
+      const hiddenCount = module.hiddenQuestions.length;
+      const toggleLabel =
+        module.totalCount > TOPIC_HUB_SEE_ALL_THRESHOLD
+          ? `See all ${module.totalCount} →`
+          : `Show ${hiddenCount} more`;
+      const hasUtility = (module.expandInline && hiddenCount > 0) || (module.showSeeAllLink && !module.crossLink);
+
+      return (
+        <article class="topic-hub-cluster-module tier-module" id={module.id} data-cluster-id={module.id}>
+          <p class="tier-index" aria-hidden="true">{moduleNumber}</p>
+          <h3 class="tier-heading">{module.name}</h3>
+          <p class="tier-description">{module.description}</p>
+
+          {
+            module.previewQuestions.length > 0 && (
+              <ul class="tier-link-list tier-ref-list">
+                {
+                  module.previewQuestions.map((question) => (
+                    <li>
+                      <a class="tier-link" href={answerPath(question.slug)}>{getAnswerDisplayTitle(question)}</a>
+                    </li>
+                  ))
+                }
+              </ul>
+            )
+          }
+
+          {
+            module.expandInline && hiddenCount > 0 && (
+              <div class="topic-hub-cluster-more" id={`cluster-panel-${module.id}`} hidden>
+                <ul class="tier-link-list tier-ref-list topic-hub-cluster-more-links">
+                  {
+                    module.hiddenQuestions.map((question) => (
+                      <li>
+                        <a class="tier-link" href={answerPath(question.slug)}>{getAnswerDisplayTitle(question)}</a>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            )
+          }
+
+          {
+            module.crossLink && (
+              <p class="tier-crosslink">
+                Often overlaps with {module.crossLink.overlapLabel} — see the{' '}
+                <a href={module.crossLink.hubPath}>{module.crossLink.hubLabel}</a>
+              </p>
+            )
+          }
+
+          {
+            hasUtility && (
+              <div class:list={['tier-module-footer', 'tier-module-footer--utility']}>
+                {
+                  module.expandInline && hiddenCount > 0 && (
+                    <button
+                      type="button"
+                      class="tier-utility-action"
+                      data-cluster-toggle={module.id}
+                      data-toggle-label={toggleLabel}
+                      aria-expanded="false"
+                      aria-controls={`cluster-panel-${module.id}`}
+                    >
+                      {toggleLabel}
+                    </button>
+                  )
+                }
+
+                {
+                  module.showSeeAllLink && !module.crossLink && (
+                    <a class="tier-utility-action" href={module.expandIndexHref}>
+                      See all {module.totalCount} →
+                    </a>
+                  )
+                }
+              </div>
+            )
+          }
+        </article>
+      );
+    })
+  }
+</div>
+
+<script>
+  document.querySelectorAll('[data-cluster-toggle]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const clusterId = button.getAttribute('data-cluster-toggle');
+      const panel = clusterId ? document.getElementById(`cluster-panel-${clusterId}`) : null;
+      if (!panel) return;
+
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      const toggleLabel = button.getAttribute('data-toggle-label') ?? 'Show more';
+
+      if (expanded) {
+        panel.hidden = true;
+        button.setAttribute('aria-expanded', 'false');
+        button.textContent = toggleLabel;
+      } else {
+        panel.hidden = false;
+        button.setAttribute('aria-expanded', 'true');
+        button.textContent = 'Show fewer';
+      }
+    });
+  });
+</script>

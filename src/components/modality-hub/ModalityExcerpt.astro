@@ -1,0 +1,21 @@
+---
+import {
+  getModalityEvidenceTierLabel,
+  getModalityUseCase,
+  modalityPath,
+} from '@/lib/modality-hub';
+import type { Modality } from '@/lib/supabase';
+
+type Props = {
+  modality: Modality;
+};
+
+const { modality } = Astro.props;
+const url = `${modalityPath(modality.slug)}/`;
+---
+
+<a class="tier-excerpt modality-excerpt" href={url}>
+  <span class="tier-link">{modality.name}</span>
+  <p class="tier-description">{getModalityUseCase(modality)}</p>
+  <span class="tier-utility modality-excerpt-meta">{getModalityEvidenceTierLabel(modality)}</span>
+</a>

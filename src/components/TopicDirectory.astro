@@ -19,52 +19,52 @@ const questionsLabelText = TOPIC_QUESTIONS_LABELS[questionsLabel];
 
 <div class={`topic-directory topic-directory--${variant}`}>
   {
-    groups.map((group) => (
-      <section class="topic-directory-group" aria-labelledby={`topic-group-${group.name.replace(/\s+/g, '-').toLowerCase()}`}>
-        <div class="topic-directory-group-head">
-          <h3 class="topic-directory-group-title" id={`topic-group-${group.name.replace(/\s+/g, '-').toLowerCase()}`}>
-            {group.name}
-          </h3>
+    groups.map((group, index) => {
+      const moduleNumber = String(index + 1).padStart(2, '0');
+      const groupId = `topic-group-${group.name.replace(/\s+/g, '-').toLowerCase()}`;
+
+      return (
+        <section class="topic-directory-group tier-module" aria-labelledby={groupId}>
+          <p class="tier-index" aria-hidden="true">{moduleNumber}</p>
+          <h3 class="tier-heading" id={groupId}>{group.name}</h3>
           {
             showDescriptor && group.description && (
-              <p class="topic-directory-descriptor">{group.description}</p>
+              <p class="tier-description">{group.description}</p>
             )
           }
-        </div>
-        <ul class="topic-directory-list">
+          <ul class="tier-link-list">
+            {
+              group.topics.map((topic) => (
+                <li>
+                  <a
+                    class="tier-link"
+                    href={topic.href}
+                    title={topic.count > 0 ? `${topic.count.toLocaleString()} answers in ${topic.name}` : undefined}
+                  >
+                    {topic.name}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
           {
-            group.topics.map((topic) => (
-              <li>
-                <a
-                  class="topic-directory-link"
-                  href={topic.href}
-                  title={topic.count > 0 ? `${topic.count.toLocaleString()} answers in ${topic.name}` : undefined}
-                >
-                  {topic.name}
-                </a>
-              </li>
-            ))
+            showDiscovery && group.discoveryLinks.length > 0 && (
+              <div class="tier-discovery-block">
+                <p class="tier-utility">{questionsLabelText}</p>
+                <ul class="tier-link-list">
+                  {
+                    group.discoveryLinks.map((link) => (
+                      <li>
+                        <a class="tier-link" href={link.href}>{link.title}</a>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            )
           }
-        </ul>
-        {
-          showDiscovery && group.discoveryLinks.length > 0 && (
-            <div class="topic-directory-questions" aria-label={`${questionsLabelText} in ${group.name}`}>
-              <p class="topic-directory-questions-label">{questionsLabelText}</p>
-              <ul class="topic-directory-questions-list">
-                {
-                  group.discoveryLinks.map((link) => (
-                    <li>
-                      <a class="topic-directory-question-link" href={link.href}>
-                        {link.title}
-                      </a>
-                    </li>
-                  ))
-                }
-              </ul>
-            </div>
-          )
-        }
-      </section>
-    ))
+        </section>
+      );
+    })
   }
 </div>

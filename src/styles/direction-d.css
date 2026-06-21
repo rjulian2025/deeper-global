@@ -4,8 +4,6 @@
  * Isolated from global --paper warm tokens
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+Display:wght@500;600&display=swap');
-
 body:has(.dd-page) {
   background: #fafafa;
 }
@@ -22,8 +20,8 @@ body:has(.dd-page) {
   --dd-care-bg: #f5e6de;
   --dd-care-border: #ecd5c8;
   --dd-care-text: #6b5f58;
-  --dd-serif: 'Noto Serif Display', Georgia, 'Times New Roman', serif;
-  --dd-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --dd-serif: var(--font-serif);
+  --dd-sans: var(--font-sans);
 
   width: min(100% - var(--space-8), 960px);
   margin: 0 auto;

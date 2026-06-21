@@ -116,26 +116,32 @@ const overviewHeading = reviewer.overviewParagraphs?.length
                   }
 
                   {
-                    reviewGroups.map((group) => (
-                      <div class="reviewer-topic-group">
-                        <div class="reviewer-topic-head">
-                          <h3>{group.name}</h3>
-                          <span class="reviewer-topic-count">
+                    reviewGroups.map((group, groupIndex) => {
+                      const groupNumber = String(groupIndex + 1).padStart(2, '0');
+                      return (
+                      <div class="reviewer-topic-group tier-module">
+                        <p class="tier-index" aria-hidden="true">{groupNumber}</p>
+                        <div class="tier-group-heading">
+                          <h3 class="tier-heading">{group.name}</h3>
+                          <span class="tier-utility">
                             {group.totalCount} {group.totalCount === 1 ? 'answer' : 'answers'}
                           </span>
                         </div>
-                        <div class="reviewer-answer-list">
+                        <div class="reviewer-answer-list tier-excerpt-list">
                           {group.visible.map((question) => <ReviewerAnswerExcerpt question={question} />)}
                         </div>
                         {
                           group.hiddenCount > 0 && group.viewAllPath && (
-                            <p class="reviewer-topic-more">
-                              <a href={group.viewAllPath}>{topicAnswersLabel(group.name, group.totalCount)}</a>
+                            <p class="tier-group-more">
+                              <a class="tier-utility-action" href={group.viewAllPath}>
+                                {topicAnswersLabel(group.name, group.totalCount)}
+                              </a>
                             </p>
                           )
                         }
                       </div>
-                    ))
+                      );
+                    })
                   }
                 </section>
               ) : (
@@ -145,7 +151,7 @@ const overviewHeading = reviewer.overviewParagraphs?.length
                     <h2 id="reviewed-answers-title">
                       Selected answers reviewed by {reviewer.name.split(',')[0]}
                     </h2>
-                    <div class="reviewer-answer-list">
+                    <div class="reviewer-answer-list tier-excerpt-list">
                       {reviewedAnswers.map((question) => <ReviewerAnswerExcerpt question={question} />)}
                     </div>
                   </section>
@@ -159,8 +165,10 @@ const overviewHeading = reviewer.overviewParagraphs?.length
                   <p class="profile-main-label">Topic connection</p>
                   <h2 id="reviewer-hub-title">{reviewer.hubConnection.hubLabel}</h2>
                   <p class="reviewer-section-intro">{reviewer.hubConnection.summary}</p>
-                  <p class="reviewer-topic-more">
-                    <a href={reviewer.hubConnection.hubPath}>{reviewer.hubConnection.hubLabel} →</a>
+                  <p class="tier-group-more">
+                    <a class="tier-utility-action" href={reviewer.hubConnection.hubPath}>
+                      {reviewer.hubConnection.hubLabel} →
+                    </a>
                   </p>
                 </section>
               )

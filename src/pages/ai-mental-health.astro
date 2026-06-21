@@ -1,173 +1,22 @@
 ---
-import AnswerCard from '@/components/AnswerCard.astro';
+import TopicHubPage from '@/components/topic-hub/TopicHubPage.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import {
-  aiMentalHealthFeaturedSlugs,
-  getAiMentalHealthClusterCards,
-  getAiMentalHealthHubQuestions,
-  isAiMentalHealthSprintQuestion,
-} from '@/lib/ai-mental-health-hub';
-import { answerPath, getAnswerDisplayTitle } from '@/lib/content';
-import { siteUrl, websiteId } from '@/lib/site';
-import { getQuestions, type Question } from '@/lib/supabase';
+import { buildTopicHubPageData } from '@/lib/topic-hub';
+import { buildTopicHubJsonLd } from '@/lib/topic-hub-jsonld';
+import { getAiMentalHealthTopicHubConfig } from '@/lib/topic-hubs/ai-mental-health';
+import { getQuestions } from '@/lib/supabase';
 
+const config = getAiMentalHealthTopicHubConfig();
 const questions = await getQuestions();
-const aiQuestions = questions.filter(isAiMentalHealthSprintQuestion);
-const hubQuestions = getAiMentalHealthHubQuestions(questions);
-const questionsBySlug = new Map(hubQuestions.map((question) => [question.slug, question]));
-const featuredQuestions = aiMentalHealthFeaturedSlugs
-  .map((slug) => questionsBySlug.get(slug))
-  .filter((question): question is Question => Boolean(question));
-const clusterCards = getAiMentalHealthClusterCards(questions);
-
-const jsonLd = {
-  '@graph': [
-    {
-      '@type': 'CollectionPage',
-      '@id': `${siteUrl('/ai-mental-health')}#collection`,
-      url: siteUrl('/ai-mental-health'),
-      name: 'AI mental health hub: AI psychosis, chatbot dependency, and safety',
-      description:
-        'A curated Deeper Global hub for AI-related mental health concerns, including AI psychosis, chatbot dependency, AI companions, teen AI use, job anxiety, deepfakes, and safety boundaries.',
-      isPartOf: {
-        '@id': websiteId(),
-      },
-      mainEntity: {
-        '@type': 'ItemList',
-        numberOfItems: hubQuestions.length,
-        itemListElement: hubQuestions.slice(0, 24).map((question, index) => ({
-          '@type': 'ListItem',
-          position: index + 1,
-          url: siteUrl(`/answers/${question.slug}`),
-          name: getAnswerDisplayTitle(question),
-        })),
-      },
-    },
-    {
-      '@type': 'BreadcrumbList',
-      '@id': `${siteUrl('/ai-mental-health')}#breadcrumb`,
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Deeper Global',
-          item: siteUrl(),
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'AI mental health',
-          item: siteUrl('/ai-mental-health'),
-        },
-      ],
-    },
-  ],
-};
+const hub = buildTopicHubPageData(config, questions);
+const jsonLd = buildTopicHubJsonLd(config, hub);
 ---
 
 <BaseLayout
   title="AI Mental Health Hub: Psychosis, Chatbots & Safety | Deeper Global"
-  description="Explore answers about AI psychosis, chatbot dependency, AI companions, teen AI use, work anxiety, deepfakes, privacy concerns, and crisis boundaries."
-  canonicalPath="/ai-mental-health"
+  description={config.jsonLdDescription}
+  canonicalPath={config.path}
   jsonLd={jsonLd}
 >
-  <main>
-    <section class="hero ai-hub-hero">
-      <div class="container">
-        <p class="eyebrow">AI mental health hub</p>
-        <h1>AI mental health questions and answers.</h1>
-        <p class="lede">
-          A curated hub for the mental health questions people are asking as AI becomes more personal, persuasive, and present in daily life.
-        </p>
-        <div class="hub-actions">
-          <a class="button" href="/answers/?q=artificial%20intelligence">Search AI answers</a>
-          <a class="button secondary" href="/llms/answers.json">Machine-readable index</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container hub-intro-grid">
-        <article class="card hub-signal-card">
-          <p class="eyebrow">Coverage</p>
-          <h2>{aiQuestions.length} AI-related answers</h2>
-          <p>
-            The sprint covers emerging concerns around AI psychosis, emotional dependency, AI companions, teen use, work anxiety,
-            deepfakes, reassurance loops, and when to stop using AI and involve a real person.
-          </p>
-        </article>
-        <article class="card hub-signal-card">
-          <p class="eyebrow">Safety boundary</p>
-          <h2>AI is not crisis care.</h2>
-          <p>
-            If AI conversations involve suicidal thoughts, commands to act, severe sleep loss, danger, or losing touch with reality,
-            the priority is urgent real-world support.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    {
-      featuredQuestions.length ? (
-        <section class="section featured-section">
-          <div class="container">
-            <div class="section-header">
-              <div>
-                <p class="eyebrow">Start here</p>
-                <h2>Highest-safety AI concerns.</h2>
-              </div>
-            </div>
-            <div class="question-grid">
-              {featuredQuestions.map((question) => <AnswerCard question={question} />)}
-            </div>
-          </div>
-        </section>
-      ) : null
-    }
-
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <p class="eyebrow">Concern map</p>
-            <h2>Browse the AI mental health cluster.</h2>
-          </div>
-        </div>
-        <div class="cluster-grid">
-          {
-            clusterCards.map((cluster) => (
-              <article class="card hub-cluster-card">
-                <h3>{cluster.name}</h3>
-                <p>{cluster.description}</p>
-                <ul>
-                  {cluster.questions.map((question) => (
-                    <li>
-                      <a href={answerPath(question.slug)}>{getAnswerDisplayTitle(question)}</a>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <p class="eyebrow">All AI answers</p>
-            <h2>Recently added AI concern pages.</h2>
-          </div>
-          <a class="text-link" href="/answers/?q=artificial%20intelligence">Search the answer library</a>
-        </div>
-        <div class="answer-list hub-answer-list">
-          {
-            aiQuestions.slice(0, 24).map((question) => <AnswerCard question={question} />)
-          }
-        </div>
-      </div>
-    </section>
-  </main>
+  <TopicHubPage config={config} hub={hub} />
 </BaseLayout>

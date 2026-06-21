@@ -1,0 +1,70 @@
+---
+import { answerPath, getAnswerDisplayTitle } from '@/lib/content';
+import { modalityPath } from '@/lib/modality-hub';
+import type { ModalityClusterModule } from '@/lib/modality-hub-page';
+
+type Props = {
+  modules: ModalityClusterModule[];
+};
+
+const { modules } = Astro.props;
+---
+
+<div class="topic-hub-cluster-grid modality-cluster-grid">
+  {
+    modules.map((module, index) => {
+      const moduleNumber = String(index + 1).padStart(2, '0');
+
+      return (
+        <article class="topic-hub-cluster-module tier-module modality-cluster-module" id={module.id}>
+          <p class="tier-index" aria-hidden="true">{moduleNumber}</p>
+          <h3 class="tier-heading">{module.name}</h3>
+          <p class="tier-description">{module.description}</p>
+
+          {
+            module.modalities.length > 0 && (
+              <div class="tier-subsection">
+                <p class="tier-utility">Approaches</p>
+                <ul class="tier-link-list tier-ref-list">
+                  {
+                    module.modalities.map((modality) => (
+                      <li>
+                        <a class="tier-link" href={`${modalityPath(modality.slug)}/`}>{modality.name}</a>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            )
+          }
+
+          {
+            module.questions.length > 0 && (
+              <div class:list={['tier-subsection', module.modalities.length ? 'tier-subsection--separated' : null]}>
+                <p class="tier-utility">Related answers</p>
+                <ul class="tier-link-list tier-ref-list">
+                  {
+                    module.questions.map((question) => (
+                      <li>
+                        <a class="tier-link" href={answerPath(question.slug)}>{getAnswerDisplayTitle(question)}</a>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            )
+          }
+
+          {
+            module.crossLink && (
+              <p class="tier-crosslink">
+                Often overlaps with {module.crossLink.overlapLabel} — see the{' '}
+                <a href={module.crossLink.hubPath}>{module.crossLink.hubLabel}</a>
+              </p>
+            )
+          }
+        </article>
+      );
+    })
+  }
+</div>

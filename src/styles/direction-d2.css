@@ -4,8 +4,6 @@
  * De-boxed · contour dividers · increased pacing
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+Display:wght@500;600&display=swap');
-
 body:has(.dd2-page) {
   background: #fafafa;
 }
@@ -22,8 +20,8 @@ body:has(.dd2-page) {
   --dd2-care-bg: #f5e6de;
   --dd2-care-text: #6b5f58;
   --dd2-contour: #191716;
-  --dd2-serif: 'Noto Serif Display', Georgia, 'Times New Roman', serif;
-  --dd2-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --dd2-serif: var(--font-serif);
+  --dd2-sans: var(--font-sans);
 
   /* +15% vertical rhythm vs Direction D */
   --dd2-space-xs: calc(var(--space-2) * 1.15);

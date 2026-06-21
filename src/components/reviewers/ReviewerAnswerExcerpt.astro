@@ -1,5 +1,5 @@
 ---
-import { answerPath, displayCategory, formatDate, getAnswerDisplayTitle, getAnswerSummary, truncate } from '@/lib/content';
+import AnswerExcerpt from '@/components/AnswerExcerpt.astro';
 import { REVIEWER_EXCERPT_MAX } from '@/lib/reviewer-page';
 import type { Question } from '@/lib/supabase';
 
@@ -8,19 +8,6 @@ type Props = {
 };
 
 const { question } = Astro.props;
-const title = getAnswerDisplayTitle(question);
-const excerpt = truncate(getAnswerSummary(question), REVIEWER_EXCERPT_MAX);
-const category = displayCategory(question);
-const updated = formatDate(question.updated_at || question.created_at);
-const url = answerPath(question.slug);
 ---
 
-<a class="reviewer-answer-excerpt" href={url}>
-  <span class="reviewer-answer-title">{title}</span>
-  <span class="reviewer-answer-excerpt-text">{excerpt}</span>
-  <span class="reviewer-answer-meta">
-    {category}
-    <span class="reviewer-meta-sep" aria-hidden="true">·</span>
-    Updated {updated}
-  </span>
-</a>
+<AnswerExcerpt question={question} maxLength={REVIEWER_EXCERPT_MAX} />

@@ -1,0 +1,39 @@
+---
+import { modalityPath } from '@/lib/modality-hub';
+import { groupModalitiesByLetter } from '@/lib/modality-hub';
+import type { Modality } from '@/lib/supabase';
+
+type Props = {
+  modalities: Modality[];
+};
+
+const { modalities } = Astro.props;
+const alphaGroups = groupModalitiesByLetter(modalities);
+---
+
+<section class="topic-hub-section modality-az-section" id="modality-az-index" aria-labelledby="modality-az-title">
+  <p class="topic-hub-label">All modalities</p>
+  <h2 id="modality-az-title">A–Z index</h2>
+  <p class="modality-az-lede">Every therapy approach on Deeper Global, alphabetically — with alternate names where helpful.</p>
+  <div class="modality-alpha-groups">
+    {
+      alphaGroups.map(({ letter, items }) => (
+        <section class="modality-alpha-group" aria-labelledby={`alpha-${letter}`}>
+          <h3 class="modality-alpha-letter" id={`alpha-${letter}`}>{letter}</h3>
+          <ul class="modality-alpha-list tier-ref-list">
+            {
+              items.map((modality) => (
+                <li>
+                  <a class="tier-link" href={`${modalityPath(modality.slug)}/`}>{modality.name}</a>
+                  {modality.also_known_as?.[0] ? (
+                    <span class="modality-alpha-aka"> — {modality.also_known_as[0]}</span>
+                  ) : null}
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</section>

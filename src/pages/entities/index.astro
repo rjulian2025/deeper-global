@@ -1,7 +1,7 @@
 ---
 import EmptyState from '@/components/EmptyState.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { getEntitySummaries, pluralizeAnswer } from '@/lib/content';
+import { getEntitySummaries } from '@/lib/content';
 import { siteUrl } from '@/lib/site';
 import { getQuestions } from '@/lib/supabase';
 
@@ -27,31 +27,40 @@ const jsonLd = {
   jsonLd={jsonLd}
   noindex={true}
 >
-  <main>
-    <section class="hero">
+  <main class="discovery-surface hub-page">
+    <section class="catalog-hero">
       <div class="container">
         <p class="eyebrow">Themes</p>
-        <h1>Explore the patterns behind mental health questions.</h1>
-        <p class="lede">Themes connect related questions, language, and answers so you can keep exploring what feels relevant to you.</p>
+        <h1>Explore the patterns behind mental health questions</h1>
+        <p class="lede">
+          Themes connect related questions, language, and answers so you can keep exploring what feels relevant to you.
+        </p>
       </div>
     </section>
 
     <section class="section">
-      <div class="container grid">
+      <div class="container">
         {
           entities.length ? (
-            entities.map((entity) => (
-              <a class="card entity-card" href={`/entities/${entity.slug}/`} data-ai-entity={entity.name}>
-                <h3>{entity.name}</h3>
-                <p>{entity.description}</p>
-                <div class="meta-row">
-                  <span class="pill">{pluralizeAnswer(entity.count)}</span>
-                  <span class="pill">Theme</span>
-                </div>
-              </a>
-            ))
+            <div class="discovery-list category-directory">
+              {
+                entities.map((entity) => (
+                  <article class="discovery-row category-directory-row">
+                    <h2 class="discovery-row-title">
+                      <a href={`/entities/${entity.slug}/`} data-ai-entity={entity.name}>{entity.name}</a>
+                    </h2>
+                    <p class="discovery-summary">
+                      Explore answers about {entity.name.toLowerCase()}.
+                    </p>
+                  </article>
+                ))
+              }
+            </div>
           ) : (
-            <EmptyState title="No theme data available yet" message="Themes are generated from Supabase categories when corpus credentials are available." />
+            <EmptyState
+              title="No theme data available yet"
+              message="Themes are generated from Supabase categories when corpus credentials are available."
+            />
           )
         }
       </div>

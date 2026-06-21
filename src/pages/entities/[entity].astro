@@ -2,7 +2,7 @@
 import AnswerCard from '@/components/AnswerCard.astro';
 import PractitionerCallout from '@/components/PractitionerCallout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { categoryPath, displayCategory, getAnswerDisplayTitle, getEntitySummaries, pluralizeAnswer, slugify } from '@/lib/content';
+import { categoryPath, displayCategory, getAnswerDisplayTitle, getEntitySummaries, slugify } from '@/lib/content';
 import { getEntityPractitionerLink } from '@/lib/practitioner-links';
 import { siteUrl } from '@/lib/site';
 import { getQuestions, type Question } from '@/lib/supabase';
@@ -51,22 +51,23 @@ const jsonLd = {
   jsonLd={jsonLd}
   noindex={true}
 >
-  <main>
-    <section class="hero" data-ai-content-type="entity-profile" data-ai-entity={entity.name}>
+  <main class="discovery-surface hub-page" data-ai-content-type="entity-profile" data-ai-entity={entity.name}>
+    <section class="catalog-hero">
       <div class="container">
         <p class="eyebrow">Theme</p>
         <h1>{entity.name}</h1>
-        <p class="lede">{entity.description}</p>
-        <div class="meta-row">
-          <span class="pill">{pluralizeAnswer(entity.count)} related</span>
-          <a class="pill" href={categoryPath(entity.name)}>Topic hub</a>
-        </div>
+        <p class="lede">
+          Common questions, patterns, and care-seeking language around {entity.name.toLowerCase()}.
+        </p>
+        <p class="editorial-meta discovery-meta">
+          <a href={categoryPath(entity.name)}>Topic hub</a>
+        </p>
       </div>
     </section>
 
     {
       practitionerLink && (
-        <section class="section band">
+        <section class="section">
           <div class="container">
             <PractitionerCallout
               title={practitionerLink.title}
@@ -81,22 +82,59 @@ const jsonLd = {
 
     {
       entity.sameAs.length > 0 && (
-        <section class="section band">
+        <section class="section">
           <div class="container">
-            <p class="eyebrow">Related language</p>
-            <h2>Other ways people talk about this theme.</h2>
-            <div class="meta-row">
-              {entity.sameAs.map((alias) => <span class="pill">{alias}</span>)}
+            <div class="hub-section-head">
+              <p class="eyebrow">Related language</p>
+              <h2>Other ways people talk about this theme</h2>
             </div>
+            <ul class="related-language-list">
+              {entity.sameAs.map((alias) => <li>{alias}</li>)}
+            </ul>
           </div>
         </section>
       )
     }
 
     <section class="section">
-      <div class="container answer-list">
+      <div class="container discovery-list answer-list">
         {questions.map((question) => <AnswerCard question={question} />)}
       </div>
     </section>
   </main>
 </BaseLayout>
+
+<style>
+  .discovery-surface .editorial-meta a {
+    color: var(--d-link);
+    text-decoration: none;
+  }
+
+  .discovery-surface .editorial-meta a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .discovery-surface .practitioner-card {
+    background: transparent;
+    border: none;
+    border-top: 1px solid var(--d-line);
+    border-radius: 0;
+    padding: var(--space-8) 0 0;
+  }
+
+  .discovery-surface .practitioner-card .sidebar-label {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--d-sidebar-muted);
+  }
+
+  .discovery-surface .practitioner-card p {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--d-muted);
+  }
+</style>

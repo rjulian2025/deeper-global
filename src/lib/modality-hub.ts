@@ -24,6 +24,50 @@ export const modalityCategoryLabels: Record<string, string> = {
   emerging: 'Emerging Approaches',
 };
 
+function modalityFirstSentence(text: string, maxLength = 120): string {
+  const normalized = text.replace(/\s+/g, ' ').trim();
+  const match = normalized.match(/^([^.!?]+[.!?])/);
+  const sentence = match?.[1]?.trim() ?? normalized;
+  if (sentence.length <= maxLength) return sentence;
+  const shortened = sentence.slice(0, maxLength).replace(/\s+\S*$/, '').trim();
+  return `${shortened}…`;
+}
+
+export function getModalityUseCase(modality: Modality): string {
+  const lede = modality.staging_lede ?? modality.lede;
+  if (lede) return modalityFirstSentence(lede, 110);
+
+  const treats = modality.staging_what_it_treats ?? modality.what_it_treats;
+  if (treats) return modalityFirstSentence(treats, 110);
+
+  if (modality.schema_description) return modalityFirstSentence(modality.schema_description, 110);
+
+  return `How ${modality.name} works in session and who it tends to help.`;
+}
+
+export function getModalityEvidenceTier(modality: Modality): 'evidence-based' | 'integrative' {
+  if (modality.category === 'evidence-based') return 'evidence-based';
+  return 'integrative';
+}
+
+export function getModalityEvidenceTierLabel(modality: Modality): string {
+  return getModalityEvidenceTier(modality) === 'evidence-based' ? 'EVIDENCE-BASED' : 'INTEGRATIVE';
+}
+
+export function groupModalitiesByLetter(modalities: Modality[]): Array<{ letter: string; items: Modality[] }> {
+  const sorted = [...modalities].sort((a, b) => a.name.localeCompare(b.name));
+  const groups = new Map<string, Modality[]>();
+
+  for (const modality of sorted) {
+    const letter = modality.name.charAt(0).toUpperCase();
+    const bucket = groups.get(letter) ?? [];
+    bucket.push(modality);
+    groups.set(letter, bucket);
+  }
+
+  return [...groups.entries()].map(([letter, items]) => ({ letter, items }));
+}
+
 /** Curated cross-links per modality — registry overrides empty DB fields at build time. */
 export const modalityLinkRegistry: Record<string, ModalityLinkSet> = {
   'emdr-therapy': {

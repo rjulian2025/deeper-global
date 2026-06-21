@@ -1,0 +1,67 @@
+---
+import { getAnswerDisplayTitle } from '@/lib/content';
+import { formatTopicHubRecentMeta, getTopicHubRecentHref } from '@/lib/topic-hub';
+import type { TopicHubConfig, TopicHubPageData } from '@/lib/topic-hub';
+
+type Props = {
+  hub: TopicHubPageData;
+};
+
+const { hub } = Astro.props;
+const { config, recentQuestions } = hub;
+---
+
+<aside class="topic-hub-sidebar-wrap" aria-label="Topic hub navigation">
+  <div class="topic-hub-sidebar">
+    <div class="topic-hub-sidebar-block topic-hub-sidebar-search">
+      <form class="topic-hub-search" action="/answers/" method="get" role="search" aria-label={config.searchPlaceholder}>
+        <label class="visually-hidden" for={`topic-hub-search-${config.id}`}>{config.searchPlaceholder}</label>
+        <input
+          id={`topic-hub-search-${config.id}`}
+          type="search"
+          name="q"
+          placeholder={config.searchPlaceholder}
+        />
+      </form>
+    </div>
+
+    {
+      config.relatedHubs.length > 0 && (
+        <nav class="topic-hub-sidebar-block" aria-label="Related hubs">
+          <p class="topic-hub-sidebar-label">Related hubs</p>
+          <ul class="topic-hub-related-list">
+            {config.relatedHubs.map((hubLink) => (
+              <li>
+                <a class="tier-link" href={hubLink.href}>{hubLink.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
+
+    {
+      recentQuestions.length > 0 && (
+        <div class="topic-hub-sidebar-block">
+          <p class="topic-hub-sidebar-label">Recently updated</p>
+          <ul class="topic-hub-recent-list">
+            {
+              recentQuestions.map((question) => (
+                <li>
+                  <a
+                    class="tier-link"
+                    href={getTopicHubRecentHref(question)}
+                    title={getAnswerDisplayTitle(question)}
+                  >
+                    {getAnswerDisplayTitle(question)}
+                  </a>
+                  <span class="topic-hub-recent-date">{formatTopicHubRecentMeta(question)}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      )
+    }
+  </div>
+</aside>

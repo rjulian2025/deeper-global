@@ -1,0 +1,74 @@
+---
+import ModalityAlphaIndex from '@/components/modality-hub/ModalityAlphaIndex.astro';
+import ModalityClusterGrid from '@/components/modality-hub/ModalityClusterGrid.astro';
+import ModalityExcerpt from '@/components/modality-hub/ModalityExcerpt.astro';
+import ModalityHubSidebar from '@/components/modality-hub/ModalityHubSidebar.astro';
+import TopicHubLayout from '@/components/topic-hub/TopicHubLayout.astro';
+import type { ModalityHubPageData } from '@/lib/modality-hub-page';
+import '@/styles/topic-hub.css';
+import '@/styles/modality-hub.css';
+
+type Props = {
+  hub: ModalityHubPageData;
+};
+
+const { hub } = Astro.props;
+const { config } = hub;
+---
+
+<main class="discovery-surface topic-hub-page modality-hub-page">
+  <section class="topic-hub-body">
+    <div class="container">
+      <TopicHubLayout>
+        <ModalityHubSidebar slot="sidebar" hub={hub} />
+
+        <header class="topic-hub-hero">
+          <p class="topic-hub-eyebrow">{config.eyebrow}</p>
+          <h1>{config.title}</h1>
+          <p class="topic-hub-lede">{config.lede}</p>
+          {
+            config.heroActions && config.heroActions.length > 0 && (
+              <div class="topic-hub-hero-actions">
+                {config.heroActions.map((action) => (
+                  <a class="tier-link" href={action.href}>{action.label}</a>
+                ))}
+              </div>
+            )
+          }
+        </header>
+
+        <div class="topic-hub-intro-blocks">
+          {
+            config.introBlocks.map((block) => (
+              <div class="topic-hub-intro-block">
+                <p class="topic-hub-label">{block.eyebrow}</p>
+                <h2 class="topic-hub-intro-title">{block.title}</h2>
+                <p class="topic-hub-intro-desc">{block.description}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        {
+          hub.featuredModalities.length > 0 && (
+            <section class="topic-hub-section" aria-labelledby="modality-featured-title">
+              <p class="topic-hub-label">{config.featuredSectionEyebrow ?? 'Start here'}</p>
+              <h2 id="modality-featured-title">{config.featuredSectionTitle ?? 'Most searched approaches'}</h2>
+              <div class="topic-hub-excerpt-list tier-excerpt-list">
+                {hub.featuredModalities.map((modality) => <ModalityExcerpt modality={modality} />)}
+              </div>
+            </section>
+          )
+        }
+
+        <section class="topic-hub-section" aria-labelledby="modality-cluster-title">
+          <p class="topic-hub-label">{config.clusterSectionEyebrow ?? 'Explore by concern'}</p>
+          <h2 id="modality-cluster-title">{config.clusterSectionTitle ?? 'Browse by concern'}</h2>
+          <ModalityClusterGrid modules={hub.clusterModules} />
+        </section>
+
+        <ModalityAlphaIndex modalities={hub.allModalities} />
+      </TopicHubLayout>
+    </div>
+  </section>
+</main>

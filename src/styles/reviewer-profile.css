@@ -1,8 +1,9 @@
-/* Reviewer profiles — typography-driven discovery surface (Cormorant + Jost) */
+/* Reviewer profiles — Noto Serif Display + Inter */
+@import './tier-hierarchy.css';
 
 .reviewer-profile {
-  --rp-font-heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --rp-font-body: 'Jost', ui-sans-serif, system-ui, sans-serif;
+  --rp-font-heading: var(--font-serif);
+  --rp-font-body: var(--font-sans);
   --rp-text-primary: var(--d-heading, var(--ink));
   --rp-text-secondary: var(--d-muted, var(--stone));
   --rp-text-tertiary: rgba(107, 114, 128, 0.82);
@@ -17,7 +18,7 @@
   background: var(--rp-surface);
 }
 
-.reviewer-profile :is(h1, h2, h3, .reviewer-pull-quote) {
+.reviewer-profile :is(h1, h2, h3:not(.tier-heading), .reviewer-pull-quote) {
   font-family: var(--rp-font-heading);
   font-weight: 600;
   color: var(--rp-text-primary);
@@ -301,7 +302,7 @@
     top: calc(var(--rp-header-offset) + 16px);
     max-height: calc(100vh - var(--rp-header-offset) - 32px);
     overflow-y: auto;
-    border-left: 2px solid var(--rp-border-accent);
+    border-left: 2px solid var(--rp-border);
     padding-left: 18px;
   }
 }
@@ -344,13 +345,15 @@
 .profile-sidebar-link-list a {
   font-size: 13px;
   font-weight: 500;
-  color: var(--rp-border-accent);
+  color: var(--text-primary-token);
   text-decoration: underline;
+  text-decoration-color: var(--border-secondary-token);
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
 .profile-sidebar-link-list a:hover {
-  color: var(--rp-text-primary);
+  text-decoration-color: var(--text-primary-token);
 }
 
 .profile-sidebar-label {
@@ -409,8 +412,9 @@
 .profile-sidebar-fee-more a {
   font-size: 13px;
   font-weight: 500;
-  color: var(--rp-border-accent);
+  color: var(--text-primary-token);
   text-decoration: underline;
+  text-decoration-color: var(--border-secondary-token);
   text-underline-offset: 3px;
 }
 
@@ -506,84 +510,6 @@
 
 .reviewer-topic-group:first-of-type {
   margin-top: var(--space-2);
-}
-
-.reviewer-topic-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
-}
-
-.reviewer-topic-head h3 {
-  font-family: var(--rp-font-heading);
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-.reviewer-topic-count {
-  font-size: 12px;
-  color: var(--rp-text-tertiary);
-}
-
-.reviewer-answer-list {
-  display: grid;
-}
-
-.reviewer-answer-excerpt {
-  display: grid;
-  gap: var(--space-2);
-  padding: var(--space-4) 0;
-  border-top: 0.5px solid var(--rp-border);
-  text-decoration: none;
-  color: inherit;
-}
-
-.reviewer-answer-list > .reviewer-answer-excerpt:first-child {
-  border-top: none;
-  padding-top: 0;
-}
-
-.reviewer-answer-excerpt:hover .reviewer-answer-title {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.reviewer-answer-title {
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.45;
-  color: var(--rp-text-primary);
-}
-
-.reviewer-answer-excerpt-text {
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--rp-text-secondary);
-}
-
-.reviewer-answer-meta {
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--rp-text-tertiary);
-}
-
-.reviewer-meta-sep {
-  margin: 0 0.35em;
-}
-
-.reviewer-topic-more {
-  margin: var(--space-4) 0 0;
-}
-
-.reviewer-topic-more a {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--rp-border-accent);
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 .reviewer-affiliation-list {

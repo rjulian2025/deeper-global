@@ -1,0 +1,27 @@
+---
+import { answerPath, displayCategory, formatDate, getAnswerDisplayTitle, getAnswerSummary, truncate } from '@/lib/content';
+import { TOPIC_HUB_EXCERPT_MAX } from '@/lib/topic-hub';
+import type { Question } from '@/lib/supabase';
+
+type Props = {
+  question: Question;
+  maxLength?: number;
+};
+
+const { question, maxLength = TOPIC_HUB_EXCERPT_MAX } = Astro.props;
+const title = getAnswerDisplayTitle(question);
+const excerpt = truncate(getAnswerSummary(question), maxLength);
+const category = displayCategory(question);
+const updated = formatDate(question.updated_at || question.created_at);
+const url = answerPath(question.slug);
+---
+
+<a class="tier-excerpt answer-excerpt" href={url}>
+  <span class="tier-link">{title}</span>
+  <p class="tier-description">{excerpt}</p>
+  <span class="tier-utility tier-excerpt-meta">
+    {category}
+    <span class="tier-excerpt-meta-sep" aria-hidden="true">·</span>
+    Updated {updated}
+  </span>
+</a>

@@ -1,0 +1,70 @@
+---
+import AnswerExcerpt from '@/components/AnswerExcerpt.astro';
+import TopicHubClusterGrid from '@/components/topic-hub/TopicHubClusterGrid.astro';
+import TopicHubLayout from '@/components/topic-hub/TopicHubLayout.astro';
+import TopicHubSidebar from '@/components/topic-hub/TopicHubSidebar.astro';
+import type { TopicHubConfig, TopicHubPageData } from '@/lib/topic-hub';
+import '@/styles/topic-hub.css';
+
+type Props = {
+  config: TopicHubConfig;
+  hub: TopicHubPageData;
+};
+
+const { config, hub } = Astro.props;
+---
+
+<main class="discovery-surface topic-hub-page">
+  <section class="topic-hub-body">
+    <div class="container">
+      <TopicHubLayout>
+        <TopicHubSidebar slot="sidebar" hub={hub} />
+
+        <header class="topic-hub-hero">
+          <p class="topic-hub-eyebrow">{config.eyebrow}</p>
+          <h1>{config.title}</h1>
+          <p class="topic-hub-lede">{config.lede}</p>
+          {
+            config.heroActions && config.heroActions.length > 0 && (
+              <div class="topic-hub-hero-actions">
+                {config.heroActions.map((action) => (
+                  <a class="tier-link" href={action.href}>{action.label}</a>
+                ))}
+              </div>
+            )
+          }
+        </header>
+
+        <div class="topic-hub-intro-blocks">
+          {
+            config.introBlocks.map((block) => (
+              <div class="topic-hub-intro-block">
+                <p class="topic-hub-label">{block.eyebrow}</p>
+                <h2 class="topic-hub-intro-title">{block.title}</h2>
+                <p class="topic-hub-intro-desc">{block.description}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        {
+          hub.featuredQuestions.length > 0 && (
+            <section class="topic-hub-section" aria-labelledby="topic-hub-featured-title">
+              <p class="topic-hub-label">{config.featuredSectionEyebrow ?? 'Start here'}</p>
+              <h2 id="topic-hub-featured-title">{config.featuredSectionTitle ?? 'Common concerns'}</h2>
+              <div class="topic-hub-excerpt-list tier-excerpt-list">
+                {hub.featuredQuestions.map((question) => <AnswerExcerpt question={question} />)}
+              </div>
+            </section>
+          )
+        }
+
+        <section class="topic-hub-section" aria-labelledby="topic-hub-cluster-title">
+          <p class="topic-hub-label">{config.clusterSectionEyebrow ?? 'Concern map'}</p>
+          <h2 id="topic-hub-cluster-title">{config.clusterSectionTitle ?? 'Browse the cluster'}</h2>
+          <TopicHubClusterGrid modules={hub.clusterModules} />
+        </section>
+      </TopicHubLayout>
+    </div>
+  </section>
+</main>
