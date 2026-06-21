@@ -1,8 +1,14 @@
 ---
+import ProfileLayout from '@/components/reviewers/ProfileLayout.astro';
+import ReviewerAnswerExcerpt from '@/components/reviewers/ReviewerAnswerExcerpt.astro';
+import ReviewerSidebar from '@/components/reviewers/ReviewerSidebar.astro';
+import ReviewerVideoCard from '@/components/reviewers/ReviewerVideoCard.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getQuestions } from '@/lib/supabase';
 import { getReviewedByLabel } from '@/lib/trust';
+import { buildReviewGroupDisplays, topicAnswersLabel } from '@/lib/reviewer-page';
 import { reviewerProfilesBySlug, type ReviewerProfile } from '@/data/reviewers';
+import '@/styles/reviewer-profile.css';
 
 export async function getStaticPaths() {
   return Array.from(reviewerProfilesBySlug.values()).map((reviewer) => ({
@@ -13,77 +19,187 @@ export async function getStaticPaths() {
 
 const reviewer = Astro.props.reviewer as ReviewerProfile;
 const questions = await getQuestions();
+const questionsBySlug = new Map(questions.map((question) => [question.slug, question]));
 const reviewedAnswers = questions
   .filter((question) => getReviewedByLabel(question) === reviewer.id)
   .sort((a, b) => a.question.localeCompare(b.question));
+
+const displayName = reviewer.displayName ?? reviewer.name;
+const pageTitle = `${displayName} | Clinical Reviewer | Deeper Global`;
+const pageDescription = reviewer.designation
+  ? `${displayName}. ${reviewer.designation}`
+  : `${reviewer.name} reviews selected Deeper Global answers related to ${reviewer.specialtyLabel.toLowerCase()}.`;
+
+const reviewGroups = reviewer.reviewedContentGroups
+  ? buildReviewGroupDisplays(reviewer.reviewedContentGroups, questionsBySlug)
+  : [];
+
+const hasOverview =
+  Boolean(reviewer.overviewParagraphs?.length) || Boolean(reviewer.expertiseSummary) || Boolean(reviewer.bio);
+const overviewTitle = reviewer.overviewParagraphs?.length ? 'Clinical overview' : 'About this reviewer';
+const overviewHeading = reviewer.overviewParagraphs?.length
+  ? 'Assessment and diagnostic expertise'
+  : `Background and expertise`;
 ---
 
 <BaseLayout
-  title={`${reviewer.name} | Clinical Reviewer | Deeper Global`}
-  description={`${reviewer.name} reviews selected Deeper Global answers related to ${reviewer.specialtyLabel.toLowerCase()}.`}
+  title={pageTitle}
+  description={pageDescription}
   canonicalPath={`/reviewers/${reviewer.slug}`}
+  imagePath={reviewer.image}
+  imageAlt={reviewer.imageAlt}
 >
-  <main class="content">
-    <p class="eyebrow">Clinical reviewer</p>
-    <h1>{reviewer.name}</h1>
-    <p class="summary">{reviewer.specialtyLabel}</p>
+  <main class="discovery-surface reviewer-profile">
+    <div class="container">
+      <nav class="reviewer-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="reviewer-breadcrumb-sep" aria-hidden="true">/</span>
+        <a href="/reviewers/">Reviewers</a>
+        <span class="reviewer-breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="reviewer-breadcrumb-current">{displayName.split(',')[0]}</span>
+      </nav>
+    </div>
 
-    <section aria-label="Reviewer biography">
-      <p>{reviewer.bio}</p>
+    <section class="reviewer-body">
+      <div class="container reviewer-body-shell">
+        <header class="reviewer-page-header">
+          <p class="eyebrow">Clinical reviewer</p>
+          <h1>{displayName}</h1>
+          <p class="reviewer-designation">{reviewer.designation ?? reviewer.specialtyLabel}</p>
+        </header>
+
+        <ProfileLayout>
+          <ReviewerSidebar slot="sidebar" reviewer={reviewer} />
+
+          <div class="profile-main-inner">
+            {reviewer.videoModule && <ReviewerVideoCard reviewer={reviewer} />}
+
+            {
+              reviewer.clinicalPerspective && (
+                <blockquote class="reviewer-pull-quote">{reviewer.clinicalPerspective}</blockquote>
+              )
+            }
+
+            {
+              hasOverview && (
+                <section class="profile-main-section" aria-labelledby="reviewer-overview-title">
+                  <p class="profile-main-label">{overviewTitle}</p>
+                  <h2 id="reviewer-overview-title">{overviewHeading}</h2>
+                  <div class="reviewer-prose">
+                    {reviewer.overviewParagraphs?.map((paragraph) => <p>{paragraph}</p>)}
+                    {
+                      !reviewer.overviewParagraphs?.length && reviewer.bio && (
+                        <p>{reviewer.bio}</p>
+                      )
+                    }
+                    {reviewer.expertiseSummary && <p>{reviewer.expertiseSummary}</p>}
+                  </div>
+                </section>
+              )
+            }
+
+            {
+              reviewGroups.length > 0 ? (
+                <section
+                  class="profile-main-section"
+                  id="reviewed-knowledge"
+                  aria-labelledby="reviewed-knowledge-title"
+                >
+                  <p class="profile-main-label">Reviewed knowledge</p>
+                  <h2 id="reviewed-knowledge-title">
+                    {reviewer.reviewedKnowledgeTitle ?? `Answers reviewed by ${displayName.split(',')[0]}`}
+                  </h2>
+                  {
+                    reviewer.reviewedKnowledgeIntro && (
+                      <p class="reviewer-section-intro">{reviewer.reviewedKnowledgeIntro}</p>
+                    )
+                  }
+
+                  {
+                    reviewGroups.map((group) => (
+                      <div class="reviewer-topic-group">
+                        <div class="reviewer-topic-head">
+                          <h3>{group.name}</h3>
+                          <span class="reviewer-topic-count">
+                            {group.totalCount} {group.totalCount === 1 ? 'answer' : 'answers'}
+                          </span>
+                        </div>
+                        <div class="reviewer-answer-list">
+                          {group.visible.map((question) => <ReviewerAnswerExcerpt question={question} />)}
+                        </div>
+                        {
+                          group.hiddenCount > 0 && group.viewAllPath && (
+                            <p class="reviewer-topic-more">
+                              <a href={group.viewAllPath}>{topicAnswersLabel(group.name, group.totalCount)}</a>
+                            </p>
+                          )
+                        }
+                      </div>
+                    ))
+                  }
+                </section>
+              ) : (
+                reviewedAnswers.length > 0 && (
+                  <section class="profile-main-section" aria-labelledby="reviewed-answers-title">
+                    <p class="profile-main-label">Reviewed answers</p>
+                    <h2 id="reviewed-answers-title">
+                      Selected answers reviewed by {reviewer.name.split(',')[0]}
+                    </h2>
+                    <div class="reviewer-answer-list">
+                      {reviewedAnswers.map((question) => <ReviewerAnswerExcerpt question={question} />)}
+                    </div>
+                  </section>
+                )
+              )
+            }
+
+            {
+              reviewer.hubConnection && (
+                <section class="profile-main-section profile-main-section--compact" aria-labelledby="reviewer-hub-title">
+                  <p class="profile-main-label">Topic connection</p>
+                  <h2 id="reviewer-hub-title">{reviewer.hubConnection.hubLabel}</h2>
+                  <p class="reviewer-section-intro">{reviewer.hubConnection.summary}</p>
+                  <p class="reviewer-topic-more">
+                    <a href={reviewer.hubConnection.hubPath}>{reviewer.hubConnection.hubLabel} →</a>
+                  </p>
+                </section>
+              )
+            }
+
+            {
+              reviewer.affiliations && reviewer.affiliations.length > 0 && (
+                <section
+                  class="profile-main-section profile-main-section--compact"
+                  aria-labelledby="reviewer-affiliations-title"
+                >
+                  <p class="profile-main-label">Affiliations</p>
+                  <h2 id="reviewer-affiliations-title">Professional affiliations</h2>
+                  <ul class="reviewer-affiliation-list">
+                    {reviewer.affiliations.map((item) => <li>{item}</li>)}
+                  </ul>
+                </section>
+              )
+            }
+          </div>
+        </ProfileLayout>
+      </div>
     </section>
 
-    <section aria-labelledby="expertise-title">
-      <h2 id="expertise-title">Areas of expertise</h2>
-      <ul>
-        {reviewer.expertiseTags.map((tag) => <li>{tag}</li>)}
-      </ul>
+    <section class="reviewer-footer">
+      <div class="container">
+        <p class="profile-disclaimer">{reviewer.disclaimer}</p>
+        {
+          reviewer.practiceNotes && reviewer.practiceNotes.length > 0 && (
+            <ul class="reviewer-disclaimers">
+              {reviewer.practiceNotes.map((note) => <li>{note}</li>)}
+            </ul>
+          )
+        }
+        <p class="profile-disclaimer">
+          See the <a href="/editorial-policy/">editorial policy</a> for how Deeper Global handles reviewer attribution,
+          sources, and updates.
+        </p>
+      </div>
     </section>
-
-    {
-      reviewer.sameAs.length > 0 && (
-        <section aria-labelledby="links-title">
-          <h2 id="links-title">External profiles</h2>
-          <ul>
-            {reviewer.sameAs.map((url) => (
-              <li>
-                <a href={url} rel="me noopener noreferrer">
-                  {url}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    {
-      reviewedAnswers.length > 0 && (
-        <section aria-labelledby="reviewed-answers-title">
-          <h2 id="reviewed-answers-title">Selected reviewed answers</h2>
-          <ul>
-            {reviewedAnswers.map((answer) => (
-              <li>
-                <a href={`/answers/${answer.slug}/`}>{answer.improved_title || answer.question}</a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    <p class="reviewer-disclaimer">{reviewer.disclaimer}</p>
-
-    <p>
-      See the <a href="/editorial-policy/">editorial policy</a> for how Deeper Global handles reviewer attribution, sources, and updates.
-    </p>
   </main>
 </BaseLayout>
-
-<style>
-  .reviewer-disclaimer {
-    margin-top: 24px;
-    color: var(--stone);
-    font-size: 0.92rem;
-    line-height: 1.55;
-  }
-</style>

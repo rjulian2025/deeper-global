@@ -16,6 +16,11 @@ const INDEXABLE_REVIEW_STATUSES = new Set(['approved', 'published', 'reviewed'])
 const INTERNAL_REVIEWER_LABELS = new Set(['codex-seo-review']);
 const GENERIC_EDITORIAL_REVIEW_LABEL = 'Reviewed for clarity, structure, and source alignment';
 const REVIEWER_ALIASES: Record<string, string> = {
+  'alex-crenshaw-phd': 'alex-crenshaw-phd',
+  'alex crenshaw phd': 'alex-crenshaw-phd',
+  'alex crenshaw, phd': 'alex-crenshaw-phd',
+  'dr alex crenshaw phd': 'alex-crenshaw-phd',
+  'dr. alex crenshaw, phd': 'alex-crenshaw-phd',
   'david-k-gore-phd': 'david-k-gore-phd',
   'david k gore phd': 'david-k-gore-phd',
   'david k. gore phd': 'david-k-gore-phd',

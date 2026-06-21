@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { reviewerProfiles } from '@/lib/trust';
+import '@/styles/reviewer-profile.css';
 ---
 
 <BaseLayout
@@ -8,53 +9,48 @@ import { reviewerProfiles } from '@/lib/trust';
   description="Meet the clinical reviewers who review selected Deeper Global mental health answers."
   canonicalPath="/reviewers"
 >
-  <main class="content">
-    <p class="eyebrow">Clinical reviewers</p>
-    <h1>Clinical reviewers for Deeper Global answers</h1>
-    <p class="summary">
-      Some Deeper Global answers include a named clinical reviewer. Those pages show the reviewer, specialty area, and last reviewed date recorded for that answer.
-    </p>
+  <main class="discovery-surface reviewer-profile">
+    <div class="container">
+      <nav class="reviewer-breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="reviewer-breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="reviewer-breadcrumb-current">Reviewers</span>
+      </nav>
+    </div>
 
-    <ul class="reviewer-directory">
-      {
-        reviewerProfiles.map((reviewer) => (
-          <li>
-            <a href={reviewer.url}><strong>{reviewer.name}</strong></a>
-            <p>{reviewer.specialtyLabel}</p>
-            <p>{reviewer.bio}</p>
-          </li>
-        ))
-      }
-    </ul>
+    <section class="reviewer-hero">
+      <div class="container">
+        <p class="eyebrow">Clinical reviewers</p>
+        <h1>Who reviews our answers</h1>
+        <p class="reviewer-designation">
+          Some Deeper Global answers include a named clinical reviewer. Those pages show the reviewer, specialty area,
+          and last reviewed date recorded for that answer.
+        </p>
+      </div>
+    </section>
 
-    <p>
-      Learn more about how Deeper Global handles sources, clinical review, and updates in our <a href="/editorial-policy/">editorial policy</a>.
-    </p>
+    <section class="reviewer-section">
+      <div class="container">
+        <div class="discovery-list profile-directory">
+          {
+            reviewerProfiles.map((reviewer) => (
+              <article class="discovery-row profile-directory-row">
+                <h2 class="discovery-row-title">
+                  <a href={reviewer.url}>{reviewer.displayName ?? reviewer.name}</a>
+                </h2>
+                <p class="editorial-meta discovery-meta">{reviewer.specialtyLabel}</p>
+                {reviewer.designation && <p class="reviewer-directory-designation">{reviewer.designation}</p>}
+                <p class="discovery-summary">{reviewer.bio}</p>
+              </article>
+            ))
+          }
+        </div>
+
+        <p class="profile-disclaimer">
+          Learn more about how Deeper Global handles sources, clinical review, and updates in our{' '}
+          <a href="/editorial-policy/">editorial policy</a>.
+        </p>
+      </div>
+    </section>
   </main>
 </BaseLayout>
-
-<style>
-  .reviewer-directory {
-    display: grid;
-    gap: 24px;
-    padding: 0;
-    margin: 24px 0 32px;
-    list-style: none;
-  }
-
-  .reviewer-directory li p {
-    margin: 8px 0 0;
-    color: var(--stone);
-    line-height: 1.55;
-  }
-
-  .reviewer-directory a {
-    color: var(--ocean);
-    text-decoration: none;
-  }
-
-  .reviewer-directory a:hover {
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-</style>

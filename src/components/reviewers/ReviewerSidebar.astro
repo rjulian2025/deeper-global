@@ -1,0 +1,162 @@
+---
+import type { ReviewerProfile } from '@/data/reviewers';
+import {
+  buildReviewerQuickLinks,
+  collapseServiceOfferings,
+  getExpertiseInlineTerms,
+  getReviewerPracticeLocation,
+} from '@/lib/reviewer-page';
+
+type Props = {
+  reviewer: ReviewerProfile;
+};
+
+const { reviewer } = Astro.props;
+const quickLinks = buildReviewerQuickLinks(reviewer);
+const expertiseTerms = getExpertiseInlineTerms(reviewer);
+const serviceRows = reviewer.serviceOfferings ? collapseServiceOfferings(reviewer.serviceOfferings) : [];
+const practiceLocation = getReviewerPracticeLocation(reviewer);
+const testingOptionsHref =
+  reviewer.serviceOverviewHref ??
+  reviewer.referralLinks?.find((link) => /psychological testing|testing options/i.test(link.label))?.href ??
+  reviewer.practiceUrl;
+---
+
+<aside class="profile-sidebar-wrap" aria-label="Profile details">
+  <div class="profile-sidebar">
+    {
+      reviewer.image && (
+        <figure class="profile-sidebar-photo">
+          <img
+            src={reviewer.image}
+            alt={reviewer.imageAlt ?? reviewer.displayName ?? reviewer.name}
+            width="230"
+            height="288"
+            loading="eager"
+          />
+        </figure>
+      )
+    }
+
+    <div class="profile-sidebar-block profile-sidebar-credentials">
+      {
+        reviewer.role ? (
+          <p class="profile-sidebar-role">{reviewer.role}</p>
+        ) : (
+          <p class="profile-sidebar-role">{reviewer.credentialLine || reviewer.specialtyLabel}</p>
+        )
+      }
+      {practiceLocation && <p class="profile-sidebar-secondary">{practiceLocation}</p>}
+      {
+        !practiceLocation && reviewer.credentialLine && reviewer.role && (
+          <p class="profile-sidebar-secondary">{reviewer.credentialLine}</p>
+        )
+      }
+      {reviewer.academicAffiliation && <p class="profile-sidebar-secondary">{reviewer.academicAffiliation}</p>}
+    </div>
+
+    {
+      quickLinks.length > 0 && (
+        <nav class="profile-sidebar-block profile-sidebar-links" aria-label="Quick links">
+          <ul class="profile-sidebar-link-list">
+            {
+              quickLinks.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    {...(link.external ? { rel: 'noopener noreferrer', target: '_blank' } : {})}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      )
+    }
+
+    {
+      expertiseTerms.length > 0 && (
+        <div class="profile-sidebar-block profile-sidebar-expertise">
+          <p class="profile-sidebar-label">Expertise</p>
+          <p class="profile-sidebar-inline-terms">
+            {
+              expertiseTerms.map((term, index) => (
+                <>
+                  {index > 0 ? <span class="profile-inline-sep" aria-hidden="true"> · </span> : null}
+                  <strong>{term}</strong>
+                </>
+              ))
+            }
+          </p>
+        </div>
+      )
+    }
+
+    {
+      serviceRows.length > 0 && (
+        <div class="profile-sidebar-block profile-sidebar-fees">
+          <p class="profile-sidebar-label">Testing &amp; fees</p>
+          <ul class="profile-sidebar-fee-list">
+            {
+              serviceRows.map((row) => (
+                <li class="profile-sidebar-fee-row">
+                  <span class="profile-sidebar-fee-name">{row.label}</span>
+                  <span class="profile-sidebar-fee-price">{row.price}</span>
+                </li>
+              ))
+            }
+          </ul>
+          {
+            testingOptionsHref && (
+              <p class="profile-sidebar-fee-more">
+                <a href={testingOptionsHref} rel="noopener noreferrer" target="_blank">
+                  View all testing options →
+                </a>
+              </p>
+            )
+          }
+        </div>
+      )
+    }
+
+    {
+      reviewer.referralLinks && reviewer.referralLinks.length > 0 && (
+        <div class="profile-sidebar-block profile-sidebar-resources">
+          <p class="profile-sidebar-label">External resources</p>
+          <ul class="profile-sidebar-resource-list">
+            {
+              reviewer.referralLinks.map((link) => (
+                <li>
+                  <a href={link.href} rel="noopener noreferrer" target="_blank">
+                    {link.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      )
+    }
+
+    {
+      !reviewer.referralLinks?.length && reviewer.sameAs.length > 0 && (
+        <div class="profile-sidebar-block profile-sidebar-resources">
+          <p class="profile-sidebar-label">External resources</p>
+          <ul class="profile-sidebar-resource-list">
+            {
+              reviewer.sameAs.map((url) => (
+                <li>
+                  <a href={url} rel="me noopener noreferrer">
+                    {url.replace(/^https?:\/\//, '')}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      )
+    }
+  </div>
+</aside>

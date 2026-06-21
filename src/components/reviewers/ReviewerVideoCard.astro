@@ -1,0 +1,104 @@
+---
+import type { ReviewerProfile } from '@/data/reviewers';
+import { getVideoMetaLabel, isVideoInteractive } from '@/lib/reviewer-video';
+
+type Props = {
+  reviewer: ReviewerProfile;
+};
+
+const { reviewer } = Astro.props;
+const video = reviewer.videoModule;
+if (!video) return null;
+
+const poster = video.poster ?? reviewer.image;
+if (!poster) return null;
+
+const metaLabel = getVideoMetaLabel(video);
+const interactive = isVideoInteractive(video);
+const playLabel = interactive
+  ? `Play video: ${video.title}`
+  : `${video.title}. ${video.statusLabel ?? 'Not yet available'}.`;
+---
+
+<div class="reviewer-video-card" data-video-status={video.status}>
+  <div class="reviewer-video-stage-wrap">
+    {
+      interactive ? (
+        <button
+          type="button"
+          class="reviewer-video-thumb"
+          data-video-embed={video.embedUrl}
+          aria-label={playLabel}
+        >
+          <img
+            src={poster}
+            alt=""
+            class="reviewer-video-poster"
+            width="960"
+            height="540"
+            loading="lazy"
+            aria-hidden="true"
+          />
+          <div class="reviewer-video-gradient" aria-hidden="true"></div>
+          <span class="reviewer-video-play" aria-hidden="true">
+            <svg class="reviewer-video-play-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <polygon points="9,6 18,12 9,18" fill="rgba(255,255,255,0.88)"></polygon>
+            </svg>
+          </span>
+          <span class="reviewer-video-title">{video.title}</span>
+        </button>
+      ) : (
+        <div class="reviewer-video-thumb reviewer-video-thumb--pending" aria-label={playLabel}>
+          <img
+            src={poster}
+            alt=""
+            class="reviewer-video-poster"
+            width="960"
+            height="540"
+            loading="lazy"
+            aria-hidden="true"
+          />
+          <div class="reviewer-video-gradient" aria-hidden="true"></div>
+          <span class="reviewer-video-play reviewer-video-play--pending" aria-hidden="true">
+            <svg class="reviewer-video-play-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <polygon points="9,6 18,12 9,18" fill="rgba(255,255,255,0.88)"></polygon>
+            </svg>
+          </span>
+          <span class="reviewer-video-title">{video.title}</span>
+        </div>
+      )
+    }
+
+    <div class="reviewer-video-embed" hidden>
+      <iframe
+        title={video.title}
+        src=""
+        data-embed-src={video.embedUrl}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+
+  <p class="reviewer-video-meta-label">{metaLabel}</p>
+  <p class="reviewer-video-caption">{video.caption}</p>
+</div>
+
+<script>
+  document.querySelectorAll('.reviewer-video-thumb[data-video-embed]').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const wrap = trigger.closest('.reviewer-video-stage-wrap');
+      if (!wrap) return;
+
+      const embed = wrap.querySelector('.reviewer-video-embed');
+      const iframe = embed?.querySelector('iframe');
+      const embedSrc = trigger.getAttribute('data-video-embed');
+      if (!embed || !iframe || !embedSrc) return;
+
+      iframe.setAttribute('src', embedSrc);
+      trigger.setAttribute('hidden', '');
+      embed.removeAttribute('hidden');
+    });
+  });
+</script>

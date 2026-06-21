@@ -1,0 +1,14 @@
+---
+type Props = {
+  class?: string;
+};
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['profile-layout', className]}>
+  <slot name="sidebar" />
+  <div class="profile-main">
+    <slot />
+  </div>
+</div>
