@@ -1,0 +1,103 @@
+---
+import type { HeroStatCounter } from '@/lib/hero-hook';
+
+type Props = {
+  stats: HeroStatCounter[];
+};
+
+const { stats } = Astro.props;
+---
+
+<div class="hero-stats" aria-label="Deeper Global content coverage" data-hero-stats>
+  {
+    stats.map((stat) => (
+      <div>
+        <strong
+          data-hero-stat-value={stat.numericValue ?? undefined}
+          data-hero-stat-display={stat.displayValue}
+        >
+          {stat.displayValue}
+        </strong>
+        <span>{stat.label}</span>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  function formatCount(value: number): string {
+    return Math.round(value).toLocaleString('en-US');
+  }
+
+  function easeOutCubic(t: number): number {
+    return 1 - (1 - t) ** 3;
+  }
+
+  function animateStat(el: HTMLElement, target: number, duration = 1200) {
+    const start = performance.now();
+    const from = 0;
+
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = easeOutCubic(progress);
+      const current = from + (target - from) * eased;
+      el.textContent = formatCount(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        el.textContent = formatCount(target);
+      }
+    };
+
+    requestAnimationFrame(tick);
+  }
+
+  function initHeroStatCounters() {
+    const root = document.querySelector('[data-hero-stats]');
+    if (!root) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const statEls = root.querySelectorAll<HTMLElement>('[data-hero-stat-value]');
+
+    if (prefersReducedMotion || statEls.length === 0) return;
+
+    statEls.forEach((el) => {
+      const target = Number(el.dataset.heroStatValue);
+      if (Number.isFinite(target) && target > 0) {
+        el.textContent = '0';
+      }
+    });
+
+    const run = () => {
+      statEls.forEach((el) => {
+        if (el.dataset.animated === 'true') return;
+
+        const target = Number(el.dataset.heroStatValue);
+        if (!Number.isFinite(target) || target <= 0) return;
+
+        el.dataset.animated = 'true';
+        animateStat(el, target);
+      });
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            run();
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.35 },
+      );
+      observer.observe(root);
+      return;
+    }
+
+    run();
+  }
+
+  initHeroStatCounters();
+  document.addEventListener('astro:page-load', initHeroStatCounters);
+</script>

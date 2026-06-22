@@ -2,10 +2,13 @@
 import DiscoveryRow from '@/components/DiscoveryRow.astro';
 import EmptyState from '@/components/EmptyState.astro';
 import HeroPopularLinks from '@/components/HeroPopularLinks.astro';
+import HeroRotatingHook from '@/components/HeroRotatingHook.astro';
+import HeroStatCounters from '@/components/HeroStatCounters.astro';
 import HomepageBodyLayout from '@/components/homepage/HomepageBodyLayout.astro';
 import TopicDirectory from '@/components/TopicDirectory.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { answerPath, categoryPath, displayCategory, formatDate, getAnswerDisplayTitle, getAnswerSummary, getCategorySummaries, truncate } from '@/lib/content';
+import { buildHeroHookItems, buildHeroStatCounters, estimateHeroRotatingMinHeight } from '@/lib/hero-hook';
 import { pickCuriosityQuestions } from '@/lib/homepage-curiosity';
 import { buildHomepageSidebarData } from '@/lib/homepage-sidebar';
 import '@/styles/homepage-sidebar.css';
@@ -23,14 +26,10 @@ const featuredQuestion = pickCuriosityQuestions(
   1,
 )[0] ?? questions[0];
 const featuredCategory = featuredQuestion ? displayCategory(featuredQuestion) : null;
-const reviewedCount = questions.filter((question) => question.reviewed_by).length;
-const heroStats = [
-  { value: questions.length ? questions.length.toLocaleString() : '1,000+', label: 'Vetted answers' },
-  { value: categories.length ? categories.length.toLocaleString() : '38', label: 'Topic areas' },
-  reviewedCount > 0
-    ? { value: reviewedCount.toLocaleString(), label: 'Clinically reviewed' }
-    : { value: '✓', label: 'Evidence-based' },
-];
+const heroHookItems = buildHeroHookItems(questions, 6);
+const heroRotatingMinHeight = estimateHeroRotatingMinHeight(heroHookItems);
+const heroStats = buildHeroStatCounters(questions, categories.length);
+const heroSearchPlaceholder = heroHookItems[0]?.placeholder ?? 'Why do I shut down when someone is upset with me?';
 const trendingQuestions = pickCuriosityQuestions(questions, 4);
 const popularLinks = trendingQuestions.map((question) => ({
   href: answerPath(question.slug),
@@ -44,8 +43,8 @@ const popularLinks = trendingQuestions.map((question) => ({
       <div class="hero-image" aria-hidden="true"></div>
       <div class="container hero-shell">
         <div class="hero-content">
-          <p class="hero-eyebrow">Trusted mental health intelligence</p>
-          <h1 id="home-hero-title">The questions you ask<br />when no one is looking.</h1>
+          <p class="hero-eyebrow">The questions you ask when no one is looking</p>
+          <HeroRotatingHook items={heroHookItems} minHeight={heroRotatingMinHeight} />
           <p class="hero-subhead">
             A trusted library of expert-vetted mental health answers for the questions that feel too personal, too tangled, or too hard to ask out loud.
           </p>
@@ -57,7 +56,7 @@ const popularLinks = trendingQuestions.map((question) => ({
               id="ask"
               name="q"
               type="search"
-              placeholder="Why do I shut down when someone is upset with me?"
+              placeholder={heroSearchPlaceholder}
               autocomplete="off"
             />
             <button type="submit" aria-label="Search answers">
@@ -65,14 +64,7 @@ const popularLinks = trendingQuestions.map((question) => ({
             </button>
           </form>
 
-          <div class="hero-stats" aria-label="Deeper Global content coverage">
-            {heroStats.map((stat) => (
-              <div>
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
-              </div>
-            ))}
-          </div>
+          <HeroStatCounters stats={heroStats} />
         </div>
       </div>
     </section>

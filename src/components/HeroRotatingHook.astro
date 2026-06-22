@@ -1,0 +1,139 @@
+---
+import type { HeroHookItem } from '@/lib/hero-hook';
+
+type Props = {
+  items: HeroHookItem[];
+  minHeight: string;
+};
+
+const { items, minHeight } = Astro.props;
+const firstItem = items[0];
+---
+
+{
+  items.length > 0 && firstItem && (
+    <div
+      class="hero-rotating-hook"
+      data-hero-rotating
+      style={`--hero-rotating-min-height: ${minHeight}`}
+    >
+      <div
+        class="hero-rotating-block"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <h1 id="home-hero-title">
+          <a
+            class="hero-rotating-question is-active"
+            href={firstItem.href}
+            data-hero-question
+          >
+            {firstItem.title}
+          </a>
+        </h1>
+        <p class="hero-rotating-teaser is-active" data-hero-teaser>
+          {firstItem.teaser}
+        </p>
+      </div>
+
+      <script type="application/json" id="hero-rotating-data" set:html={JSON.stringify(items)} />
+    </div>
+  )
+}
+
+<script>
+  function initHeroRotatingHook() {
+    const root = document.querySelector('[data-hero-rotating]');
+    const dataEl = document.getElementById('hero-rotating-data');
+    const searchInput = document.getElementById('ask');
+
+    if (!root || !dataEl) return;
+
+    type HeroItem = {
+      title: string;
+      href: string;
+      teaser: string;
+      placeholder: string;
+    };
+
+    let items: HeroItem[] = [];
+
+    try {
+      items = JSON.parse(dataEl.textContent || '[]');
+    } catch {
+      return;
+    }
+
+    if (items.length <= 1) return;
+
+    const questionEl = root.querySelector<HTMLAnchorElement>('[data-hero-question]');
+    const teaserEl = root.querySelector<HTMLElement>('[data-hero-teaser]');
+    const blockEl = root.querySelector<HTMLElement>('.hero-rotating-block');
+
+    if (!questionEl || !teaserEl || !blockEl) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      blockEl.setAttribute('aria-live', 'off');
+      return;
+    }
+
+    let index = 0;
+    let timer: ReturnType<typeof setInterval> | null = null;
+    let paused = false;
+
+    const setActive = (nextIndex: number) => {
+      const item = items[nextIndex];
+      if (!item) return;
+
+      questionEl.classList.remove('is-active');
+      teaserEl.classList.remove('is-active');
+
+      window.setTimeout(() => {
+        questionEl.textContent = item.title;
+        questionEl.href = item.href;
+        teaserEl.textContent = item.teaser;
+
+        if (searchInput instanceof HTMLInputElement) {
+          searchInput.placeholder = item.placeholder;
+        }
+
+        questionEl.classList.add('is-active');
+        teaserEl.classList.add('is-active');
+      }, 450);
+    };
+
+    const advance = () => {
+      if (paused) return;
+      index = (index + 1) % items.length;
+      setActive(index);
+    };
+
+    const start = () => {
+      if (timer) clearInterval(timer);
+      timer = setInterval(advance, 3500);
+    };
+
+    const pause = () => {
+      paused = true;
+    };
+
+    const resume = () => {
+      paused = false;
+    };
+
+    blockEl.addEventListener('mouseenter', pause);
+    blockEl.addEventListener('mouseleave', resume);
+    blockEl.addEventListener('focusin', pause);
+    blockEl.addEventListener('focusout', (event) => {
+      if (event.relatedTarget instanceof Node && blockEl.contains(event.relatedTarget)) return;
+      resume();
+    });
+
+    start();
+  }
+
+  initHeroRotatingHook();
+  document.addEventListener('astro:page-load', initHeroRotatingHook);
+</script>

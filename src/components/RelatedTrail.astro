@@ -1,0 +1,31 @@
+---
+import { answerPath, getAnswerDisplayTitle } from '@/lib/content';
+import type { Question } from '@/lib/supabase';
+import '@/styles/homepage-sidebar.css';
+
+type Props = {
+  related: Question[];
+};
+
+const { related } = Astro.props;
+const trailItems = related.slice(0, 4);
+---
+
+{
+  trailItems.length > 0 && (
+    <section class="related-trail" aria-labelledby="related-trail-heading">
+      <p class="homepage-sidebar-label" id="related-trail-heading">
+        People who asked this also wondered
+      </p>
+      <ul class="homepage-sidebar-featured-list">
+        {
+          trailItems.map((question) => (
+            <li>
+              <a href={answerPath(question.slug)}>{getAnswerDisplayTitle(question)}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  )
+}
