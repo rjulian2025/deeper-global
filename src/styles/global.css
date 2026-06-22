@@ -383,7 +383,7 @@ h3 {
   font-weight: 600;
   line-height: 1.12;
   letter-spacing: -0.015em;
-  max-width: none;
+  max-width: min(100%, var(--home-hero-measure));
   margin: 0 0 var(--space-5);
   text-wrap: balance;
 }
@@ -391,6 +391,8 @@ h3 {
 .hero-rotating-block {
   min-height: var(--hero-rotating-min-height, 8rem);
   margin: 0 0 var(--space-5);
+  width: min(100%, var(--home-hero-measure));
+  max-width: min(100%, var(--home-hero-measure));
 }
 
 .hero-rotating-block h1 {
@@ -421,7 +423,7 @@ h3 {
 
 .hero-rotating-teaser {
   margin: 0;
-  max-width: 36rem;
+  max-width: min(100%, var(--home-hero-measure));
   font-family: var(--font-sans);
   font-size: var(--text-sm, 0.9375rem);
   font-weight: 400;
@@ -1529,6 +1531,11 @@ h3 {
     justify-content: center;
     align-items: flex-start;
     padding-block: var(--space-16);
+  }
+
+  .hero--home .hero-eyebrow,
+  .hero-rotating-block {
+    max-width: min(var(--home-hero-measure), 52%);
   }
 
   .hero-eyebrow {
