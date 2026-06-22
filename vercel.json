@@ -15,6 +15,22 @@
     {
       "path": "/api/reports/content-ops-email",
       "schedule": "0 14 * * 2"
+    },
+    {
+      "path": "/api/cron/publish-approved",
+      "schedule": "0 13 * * *"
+    },
+    {
+      "path": "/api/cron/publish-approved",
+      "schedule": "0 17 * * *"
+    },
+    {
+      "path": "/api/cron/publish-approved",
+      "schedule": "0 21 * * *"
+    },
+    {
+      "path": "/api/cron/publish-approved",
+      "schedule": "0 1 * * *"
     }
   ],
   "redirects": [
