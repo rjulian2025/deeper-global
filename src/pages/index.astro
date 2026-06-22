@@ -6,7 +6,7 @@ import HomepageBodyLayout from '@/components/homepage/HomepageBodyLayout.astro';
 import TopicDirectory from '@/components/TopicDirectory.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { answerPath, categoryPath, displayCategory, formatDate, getAnswerDisplayTitle, getAnswerSummary, getCategorySummaries, truncate } from '@/lib/content';
-import { getTrendingQuestions } from '@/lib/engagement';
+import { pickCuriosityQuestions } from '@/lib/homepage-curiosity';
 import { buildHomepageSidebarData } from '@/lib/homepage-sidebar';
 import '@/styles/homepage-sidebar.css';
 import { getQuestions } from '@/lib/supabase';
@@ -14,10 +14,14 @@ import { getEditorialTopicDirectory } from '@/lib/topic-directory';
 
 const questions = await getQuestions();
 const sidebar = buildHomepageSidebarData(questions);
-const recentQuestions = questions.slice(0, 6);
 const categories = getCategorySummaries(questions);
 const topicDirectory = getEditorialTopicDirectory(questions);
-const featuredQuestion = questions[0];
+
+const recentQuestions = pickCuriosityQuestions(questions, 6);
+const featuredQuestion = pickCuriosityQuestions(
+  questions.filter((question) => !recentQuestions.some((item) => item.slug === question.slug)),
+  1,
+)[0] ?? questions[0];
 const featuredCategory = featuredQuestion ? displayCategory(featuredQuestion) : null;
 const reviewedCount = questions.filter((question) => question.reviewed_by).length;
 const heroStats = [
@@ -27,7 +31,7 @@ const heroStats = [
     ? { value: reviewedCount.toLocaleString(), label: 'Clinically reviewed' }
     : { value: '✓', label: 'Evidence-based' },
 ];
-const trendingQuestions = getTrendingQuestions(questions, 4);
+const trendingQuestions = pickCuriosityQuestions(questions, 4);
 const popularLinks = trendingQuestions.map((question) => ({
   href: answerPath(question.slug),
   label: getAnswerDisplayTitle(question),
@@ -41,9 +45,9 @@ const popularLinks = trendingQuestions.map((question) => ({
       <div class="container hero-shell">
         <div class="hero-content">
           <p class="hero-eyebrow">Trusted mental health intelligence</p>
-          <h1 id="home-hero-title">Answers to the questions you ask before you seek care.</h1>
+          <h1 id="home-hero-title">The questions you ask when no one is looking.</h1>
           <p class="hero-subhead">
-            Evidence-informed, human-written answers for the real questions people carry.
+            A trusted library of expert-vetted mental health answers for the questions that feel too personal, too tangled, or too hard to ask out loud.
           </p>
 
           <HeroPopularLinks links={popularLinks} variant="c" />
@@ -53,7 +57,7 @@ const popularLinks = trendingQuestions.map((question) => ({
               id="ask"
               name="q"
               type="search"
-              placeholder="What does anxiety actually feel like?"
+              placeholder="Why do I shut down when someone is upset with me?"
               autocomplete="off"
             />
             <button type="submit" aria-label="Search answers">

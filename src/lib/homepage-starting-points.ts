@@ -9,19 +9,19 @@ export type HomepageStartingPoint = {
 
 export const homepageStartingPoints: HomepageStartingPoint[] = [
   {
-    label: 'Feeling overwhelmed right now',
+    label: 'Feeling overwhelmed and not sure why',
     href: '/categories/anxiety-and-stress/',
   },
   {
-    label: 'Just got a diagnosis',
+    label: 'Trying to understand what this is',
     href: '/answers/how-do-i-find-a-therapist-thats-right-fo-184729-014/',
   },
   {
-    label: 'Supporting someone you love',
+    label: 'Worried about someone you love',
     href: '/categories/relationships-and-communication/',
   },
   {
-    label: 'Choosing the right therapy',
+    label: 'Wondering if therapy would help',
     href: '/modalities/',
   },
 ];

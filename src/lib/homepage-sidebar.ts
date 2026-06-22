@@ -1,5 +1,5 @@
 import { answerPath, getAnswerDisplayTitle } from '@/lib/content';
-import { getTrendingQuestions } from '@/lib/engagement';
+import { pickCuriosityQuestions } from '@/lib/homepage-curiosity';
 import { homepageStartingPoints } from '@/lib/homepage-starting-points';
 import type { Question } from '@/lib/supabase';
 
@@ -21,7 +21,10 @@ function questionTimestamp(question: Question): number {
 }
 
 export function buildHomepageSidebarData(questions: Question[]): HomepageSidebarData {
-  const askingNowQuestions = getTrendingQuestions(questions, 3);
+  const askingNowQuestions = pickCuriosityQuestions(questions, 3, {
+    maxPerCategory: 1,
+    maxAdhdQuestions: 1,
+  });
   const askingNowSlugs = new Set(askingNowQuestions.map((question) => question.slug));
 
   const newThisWeek = [...questions]
