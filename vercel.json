@@ -31,6 +31,14 @@
     {
       "path": "/api/cron/publish-approved",
       "schedule": "0 1 * * *"
+    },
+    {
+      "path": "/api/reports/social-status-email",
+      "schedule": "0 13 * * 1"
+    },
+    {
+      "path": "/api/reports/social-status-email",
+      "schedule": "0 13 * * 5"
     }
   ],
   "redirects": [
