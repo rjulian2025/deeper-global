@@ -339,106 +339,71 @@ function buildEmailText(data) {
   return lines.join('\n');
 }
 
-// ── Gmail OAuth2 send ─────────────────────────────────────────────────────────
+// ── Twilio SMS send ───────────────────────────────────────────────────────────
 // Env vars required:
-//   GMAIL_CLIENT_ID       — OAuth2 client ID from Google Cloud Console
-//   GMAIL_CLIENT_SECRET   — OAuth2 client secret
-//   GMAIL_REFRESH_TOKEN   — refresh token obtained once via OAuth2 consent flow
-//
-// The authorized Gmail account (rjulian@qvbrands.com) is both the sender and
-// recipient. Authorize once at https://developers.google.com/oauthplayground
-// with scope https://www.googleapis.com/auth/gmail.send and store the
-// refresh token in Vercel env vars.
+//   TWILIO_ACCOUNT_SID   — from Twilio Console dashboard
+//   TWILIO_AUTH_TOKEN    — from Twilio Console dashboard
+//   TWILIO_FROM_NUMBER   — your Twilio number, e.g. +18333509520
+//   TWILIO_TO_NUMBER     — your mobile, e.g. +14048221018
 
-async function getGmailAccessToken() {
-  const clientId = (process.env.GMAIL_CLIENT_ID ?? '').trim();
-  const clientSecret = (process.env.GMAIL_CLIENT_SECRET ?? '').trim();
-  const refreshToken = (process.env.GMAIL_REFRESH_TOKEN ?? '').trim();
+function buildSmsBody(data) {
+  const status = data.pipelineHealthy ? '✅ Healthy' : '⚠️ Issue';
+  const day = new Date().toLocaleDateString('en-US', { timeZone: 'America/New_York', weekday: 'short', month: 'short', day: 'numeric' });
+  const lastPost = data.lastPublishedAt
+    ? `${data.hoursSinceLast}h ago`
+    : 'never';
+  const runsUntil = data.queueRunsUntil
+    ? new Date(data.queueRunsUntil).toLocaleDateString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric' })
+    : '?';
+  const failLine = data.recentlyFailed.length > 0
+    ? `\nFailed posts: ${data.recentlyFailed.length} ⚠️`
+    : '';
 
-  if (!clientId || !clientSecret || !refreshToken) {
-    throw new Error('Missing GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET, or GMAIL_REFRESH_TOKEN.');
-  }
-
-  const params = new URLSearchParams({
-    client_id: clientId,
-    client_secret: clientSecret,
-    refresh_token: refreshToken,
-    grant_type: 'refresh_token',
-  });
-
-  const response = await fetch('https://oauth2.googleapis.com/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: params.toString(),
-  });
-  const payload = await response.json().catch(() => ({}));
-
-  if (!response.ok || !payload.access_token) {
-    throw new Error(`Gmail token refresh failed: ${payload.error_description ?? payload.error ?? response.statusText}`);
-  }
-
-  return payload.access_token;
+  return [
+    `@deeperglobal ${status} · ${day}`,
+    `Last post: ${lastPost}`,
+    `Published this week: ${data.recentlyPublished.length}`,
+    `Queue: ${data.queueCount} posts (thru ${runsUntil})${failLine}`,
+    `deeper.global`,
+  ].join('\n');
 }
 
-function buildRfc2822Message({ from, to, subject, html, text }) {
-  const boundary = `----=_Part_${Date.now()}`;
-  const lines = [
-    `From: ${from}`,
-    `To: ${to}`,
-    `Subject: ${subject}`,
-    'MIME-Version: 1.0',
-    `Content-Type: multipart/alternative; boundary="${boundary}"`,
-    '',
-    `--${boundary}`,
-    'Content-Type: text/plain; charset=UTF-8',
-    'Content-Transfer-Encoding: quoted-printable',
-    '',
-    text,
-    '',
-    `--${boundary}`,
-    'Content-Type: text/html; charset=UTF-8',
-    'Content-Transfer-Encoding: quoted-printable',
-    '',
-    html,
-    '',
-    `--${boundary}--`,
-  ];
-  return lines.join('\r\n');
-}
+async function sendNotification(data) {
+  const accountSid = (process.env.TWILIO_ACCOUNT_SID ?? '').trim();
+  const authToken = (process.env.TWILIO_AUTH_TOKEN ?? '').trim();
+  const messagingServiceSid = (process.env.TWILIO_MESSAGING_SERVICE_SID ?? '').trim();
+  const from = (process.env.TWILIO_FROM_NUMBER ?? '').trim();
+  const to = (process.env.TWILIO_TO_NUMBER ?? '+14048221018').trim();
 
-async function sendEmail(data) {
-  const account = (process.env.GMAIL_ACCOUNT ?? DEFAULT_REPORT_TO).trim();
-  const to = (process.env.REPORT_EMAIL_TO ?? DEFAULT_REPORT_TO).trim();
+  if (!accountSid || !authToken) {
+    throw new Error('Missing TWILIO_ACCOUNT_SID or TWILIO_AUTH_TOKEN.');
+  }
+  if (!messagingServiceSid && !from) {
+    throw new Error('Missing TWILIO_MESSAGING_SERVICE_SID or TWILIO_FROM_NUMBER.');
+  }
 
-  const dateLabel = new Date().toISOString().slice(0, 10);
-  const statusLabel = data.pipelineHealthy ? '✅ Healthy' : '⚠️ Needs attention';
-  const subject = `@deeperglobal · ${statusLabel} · ${dateLabel}`;
+  const body = buildSmsBody(data);
+  const sender = messagingServiceSid
+    ? { MessagingServiceSid: messagingServiceSid }
+    : { From: from };
+  const params = new URLSearchParams({ To: to, Body: body, ...sender });
+  const credentials = Buffer.from(`${accountSid}:${authToken}`).toString('base64');
 
-  const raw = buildRfc2822Message({
-    from: account,
-    to,
-    subject,
-    html: buildEmailHtml(data),
-    text: buildEmailText(data),
-  });
-
-  // Gmail API requires base64url encoding
-  const encoded = Buffer.from(raw).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-
-  const accessToken = await getGmailAccessToken();
-
-  const response = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ raw: encoded }),
-  });
+  const response = await fetch(
+    `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Basic ${credentials}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: params.toString(),
+    }
+  );
 
   const result = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(`Gmail send failed: ${result?.error?.message ?? response.statusText}`);
+    throw new Error(`Twilio SMS failed: ${result?.message ?? response.statusText}`);
   }
   return result;
 }
@@ -464,14 +429,14 @@ export default async function handler(req, res) {
       return res.status(200).json({ mode: 'dry-run', data });
     }
 
-    const email = await sendEmail(data);
+    const sms = await sendNotification(data);
     return res.status(202).json({
       ok: true,
       pipelineHealthy: data.pipelineHealthy,
       queueCount: data.queueCount,
       publishedLast7Days: data.recentlyPublished.length,
       failedCount: data.recentlyFailed.length,
-      email_id: email?.id ?? email?.data?.id ?? null,
+      sms_sid: sms?.sid ?? null,
     });
   } catch (error) {
     console.error('social_status_report_failed', error);
