@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-06-22T00:00:00.000Z",
+  "source_table": "public.questions_master",
+  "mode": "apply",
+  "reviewer": "rick-julian",
+  "reviewed_at": "2026-06-22",
+  "scope": "meaning-faith-existential-questions-category",
+  "schema_notes": [
+    "Targets all rows in category 'Meaning, Faith & Existential Questions' and its known aliases.",
+    "Does not overwrite existing reviewed_by attribution.",
+    "The DB script queries by category rather than slug list since the full category corpus is not enumerable from batch files alone."
+  ],
+  "sql_proposal": "update public.questions_master\nset\n  reviewed_by = 'rick-julian',\n  reviewed_at = '2026-06-22'::date,\n  review_status = case when lower(coalesce(review_status, '')) in ('reviewed', 'approved', 'published') then review_status else 'reviewed' end\nwhere category in ('Meaning, Faith & Existential Questions', 'Spiritual Struggle / Existential Crisis', 'Spiritual Doubt', 'Existential', 'Life Purpose')\nand (reviewed_by is null or reviewed_by = 'rick-julian');",
+  "known_slugs": [
+    { "slug": "how-do-i-cope-with-the-fear-that-death-means-compl-186602-026", "question": "How do I cope with the fear that death means complete nothingness?", "category": "Spiritual Struggle / Existential Crisis" },
+    { "slug": "how-do-i-find-meaning-in-life-when-everything-feel-186602-024", "question": "How do I find meaning in life when everything feels pointless?", "category": "Spiritual Struggle / Existential Crisis" },
+    { "slug": "how-do-i-find-meaning-when-i-no-longer-believe-what-i-was-taught", "question": "How do I find meaning when I no longer believe what I was taught?", "category": "Spiritual Doubt" },
+    { "slug": "how-do-i-handle-family-rejection-after-changing-my-186602-028", "question": "How do I handle family rejection after changing my beliefs?", "category": "Spiritual Struggle / Existential Crisis" },
+    { "slug": "what-do-i-do-when-im-losing-faith-in-everything-i--186602-023", "question": "What do I do when I'm losing faith in everything I used to believe?", "category": "Spiritual Struggle / Existential Crisis" },
+    { "slug": "what-do-i-do-when-prayer-or-meditation-no-longer-b-186602-027", "question": "What do I do when prayer or meditation no longer brings me peace?", "category": "Spiritual Struggle / Existential Crisis" },
+    { "slug": "why-am-i-losing-faith-in-everything-i-used-to-believe", "question": "Why am I losing faith in everything I used to believe?", "category": "Spiritual Doubt" },
+    { "slug": "why-do-i-feel-empty-even-when-my-life-looks-177941-018", "question": "Why do I feel empty even when my life looks good on paper?", "category": "Existential" },
+    { "slug": "why-do-i-feel-guilty-for-questioning-my-religious--186602-025", "question": "Why do I feel guilty for questioning my religious upbringing?", "category": "Spiritual Struggle / Existential Crisis" }
+  ]
+}

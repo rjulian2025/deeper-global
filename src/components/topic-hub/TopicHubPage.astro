@@ -48,6 +48,18 @@ const { config, hub } = Astro.props;
         </div>
 
         {
+          config.clinicalReviewer && (
+            <div class="topic-hub-reviewer">
+              <p class="topic-hub-label">Clinical reviewer</p>
+              <a class="topic-hub-reviewer-link" href={config.clinicalReviewer.href}>
+                {config.clinicalReviewer.name}
+              </a>
+              <p class="topic-hub-reviewer-specialty">{config.clinicalReviewer.specialty}</p>
+            </div>
+          )
+        }
+
+        {
           hub.featuredQuestions.length > 0 && (
             <section class="topic-hub-section" aria-labelledby="topic-hub-featured-title">
               <p class="topic-hub-label">{config.featuredSectionEyebrow ?? 'Start here'}</p>

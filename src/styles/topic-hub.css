@@ -117,6 +117,36 @@
   }
 }
 
+/* Reviewer attribution */
+.topic-hub-reviewer {
+  padding: var(--space-5) 0;
+  border-bottom: 0.5px solid var(--th-border);
+}
+
+.topic-hub-reviewer-link {
+  display: inline-block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--th-text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--th-border);
+  text-underline-offset: 3px;
+  margin-bottom: var(--space-2);
+}
+
+.topic-hub-reviewer-link:hover,
+.topic-hub-reviewer-link:focus-visible {
+  color: var(--color-accent, #2563eb);
+  text-decoration-color: currentColor;
+}
+
+.topic-hub-reviewer-specialty {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--th-text-secondary);
+  line-height: 1.5;
+}
+
 .topic-hub-intro-title {
   font-size: 1.25rem;
   line-height: 1.35;

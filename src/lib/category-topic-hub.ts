@@ -1,6 +1,6 @@
 import { categoryPath, displayCategory, getPrimaryTheme, slugify } from '@/lib/content';
 import { getSourceRefs } from '@/lib/trust';
-import type { TopicHubClusterConfig, TopicHubConfig } from '@/lib/topic-hub';
+import type { TopicHubClusterConfig, TopicHubConfig, TopicHubClinicalReviewer } from '@/lib/topic-hub';
 import type { Question } from '@/lib/supabase';
 
 /** Categories with enough corpus depth for editorial cluster layout. */
@@ -13,6 +13,7 @@ export type CategoryHubOverride = {
   introBlocks?: TopicHubConfig['introBlocks'];
   relatedHubs?: TopicHubConfig['relatedHubs'];
   heroActions?: TopicHubConfig['heroActions'];
+  clinicalReviewer?: TopicHubClinicalReviewer;
 };
 
 const CATEGORY_HUB_OVERRIDES: Record<string, CategoryHubOverride> = {
@@ -154,6 +155,37 @@ const CATEGORY_HUB_OVERRIDES: Record<string, CategoryHubOverride> = {
       { label: 'Themes directory', href: '/themes/' },
     ],
   },
+  'Meaning, Faith & Existential Questions': {
+    eyebrow: 'Meaning & faith hub',
+    title: 'Meaning, faith & the hard questions.',
+    lede:
+      'Existential doubt, spiritual transitions, the fear of meaninglessness, and what people search when the map they were given stops working.',
+    introBlocks: [
+      {
+        eyebrow: 'Coverage',
+        title: 'From spiritual doubt to existential crisis',
+        description:
+          'Faith deconstruction, the search for meaning after loss of belief, mortality questions, emptiness, and how to orient when inherited answers no longer hold.',
+      },
+      {
+        eyebrow: 'Perspective',
+        title: 'Philosophical, not clinical',
+        description:
+          'These questions live at the edge of psychology and philosophy. Answers are written to hold the depth of that territory without pretending there are clean resolutions.',
+      },
+    ],
+    clinicalReviewer: {
+      name: 'Rick Julian',
+      href: '/reviewers/rick-julian/',
+      specialty: 'Author & Philosopher · Spirituality & Meaning',
+    },
+    relatedHubs: [
+      { label: 'Identity & self-worth', href: '/categories/identity-and-self-worth/' },
+      { label: 'Depression', href: '/categories/depression/' },
+      { label: 'Grief & loss', href: '/categories/grief-and-loss/' },
+      { label: 'Therapy navigation', href: '/categories/therapy-navigation/' },
+    ],
+  },
 };
 
 function questionScore(question: Question): number {
@@ -249,6 +281,7 @@ export function buildCategoryTopicHubConfig(categoryName: string, questions: Que
         description: `Explore vetted answers organized by theme clusters below.`,
       },
     ],
+    ...(override.clinicalReviewer ? { clinicalReviewer: override.clinicalReviewer } : {}),
     featuredSlugs,
     featuredSectionEyebrow: 'Start here',
     featuredSectionTitle: `Common ${categoryName.toLowerCase()} concerns`,

@@ -20,6 +20,7 @@ import {
 import { getQuestions } from '@/lib/supabase';
 import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { getPilotEnrichmentBySlug, getSemanticSearchTerms, resolveSemanticEnrichmentSync } from '@/lib/semantic-enrichment';
+import { reviewerProfiles } from '@/data/reviewers';
 
 const questions = orderAnswersLibrary(filterPublishableQuestions(await getQuestions()));
 const sidebar = buildAnswersSidebarData(questions);
@@ -27,7 +28,7 @@ const pilotBySlug = getPilotEnrichmentBySlug();
 const pageSize = 48;
 const visibleQuestions = questions.slice(0, pageSize);
 const totalPages = Math.ceil(questions.length / pageSize);
-const searchIndex = questions.map((question) => {
+const questionSearchIndex = questions.map((question) => {
   const category = displayCategory(question);
   const title = getAnswerDisplayTitle(question);
   const summary = getAnswerSummary(question);
@@ -57,6 +58,40 @@ const searchIndex = questions.map((question) => {
     searchableText,
   };
 });
+
+const reviewerSearchEntries = reviewerProfiles.map((reviewer) => {
+  const nameParts = reviewer.name.replace(/^Dr\.\s*/i, '').split(' ');
+  const lastName = nameParts[nameParts.length - 2] ?? '';
+  const expertiseParts = [
+    reviewer.expertiseSummary ?? '',
+    ...(reviewer.expertiseTags ?? []),
+    ...(reviewer.expertiseDomains?.map((d) => `${d.label} ${d.description}`) ?? []),
+    ...(reviewer.modalities ?? []),
+    ...(reviewer.overviewParagraphs ?? []),
+    reviewer.credentialLine ?? '',
+    reviewer.specialtyLabel ?? '',
+  ];
+  const searchableText = [
+    reviewer.name,
+    lastName,
+    reviewer.bio,
+    reviewer.specialtyLabel ?? '',
+    'reviewer clinical reviewer reviewed by',
+    ...expertiseParts,
+  ].join(' ');
+
+  return {
+    title: `${reviewer.name} — Clinical Reviewer`,
+    summary: reviewer.bio,
+    category: 'Clinical Reviewer',
+    categoryUrl: '/reviewers/',
+    url: reviewer.url,
+    updated: 'Jun 2026',
+    searchableText,
+  };
+});
+
+const searchIndex = [...questionSearchIndex, ...reviewerSearchEntries];
 ---
 
 <BaseLayout

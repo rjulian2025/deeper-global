@@ -18,6 +18,18 @@ const REVIEWER_PROFILES = {
     specialty_label: 'Performance, Purpose & Self-Limiting Patterns',
     profile_url: `${SITE_URL}/reviewers/kenneth-w-christian-phd/`,
   },
+  'alex-crenshaw-phd': {
+    id: 'alex-crenshaw-phd',
+    name: 'Dr. Alex Crenshaw, PhD',
+    specialty_label: 'Adult ADHD Testing & Psychological Evaluation',
+    profile_url: `${SITE_URL}/reviewers/alex-crenshaw-phd/`,
+  },
+  'rick-julian': {
+    id: 'rick-julian',
+    name: 'Rick Julian',
+    specialty_label: 'Spirituality & Meaning',
+    profile_url: `${SITE_URL}/reviewers/rick-julian/`,
+  },
 };
 
 const REVIEWER_ALIASES = {
@@ -29,6 +41,13 @@ const REVIEWER_ALIASES = {
   'kenneth w christian phd': 'kenneth-w-christian-phd',
   'kenneth w. christian phd': 'kenneth-w-christian-phd',
   'kenneth w. christian, phd': 'kenneth-w-christian-phd',
+  'alex-crenshaw-phd': 'alex-crenshaw-phd',
+  'alex crenshaw phd': 'alex-crenshaw-phd',
+  'alex crenshaw, phd': 'alex-crenshaw-phd',
+  'dr. alex crenshaw, phd': 'alex-crenshaw-phd',
+  'dr. alex crenshaw phd': 'alex-crenshaw-phd',
+  'rick-julian': 'rick-julian',
+  'rick julian': 'rick-julian',
 };
 
 export const API_CONSTANTS = {

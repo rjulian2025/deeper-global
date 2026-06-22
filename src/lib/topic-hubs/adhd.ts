@@ -32,6 +32,11 @@ export function getAdhdTopicHubConfig(): TopicHubConfig {
           'These answers explain patterns and options. Only a qualified clinician can determine whether ADHD or another condition fits your experience.',
       },
     ],
+    clinicalReviewer: {
+      name: 'Dr. Alex Crenshaw, PhD',
+      href: '/reviewers/alex-crenshaw-phd/',
+      specialty: 'Licensed psychologist · Adult ADHD Testing & Psychological Evaluation',
+    },
     featuredSlugs: adhdFeaturedSlugs,
     featuredSectionEyebrow: 'Start here',
     featuredSectionTitle: 'Common ADHD concerns',

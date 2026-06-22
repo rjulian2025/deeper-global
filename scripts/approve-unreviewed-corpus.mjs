@@ -15,7 +15,7 @@ import { resolveSupabaseConfig } from './lib/supabase-env.mjs';
 const OUT_DIR = 'reports/answer-rewrite/approve-updates';
 const PAGE_SIZE = 1000;
 const INDEXABLE_REVIEW_STATUSES = new Set(['approved', 'published', 'reviewed']);
-const VALID_REVIEWER_IDS = new Set(['david-k-gore-phd', 'kenneth-w-christian-phd', 'codex-seo-review']);
+const VALID_REVIEWER_IDS = new Set(['david-k-gore-phd', 'kenneth-w-christian-phd', 'alex-crenshaw-phd', 'rick-julian', 'codex-seo-review']);
 const DEFAULT_REVIEWER = 'david-k-gore-phd';
 
 function parseArgs(argv) {

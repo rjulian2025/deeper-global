@@ -83,6 +83,107 @@ const peachtreeReferralUrl = (path: string, content: string) =>
 
 export const reviewerProfiles: ReviewerProfile[] = [
   {
+    id: 'rick-julian',
+    slug: 'rick-julian',
+    name: 'Rick Julian',
+    displayName: 'Rick Julian',
+    specialtyLabel: 'Spirituality & Meaning',
+    designation: 'Content reviewer for spirituality, meaning, and philosophical inquiry',
+    credentialLine: 'Bestselling Author of The Way | A Modern Tao Te Ching',
+    role: 'Author & Philosopher',
+    practiceUrl: 'https://www.rickjulian.com',
+    image: '/authorities/rick-julian.png',
+    imageAlt: 'Rick Julian — author and philosopher, content reviewer for spirituality and meaning at Deeper Global',
+    bio: 'Rick Julian is the author of The Way | A Modern Tao Te Ching, a bestselling reinterpretation of one of the world\'s most enduring philosophical texts. As a philosopher, speaker, and teacher, he brings decades of study in Taoist and Western philosophical traditions to questions of meaning, purpose, faith transitions, and how people navigate existential uncertainty.',
+    overviewParagraphs: [
+      'Rick\'s work centers on what it means to live well — not as an abstract ideal but as a daily practice. His writing draws from Taoism, Stoicism, and contemporary philosophy to offer grounded language for people wrestling with questions that don\'t resolve neatly.',
+      'His role at Deeper Global is to review content at the intersection of spirituality, existential crisis, and meaning-making, ensuring answers honor the depth of these questions without overstepping into clinical territory.',
+    ],
+    expertiseSummary:
+      'His perspective spans Taoist philosophy and the principle of wu wei, Stoic frameworks for equanimity and acceptance, the psychology of belief change and faith transitions, and the existential territory of meaning, purpose, and mortality.',
+    expertiseTags: [
+      'spirituality',
+      'meaning-making',
+      'Taoism',
+      'Stoicism',
+      'existential questions',
+      'purpose',
+      'faith transitions',
+      'philosophy',
+      'presence and acceptance',
+    ],
+    expertiseDomains: [
+      {
+        label: 'Spirituality & Meaning',
+        description: 'Finding or rebuilding a sense of meaning outside or alongside formal religion.',
+      },
+      {
+        label: 'Taoism & Eastern Philosophy',
+        description: 'Wu wei, the nature of flow, and living in alignment with what is rather than what should be.',
+      },
+      {
+        label: 'Existential Questions',
+        description: 'Mortality, emptiness, the fear of meaninglessness, and what grounds a life.',
+      },
+      {
+        label: 'Stoicism & Western Philosophy',
+        description: 'Acceptance, reason, and the practice of responding to circumstances with equanimity.',
+      },
+      {
+        label: 'Faith Transitions',
+        description: 'Leaving, questioning, or rebuilding a belief system — and finding footing during the in-between.',
+      },
+      {
+        label: 'Purpose & Direction',
+        description: 'What to do when the inherited roadmap stops working and you need to find your own.',
+      },
+    ],
+    clinicalPerspective:
+      'Many people arrive at existential questions not through philosophy but through pain — a loss, a collapse of belief, or the unsettling feeling that nothing quite means what it used to.',
+    reviewedContentGroups: [
+      {
+        name: 'Meaning & existential questions',
+        viewAllPath: '/categories/meaning-faith-and-existential-questions/',
+        slugs: [
+          'how-do-i-find-meaning-in-life-when-everything-feel-186602-024',
+          'why-do-i-feel-empty-even-when-my-life-looks-177941-018',
+          'how-do-i-cope-with-the-fear-that-death-means-compl-186602-026',
+          'how-do-i-find-meaning-when-i-no-longer-believe-what-i-was-taught',
+        ],
+      },
+      {
+        name: 'Faith transitions & spiritual doubt',
+        viewAllPath: '/categories/meaning-faith-and-existential-questions/',
+        slugs: [
+          'what-do-i-do-when-im-losing-faith-in-everything-i--186602-023',
+          'why-am-i-losing-faith-in-everything-i-used-to-believe',
+          'why-do-i-feel-guilty-for-questioning-my-religious--186602-025',
+          'how-do-i-handle-family-rejection-after-changing-my-186602-028',
+          'what-do-i-do-when-prayer-or-meditation-no-longer-b-186602-027',
+        ],
+      },
+    ],
+    reviewedKnowledgeTitle: 'Reviewed perspectives on meaning & spirituality',
+    reviewedKnowledgeIntro:
+      'Content reviewed for philosophical depth, honest framing of uncertainty, and language that holds space for people navigating questions that don\'t have clean answers.',
+    hubConnection: {
+      hubPath: '/categories/meaning-faith-and-existential-questions/',
+      hubLabel: 'Meaning & faith hub',
+      summary:
+        'Explore answers about existential questions, spiritual doubt, faith transitions, and the search for meaning — reviewed through a philosophical lens.',
+    },
+    referralLinks: [
+      {
+        label: 'rickjulian.com',
+        href: 'https://www.rickjulian.com',
+        description: 'Author website, writing, and speaking',
+      },
+    ],
+    disclaimer: 'Content review reflects philosophical and experiential perspective and does not constitute clinical, therapeutic, or religious guidance.',
+    sameAs: ['https://www.rickjulian.com'],
+    url: '/reviewers/rick-julian/',
+  },
+  {
     id: 'alex-crenshaw-phd',
     slug: 'alex-crenshaw-phd',
     name: 'Dr. Alex Crenshaw, PhD',
@@ -159,29 +260,70 @@ export const reviewerProfiles: ReviewerProfile[] = [
       'Many adults seek ADHD testing after years of wondering why effort, focus, and follow-through feel harder than they should.',
     reviewedContentGroups: [
       {
-        name: 'ADHD',
+        name: 'ADHD diagnosis & testing',
         viewAllPath: '/adhd/',
         slugs: [
           'how-do-i-know-if-i-have-adhd-as-an-adult',
           'how-do-i-get-tested-for-adhd-as-an-adult',
+          'what-is-adhd-and-how-is-it-different-from-just-being-distracted',
           'what-are-the-signs-of-adhd-in-women',
           'can-trauma-look-like-adhd',
+          'what-is-the-difference-between-adhd-and-bipolar-disorder',
         ],
       },
       {
-        name: 'Testing',
+        name: 'Executive function & daily life',
         viewAllPath: '/adhd/',
         slugs: [
-          'how-do-i-get-tested-for-adhd-as-an-adult',
-          'what-is-adhd-and-how-is-it-different-from-just-being-distracted',
+          'what-is-executive-dysfunction-and-how-does-it-affect-daily-life',
+          'how-do-i-cope-with-adhd-time-blindness',
+          'how-do-i-stop-forgetting-things-with-adhd',
+          'is-hyperfocus-a-symptom-of-adhd',
+          'why-do-i-feel-overwhelmed-by-simple-dail-190648-007',
+          'why-do-i-feel-like-i-cant-handle-normal-adult-184730-088',
+          'can-depression-make-basic-tasks-hard',
         ],
       },
       {
-        name: 'Anxiety',
-        viewAllPath: '/categories/anxiety-and-stress/',
+        name: 'Emotional regulation & anxiety',
+        viewAllPath: '/adhd/',
         slugs: [
+          'why-do-i-get-so-emotionally-overwhelmed-with-adhd',
+          'what-is-rejection-sensitive-dysphoria-and-adhd',
+          'how-do-i-stop-feeling-overwhelmed-by-everything',
           'how-do-i-function-when-anxiety-makes-everything-feel-overwhelming',
           'can-adhd-cause-anxiety-and-depression',
+        ],
+      },
+      {
+        name: 'Treatment, medication & routines',
+        viewAllPath: '/adhd/',
+        slugs: [
+          'how-do-i-manage-adhd-without-medication',
+          'how-do-adhd-medications-work',
+          'how-do-i-build-routines-with-adhd',
+          'how-do-i-manage-adhd-burnout',
+          'how-do-i-find-motivation-when-im-depressed-z8a9b1',
+        ],
+      },
+      {
+        name: 'Work, school & accommodations',
+        viewAllPath: '/adhd/',
+        slugs: [
+          'how-do-i-stay-focused-at-work-with-adhd',
+          'how-do-i-explain-adhd-to-my-employer',
+          'what-workplace-accommodations-help-adults-with-adhd',
+          'how-do-i-study-with-adhd',
+          'how-do-i-deal-with-feeling-overwhelmed-by-wo-177941-013',
+        ],
+      },
+      {
+        name: 'Relationships & communication',
+        viewAllPath: '/adhd/',
+        slugs: [
+          'how-do-i-manage-adhd-in-relationships',
+          'what-should-i-tell-my-partner-about-adhd',
+          'how-do-i-stop-feeling-overwhelmed-by-social-y7z3a6',
         ],
       },
       {

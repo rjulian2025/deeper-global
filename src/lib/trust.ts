@@ -29,6 +29,8 @@ const REVIEWER_ALIASES: Record<string, string> = {
   'kenneth w christian phd': 'kenneth-w-christian-phd',
   'kenneth w. christian phd': 'kenneth-w-christian-phd',
   'kenneth w. christian, phd': 'kenneth-w-christian-phd',
+  'rick-julian': 'rick-julian',
+  'rick julian': 'rick-julian',
 };
 
 function normalizeReviewerLabel(value: string) {

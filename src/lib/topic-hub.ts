@@ -19,6 +19,12 @@ export type TopicHubIntroBlock = {
   description: string;
 };
 
+export type TopicHubClinicalReviewer = {
+  name: string;
+  href: string;
+  specialty: string;
+};
+
 export type TopicHubClusterCrossLink = {
   overlapLabel: string;
   hubPath: string;
@@ -47,6 +53,7 @@ export type TopicHubConfig = {
   lede: string;
   heroActions?: TopicHubHeroAction[];
   introBlocks: TopicHubIntroBlock[];
+  clinicalReviewer?: TopicHubClinicalReviewer;
   featuredSlugs: string[];
   featuredSectionEyebrow?: string;
   featuredSectionTitle?: string;
