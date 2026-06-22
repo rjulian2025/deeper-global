@@ -339,71 +339,47 @@ function buildEmailText(data) {
   return lines.join('\n');
 }
 
-// ── Twilio SMS send ───────────────────────────────────────────────────────────
+// ── Resend email send ─────────────────────────────────────────────────────────
 // Env vars required:
-//   TWILIO_ACCOUNT_SID   — from Twilio Console dashboard
-//   TWILIO_AUTH_TOKEN    — from Twilio Console dashboard
-//   TWILIO_FROM_NUMBER   — your Twilio number, e.g. +18333509520
-//   TWILIO_TO_NUMBER     — your mobile, e.g. +14048221018
-
-function buildSmsBody(data) {
-  const status = data.pipelineHealthy ? '✅ Healthy' : '⚠️ Issue';
-  const day = new Date().toLocaleDateString('en-US', { timeZone: 'America/New_York', weekday: 'short', month: 'short', day: 'numeric' });
-  const lastPost = data.lastPublishedAt
-    ? `${data.hoursSinceLast}h ago`
-    : 'never';
-  const runsUntil = data.queueRunsUntil
-    ? new Date(data.queueRunsUntil).toLocaleDateString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric' })
-    : '?';
-  const failLine = data.recentlyFailed.length > 0
-    ? `\nFailed posts: ${data.recentlyFailed.length} ⚠️`
-    : '';
-
-  return [
-    `@deeperglobal ${status} · ${day}`,
-    `Last post: ${lastPost}`,
-    `Published this week: ${data.recentlyPublished.length}`,
-    `Queue: ${data.queueCount} posts (thru ${runsUntil})${failLine}`,
-    `deeper.global`,
-  ].join('\n');
-}
+//   RESEND_API_KEY  — from resend.com dashboard
+// Optional overrides:
+//   REPORT_EMAIL_FROM  — defaults to alerts@therapistgps.com (verified sender)
+//   REPORT_EMAIL_TO    — defaults to rjulian@qvbrands.com
 
 async function sendNotification(data) {
-  const accountSid = (process.env.TWILIO_ACCOUNT_SID ?? '').trim();
-  const authToken = (process.env.TWILIO_AUTH_TOKEN ?? '').trim();
-  const messagingServiceSid = (process.env.TWILIO_MESSAGING_SERVICE_SID ?? '').trim();
-  const from = (process.env.TWILIO_FROM_NUMBER ?? '').trim();
-  const to = (process.env.TWILIO_TO_NUMBER ?? '+14048221018').trim();
+  const apiKey = (process.env.RESEND_API_KEY ?? '').trim();
+  if (!apiKey) throw new Error('Missing RESEND_API_KEY.');
 
-  if (!accountSid || !authToken) {
-    throw new Error('Missing TWILIO_ACCOUNT_SID or TWILIO_AUTH_TOKEN.');
-  }
-  if (!messagingServiceSid && !from) {
-    throw new Error('Missing TWILIO_MESSAGING_SERVICE_SID or TWILIO_FROM_NUMBER.');
-  }
+  const from = (process.env.REPORT_EMAIL_FROM ?? 'alerts@therapistgps.com').trim();
+  const to = (process.env.REPORT_EMAIL_TO ?? DEFAULT_REPORT_TO).trim();
 
-  const body = buildSmsBody(data);
-  const sender = messagingServiceSid
-    ? { MessagingServiceSid: messagingServiceSid }
-    : { From: from };
-  const params = new URLSearchParams({ To: to, Body: body, ...sender });
-  const credentials = Buffer.from(`${accountSid}:${authToken}`).toString('base64');
+  const dayLabel = new Date().toLocaleDateString('en-US', {
+    timeZone: 'America/New_York',
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  });
+  const statusWord = data.pipelineHealthy ? '✅ Healthy' : '⚠️ Needs attention';
+  const subject = `@deeperglobal ${statusWord} · ${dayLabel}`;
 
-  const response = await fetch(
-    `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Basic ${credentials}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: params.toString(),
-    }
-  );
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to,
+      subject,
+      html: buildEmailHtml(data),
+      text: buildEmailText(data),
+    }),
+  });
 
   const result = await response.json().catch(() => ({}));
   if (!response.ok) {
-    throw new Error(`Twilio SMS failed: ${result?.message ?? response.statusText}`);
+    throw new Error(`Resend email failed: ${result?.message ?? response.statusText}`);
   }
   return result;
 }
@@ -429,14 +405,14 @@ export default async function handler(req, res) {
       return res.status(200).json({ mode: 'dry-run', data });
     }
 
-    const sms = await sendNotification(data);
+    const email = await sendNotification(data);
     return res.status(202).json({
       ok: true,
       pipelineHealthy: data.pipelineHealthy,
       queueCount: data.queueCount,
       publishedLast7Days: data.recentlyPublished.length,
       failedCount: data.recentlyFailed.length,
-      sms_sid: sms?.sid ?? null,
+      email_id: email?.id ?? null,
     });
   } catch (error) {
     console.error('social_status_report_failed', error);
