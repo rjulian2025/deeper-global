@@ -2,8 +2,9 @@
 import '../styles/global.css';
 import { organizationId, siteUrl, SITE_NAME, websiteId } from '@/lib/site';
 
-const DEFAULT_OG_IMAGE_PATH = '/og/deeper-global-og.jpg';
-const DEFAULT_OG_IMAGE_ALT = 'Deeper Global trusted mental health answers';
+const DEFAULT_OG_IMAGE_PATH = '/og/deeper-global-og-v2.png';
+const DEFAULT_OG_IMAGE_ALT =
+  'Deeper Global — mental health answers for the questions you ask when no one is looking';
 const DEFAULT_OG_IMAGE_WIDTH = 1200;
 const DEFAULT_OG_IMAGE_HEIGHT = 630;
 
@@ -21,8 +22,8 @@ type Props = {
 };
 
 const {
-  title = `${SITE_NAME} | Trusted Mental Health Answers`,
-  description = 'Evidence-informed mental health answers built for people, search, and responsible AI systems.',
+  title = `${SITE_NAME} | Mental health answers worth asking`,
+  description = 'Expert-vetted answers for the questions you ask when no one is looking — too personal, too tangled, or too hard to ask out loud.',
   canonicalPath = Astro.url.pathname,
   ogType = 'website',
   jsonLd,
