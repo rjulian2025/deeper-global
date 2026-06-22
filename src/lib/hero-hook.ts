@@ -1,5 +1,4 @@
 import { answerPath, getAnswerDisplayTitle, getDisplayLede } from '@/lib/content';
-import { pickCuriosityQuestions } from '@/lib/homepage-curiosity';
 import type { Question } from '@/lib/supabase';
 
 export type HeroHookItem = {
@@ -24,7 +23,7 @@ export function truncateWords(value: string, maxWords = TEASER_WORD_COUNT): stri
 }
 
 export function buildHeroHookItems(questions: Question[], limit = 6): HeroHookItem[] {
-  const picked = pickCuriosityQuestions(questions, limit);
+  const picked = questions.slice(0, limit);
 
   return picked.map((question) => {
     const title = getAnswerDisplayTitle(question);

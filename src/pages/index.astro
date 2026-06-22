@@ -9,29 +9,37 @@ import TopicDirectory from '@/components/TopicDirectory.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { answerPath, categoryPath, displayCategory, formatDate, getAnswerDisplayTitle, getAnswerSummary, getCategorySummaries, truncate } from '@/lib/content';
 import { buildHeroHookItems, buildHeroStatCounters, estimateHeroRotatingMinHeight } from '@/lib/hero-hook';
-import { pickCuriosityQuestions } from '@/lib/homepage-curiosity';
+import { buildHomepageCuriosityLayout } from '@/lib/homepage-curiosity';
 import { buildHomepageSidebarData } from '@/lib/homepage-sidebar';
 import '@/styles/homepage-sidebar.css';
 import { getQuestions } from '@/lib/supabase';
 import { getEditorialTopicDirectory } from '@/lib/topic-directory';
 
 const questions = await getQuestions();
-const sidebar = buildHomepageSidebarData(questions);
+const curiosityLayout = buildHomepageCuriosityLayout(questions);
+const homepageReservedSlugs = [
+  ...curiosityLayout.heroRotating,
+  ...curiosityLayout.heroPopular,
+  ...curiosityLayout.feed,
+  ...curiosityLayout.sidebarAskingNow,
+  ...(curiosityLayout.featured ? [curiosityLayout.featured] : []),
+].map((question) => question.slug);
+const sidebar = buildHomepageSidebarData(
+  questions,
+  curiosityLayout.sidebarAskingNow,
+  homepageReservedSlugs,
+);
 const categories = getCategorySummaries(questions);
 const topicDirectory = getEditorialTopicDirectory(questions);
 
-const recentQuestions = pickCuriosityQuestions(questions, 6);
-const featuredQuestion = pickCuriosityQuestions(
-  questions.filter((question) => !recentQuestions.some((item) => item.slug === question.slug)),
-  1,
-)[0] ?? questions[0];
+const recentQuestions = curiosityLayout.feed;
+const featuredQuestion = curiosityLayout.featured;
 const featuredCategory = featuredQuestion ? displayCategory(featuredQuestion) : null;
-const heroHookItems = buildHeroHookItems(questions, 6);
+const heroHookItems = buildHeroHookItems(curiosityLayout.heroRotating);
 const heroRotatingMinHeight = estimateHeroRotatingMinHeight(heroHookItems);
 const heroStats = buildHeroStatCounters(questions, categories.length);
 const heroSearchPlaceholder = heroHookItems[0]?.placeholder ?? 'Why do I shut down when someone is upset with me?';
-const trendingQuestions = pickCuriosityQuestions(questions, 4);
-const popularLinks = trendingQuestions.map((question) => ({
+const popularLinks = curiosityLayout.heroPopular.map((question) => ({
   href: answerPath(question.slug),
   label: getAnswerDisplayTitle(question),
 }));

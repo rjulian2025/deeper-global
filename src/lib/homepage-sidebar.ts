@@ -1,5 +1,4 @@
 import { answerPath, getAnswerDisplayTitle } from '@/lib/content';
-import { pickCuriosityQuestions } from '@/lib/homepage-curiosity';
 import { homepageStartingPoints } from '@/lib/homepage-starting-points';
 import type { Question } from '@/lib/supabase';
 
@@ -20,15 +19,18 @@ function questionTimestamp(question: Question): number {
   return value ? Date.parse(value) : 0;
 }
 
-export function buildHomepageSidebarData(questions: Question[]): HomepageSidebarData {
-  const askingNowQuestions = pickCuriosityQuestions(questions, 3, {
-    maxPerCategory: 1,
-    maxAdhdQuestions: 1,
-  });
-  const askingNowSlugs = new Set(askingNowQuestions.map((question) => question.slug));
+export function buildHomepageSidebarData(
+  questions: Question[],
+  askingNowQuestions: Question[] = [],
+  reservedSlugs: Iterable<string> = [],
+): HomepageSidebarData {
+  const reserved = new Set([
+    ...askingNowQuestions.map((question) => question.slug),
+    ...reservedSlugs,
+  ]);
 
   const newThisWeek = [...questions]
-    .filter((question) => !askingNowSlugs.has(question.slug))
+    .filter((question) => !reserved.has(question.slug))
     .sort((a, b) => questionTimestamp(b) - questionTimestamp(a))
     .slice(0, 2)
     .map((question) => ({
