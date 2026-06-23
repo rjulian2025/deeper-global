@@ -1,6 +1,14 @@
 import { TwitterApi } from 'twitter-api-v2';
 import type { SocialPost } from './db';
 
+// X shortens all URLs to t.co links counted as this many characters.
+const X_TCO_URL_LENGTH = 23;
+const X_MAX_WEIGHTED_LENGTH = 280;
+
+function getXWeightedLength(text: string) {
+  return text.replace(/https?:\/\/\S+/g, 'x'.repeat(X_TCO_URL_LENGTH)).length;
+}
+
 export type XCredentials = {
   appKey: string;
   appSecret: string;
@@ -57,7 +65,8 @@ export function createXPoster(credentials: XCredentials) {
   return async function postToX(text: string) {
     const body = text.trim();
     if (!body) throw new Error('x_post_body_required');
-    if (body.length > 280) throw new Error(`x_post_body_too_long:${body.length}`);
+    const weightedLength = getXWeightedLength(body);
+    if (weightedLength > X_MAX_WEIGHTED_LENGTH) throw new Error(`x_post_body_too_long:${weightedLength}`);
 
     const payload = await client.v2.tweet(body);
     const id = payload.data?.id;
