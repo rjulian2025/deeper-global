@@ -1,6 +1,6 @@
 # GSC Index Coverage Summary
 
-Generated: 2026-06-23T13:45:12.212Z
+Generated: 2026-06-23T13:45:59.505Z
 
 Ingest GSC **Page indexing** CSV exports weekly before hygiene or sitemap policy changes.
 
