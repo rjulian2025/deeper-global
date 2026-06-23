@@ -2,6 +2,25 @@ import { spawnSync } from 'node:child_process';
 
 const DEFAULT_PROJECT_REF = 'ldizjhrfnxaacedmbujt';
 
+function commandExists(command) {
+  return spawnSync('sh', ['-lc', `command -v ${command}`], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+  }).status === 0;
+}
+
+function vercelCliCommand() {
+  if (commandExists('vercel')) {
+    return { command: 'vercel', baseArgs: [] };
+  }
+
+  if (process.env.VERCEL_TOKEN?.trim()) {
+    return { command: 'npx', baseArgs: ['--yes', 'vercel@latest'] };
+  }
+
+  return null;
+}
+
 function extractJson(stdout) {
   const text = stdout.trim();
   const start = text.indexOf('{');
@@ -33,9 +52,23 @@ export function fetchSupabaseServiceRoleKey(projectRef = DEFAULT_PROJECT_REF) {
 }
 
 export function ensureVercelEnv(name, value, environment = 'production') {
-  const result = spawnSync('vercel', ['env', 'add', name, environment], {
+  const cli = vercelCliCommand();
+  if (!cli) {
+    return {
+      ok: false,
+      error: 'Vercel CLI is not installed and VERCEL_TOKEN is not set. Cannot update Vercel env non-interactively.',
+    };
+  }
+
+  const args = [...cli.baseArgs, 'env', 'add', name, environment];
+  if (process.env.VERCEL_TOKEN?.trim()) {
+    args.push('--token', process.env.VERCEL_TOKEN.trim());
+  }
+
+  const result = spawnSync(cli.command, args, {
     encoding: 'utf8',
     input: `${value}\n`,
+    env: { ...process.env, CI: '1' },
   });
 
   if (result.status === 0) {

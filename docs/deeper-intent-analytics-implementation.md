@@ -92,6 +92,14 @@ For a non-secret GSC readiness check with the exact missing inputs, run:
 npm run content:gsc-preflight
 ```
 
+To populate local cloud-agent env files from Vercel Production, set `VERCEL_TOKEN` in the shell or install and authenticate the Vercel CLI, then run:
+
+```bash
+npm run env:sync
+```
+
+The sync writes ignored local files only. It expects production to already contain `SUPABASE_URL`, `SUPABASE_ANON_KEY` or `PUBLIC_SUPABASE_ANON_KEY`, and either `GSC_PROXY_URL` plus `GSC_PROXY_SECRET` or approved service-account key credentials.
+
 Required production environment variables:
 
 - `CRON_SECRET`: authorizes the Vercel Cron request.
