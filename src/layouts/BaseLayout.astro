@@ -8,6 +8,10 @@ const DEFAULT_OG_IMAGE_ALT =
 const DEFAULT_OG_IMAGE_WIDTH = 1200;
 const DEFAULT_OG_IMAGE_HEIGHT = 630;
 
+// Routes that should never fire GA4 events (design/prototype pages).
+// Add new prototype path prefixes here when needed.
+const ANALYTICS_EXCLUDED_PREFIXES = ['/design-evolution/'];
+
 type Props = {
   title?: string;
   description?: string;
@@ -15,6 +19,8 @@ type Props = {
   ogType?: 'website' | 'article';
   jsonLd?: Record<string, unknown>;
   noindex?: boolean;
+  /** Pass true on design/prototype pages to suppress all GA4 tracking. */
+  noAnalytics?: boolean;
   imagePath?: string;
   imageAlt?: string;
   imageWidth?: number;
@@ -28,15 +34,20 @@ const {
   ogType = 'website',
   jsonLd,
   noindex = false,
+  noAnalytics = false,
   imagePath = DEFAULT_OG_IMAGE_PATH,
   imageAlt = DEFAULT_OG_IMAGE_ALT,
   imageWidth = DEFAULT_OG_IMAGE_WIDTH,
   imageHeight = DEFAULT_OG_IMAGE_HEIGHT,
 } = Astro.props;
 
+const suppressAnalytics =
+  noAnalytics ||
+  ANALYTICS_EXCLUDED_PREFIXES.some((prefix) => Astro.url.pathname.startsWith(prefix));
+
 const canonicalUrl = siteUrl(canonicalPath);
 const imageUrl = /^https?:\/\//i.test(imagePath) ? imagePath : siteUrl(imagePath);
-const GA_MEASUREMENT_ID = import.meta.env.NEXT_PUBLIC_GA_ID ?? 'G-7431WR2PB3';
+const GA_MEASUREMENT_ID = import.meta.env.NEXT_PUBLIC_GA_ID ?? 'G-VY56C15LGV';
 const INTENT_EVENT_ENDPOINT = import.meta.env.PUBLIC_INTENT_EVENT_ENDPOINT ?? '/api/intent-event';
 const siteGraph = [
   {
@@ -93,17 +104,21 @@ const structuredData = {
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
     <link rel="alternate" type="text/plain" href="/agents.txt" title="agents.txt" />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
-    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function gtag(){window.dataLayer.push(arguments);}
-      window.gtag('js', new Date());
-      window.gtag('config', GA_MEASUREMENT_ID, {
-        page_location: `${window.location.origin}${window.location.pathname}`,
-        page_path: window.location.pathname,
-      });
-    </script>
+    {!suppressAnalytics && (
+      <>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+        <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function gtag(){window.dataLayer.push(arguments);}
+          window.gtag('js', new Date());
+          window.gtag('config', GA_MEASUREMENT_ID, {
+            page_location: `${window.location.origin}${window.location.pathname}`,
+            page_path: window.location.pathname,
+          });
+        </script>
+      </>
+    )}
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -175,7 +190,7 @@ const structuredData = {
         </div>
       </footer>
     </div>
-    <script is:inline define:vars={{ INTENT_EVENT_ENDPOINT }}>
+    {!suppressAnalytics && <script is:inline define:vars={{ INTENT_EVENT_ENDPOINT }}>
       (() => {
         const MAX_PARAM_LENGTH = 100;
         const sameHost = window.location.hostname;
@@ -473,6 +488,6 @@ const structuredData = {
           }
         });
       })();
-    </script>
+    </script>}
   </body>
 </html>
