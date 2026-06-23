@@ -14,21 +14,21 @@ export const entityPractitionerLinks: Record<string, PractitionerLink> = {
     label: 'how therapist website design builds trust for anxiety seekers',
     title: 'For practitioners',
     body:
-      'People researching anxiety often evaluate fit online before they book. Private practices need sites that answer those questions with clarity and calm — not generic wellness copy.',
+      'People researching anxiety often evaluate fit online before they book. Private practices need sites that answer those questions with clarity and calm, not generic wellness copy.',
   },
   'therapy-navigation': {
     href: `${DEEPER_WEBSITES_BASE}/website-design-for-therapists/`,
     label: 'website design for therapists',
     title: 'For practitioners',
     body:
-      'Clients arrive here with navigation questions. Your practice website should answer the same questions with specificity — fees, fit, location, and what happens next.',
+      'Clients arrive here with navigation questions. Your practice website should answer the same questions with specificity: fees, fit, location, and what happens next.',
   },
   'therapy-and-mental-health': {
     href: `${DEEPER_WEBSITES_BASE}/website-design-for-therapists/`,
     label: 'psychologically informed therapist websites',
     title: 'For practitioners',
     body:
-      'When someone is choosing care, your site is often the first relationship they have with your practice. Design is trust infrastructure — not decoration.',
+      'When someone is choosing care, your site is often the first relationship they have with your practice. Design is trust infrastructure, not decoration.',
   },
   'social-anxiety': {
     href: `${DEEPER_WEBSITES_BASE}/website-design-for-therapists/`,
@@ -42,14 +42,14 @@ export const entityPractitionerLinks: Record<string, PractitionerLink> = {
     label: 'practice websites for burnout-focused therapists',
     title: 'For practitioners',
     body:
-      'Clinicians treating burnout while running full caseloads need websites that pre-qualify fit — so inquiries match the work you actually want to do.',
+      'Clinicians treating burnout while running full caseloads need websites that pre-qualify fit, so inquiries match the work you actually want to do.',
   },
   'mental-health-access': {
     href: `${DEEPER_WEBSITES_BASE}/how-to-choose-a-therapist-website-designer/`,
     label: 'how to choose a therapist website designer',
     title: 'For private practice owners',
     body:
-      'Access starts with being findable. When you invest in a practice website, evaluate providers on positioning strategy and citability — not just aesthetics.',
+      'Access starts with being findable. When you invest in a practice website, evaluate providers on positioning strategy and citability, not just aesthetics.',
   },
   'general-mental-health': {
     href: `${DEEPER_WEBSITES_BASE}/how-to-choose-a-therapist-website-designer/`,
@@ -63,7 +63,7 @@ export const entityPractitionerLinks: Record<string, PractitionerLink> = {
     label: 'honest checklist for hiring a therapy website studio',
     title: 'For practitioners',
     body:
-      'Serving identity and self-worth in session is clinical work. Choosing a web partner is a separate decision — one that affects who finds you and how accurately you are represented online.',
+      'Serving identity and self-worth in session is clinical work. Choosing a web partner is a separate decision, one that affects who finds you and how accurately you are represented online.',
   },
 };
 
@@ -81,7 +81,7 @@ export const answerPractitionerLinks: Record<string, PractitionerLink> = {
     label: 'evaluation framework for therapist website providers',
     title: 'For private practice owners',
     body:
-      'Directories and platforms are channels — not a substitute for a site you control. When you hire a web partner, ask how they will help the right clients recognize themselves and reach out.',
+      'Directories and platforms are channels, not a substitute for a site you control. When you hire a web partner, ask how they will help the right clients recognize themselves and reach out.',
   },
 };
 

@@ -77,6 +77,6 @@ export function getAdhdTopicHubConfig(): TopicHubConfig {
     ],
     jsonLdName: 'ADHD hub: diagnosis, executive function, treatment, and daily life',
     jsonLdDescription:
-      'A curated Deeper Global hub for ADHD in adults—diagnosis, executive dysfunction, emotional overwhelm, medication, work accommodations, relationships, and daily coping.',
+      'A curated Deeper Global hub for ADHD in adults: diagnosis, executive dysfunction, emotional overwhelm, medication, work accommodations, relationships, and daily coping.',
   };
 }

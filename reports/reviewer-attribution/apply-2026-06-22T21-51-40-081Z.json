@@ -1,0 +1,231 @@
+{
+  "applied_at": "2026-06-22T21:51:40.081Z",
+  "reviewer": "alex-crenshaw-phd",
+  "reviewed_at": "2026-06-22",
+  "updated_count": 31,
+  "skipped_count": 0,
+  "not_found_count": 1,
+  "updated": [
+    {
+      "id": "231c788c-8e19-4920-99aa-5b91d337fff6",
+      "slug": "how-do-i-know-if-i-have-adhd-as-an-adult",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "5c00d051-cbe2-48db-9701-73795f50f177",
+      "slug": "what-is-adhd-and-how-is-it-different-from-just-being-distracted",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "b150e12f-4722-4db8-aab6-87a9bc812e95",
+      "slug": "how-do-i-get-tested-for-adhd-as-an-adult",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "741188a5-d594-4a63-b7d1-49024a1d8cd3",
+      "slug": "what-are-the-signs-of-adhd-in-women",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "744d9c6c-e500-4321-84b4-c9670da8be7d",
+      "slug": "can-trauma-look-like-adhd",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "a69457b9-4a8f-4915-98c3-a2198999234e",
+      "slug": "what-is-the-difference-between-adhd-and-bipolar-disorder",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "ae6926f8-377d-4d8b-839f-900032e74225",
+      "slug": "what-is-executive-dysfunction-and-how-does-it-affect-daily-life",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "fa6adc93-c81d-4db0-9268-1dd9fa3ef0b4",
+      "slug": "how-do-i-cope-with-adhd-time-blindness",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "94f631d0-c9f4-467b-9fd0-4363513d77ce",
+      "slug": "how-do-i-stop-procrastinating-when-im-afraid-of-no-187459-013",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "cde08a3a-547c-416b-81d5-2053a9b8ec82",
+      "slug": "how-do-i-stop-forgetting-things-with-adhd",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "650addc1-1202-4518-b5bf-1ee480586cf0",
+      "slug": "is-hyperfocus-a-symptom-of-adhd",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "0aef7211-890d-427b-a6f4-2926878d2747",
+      "slug": "why-do-i-feel-overwhelmed-by-simple-dail-190648-007",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "b7d9dd9a-8391-46e6-a5d2-7889c1f37a84",
+      "slug": "why-do-i-feel-like-i-cant-handle-normal-adult-184730-088",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "189b965e-1507-46dd-ad18-24bc5d4a37d7",
+      "slug": "can-depression-make-basic-tasks-hard",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "8a6da00f-4505-49ce-9c94-d966b89bd0ec",
+      "slug": "why-do-i-get-so-emotionally-overwhelmed-with-adhd",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "cbf65e92-e32d-4fe8-84a9-aea5cf2e32fe",
+      "slug": "what-is-rejection-sensitive-dysphoria-and-adhd",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "66514680-6230-4b30-b89a-e3a2dbd1101e",
+      "slug": "how-do-i-stop-feeling-overwhelmed-by-everything",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "50f0e4d6-8ac6-4a7c-84fe-f5de1e3f89a1",
+      "slug": "how-do-i-function-when-anxiety-makes-everything-feel-overwhelming",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "6f6f56ce-ea45-4e70-9e03-3c712030c1d2",
+      "slug": "can-adhd-cause-anxiety-and-depression",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "ae0ec078-bf9d-498f-958c-ff97a60e2189",
+      "slug": "how-do-i-manage-adhd-without-medication",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "759cf4ad-8e40-4d1e-bf82-0fe059bf2bcd",
+      "slug": "how-do-adhd-medications-work",
+      "previous_reviewed_by": "codex-seo-review",
+      "previous_reviewed_at": null,
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "61c4b80d-440e-4f98-8cd9-f6dd102e9a04",
+      "slug": "how-do-i-build-routines-with-adhd",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "02ec3dd4-2aae-46bc-9ab2-6c638362c103",
+      "slug": "how-do-i-manage-adhd-burnout",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "513c7c36-36e8-4d05-812c-0c6bba7812c3",
+      "slug": "how-do-i-find-motivation-when-im-depressed-z8a9b1",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "9c4d3e75-9d3d-4d9b-8d65-de8c3163f858",
+      "slug": "how-do-i-stay-focused-at-work-with-adhd",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "f366393b-9836-4647-a73a-6bea8ad198f6",
+      "slug": "how-do-i-explain-adhd-to-my-employer",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "a4bbf53f-251f-48bd-ba84-f5113855e920",
+      "slug": "what-workplace-accommodations-help-adults-with-adhd",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "3c07024f-f076-4c52-93b2-15e38b682927",
+      "slug": "how-do-i-study-with-adhd",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "a03be7fe-a8f1-483a-8ff3-7f7e433b22fc",
+      "slug": "how-do-i-deal-with-feeling-overwhelmed-by-wo-177941-013",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "eec13b56-1408-4fd8-b708-d43874b6970f",
+      "slug": "how-do-i-manage-adhd-in-relationships",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "948f98e5-c43e-4ad3-9d2d-8e912ebfe54b",
+      "slug": "what-should-i-tell-my-partner-about-adhd",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    }
+  ],
+  "skipped": [],
+  "not_found": [
+    "how-do-i-stop-feeling-overwhelmed-by-social-y7z3a6"
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "version": "gsc-index-coverage-v1",
+  "generated_at": "2026-06-21T13:28:30.830Z",
+  "site": "https://www.deeper.global",
+  "source_files": [
+    {
+      "path": "reports/gsc-indexing/2026-06-21-sample/crawled-not-indexed/Table.csv",
+      "reason": "crawled_not_indexed"
+    }
+  ],
+  "totals": {
+    "urls": 3,
+    "reasons": 1,
+    "source_files": 1
+  },
+  "by_reason": {
+    "crawled_not_indexed": {
+      "count": 3,
+      "files": [
+        "reports/gsc-indexing/2026-06-21-sample/crawled-not-indexed/Table.csv"
+      ],
+      "sample": [
+        {
+          "url": "https://www.deeper.global/answers/example-answer-slug/",
+          "pathname": "/answers/example-answer-slug/",
+          "lastCrawled": "2026-06-18"
+        },
+        {
+          "url": "https://www.deeper.global/design-evolution/direction-d/",
+          "pathname": "/design-evolution/direction-d/",
+          "lastCrawled": "2026-06-17"
+        },
+        {
+          "url": "https://www.deeper.global/categories/existential/",
+          "pathname": "/categories/existential/",
+          "lastCrawled": "2026-06-16"
+        }
+      ]
+    }
+  },
+  "by_bucket": {
+    "answer-detail": {
+      "crawled_not_indexed": 1,
+      "total": 1
+    },
+    "answers-index": {},
+    "design-evolution": {
+      "crawled_not_indexed": 1,
+      "total": 1
+    },
+    "answers-random": {},
+    "categories": {
+      "crawled_not_indexed": 1,
+      "total": 1
+    },
+    "entities": {},
+    "themes": {},
+    "modalities": {},
+    "weather-map": {},
+    "home": {},
+    "other": {}
+  },
+  "hygiene": [
+    {
+      "id": "prototype-urls-in-coverage",
+      "severity": "info",
+      "message": "1 design-evolution or random-answer URLs appear in GSC indexing exports. These are noindex and now excluded from sitemap.xml.",
+      "count": 1
+    },
+    {
+      "id": "answers-crawled-not-indexed",
+      "severity": "action",
+      "message": "1 answer URLs are crawled but not indexed. Prioritize reviewed answers with enrichment before changing URL structure.",
+      "count": 1
+    }
+  ],
+  "rows": [
+    {
+      "url": "https://www.deeper.global/answers/example-answer-slug/",
+      "pathname": "/answers/example-answer-slug/",
+      "bucket": "answer-detail",
+      "reason": "crawled_not_indexed",
+      "lastCrawled": "2026-06-18"
+    },
+    {
+      "url": "https://www.deeper.global/design-evolution/direction-d/",
+      "pathname": "/design-evolution/direction-d/",
+      "bucket": "design-evolution",
+      "reason": "crawled_not_indexed",
+      "lastCrawled": "2026-06-17"
+    },
+    {
+      "url": "https://www.deeper.global/categories/existential/",
+      "pathname": "/categories/existential/",
+      "bucket": "categories",
+      "reason": "crawled_not_indexed",
+      "lastCrawled": "2026-06-16"
+    }
+  ]
+}

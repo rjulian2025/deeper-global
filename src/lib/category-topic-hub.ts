@@ -20,7 +20,7 @@ const CATEGORY_HUB_OVERRIDES: Record<string, CategoryHubOverride> = {
   'Anxiety & Stress': {
     title: 'Anxiety & stress, understood.',
     lede:
-      'Worry, panic, intrusive thoughts, and the physical edge of stress — answers written for people trying to name what their body and mind are doing.',
+      'Worry, panic, intrusive thoughts, and the physical edge of stress. Answers for people trying to name what their body and mind are doing.',
     introBlocks: [
       {
         eyebrow: 'Coverage',
@@ -45,7 +45,7 @@ const CATEGORY_HUB_OVERRIDES: Record<string, CategoryHubOverride> = {
   Depression: {
     title: 'Depression, without the platitudes.',
     lede:
-      'Low mood, numbness, motivation collapse, and the questions people ask before they know whether they need help — answered in plain language.',
+      'Low mood, numbness, motivation collapse, and the questions people ask before they know whether they need help, written in plain language.',
     introBlocks: [
       {
         eyebrow: 'Coverage',
@@ -70,7 +70,7 @@ const CATEGORY_HUB_OVERRIDES: Record<string, CategoryHubOverride> = {
   'Identity & Self-Worth': {
     title: 'Identity & self-worth.',
     lede:
-      'Shame, comparison, people-pleasing, and the quiet question of whether you are allowed to take up space — explored without toxic positivity.',
+      'Shame, comparison, people-pleasing, and the quiet question of whether you are allowed to take up space, explored without toxic positivity.',
     introBlocks: [
       {
         eyebrow: 'Coverage',

@@ -31,6 +31,8 @@
     max-width: 220px;
     overflow: hidden;
     isolation: isolate;
+    /* Align sidebar start with first question row, below section header */
+    padding-top: 89px;
   }
 }
 
@@ -55,21 +57,26 @@
   }
 }
 
+/* 40px between sections so grouping is felt spatially, not just labeled */
 .homepage-sidebar-block + .homepage-sidebar-block {
   margin-top: 0;
-  padding-top: 20px;
-  border-top: 0.5px solid var(--border-tertiary-token, rgba(25, 23, 22, 0.08));
+  padding-top: 40px;
+  border-top: 1px solid var(--border-secondary-token, var(--d-line));
 }
 
+/* ── Section labels — metadata treatment, no color markers ──────── */
+
 .homepage-sidebar-label {
-  margin: 0 0 8px;
+  margin: 0 0 12px;
   font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.06em;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--text-secondary-token, var(--d-muted));
 }
+
+/* ── All list resets — shared spacing baseline ───────────────────── */
 
 .homepage-sidebar-featured-list,
 .homepage-sidebar-start-list,
@@ -78,26 +85,88 @@
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 8px;
+  gap: 12px;
 }
 
-.homepage-sidebar-featured-list a,
+/* ── "Right Now, People Are Asking" — heaviest tier ─────────────── */
+
+.homepage-sidebar-featured-list a {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--text-primary-token, var(--d-heading));
+  text-decoration: underline;
+  text-decoration-color: var(--border-secondary-token, var(--d-line));
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+  transition: text-decoration-color 120ms ease;
+}
+
+.homepage-sidebar-featured-list a:hover,
+.homepage-sidebar-featured-list a:focus-visible {
+  text-decoration-color: var(--text-primary-token, var(--d-heading));
+}
+
+.homepage-sidebar-featured-list a:focus-visible {
+  outline: 2px solid var(--navy, #0e1f33);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+/* ── "Start Where You Are" — sans, one step down ────────────────── */
+
 .homepage-sidebar-start-list a {
   display: block;
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.45;
   color: var(--text-primary-token, var(--d-heading));
   text-decoration: underline;
   text-decoration-color: var(--border-secondary-token, var(--d-line));
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   overflow-wrap: anywhere;
+  transition: text-decoration-color 120ms ease;
 }
 
-.homepage-sidebar-featured-list a:hover,
-.homepage-sidebar-start-list a:hover {
+.homepage-sidebar-start-list a:hover,
+.homepage-sidebar-start-list a:focus-visible {
   text-decoration-color: var(--text-primary-token, var(--d-heading));
+}
+
+.homepage-sidebar-start-list a:focus-visible {
+  outline: 2px solid var(--navy, #0e1f33);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+/* ── "New This Week" — sans, same weight as start, navy NEW tag ─── */
+
+.homepage-sidebar-recent-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+/* NEW tag borrows from the navy palette, not a foreign blue-mist combo */
+.sidebar-new-tag {
+  flex-shrink: 0;
+  font-family: var(--font-sans);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy, #0e1f33);
+  background: rgba(14, 31, 51, 0.07);
+  padding: 2px 4px;
+  border-radius: 2px;
+  line-height: 1.4;
+  position: relative;
+  top: -1px;
 }
 
 .homepage-sidebar-recent-list a {
@@ -105,37 +174,69 @@
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 400;
-  line-height: 1.4;
-  color: var(--text-secondary-token, var(--d-muted));
-  text-decoration: none;
-  overflow-wrap: anywhere;
-}
-
-.homepage-sidebar-recent-list a:hover {
+  line-height: 1.45;
   color: var(--text-primary-token, var(--d-heading));
   text-decoration: underline;
   text-decoration-color: var(--border-secondary-token, var(--d-line));
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+  transition: text-decoration-color 120ms ease;
 }
+
+.homepage-sidebar-recent-list a:hover,
+.homepage-sidebar-recent-list a:focus-visible {
+  text-decoration-color: var(--text-primary-token, var(--d-heading));
+}
+
+.homepage-sidebar-recent-list a:focus-visible {
+  outline: 2px solid var(--navy, #0e1f33);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+/* ── "Read a random answer" CTA — editorial navy, not blue ──────── */
 
 .homepage-sidebar-random-link {
-  display: block;
-  font-family: var(--font-serif);
-  font-size: 13px;
-  font-style: italic;
-  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-style: normal;
+  font-weight: 500;
   line-height: 1.45;
-  color: var(--text-secondary-token, var(--d-muted));
-  text-decoration: none;
+  color: var(--navy, #0e1f33);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
   overflow-wrap: anywhere;
+  transition: text-decoration-color 120ms ease;
 }
 
-.homepage-sidebar-random-link:hover {
-  color: var(--text-primary-token, var(--d-heading));
-  text-decoration: underline;
-  text-decoration-color: var(--border-secondary-token, var(--d-line));
-  text-underline-offset: 3px;
+.homepage-sidebar-random-link:hover,
+.homepage-sidebar-random-link:focus-visible {
+  text-decoration-color: var(--navy, #0e1f33);
 }
+
+.homepage-sidebar-random-link:focus-visible {
+  outline: 2px solid var(--navy, #0e1f33);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+.homepage-sidebar-random-link .cta-arrow {
+  display: inline-block;
+  transition: transform 150ms ease;
+}
+
+.homepage-sidebar-random-link:hover .cta-arrow,
+.homepage-sidebar-random-link:focus-visible .cta-arrow {
+  transform: translateX(3px);
+}
+
+/* ── Homepage feed section overrides ────────────────────────────── */
 
 .home-page .homepage-feed-section.discovery-surface.section {
   padding-top: 0;

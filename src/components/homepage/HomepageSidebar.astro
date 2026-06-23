@@ -52,6 +52,7 @@ const { sidebar } = Astro.props;
             {
               sidebar.newThisWeek.map((link) => (
                 <li>
+                  <span class="sidebar-new-tag" aria-hidden="true">New</span>
                   <a href={link.href}>{link.title}</a>
                 </li>
               ))
@@ -62,7 +63,9 @@ const { sidebar } = Astro.props;
     }
 
     <section class="homepage-sidebar-block">
-      <a class="homepage-sidebar-random-link" href={sidebar.randomAnswerHref}>Read a random answer →</a>
+      <a class="homepage-sidebar-random-link" href={sidebar.randomAnswerHref}>
+        Read a random answer<span class="cta-arrow" aria-hidden="true"> →</span>
+      </a>
     </section>
   </div>
 </aside>

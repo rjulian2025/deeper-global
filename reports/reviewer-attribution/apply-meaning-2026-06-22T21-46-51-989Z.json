@@ -1,0 +1,98 @@
+{
+  "applied_at": "2026-06-22T21:46:51.988Z",
+  "reviewer": "rick-julian",
+  "reviewed_at": "2026-06-22",
+  "updated_count": 11,
+  "skipped_count": 0,
+  "updated": [
+    {
+      "id": "b0b93a22-fe0b-4204-9cbe-6ba72d6462bd",
+      "slug": "why-do-i-feel-guilty-for-questioning-my-religious--186602-025",
+      "category": "Spiritual Struggle / Existential Crisis",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "5a6e3c9f-ceb7-4463-a399-e0c75e9981f0",
+      "slug": "how-do-i-cope-with-the-fear-that-death-means-compl-186602-026",
+      "category": "Spiritual Struggle / Existential Crisis",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "d8c4ea75-b7f8-4e22-9c1f-fa6cb5ef230e",
+      "slug": "why-do-i-feel-empty-even-when-my-life-looks-177941-018",
+      "category": "Existential",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "bec01dea-06e3-4d6d-9cc3-e43366d1c9a0",
+      "slug": "how-do-i-find-meaning-when-i-no-longer-believe-what-i-was-taught",
+      "category": "Spiritual Doubt",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "07a7cb65-cb71-4481-a169-ebb3779eefe6",
+      "slug": "what-do-i-do-when-im-losing-faith-in-everything-i--186602-023",
+      "category": "Spiritual Struggle / Existential Crisis",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "14c1ff56-bfbc-4f20-9ac5-6aab1adf534d",
+      "slug": "what-do-i-do-when-i-feel-like-giving-up-on-m-177941-012",
+      "category": "Life Purpose",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "d500c52c-2757-4656-bf67-321de790b930",
+      "slug": "how-do-i-deal-with-feeling-like-my-life-has-177941-025",
+      "category": "Life Purpose",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "0ce9cb9f-970c-4da7-8f58-822cc06f00d3",
+      "slug": "how-do-i-handle-family-rejection-after-changing-my-186602-028",
+      "category": "Spiritual Struggle / Existential Crisis",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "a815d40a-ce6f-412e-81c7-f97f9b2eef34",
+      "slug": "why-am-i-losing-faith-in-everything-i-used-to-believe",
+      "category": "Spiritual Doubt",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "2b5cad95-f934-439b-953b-2493b7479c95",
+      "slug": "what-do-i-do-when-prayer-or-meditation-no-longer-b-186602-027",
+      "category": "Spiritual Struggle / Existential Crisis",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    },
+    {
+      "id": "8a5ab9f8-1ece-4d05-920a-9770676a3d14",
+      "slug": "how-do-i-find-meaning-in-life-when-everything-feel-186602-024",
+      "category": "Spiritual Struggle / Existential Crisis",
+      "previous_reviewed_by": "david-k-gore-phd",
+      "previous_reviewed_at": "2026-06-19",
+      "previous_review_status": "reviewed"
+    }
+  ],
+  "skipped": []
+}

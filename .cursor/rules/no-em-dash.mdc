@@ -1,0 +1,49 @@
+---
+description: Em-dash prohibition for user-facing prose copy on Deeper Global
+alwaysApply: true
+---
+
+# No em-dashes in prose copy
+
+Em-dashes (`—`) are a common AI-writing tell. Do not use them in user-facing prose.
+
+## What to use instead
+
+| Instead of `—` | Use |
+|---|---|
+| Introducing a list or elaboration | `:` (colon) |
+| Parenthetical aside | `,` (comma) |
+| Closely related independent clause | `;` (semicolon) |
+| Natural sentence break | `.` (period, split into two sentences) |
+
+## Allowed exceptions
+
+- **Brand title separator**: `Deeper Global — [Page Title]` in `<title>` and OG image alt only
+- **Data field display**: `— {source.publisher}` or `— {modality.also_known_as[0]}` (visual separator between structured data fields, not prose)
+- **Code comments**: JSDoc / inline developer comments
+
+## Examples
+
+```
+❌  'A guided atlas of therapy approaches — what each one is for...'
+✅  'A guided atlas of therapy approaches: what each one is for...'
+
+❌  'Design is trust infrastructure — not decoration.'
+✅  'Design is trust infrastructure, not decoration.'
+
+❌  'concerns — not a diagnosis'
+✅  'concerns, not a diagnosis'
+
+❌  'pre-qualify fit — so inquiries match the work'
+✅  'pre-qualify fit, so inquiries match the work'
+```
+
+## DB content pipeline
+
+Answer content in Supabase is sanitized during the rewrite pipeline (step 2):
+
+```
+npm run content:sanitize-staging-emdash -- --apply
+```
+
+Run this after any AI rewrite batch before promoting. For live fields already promoted, run the audit SQL in `scripts/audit-live-emdash.sql`.

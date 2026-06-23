@@ -1,0 +1,1086 @@
+{
+  "version": "gsc-content-ops-v1",
+  "generated_at": "2026-06-20T14:17:37.939Z",
+  "mode": "recommend",
+  "scope": "upgrade_existing_only",
+  "success_metric": "gsc_clicks",
+  "gsc": {
+    "available": true,
+    "reason": null,
+    "site_url": "sc-domain:deeper.global",
+    "window_days": 28,
+    "lag_days": 3,
+    "current_range": {
+      "startDate": "2026-05-20",
+      "endDate": "2026-06-17",
+      "lagDays": 3,
+      "windowDays": 28
+    },
+    "prior_range": {
+      "startDate": "2026-04-21",
+      "endDate": "2026-05-19",
+      "lagDays": 3,
+      "windowDays": 28
+    },
+    "answer_pages_with_signal": 30,
+    "total_clicks_current": 0,
+    "total_clicks_prior": 0,
+    "total_clicks_delta": 0
+  },
+  "thresholds": {
+    "minImpressionsConfident": 100,
+    "minClicksConfident": 5,
+    "minClicksProven": 10,
+    "strikerMinImpressions": 100,
+    "strikerMinPosition": 8,
+    "strikerMaxPosition": 20,
+    "ctrFixMinImpressions": 50,
+    "ctrFixMaxCtr": 0.02,
+    "ctrFixMaxPosition": 10,
+    "momentumMinImpressions": 50,
+    "momentumMinDeltaPct": 20
+  },
+  "summary": {
+    "recommended_count": 25,
+    "confident_count": 0,
+    "auto_stage_count": 0,
+    "crisis_in_auto_stage": 0,
+    "deferred_v2_query_gaps": 0
+  },
+  "recommended": [
+    {
+      "slug": "why-do-i-feel-guilty-for-taking-time-off-189668-007",
+      "question": "Why do I feel guilty for taking time off when I'm sick?",
+      "category": "Work & Burnout",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "MOMENTUM",
+      "confidence": {
+        "confident": true,
+        "reason": "impression_momentum"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T17:24:16.198+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/why-do-i-feel-guilty-for-taking-time-off-189668-007/",
+          "clicks": 0,
+          "impressions": 56,
+          "ctr": 0,
+          "position": 73.53571428571429
+        },
+        "prior": {
+          "page": "https://www.deeper.global/answers/why-do-i-feel-guilty-for-taking-time-off-189668-007/",
+          "clicks": 0,
+          "impressions": 8,
+          "ctr": 0,
+          "position": 71.375
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 48,
+          "clicks_pct": 0,
+          "impressions_pct": 600
+        }
+      },
+      "priority_score": -845,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-do-i-cope-with-the-emotional-pain-of-divorce",
+      "question": "How do I cope with the emotional pain of divorce?",
+      "category": "Work & Life Balance",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T20:40:07.073+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/how-do-i-cope-with-the-emotional-pain-of-divorce/",
+          "clicks": 0,
+          "impressions": 18,
+          "ctr": 0,
+          "position": 82.27777777777777
+        },
+        "prior": {
+          "page": "https://www.deeper.global/answers/how-do-i-cope-with-the-emotional-pain-of-divorce/",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 82
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 15,
+          "clicks_pct": 0,
+          "impressions_pct": 500
+        }
+      },
+      "priority_score": -889,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-do-i-apologize-effectively-when-ive-hurt-someone",
+      "question": "How do I apologize effectively when I've hurt someone?",
+      "category": "Communication & Conflict",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T21:21:53.75+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/how-do-i-apologize-effectively-when-ive-hurt-someone/",
+          "clicks": 0,
+          "impressions": 7,
+          "ctr": 0,
+          "position": 76.14285714285714
+        },
+        "prior": {
+          "page": "https://www.deeper.global/answers/how-do-i-apologize-effectively-when-ive-hurt-someone/",
+          "clicks": 0,
+          "impressions": 6,
+          "ctr": 0,
+          "position": 73.5
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 1,
+          "clicks_pct": 0,
+          "impressions_pct": 16.666666666666664
+        }
+      },
+      "priority_score": -890,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "what-are-the-signs-of-borderline-personality-disorder",
+      "question": "What are the signs of borderline personality disorder?",
+      "category": "General Mental Health",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T16:23:36.698+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/what-are-the-signs-of-borderline-personality-disorder/",
+          "clicks": 0,
+          "impressions": 7,
+          "ctr": 0,
+          "position": 64.14285714285714
+        },
+        "prior": {
+          "page": "https://www.deeper.global/answers/what-are-the-signs-of-borderline-personality-disorder/",
+          "clicks": 0,
+          "impressions": 5,
+          "ctr": 0,
+          "position": 60.4
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 2,
+          "clicks_pct": 0,
+          "impressions_pct": 40
+        }
+      },
+      "priority_score": -890,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "why-do-i-feel-lonely-in-my-relationship-191368-010",
+      "question": "Why do I feel lonely in my relationship?",
+      "category": "Relationships & Divorce",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T16:51:17.291+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/why-do-i-feel-lonely-in-my-relationship-191368-010/",
+          "clicks": 0,
+          "impressions": 7,
+          "ctr": 0,
+          "position": 91.57142857142857
+        },
+        "prior": {
+          "page": "https://www.deeper.global/answers/why-do-i-feel-lonely-in-my-relationship-191368-010/",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 81.33333333333333
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 4,
+          "clicks_pct": 0,
+          "impressions_pct": 133.33333333333331
+        }
+      },
+      "priority_score": -890,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-can-i-tell-if-someone-is-manipulating-me",
+      "question": "How can I tell if someone is manipulating me?",
+      "category": "Relationship Abuse",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T16:20:07.091+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/how-can-i-tell-if-someone-is-manipulating-me/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 27
+        },
+        "prior": {
+          "page": "https://www.deeper.global/answers/how-can-i-tell-if-someone-is-manipulating-me/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 76
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 0,
+          "clicks_pct": 0,
+          "impressions_pct": 0
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-do-i-deal-with-depression-when-im-unemployed",
+      "question": "How do I deal with depression when I'm unemployed?",
+      "category": "Depression",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T18:58:20.947+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/how-do-i-deal-with-depression-when-im-unemployed/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 88
+        },
+        "prior": {
+          "page": "https://www.deeper.global/answers/how-do-i-deal-with-depression-when-im-unemployed/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 89
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 0,
+          "clicks_pct": 0,
+          "impressions_pct": 0
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-do-i-deal-with-fear-of-hell-after-le-181083-036",
+      "question": "How do I deal with fear of hell after leaving religion?",
+      "category": "Trauma & Grief",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T17:03:06.018+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/how-do-i-deal-with-fear-of-hell-after-le-181083-036/",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 57
+        },
+        "prior": {
+          "clicks": 0,
+          "impressions": 0,
+          "ctr": 0,
+          "position": 0
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 3,
+          "clicks_pct": 0,
+          "impressions_pct": 100
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-do-i-deal-with-having-no-one-to-shar-181083-077",
+      "question": "How do I deal with having no one to share good news with?",
+      "category": "Relationships & Divorce",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T15:26:06.269+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://deeper.global/answers/how-do-i-deal-with-having-no-one-to-shar-181083-077",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 10
+        },
+        "prior": {
+          "clicks": 0,
+          "impressions": 0,
+          "ctr": 0,
+          "position": 0
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 1,
+          "clicks_pct": 0,
+          "impressions_pct": 100
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-do-i-function-when-anxiety-makes-everything-feel-overwhelming",
+      "question": "How do I function when anxiety makes everything feel overwhelming?",
+      "category": "Anxiety & Worry",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T16:03:11.866+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/how-do-i-function-when-anxiety-makes-everything-feel-overwhelming/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 88
+        },
+        "prior": {
+          "clicks": 0,
+          "impressions": 0,
+          "ctr": 0,
+          "position": 0
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 1,
+          "clicks_pct": 0,
+          "impressions_pct": 100
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-do-i-handle-work-stress-without-using-substances",
+      "question": "How do I handle work stress without using substances?",
+      "category": "Addiction & Recovery",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T18:54:28.431+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/how-do-i-handle-work-stress-without-using-substances/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 2
+        },
+        "prior": {
+          "clicks": 0,
+          "impressions": 0,
+          "ctr": 0,
+          "position": 0
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 1,
+          "clicks_pct": 0,
+          "impressions_pct": 100
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-do-i-know-if-im-gay-straight-or-some-186032-013",
+      "question": "How do I know if I'm gay, straight, or something else?",
+      "category": "Teens & Identity",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T19:33:57.574+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/how-do-i-know-if-im-gay-straight-or-some-186032-013/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 94
+        },
+        "prior": {
+          "page": "https://www.deeper.global/answers/how-do-i-know-if-im-gay-straight-or-some-186032-013/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 75
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 0,
+          "clicks_pct": 0,
+          "impressions_pct": 0
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-do-i-manage-adhd-without-medication",
+      "question": "How do I manage ADHD without medication?",
+      "category": "General Mental Health",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T19:03:30.144+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/how-do-i-manage-adhd-without-medication/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 11
+        },
+        "prior": {
+          "page": "https://www.deeper.global/answers/how-do-i-manage-adhd-without-medication/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 7
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 0,
+          "clicks_pct": 0,
+          "impressions_pct": 0
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-do-i-rebuild-intimacy-after-infidelity-or-betrayal",
+      "question": "How do I rebuild intimacy after infidelity or betrayal?",
+      "category": "General Mental Health",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T13:29:29.636+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/how-do-i-rebuild-intimacy-after-infidelity-or-betrayal/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 93
+        },
+        "prior": {
+          "page": "https://www.deeper.global/answers/how-do-i-rebuild-intimacy-after-infidelity-or-betrayal/",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 92
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": -1,
+          "clicks_pct": 0,
+          "impressions_pct": -50
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-do-i-rebuild-trust-after-being-cheat-190648-010",
+      "question": "How do I rebuild trust after being cheated on?",
+      "category": "Relationships & Divorce",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T14:39:19.402+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/how-do-i-rebuild-trust-after-being-cheat-190648-010/",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 86
+        },
+        "prior": {
+          "page": "https://www.deeper.global/answers/how-do-i-rebuild-trust-after-being-cheat-190648-010/",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 78.66666666666667
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": -1,
+          "clicks_pct": 0,
+          "impressions_pct": -33.33333333333333
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-do-i-stop-feeling-like-everyone-else-has-177941-031",
+      "question": "How do I stop feeling like everyone else has it figured out?",
+      "category": "Life Comparison",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T14:05:01.115+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/how-do-i-stop-feeling-like-everyone-else-has-177941-031/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 2
+        },
+        "prior": {
+          "clicks": 0,
+          "impressions": 0,
+          "ctr": 0,
+          "position": 0
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 1,
+          "clicks_pct": 0,
+          "impressions_pct": 100
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-do-i-stop-feeling-like-everyone-will-181083-092",
+      "question": "How do I stop feeling like everyone will eventually leave me?",
+      "category": "Trauma & Grief",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T14:36:33.584+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/how-do-i-stop-feeling-like-everyone-will-181083-092/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 34
+        },
+        "prior": {
+          "page": "https://www.deeper.global/answers/how-do-i-stop-feeling-like-everyone-will-181083-092/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 48
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 0,
+          "clicks_pct": 0,
+          "impressions_pct": 0
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "how-do-i-tell-my-friends-im-sober-withou-185759-026",
+      "question": "How do I tell my friends I'm sober without making it weird?",
+      "category": "Addiction & Recovery",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T21:39:15.582+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/how-do-i-tell-my-friends-im-sober-withou-185759-026/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 94
+        },
+        "prior": {
+          "clicks": 0,
+          "impressions": 0,
+          "ctr": 0,
+          "position": 0
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 1,
+          "clicks_pct": 0,
+          "impressions_pct": 100
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "my-chest-tightens-whenever-someone-texts-me-unexpectedly",
+      "question": "My chest tightens whenever someone texts me unexpectedly",
+      "category": "Anxiety & Stress",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T18:17:40.14+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/my-chest-tightens-whenever-someone-texts-me-unexpectedly/",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 8
+        },
+        "prior": {
+          "clicks": 0,
+          "impressions": 0,
+          "ctr": 0,
+          "position": 0
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 2,
+          "clicks_pct": 0,
+          "impressions_pct": 100
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "what-do-i-do-when-i-cant-afford-therapy-177940-020",
+      "question": "What do I do when I can't afford therapy?",
+      "category": "Mental Health Access",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T17:04:47.725+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/what-do-i-do-when-i-cant-afford-therapy-177940-020/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 6
+        },
+        "prior": {
+          "clicks": 0,
+          "impressions": 0,
+          "ctr": 0,
+          "position": 0
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 1,
+          "clicks_pct": 0,
+          "impressions_pct": 100
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "what-if-im-having-second-thoughts-about-getting-divorced",
+      "question": "What if I'm having second thoughts about getting divorced?",
+      "category": "General Mental Health",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T20:58:56.647+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/what-if-im-having-second-thoughts-about-getting-divorced/",
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 70.5
+        },
+        "prior": {
+          "page": "https://www.deeper.global/answers/what-if-im-having-second-thoughts-about-getting-divorced/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 58
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 1,
+          "clicks_pct": 0,
+          "impressions_pct": 100
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "what-should-i-do-if-i-think-my-friend-is-186032-033",
+      "question": "What should I do if I think my friend is in an abusive relationship?",
+      "category": "Relationships & Communication",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T19:55:12.41+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/what-should-i-do-if-i-think-my-friend-is-186032-033/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 9
+        },
+        "prior": {
+          "clicks": 0,
+          "impressions": 0,
+          "ctr": 0,
+          "position": 0
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 1,
+          "clicks_pct": 0,
+          "impressions_pct": 100
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "what-should-i-do-if-my-teenager-is-experimenting-w-187459-006",
+      "question": "What should I do if my teenager is experimenting with drugs or alcohol?",
+      "category": "Teen-Specific Questions",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T18:29:04.598+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/what-should-i-do-if-my-teenager-is-experimenting-w-187459-006/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 7
+        },
+        "prior": {
+          "clicks": 0,
+          "impressions": 0,
+          "ctr": 0,
+          "position": 0
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 1,
+          "clicks_pct": 0,
+          "impressions_pct": 100
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "whats-the-difference-between-cbt-and-other-types-of-therapy-for-depression",
+      "question": "What's the difference between CBT and other types of therapy for depression?",
+      "category": "Depression",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T15:03:33.83+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/whats-the-difference-between-cbt-and-other-types-of-therapy-for-depression/",
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 2
+        },
+        "prior": {
+          "clicks": 0,
+          "impressions": 0,
+          "ctr": 0,
+          "position": 0
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 1,
+          "clicks_pct": 0,
+          "impressions_pct": 100
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    },
+    {
+      "slug": "whats-the-difference-between-physical-and-psychological-addiction",
+      "question": "What's the difference between physical and psychological addiction?",
+      "category": "Addiction & Recovery",
+      "review_status": "reviewed",
+      "completeness_score": 63,
+      "crisis_sensitive": true,
+      "opportunity_type": "RECOMMENDED",
+      "confidence": {
+        "confident": false,
+        "reason": "below_confidence_threshold"
+      },
+      "recently_staged": true,
+      "staging_rewrite_at": "2026-06-17T15:46:56.054+00:00",
+      "gsc": {
+        "current": {
+          "page": "https://www.deeper.global/answers/whats-the-difference-between-physical-and-psychological-addiction/",
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 8.333333333333332
+        },
+        "prior": {
+          "clicks": 0,
+          "impressions": 0,
+          "ctr": 0,
+          "position": 0
+        },
+        "delta": {
+          "clicks": 0,
+          "impressions": 3,
+          "clicks_pct": 0,
+          "impressions_pct": 100
+        }
+      },
+      "priority_score": -891,
+      "auto_stage_eligible": false,
+      "recommendation": "rewrite_existing"
+    }
+  ],
+  "auto_stage": [],
+  "deferred_v2_query_gaps": [],
+  "rewrite_batch": {
+    "slugs": [
+      "why-do-i-feel-guilty-for-taking-time-off-189668-007",
+      "how-do-i-cope-with-the-emotional-pain-of-divorce",
+      "how-do-i-apologize-effectively-when-ive-hurt-someone",
+      "what-are-the-signs-of-borderline-personality-disorder",
+      "why-do-i-feel-lonely-in-my-relationship-191368-010",
+      "how-can-i-tell-if-someone-is-manipulating-me",
+      "how-do-i-deal-with-depression-when-im-unemployed",
+      "how-do-i-deal-with-fear-of-hell-after-le-181083-036",
+      "how-do-i-deal-with-having-no-one-to-shar-181083-077",
+      "how-do-i-function-when-anxiety-makes-everything-feel-overwhelming",
+      "how-do-i-handle-work-stress-without-using-substances",
+      "how-do-i-know-if-im-gay-straight-or-some-186032-013",
+      "how-do-i-manage-adhd-without-medication",
+      "how-do-i-rebuild-intimacy-after-infidelity-or-betrayal",
+      "how-do-i-rebuild-trust-after-being-cheat-190648-010",
+      "how-do-i-stop-feeling-like-everyone-else-has-177941-031",
+      "how-do-i-stop-feeling-like-everyone-will-181083-092",
+      "how-do-i-tell-my-friends-im-sober-withou-185759-026",
+      "my-chest-tightens-whenever-someone-texts-me-unexpectedly",
+      "what-do-i-do-when-i-cant-afford-therapy-177940-020",
+      "what-if-im-having-second-thoughts-about-getting-divorced",
+      "what-should-i-do-if-i-think-my-friend-is-186032-033",
+      "what-should-i-do-if-my-teenager-is-experimenting-w-187459-006",
+      "whats-the-difference-between-cbt-and-other-types-of-therapy-for-depression",
+      "whats-the-difference-between-physical-and-psychological-addiction"
+    ],
+    "auto_stage_slugs": []
+  },
+  "api_citation": {
+    "available": true,
+    "reason": null,
+    "window_days": 28,
+    "since": "2026-05-23T14:17:37.859Z",
+    "total_events": 0,
+    "answer_fetches": 0,
+    "list_requests": 0,
+    "unique_answers_fetched": 0,
+    "top_answer_slugs": [],
+    "top_referrers": [],
+    "top_attributions": [],
+    "note": "No API citation events yet. Traffic is logged in Vercel; persist events with docs/supabase-api-citation-events.sql."
+  }
+}
