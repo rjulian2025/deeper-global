@@ -11,9 +11,14 @@ function getArg(name) {
 function getAccessToken() {
   if (process.env.SUPABASE_ACCESS_TOKEN) return process.env.SUPABASE_ACCESS_TOKEN;
 
-  return execFileSync('security', ['find-generic-password', '-s', 'Supabase CLI', '-a', 'access-token', '-w'], {
-    encoding: 'utf8',
-  }).trim();
+  try {
+    return execFileSync('security', ['find-generic-password', '-s', 'Supabase CLI', '-a', 'access-token', '-w'], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim();
+  } catch {
+    throw new Error('Missing SUPABASE_ACCESS_TOKEN. Set it before running Supabase SQL from this environment.');
+  }
 }
 
 const file = getArg('--file');
@@ -26,10 +31,18 @@ if (!query) {
   process.exit(1);
 }
 
+let accessToken;
+try {
+  accessToken = getAccessToken();
+} catch (error) {
+  console.error(error.message);
+  process.exit(1);
+}
+
 const response = await fetch(`https://api.supabase.com/v1/projects/${PROJECT_REF}/database/query`, {
   method: 'POST',
   headers: {
-    Authorization: `Bearer ${getAccessToken()}`,
+    Authorization: `Bearer ${accessToken}`,
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({

@@ -51,6 +51,7 @@ export default async function handler(req, res) {
       query: q,
       attribution: readAttributionHeader(req),
       referrerDomain: readReferrerDomain(req),
+      headers: req.headers,
     }).catch(() => {});
 
     return jsonResponse(res, 200, payload);

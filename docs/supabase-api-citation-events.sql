@@ -19,6 +19,7 @@ declare
     'source_ref_clicked',
     'practitioner_callout_viewed',
     'practitioner_callout_clicked',
+    'deeper_outbound_click',
     'external_referral_clicked',
     'editorial_policy_viewed',
     'answer_related_clicked',
@@ -64,23 +65,29 @@ begin
   )
   values (
     event_name_value,
-    left(coalesce(event->>'page_path', ''), 220),
-    left(coalesce(event->>'referrer_domain', ''), 120),
-    coalesce(nullif(left(coalesce(event->>'content_type', ''), 40), ''), 'hub'),
-    left(coalesce(event->>'answer_slug', ''), 160),
-    left(coalesce(event->>'category', ''), 120),
-    left(coalesce(event->>'entity_slug', ''), 160),
-    left(coalesce(event->>'review_status', ''), 40),
+    nullif(left(coalesce(event->>'page_path', ''), 220), ''),
+    nullif(left(coalesce(event->>'referrer_domain', ''), 120), ''),
+    coalesce(nullif(left(coalesce(event->>'content_type', ''), 80), ''), 'hub'),
+    nullif(left(coalesce(event->>'answer_slug', ''), 160), ''),
+    nullif(left(coalesce(event->>'category', ''), 120), ''),
+    nullif(left(coalesce(event->>'entity_slug', ''), 160), ''),
+    nullif(left(coalesce(event->>'review_status', ''), 40), ''),
     coalesce(nullif(left(coalesce(event->>'risk_class', ''), 40), ''), 'unknown'),
-    left(coalesce(event->>'intent_stage', ''), 80),
-    sensitivity_value,
-    left(coalesce(event->>'region_country', ''), 2),
-    left(coalesce(event->>'region_state', ''), 80),
-    left(coalesce(event->>'region_city', ''), 80),
-    left(coalesce(event->>'device_type', ''), 40),
-    coalesce(event->'metadata', '{}'::jsonb)
+    nullif(left(coalesce(event->>'intent_stage', ''), 80), ''),
+    case when array_length(sensitivity_value, 1) is null then array['standard']::text[] else sensitivity_value end,
+    nullif(upper(left(coalesce(event->>'region_country', ''), 2)), ''),
+    nullif(left(coalesce(event->>'region_state', ''), 80), ''),
+    nullif(left(coalesce(event->>'region_city', ''), 80), ''),
+    nullif(left(coalesce(event->>'device_type', ''), 40), ''),
+    case when jsonb_typeof(event->'metadata') = 'object' then event->'metadata' else '{}'::jsonb end
   );
 end;
 $$;
 
+revoke all on function public.record_intent_event(jsonb) from public;
+grant execute on function public.record_intent_event(jsonb) to anon, authenticated, service_role;
 grant select on table public.intent_events to service_role;
+
+create index if not exists intent_events_api_citation_idx
+  on public.intent_events (occurred_at desc, event_name, answer_slug)
+  where event_name in ('api_answer_fetched', 'api_answers_listed');

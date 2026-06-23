@@ -20,11 +20,17 @@ The first-party Supabase layer becomes active after `docs/supabase-intent-analyt
    - `x-vercel-ip-country-region`
    - `x-vercel-ip-city`
 
-   **Geo note (June 2026):** `region_city` was added for the Psychology Weather Map feature. City is stored for aggregate city-level rollups only. City-level aggregation remains the privacy boundary — no individual identification, no user-level profiles, and no public reporting below thresholded aggregates.
+   **Geo note (June 2026):** `region_city` was added for the Psychology Weather Map feature. City is stored for aggregate city-level rollups only. City-level aggregation remains the privacy boundary: no individual identification, no user-level profiles, and no public reporting below thresholded aggregates.
 
 5. The function calls Supabase RPC `record_intent_event`.
 6. Supabase stores sanitized rows in `intent_events`.
 7. Reports read from thresholded rollup views, not raw events.
+
+Public API citation reads use the same Supabase table. `/api/v1/answers` emits `api_answers_listed`, and `/api/v1/answers/{slug}` emits `api_answer_fetched`. The base SQL now allowlists both events; existing projects that applied the older SQL can run:
+
+```bash
+npm run db:apply-api-citation-events
+```
 
 ## Privacy Boundaries
 
@@ -76,9 +82,15 @@ npm run content:gsc-weekly-plan
 Optional production environment variables:
 
 - `CONTENT_OPS_EMAIL_TO`: recipient for the Tuesday content-ops email. Defaults to `REPORT_EMAIL_TO`.
-- `CONTENT_OPS_MODE`: `recommend` (default) or `auto-stage`. Keep `recommend` for the first 2–3 cycles; `auto-stage` only marks slugs as auto-stage eligible in the report payload — promote/deploy remain manual until you wire a separate staging job.
+- `CONTENT_OPS_MODE`: `recommend` (default) or `auto-stage`. Keep `recommend` for the first 2 to 3 cycles; `auto-stage` only marks slugs as auto-stage eligible in the report payload. Promote/deploy remain manual until you wire a separate staging job.
 
 GSC credentials are a hard prerequisite for this loop. Run `npm run env:check` and confirm `ready_for_gsc_content_ops: true` (proxy or private-key path) before trusting weekly recommendations.
+
+For a non-secret GSC readiness check with the exact missing inputs, run:
+
+```bash
+npm run content:gsc-preflight
+```
 
 Required production environment variables:
 
@@ -205,7 +217,9 @@ order by date desc, no_result_searches desc;
 ## Activation Checklist
 
 - Apply `docs/supabase-intent-analytics.sql` in Supabase.
+- If the base SQL was applied before API citation events were added, run `npm run db:apply-api-citation-events`.
 - Confirm `/api/intent-event` logs no `intent_event_not_recorded` errors.
+- Confirm public API requests log `api_citation_access`; if the content ops report still shows zero events after traffic, reapply `docs/supabase-api-citation-events.sql` and make sure the report has `SUPABASE_SERVICE_ROLE_KEY`.
 - Trigger a test search and answer view.
 - Confirm rows appear in `intent_events`.
 - Confirm thresholded rows appear only after minimum counts are met.

@@ -37,8 +37,11 @@ Rewrite → Sanitize → Repair → QA (full) → Promote (dry-run) → Promote 
 | QA (full corpus) | `npm run content:qa-answer-rewrite:all` | All staged rows; JSON report in `reports/answer-rewrite/qa-full-*.json` |
 | Promote dry-run | `npm run content:promote-answer-rewrite -- --all --allow-warn` | No DB writes; JSON report in `promote-updates/` |
 | Promote apply | `npm run content:promote-answer-rewrite -- --apply --all --allow-warn` | Copies staging → live columns |
+| GSC preflight | `npm run content:gsc-preflight` | Confirms Supabase and GSC credentials before a fresh pull |
 | GSC weekly plan | `npm run content:gsc-weekly-plan` | Writes `reports/gsc-weekly/content-plan-{date}.*` and `rewrite-batch.json` |
 | GSC-targeted rewrite | `npm run content:rewrite-answers-claude -- --apply --slugs-file reports/gsc-weekly/rewrite-batch.json` | Rewrites only approved/GSC-prioritized slugs |
+| GSC coverage audit | `npm run seo:gsc-coverage -- --dir reports/gsc-indexing/{date}` | Converts Page indexing CSV exports into content-first hygiene actions |
+| API citation telemetry patch | `npm run db:apply-api-citation-events` | Updates Supabase intent RPC so public API reads persist as citation events |
 | Deploy | `npx vercel --prod` | After promote apply |
 | Post-rewrite watcher | `./scripts/post-rewrite-pipeline.sh` | Waits for rewrite, runs QA + promote dry-run |
 
@@ -54,14 +57,14 @@ npm run content:repair-staging-rewrite -- --apply --slug my-answer-slug
 
 Run after every rewrite batch (especially when adding new corpus slices):
 
-1. **Rewrite finishes** — confirm `pending_records: 0`, retry failures via reset + rewrite
-2. **Sanitize** — `npm run content:sanitize-staging-emdash -- --apply` if em-dash FAILs appear
-3. **Repair** — `npm run content:repair-staging-rewrite -- --apply` for remaining QA FAILs
-4. **QA full** — `npm run content:qa-answer-rewrite:all` (target: 0 FAIL before promote)
-5. **Promote dry-run** — review `promotable` vs `blocked` counts
-6. **Promote apply** — `--apply --all --allow-warn`
-7. **Deploy** — `npx vercel --prod`
-8. **Git commit** — commit tooling changes (see below)
+1. **Rewrite finishes**: confirm `pending_records: 0`, retry failures via reset + rewrite
+2. **Sanitize**: `npm run content:sanitize-staging-emdash -- --apply` if em-dash FAILs appear
+3. **Repair**: `npm run content:repair-staging-rewrite -- --apply` for remaining QA FAILs
+4. **QA full**: `npm run content:qa-answer-rewrite:all` (target: 0 FAIL before promote)
+5. **Promote dry-run**: review `promotable` vs `blocked` counts
+6. **Promote apply**: `--apply --all --allow-warn`
+7. **Deploy**: `npx vercel --prod`
+8. **Git commit**: commit tooling changes (see below)
 
 ## Git commit protocol
 
@@ -127,12 +130,24 @@ After promote, live fields and staging align; preview and production stay consis
 
 ## QA scores
 
-- **PASS** — eligible for promote
-- **WARN** — promote only with `--allow-warn`
-- **FAIL** — blocked (common: em-dash in canonical/lede, word-count >750, lede ≠ canonical)
+- **PASS**: eligible for promote
+- **WARN**: promote only with `--allow-warn`
+- **FAIL**: blocked (common: em-dash in canonical/lede, word-count >750, lede does not equal canonical)
 
 Word-count FAIL threshold: combined body **<280 or >750** words. Target range 350–550 is WARN.
 
 ## Legacy paths
 
 `content:apply-enrichment` and `content:promote-enrichment` seed legacy drafts only. New or updated answers must use rewrite → QA → promote.
+
+## GSC corrective actions
+
+For `crawled_not_indexed` answer URLs, improve reviewed content before URL or sitemap changes:
+
+1. Run `npm run content:gsc-preflight`.
+2. Run `npm run content:gsc-weekly-plan` after credentials are ready.
+3. Review and approve slugs in `reports/gsc-weekly/rewrite-batch.json`.
+4. Rewrite approved slugs with `npm run content:rewrite-answers-claude -- --apply --slugs-file reports/gsc-weekly/rewrite-batch.json`.
+5. Run sanitize, repair, QA, promote dry-run, promote apply, deploy, then watch the next GSC cycle.
+
+Keep `/design-evolution/`, `/answers/random/`, `/categories/`, `/entities/`, and `/themes/` out of sitemap.xml unless indexation policy is deliberately changed. Do not make URL, redirect, canonical, or sitemap policy changes from small Page indexing samples; ingest full GSC exports first.
