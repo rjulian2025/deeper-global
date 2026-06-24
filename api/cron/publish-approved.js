@@ -83,7 +83,7 @@ async function getApprovedPostsToPublish(url, key, limit, now) {
     select: '*',
     status: 'eq.approved',
     x_post_id: 'is.null',
-    or: `scheduled_for.is.null,scheduled_for.lte.${ts}`,
+    or: `(scheduled_for.is.null,scheduled_for.lte.${ts})`,
     order: 'scheduled_for.asc.nullsfirst,created_at.asc',
     limit: String(Math.max(1, Math.min(limit, 25))),
   });

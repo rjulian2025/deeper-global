@@ -47,9 +47,11 @@ async function supabaseRequest(url, key, path, options = {}) {
 
 async function requeueFailedPosts(url, key, limit) {
   const normalizedLimit = Math.max(1, Math.min(limit, 100));
+  // PATCH with limit requires an explicit order in PostgREST
   const qs = new URLSearchParams({
     status: 'eq.failed',
     x_post_id: 'is.null',
+    order: 'id.asc',
     limit: String(normalizedLimit),
   });
   return supabaseRequest(url, key, `social_posts?${qs}`, {
