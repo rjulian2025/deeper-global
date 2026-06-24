@@ -9,6 +9,9 @@
     "api/cron/publish-approved.js": {
       "maxDuration": 30
     },
+    "api/cron/generate-drafts.js": {
+      "maxDuration": 60
+    },
     "api/cron/requeue-failed.js": {
       "maxDuration": 30
     }

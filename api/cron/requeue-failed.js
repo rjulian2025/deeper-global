@@ -5,12 +5,27 @@
  * Auth: Bearer CRON_SECRET
  */
 
+function firstHeader(value) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+function authDiagnostics(req) {
+  const secret = (process.env.CRON_SECRET ?? '').trim();
+  const auth = firstHeader(req.headers.authorization ?? req.headers.Authorization);
+  return {
+    cronSecretExists: Boolean(secret),
+    cronSecretTrimmedLength: secret.length,
+    authorizationHeaderExists: Boolean(auth),
+    authorizationStartsWithBearer: typeof auth === 'string' && auth.startsWith('Bearer '),
+  };
+}
+
 function isAuthorized(req) {
   const secret = (process.env.CRON_SECRET ?? '').trim();
   if (!secret) return false;
-  const auth = req.headers['authorization'] ?? req.headers['Authorization'];
-  const header = req.headers['x-cron-secret'] ?? req.headers['x-sync-secret'];
-  const query = req.query?.secret;
+  const auth = firstHeader(req.headers.authorization ?? req.headers.Authorization);
+  const header = firstHeader(req.headers['x-cron-secret'] ?? req.headers['x-sync-secret']);
+  const query = firstHeader(req.query?.secret);
   return auth === `Bearer ${secret}` || header === secret || query === secret;
 }
 
@@ -45,6 +60,7 @@ async function requeueFailedPosts(url, key, limit) {
 
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
+  const auth = authDiagnostics(req);
 
   if (req.method !== 'GET' && req.method !== 'POST') {
     res.setHeader('Allow', 'GET, POST');
@@ -52,7 +68,8 @@ export default async function handler(req, res) {
   }
 
   if (!isAuthorized(req)) {
-    return res.status(401).json({ error: 'unauthorized' });
+    console.warn('social_requeue_unauthorized', auth);
+    return res.status(401).json({ error: 'unauthorized', auth });
   }
 
   const limitParam = parseInt(req.query?.limit ?? '100', 10);
