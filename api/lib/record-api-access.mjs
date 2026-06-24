@@ -11,6 +11,12 @@ function cleanPath(value) {
   return path?.startsWith('/') ? path : null;
 }
 
+function cleanRegion(value, maxLength = 80) {
+  const text = cleanText(Array.isArray(value) ? value[0] : value, maxLength);
+  if (!text) return null;
+  return text.replace(/[^a-zA-Z0-9 -]/g, '').slice(0, maxLength) || null;
+}
+
 export async function recordApiAccess({
   eventName,
   slug = null,
@@ -18,6 +24,7 @@ export async function recordApiAccess({
   query = null,
   attribution = null,
   referrerDomain = null,
+  headers = {},
 }) {
   if (!ALLOWED_API_EVENTS.has(eventName)) return { ok: false, reason: 'invalid_event' };
 
@@ -37,6 +44,9 @@ export async function recordApiAccess({
     category: cleanText(topic, 120),
     review_status: 'reviewed',
     risk_class: 'unknown',
+    region_country: cleanRegion(headers['x-vercel-ip-country'], 2)?.toUpperCase() ?? null,
+    region_state: cleanRegion(headers['x-vercel-ip-country-region'], 80),
+    region_city: cleanRegion(headers['x-vercel-ip-city'], 80),
     metadata: {
       api_version: 'v1',
       search_query: cleanText(query, 120),

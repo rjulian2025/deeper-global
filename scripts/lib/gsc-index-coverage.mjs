@@ -17,6 +17,9 @@ export const PATH_BUCKETS = [
   { id: 'other', label: 'Other', test: () => true },
 ];
 
+const SITEMAP_EXCLUDED_BUCKETS = new Set(['design-evolution', 'answers-random', 'categories', 'entities', 'themes']);
+const MIN_FULL_EXPORT_URLS = 25;
+
 /** GSC export filenames or folder names → normalized reason slug */
 export const REASON_ALIASES = {
   'crawled-not-indexed': 'crawled_not_indexed',
@@ -121,6 +124,16 @@ export function bucketForPath(pathname) {
   return 'other';
 }
 
+export function isSitemapIncludedPath(pathname, bucket = bucketForPath(pathname)) {
+  if (SITEMAP_EXCLUDED_BUCKETS.has(bucket)) return false;
+  if (pathname === '/answers/random/' || pathname.startsWith('/answers/random')) return false;
+  return true;
+}
+
+function countLabel(count, singular, plural = `${singular}s`) {
+  return `${count} ${count === 1 ? singular : plural}`;
+}
+
 export function inferReasonFromPath(filePath) {
   const parts = filePath.split(/[/\\]/).map((part) => part.toLowerCase());
   for (const part of parts) {
@@ -146,6 +159,9 @@ export function discoverCsvFiles(dir) {
       const stats = statSync(fullPath);
       if (stats.isDirectory()) {
         walk(fullPath);
+        continue;
+      }
+      if (/^coverage-urls\.csv$/i.test(entry)) {
         continue;
       }
       if (/\.csv$/i.test(entry)) {
@@ -197,6 +213,7 @@ export function buildCoverageReport({ sources, generatedAt = new Date().toISOStr
 
       const pathname = new URL(normalizedUrl).pathname;
       const bucket = bucketForPath(pathname);
+      const sitemapIncluded = isSitemapIncludedPath(pathname, bucket);
       const dedupeKey = `${reason}|${normalizedUrl}`;
 
       if (urlsSeen.has(dedupeKey)) continue;
@@ -215,6 +232,7 @@ export function buildCoverageReport({ sources, generatedAt = new Date().toISOStr
         pathname,
         bucket,
         reason,
+        sitemapIncluded,
         lastCrawled: row.lastCrawled,
         sourceFile: source.filePath,
       });
@@ -243,14 +261,33 @@ export function buildCoverageReport({ sources, generatedAt = new Date().toISOStr
 function buildHygieneNotes({ byReason, byBucket, rows }) {
   const notes = [];
 
+  if (rows.length > 0 && rows.length < MIN_FULL_EXPORT_URLS) {
+    notes.push({
+      id: 'limited-export-sample',
+      severity: 'info',
+      message: `Only ${rows.length} URLs parsed. Treat this as a sample; do not make URL, redirect, canonical, or sitemap policy changes until full Page indexing exports are ingested.`,
+      count: rows.length,
+    });
+  }
+
   const prototypeCount =
     (byBucket['design-evolution']?.total ?? 0) + (byBucket['answers-random']?.total ?? 0);
   if (prototypeCount > 0) {
     notes.push({
       id: 'prototype-urls-in-coverage',
       severity: 'info',
-      message: `${prototypeCount} design-evolution or random-answer URLs appear in GSC indexing exports. These are noindex and now excluded from sitemap.xml.`,
+      message: `${countLabel(prototypeCount, 'design-evolution or random-answer URL')} found in GSC indexing exports. These remain intentionally sitemap-excluded; monitor them but do not add them back to sitemap.xml.`,
       count: prototypeCount,
+    });
+  }
+
+  const sitemapExcludedCount = rows.filter((row) => !row.sitemapIncluded).length;
+  if (sitemapExcludedCount > 0) {
+    notes.push({
+      id: 'sitemap-excluded-urls-in-coverage',
+      severity: 'watch',
+      message: `${countLabel(sitemapExcludedCount, 'URL')} found in GSC exports while excluded from sitemap.xml by policy. This is acceptable for prototype, random, and hub surfaces; investigate only if these become indexed or accrue meaningful impressions.`,
+      count: sitemapExcludedCount,
     });
   }
 
@@ -274,7 +311,7 @@ function buildHygieneNotes({ byReason, byBucket, rows }) {
     notes.push({
       id: 'answers-crawled-not-indexed',
       severity: 'action',
-      message: `${answerCrawledNotIndexed} answer URLs are crawled but not indexed. Prioritize reviewed answers with enrichment before changing URL structure.`,
+      message: `${countLabel(answerCrawledNotIndexed, 'answer URL')} crawled but not indexed. Corrective action: enrich reviewed answer content, QA and promote the rewrite, then watch the next GSC cycle before changing URL structure.`,
       count: answerCrawledNotIndexed,
     });
   }
@@ -322,7 +359,7 @@ export function reportToMarkdown(report) {
   ];
 
   for (const [reason, data] of Object.entries(report.by_reason).sort((a, b) => b[1].count - a[1].count)) {
-    const sample = data.sample[0]?.pathname ?? '—';
+    const sample = data.sample[0]?.pathname ?? 'n/a';
     lines.push(`| ${reason} | ${data.count} | ${sample} |`);
   }
 
@@ -336,14 +373,14 @@ export function reportToMarkdown(report) {
     const reasons = Object.entries(data)
       .filter(([key]) => key !== 'total')
       .sort((a, b) => b[1] - a[1]);
-    const topReason = reasons[0]?.[0] ?? '—';
+    const topReason = reasons[0]?.[0] ?? 'n/a';
     lines.push(`| ${bucket.label} | ${total} | ${topReason} |`);
   }
 
   if (report.hygiene.length) {
     lines.push('', '## Hygiene notes', '');
     for (const note of report.hygiene) {
-      lines.push(`- **${note.severity.toUpperCase()}** — ${note.message}`);
+      lines.push(`- **${note.severity.toUpperCase()}**: ${note.message}`);
     }
   }
 
@@ -354,13 +391,12 @@ export function reportToMarkdown(report) {
     }
   }
 
-  lines.push(
-    '',
-    '## Next step',
-    '',
-    'Run `npm run seo:priority` after exports are in place to rank answer URLs for enrichment.',
-    ''
-  );
+  lines.push('', '## Corrective action queue', '');
+  lines.push('1. For answer URLs crawled but not indexed, enrich reviewed answers first: run `npm run content:gsc-weekly-plan`, approve slugs, rewrite with `npm run content:rewrite-answers-claude -- --apply --slugs-file reports/gsc-weekly/rewrite-batch.json`, then run QA and promote.');
+  lines.push('2. Keep prototype, random-answer, category, entity, and theme URLs out of sitemap.xml unless indexation policy is intentionally changed.');
+  lines.push('3. Do not change URLs, redirects, canonicals, or sitemap policy from small samples. Ingest full Page indexing exports before structural SEO decisions.');
+  lines.push('4. After exports are in place, run `npm run seo:priority` to rank answer URLs for enrichment.');
+  lines.push('');
 
   return `${lines.join('\n')}\n`;
 }
@@ -373,21 +409,22 @@ export function writeCoverageReport(report, outDir) {
 
   const slim = {
     ...report,
-    rows: report.rows.map(({ url, pathname, bucket, reason, lastCrawled }) => ({
+    rows: report.rows.map(({ url, pathname, bucket, reason, sitemapIncluded, lastCrawled }) => ({
       url,
       pathname,
       bucket,
       reason,
+      sitemapIncluded,
       lastCrawled,
     })),
   };
   writeFileSync(jsonPath, `${JSON.stringify(slim, null, 2)}\n`);
   writeFileSync(mdPath, reportToMarkdown(report));
 
-  const csvLines = ['url,pathname,bucket,reason,last_crawled'];
+  const csvLines = ['url,pathname,bucket,reason,sitemap_included,last_crawled'];
   for (const row of report.rows) {
     const escape = (value) => `"${String(value ?? '').replace(/"/g, '""')}"`;
-    csvLines.push([row.url, row.pathname, row.bucket, row.reason, row.lastCrawled].map(escape).join(','));
+    csvLines.push([row.url, row.pathname, row.bucket, row.reason, row.sitemapIncluded, row.lastCrawled].map(escape).join(','));
   }
   writeFileSync(csvPath, `${csvLines.join('\n')}\n`);
 

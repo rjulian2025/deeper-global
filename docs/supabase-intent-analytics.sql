@@ -43,6 +43,10 @@ create index if not exists intent_events_region_idx
 create index if not exists intent_events_sensitivity_gin_idx
   on public.intent_events using gin (sensitivity);
 
+create index if not exists intent_events_api_citation_idx
+  on public.intent_events (occurred_at desc, event_name, answer_slug)
+  where event_name in ('api_answer_fetched', 'api_answers_listed');
+
 create or replace function public.record_intent_event(event jsonb)
 returns void
 language plpgsql
@@ -64,7 +68,9 @@ declare
     'deeper_outbound_click',
     'external_referral_clicked',
     'editorial_policy_viewed',
-    'answer_related_clicked'
+    'answer_related_clicked',
+    'api_answer_fetched',
+    'api_answers_listed'
   ];
   event_name_value text := left(coalesce(event->>'event_name', ''), 80);
   sensitivity_value text[] := coalesce(
@@ -126,6 +132,7 @@ $$;
 
 revoke all on function public.record_intent_event(jsonb) from public;
 grant execute on function public.record_intent_event(jsonb) to anon, authenticated, service_role;
+grant select on table public.intent_events to service_role;
 
 create or replace view public.intent_internal_daily_rollups as
 select

@@ -45,6 +45,9 @@ const METADATA_KEYS = new Set([
   'utm_campaign',
   'utm_content',
   'target_path',
+  'api_version',
+  'search_query',
+  'attribution',
 ]);
 
 function cleanText(value, maxLength = 120) {

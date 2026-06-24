@@ -48,7 +48,7 @@ export async function fetchApiCitationStats(supabaseClient, { windowDays = 7 } =
       top_answer_slugs: [],
       top_referrers: [],
       top_attributions: [],
-      note: 'API citation telemetry unavailable. Apply docs/supabase-api-citation-events.sql if events are not recording.',
+      note: 'API citation telemetry unavailable. Apply docs/supabase-api-citation-events.sql if public API events are not recording.',
     };
   }
 
@@ -87,7 +87,7 @@ export async function fetchApiCitationStats(supabaseClient, { windowDays = 7 } =
     top_attributions: topEntries(attributionCounts, 8).filter((item) => item.key),
     note:
       rows.length === 0
-        ? 'No API citation events yet. Traffic is logged in Vercel; persist events with docs/supabase-api-citation-events.sql.'
+        ? 'No API citation events yet. If Vercel logs show api_citation_access entries, apply docs/supabase-api-citation-events.sql and confirm the report uses SUPABASE_SERVICE_ROLE_KEY.'
         : null,
   };
 }
@@ -101,8 +101,8 @@ export function apiCitationMarkdownSection(apiCitation) {
     '',
     `| Field | Value |`,
     `| --- | --- |`,
-    `| Available | ${apiCitation.available ? 'yes' : `no — ${apiCitation.reason}`} |`,
-    `| Window | last ${apiCitation.window_days} days (since ${apiCitation.since?.slice(0, 10) ?? '—'}) |`,
+    `| Available | ${apiCitation.available ? 'yes' : `no (${apiCitation.reason})`} |`,
+    `| Window | last ${apiCitation.window_days} days (since ${apiCitation.since?.slice(0, 10) ?? 'n/a'}) |`,
     `| Total API events | ${apiCitation.total_events} |`,
     `| Answer fetches | ${apiCitation.answer_fetches} |`,
     `| List/search requests | ${apiCitation.list_requests} |`,
@@ -112,14 +112,14 @@ export function apiCitationMarkdownSection(apiCitation) {
   if (apiCitation.top_answer_slugs?.length) {
     lines.push('', '### Top fetched answer slugs', '');
     for (const item of apiCitation.top_answer_slugs) {
-      lines.push(`- ${item.key} — ${item.count}`);
+      lines.push(`- ${item.key}: ${item.count}`);
     }
   }
 
   if (apiCitation.top_attributions?.length) {
     lines.push('', '### Top API attributions / searches', '');
     for (const item of apiCitation.top_attributions) {
-      lines.push(`- ${item.key} — ${item.count}`);
+      lines.push(`- ${item.key}: ${item.count}`);
     }
   }
 
@@ -143,12 +143,12 @@ export function apiCitationTextLines(apiCitation) {
 
   return [
     'Public API citation usage:',
-    `- Window: last ${apiCitation.window_days} days (since ${apiCitation.since?.slice(0, 10) ?? '—'})`,
+    `- Window: last ${apiCitation.window_days} days (since ${apiCitation.since?.slice(0, 10) ?? 'n/a'})`,
     `- Total API events: ${apiCitation.total_events}`,
     `- Answer fetches: ${apiCitation.answer_fetches}`,
     `- List/search requests: ${apiCitation.list_requests}`,
     `- Unique answers fetched: ${apiCitation.unique_answers_fetched}`,
-    ...(apiCitation.top_answer_slugs ?? []).map((item) => `- Top slug: ${item.key} — ${item.count}`),
+    ...(apiCitation.top_answer_slugs ?? []).map((item) => `- Top slug: ${item.key}: ${item.count}`),
     ...(apiCitation.note ? [`- Note: ${apiCitation.note}`] : []),
   ];
 }
@@ -162,7 +162,7 @@ export function apiCitationHtmlSection(apiCitation) {
 
   const topSlugs = (apiCitation.top_answer_slugs ?? [])
     .slice(0, 5)
-    .map((item) => `<li><code>${escapeHtml(item.key)}</code> — ${item.count}</li>`)
+    .map((item) => `<li><code>${escapeHtml(item.key)}</code>: ${item.count}</li>`)
     .join('');
 
   const note = apiCitation.note ? `<p style="color:#6b7280;font-size:13px;">${escapeHtml(apiCitation.note)}</p>` : '';

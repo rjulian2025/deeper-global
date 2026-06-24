@@ -1,4 +1,4 @@
-url,pathname,bucket,reason,last_crawled
-"https://www.deeper.global/answers/example-answer-slug/","/answers/example-answer-slug/","answer-detail","crawled_not_indexed","2026-06-18"
-"https://www.deeper.global/design-evolution/direction-d/","/design-evolution/direction-d/","design-evolution","crawled_not_indexed","2026-06-17"
-"https://www.deeper.global/categories/existential/","/categories/existential/","categories","crawled_not_indexed","2026-06-16"
+url,pathname,bucket,reason,sitemap_included,last_crawled
+"https://www.deeper.global/answers/example-answer-slug/","/answers/example-answer-slug/","answer-detail","crawled_not_indexed","true","2026-06-18"
+"https://www.deeper.global/design-evolution/direction-d/","/design-evolution/direction-d/","design-evolution","crawled_not_indexed","false","2026-06-17"
+"https://www.deeper.global/categories/existential/","/categories/existential/","categories","crawled_not_indexed","false","2026-06-16"

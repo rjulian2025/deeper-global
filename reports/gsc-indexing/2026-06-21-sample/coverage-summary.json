@@ -1,6 +1,6 @@
 {
   "version": "gsc-index-coverage-v1",
-  "generated_at": "2026-06-21T13:28:30.830Z",
+  "generated_at": "2026-06-23T13:45:59.505Z",
   "site": "https://www.deeper.global",
   "source_files": [
     {
@@ -62,15 +62,27 @@
   },
   "hygiene": [
     {
+      "id": "limited-export-sample",
+      "severity": "info",
+      "message": "Only 3 URLs parsed. Treat this as a sample; do not make URL, redirect, canonical, or sitemap policy changes until full Page indexing exports are ingested.",
+      "count": 3
+    },
+    {
       "id": "prototype-urls-in-coverage",
       "severity": "info",
-      "message": "1 design-evolution or random-answer URLs appear in GSC indexing exports. These are noindex and now excluded from sitemap.xml.",
+      "message": "1 design-evolution or random-answer URL found in GSC indexing exports. These remain intentionally sitemap-excluded; monitor them but do not add them back to sitemap.xml.",
       "count": 1
+    },
+    {
+      "id": "sitemap-excluded-urls-in-coverage",
+      "severity": "watch",
+      "message": "2 URLs found in GSC exports while excluded from sitemap.xml by policy. This is acceptable for prototype, random, and hub surfaces; investigate only if these become indexed or accrue meaningful impressions.",
+      "count": 2
     },
     {
       "id": "answers-crawled-not-indexed",
       "severity": "action",
-      "message": "1 answer URLs are crawled but not indexed. Prioritize reviewed answers with enrichment before changing URL structure.",
+      "message": "1 answer URL crawled but not indexed. Corrective action: enrich reviewed answer content, QA and promote the rewrite, then watch the next GSC cycle before changing URL structure.",
       "count": 1
     }
   ],
@@ -80,6 +92,7 @@
       "pathname": "/answers/example-answer-slug/",
       "bucket": "answer-detail",
       "reason": "crawled_not_indexed",
+      "sitemapIncluded": true,
       "lastCrawled": "2026-06-18"
     },
     {
@@ -87,6 +100,7 @@
       "pathname": "/design-evolution/direction-d/",
       "bucket": "design-evolution",
       "reason": "crawled_not_indexed",
+      "sitemapIncluded": false,
       "lastCrawled": "2026-06-17"
     },
     {
@@ -94,6 +108,7 @@
       "pathname": "/categories/existential/",
       "bucket": "categories",
       "reason": "crawled_not_indexed",
+      "sitemapIncluded": false,
       "lastCrawled": "2026-06-16"
     }
   ]

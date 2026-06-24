@@ -37,6 +37,25 @@ function writeEnvFile(path, envMap) {
   writeFileSync(path, `${lines.join('\n')}\n`);
 }
 
+function commandExists(command) {
+  return spawnSync('sh', ['-lc', `command -v ${command}`], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+  }).status === 0;
+}
+
+function vercelCliCommand() {
+  if (commandExists('vercel')) {
+    return { command: 'vercel', baseArgs: [] };
+  }
+
+  if (process.env.VERCEL_TOKEN?.trim()) {
+    return { command: 'npx', baseArgs: ['--yes', 'vercel@latest'] };
+  }
+
+  return null;
+}
+
 function ensureExamples() {
   mkdirSync(USER_DIR, { recursive: true });
 
@@ -64,10 +83,27 @@ PUBLIC_SUPABASE_ANON_KEY=""
 }
 
 function tryVercelPull() {
+  const cli = vercelCliCommand();
+  if (!cli) {
+    return {
+      ok: false,
+      stdout: '',
+      stderr: 'Vercel CLI is not installed and VERCEL_TOKEN is not set. Install vercel, run vercel login, or set VERCEL_TOKEN for non-interactive env pulls.',
+    };
+  }
+
+  const args = [...cli.baseArgs, 'env', 'pull', ENV_PATHS.projectLocal, '--environment=production', '--yes'];
+  if (process.env.VERCEL_TOKEN?.trim()) {
+    args.push('--token', process.env.VERCEL_TOKEN.trim());
+  }
+
   const result = spawnSync(
-    'vercel',
-    ['env', 'pull', ENV_PATHS.projectLocal, '--environment=production', '--yes'],
-    { encoding: 'utf8' }
+    cli.command,
+    args,
+    {
+      encoding: 'utf8',
+      env: { ...process.env, CI: '1' },
+    }
   );
 
   return {
