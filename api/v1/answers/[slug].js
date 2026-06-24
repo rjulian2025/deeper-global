@@ -57,7 +57,14 @@ export default async function handler(req, res) {
       slug,
       attribution: readAttributionHeader(req),
       referrerDomain: readReferrerDomain(req),
-    }).catch(() => {});
+    }).catch((err) => {
+      console.error('api_citation_record_failed', {
+        event: 'api_answer_fetched',
+        slug,
+        ts: new Date().toISOString(),
+        error: err instanceof Error ? err.message : String(err),
+      });
+    });
 
     return jsonResponse(res, 200, buildAnswerPayload(question));
   } catch (error) {

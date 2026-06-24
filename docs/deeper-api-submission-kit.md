@@ -45,7 +45,7 @@ mental health API, AI agents, MCP, OpenAPI, llms.txt, agents.txt, health content
 ## Primary URLs
 
 - Landing page: https://www.deeper.global/developers/
-- OpenAPI: https://www.deeper.global/openapi.json
+- OpenAPI: https://www.deeper.global/api/v1/openapi.json
 - agents.txt: https://www.deeper.global/agents.txt
 - llms.txt: https://www.deeper.global/llms.txt
 - Answer index: https://www.deeper.global/llms/answers.json

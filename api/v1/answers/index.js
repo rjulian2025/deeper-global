@@ -51,7 +51,13 @@ export default async function handler(req, res) {
       query: q,
       attribution: readAttributionHeader(req),
       referrerDomain: readReferrerDomain(req),
-    }).catch(() => {});
+    }).catch((err) => {
+      console.error('api_citation_record_failed', {
+        event: 'api_answers_listed',
+        ts: new Date().toISOString(),
+        error: err instanceof Error ? err.message : String(err),
+      });
+    });
 
     return jsonResponse(res, 200, payload);
   } catch (error) {

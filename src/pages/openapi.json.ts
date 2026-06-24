@@ -1,6 +1,21 @@
+// This route previously served a separate OpenAPI document.
+// The canonical spec is now /api/v1/openapi.json, which accurately reflects
+// the live API. This redirect ensures existing links remain functional.
+
+export async function GET() {
+  return new Response(null, {
+    status: 301,
+    headers: {
+      Location: '/api/v1/openapi.json',
+      'Cache-Control': 'public, max-age=86400',
+    },
+  });
+}
+
+// ——— archived spec below (no longer served) ———
 import { SITE_URL } from '@/lib/site';
 
-const openApiDocument = {
+const _deprecatedOpenApiDocument = {
   openapi: '3.1.0',
   info: {
     title: 'Deeper API',
@@ -453,10 +468,4 @@ const openApiDocument = {
   },
 };
 
-export async function GET() {
-  return Response.json(openApiDocument, {
-    headers: {
-      'Cache-Control': 'public, max-age=3600',
-    },
-  });
-}
+// export removed — GET handler at the top of this file now handles all requests

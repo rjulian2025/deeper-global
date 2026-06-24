@@ -84,6 +84,64 @@ const OPENAPI = {
         },
       },
     },
+    '/llms/entities.json': {
+      get: {
+        operationId: 'listEntityIndex',
+        summary: 'Mental health topic entities with aliases and answer counts',
+        responses: {
+          '200': {
+            description: 'Entity index',
+          },
+        },
+      },
+    },
+    '/llms/priority.json': {
+      get: {
+        operationId: 'listPriorityIndex',
+        summary: 'Ranked answer queue for quality, review, and indexing work',
+        responses: {
+          '200': {
+            description: 'Priority answer inventory',
+          },
+        },
+      },
+    },
+    '/llms.txt': {
+      get: {
+        operationId: 'getLlmsTxt',
+        summary: 'Agent-readable site guide with content boundaries and index links',
+        responses: {
+          '200': {
+            description: 'llms.txt plain-text guide',
+            content: { 'text/plain': { schema: { type: 'string' } } },
+          },
+        },
+      },
+    },
+    '/agents.txt': {
+      get: {
+        operationId: 'getAgentsTxt',
+        summary: 'Agent usage instructions and preferred endpoint list',
+        responses: {
+          '200': {
+            description: 'agents.txt plain-text guide',
+            content: { 'text/plain': { schema: { type: 'string' } } },
+          },
+        },
+      },
+    },
+    '/api/v1/openapi.json': {
+      get: {
+        operationId: 'getOpenApiSpec',
+        summary: 'This OpenAPI specification document',
+        responses: {
+          '200': {
+            description: 'OpenAPI 3.1 specification',
+            content: { 'application/json': { schema: { type: 'object' } } },
+          },
+        },
+      },
+    },
     '/ai-use/': {
       get: {
         operationId: 'aiUsePolicy',
