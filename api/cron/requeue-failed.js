@@ -6,7 +6,7 @@
  */
 
 function isAuthorized(req) {
-  const secret = process.env.CRON_SECRET;
+  const secret = (process.env.CRON_SECRET ?? '').trim();
   if (!secret) return false;
   const auth = req.headers['authorization'] ?? req.headers['Authorization'];
   const header = req.headers['x-cron-secret'] ?? req.headers['x-sync-secret'];

@@ -6,6 +6,8 @@
  * Query params: dryRun=1, limit=N (default 1)
  */
 
+import { TwitterApi } from 'twitter-api-v2';
+
 // ── X weighted length (mirrors generate-drafts logic) ────────────────────────
 
 const X_TCO_URL_LENGTH = 23;
@@ -18,7 +20,7 @@ function getXWeightedLength(text) {
 // ── Auth ─────────────────────────────────────────────────────────────────────
 
 function isAuthorized(req) {
-  const secret = process.env.CRON_SECRET;
+  const secret = (process.env.CRON_SECRET ?? '').trim();
   if (!secret) return false;
   const auth = req.headers['authorization'] ?? req.headers['Authorization'];
   const header = req.headers['x-cron-secret'] ?? req.headers['x-sync-secret'];
@@ -94,7 +96,6 @@ async function markFailed(url, key, postId) {
 // ── X posting ─────────────────────────────────────────────────────────────────
 
 async function postToX(text) {
-  const { TwitterApi } = await import('twitter-api-v2');
   const credentials = {
     appKey: process.env.X_API_KEY?.trim(),
     appSecret: process.env.X_API_SECRET?.trim(),
