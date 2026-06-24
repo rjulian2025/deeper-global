@@ -6,14 +6,11 @@
     "api/sync-trends.js": {
       "maxDuration": 300
     },
-    "api/cron/publish-approved.ts": {
-      "includeFiles": "src/lib/social/**,src/lib/database.types.ts"
+    "api/cron/publish-approved.js": {
+      "maxDuration": 30
     },
-    "api/cron/requeue-failed.ts": {
-      "includeFiles": "src/lib/social/**,src/lib/database.types.ts"
-    },
-    "api/cron/generate-drafts.ts": {
-      "includeFiles": "src/lib/social/**,src/lib/database.types.ts"
+    "api/cron/requeue-failed.js": {
+      "maxDuration": 30
     }
   },
   "crons": [
