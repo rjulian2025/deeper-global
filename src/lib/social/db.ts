@@ -198,6 +198,20 @@ export async function markFailed(postId: string): Promise<SocialPost> {
   return data;
 }
 
+export async function requeueFailedPosts(limit: number): Promise<SocialPost[]> {
+  const normalizedLimit = Math.max(1, Math.min(limit, 100));
+  const { data, error } = await requireSocialSupabase()
+    .from('social_posts')
+    .update({ status: 'approved' })
+    .eq('status', 'failed')
+    .is('x_post_id', null)
+    .select('*')
+    .limit(normalizedLimit);
+
+  if (error) throw error;
+  return data ?? [];
+}
+
 export async function recordMetrics(postId: string, metrics: SocialMetricsInsert) {
   const { data, error } = await requireSocialSupabase()
     .from('social_metrics')
