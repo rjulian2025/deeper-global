@@ -17,14 +17,31 @@ function getXWeightedLength(text) {
   return text.replace(/https?:\/\/\S+/g, 'x'.repeat(X_TCO_URL_LENGTH)).length;
 }
 
+const POST_CLAIM_MINUTES = 10;
+
 // ── Auth ─────────────────────────────────────────────────────────────────────
+
+function firstHeader(value) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+function authDiagnostics(req) {
+  const secret = (process.env.CRON_SECRET ?? '').trim();
+  const auth = firstHeader(req.headers.authorization ?? req.headers.Authorization);
+  return {
+    cronSecretExists: Boolean(secret),
+    cronSecretTrimmedLength: secret.length,
+    authorizationHeaderExists: Boolean(auth),
+    authorizationStartsWithBearer: typeof auth === 'string' && auth.startsWith('Bearer '),
+  };
+}
 
 function isAuthorized(req) {
   const secret = (process.env.CRON_SECRET ?? '').trim();
   if (!secret) return false;
-  const auth = req.headers['authorization'] ?? req.headers['Authorization'];
-  const header = req.headers['x-cron-secret'] ?? req.headers['x-sync-secret'];
-  const query = req.query?.secret;
+  const auth = firstHeader(req.headers.authorization ?? req.headers.Authorization);
+  const header = firstHeader(req.headers['x-cron-secret'] ?? req.headers['x-sync-secret']);
+  const query = firstHeader(req.query?.secret);
   return auth === `Bearer ${secret}` || header === secret || query === secret;
 }
 
@@ -73,6 +90,19 @@ async function getApprovedPostsToPublish(url, key, limit, now) {
   return supabaseRequest(url, key, `social_posts?${qs}`);
 }
 
+async function claimPostForPublish(url, key, postId) {
+  const claimUntil = new Date(Date.now() + POST_CLAIM_MINUTES * 60 * 1000).toISOString();
+  const qs = new URLSearchParams({
+    id: `eq.${postId}`,
+    status: 'eq.approved',
+    x_post_id: 'is.null',
+  });
+  return supabaseRequest(url, key, `social_posts?${qs}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ scheduled_for: claimUntil }),
+  });
+}
+
 async function markPublished(url, key, postId, xPostId) {
   const qs = new URLSearchParams({ id: `eq.${postId}` });
   return supabaseRequest(url, key, `social_posts?${qs}`, {
@@ -94,6 +124,23 @@ async function markFailed(url, key, postId) {
 }
 
 // ── X posting ─────────────────────────────────────────────────────────────────
+
+function summarizeError(error) {
+  const message = error instanceof Error ? error.message : String(error);
+  const status =
+    error?.code ??
+    error?.status ??
+    error?.statusCode ??
+    error?.data?.status ??
+    error?.response?.status ??
+    null;
+  const body = error?.data ?? error?.response?.data ?? error?.errors ?? null;
+  return {
+    message,
+    status,
+    bodySummary: body ? JSON.stringify(body).slice(0, 600) : null,
+  };
+}
 
 async function postToX(text) {
   const credentials = {
@@ -122,6 +169,7 @@ async function postToX(text) {
 
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
+  const auth = authDiagnostics(req);
 
   if (req.method !== 'GET' && req.method !== 'POST') {
     res.setHeader('Allow', 'GET, POST');
@@ -129,7 +177,8 @@ export default async function handler(req, res) {
   }
 
   if (!isAuthorized(req)) {
-    return res.status(401).json({ error: 'unauthorized' });
+    console.warn('social_publish_unauthorized', auth);
+    return res.status(401).json({ error: 'unauthorized', auth });
   }
 
   const dryRun =
@@ -144,20 +193,66 @@ export default async function handler(req, res) {
 
     const posts = await getApprovedPostsToPublish(url, key, limit);
     const results = [];
+    console.log('social_publish_approved_count', {
+      approved_count: posts.length,
+      requested_limit: limit,
+      dryRun,
+    });
 
     for (const post of posts) {
+      const selected = {
+        post_id: post.id,
+        format: post.format,
+        scheduled_for: post.scheduled_for ?? null,
+        body_weighted_length: getXWeightedLength(post.body ?? ''),
+      };
+      console.log('social_publish_selected_post', selected);
       if (dryRun) {
-        results.push({ post_id: post.id, status: 'dry_run', x_post_id: null, body: post.body, error: null });
+        results.push({ ...selected, status: 'dry_run', x_post_id: null, error: null });
         continue;
       }
+
+      const claimed = await claimPostForPublish(url, key, post.id);
+      console.log('social_publish_claim_result', {
+        post_id: post.id,
+        claimed_count: Array.isArray(claimed) ? claimed.length : null,
+      });
+
+      const claimedPost = Array.isArray(claimed) ? claimed[0] : null;
+      if (!claimedPost) {
+        results.push({ ...selected, status: 'skipped_claimed_elsewhere', x_post_id: null, error: null });
+        continue;
+      }
+
       try {
-        const published = await postToX(post.body);
-        await markPublished(url, key, post.id, published.id);
-        results.push({ post_id: post.id, status: 'published', x_post_id: published.id, body: post.body, error: null });
+        console.log('social_publish_attempt', {
+          post_id: claimedPost.id,
+          format: claimedPost.format,
+          body_weighted_length: getXWeightedLength(claimedPost.body ?? ''),
+        });
+        const published = await postToX(claimedPost.body);
+        const updated = await markPublished(url, key, claimedPost.id, published.id);
+        console.log('social_publish_update_result', {
+          post_id: claimedPost.id,
+          x_post_id: published.id,
+          updated_count: Array.isArray(updated) ? updated.length : null,
+        });
+        results.push({ ...selected, status: 'published', x_post_id: published.id, error: null });
       } catch (err) {
-        console.error('social_publish_failed', { post_id: post.id, error: err });
-        await markFailed(url, key, post.id).catch(() => {});
-        results.push({ post_id: post.id, status: 'failed', x_post_id: null, body: post.body, error: err instanceof Error ? err.message : String(err) });
+        const summary = summarizeError(err);
+        console.error('social_publish_failed', { post_id: claimedPost.id, error: summary });
+        const failedUpdate = await markFailed(url, key, claimedPost.id).catch((updateError) => {
+          console.error('social_publish_mark_failed_error', {
+            post_id: claimedPost.id,
+            error: summarizeError(updateError),
+          });
+          return null;
+        });
+        console.log('social_publish_update_result', {
+          post_id: claimedPost.id,
+          failed_update_count: Array.isArray(failedUpdate) ? failedUpdate.length : null,
+        });
+        results.push({ ...selected, status: 'failed', x_post_id: null, error: summary.message });
       }
     }
 
