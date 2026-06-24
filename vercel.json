@@ -43,6 +43,11 @@
   ],
   "redirects": [
     {
+      "source": "/openapi.json",
+      "destination": "/api/v1/openapi.json",
+      "permanent": true
+    },
+    {
       "source": "/clusters",
       "destination": "/answers/",
       "permanent": true
