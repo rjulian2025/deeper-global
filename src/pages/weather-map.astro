@@ -3,6 +3,7 @@ import EditorialStaticLayout from '@/components/editorial/EditorialStaticLayout.
 import BaseLayout from '@/layouts/BaseLayout.astro';
 
 const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
+const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
 ---
 
 <BaseLayout
@@ -80,7 +81,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
 
   <script is:inline src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
 
-  <script define:vars={{ MAPBOX_TOKEN }}>
+  <script define:vars={{ MAPBOX_TOKEN, API_BASE }}>
     function initWeatherMap() {
       const CATEGORY_COLORS = {
         'Anxiety & Stress': '#F5A623',
@@ -665,7 +666,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
       }
 
       async function loadSignals() {
-        const response = await fetch('/api/map-signals');
+        const response = await fetch(`${API_BASE}/api/map-signals`);
         if (!response.ok) throw new Error('Failed to load map signals');
         return response.json();
       }
@@ -742,7 +743,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
     }
   </script>
 
-  <script is:inline>
+  <script define:vars={{ API_BASE }} is:inline>
     (() => {
       const card = document.getElementById('weather-map-insights-card');
       const list = document.getElementById('weather-map-insights-list');
@@ -751,7 +752,7 @@ const MAPBOX_TOKEN = import.meta.env.PUBLIC_MAPBOX_TOKEN ?? '';
 
       async function loadInsights() {
         try {
-          const response = await fetch('/api/insights');
+          const response = await fetch(`${API_BASE}/api/insights`);
           if (!response.ok) throw new Error('insights_fetch_failed');
 
           const payload = await response.json();

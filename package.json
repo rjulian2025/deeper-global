@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "dev:map": "node scripts/dev-map.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro build",
