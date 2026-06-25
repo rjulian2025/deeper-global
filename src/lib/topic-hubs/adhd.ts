@@ -60,7 +60,7 @@ export function getAdhdTopicHubConfig(): TopicHubConfig {
         ? {
             crossLink: {
               overlapLabel: 'Anxiety',
-              hubPath: '/categories/anxiety-and-stress/',
+              hubPath: '/anxiety/',
               hubLabel: 'Anxiety hub',
             },
           }
@@ -70,7 +70,7 @@ export function getAdhdTopicHubConfig(): TopicHubConfig {
     searchPlaceholder: 'Search ADHD answers',
     searchQuery: 'ADHD',
     relatedHubs: [
-      { label: 'Anxiety & stress', href: '/categories/anxiety-and-stress/' },
+      { label: 'Anxiety hub', href: '/anxiety/' },
       { label: 'Depression', href: '/categories/depression/' },
       { label: 'Neurodivergence & attention', href: '/categories/neurodivergence-and-attention/' },
       { label: 'Work & burnout', href: '/categories/work-and-burnout/' },

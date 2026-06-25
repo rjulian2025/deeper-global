@@ -36,6 +36,7 @@ const CATEGORY_HUB_OVERRIDES: Record<string, CategoryHubOverride> = {
       },
     ],
     relatedHubs: [
+      { label: 'Anxiety hub', href: '/anxiety/' },
       { label: 'Depression', href: '/categories/depression/' },
       { label: 'Trauma & grief', href: '/categories/trauma-and-grief/' },
       { label: 'Therapy navigation', href: '/categories/therapy-navigation/' },

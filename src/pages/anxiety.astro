@@ -1,0 +1,22 @@
+---
+import TopicHubPage from '@/components/topic-hub/TopicHubPage.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { buildTopicHubPageData } from '@/lib/topic-hub';
+import { buildTopicHubJsonLd } from '@/lib/topic-hub-jsonld';
+import { getAnxietyTopicHubConfig } from '@/lib/topic-hubs/anxiety';
+import { getQuestions } from '@/lib/supabase';
+
+const config = getAnxietyTopicHubConfig();
+const questions = await getQuestions();
+const hub = buildTopicHubPageData(config, questions);
+const jsonLd = buildTopicHubJsonLd(config, hub);
+---
+
+<BaseLayout
+  title="Anxiety Hub: Panic, Worry, Social Anxiety & Coping | Deeper Global"
+  description={config.jsonLdDescription}
+  canonicalPath={config.path}
+  jsonLd={jsonLd}
+>
+  <TopicHubPage config={config} hub={hub} />
+</BaseLayout>

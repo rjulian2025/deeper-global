@@ -8,6 +8,7 @@ import SourceRefsBlock from '@/components/sidebar/SourceRefsBlock.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { isAdhdHubSlug } from '@/lib/adhd-hub';
 import { isAiMentalHealthSprintQuestion } from '@/lib/ai-mental-health-hub';
+import { isAnxietyHubSlug } from '@/lib/anxiety-hub';
 import { getModalityCardsForAnswer, modalityPath } from '@/lib/modality-hub';
 import {
   answerPath,
@@ -115,6 +116,7 @@ const shouldIndex = shouldIndexQuestion(question);
 const practitionerLink = getAnswerPractitionerLink(question.slug);
 const isAiMentalHealthAnswer = isAiMentalHealthSprintQuestion(question);
 const isAdhdHubAnswer = isAdhdHubSlug(question.slug);
+const isAnxietyHubAnswer = isAnxietyHubSlug(question.slug);
 const semanticEnrichment = resolveSemanticEnrichmentSync(question, getPilotEnrichmentBySlug());
 const reviewedBy = getReviewedByLabel(question);
 const reviewerDisplayLabel = getReviewerDisplayLabel(question);
@@ -145,6 +147,7 @@ const relatedSidebarLinks: RelatedSidebarLink[] = [
   })),
   ...(isAdhdHubAnswer ? [{ href: '/adhd/', label: 'ADHD hub' }] : []),
   ...(isAiMentalHealthAnswer ? [{ href: '/ai-mental-health/', label: 'AI mental health hub' }] : []),
+  ...(isAnxietyHubAnswer ? [{ href: '/anxiety/', label: 'Anxiety hub' }] : []),
   { href: categoryPath(category), label: `${category} topic hub` },
 ];
 

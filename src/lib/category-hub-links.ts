@@ -1,5 +1,6 @@
 import { ADHD_HUB_PATH, adhdHubClusters } from './adhd-hub';
 import { AI_MENTAL_HEALTH_HUB_PATH, aiMentalHealthClusters } from './ai-mental-health-hub';
+import { ANXIETY_HUB_PATH, anxietyHubClusters } from './anxiety-hub';
 import { answerPath, displayCategory } from './content';
 import { filterPublishableQuestions } from './indexing-policy';
 import { MODALITIES_HUB_PATH, modalityExploreClusters } from './modality-hub';
@@ -89,6 +90,23 @@ export function getCategoryHubSections(categoryName: string, questions: Question
 
   if (aiMatches.length) {
     sections.push(...aiMatches.slice(0, 2));
+  }
+
+  const anxietyMatches = anxietyHubClusters
+    .map((cluster) =>
+      clusterSectionForCategory(
+        categoryName,
+        'Anxiety hub',
+        ANXIETY_HUB_PATH,
+        'Curated answers on panic, social anxiety, worry, work stress, medication, and coping skills.',
+        cluster,
+        allBySlug
+      )
+    )
+    .filter((section): section is CategoryHubSection => Boolean(section));
+
+  if (anxietyMatches.length) {
+    sections.push(...anxietyMatches.slice(0, 2));
   }
 
   const modalityClusterNames = CATEGORY_MODALITY_CLUSTERS[categoryName] ?? [];

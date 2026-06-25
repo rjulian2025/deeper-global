@@ -23,6 +23,7 @@ export async function GET() {
     `- [Answers](${siteUrl('/answers')}): Complete answer library.`,
     `- [Modalities](${siteUrl('/modalities')}): Structured psychoeducation hub for therapy approaches — EMDR, CBT, DBT, IFS, somatic therapies, couples work, and emerging treatments with cross-links to related answers.`,
     `- [ADHD hub](${siteUrl('/adhd')}): Curated cluster for adult ADHD diagnosis, executive dysfunction, emotional overwhelm, medication, work accommodations, and daily coping.`,
+    `- [Anxiety hub](${siteUrl('/anxiety')}): Curated cluster for panic symptoms, social anxiety, worry, work stress, medication questions, grounding skills, and when to seek support.`,
     `- [AI mental health hub](${siteUrl('/ai-mental-health')}): Curated cluster for AI psychosis, chatbot dependency, AI companions, teens, work anxiety, deepfakes, and safety boundaries.`,
     `- [AI use policy](${siteUrl('/ai-use')}): Public boundaries for agent, retrieval, and developer use of Deeper Global content.`,
     `- [API terms](${siteUrl('/api-terms')}): Developer preview terms, attribution requirements, commercial-use boundary, and rate-limit expectations.`,
