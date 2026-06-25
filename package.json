@@ -92,6 +92,7 @@
     "content:apply-addiction-batch-07": "node scripts/apply-enrichment.mjs --apply reports/enrichment-addiction/draft-answers/batch-07-drafts.json",
     "content:apply-addiction-batch-08": "node scripts/apply-enrichment.mjs --apply reports/enrichment-addiction/draft-answers/batch-08-drafts.json",
     "env:sync": "node scripts/sync-local-env.mjs",
+    "env:init": "node scripts/sync-local-env.mjs",
     "env:check": "node scripts/check-local-env.mjs",
     "seo:priority": "node scripts/generate-indexation-priority.mjs",
     "seo:gsc-coverage": "node scripts/audit-gsc-index-coverage.mjs",

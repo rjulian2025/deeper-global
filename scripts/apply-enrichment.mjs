@@ -17,6 +17,7 @@ import {
   loadDraftsFromPaths,
   promotionReport,
 } from './lib/enrichment-promote.mjs';
+import { bootstrapLocalEnv } from './lib/bootstrap-local-env.mjs';
 import { resolveCronSecret, resolveSupabaseConfig } from './lib/supabase-env.mjs';
 
 const OUT_DIRS = {
@@ -141,6 +142,7 @@ async function applyRemotely({ apply, campaign, preserveReview, remoteUrl, paths
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  bootstrapLocalEnv();
   let report;
 
   try {
@@ -148,7 +150,10 @@ async function main() {
     report = await applyLocally(args);
     report.apply_path = 'local';
   } catch (error) {
-    if (!args.apply || !/SUPABASE_SERVICE_ROLE_KEY/.test(error.message ?? '')) {
+    if (
+      !args.apply ||
+      !/Missing Supabase credentials|SUPABASE_SERVICE_ROLE_KEY|Write access requires/i.test(error.message ?? '')
+    ) {
       throw error;
     }
 

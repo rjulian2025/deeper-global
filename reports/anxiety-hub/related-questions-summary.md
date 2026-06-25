@@ -25,7 +25,9 @@ npm run content:generate-anxiety-hub-related
 
 ## Apply to Supabase
 
-Dry run (requires Supabase read credentials):
+Credentials load automatically from `~/.config/deeper-global/secrets.env` (managed by `npm run env:sync`). You should not need to re-enter Supabase keys for routine applies.
+
+Dry run:
 
 ```bash
 npm run content:apply-anxiety-hub-related
@@ -37,7 +39,13 @@ Live patch (`related_questions` only):
 npm run content:apply-anxiety-hub-related -- --apply
 ```
 
-Requires `SUPABASE_URL` and service role key via `env:sync` or Vercel env.
+If local Supabase write keys are unavailable, the script falls back to the production admin API using stored `CRON_SECRET`.
+
+One-time setup (from repo root, after merging this branch):
+
+```bash
+npm run env:sync
+```
 
 ## Note on slug swap
 

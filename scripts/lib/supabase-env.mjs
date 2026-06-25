@@ -81,13 +81,13 @@ export function resolveSupabaseConfig({ requireWrite = false, loadEnv = true } =
 
   if (!url || !key) {
     throw new Error(
-      'Missing Supabase credentials. Run `npm run env:sync`, or add SUPABASE_URL and SUPABASE_ANON_KEY to `.env.local` or ~/.config/deeper-global/secrets.env.'
+      'Missing Supabase credentials. Run `npm run env:sync` once from the repo root; credentials persist in ~/.config/deeper-global/secrets.env and .env.local.'
     );
   }
 
   if (requireWrite && !serviceRoleKey) {
     throw new Error(
-      'Write access requires SUPABASE_SERVICE_ROLE_KEY. Run `npm run env:init` once, then add the service role key to ~/.config/deeper-global/secrets.env or Vercel Production and run `npm run env:sync`.'
+      'Write access requires SUPABASE_SERVICE_ROLE_KEY. Run `npm run env:sync` once; if the key is still missing, the script can fall back to the production admin API when CRON_SECRET is stored locally.'
     );
   }
 
