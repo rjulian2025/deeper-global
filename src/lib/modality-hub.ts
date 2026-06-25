@@ -167,6 +167,9 @@ export const modalityLinkRegistry: Record<string, ModalityLinkSet> = {
     relatedQuestionSlugs: [
       'what-is-attachment-theory-and-how-does-i-184729-012',
       'how-do-i-find-a-therapist-thats-right-fo-184729-014',
+      'why-do-capable-couples-keep-reenacting-the-same-relationship-fight',
+      'how-does-my-nervous-system-hijack-conversations-with-my-partner',
+      'when-is-imago-relationship-therapy-a-good-fit-for-couples',
     ],
   },
   'narrative-therapy': {
@@ -214,6 +217,8 @@ export const modalityExploreClusters = [
     answerSlugs: [
       'what-is-attachment-theory-and-how-does-i-184729-012',
       'can-you-actually-change-your-attachment-style-or-a-186602-009',
+      'why-do-capable-couples-keep-reenacting-the-same-relationship-fight',
+      'when-is-imago-relationship-therapy-a-good-fit-for-couples',
     ],
   },
   {
