@@ -31,6 +31,11 @@ const REVIEWER_ALIASES: Record<string, string> = {
   'kenneth w. christian, phd': 'kenneth-w-christian-phd',
   'rick-julian': 'rick-julian',
   'rick julian': 'rick-julian',
+  'michelle-morris-lpc': 'michelle-morris-lpc',
+  'michelle morris lpc': 'michelle-morris-lpc',
+  'michelle morris lpc lpcc': 'michelle-morris-lpc',
+  'michelle morris, lpc': 'michelle-morris-lpc',
+  'michelle morris, lpc, lpcc': 'michelle-morris-lpc',
 };
 
 function normalizeReviewerLabel(value: string) {

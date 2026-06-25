@@ -33,6 +33,10 @@ const CAMPAIGNS = {
     promptVersion: 'deeper-adhd-hub-v1',
     citationNote: 'ADHD authority hub seed batch promotion.',
   },
+  'imago-hub': {
+    promptVersion: 'deeper-imago-hub-v1',
+    citationNote: 'Imago Relationship Therapy hub seed batch promotion.',
+  },
 };
 
 function cleanText(value) {

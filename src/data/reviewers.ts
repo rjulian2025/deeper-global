@@ -411,6 +411,121 @@ export const reviewerProfiles: ReviewerProfile[] = [
     url: '/reviewers/alex-crenshaw-phd/',
   },
   {
+    id: 'michelle-morris-lpc',
+    slug: 'michelle-morris-lpc',
+    name: 'Michelle Morris, LPC, LPCC',
+    displayName: 'Michelle Morris, LPC, LPCC',
+    specialtyLabel: 'Imago Couples Therapy & Neuroscience-Informed Relationships',
+    designation: 'Clinical reviewer for Imago Relationship Therapy and couples conflict patterns',
+    credentialLine: 'Licensed Professional Counselor · Certified Imago Relationship Therapist · Sandy Springs, GA',
+    role: 'Licensed Professional Counselor',
+    practiceName: 'Michelle Morris, LPC',
+    practiceUrl: 'https://michellemorrislpc.com',
+    locationLine: '6000 Lake Forrest Drive, Suite 400 · Sandy Springs, GA 30328',
+    image: '/authorities/michelle-morris-lpc.jpeg',
+    imageAlt:
+      'Michelle Morris, LPC, LPCC — licensed professional counselor and certified Imago Relationship Therapist',
+    bio: 'Michelle Morris, LPC, LPCC is a licensed professional counselor with more than three decades of clinical experience. She is a Certified Imago Relationship Therapist who helps couples understand how nervous-system patterns drive conflict and how structured dialogue can create lasting change.',
+    overviewParagraphs: [
+      'Michelle works with couples who are capable in daily life yet stuck in the same exhausting fight. Her approach treats relationship conflict as a nervous-system and pattern problem, not only a communication problem.',
+      'She uses Imago Relationship Therapy, a structured method grounded in neuroscience and attachment, to help partners see what is driving their cycle and practice new responses with support in session.',
+    ],
+    expertiseSummary:
+      'Her clinical perspective spans repetitive conflict cycles, nervous-system hijacking in conversations, the limits of insight without practice, and when structured Imago couples work is a good fit.',
+    expertiseTags: [
+      'Imago Relationship Therapy',
+      'couples therapy',
+      'relationship patterns',
+      'nervous system and conflict',
+      'communication under stress',
+      'neuroscience-informed therapy',
+      'attachment and connection',
+      'pre-therapy consultation',
+    ],
+    expertiseDomains: [
+      {
+        label: 'Repetitive conflict cycles',
+        description: 'Why capable couples reenact the same fight beneath changing topics.',
+      },
+      {
+        label: 'Nervous-system activation',
+        description: 'How tone, posture, and old wiring can hijack conversations before logic arrives.',
+      },
+      {
+        label: 'Communication under stress',
+        description: 'Why skills collapse when partners are activated and what helps in the moment.',
+      },
+      {
+        label: 'Choosing couples therapy',
+        description: 'What to look for when therapy feels like refereeing instead of change.',
+      },
+      {
+        label: 'Insight and practice',
+        description: 'Why understanding patterns is necessary but rarely sufficient on its own.',
+      },
+      {
+        label: 'Imago fit and consultation',
+        description: 'When Imago is appropriate and what a pre-therapy consultation should cover.',
+      },
+    ],
+    clinicalPerspective:
+      'Many couples arrive knowing what healthy communication sounds like. The work is learning why their nervous systems still run an older protection script when it matters most.',
+    reviewedContentGroups: [
+      {
+        name: 'Imago Relationship Therapy',
+        viewAllPath: '/modalities/imago-therapy/',
+        slugs: [
+          'why-do-capable-couples-keep-reenacting-the-same-relationship-fight',
+          'how-does-my-nervous-system-hijack-conversations-with-my-partner',
+          'why-do-communication-skills-fail-when-we-are-upset-with-our-partner',
+          'why-does-couples-therapy-sometimes-feel-like-refereeing-not-change',
+          'why-doesnt-understanding-our-patterns-fix-our-relationship',
+          'when-is-imago-relationship-therapy-a-good-fit-for-couples',
+          'what-should-couples-expect-from-a-pre-therapy-consultation-call',
+        ],
+      },
+    ],
+    reviewedKnowledgeTitle: 'Clinically reviewed Imago and couples guidance',
+    reviewedKnowledgeIntro:
+      'Answers reviewed for accuracy, clarity, and educational value on Imago Relationship Therapy, nervous-system patterns in conflict, and what couples can realistically expect from structured couples work.',
+    hubConnection: {
+      hubPath: '/modalities/imago-therapy/',
+      hubLabel: 'Imago Therapy',
+      summary:
+        'Explore how Imago Relationship Therapy helps couples move from repetitive conflict toward structured dialogue and deeper connection.',
+    },
+    affiliations: ['Imago Relationships International', 'Georgia Regional Imago Therapists of the Southeast (GRITS)'],
+    modalities: ['Imago Relationship Therapy'],
+    referralLinks: [
+      {
+        label: 'michellemorrislpc.com',
+        href: 'https://michellemorrislpc.com',
+        description: 'Practice website, consultation booking, and couples therapy overview',
+      },
+      {
+        label: 'About Michelle',
+        href: 'https://michellemorrislpc.com/about',
+        description: 'Background, philosophy, and Imago approach',
+      },
+      {
+        label: 'Book a free consultation',
+        href: 'https://michellemorrislpc.com/contact',
+        description: '20-minute fit conversation by video or phone',
+      },
+    ],
+    practiceNotes: [
+      'Licensed in Georgia, Pennsylvania, and California.',
+      'Couples and individual therapy available by telehealth where permitted.',
+    ],
+    primaryCta: {
+      label: 'Book a free consultation',
+      href: 'https://michellemorrislpc.com/contact',
+    },
+    disclaimer: 'Clinical review is educational and does not create a therapist-client relationship.',
+    sameAs: ['https://michellemorrislpc.com'],
+    url: '/reviewers/michelle-morris-lpc/',
+  },
+  {
     id: 'david-k-gore-phd',
     slug: 'david-k-gore-phd',
     name: 'David K. Gore, PhD',

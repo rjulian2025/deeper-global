@@ -27,7 +27,7 @@ const PAGE_SIZE = 1000;
 
 const VALID_REVIEW_STATUSES = new Set(['', 'draft', 'reviewed', 'approved', 'published']);
 const INDEXABLE_REVIEW_STATUSES = new Set(['approved', 'published', 'reviewed']);
-const VALID_REVIEWER_IDS = new Set(['david-k-gore-phd', 'kenneth-w-christian-phd', 'alex-crenshaw-phd', 'rick-julian', 'codex-seo-review']);
+const VALID_REVIEWER_IDS = new Set(['david-k-gore-phd', 'kenneth-w-christian-phd', 'alex-crenshaw-phd', 'rick-julian', 'michelle-morris-lpc', 'codex-seo-review']);
 const REVIEWER_ALIASES = {
   'david-k-gore-phd': 'david-k-gore-phd',
   'david k gore phd': 'david-k-gore-phd',
@@ -44,6 +44,11 @@ const REVIEWER_ALIASES = {
   'dr. alex crenshaw phd': 'alex-crenshaw-phd',
   'rick-julian': 'rick-julian',
   'rick julian': 'rick-julian',
+  'michelle-morris-lpc': 'michelle-morris-lpc',
+  'michelle morris lpc': 'michelle-morris-lpc',
+  'michelle morris lpc lpcc': 'michelle-morris-lpc',
+  'michelle morris, lpc': 'michelle-morris-lpc',
+  'michelle morris, lpc, lpcc': 'michelle-morris-lpc',
   'codex-seo-review': 'codex-seo-review',
 };
 const ADDICTION_REVIEW_REPORT = 'reports/review-updates/addiction-review-2026-03-13.json';
@@ -733,7 +738,7 @@ Entity fields: \`primary_entities[]\`, \`related_entities[]\`.
 ### Site consumption
 - \`[slug].astro\`: MedicalWebPage, Article, Question, Answer, DefinedTerm, BreadcrumbList JSON-LD; uses improved_* with legacy fallbacks.
 - \`shouldIndexQuestion\`: indexable when review_status empty or in {approved, published, reviewed}.
-- Reviewers: david-k-gore-phd, kenneth-w-christian-phd, alex-crenshaw-phd, rick-julian (+ codex-seo-review internal).
+- Reviewers: david-k-gore-phd, kenneth-w-christian-phd, alex-crenshaw-phd, rick-julian, michelle-morris-lpc (+ codex-seo-review internal).
 - \`indexation_instruction\` is draft-only metadata, not a DB column.
 
 ### DB constraints (docs/supabase-structured-content.sql)
@@ -757,7 +762,7 @@ JSONB fields must be arrays when non-null.`;
     recommendations.push({
       title: 'Normalize reviewed_by to canonical reviewer IDs',
       detail:
-        'Map all reviewed_by values to david-k-gore-phd, kenneth-w-christian-phd, alex-crenshaw-phd, rick-julian, or codex-seo-review; reject unknown labels at promote time.',
+        'Map all reviewed_by values to david-k-gore-phd, kenneth-w-christian-phd, alex-crenshaw-phd, rick-julian, michelle-morris-lpc, or codex-seo-review; reject unknown labels at promote time.',
     });
   }
   recommendations.push({

@@ -15,6 +15,8 @@
     "content:audit-candidates": "node scripts/audit-content-candidates.mjs",
     "content:publish-ai-sprint": "node scripts/publish-phase-1b-drafts.mjs --campaign ai-sprint",
     "content:publish-adhd-hub": "node scripts/publish-phase-1b-drafts.mjs --campaign adhd-hub",
+    "content:publish-imago-hub": "node scripts/publish-phase-1b-drafts.mjs --campaign imago-hub",
+    "content:review-imago": "node scripts/review-imago-answers.mjs",
     "content:generate-adhd-hub-drafts": "node scripts/generate-adhd-hub-drafts.mjs",
     "content:generate-anxiety-hub-related": "node scripts/generate-anxiety-hub-related-questions.mjs",
     "content:apply-anxiety-hub-related": "node scripts/apply-anxiety-hub-related-questions.mjs",

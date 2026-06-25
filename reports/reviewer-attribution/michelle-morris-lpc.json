@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-06-25T00:00:00.000Z",
+  "source_table": "public.questions_master",
+  "mode": "apply",
+  "reviewer": "michelle-morris-lpc",
+  "reviewed_at": "2026-06-25",
+  "total_slugs": 7,
+  "scope": "imago-hub-batch-01",
+  "schema_notes": [
+    "Does not overwrite existing reviewed_by attribution assigned to another reviewer.",
+    "Sets review_status = 'reviewed' when applying attribution."
+  ],
+  "sql_proposal": "update public.questions_master\nset\n  reviewed_by = 'michelle-morris-lpc',\n  reviewed_at = '2026-06-25'::date,\n  review_status = case when lower(coalesce(review_status, '')) in ('reviewed', 'approved', 'published') then review_status else 'reviewed' end\nwhere slug = any(array['why-do-capable-couples-keep-reenacting-the-same-relationship-fight', 'how-does-my-nervous-system-hijack-conversations-with-my-partner', 'why-do-communication-skills-fail-when-we-are-upset-with-our-partner', 'why-does-couples-therapy-sometimes-feel-like-refereeing-not-change', 'why-doesnt-understanding-our-patterns-fix-our-relationship', 'when-is-imago-relationship-therapy-a-good-fit-for-couples', 'what-should-couples-expect-from-a-pre-therapy-consultation-call'])\nand (reviewed_by is null or reviewed_by in ('codex-seo-review', 'michelle-morris-lpc'));",
+  "assigned": [
+    {
+      "slug": "why-do-capable-couples-keep-reenacting-the-same-relationship-fight",
+      "question": "Why do capable couples keep reenacting the same relationship fight?",
+      "cluster": "Pattern reenactment"
+    },
+    {
+      "slug": "how-does-my-nervous-system-hijack-conversations-with-my-partner",
+      "question": "How does my nervous system hijack conversations with my partner?",
+      "cluster": "Nervous system and conflict"
+    },
+    {
+      "slug": "why-do-communication-skills-fail-when-we-are-upset-with-our-partner",
+      "question": "Why do communication skills fail when we are upset with our partner?",
+      "cluster": "Communication under stress"
+    },
+    {
+      "slug": "why-does-couples-therapy-sometimes-feel-like-refereeing-not-change",
+      "question": "Why does couples therapy sometimes feel like refereeing instead of change?",
+      "cluster": "Choosing couples therapy"
+    },
+    {
+      "slug": "why-doesnt-understanding-our-patterns-fix-our-relationship",
+      "question": "Why doesn't understanding our patterns fix our relationship?",
+      "cluster": "Insight and practice"
+    },
+    {
+      "slug": "when-is-imago-relationship-therapy-a-good-fit-for-couples",
+      "question": "When is Imago Relationship Therapy a good fit for couples?",
+      "cluster": "Imago fit"
+    },
+    {
+      "slug": "what-should-couples-expect-from-a-pre-therapy-consultation-call",
+      "question": "What should couples expect from a pre-therapy consultation call?",
+      "cluster": "Consultation and fit"
+    }
+  ]
+}
