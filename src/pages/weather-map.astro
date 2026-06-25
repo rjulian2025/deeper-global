@@ -37,6 +37,23 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
       </form>
 
       <div id="weather-map-root" class="weather-map-canvas" aria-label="Global human weather map"></div>
+      <aside
+        id="weather-map-overview"
+        class="weather-map-overview"
+        aria-live="polite"
+        aria-label="Current map signal summary"
+      >
+        <p class="weather-map-overview-eyebrow" id="weather-map-overview-title">Current Global Signal</p>
+        <p id="weather-map-overview-summary" class="weather-map-overview-summary">
+          Loading aggregate signals…
+        </p>
+        <p class="weather-map-overview-help">
+          Each glow represents aggregate mental health search intent by region. Larger, brighter signals indicate stronger relative intensity.
+        </p>
+        <p class="weather-map-overview-meta">
+          Updated every 48 hours. No personal data. No diagnosis. No individual tracking.
+        </p>
+      </aside>
       <div id="weather-map-tooltip" class="weather-map-tooltip" hidden></div>
       <aside
         id="weather-map-state-card"
@@ -53,12 +70,18 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
 
     <p class="weather-map-trust">No personal data. No diagnosis. No individual tracking.</p>
 
-    <div class="weather-map-legend" aria-label="Category filter">
-      <div class="weather-map-legend-header">
-        <span class="weather-map-legend-title">Filter by category</span>
-        <span class="weather-map-legend-hint">Tap to recolor the map</span>
-      </div>
-      <ul>
+    <div class="weather-map-below-map">
+      <p class="weather-map-all-hint" id="weather-map-all-hint">
+        All shows the strongest visible signals across every category.
+      </p>
+
+      <div class="weather-map-legend" aria-label="Category filter">
+        <div class="weather-map-legend-header">
+          <span class="weather-map-legend-title">Filter by category</span>
+          <span class="weather-map-legend-hint">Select a category to reveal its weather pattern.</span>
+        </div>
+        <p class="weather-map-legend-sub">Select a topic to recolor the map and reveal where that signal is strongest.</p>
+        <ul>
         <li data-category="all" role="button" tabindex="0" aria-pressed="true" class="is-active"><span class="swatch swatch--all"></span>All</li>
         <li data-category="Anxiety &amp; Stress" role="button" tabindex="0" aria-pressed="false"><span class="swatch" style="background:#F5A623"></span>Anxiety &amp; Stress</li>
         <li data-category="Depression" role="button" tabindex="0" aria-pressed="false"><span class="swatch" style="background:#4A90D9"></span>Depression</li>
@@ -77,7 +100,25 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
         <li data-category="Meaning, Faith &amp; Existential Questions" role="button" tabindex="0" aria-pressed="false"><span class="swatch" style="background:#795548"></span>Meaning, Faith &amp; Existential Questions</li>
         <li data-category="General Mental Health" role="button" tabindex="0" aria-pressed="false"><span class="swatch" style="background:#546E7A"></span>General Mental Health</li>
       </ul>
+      <p class="weather-map-coverage-note">
+        Coverage reflects available aggregate search-intent signals and may vary by region. More detail appears where signal volume is sufficient.
+      </p>
     </div>
+    </div>
+
+    <section class="weather-map-intelligence" aria-label="Signal intelligence">
+      <div class="weather-map-category-summary" id="weather-map-category-summary" hidden>
+        <h3 id="weather-map-category-summary-title" class="weather-map-intelligence-heading"></h3>
+        <p id="weather-map-category-summary-regions" class="weather-map-intelligence-regions"></p>
+        <p id="weather-map-category-summary-theme" class="weather-map-intelligence-theme"></p>
+      </div>
+      <div class="weather-map-top-signals">
+        <h3 class="weather-map-intelligence-heading">Top visible signals</h3>
+        <ol id="weather-map-top-signals-list" class="weather-map-top-signals-list">
+          <li class="weather-map-top-signals-loading">Loading signals…</li>
+        </ol>
+      </div>
+    </section>
 
     <section class="weather-map-insights" aria-labelledby="weather-map-insights-heading">
       <h2 id="weather-map-insights-heading">This Week in Human Weather</h2>
@@ -124,6 +165,103 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
       };
 
       const DEFAULT_COLOR = '#888888';
+
+      const CATEGORY_ALIASES = {
+        Anxiety: 'Anxiety & Stress',
+        Stress: 'Anxiety & Stress',
+        Grief: 'Grief & Loss',
+        Burnout: 'Work & Burnout',
+        Anger: 'General Mental Health',
+        OCD: 'Neurodivergence & Attention',
+        Identity: 'Identity & Self-Worth',
+        Meaning: 'Meaning, Faith & Existential Questions',
+        Relationships: 'Relationships & Communication',
+        Trauma: 'Trauma & Safety',
+      };
+
+      const CATEGORY_THEMES = {
+        'Anxiety & Stress':
+          'This category reflects aggregate searches related to worry, panic, overwhelm, stress symptoms, and coping.',
+        Depression:
+          'This category reflects aggregate searches related to low mood, hopelessness, fatigue, and emotional heaviness.',
+        'Addiction & Recovery':
+          'This category reflects aggregate searches related to substance use, recovery, relapse, and support.',
+        'Trauma & Safety':
+          'This category reflects aggregate searches related to safety, triggers, trauma recovery, and stabilization.',
+        'Therapy & Care Navigation':
+          'This category reflects aggregate searches related to finding care, therapy options, and getting help.',
+        'Identity & Self-Worth':
+          'This category reflects aggregate searches related to self-esteem, belonging, comparison, and personal worth.',
+        'Relationships & Communication':
+          'This category reflects aggregate searches related to connection, conflict, communication, and attachment.',
+        'Family & Parenting':
+          'This category reflects aggregate searches related to parenting stress, family dynamics, and caregiving.',
+        'Grief & Loss':
+          'This category reflects aggregate searches related to bereavement, emotional pain, complicated grief, and recovery after loss.',
+        'Work & Burnout':
+          'This category reflects aggregate searches related to exhaustion, workplace stress, loss of motivation, and recovery.',
+        'Teens & Identity':
+          'This category reflects aggregate searches related to adolescent mental health, identity, and belonging.',
+        'Loneliness & Belonging':
+          'This category reflects aggregate searches related to isolation, connection, and social disconnection.',
+        'Neurodivergence & Attention':
+          'This category reflects aggregate searches related to ADHD, attention, sensory overwhelm, and neurodivergent experience.',
+        'Gender, Sexuality & Intimacy':
+          'This category reflects aggregate searches related to gender identity, sexuality, intimacy, and self-understanding.',
+        'Meaning, Faith & Existential Questions':
+          'This category reflects aggregate searches related to purpose, direction, emptiness, and questions of meaning.',
+        'General Mental Health':
+          'This category reflects aggregate searches related to broad mental health concerns and general wellbeing.',
+      };
+
+      const SIGNAL_INTERPRETATIONS = {
+        'Grief & Loss':
+          'People in this region are showing elevated search interest around grief, loss, and emotional recovery.',
+        'Anxiety & Stress':
+          'People in this region are showing elevated search interest around worry, stress, and coping.',
+        'Work & Burnout':
+          'People in this region are showing elevated search interest around exhaustion, burnout, and workplace pressure.',
+        Depression:
+          'People in this region are showing elevated search interest around low mood, depression, and emotional recovery.',
+        'Identity & Self-Worth':
+          'People in this region are showing elevated search interest around self-worth, identity, and belonging.',
+        'Meaning, Faith & Existential Questions':
+          'People in this region are showing elevated search interest around meaning, purpose, and existential questions.',
+        'Relationships & Communication':
+          'People in this region are showing elevated search interest around relationships, conflict, and connection.',
+        'Trauma & Safety':
+          'People in this region are showing elevated search interest around trauma, safety, and recovery.',
+        'Loneliness & Belonging':
+          'People in this region are showing elevated search interest around loneliness, isolation, and belonging.',
+        'Neurodivergence & Attention':
+          'People in this region are showing elevated search interest around attention, neurodivergence, and focus.',
+        'General Mental Health':
+          'People in this region are showing elevated aggregate search interest around general mental health concerns.',
+      };
+
+      const COUNTRY_NAMES = {
+        US: 'United States',
+        GB: 'United Kingdom',
+        CA: 'Canada',
+        AU: 'Australia',
+        NZ: 'New Zealand',
+        IE: 'Ireland',
+        DE: 'Germany',
+        FR: 'France',
+        IN: 'India',
+        SG: 'Singapore',
+        ZA: 'South Africa',
+        NL: 'Netherlands',
+        SE: 'Sweden',
+        NO: 'Norway',
+        DK: 'Denmark',
+        FI: 'Finland',
+        CH: 'Switzerland',
+        BR: 'Brazil',
+        MX: 'Mexico',
+        JP: 'Japan',
+        KR: 'South Korea',
+      };
 
       const ALL_CLIMATE_RAMP = [
         'interpolate', ['linear'], ['heatmap-density'],
@@ -298,9 +436,282 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
       let cachedOverview = null;
       let cachedDetail = null;
       let cachedWeightRange = { min: 1, max: 1 };
+      let cachedSignalRecords = [];
+      let interactiveLayersBound = false;
 
       function categoryColor(category) {
         return CATEGORY_COLORS[category] ?? DEFAULT_COLOR;
+      }
+
+      function canonicalCategory(category) {
+        if (!category) return 'Unknown';
+        if (CATEGORY_COLORS[category]) return category;
+        return CATEGORY_ALIASES[category] ?? category;
+      }
+
+      function countryName(code) {
+        if (!code) return 'Unknown region';
+        return COUNTRY_NAMES[code] ?? code;
+      }
+
+      function formatLocationLabel(row) {
+        if (row.city) return row.city;
+        if (row.state) return `${row.state} region`;
+        if (row.country) return `${countryName(row.country)} signal cluster`;
+        return 'Regional signal cluster';
+      }
+
+      function signalStrengthLabel(displayWeight) {
+        if (displayWeight >= 0.72) return 'High';
+        if (displayWeight >= 0.42) return 'Medium';
+        return 'Low';
+      }
+
+      function categoryTheme(category) {
+        return CATEGORY_THEMES[category] ?? 'This category reflects aggregate mental health search intent in this region.';
+      }
+
+      function interpretSignal(category) {
+        return (
+          SIGNAL_INTERPRETATIONS[category] ??
+          `People in this region are showing elevated aggregate search interest related to ${category.toLowerCase()}.`
+        );
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      function formatOxfordList(items) {
+        if (!items.length) return '';
+        if (items.length === 1) return items[0];
+        if (items.length === 2) return `${items[0]} and ${items[1]}`;
+        return `${items.slice(0, -1).join(', ')}, and ${items[items.length - 1]}`;
+      }
+
+      function buildFeatureProperties(row, eventCount, displayWeight) {
+        const category = canonicalCategory(row.category);
+        const locationLabel = formatLocationLabel(row);
+        return {
+          category,
+          category_color: categoryColor(category),
+          weight: eventCount,
+          display_weight: displayWeight,
+          location: locationLabel,
+          location_label: locationLabel,
+          event_count: eventCount,
+          country: row.country ?? '',
+          state: row.state ?? '',
+          city: row.city ?? '',
+          country_name: countryName(row.country),
+          strength_label: signalStrengthLabel(displayWeight),
+          interpretation: interpretSignal(category),
+          theme: categoryTheme(category),
+          updated_label: 'Updated within the current 48-hour cycle.',
+          day: row.day ?? '',
+        };
+      }
+
+      function recordInBounds(record, bounds) {
+        return bounds.contains([record.coords.lng, record.coords.lat]);
+      }
+
+      function getFilteredRecords() {
+        let records = cachedSignalRecords;
+        if (activeCategory !== 'all') {
+          records = records.filter((record) => record.category === activeCategory);
+        }
+
+        const bounds = map.getBounds();
+        const inView = records.filter((record) => recordInBounds(record, bounds));
+        return inView.length >= 2 ? inView : records;
+      }
+
+      function topCategories(records, limit = 3) {
+        const byCategory = new Map();
+        for (const record of records) {
+          byCategory.set(record.category, (byCategory.get(record.category) ?? 0) + record.event_count);
+        }
+        return [...byCategory.entries()]
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, limit)
+          .map(([category]) => category);
+      }
+
+      function updateOverviewPanel() {
+        const titleEl = document.getElementById('weather-map-overview-title');
+        const summaryEl = document.getElementById('weather-map-overview-summary');
+        if (!titleEl || !summaryEl) return;
+
+        const records = getFilteredRecords();
+
+        if (activeCategory === 'all') {
+          titleEl.textContent = 'Current Global Signal';
+          const top = topCategories(records, 3);
+          if (top.length) {
+            const verb = top.length === 1 ? 'is' : 'are';
+            const noun = top.length === 1 ? 'signal' : 'signals';
+            summaryEl.textContent = `${formatOxfordList(top)} ${verb} the strongest visible ${noun} in this map view.`;
+          } else {
+            summaryEl.textContent =
+              'Aggregate mental health search intent is visible where signal volume is sufficient.';
+          }
+          return;
+        }
+
+        titleEl.textContent = activeCategory;
+        const categoryRecords = records
+          .filter((record) => record.category === activeCategory)
+          .sort((a, b) => b.event_count - a.event_count);
+        const topLocations = [...new Set(categoryRecords.slice(0, 4).map((record) => record.location_label))];
+
+        if (topLocations.length) {
+          summaryEl.textContent = `Strongest visible signals: ${formatOxfordList(topLocations)}.`;
+        } else {
+          summaryEl.textContent = `Pan or zoom to find regions where ${activeCategory} signals appear.`;
+        }
+      }
+
+      function updateCategorySummary() {
+        const section = document.getElementById('weather-map-category-summary');
+        const title = document.getElementById('weather-map-category-summary-title');
+        const regions = document.getElementById('weather-map-category-summary-regions');
+        const theme = document.getElementById('weather-map-category-summary-theme');
+        if (!section || !title || !regions || !theme) return;
+
+        if (activeCategory === 'all') {
+          section.hidden = true;
+          return;
+        }
+
+        section.hidden = false;
+        title.textContent = activeCategory;
+
+        const records = getFilteredRecords()
+          .filter((record) => record.category === activeCategory)
+          .sort((a, b) => b.event_count - a.event_count);
+        const topLocations = [...new Set(records.slice(0, 5).map((record) => record.location_label))];
+
+        regions.textContent = topLocations.length
+          ? `Strongest visible signals: ${formatOxfordList(topLocations)}.`
+          : 'Zoom or pan to find regions where this signal is visible.';
+        theme.textContent = categoryTheme(activeCategory);
+      }
+
+      function updateTopSignalsList() {
+        const list = document.getElementById('weather-map-top-signals-list');
+        if (!list) return;
+
+        let records = getFilteredRecords();
+        if (activeCategory === 'all') {
+          records = [...records].sort((a, b) => b.event_count - a.event_count);
+        } else {
+          records = records
+            .filter((record) => record.category === activeCategory)
+            .sort((a, b) => b.event_count - a.event_count);
+        }
+
+        records = records.slice(0, 5);
+
+        if (!records.length) {
+          list.innerHTML = '<li class="weather-map-top-signals-empty">No visible signals in this view yet.</li>';
+          return;
+        }
+
+        list.replaceChildren();
+        records.forEach((record, index) => {
+          const li = document.createElement('li');
+          li.innerHTML = `<span class="weather-map-top-signals-rank">${index + 1}.</span> <span class="weather-map-top-signals-detail"><strong>${escapeHtml(record.location_label)}</strong> — ${escapeHtml(record.category)} — ${escapeHtml(record.strength_label)}</span>`;
+          list.append(li);
+        });
+      }
+
+      function updateAllHint() {
+        const hint = document.getElementById('weather-map-all-hint');
+        if (hint) hint.hidden = activeCategory !== 'all';
+      }
+
+      function updateIntelligencePanels() {
+        updateOverviewPanel();
+        updateCategorySummary();
+        updateTopSignalsList();
+        updateAllHint();
+      }
+
+      function buildTooltipHtml(props) {
+        const location = props.location_label ?? props.location ?? 'Regional signal cluster';
+        const country = props.country_name ?? countryName(props.country);
+        const category = props.category ?? 'Unknown';
+        const strength = props.strength_label ?? signalStrengthLabel(Number(props.display_weight) || 0);
+        const interpretation = props.interpretation ?? interpretSignal(category);
+        const updated = props.updated_label ?? 'Updated within the current 48-hour cycle.';
+
+        return [
+          `<div class="weather-map-tooltip-location"><strong>${escapeHtml(location)}</strong></div>`,
+          `<div class="weather-map-tooltip-country">${escapeHtml(country)}</div>`,
+          `<div class="weather-map-tooltip-category">${escapeHtml(category)}</div>`,
+          `<div class="weather-map-tooltip-strength">Signal strength: ${escapeHtml(strength)}</div>`,
+          `<div class="weather-map-tooltip-interp">${escapeHtml(interpretation)}</div>`,
+          `<div class="weather-map-tooltip-updated">${escapeHtml(updated)}</div>`,
+        ].join('');
+      }
+
+      function showFeatureTooltip(event) {
+        if (!event.features?.length) return;
+        const props = event.features[0].properties;
+        tooltip.hidden = false;
+        tooltip.innerHTML = buildTooltipHtml(props);
+        tooltip.style.left = `${event.originalEvent.clientX}px`;
+        tooltip.style.top = `${event.originalEvent.clientY}px`;
+      }
+
+      function bindInteractiveLayers() {
+        if (interactiveLayersBound) return;
+        interactiveLayersBound = true;
+
+        const layers = ['density-halo', 'density-core', 'density-point'];
+        for (const layerId of layers) {
+          map.on('mouseenter', layerId, () => {
+            map.getCanvas().style.cursor = 'pointer';
+          });
+          map.on('mouseleave', layerId, () => {
+            map.getCanvas().style.cursor = '';
+            hideTooltip();
+          });
+          map.on('mousemove', layerId, showFeatureTooltip);
+          map.on('click', layerId, showFeatureTooltip);
+        }
+      }
+
+      function buildSignalRecords(aggregated, coordsByKey, weightRange) {
+        return aggregated
+          .filter((row) => coordsByKey.has(locationKey(row)))
+          .map((row) => {
+            const coords = coordsByKey.get(locationKey(row));
+            const category = canonicalCategory(row.category);
+            const eventCount = Number(row.event_count) || 0;
+            const displayWeight = logDisplayWeight(eventCount, weightRange.min, weightRange.max);
+            return {
+              country: row.country,
+              state: row.state,
+              city: row.city,
+              category,
+              day: row.day ?? null,
+              event_count: eventCount,
+              display_weight: displayWeight,
+              coords,
+              location_label: formatLocationLabel(row),
+              country_name: countryName(row.country),
+              strength_label: signalStrengthLabel(displayWeight),
+              interpretation: interpretSignal(category),
+              theme: categoryTheme(category),
+              updated_label: 'Updated within the current 48-hour cycle.',
+            };
+          });
       }
 
       function hideStateCard() {
@@ -315,7 +726,7 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
         for (const row of signalRows) {
           if (row.country !== 'US' || row.state !== stateCode) continue;
 
-          const category = row.category ?? 'Unknown';
+          const category = canonicalCategory(row.category ?? 'Unknown');
           const count = Number(row.event_count) || 0;
           grouped.set(category, (grouped.get(category) ?? 0) + count);
         }
@@ -471,7 +882,8 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
       function pointRadiusPaint() {
         return [
           'interpolate', ['linear'], ['zoom'],
-          7, ['interpolate', ['linear'], ['get', 'display_weight'], 0, 2, 1, 7],
+          6, ['interpolate', ['linear'], ['get', 'display_weight'], 0, 2, 1, 6],
+          9, ['interpolate', ['linear'], ['get', 'display_weight'], 0, 3, 1, 9],
           12, ['interpolate', ['linear'], ['get', 'display_weight'], 0, 4, 1, 12],
           16, ['interpolate', ['linear'], ['get', 'display_weight'], 0, 5, 1, 16],
         ];
@@ -489,12 +901,22 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
           map.setFilter('density-heat-cat', categoryFilter);
         }
         if (map.getLayer('density-halo')) {
-          map.setLayoutProperty('density-halo', 'visibility', isAll ? 'visible' : 'none');
+          map.setLayoutProperty('density-halo', 'visibility', 'visible');
           map.setFilter('density-halo', categoryFilter);
+          map.setPaintProperty(
+            'density-halo',
+            'circle-color',
+            isAll ? ALL_HALO_COLOR : ['get', 'category_color']
+          );
         }
         if (map.getLayer('density-core')) {
-          map.setLayoutProperty('density-core', 'visibility', isAll ? 'visible' : 'none');
+          map.setLayoutProperty('density-core', 'visibility', 'visible');
           map.setFilter('density-core', categoryFilter);
+          map.setPaintProperty(
+            'density-core',
+            'circle-color',
+            isAll ? ALL_CORE_COLOR : ['get', 'category_color']
+          );
         }
         if (map.getLayer('density-point')) {
           map.setFilter('density-point', categoryFilter);
@@ -526,6 +948,8 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
           li.classList.toggle('is-active', cat === categoryKey);
           li.setAttribute('aria-pressed', String(cat === categoryKey));
         }
+
+        updateIntelligencePanels();
       }
 
       function updateInsightLead(rows) {
@@ -534,7 +958,7 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
 
         const byCategory = new Map();
         for (const row of rows) {
-          const category = row.category ?? 'Unknown';
+          const category = canonicalCategory(row.category ?? 'Unknown');
           byCategory.set(category, (byCategory.get(category) ?? 0) + (Number(row.event_count) || 0));
         }
 
@@ -565,14 +989,7 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
           detailFeatures.push({
             type: 'Feature',
             geometry: { type: 'Point', coordinates: [coords.lng, coords.lat] },
-            properties: {
-              category: row.category,
-              category_color: categoryColor(row.category),
-              weight: eventCount,
-              display_weight: displayWeight,
-              location: row.city ?? row.state ?? row.country ?? 'Unknown location',
-              event_count: eventCount,
-            },
+            properties: buildFeatureProperties(row, eventCount, displayWeight),
           });
 
           const coordKey = `${coords.lng.toFixed(4)}|${coords.lat.toFixed(4)}`;
@@ -581,15 +998,16 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
             existing.event_count += eventCount;
             if (eventCount > existing.peak_count) {
               existing.peak_count = eventCount;
-              existing.category = row.category;
+              existing.category = canonicalCategory(row.category);
+              existing.row = row;
             }
           } else {
             overviewByCoord.set(coordKey, {
               coords,
               event_count: eventCount,
               peak_count: eventCount,
-              category: row.category,
-              location: row.city ?? row.state ?? row.country ?? 'Unknown location',
+              category: canonicalCategory(row.category),
+              row,
             });
           }
         }
@@ -597,13 +1015,14 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
         const overviewFeatures = [...overviewByCoord.values()].map((entry) => ({
           type: 'Feature',
           geometry: { type: 'Point', coordinates: [entry.coords.lng, entry.coords.lat] },
-          properties: {
-            category: entry.category,
-            weight: entry.event_count,
-            display_weight: logDisplayWeight(entry.event_count, weightRange.min, weightRange.max),
-            location: entry.location,
-            event_count: entry.event_count,
-          },
+          properties: buildFeatureProperties(
+            {
+              ...entry.row,
+              category: entry.category,
+            },
+            entry.event_count,
+            logDisplayWeight(entry.event_count, weightRange.min, weightRange.max)
+          ),
         }));
 
         return {
@@ -711,7 +1130,7 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
           id: 'density-point',
           type: 'circle',
           source: 'density-detail',
-          minzoom: 7,
+          minzoom: 6,
           paint: {
             'circle-radius': pointRadiusPaint(),
             'circle-color': ALL_CORE_COLOR,
@@ -719,30 +1138,14 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
             'circle-stroke-width': 0.5,
             'circle-opacity': [
               'interpolate', ['linear'], ['zoom'],
-              7, 0,
-              9, ['interpolate', ['linear'], ['get', 'display_weight'], 0, 0.5, 1, 0.95],
+              6, 0,
+              8, ['interpolate', ['linear'], ['get', 'display_weight'], 0, 0.45, 1, 0.9],
+              12, ['interpolate', ['linear'], ['get', 'display_weight'], 0, 0.55, 1, 0.98],
             ],
           },
         });
 
-        map.on('mouseenter', 'density-point', () => {
-          map.getCanvas().style.cursor = 'pointer';
-        });
-
-        map.on('mouseleave', 'density-point', () => {
-          map.getCanvas().style.cursor = '';
-          hideTooltip();
-        });
-
-        map.on('click', 'density-point', (e) => {
-          if (!e.features?.length) return;
-          const props = e.features[0].properties;
-          const location = props.location ?? 'Unknown location';
-          tooltip.hidden = false;
-          tooltip.innerHTML = `<strong>${location}</strong><br />${props.category ?? 'Unknown'} · ${props.event_count} views`;
-          tooltip.style.left = `${e.originalEvent.clientX}px`;
-          tooltip.style.top = `${e.originalEvent.clientY}px`;
-        });
+        bindInteractiveLayers();
 
         applyCategoryView(activeCategory);
       }
@@ -755,17 +1158,22 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
         const grouped = new Map();
 
         for (const row of rows) {
-          const key = [row.country, row.state ?? '', row.city ?? '', row.category ?? 'Unknown'].join('|');
+          const category = canonicalCategory(row.category ?? 'Unknown');
+          const key = [row.country, row.state ?? '', row.city ?? '', category].join('|');
           const existing = grouped.get(key);
 
           if (existing) {
             existing.event_count += Number(row.event_count) || 0;
+            if (row.day && (!existing.day || row.day > existing.day)) {
+              existing.day = row.day;
+            }
           } else {
             grouped.set(key, {
               country: row.country,
               state: row.state ?? null,
               city: row.city ?? null,
-              category: row.category ?? 'Unknown',
+              category,
+              day: row.day ?? null,
               event_count: Number(row.event_count) || 0,
             });
           }
@@ -886,9 +1294,11 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
         cachedOverview = featureSets.overview;
         cachedDetail = featureSets.detail;
         cachedWeightRange = featureSets.weightRange;
+        cachedSignalRecords = buildSignalRecords(aggregated, coordsByKey, featureSets.weightRange);
 
         addDensityLayers(cachedOverview, cachedDetail);
         updateInsightLead(aggregated);
+        updateIntelligencePanels();
       }
 
       async function loadSignals() {
@@ -947,10 +1357,12 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
 
       map.on('moveend', () => {
         updateStateSummary();
+        updateIntelligencePanels();
       });
 
       map.on('zoomend', () => {
         updateStateSummary();
+        updateIntelligencePanels();
       });
     }
 
@@ -1063,15 +1475,194 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
       z-index: 20;
       transform: translate(-50%, calc(-100% - 12px));
       pointer-events: none;
-      padding: 0.55rem 0.75rem;
-      border-radius: 8px;
-      background: rgba(14, 31, 51, 0.94);
+      padding: 0.75rem 0.9rem;
+      border-radius: 10px;
+      background: rgba(14, 31, 51, 0.96);
       color: #f8fafc;
       font-size: var(--text-sm);
-      line-height: 1.4;
+      line-height: 1.45;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: var(--shadow);
+      max-width: min(92vw, 320px);
+      white-space: normal;
+    }
+
+    .weather-map-tooltip-location {
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .weather-map-tooltip-country {
+      font-size: 0.78rem;
+      color: rgba(248, 250, 252, 0.65);
+      margin-bottom: 0.55rem;
+    }
+
+    .weather-map-tooltip-category {
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .weather-map-tooltip-strength {
+      font-size: 0.78rem;
+      color: rgba(248, 250, 252, 0.82);
+      margin-bottom: 0.45rem;
+    }
+
+    .weather-map-tooltip-interp {
+      font-size: 0.82rem;
+      color: rgba(248, 250, 252, 0.88);
+      margin-bottom: 0.45rem;
+    }
+
+    .weather-map-tooltip-updated {
+      font-size: 0.72rem;
+      color: rgba(248, 250, 252, 0.55);
+    }
+
+    .weather-map-overview {
+      position: absolute;
+      top: var(--space-4);
+      left: var(--space-4);
+      z-index: 3;
+      width: min(92%, 340px);
+      padding: 0.9rem 1rem;
+      border-radius: 10px;
+      background: rgba(14, 31, 51, 0.92);
+      color: #f8fafc;
       border: 1px solid rgba(255, 255, 255, 0.12);
       box-shadow: var(--shadow);
-      white-space: nowrap;
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+    }
+
+    .weather-map-overview-eyebrow {
+      margin: 0 0 0.35rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(248, 250, 252, 0.55);
+    }
+
+    .weather-map-overview-summary {
+      margin: 0 0 0.55rem;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: #f8fafc;
+    }
+
+    .weather-map-overview-help,
+    .weather-map-overview-meta {
+      margin: 0;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: rgba(248, 250, 252, 0.72);
+    }
+
+    .weather-map-overview-help {
+      margin-bottom: 0.45rem;
+    }
+
+    .weather-map-below-map {
+      margin-top: var(--space-4);
+    }
+
+    .weather-map-all-hint {
+      margin: 0 0 var(--space-3);
+      font-size: 0.82rem;
+      color: var(--stone);
+    }
+
+    .weather-map-legend-sub {
+      margin: 0 0 var(--space-3);
+      font-size: 0.78rem;
+      color: var(--stone);
+    }
+
+    .weather-map-coverage-note {
+      margin: var(--space-3) 0 0;
+      font-size: 0.76rem;
+      line-height: 1.45;
+      color: var(--stone);
+    }
+
+    .weather-map-intelligence {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-4);
+      margin-top: var(--space-5);
+    }
+
+    @media (max-width: 768px) {
+      .weather-map-intelligence {
+        grid-template-columns: 1fr;
+      }
+
+      .weather-map-overview {
+        width: min(calc(100% - 2rem), 320px);
+      }
+    }
+
+    .weather-map-intelligence-heading {
+      margin: 0 0 var(--space-2);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .weather-map-category-summary,
+    .weather-map-top-signals {
+      padding: var(--space-4);
+      border-radius: 12px;
+      border: 1px solid var(--line-strong);
+      background: rgba(14, 31, 51, 0.03);
+    }
+
+    .weather-map-intelligence-regions,
+    .weather-map-intelligence-theme {
+      margin: 0;
+      font-size: var(--text-sm);
+      line-height: 1.55;
+      color: var(--stone);
+    }
+
+    .weather-map-intelligence-regions {
+      margin-bottom: 0.55rem;
+      color: var(--ink);
+    }
+
+    .weather-map-top-signals-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .weather-map-top-signals-list li {
+      display: flex;
+      gap: 0.45rem;
+      font-size: var(--text-sm);
+      line-height: 1.45;
+      color: var(--stone);
+    }
+
+    .weather-map-top-signals-rank {
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+      color: var(--stone);
+    }
+
+    .weather-map-top-signals-detail strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .weather-map-top-signals-empty,
+    .weather-map-top-signals-loading {
+      color: var(--stone);
+      font-size: var(--text-sm);
     }
 
     .weather-map-state-card {
