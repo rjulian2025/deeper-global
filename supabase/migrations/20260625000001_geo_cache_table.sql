@@ -27,11 +27,10 @@ comment on table public.geo_cache is
   'Populated by the geocode-backfill endpoint and the sync-trends cron job.';
 
 comment on column public.geo_cache.location_key is
-  'Pipe-delimited composite key: country||'|'||coalesce(state,'''')||'|'||coalesce(city,''''). '
-  'Matches buildLocationKey() in api/lib/geo.js.';
+  'Pipe-delimited composite key: country|state|city. Matches buildLocationKey() in api/lib/geo.js.';
 
 comment on column public.geo_cache.geocoder is
-  '''mapbox'' for Mapbox Geocoding API v5 results; ''static_centroid'' for hardcoded US state centroid coordinates.';
+  'mapbox for Mapbox Geocoding API v5 results; static_centroid for hardcoded US state centroid coordinates.';
 
 create index if not exists geo_cache_country_idx on public.geo_cache (country);
 
