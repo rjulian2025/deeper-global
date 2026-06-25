@@ -328,7 +328,7 @@ Rules:
 - "reflection": ${
       restricted
         ? 'return an empty string because reflection posts are disallowed for restricted categories.'
-        : 'a related open-ended reflective prompt inspired by the same theme/category, designed to invite replies rather than just reads. No link. Under 200 characters.'
+        : 'a related open-ended reflective prompt inspired by the same theme/category, designed to invite replies rather than just reads. Under 200 characters. Do not include a URL — a link will be appended automatically.'
     }
 
 Source:
@@ -393,13 +393,15 @@ export async function generateSocialDraftSet(
     throw error;
   }
 
+  const questionUrl = `https://deeper.global/answers/${question.slug}`;
+
   const drafts: GeneratedSocialDraft[] = [
-    { format: 'question_only', body: questionOnly },
+    { format: 'question_only', body: `${questionOnly}\n${questionUrl}` },
     { format: 'question_insight', body: generated.questionInsight },
   ];
 
   if (categorySafetyTier !== 'restricted') {
-    drafts.push({ format: 'reflection', body: generated.reflection });
+    drafts.push({ format: 'reflection', body: `${generated.reflection}\n${questionUrl}` });
   }
 
   return {

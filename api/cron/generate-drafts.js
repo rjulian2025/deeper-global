@@ -294,7 +294,7 @@ Rules:
 - "reflection": ${
       restricted
         ? 'return an empty string because reflection posts are disallowed for restricted categories.'
-        : 'a related open-ended reflective prompt inspired by the same theme/category, designed to invite replies rather than just reads. No link. Under 200 characters.'
+        : 'a related open-ended reflective prompt inspired by the same theme/category, designed to invite replies rather than just reads. Under 200 characters. Do not include a URL — a link will be appended automatically.'
     }
 
 Source:
@@ -345,13 +345,15 @@ async function generateSocialDraftSet(question, anthropicApiKey, logger = consol
   });
 
   const generated = await generateInsightAndReflection(question, questionOnly, anthropicApiKey, categorySafetyTier);
+  const questionUrl = `https://deeper.global/answers/${question.slug}`;
+
   const drafts = [
-    { format: 'question_only', body: questionOnly },
+    { format: 'question_only', body: `${questionOnly}\n${questionUrl}` },
     { format: 'question_insight', body: generated.questionInsight },
   ];
 
   if (categorySafetyTier !== 'restricted') {
-    drafts.push({ format: 'reflection', body: generated.reflection });
+    drafts.push({ format: 'reflection', body: `${generated.reflection}\n${questionUrl}` });
   }
 
   return { questionOnlyPath, drafts };

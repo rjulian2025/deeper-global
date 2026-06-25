@@ -18,6 +18,8 @@ function getXWeightedLength(text) {
 }
 
 const POST_CLAIM_MINUTES = 10;
+// Minimum hours between posts for the same question (to avoid flooding same-question formats)
+const SAME_QUESTION_SPACING_HOURS = 48;
 
 // ── Auth ─────────────────────────────────────────────────────────────────────
 
@@ -123,6 +125,24 @@ async function markFailed(url, key, postId) {
   });
 }
 
+/**
+ * After publishing one post for a question, push other pending posts for the
+ * same question_id forward in time so they don't fire on the very next cron tick.
+ */
+async function deferSameQuestionPosts(url, key, questionId, publishedPostId) {
+  const deferUntil = new Date(Date.now() + SAME_QUESTION_SPACING_HOURS * 60 * 60 * 1000).toISOString();
+  const qs = new URLSearchParams({
+    question_id: `eq.${questionId}`,
+    status: 'eq.approved',
+    x_post_id: 'is.null',
+    id: `neq.${publishedPostId}`,
+  });
+  return supabaseRequest(url, key, `social_posts?${qs}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ scheduled_for: deferUntil }),
+  });
+}
+
 // ── X posting ─────────────────────────────────────────────────────────────────
 
 function summarizeError(error) {
@@ -225,9 +245,13 @@ export default async function handler(req, res) {
       }
 
       try {
+        const bodyUrlMatch = (claimedPost.body ?? '').match(/https?:\/\/deeper\.global\/answers\/(\S+)/);
+        const embeddedSlug = bodyUrlMatch ? bodyUrlMatch[1] : null;
         console.log('social_publish_attempt', {
           post_id: claimedPost.id,
           format: claimedPost.format,
+          question_id: claimedPost.question_id,
+          embedded_slug: embeddedSlug,
           body_weighted_length: getXWeightedLength(claimedPost.body ?? ''),
         });
         const published = await postToX(claimedPost.body);
@@ -236,6 +260,16 @@ export default async function handler(req, res) {
           post_id: claimedPost.id,
           x_post_id: published.id,
           updated_count: Array.isArray(updated) ? updated.length : null,
+        });
+        // Defer other pending posts for the same question so they don't fire on
+        // the next cron tick — each format gets its own window.
+        const deferred = await deferSameQuestionPosts(url, key, claimedPost.question_id, claimedPost.id).catch((err) => {
+          console.warn('social_publish_defer_same_question_failed', { question_id: claimedPost.question_id, error: String(err) });
+          return null;
+        });
+        console.log('social_publish_deferred_same_question', {
+          question_id: claimedPost.question_id,
+          deferred_count: Array.isArray(deferred) ? deferred.length : null,
         });
         results.push({ ...selected, status: 'published', x_post_id: published.id, error: null });
       } catch (err) {
