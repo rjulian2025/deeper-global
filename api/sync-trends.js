@@ -1,3 +1,10 @@
+import {
+  buildLocationKey,
+  geocodeLocations,
+  upsertGeoCache,
+  fetchExistingGeoCacheKeys,
+} from './lib/geo.js';
+
 const CATEGORY_KEYWORDS = [
   { category: 'Anxiety & Stress', keyword: 'anxiety' },
   { category: 'Depression', keyword: 'depression' },
@@ -246,6 +253,64 @@ async function insertTrendRows(supabaseUrl, supabaseServiceRoleKey, rows) {
   return { ok: true, inserted };
 }
 
+/**
+ * Geocode any locations from the freshly-inserted batch that are not yet in
+ * geo_cache, then upsert them.  Failures are logged but do not abort the sync
+ * — the backfill endpoint can catch any misses later.
+ */
+async function geocodeNewLocations(intentRows, supabaseUrl, supabaseServiceRoleKey, mapboxToken) {
+  if (!mapboxToken) {
+    console.warn('sync_trends_geocode_skipped: missing mapbox token');
+    return { geocoded: 0, failed: 0 };
+  }
+
+  const uniqueLocations = new Map();
+  for (const row of intentRows) {
+    const key = buildLocationKey(row.region_country, row.region_state, row.region_city);
+    if (!uniqueLocations.has(key)) {
+      uniqueLocations.set(key, {
+        country: row.region_country ?? null,
+        state: row.region_state ?? null,
+        city: row.region_city ?? null,
+      });
+    }
+  }
+
+  const existingKeys = await fetchExistingGeoCacheKeys(supabaseUrl, supabaseServiceRoleKey);
+  const missing = [...uniqueLocations.entries()]
+    .filter(([key]) => !existingKeys.has(key))
+    .map(([, loc]) => loc);
+
+  if (!missing.length) return { geocoded: 0, failed: 0 };
+
+  const geocoded = await geocodeLocations(missing, mapboxToken, {
+    batchSize: 6,
+    delayMs: 200,
+  });
+
+  const cacheRows = [...geocoded.entries()].map(([location_key, coords]) => {
+    const loc = uniqueLocations.get(location_key) ?? {};
+    return {
+      location_key,
+      country: loc.country ?? null,
+      state: loc.state ?? null,
+      city: loc.city ?? null,
+      lat: coords.lat,
+      lng: coords.lng,
+      geocoder: coords.geocoder,
+      geocoded_at: new Date().toISOString(),
+    };
+  });
+
+  const upsertResult = await upsertGeoCache(supabaseUrl, supabaseServiceRoleKey, cacheRows);
+  if (!upsertResult.ok) {
+    console.error('sync_trends_geocode_upsert_failed', upsertResult.reason);
+    return { geocoded: 0, failed: missing.length };
+  }
+
+  return { geocoded: cacheRows.length, failed: missing.length - geocoded.size };
+}
+
 async function refreshMapSignals(supabaseUrl, supabaseServiceRoleKey) {
   const response = await fetch(`${supabaseUrl}/rest/v1/rpc/refresh_map_signals`, {
     method: 'POST',
@@ -276,6 +341,7 @@ export default async function handler(req, res) {
   }
 
   const serpApiKey = process.env.SERPAPI_KEY;
+  const mapboxToken = process.env.PUBLIC_MAPBOX_TOKEN ?? process.env.MAPBOX_TOKEN;
   const { supabaseUrl, supabaseServiceRoleKey } = getSupabaseWriteConfig();
 
   if (!serpApiKey) {
@@ -312,6 +378,15 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'sync_trends_insert_failed' });
     }
 
+    // Geocode any new locations and write to geo_cache so the next map load
+    // can skip client-side geocoding for these rows.
+    const geoResult = await geocodeNewLocations(
+      intentRows,
+      supabaseUrl,
+      supabaseServiceRoleKey,
+      mapboxToken
+    );
+
     const refreshResult = await refreshMapSignals(supabaseUrl, supabaseServiceRoleKey);
     if (!refreshResult.ok) {
       console.error('sync_trends_refresh_failed', refreshResult.reason);
@@ -321,6 +396,8 @@ export default async function handler(req, res) {
     return res.status(200).json({
       synced: intentRows.length,
       categories: CATEGORY_KEYWORDS.length,
+      geo_cache_added: geoResult.geocoded,
+      geo_cache_failed: geoResult.failed,
       map_signals_refreshed: true,
       timestamp: new Date().toISOString(),
     });

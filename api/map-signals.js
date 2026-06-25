@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { buildLocationKey } from './lib/geo.js';
 
 const SEED_FILE = join(dirname(fileURLToPath(import.meta.url)), '../src/data/map-signals-seed.json');
 const TREND_EVENT_NAME = 'trend_region_sync';
@@ -22,9 +23,13 @@ function getSupabaseReadConfig() {
   return { supabaseUrl, supabaseServiceRoleKey };
 }
 
-function normalizeTrendEventRow(row) {
+function normalizeTrendEventRow(row, geoCache) {
   const eventCount = Number(row.event_count ?? 0);
   const occurredAt = typeof row.occurred_at === 'string' ? row.occurred_at : '';
+
+  const geo = geoCache?.get(
+    buildLocationKey(row.region_country, row.region_state, row.region_city)
+  );
 
   return {
     country: row.region_country ?? null,
@@ -33,7 +38,29 @@ function normalizeTrendEventRow(row) {
     category: row.category ?? null,
     day: occurredAt.slice(0, 10) || null,
     event_count: Number.isFinite(eventCount) ? Math.round(eventCount) : 0,
+    lat: geo?.lat ?? null,
+    lng: geo?.lng ?? null,
   };
+}
+
+async function fetchGeoCache(supabaseUrl, supabaseServiceRoleKey) {
+  const response = await fetch(`${supabaseUrl}/rest/v1/geo_cache?select=location_key,lat,lng`, {
+    headers: {
+      apikey: supabaseServiceRoleKey,
+      Authorization: `Bearer ${supabaseServiceRoleKey}`,
+      Accept: 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    console.warn('geo_cache_fetch_failed', response.status);
+    return new Map();
+  }
+
+  const rows = await response.json();
+  return new Map(
+    Array.isArray(rows) ? rows.map((r) => [r.location_key, { lat: r.lat, lng: r.lng }]) : []
+  );
 }
 
 async function fetchTrendSignalsPage(supabaseUrl, supabaseServiceRoleKey, rangeStart) {
@@ -70,28 +97,35 @@ async function fetchTrendSignalsFromSupabase() {
     return { ok: false, reason: 'missing_supabase_service_role_key' };
   }
 
-  const allRows = [];
+  // Fetch trend rows and geo_cache in parallel to minimize latency.
+  const [geoCacheResult, paginatedRows] = await Promise.all([
+    fetchGeoCache(supabaseUrl, supabaseServiceRoleKey),
+    (async () => {
+      const allRows = [];
 
-  for (let page = 0; page < MAX_PAGES; page++) {
-    const rangeStart = page * PAGE_SIZE;
-    const result = await fetchTrendSignalsPage(supabaseUrl, supabaseServiceRoleKey, rangeStart);
+      for (let page = 0; page < MAX_PAGES; page++) {
+        const rangeStart = page * PAGE_SIZE;
+        const result = await fetchTrendSignalsPage(supabaseUrl, supabaseServiceRoleKey, rangeStart);
 
-    if (!result.ok) {
-      return { ok: false, reason: result.reason };
-    }
+        if (!result.ok) return { ok: false, reason: result.reason };
+        if (result.data.length === 0) break;
 
-    if (result.data.length === 0) {
-      break;
-    }
+        allRows.push(...result.data);
+        if (result.data.length < PAGE_SIZE) break;
+      }
 
-    allRows.push(...result.data);
+      return { ok: true, data: allRows };
+    })(),
+  ]);
 
-    if (result.data.length < PAGE_SIZE) {
-      break;
-    }
+  if (!paginatedRows.ok) {
+    return { ok: false, reason: paginatedRows.reason };
   }
 
-  return { ok: true, data: allRows.map(normalizeTrendEventRow) };
+  return {
+    ok: true,
+    data: paginatedRows.data.map((row) => normalizeTrendEventRow(row, geoCacheResult)),
+  };
 }
 
 export default async function handler(req, res) {
