@@ -23,6 +23,21 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
       Updated every 48 hours, Deeper maps aggregate mental health search intent across regions, topics, and intensity, with no personal data, no diagnosis, and no individual tracking.
     </p>
 
+    <aside
+      id="weather-map-overview"
+      class="weather-map-overview"
+      aria-live="polite"
+      aria-label="Current map signal summary"
+    >
+      <p class="weather-map-overview-eyebrow" id="weather-map-overview-title">Current Global Signal</p>
+      <p id="weather-map-overview-summary" class="weather-map-overview-summary">
+        Loading aggregate signals…
+      </p>
+      <p class="weather-map-overview-help">
+        Each glow represents aggregate mental health search intent by region. Larger, brighter signals indicate stronger relative intensity.
+      </p>
+    </aside>
+
     <div class="weather-map-shell">
       <form class="weather-map-search" id="weather-map-search" role="search" aria-label="Search city or region">
         <label class="sr-only" for="weather-map-search-input">City or region</label>
@@ -37,23 +52,6 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
       </form>
 
       <div id="weather-map-root" class="weather-map-canvas" aria-label="Global human weather map"></div>
-      <aside
-        id="weather-map-overview"
-        class="weather-map-overview"
-        aria-live="polite"
-        aria-label="Current map signal summary"
-      >
-        <p class="weather-map-overview-eyebrow" id="weather-map-overview-title">Current Global Signal</p>
-        <p id="weather-map-overview-summary" class="weather-map-overview-summary">
-          Loading aggregate signals…
-        </p>
-        <p class="weather-map-overview-help">
-          Each glow represents aggregate mental health search intent by region. Larger, brighter signals indicate stronger relative intensity.
-        </p>
-        <p class="weather-map-overview-meta">
-          Updated every 48 hours. No personal data. No diagnosis. No individual tracking.
-        </p>
-      </aside>
       <div id="weather-map-tooltip" class="weather-map-tooltip" hidden></div>
       <aside
         id="weather-map-state-card"
@@ -1400,7 +1398,11 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
 
     .weather-map-page .weather-map-shell {
       position: relative;
-      margin-top: var(--space-6);
+      margin-top: var(--space-4);
+    }
+
+    .weather-map-shell {
+      position: relative;
     }
 
     .weather-map-canvas {
@@ -1521,19 +1523,12 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
     }
 
     .weather-map-overview {
-      position: absolute;
-      top: var(--space-4);
-      left: var(--space-4);
-      z-index: 3;
-      width: min(92%, 340px);
-      padding: 0.9rem 1rem;
-      border-radius: 10px;
-      background: rgba(14, 31, 51, 0.92);
-      color: #f8fafc;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      margin: 0 0 var(--space-4);
+      padding: 1rem 1.15rem;
+      border-radius: 12px;
+      border: 1px solid var(--line-strong);
+      background: rgba(14, 31, 51, 0.03);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
-      pointer-events: none;
     }
 
     .weather-map-overview-eyebrow {
@@ -1541,26 +1536,22 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
       font-size: 0.7rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(248, 250, 252, 0.55);
+      color: var(--stone);
     }
 
     .weather-map-overview-summary {
       margin: 0 0 0.55rem;
-      font-size: 0.92rem;
-      line-height: 1.5;
-      color: #f8fafc;
-    }
-
-    .weather-map-overview-help,
-    .weather-map-overview-meta {
-      margin: 0;
-      font-size: 0.78rem;
-      line-height: 1.45;
-      color: rgba(248, 250, 252, 0.72);
+      font-size: 0.98rem;
+      line-height: 1.55;
+      color: var(--ink);
+      font-weight: 500;
     }
 
     .weather-map-overview-help {
-      margin-bottom: 0.45rem;
+      margin: 0;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: var(--stone);
     }
 
     .weather-map-below-map {
@@ -1596,10 +1587,6 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
     @media (max-width: 768px) {
       .weather-map-intelligence {
         grid-template-columns: 1fr;
-      }
-
-      .weather-map-overview {
-        width: min(calc(100% - 2rem), 320px);
       }
     }
 
