@@ -17,6 +17,9 @@
     },
     "api/cron/requeue-failed.js": {
       "maxDuration": 30
+    },
+    "api/og/answer/[slug].js": {
+      "maxDuration": 10
     }
   },
   "crons": [
@@ -51,6 +54,12 @@
     {
       "path": "/api/reports/social-status-email",
       "schedule": "0 13 * * 5"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/og/answers/:slug.png",
+      "destination": "/api/og/answer/:slug"
     }
   ],
   "redirects": [

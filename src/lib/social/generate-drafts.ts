@@ -164,7 +164,7 @@ function buildSourceSummary(question: SocialQuestionSource) {
     category: cleanText(question.category),
     short_answer: cleanText(question.short_answer),
     key_takeaways: takeaways,
-    url: `https://deeper.global/answers/${question.slug}`,
+    url: `https://www.deeper.global/answers/${question.slug}/`,
   };
 }
 
@@ -393,7 +393,7 @@ export async function generateSocialDraftSet(
     throw error;
   }
 
-  const questionUrl = `https://deeper.global/answers/${question.slug}`;
+  const questionUrl = `https://www.deeper.global/answers/${question.slug}/`;
 
   const drafts: GeneratedSocialDraft[] = [
     { format: 'question_only', body: `${questionOnly}\n${questionUrl}` },

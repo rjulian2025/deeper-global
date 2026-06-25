@@ -217,7 +217,7 @@ function buildSourceSummary(question) {
     category: cleanText(question.category),
     short_answer: cleanText(question.short_answer),
     key_takeaways: takeaways,
-    url: `https://deeper.global/answers/${question.slug}`,
+    url: `https://www.deeper.global/answers/${question.slug}/`,
   };
 }
 
@@ -345,7 +345,7 @@ async function generateSocialDraftSet(question, anthropicApiKey, logger = consol
   });
 
   const generated = await generateInsightAndReflection(question, questionOnly, anthropicApiKey, categorySafetyTier);
-  const questionUrl = `https://deeper.global/answers/${question.slug}`;
+  const questionUrl = `https://www.deeper.global/answers/${question.slug}/`;
 
   const drafts = [
     { format: 'question_only', body: `${questionOnly}\n${questionUrl}` },
