@@ -7,32 +7,36 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
 ---
 
 <BaseLayout
-  title="Psychology Weather Map | Deeper Global"
-  description="Explore aggregate mental health question demand by geography and topic across Deeper Global."
+  title="The Human Weather Report | Deeper"
+  description="A global map of aggregate mental health search intent, updated every 48 hours. See what the world is feeling across regions, topics, and emotional signals, with no personal data or diagnosis."
   canonicalPath="/weather-map"
 >
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css" />
   <EditorialStaticLayout
-    eyebrow="Psychology Weather Map"
-    title="Where mental health questions cluster."
-    lede="Aggregate answer-view signals by city, state, and topic. No individual identification."
+    eyebrow="Deeper Global"
+    title="The Human Weather Report"
+    lede="What the world is feeling."
     class="editorial-static-page editorial-static-page--weather-map weather-map-page"
     wide={true}
   >
+    <p class="weather-map-explainer">
+      Updated every 48 hours, Deeper maps aggregate mental health search intent across regions, topics, and intensity, with no personal data, no diagnosis, and no individual tracking.
+    </p>
+
     <div class="weather-map-shell">
-      <form class="weather-map-search" id="weather-map-search" role="search" aria-label="Search city or ZIP code">
-        <label class="sr-only" for="weather-map-search-input">City or ZIP code</label>
+      <form class="weather-map-search" id="weather-map-search" role="search" aria-label="Search city or region">
+        <label class="sr-only" for="weather-map-search-input">City or region</label>
         <input
           id="weather-map-search-input"
           name="q"
           type="search"
-          placeholder="Search city or ZIP…"
+          placeholder="Search city or region…"
           autocomplete="off"
         />
         <button type="submit">Go</button>
       </form>
 
-      <div id="weather-map-root" class="weather-map-canvas" aria-label="Psychology weather map"></div>
+      <div id="weather-map-root" class="weather-map-canvas" aria-label="Global human weather map"></div>
       <div id="weather-map-tooltip" class="weather-map-tooltip" hidden></div>
       <aside
         id="weather-map-state-card"
@@ -47,8 +51,13 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
       </aside>
     </div>
 
-    <div class="weather-map-legend" aria-label="Category legend">
-      <span class="weather-map-legend-title">Categories</span>
+    <p class="weather-map-trust">No personal data. No diagnosis. No individual tracking.</p>
+
+    <div class="weather-map-legend" aria-label="Category filter">
+      <div class="weather-map-legend-header">
+        <span class="weather-map-legend-title">Filter by category</span>
+        <span class="weather-map-legend-hint">Tap to recolor the map</span>
+      </div>
       <ul>
         <li data-category="all" role="button" tabindex="0" aria-pressed="true" class="is-active"><span class="swatch swatch--all"></span>All</li>
         <li data-category="Anxiety &amp; Stress" role="button" tabindex="0" aria-pressed="false"><span class="swatch" style="background:#F5A623"></span>Anxiety &amp; Stress</li>
@@ -71,10 +80,22 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
     </div>
 
     <section class="weather-map-insights" aria-labelledby="weather-map-insights-heading">
-      <h2 id="weather-map-insights-heading">This Week in American Mental Health</h2>
+      <h2 id="weather-map-insights-heading">This Week in Human Weather</h2>
       <div class="weather-map-insights-card" id="weather-map-insights-card">
-        <p class="weather-map-insights-loading">Loading insights…</p>
-        <ul id="weather-map-insights-list" class="weather-map-insights-list" hidden></ul>
+        <div class="weather-map-insights-prose">
+          <p id="weather-map-insight-lead">
+            Grief &amp; Loss is the strongest visible signal in the current map view, not just a topic spike, but something closer to an emotional weather system settling over multiple regions at once.
+          </p>
+          <p>
+            Across the map, each signal reflects aggregate search intent: people looking for language, relief, context, or care. The point is not to diagnose a place. The point is to see where human concern is gathering.
+          </p>
+          <p>
+            Regional patterns may shift every 48 hours as new search behavior emerges. Some weeks the pressure system is anxiety. Some weeks it is burnout, loneliness, identity, trauma, or meaning.
+          </p>
+          <p>
+            This is not surveillance. It is atmosphere, anonymized, aggregated, and seen from above.
+          </p>
+        </div>
       </div>
     </section>
   </EditorialStaticLayout>
@@ -425,13 +446,51 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
         }
       }
 
-      function addDensityLayers(geojson) {
+      function updateInsightLead(rows) {
+        const lead = document.getElementById('weather-map-insight-lead');
+        if (!lead || !rows.length) return;
+
+        const byCategory = new Map();
+        for (const row of rows) {
+          const category = row.category ?? 'Unknown';
+          byCategory.set(category, (byCategory.get(category) ?? 0) + (Number(row.event_count) || 0));
+        }
+
+        const top = [...byCategory.entries()].sort((a, b) => b[1] - a[1])[0];
+        if (!top) return;
+
+        const [category] = top;
+        lead.textContent = `${category} is the strongest visible signal in the current map view, not just a topic spike, but something closer to an emotional weather system settling over multiple regions at once.`;
+      }
+
+      function addDensityLayers(geojson, weightMax) {
         // TODO: Move lat/lng aggregation server-side via a Supabase RPC that groups
         // intent_events by rounded coordinates + category and returns count as `weight`,
         // so the client isn't geocoding and aggregating all raw records on every load.
 
+        const maxWeight = Math.max(weightMax ?? 1, 1);
+
         if (map.getSource('density')) {
           map.getSource('density').setData(geojson);
+          if (map.getLayer('density-heat')) {
+            map.setPaintProperty('density-heat', 'heatmap-weight', [
+              'interpolate', ['linear'], ['get', 'weight'],
+              0, 0,
+              maxWeight, 1,
+            ]);
+          }
+          if (map.getLayer('density-point')) {
+            map.setPaintProperty('density-point', 'circle-radius', [
+              'interpolate', ['linear'], ['zoom'],
+              7, ['interpolate', ['linear'], ['get', 'weight'], 0, 1.5, maxWeight, 6],
+              16, ['interpolate', ['linear'], ['get', 'weight'], 0, 4, maxWeight, 14],
+            ]);
+            map.setPaintProperty('density-point', 'circle-opacity', [
+              'interpolate', ['linear'], ['zoom'],
+              7, 0,
+              9, ['interpolate', ['linear'], ['get', 'weight'], 0, 0.45, maxWeight, 0.95],
+            ]);
+          }
           return;
         }
 
@@ -446,12 +505,12 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
             'heatmap-weight': [
               'interpolate', ['linear'], ['get', 'weight'],
               0, 0,
-              10, 1,
+              maxWeight, 1,
             ],
             'heatmap-intensity': [
               'interpolate', ['linear'], ['zoom'],
-              0, 1,
-              9, 3,
+              0, 0.85,
+              9, 2.5,
             ],
             'heatmap-color': DEFAULT_THERMAL_RAMP,
             'heatmap-radius': [
@@ -475,16 +534,16 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
           paint: {
             'circle-radius': [
               'interpolate', ['linear'], ['zoom'],
-              7, 2,
-              16, 12,
+              7, ['interpolate', ['linear'], ['get', 'weight'], 0, 1.5, maxWeight, 6],
+              16, ['interpolate', ['linear'], ['get', 'weight'], 0, 4, maxWeight, 14],
             ],
             'circle-color': ['get', 'category_color'],
-            'circle-stroke-color': 'white',
+            'circle-stroke-color': 'rgba(255,255,255,0.85)',
             'circle-stroke-width': 0.5,
             'circle-opacity': [
               'interpolate', ['linear'], ['zoom'],
               7, 0,
-              9, 1,
+              9, ['interpolate', ['linear'], ['get', 'weight'], 0, 0.45, maxWeight, 0.95],
             ],
           },
         });
@@ -662,7 +721,9 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
           return;
         }
 
-        addDensityLayers({ type: 'FeatureCollection', features });
+        const weightMax = Math.max(...features.map((f) => f.properties.weight), 1);
+        addDensityLayers({ type: 'FeatureCollection', features }, weightMax);
+        updateInsightLead(aggregated);
       }
 
       async function loadSignals() {
@@ -743,43 +804,23 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
     }
   </script>
 
-  <script define:vars={{ API_BASE }} is:inline>
-    (() => {
-      const card = document.getElementById('weather-map-insights-card');
-      const list = document.getElementById('weather-map-insights-list');
-      const loading = card?.querySelector('.weather-map-insights-loading');
-      if (!card || !list || !loading) return;
-
-      async function loadInsights() {
-        try {
-          const response = await fetch(`${API_BASE}/api/insights`);
-          if (!response.ok) throw new Error('insights_fetch_failed');
-
-          const payload = await response.json();
-          const bullets = Array.isArray(payload.insights) ? payload.insights : [];
-
-          if (!bullets.length) throw new Error('insights_empty');
-
-          list.replaceChildren();
-          for (const text of bullets) {
-            const li = document.createElement('li');
-            li.textContent = text;
-            list.append(li);
-          }
-
-          loading.hidden = true;
-          list.hidden = false;
-        } catch (error) {
-          console.error('weather_map_insights_error', error);
-          loading.textContent = 'Insights are unavailable right now.';
-        }
-      }
-
-      loadInsights();
-    })();
-  </script>
-
   <style>
+    .weather-map-explainer {
+      margin: 0 0 var(--space-5);
+      max-width: 62ch;
+      font-size: var(--text-sm);
+      line-height: 1.6;
+      color: var(--stone);
+    }
+
+    .weather-map-trust {
+      margin: var(--space-3) 0 0;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+
     .weather-map-page .weather-map-shell {
       position: relative;
       margin-top: var(--space-6);
@@ -969,23 +1010,40 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
 
     .weather-map-legend {
       margin-top: var(--space-4);
+      padding: var(--space-4) var(--space-5);
+      border-radius: 12px;
+      border: 1px solid var(--line-strong);
+      background: rgba(14, 31, 51, 0.03);
+      box-shadow: var(--shadow);
+    }
+
+    .weather-map-legend-header {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      gap: var(--space-3) var(--space-5);
-      font-size: var(--text-sm);
-      color: var(--stone);
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-2) var(--space-4);
+      margin-bottom: var(--space-3);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--line-strong);
     }
 
     .weather-map-legend-title {
       font-weight: 600;
+      font-size: var(--text-sm);
+      letter-spacing: 0.02em;
       color: var(--ink);
+    }
+
+    .weather-map-legend-hint {
+      font-size: 0.78rem;
+      color: var(--stone);
     }
 
     .weather-map-legend ul {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--space-3) var(--space-5);
+      gap: var(--space-2) var(--space-3);
       list-style: none;
       margin: 0;
       padding: 0;
@@ -998,12 +1056,13 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
     }
 
     .weather-map-legend .swatch {
-      width: 0.85rem;
-      height: 0.85rem;
+      width: 0.75rem;
+      height: 0.75rem;
       border-radius: 50%;
       display: inline-block;
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.1);
       flex-shrink: 0;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
     }
 
     .weather-map-legend .swatch--all {
@@ -1012,21 +1071,35 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
 
     .weather-map-legend [data-category] {
       cursor: pointer;
-      opacity: 0.5;
-      transition: opacity 0.15s;
+      opacity: 0.72;
+      transition: opacity 0.15s, background 0.15s, box-shadow 0.15s, color 0.15s;
       user-select: none;
+      font-size: 0.82rem;
+      line-height: 1.2;
+      color: var(--stone);
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
     }
 
-    .weather-map-legend [data-category].is-active,
+    .weather-map-legend [data-category].is-active {
+      opacity: 1;
+      color: var(--ink);
+      font-weight: 600;
+      background: rgba(14, 31, 51, 0.06);
+      border-color: rgba(14, 31, 51, 0.14);
+      box-shadow: 0 1px 2px rgba(14, 31, 51, 0.06);
+    }
+
     .weather-map-legend [data-category]:hover,
     .weather-map-legend [data-category]:focus-visible {
       opacity: 1;
+      color: var(--ink);
     }
 
     .weather-map-legend [data-category]:focus-visible {
       outline: 2px solid var(--ocean-bright, #3b82f6);
       outline-offset: 2px;
-      border-radius: 2px;
     }
 
     .weather-map-empty {
@@ -1055,42 +1128,39 @@ const API_BASE = import.meta.env.DEV ? 'http://127.0.0.1:3001' : '';
       color: #f8fafc;
     }
 
-    .weather-map-insights-card :global(.weather-map-insights-loading) {
-      margin: 0;
-      font-size: var(--text-sm);
-      color: rgba(248, 250, 252, 0.7);
-    }
-
-    .weather-map-insights-card :global(.weather-map-insights-list) {
-      list-style: none;
-      margin: 0;
-      padding-left: 1.15rem;
+    .weather-map-insights-prose {
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 0.85rem;
+    }
+
+    .weather-map-insights-prose p {
+      margin: 0;
       font-size: var(--text-sm);
+      line-height: 1.6;
+      color: rgba(248, 250, 252, 0.92);
+    }
+
+    .weather-map-insights-prose p:first-child {
+      font-size: 1rem;
       line-height: 1.55;
-      color: rgba(248, 250, 252, 0.92);
+      color: #f8fafc;
     }
 
-    .weather-map-insights-card :global(.weather-map-insights-list li) {
-      color: rgba(248, 250, 252, 0.92);
-    }
-
-    .weather-map-insights-card :global(.weather-map-insights-list li:last-child) {
+    .weather-map-insights-prose p:last-child {
       color: rgba(248, 250, 252, 0.75);
       font-style: italic;
     }
 
-    .weather-map-page .weather-map-insights-card :global(.weather-map-insights-loading) {
-      color: rgba(248, 250, 252, 0.7);
-    }
-
-    .weather-map-page .weather-map-insights-card :global(.weather-map-insights-list li) {
+    .weather-map-page .weather-map-insights-prose p {
       color: rgba(248, 250, 252, 0.92);
     }
 
-    .weather-map-page .weather-map-insights-card :global(.weather-map-insights-list li:last-child) {
+    .weather-map-page .weather-map-insights-prose p:first-child {
+      color: #f8fafc;
+    }
+
+    .weather-map-page .weather-map-insights-prose p:last-child {
       color: rgba(248, 250, 252, 0.75);
     }
 
