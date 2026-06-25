@@ -16,6 +16,8 @@
     "content:publish-ai-sprint": "node scripts/publish-phase-1b-drafts.mjs --campaign ai-sprint",
     "content:publish-adhd-hub": "node scripts/publish-phase-1b-drafts.mjs --campaign adhd-hub",
     "content:generate-adhd-hub-drafts": "node scripts/generate-adhd-hub-drafts.mjs",
+    "content:generate-anxiety-hub-related": "node scripts/generate-anxiety-hub-related-questions.mjs",
+    "content:apply-anxiety-hub-related": "node scripts/apply-anxiety-hub-related-questions.mjs",
     "content:publish-phase-1b": "node scripts/publish-phase-1b-drafts.mjs",
     "content:review-addiction": "node scripts/review-addiction-answers.mjs",
     "content:review-performance": "node scripts/review-performance-answers.mjs",

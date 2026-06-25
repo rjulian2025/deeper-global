@@ -1,0 +1,1630 @@
+{
+  "version": "anxiety-hub-related-questions-v1",
+  "generated_at": "2026-06-25T17:15:46.096Z",
+  "prompt_version": "deeper-anxiety-hub-v1",
+  "hub_slug_count": 36,
+  "follow_up_count": 180,
+  "in_graph_resolution_rate": 1,
+  "batch": [
+    {
+      "slug": "my-chest-tightens-whenever-someone-texts-me-unexpectedly",
+      "question": "My chest tightens whenever someone texts me unexpectedly",
+      "related_questions": [
+        "How do I know if I'm having a panic attack or just anxiety?",
+        "Why does my chest feel tight when I'm anxious?",
+        "Can anxiety make me feel like I can't breathe properly?",
+        "What should I do during a panic attack?",
+        "What is grounding and how can it help with anxiety?"
+      ],
+      "related_target_slugs": [
+        "how-do-i-know-if-im-having-a-panic-attack-184730-067",
+        "why-does-my-chest-feel-tight-when-im-anx-181083-001",
+        "can-anxiety-make-me-feel-like-i-cant-bre-181083-011",
+        "what-should-i-do-during-a-panic-attack",
+        "what-is-grounding-and-how-can-it-help-with-anxiety"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "how-do-i-know-if-im-having-a-panic-attack-184730-067",
+          "label": "How do I know if I'm having a panic attack or just anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-does-my-chest-feel-tight-when-im-anx-181083-001",
+          "label": "Why does my chest feel tight when I'm anxious?",
+          "matched": true
+        },
+        {
+          "targetSlug": "can-anxiety-make-me-feel-like-i-cant-bre-181083-011",
+          "label": "Can anxiety make me feel like I can't breathe properly?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-should-i-do-during-a-panic-attack",
+          "label": "What should I do during a panic attack?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-is-grounding-and-how-can-it-help-with-anxiety",
+          "label": "What is grounding and how can it help with anxiety?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "why-does-my-chest-feel-tight-when-im-anx-181083-001",
+      "question": "Why does my chest feel tight when I'm anxious?",
+      "related_questions": [
+        "My chest tightens whenever someone texts me unexpectedly",
+        "Can anxiety make me feel like I can't breathe properly?",
+        "Why does my heart race even when I'm just sitting still?",
+        "How do I know if I'm having a panic attack or just anxiety?",
+        "What are some quick techniques to calm anxiety in the moment?"
+      ],
+      "related_target_slugs": [
+        "my-chest-tightens-whenever-someone-texts-me-unexpectedly",
+        "can-anxiety-make-me-feel-like-i-cant-bre-181083-011",
+        "why-does-my-heart-race-even-when-im-just-181083-005",
+        "how-do-i-know-if-im-having-a-panic-attack-184730-067",
+        "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "my-chest-tightens-whenever-someone-texts-me-unexpectedly",
+          "label": "My chest tightens whenever someone texts me unexpectedly",
+          "matched": true
+        },
+        {
+          "targetSlug": "can-anxiety-make-me-feel-like-i-cant-bre-181083-011",
+          "label": "Can anxiety make me feel like I can't breathe properly?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-does-my-heart-race-even-when-im-just-181083-005",
+          "label": "Why does my heart race even when I'm just sitting still?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-im-having-a-panic-attack-184730-067",
+          "label": "How do I know if I'm having a panic attack or just anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+          "label": "What are some quick techniques to calm anxiety in the moment?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "how-do-i-know-if-im-having-a-panic-attack-184730-067",
+      "question": "How do I know if I'm having a panic attack or just anxiety?",
+      "related_questions": [
+        "What should I do during a panic attack?",
+        "Why does my chest feel tight when I'm anxious?",
+        "Can anxiety make me feel like I can't breathe properly?",
+        "How do I know if I need professional help for my anxiety?",
+        "What are some quick techniques to calm anxiety in the moment?"
+      ],
+      "related_target_slugs": [
+        "what-should-i-do-during-a-panic-attack",
+        "why-does-my-chest-feel-tight-when-im-anx-181083-001",
+        "can-anxiety-make-me-feel-like-i-cant-bre-181083-011",
+        "how-do-i-know-if-i-need-professional-help-for-my-anxiety",
+        "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "what-should-i-do-during-a-panic-attack",
+          "label": "What should I do during a panic attack?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-does-my-chest-feel-tight-when-im-anx-181083-001",
+          "label": "Why does my chest feel tight when I'm anxious?",
+          "matched": true
+        },
+        {
+          "targetSlug": "can-anxiety-make-me-feel-like-i-cant-bre-181083-011",
+          "label": "Can anxiety make me feel like I can't breathe properly?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-i-need-professional-help-for-my-anxiety",
+          "label": "How do I know if I need professional help for my anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+          "label": "What are some quick techniques to calm anxiety in the moment?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "what-should-i-do-during-a-panic-attack",
+      "question": "What should I do during a panic attack?",
+      "related_questions": [
+        "What are some quick techniques to calm anxiety in the moment?",
+        "What is grounding and how can it help with anxiety?",
+        "How do I know if I'm having a panic attack or just anxiety?",
+        "Why does my chest feel tight when I'm anxious?",
+        "How do I know if I need professional help for my anxiety?"
+      ],
+      "related_target_slugs": [
+        "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+        "what-is-grounding-and-how-can-it-help-with-anxiety",
+        "how-do-i-know-if-im-having-a-panic-attack-184730-067",
+        "why-does-my-chest-feel-tight-when-im-anx-181083-001",
+        "how-do-i-know-if-i-need-professional-help-for-my-anxiety"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+          "label": "What are some quick techniques to calm anxiety in the moment?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-is-grounding-and-how-can-it-help-with-anxiety",
+          "label": "What is grounding and how can it help with anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-im-having-a-panic-attack-184730-067",
+          "label": "How do I know if I'm having a panic attack or just anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-does-my-chest-feel-tight-when-im-anx-181083-001",
+          "label": "Why does my chest feel tight when I'm anxious?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-i-need-professional-help-for-my-anxiety",
+          "label": "How do I know if I need professional help for my anxiety?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "can-anxiety-make-me-feel-like-i-cant-bre-181083-011",
+      "question": "Can anxiety make me feel like I can't breathe properly?",
+      "related_questions": [
+        "Why does my chest feel tight when I'm anxious?",
+        "Why does my heart race even when I'm just sitting still?",
+        "What should I do during a panic attack?",
+        "What is grounding and how can it help with anxiety?",
+        "How do I know if I'm having a panic attack or just anxiety?"
+      ],
+      "related_target_slugs": [
+        "why-does-my-chest-feel-tight-when-im-anx-181083-001",
+        "why-does-my-heart-race-even-when-im-just-181083-005",
+        "what-should-i-do-during-a-panic-attack",
+        "what-is-grounding-and-how-can-it-help-with-anxiety",
+        "how-do-i-know-if-im-having-a-panic-attack-184730-067"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "why-does-my-chest-feel-tight-when-im-anx-181083-001",
+          "label": "Why does my chest feel tight when I'm anxious?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-does-my-heart-race-even-when-im-just-181083-005",
+          "label": "Why does my heart race even when I'm just sitting still?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-should-i-do-during-a-panic-attack",
+          "label": "What should I do during a panic attack?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-is-grounding-and-how-can-it-help-with-anxiety",
+          "label": "What is grounding and how can it help with anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-im-having-a-panic-attack-184730-067",
+          "label": "How do I know if I'm having a panic attack or just anxiety?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "why-does-my-heart-race-even-when-im-just-181083-005",
+      "question": "Why does my heart race even when I'm just sitting still?",
+      "related_questions": [
+        "Why does my chest feel tight when I'm anxious?",
+        "Can anxiety make me feel like I can't breathe properly?",
+        "Why do I feel anxious for no reason?",
+        "Why does my anxiety get worse at night?",
+        "What are some quick techniques to calm anxiety in the moment?"
+      ],
+      "related_target_slugs": [
+        "why-does-my-chest-feel-tight-when-im-anx-181083-001",
+        "can-anxiety-make-me-feel-like-i-cant-bre-181083-011",
+        "why-do-i-feel-anxious-for-no-reason",
+        "why-does-my-anxiety-get-worse-at-night",
+        "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "why-does-my-chest-feel-tight-when-im-anx-181083-001",
+          "label": "Why does my chest feel tight when I'm anxious?",
+          "matched": true
+        },
+        {
+          "targetSlug": "can-anxiety-make-me-feel-like-i-cant-bre-181083-011",
+          "label": "Can anxiety make me feel like I can't breathe properly?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-anxious-for-no-reason",
+          "label": "Why do I feel anxious for no reason?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-does-my-anxiety-get-worse-at-night",
+          "label": "Why does my anxiety get worse at night?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+          "label": "What are some quick techniques to calm anxiety in the moment?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "why-do-i-overthink-every-conversation-after-it-happens",
+      "question": "Why Your Brain Replays Conversations After They Happen",
+      "related_questions": [
+        "How do I stop overthinking everything I say and do?",
+        "I rehearse conversations in my head for hours before they happen",
+        "What is social anxiety and how do I overcome it?",
+        "How do I cope with the fear of being judged by others?",
+        "Why do I feel awkward in social situations even when people are nice to me?"
+      ],
+      "related_target_slugs": [
+        "how-do-i-stop-overthinking-everything-i-say-and-184730-036",
+        "i-rehearse-conversations-in-my-head-for-hours-before-they-happen",
+        "what-is-social-anxiety-and-how-do-i-overcome-it",
+        "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+        "why-do-i-feel-awkward-in-social-situatio-181083-074"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "how-do-i-stop-overthinking-everything-i-say-and-184730-036",
+          "label": "How do I stop overthinking everything I say and do?",
+          "matched": true
+        },
+        {
+          "targetSlug": "i-rehearse-conversations-in-my-head-for-hours-before-they-happen",
+          "label": "I rehearse conversations in my head for hours before they happen",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-is-social-anxiety-and-how-do-i-overcome-it",
+          "label": "What is social anxiety and how do I overcome it?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+          "label": "How do I cope with the fear of being judged by others?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-awkward-in-social-situatio-181083-074",
+          "label": "Why do I feel awkward in social situations even when people are nice to me?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "how-do-i-stop-overthinking-everything-i-say-and-184730-036",
+      "question": "How do I stop overthinking everything I say and do?",
+      "related_questions": [
+        "Why Your Brain Replays Conversations After They Happen",
+        "I rehearse conversations in my head for hours before they happen",
+        "What is social anxiety and how do I overcome it?",
+        "How do I cope with the fear of being judged by others?",
+        "What is grounding and how can it help with anxiety?"
+      ],
+      "related_target_slugs": [
+        "why-do-i-overthink-every-conversation-after-it-happens",
+        "i-rehearse-conversations-in-my-head-for-hours-before-they-happen",
+        "what-is-social-anxiety-and-how-do-i-overcome-it",
+        "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+        "what-is-grounding-and-how-can-it-help-with-anxiety"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "why-do-i-overthink-every-conversation-after-it-happens",
+          "label": "Why Your Brain Replays Conversations After They Happen",
+          "matched": true
+        },
+        {
+          "targetSlug": "i-rehearse-conversations-in-my-head-for-hours-before-they-happen",
+          "label": "I rehearse conversations in my head for hours before they happen",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-is-social-anxiety-and-how-do-i-overcome-it",
+          "label": "What is social anxiety and how do I overcome it?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+          "label": "How do I cope with the fear of being judged by others?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-is-grounding-and-how-can-it-help-with-anxiety",
+          "label": "What is grounding and how can it help with anxiety?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "what-is-social-anxiety-and-how-do-i-overcome-it",
+      "question": "What is social anxiety and how do I overcome it?",
+      "related_questions": [
+        "Why do I feel awkward in social situations even when people are nice to me?",
+        "How do I cope with the fear of being judged by others?",
+        "I rehearse conversations in my head for hours before they happen",
+        "How do I deal with social anxiety at work?",
+        "Why Your Brain Replays Conversations After They Happen"
+      ],
+      "related_target_slugs": [
+        "why-do-i-feel-awkward-in-social-situatio-181083-074",
+        "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+        "i-rehearse-conversations-in-my-head-for-hours-before-they-happen",
+        "how-do-i-deal-with-social-anxiety-at-wor-191368-004",
+        "why-do-i-overthink-every-conversation-after-it-happens"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "why-do-i-feel-awkward-in-social-situatio-181083-074",
+          "label": "Why do I feel awkward in social situations even when people are nice to me?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+          "label": "How do I cope with the fear of being judged by others?",
+          "matched": true
+        },
+        {
+          "targetSlug": "i-rehearse-conversations-in-my-head-for-hours-before-they-happen",
+          "label": "I rehearse conversations in my head for hours before they happen",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-social-anxiety-at-wor-191368-004",
+          "label": "How do I deal with social anxiety at work?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-overthink-every-conversation-after-it-happens",
+          "label": "Why Your Brain Replays Conversations After They Happen",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+      "question": "How do I cope with the fear of being judged by others?",
+      "related_questions": [
+        "What is social anxiety and how do I overcome it?",
+        "Why do I feel awkward in social situations even when people are nice to me?",
+        "I rehearse conversations in my head for hours before they happen",
+        "Every small mistake feels like evidence that I am fundamentally flawed",
+        "How do I deal with social anxiety at work?"
+      ],
+      "related_target_slugs": [
+        "what-is-social-anxiety-and-how-do-i-overcome-it",
+        "why-do-i-feel-awkward-in-social-situatio-181083-074",
+        "i-rehearse-conversations-in-my-head-for-hours-before-they-happen",
+        "every-small-mistake-feels-like-evidence-that-i-am-fundamentally-flawed",
+        "how-do-i-deal-with-social-anxiety-at-wor-191368-004"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "what-is-social-anxiety-and-how-do-i-overcome-it",
+          "label": "What is social anxiety and how do I overcome it?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-awkward-in-social-situatio-181083-074",
+          "label": "Why do I feel awkward in social situations even when people are nice to me?",
+          "matched": true
+        },
+        {
+          "targetSlug": "i-rehearse-conversations-in-my-head-for-hours-before-they-happen",
+          "label": "I rehearse conversations in my head for hours before they happen",
+          "matched": true
+        },
+        {
+          "targetSlug": "every-small-mistake-feels-like-evidence-that-i-am-fundamentally-flawed",
+          "label": "Every small mistake feels like evidence that I am fundamentally flawed",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-social-anxiety-at-wor-191368-004",
+          "label": "How do I deal with social anxiety at work?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "why-do-i-feel-awkward-in-social-situatio-181083-074",
+      "question": "Why do I feel awkward in social situations even when people are nice to me?",
+      "related_questions": [
+        "What is social anxiety and how do I overcome it?",
+        "How do I cope with the fear of being judged by others?",
+        "I rehearse conversations in my head for hours before they happen",
+        "Why Your Brain Replays Conversations After They Happen",
+        "How do I deal with social anxiety at work?"
+      ],
+      "related_target_slugs": [
+        "what-is-social-anxiety-and-how-do-i-overcome-it",
+        "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+        "i-rehearse-conversations-in-my-head-for-hours-before-they-happen",
+        "why-do-i-overthink-every-conversation-after-it-happens",
+        "how-do-i-deal-with-social-anxiety-at-wor-191368-004"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "what-is-social-anxiety-and-how-do-i-overcome-it",
+          "label": "What is social anxiety and how do I overcome it?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+          "label": "How do I cope with the fear of being judged by others?",
+          "matched": true
+        },
+        {
+          "targetSlug": "i-rehearse-conversations-in-my-head-for-hours-before-they-happen",
+          "label": "I rehearse conversations in my head for hours before they happen",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-overthink-every-conversation-after-it-happens",
+          "label": "Why Your Brain Replays Conversations After They Happen",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-social-anxiety-at-wor-191368-004",
+          "label": "How do I deal with social anxiety at work?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "i-rehearse-conversations-in-my-head-for-hours-before-they-happen",
+      "question": "I rehearse conversations in my head for hours before they happen",
+      "related_questions": [
+        "Why Your Brain Replays Conversations After They Happen",
+        "How do I stop overthinking everything I say and do?",
+        "What is social anxiety and how do I overcome it?",
+        "How do I cope with the fear of being judged by others?",
+        "Why do I feel anxious for no reason?"
+      ],
+      "related_target_slugs": [
+        "why-do-i-overthink-every-conversation-after-it-happens",
+        "how-do-i-stop-overthinking-everything-i-say-and-184730-036",
+        "what-is-social-anxiety-and-how-do-i-overcome-it",
+        "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+        "why-do-i-feel-anxious-for-no-reason"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "why-do-i-overthink-every-conversation-after-it-happens",
+          "label": "Why Your Brain Replays Conversations After They Happen",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-stop-overthinking-everything-i-say-and-184730-036",
+          "label": "How do I stop overthinking everything I say and do?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-is-social-anxiety-and-how-do-i-overcome-it",
+          "label": "What is social anxiety and how do I overcome it?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+          "label": "How do I cope with the fear of being judged by others?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-anxious-for-no-reason",
+          "label": "Why do I feel anxious for no reason?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "why-do-i-feel-anxious-for-no-reason",
+      "question": "Why do I feel anxious for no reason?",
+      "related_questions": [
+        "What to Do When Anxiety Shows Up for No Clear Reason",
+        "Why do I feel like I'm always waiting for the other shoe to drop?",
+        "Why do I worry about things that haven't happened yet?",
+        "How do I know if I have anxiety or if I'm just stressed?",
+        "What is grounding and how can it help with anxiety?"
+      ],
+      "related_target_slugs": [
+        "what-to-do-when-anxious-for-no-clear-reason",
+        "why-do-i-feel-like-im-always-waiting-for-the-r8s3t6",
+        "why-do-i-worry-about-things-that-havent-181288-006",
+        "how-do-i-know-if-i-have-anxiety-or-if-im-just-stressed",
+        "what-is-grounding-and-how-can-it-help-with-anxiety"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "what-to-do-when-anxious-for-no-clear-reason",
+          "label": "What to Do When Anxiety Shows Up for No Clear Reason",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-like-im-always-waiting-for-the-r8s3t6",
+          "label": "Why do I feel like I'm always waiting for the other shoe to drop?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-worry-about-things-that-havent-181288-006",
+          "label": "Why do I worry about things that haven't happened yet?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-i-have-anxiety-or-if-im-just-stressed",
+          "label": "How do I know if I have anxiety or if I'm just stressed?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-is-grounding-and-how-can-it-help-with-anxiety",
+          "label": "What is grounding and how can it help with anxiety?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "what-to-do-when-anxious-for-no-clear-reason",
+      "question": "What to Do When Anxiety Shows Up for No Clear Reason",
+      "related_questions": [
+        "Why do I feel anxious for no reason?",
+        "What are some quick techniques to calm anxiety in the moment?",
+        "What is grounding and how can it help with anxiety?",
+        "How do I know if my anxiety is normal or if I need help?",
+        "How can I manage my anxiety without medication?"
+      ],
+      "related_target_slugs": [
+        "why-do-i-feel-anxious-for-no-reason",
+        "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+        "what-is-grounding-and-how-can-it-help-with-anxiety",
+        "how-do-i-know-if-my-anxiety-is-normal-or-184730-038",
+        "how-can-i-manage-my-anxiety-without-medication"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "why-do-i-feel-anxious-for-no-reason",
+          "label": "Why do I feel anxious for no reason?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+          "label": "What are some quick techniques to calm anxiety in the moment?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-is-grounding-and-how-can-it-help-with-anxiety",
+          "label": "What is grounding and how can it help with anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-my-anxiety-is-normal-or-184730-038",
+          "label": "How do I know if my anxiety is normal or if I need help?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-can-i-manage-my-anxiety-without-medication",
+          "label": "How can I manage my anxiety without medication?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "why-do-i-worry-about-things-that-havent-181288-006",
+      "question": "Why do I worry about things that haven't happened yet?",
+      "related_questions": [
+        "Why do I feel like I'm always waiting for the other shoe to drop?",
+        "How do I stop catastrophizing every small problem?",
+        "How do I deal with anxiety about the future?",
+        "Why do I feel anxious for no reason?",
+        "Why does my anxiety get worse at night?"
+      ],
+      "related_target_slugs": [
+        "why-do-i-feel-like-im-always-waiting-for-the-r8s3t6",
+        "how-do-i-stop-catastrophizing-every-smal-190219-005",
+        "how-do-i-deal-with-anxiety-about-the-future",
+        "why-do-i-feel-anxious-for-no-reason",
+        "why-does-my-anxiety-get-worse-at-night"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "why-do-i-feel-like-im-always-waiting-for-the-r8s3t6",
+          "label": "Why do I feel like I'm always waiting for the other shoe to drop?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-stop-catastrophizing-every-smal-190219-005",
+          "label": "How do I stop catastrophizing every small problem?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-anxiety-about-the-future",
+          "label": "How do I deal with anxiety about the future?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-anxious-for-no-reason",
+          "label": "Why do I feel anxious for no reason?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-does-my-anxiety-get-worse-at-night",
+          "label": "Why does my anxiety get worse at night?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "why-do-i-feel-like-im-always-waiting-for-the-r8s3t6",
+      "question": "Why do I feel like I'm always waiting for the other shoe to drop?",
+      "related_questions": [
+        "Why do I worry about things that haven't happened yet?",
+        "How do I stop catastrophizing every small problem?",
+        "How do I deal with anxiety about the future?",
+        "Why do I feel anxious for no reason?",
+        "Why does my anxiety get worse at night?"
+      ],
+      "related_target_slugs": [
+        "why-do-i-worry-about-things-that-havent-181288-006",
+        "how-do-i-stop-catastrophizing-every-smal-190219-005",
+        "how-do-i-deal-with-anxiety-about-the-future",
+        "why-do-i-feel-anxious-for-no-reason",
+        "why-does-my-anxiety-get-worse-at-night"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "why-do-i-worry-about-things-that-havent-181288-006",
+          "label": "Why do I worry about things that haven't happened yet?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-stop-catastrophizing-every-smal-190219-005",
+          "label": "How do I stop catastrophizing every small problem?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-anxiety-about-the-future",
+          "label": "How do I deal with anxiety about the future?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-anxious-for-no-reason",
+          "label": "Why do I feel anxious for no reason?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-does-my-anxiety-get-worse-at-night",
+          "label": "Why does my anxiety get worse at night?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "how-do-i-stop-catastrophizing-every-smal-190219-005",
+      "question": "How do I stop catastrophizing every small problem?",
+      "related_questions": [
+        "Why do I worry about things that haven't happened yet?",
+        "Why do I feel like I'm always waiting for the other shoe to drop?",
+        "Every small mistake feels like evidence that I am fundamentally flawed",
+        "How do I deal with the anxiety of making the 'wrong' decision?",
+        "How do I deal with anxiety about the future?"
+      ],
+      "related_target_slugs": [
+        "why-do-i-worry-about-things-that-havent-181288-006",
+        "why-do-i-feel-like-im-always-waiting-for-the-r8s3t6",
+        "every-small-mistake-feels-like-evidence-that-i-am-fundamentally-flawed",
+        "how-do-i-deal-with-the-anxiety-of-making-the-wrong-decision-m4n5o6",
+        "how-do-i-deal-with-anxiety-about-the-future"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "why-do-i-worry-about-things-that-havent-181288-006",
+          "label": "Why do I worry about things that haven't happened yet?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-like-im-always-waiting-for-the-r8s3t6",
+          "label": "Why do I feel like I'm always waiting for the other shoe to drop?",
+          "matched": true
+        },
+        {
+          "targetSlug": "every-small-mistake-feels-like-evidence-that-i-am-fundamentally-flawed",
+          "label": "Every small mistake feels like evidence that I am fundamentally flawed",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-the-anxiety-of-making-the-wrong-decision-m4n5o6",
+          "label": "How do I deal with the anxiety of making the 'wrong' decision?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-anxiety-about-the-future",
+          "label": "How do I deal with anxiety about the future?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "how-do-i-deal-with-anxiety-about-the-future",
+      "question": "How do I deal with anxiety about the future?",
+      "related_questions": [
+        "Why do I worry about things that haven't happened yet?",
+        "Why do I feel like I'm always waiting for the other shoe to drop?",
+        "How do I stop catastrophizing every small problem?",
+        "Why do I feel anxious when I check my bank account?",
+        "How do I deal with Sunday night anxiety about the week ahead?"
+      ],
+      "related_target_slugs": [
+        "why-do-i-worry-about-things-that-havent-181288-006",
+        "why-do-i-feel-like-im-always-waiting-for-the-r8s3t6",
+        "how-do-i-stop-catastrophizing-every-smal-190219-005",
+        "why-do-i-feel-anxious-when-i-check-my-ba-181083-027",
+        "how-do-i-deal-with-sunday-night-anxiety-181083-050"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "why-do-i-worry-about-things-that-havent-181288-006",
+          "label": "Why do I worry about things that haven't happened yet?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-like-im-always-waiting-for-the-r8s3t6",
+          "label": "Why do I feel like I'm always waiting for the other shoe to drop?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-stop-catastrophizing-every-smal-190219-005",
+          "label": "How do I stop catastrophizing every small problem?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-anxious-when-i-check-my-ba-181083-027",
+          "label": "Why do I feel anxious when I check my bank account?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-sunday-night-anxiety-181083-050",
+          "label": "How do I deal with Sunday night anxiety about the week ahead?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "how-do-i-deal-with-sunday-night-anxiety-181083-050",
+      "question": "How do I deal with Sunday night anxiety about the week ahead?",
+      "related_questions": [
+        "How do I deal with social anxiety at work?",
+        "Every small mistake feels like evidence that I am fundamentally flawed",
+        "Why do I feel anxious when I check my bank account?",
+        "Is it normal to lose sleep over money worries?",
+        "How do I deal with the anxiety of making the 'wrong' decision?"
+      ],
+      "related_target_slugs": [
+        "how-do-i-deal-with-social-anxiety-at-wor-191368-004",
+        "every-small-mistake-feels-like-evidence-that-i-am-fundamentally-flawed",
+        "why-do-i-feel-anxious-when-i-check-my-ba-181083-027",
+        "is-it-normal-to-lose-sleep-over-money-wo-181083-022",
+        "how-do-i-deal-with-the-anxiety-of-making-the-wrong-decision-m4n5o6"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "how-do-i-deal-with-social-anxiety-at-wor-191368-004",
+          "label": "How do I deal with social anxiety at work?",
+          "matched": true
+        },
+        {
+          "targetSlug": "every-small-mistake-feels-like-evidence-that-i-am-fundamentally-flawed",
+          "label": "Every small mistake feels like evidence that I am fundamentally flawed",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-anxious-when-i-check-my-ba-181083-027",
+          "label": "Why do I feel anxious when I check my bank account?",
+          "matched": true
+        },
+        {
+          "targetSlug": "is-it-normal-to-lose-sleep-over-money-wo-181083-022",
+          "label": "Is it normal to lose sleep over money worries?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-the-anxiety-of-making-the-wrong-decision-m4n5o6",
+          "label": "How do I deal with the anxiety of making the 'wrong' decision?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "how-do-i-deal-with-social-anxiety-at-wor-191368-004",
+      "question": "How do I deal with social anxiety at work?",
+      "related_questions": [
+        "What is social anxiety and how do I overcome it?",
+        "How do I cope with the fear of being judged by others?",
+        "How do I deal with Sunday night anxiety about the week ahead?",
+        "Every small mistake feels like evidence that I am fundamentally flawed",
+        "Why do I feel awkward in social situations even when people are nice to me?"
+      ],
+      "related_target_slugs": [
+        "what-is-social-anxiety-and-how-do-i-overcome-it",
+        "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+        "how-do-i-deal-with-sunday-night-anxiety-181083-050",
+        "every-small-mistake-feels-like-evidence-that-i-am-fundamentally-flawed",
+        "why-do-i-feel-awkward-in-social-situatio-181083-074"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "what-is-social-anxiety-and-how-do-i-overcome-it",
+          "label": "What is social anxiety and how do I overcome it?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+          "label": "How do I cope with the fear of being judged by others?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-sunday-night-anxiety-181083-050",
+          "label": "How do I deal with Sunday night anxiety about the week ahead?",
+          "matched": true
+        },
+        {
+          "targetSlug": "every-small-mistake-feels-like-evidence-that-i-am-fundamentally-flawed",
+          "label": "Every small mistake feels like evidence that I am fundamentally flawed",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-awkward-in-social-situatio-181083-074",
+          "label": "Why do I feel awkward in social situations even when people are nice to me?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "every-small-mistake-feels-like-evidence-that-i-am-fundamentally-flawed",
+      "question": "Every small mistake feels like evidence that I am fundamentally flawed",
+      "related_questions": [
+        "How do I deal with the anxiety of making the 'wrong' decision?",
+        "How do I stop catastrophizing every small problem?",
+        "How do I cope with the fear of being judged by others?",
+        "How do I deal with Sunday night anxiety about the week ahead?",
+        "How do I deal with social anxiety at work?"
+      ],
+      "related_target_slugs": [
+        "how-do-i-deal-with-the-anxiety-of-making-the-wrong-decision-m4n5o6",
+        "how-do-i-stop-catastrophizing-every-smal-190219-005",
+        "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+        "how-do-i-deal-with-sunday-night-anxiety-181083-050",
+        "how-do-i-deal-with-social-anxiety-at-wor-191368-004"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "how-do-i-deal-with-the-anxiety-of-making-the-wrong-decision-m4n5o6",
+          "label": "How do I deal with the anxiety of making the 'wrong' decision?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-stop-catastrophizing-every-smal-190219-005",
+          "label": "How do I stop catastrophizing every small problem?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7",
+          "label": "How do I cope with the fear of being judged by others?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-sunday-night-anxiety-181083-050",
+          "label": "How do I deal with Sunday night anxiety about the week ahead?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-social-anxiety-at-wor-191368-004",
+          "label": "How do I deal with social anxiety at work?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "how-do-i-deal-with-the-anxiety-of-making-the-wrong-decision-m4n5o6",
+      "question": "How do I deal with the anxiety of making the 'wrong' decision?",
+      "related_questions": [
+        "Every small mistake feels like evidence that I am fundamentally flawed",
+        "How do I stop catastrophizing every small problem?",
+        "Why do I feel anxious when I check my bank account?",
+        "How do I deal with anxiety about the future?",
+        "How do I deal with Sunday night anxiety about the week ahead?"
+      ],
+      "related_target_slugs": [
+        "every-small-mistake-feels-like-evidence-that-i-am-fundamentally-flawed",
+        "how-do-i-stop-catastrophizing-every-smal-190219-005",
+        "why-do-i-feel-anxious-when-i-check-my-ba-181083-027",
+        "how-do-i-deal-with-anxiety-about-the-future",
+        "how-do-i-deal-with-sunday-night-anxiety-181083-050"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "every-small-mistake-feels-like-evidence-that-i-am-fundamentally-flawed",
+          "label": "Every small mistake feels like evidence that I am fundamentally flawed",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-stop-catastrophizing-every-smal-190219-005",
+          "label": "How do I stop catastrophizing every small problem?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-anxious-when-i-check-my-ba-181083-027",
+          "label": "Why do I feel anxious when I check my bank account?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-anxiety-about-the-future",
+          "label": "How do I deal with anxiety about the future?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-sunday-night-anxiety-181083-050",
+          "label": "How do I deal with Sunday night anxiety about the week ahead?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "why-do-i-feel-anxious-when-i-check-my-ba-181083-027",
+      "question": "Why do I feel anxious when I check my bank account?",
+      "related_questions": [
+        "Is it normal to lose sleep over money worries?",
+        "How do I deal with Sunday night anxiety about the week ahead?",
+        "How do I deal with anxiety about the future?",
+        "How do I know if I have anxiety or if I'm just stressed?",
+        "Why does my anxiety get worse at night?"
+      ],
+      "related_target_slugs": [
+        "is-it-normal-to-lose-sleep-over-money-wo-181083-022",
+        "how-do-i-deal-with-sunday-night-anxiety-181083-050",
+        "how-do-i-deal-with-anxiety-about-the-future",
+        "how-do-i-know-if-i-have-anxiety-or-if-im-just-stressed",
+        "why-does-my-anxiety-get-worse-at-night"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "is-it-normal-to-lose-sleep-over-money-wo-181083-022",
+          "label": "Is it normal to lose sleep over money worries?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-sunday-night-anxiety-181083-050",
+          "label": "How do I deal with Sunday night anxiety about the week ahead?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-anxiety-about-the-future",
+          "label": "How do I deal with anxiety about the future?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-i-have-anxiety-or-if-im-just-stressed",
+          "label": "How do I know if I have anxiety or if I'm just stressed?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-does-my-anxiety-get-worse-at-night",
+          "label": "Why does my anxiety get worse at night?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "is-it-normal-to-lose-sleep-over-money-wo-181083-022",
+      "question": "Is it normal to lose sleep over money worries?",
+      "related_questions": [
+        "Why do I feel anxious when I check my bank account?",
+        "How do I deal with Sunday night anxiety about the week ahead?",
+        "Why does my anxiety get worse at night?",
+        "How do I stop my mind from racing when I try to sleep?",
+        "How do I deal with anxiety about the future?"
+      ],
+      "related_target_slugs": [
+        "why-do-i-feel-anxious-when-i-check-my-ba-181083-027",
+        "how-do-i-deal-with-sunday-night-anxiety-181083-050",
+        "why-does-my-anxiety-get-worse-at-night",
+        "how-do-i-stop-my-mind-from-racing-when-i-181083-044",
+        "how-do-i-deal-with-anxiety-about-the-future"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "why-do-i-feel-anxious-when-i-check-my-ba-181083-027",
+          "label": "Why do I feel anxious when I check my bank account?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-sunday-night-anxiety-181083-050",
+          "label": "How do I deal with Sunday night anxiety about the week ahead?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-does-my-anxiety-get-worse-at-night",
+          "label": "Why does my anxiety get worse at night?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-stop-my-mind-from-racing-when-i-181083-044",
+          "label": "How do I stop my mind from racing when I try to sleep?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-anxiety-about-the-future",
+          "label": "How do I deal with anxiety about the future?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "how-do-i-know-if-i-have-anxiety-or-if-im-just-stressed",
+      "question": "How do I know if I have anxiety or if I'm just stressed?",
+      "related_questions": [
+        "What's the difference between stress and anxiety?",
+        "How do I know if my anxiety is normal or if I need help?",
+        "Why do I feel anxious for no reason?",
+        "How do I know if I need professional help for my anxiety?",
+        "How can I manage my anxiety without medication?"
+      ],
+      "related_target_slugs": [
+        "whats-the-difference-between-stress-and-anxiety",
+        "how-do-i-know-if-my-anxiety-is-normal-or-184730-038",
+        "why-do-i-feel-anxious-for-no-reason",
+        "how-do-i-know-if-i-need-professional-help-for-my-anxiety",
+        "how-can-i-manage-my-anxiety-without-medication"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "whats-the-difference-between-stress-and-anxiety",
+          "label": "What's the difference between stress and anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-my-anxiety-is-normal-or-184730-038",
+          "label": "How do I know if my anxiety is normal or if I need help?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-anxious-for-no-reason",
+          "label": "Why do I feel anxious for no reason?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-i-need-professional-help-for-my-anxiety",
+          "label": "How do I know if I need professional help for my anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-can-i-manage-my-anxiety-without-medication",
+          "label": "How can I manage my anxiety without medication?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "how-do-i-know-if-my-anxiety-is-normal-or-184730-038",
+      "question": "How do I know if my anxiety is normal or if I need help?",
+      "related_questions": [
+        "How do I know if I need professional help for my anxiety?",
+        "How do I know if I have anxiety or if I'm just stressed?",
+        "What do I do when my anxiety is so bad I can't leave the house?",
+        "How can I manage my anxiety without medication?",
+        "What's the difference between stress and anxiety?"
+      ],
+      "related_target_slugs": [
+        "how-do-i-know-if-i-need-professional-help-for-my-anxiety",
+        "how-do-i-know-if-i-have-anxiety-or-if-im-just-stressed",
+        "what-do-i-do-when-my-anxiety-is-so-bad-i-177940-004",
+        "how-can-i-manage-my-anxiety-without-medication",
+        "whats-the-difference-between-stress-and-anxiety"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "how-do-i-know-if-i-need-professional-help-for-my-anxiety",
+          "label": "How do I know if I need professional help for my anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-i-have-anxiety-or-if-im-just-stressed",
+          "label": "How do I know if I have anxiety or if I'm just stressed?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-do-i-do-when-my-anxiety-is-so-bad-i-177940-004",
+          "label": "What do I do when my anxiety is so bad I can't leave the house?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-can-i-manage-my-anxiety-without-medication",
+          "label": "How can I manage my anxiety without medication?",
+          "matched": true
+        },
+        {
+          "targetSlug": "whats-the-difference-between-stress-and-anxiety",
+          "label": "What's the difference between stress and anxiety?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "how-do-i-know-if-i-need-professional-help-for-my-anxiety",
+      "question": "How do I know if I need professional help for my anxiety?",
+      "related_questions": [
+        "How do I know if my anxiety is normal or if I need help?",
+        "What do I do when my anxiety is so bad I can't leave the house?",
+        "How can I manage my anxiety without medication?",
+        "Is it normal to be scared of starting psychiatric medication?",
+        "How do I know if I have anxiety or if I'm just stressed?"
+      ],
+      "related_target_slugs": [
+        "how-do-i-know-if-my-anxiety-is-normal-or-184730-038",
+        "what-do-i-do-when-my-anxiety-is-so-bad-i-177940-004",
+        "how-can-i-manage-my-anxiety-without-medication",
+        "is-it-normal-to-be-scared-of-starting-ps-181083-066",
+        "how-do-i-know-if-i-have-anxiety-or-if-im-just-stressed"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "how-do-i-know-if-my-anxiety-is-normal-or-184730-038",
+          "label": "How do I know if my anxiety is normal or if I need help?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-do-i-do-when-my-anxiety-is-so-bad-i-177940-004",
+          "label": "What do I do when my anxiety is so bad I can't leave the house?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-can-i-manage-my-anxiety-without-medication",
+          "label": "How can I manage my anxiety without medication?",
+          "matched": true
+        },
+        {
+          "targetSlug": "is-it-normal-to-be-scared-of-starting-ps-181083-066",
+          "label": "Is it normal to be scared of starting psychiatric medication?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-i-have-anxiety-or-if-im-just-stressed",
+          "label": "How do I know if I have anxiety or if I'm just stressed?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "how-can-i-manage-my-anxiety-without-medication",
+      "question": "How can I manage my anxiety without medication?",
+      "related_questions": [
+        "What are some quick techniques to calm anxiety in the moment?",
+        "What is grounding and how can it help with anxiety?",
+        "How does meditation help with anxiety?",
+        "Is it normal to be scared of starting psychiatric medication?",
+        "How do I know if I need professional help for my anxiety?"
+      ],
+      "related_target_slugs": [
+        "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+        "what-is-grounding-and-how-can-it-help-with-anxiety",
+        "how-does-meditation-help-with-anxiety",
+        "is-it-normal-to-be-scared-of-starting-ps-181083-066",
+        "how-do-i-know-if-i-need-professional-help-for-my-anxiety"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+          "label": "What are some quick techniques to calm anxiety in the moment?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-is-grounding-and-how-can-it-help-with-anxiety",
+          "label": "What is grounding and how can it help with anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-does-meditation-help-with-anxiety",
+          "label": "How does meditation help with anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "is-it-normal-to-be-scared-of-starting-ps-181083-066",
+          "label": "Is it normal to be scared of starting psychiatric medication?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-i-need-professional-help-for-my-anxiety",
+          "label": "How do I know if I need professional help for my anxiety?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "is-it-normal-to-be-scared-of-starting-ps-181083-066",
+      "question": "Is it normal to be scared of starting psychiatric medication?",
+      "related_questions": [
+        "How can I manage my anxiety without medication?",
+        "How do I know if I need professional help for my anxiety?",
+        "How do I know if my anxiety is normal or if I need help?",
+        "What's the difference between stress and anxiety?",
+        "How do I know if I have anxiety or if I'm just stressed?"
+      ],
+      "related_target_slugs": [
+        "how-can-i-manage-my-anxiety-without-medication",
+        "how-do-i-know-if-i-need-professional-help-for-my-anxiety",
+        "how-do-i-know-if-my-anxiety-is-normal-or-184730-038",
+        "whats-the-difference-between-stress-and-anxiety",
+        "how-do-i-know-if-i-have-anxiety-or-if-im-just-stressed"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "how-can-i-manage-my-anxiety-without-medication",
+          "label": "How can I manage my anxiety without medication?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-i-need-professional-help-for-my-anxiety",
+          "label": "How do I know if I need professional help for my anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-my-anxiety-is-normal-or-184730-038",
+          "label": "How do I know if my anxiety is normal or if I need help?",
+          "matched": true
+        },
+        {
+          "targetSlug": "whats-the-difference-between-stress-and-anxiety",
+          "label": "What's the difference between stress and anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-i-have-anxiety-or-if-im-just-stressed",
+          "label": "How do I know if I have anxiety or if I'm just stressed?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "whats-the-difference-between-stress-and-anxiety",
+      "question": "What's the difference between stress and anxiety?",
+      "related_questions": [
+        "How do I know if I have anxiety or if I'm just stressed?",
+        "How do I know if my anxiety is normal or if I need help?",
+        "Why do I feel anxious for no reason?",
+        "How can I manage my anxiety without medication?",
+        "How do I deal with Sunday night anxiety about the week ahead?"
+      ],
+      "related_target_slugs": [
+        "how-do-i-know-if-i-have-anxiety-or-if-im-just-stressed",
+        "how-do-i-know-if-my-anxiety-is-normal-or-184730-038",
+        "why-do-i-feel-anxious-for-no-reason",
+        "how-can-i-manage-my-anxiety-without-medication",
+        "how-do-i-deal-with-sunday-night-anxiety-181083-050"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "how-do-i-know-if-i-have-anxiety-or-if-im-just-stressed",
+          "label": "How do I know if I have anxiety or if I'm just stressed?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-my-anxiety-is-normal-or-184730-038",
+          "label": "How do I know if my anxiety is normal or if I need help?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-anxious-for-no-reason",
+          "label": "Why do I feel anxious for no reason?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-can-i-manage-my-anxiety-without-medication",
+          "label": "How can I manage my anxiety without medication?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-deal-with-sunday-night-anxiety-181083-050",
+          "label": "How do I deal with Sunday night anxiety about the week ahead?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+      "question": "What are some quick techniques to calm anxiety in the moment?",
+      "related_questions": [
+        "What is grounding and how can it help with anxiety?",
+        "What should I do during a panic attack?",
+        "Why does my chest feel tight when I'm anxious?",
+        "Why does my anxiety get worse at night?",
+        "How do I know if I need professional help for my anxiety?"
+      ],
+      "related_target_slugs": [
+        "what-is-grounding-and-how-can-it-help-with-anxiety",
+        "what-should-i-do-during-a-panic-attack",
+        "why-does-my-chest-feel-tight-when-im-anx-181083-001",
+        "why-does-my-anxiety-get-worse-at-night",
+        "how-do-i-know-if-i-need-professional-help-for-my-anxiety"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "what-is-grounding-and-how-can-it-help-with-anxiety",
+          "label": "What is grounding and how can it help with anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-should-i-do-during-a-panic-attack",
+          "label": "What should I do during a panic attack?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-does-my-chest-feel-tight-when-im-anx-181083-001",
+          "label": "Why does my chest feel tight when I'm anxious?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-does-my-anxiety-get-worse-at-night",
+          "label": "Why does my anxiety get worse at night?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-i-need-professional-help-for-my-anxiety",
+          "label": "How do I know if I need professional help for my anxiety?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "what-is-grounding-and-how-can-it-help-with-anxiety",
+      "question": "What is grounding and how can it help with anxiety?",
+      "related_questions": [
+        "What are some quick techniques to calm anxiety in the moment?",
+        "How does meditation help with anxiety?",
+        "What to Do When Anxiety Shows Up for No Clear Reason",
+        "Why do I feel anxious for no reason?",
+        "What should I do during a panic attack?"
+      ],
+      "related_target_slugs": [
+        "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+        "how-does-meditation-help-with-anxiety",
+        "what-to-do-when-anxious-for-no-clear-reason",
+        "why-do-i-feel-anxious-for-no-reason",
+        "what-should-i-do-during-a-panic-attack"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+          "label": "What are some quick techniques to calm anxiety in the moment?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-does-meditation-help-with-anxiety",
+          "label": "How does meditation help with anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-to-do-when-anxious-for-no-clear-reason",
+          "label": "What to Do When Anxiety Shows Up for No Clear Reason",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-anxious-for-no-reason",
+          "label": "Why do I feel anxious for no reason?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-should-i-do-during-a-panic-attack",
+          "label": "What should I do during a panic attack?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "how-does-meditation-help-with-anxiety",
+      "question": "How does meditation help with anxiety?",
+      "related_questions": [
+        "What is grounding and how can it help with anxiety?",
+        "How can I manage my anxiety without medication?",
+        "How do I stop my mind from racing when I try to sleep?",
+        "Why does my anxiety get worse at night?",
+        "What are some quick techniques to calm anxiety in the moment?"
+      ],
+      "related_target_slugs": [
+        "what-is-grounding-and-how-can-it-help-with-anxiety",
+        "how-can-i-manage-my-anxiety-without-medication",
+        "how-do-i-stop-my-mind-from-racing-when-i-181083-044",
+        "why-does-my-anxiety-get-worse-at-night",
+        "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "what-is-grounding-and-how-can-it-help-with-anxiety",
+          "label": "What is grounding and how can it help with anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-can-i-manage-my-anxiety-without-medication",
+          "label": "How can I manage my anxiety without medication?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-stop-my-mind-from-racing-when-i-181083-044",
+          "label": "How do I stop my mind from racing when I try to sleep?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-does-my-anxiety-get-worse-at-night",
+          "label": "Why does my anxiety get worse at night?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+          "label": "What are some quick techniques to calm anxiety in the moment?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "what-do-i-do-when-my-anxiety-is-so-bad-i-177940-004",
+      "question": "What do I do when my anxiety is so bad I can't leave the house?",
+      "related_questions": [
+        "How do I know if I need professional help for my anxiety?",
+        "How do I know if my anxiety is normal or if I need help?",
+        "What are some quick techniques to calm anxiety in the moment?",
+        "What is grounding and how can it help with anxiety?",
+        "What should I do during a panic attack?"
+      ],
+      "related_target_slugs": [
+        "how-do-i-know-if-i-need-professional-help-for-my-anxiety",
+        "how-do-i-know-if-my-anxiety-is-normal-or-184730-038",
+        "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+        "what-is-grounding-and-how-can-it-help-with-anxiety",
+        "what-should-i-do-during-a-panic-attack"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "how-do-i-know-if-i-need-professional-help-for-my-anxiety",
+          "label": "How do I know if I need professional help for my anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-do-i-know-if-my-anxiety-is-normal-or-184730-038",
+          "label": "How do I know if my anxiety is normal or if I need help?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+          "label": "What are some quick techniques to calm anxiety in the moment?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-is-grounding-and-how-can-it-help-with-anxiety",
+          "label": "What is grounding and how can it help with anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-should-i-do-during-a-panic-attack",
+          "label": "What should I do during a panic attack?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "why-does-my-anxiety-get-worse-at-night",
+      "question": "Why does my anxiety get worse at night?",
+      "related_questions": [
+        "How do I stop my mind from racing when I try to sleep?",
+        "Why do I worry about things that haven't happened yet?",
+        "What are some quick techniques to calm anxiety in the moment?",
+        "Is it normal to lose sleep over money worries?",
+        "Why do I feel anxious for no reason?"
+      ],
+      "related_target_slugs": [
+        "how-do-i-stop-my-mind-from-racing-when-i-181083-044",
+        "why-do-i-worry-about-things-that-havent-181288-006",
+        "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+        "is-it-normal-to-lose-sleep-over-money-wo-181083-022",
+        "why-do-i-feel-anxious-for-no-reason"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "how-do-i-stop-my-mind-from-racing-when-i-181083-044",
+          "label": "How do I stop my mind from racing when I try to sleep?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-worry-about-things-that-havent-181288-006",
+          "label": "Why do I worry about things that haven't happened yet?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+          "label": "What are some quick techniques to calm anxiety in the moment?",
+          "matched": true
+        },
+        {
+          "targetSlug": "is-it-normal-to-lose-sleep-over-money-wo-181083-022",
+          "label": "Is it normal to lose sleep over money worries?",
+          "matched": true
+        },
+        {
+          "targetSlug": "why-do-i-feel-anxious-for-no-reason",
+          "label": "Why do I feel anxious for no reason?",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "slug": "how-do-i-stop-my-mind-from-racing-when-i-181083-044",
+      "question": "How do I stop my mind from racing when I try to sleep?",
+      "related_questions": [
+        "Why does my anxiety get worse at night?",
+        "What is grounding and how can it help with anxiety?",
+        "How does meditation help with anxiety?",
+        "What are some quick techniques to calm anxiety in the moment?",
+        "Is it normal to lose sleep over money worries?"
+      ],
+      "related_target_slugs": [
+        "why-does-my-anxiety-get-worse-at-night",
+        "what-is-grounding-and-how-can-it-help-with-anxiety",
+        "how-does-meditation-help-with-anxiety",
+        "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+        "is-it-normal-to-lose-sleep-over-money-wo-181083-022"
+      ],
+      "resolution": [
+        {
+          "targetSlug": "why-does-my-anxiety-get-worse-at-night",
+          "label": "Why does my anxiety get worse at night?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-is-grounding-and-how-can-it-help-with-anxiety",
+          "label": "What is grounding and how can it help with anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "how-does-meditation-help-with-anxiety",
+          "label": "How does meditation help with anxiety?",
+          "matched": true
+        },
+        {
+          "targetSlug": "what-are-some-quick-techniques-to-calm-anxiety-in-the-moment",
+          "label": "What are some quick techniques to calm anxiety in the moment?",
+          "matched": true
+        },
+        {
+          "targetSlug": "is-it-normal-to-lose-sleep-over-money-wo-181083-022",
+          "label": "Is it normal to lose sleep over money worries?",
+          "matched": true
+        }
+      ]
+    }
+  ]
+}

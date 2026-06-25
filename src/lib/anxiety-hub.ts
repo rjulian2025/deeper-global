@@ -29,7 +29,7 @@ export const anxietyHubClusters = [
       'For conversation replay, fear of judgment, awkwardness in groups, and the mental rehearsal that starts hours before you arrive.',
     slugs: [
       'why-do-i-overthink-every-conversation-after-it-happens',
-      'how-do-i-stop-overthinking-every-conversation-i-have-e5f6g7',
+      'how-do-i-stop-overthinking-everything-i-say-and-184730-036',
       'what-is-social-anxiety-and-how-do-i-overcome-it',
       'how-do-i-cope-with-the-fear-of-being-judged-by-others-w5x6y7',
       'why-do-i-feel-awkward-in-social-situatio-181083-074',
