@@ -81,3 +81,20 @@ vercel inspect <deployment-id> | grep -A5 "Builds"
 
 A build that completes in `0ms` is a pre-build validation failure, not a code
 error. The most common cause is a whitespace-contaminated secret.
+
+### GitHub auto-deploy (one-time)
+
+Pushes to `production/astro` deploy via `.github/workflows/deploy-production.yml`.
+Add these repository secrets in GitHub (Settings → Secrets → Actions):
+
+| Secret | Where to get it |
+|---|---|
+| `VERCEL_TOKEN` | [vercel.com/account/tokens](https://vercel.com/account/tokens) |
+| `VERCEL_ORG_ID` | Team settings, or `.vercel/project.json` after `vercel link` |
+| `VERCEL_PROJECT_ID` | `.vercel/project.json` (`projectId`), or Vercel project settings |
+
+Local manual deploy (same result):
+
+```bash
+npm run deploy:prod
+```

@@ -31,6 +31,8 @@
     "content:apply-semantic-enrichment-pilot": "node scripts/apply-semantic-enrichment-pilot.mjs",
     "db:apply-geo-cache": "node scripts/apply-geo-cache-migration.mjs",
     "map:geocode-backfill": "node scripts/run-geocode-backfill.mjs",
+    "deploy": "node scripts/deploy-prod.mjs",
+    "deploy:prod": "node scripts/deploy-prod.mjs",
     "deploy:geo-cache": "node scripts/deploy-geo-cache.mjs",
     "content:apply-corpus-batch-01": "node scripts/apply-enrichment.mjs --apply --campaign enrichment reports/enrichment-corpus/draft-answers/batch-01-drafts.json",
     "content:apply-corpus-batch-02": "node scripts/apply-enrichment.mjs --apply --campaign enrichment reports/enrichment-corpus/draft-answers/batch-02-drafts.json",
