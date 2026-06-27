@@ -353,6 +353,11 @@
       "source": "/categories/meaning-faith-and-existential-questions",
       "destination": "/categories/spiritual-doubt/",
       "permanent": true
+    },
+    {
+      "source": "/categories/meaning-faith-and-existential-questions/",
+      "destination": "/categories/spiritual-doubt/",
+      "permanent": true
     }
   ]
 }
