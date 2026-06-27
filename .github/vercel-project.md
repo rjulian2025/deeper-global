@@ -9,7 +9,7 @@ or when pull fails with an org/scope mismatch.
 After `vercel login` and linking this repo:
 
 ```bash
-vercel link --project deeper-global-h65m
+vercel link --project deeper-global-www-production
 jq -r '.orgId' .vercel/project.json
 ```
 
