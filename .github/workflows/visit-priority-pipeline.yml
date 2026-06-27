@@ -1,12 +1,17 @@
 name: Visit Priority Content Pipeline
 
-# Durable executor: production secrets live on Vercel.
-# Credential sources (first match wins):
-#   1. GitHub secret CRON_SECRET → production admin API
-#   2. VERCEL_TOKEN + VERCEL_ORG_ID + VERCEL_PROJECT_ID → vercel pull → local pipeline script
-#   3. SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (+ ANTHROPIC_API_KEY for rewrites) → local pipeline script
+# Permanent automation: one GitHub secret (CRON_SECRET) + merge to production/astro.
 #
-# Cloud agents prepare content in git; this workflow applies it.
+# One-time setup (repo admin, local machine with vercel CLI):
+#   ./scripts/setup-github-cron-secret.sh
+#
+# After setup:
+#   • Merge visit-priority draft JSON to production/astro → auto-apply
+#   • Cloud agents: commit drafts, merge PR, done (no manual trigger)
+#
+# Credential fallbacks if CRON_SECRET is not set:
+#   • VERCEL_TOKEN + VERCEL_ORG_ID + VERCEL_PROJECT_ID → vercel pull
+#   • SUPABASE_SERVICE_ROLE_KEY (+ SUPABASE_URL already in GitHub)
 
 on:
   workflow_dispatch:
@@ -31,6 +36,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -39,6 +46,38 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Resolve apply mode
+        id: flags
+        env:
+          DISPATCH_APPLY: ${{ github.event_name == 'workflow_dispatch' && inputs.apply }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          APPLY=false
+          REWRITE_ONLY_UNSTAGED=false
+
+          if [ "$DISPATCH_APPLY" = "true" ]; then
+            APPLY=true
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.rewrite_only_unstaged }}" = "true" ]; then
+            REWRITE_ONLY_UNSTAGED=true
+          elif [ "${{ github.event_name }}" = "push" ]; then
+            if printf '%s' "$COMMIT_MESSAGE" | grep -q '\[visit-priority-apply\]'; then
+              APPLY=true
+            elif [ -n "${BEFORE_SHA:-}" ] && [ "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
+              CHANGED=$(git diff --name-only "$BEFORE_SHA" "$AFTER_SHA" || true)
+              if printf '%s\n' "$CHANGED" | grep -qE 'reports/phase-1b/visit-priority/.*-drafts\.json'; then
+                APPLY=true
+              fi
+            fi
+          fi
+
+          echo "apply=$APPLY" >> "$GITHUB_OUTPUT"
+          echo "rewrite_only_unstaged=$REWRITE_ONLY_UNSTAGED" >> "$GITHUB_OUTPUT"
+          echo "Apply mode: $APPLY (rewrite_only_unstaged=$REWRITE_ONLY_UNSTAGED)"
 
       - name: Run visit-priority pipeline
         env:
@@ -49,21 +88,10 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          DISPATCH_APPLY: ${{ github.event_name == 'workflow_dispatch' && inputs.apply }}
-          PUSH_APPLY: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[visit-priority-apply]') }}
-          REWRITE_ONLY_UNSTAGED_INPUT: ${{ github.event_name == 'workflow_dispatch' && inputs.rewrite_only_unstaged }}
+          APPLY: ${{ steps.flags.outputs.apply }}
+          REWRITE_ONLY_UNSTAGED: ${{ steps.flags.outputs.rewrite_only_unstaged }}
         run: |
           set -euo pipefail
-
-          APPLY=false
-          if [ "$DISPATCH_APPLY" = "true" ] || [ "$PUSH_APPLY" = "true" ]; then
-            APPLY=true
-          fi
-
-          REWRITE_ONLY_UNSTAGED=false
-          if [ "$REWRITE_ONLY_UNSTAGED_INPUT" = "true" ]; then
-            REWRITE_ONLY_UNSTAGED=true
-          fi
 
           PAYLOAD=$(node -e "console.log(JSON.stringify({ apply: process.env.APPLY === 'true', rewriteOnlyUnstaged: process.env.REWRITE_ONLY_UNSTAGED === 'true' }))")
           export APPLY REWRITE_ONLY_UNSTAGED
@@ -92,10 +120,9 @@ jobs:
             echo "Using SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY → local pipeline script"
             export SUPABASE_URL SUPABASE_SERVICE_ROLE_KEY ANTHROPIC_API_KEY
           else
-            echo "::error::Missing credentials. Add one of:"
-            echo "  • CRON_SECRET (matches Vercel production)"
-            echo "  • VERCEL_TOKEN + VERCEL_ORG_ID + VERCEL_PROJECT_ID"
-            echo "  • SUPABASE_SERVICE_ROLE_KEY (SUPABASE_URL already configured)"
+            echo "::error::Missing credentials."
+            echo "Run once: ./scripts/setup-github-cron-secret.sh"
+            echo "Or add VERCEL_TOKEN trio / SUPABASE_SERVICE_ROLE_KEY to GitHub secrets."
             exit 1
           fi
 

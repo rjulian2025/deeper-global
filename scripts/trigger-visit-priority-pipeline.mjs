@@ -35,11 +35,11 @@ function main() {
 Failed to trigger GitHub Actions workflow.
 
 Prerequisites (one-time):
-  1. GitHub repository secret CRON_SECRET (matches Vercel production)
-  2. Production admin API deployed (api/admin/run-visit-priority-pipeline.js)
-  3. gh CLI authenticated: gh auth login
+  1. ./scripts/setup-github-cron-secret.sh  (syncs CRON_SECRET to GitHub)
+  2. gh CLI authenticated: gh auth login
 
-Alternative: GitHub → Actions → Visit Priority Content Pipeline → Run workflow
+After setup, merging *-drafts.json to production/astro auto-applies.
+Manual trigger is only needed for dry-runs or overrides.
 `);
     process.exit(result.status ?? 1);
   }

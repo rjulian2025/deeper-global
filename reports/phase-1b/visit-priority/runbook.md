@@ -1,20 +1,20 @@
 # Visit-priority content pipeline (cloud-only)
 
-No local terminal work is required. Run from a cloud agent or GitHub Actions after secrets are configured (see `docs/cloud-content-pipeline.md`).
+No local terminal work is required after one-time setup (see `docs/cloud-content-pipeline.md`).
 
-## How cloud agents run the pipeline
-
-### Option A: Trigger GitHub Actions (recommended)
+## One-time setup (repo admin)
 
 ```bash
-npm run content:trigger-visit-priority-pipeline -- --apply
+./scripts/setup-github-cron-secret.sh
 ```
 
-### Option B: GitHub UI
+## How cloud agents run the pipeline (after setup)
 
-Actions → **Visit Priority Content Pipeline** → Run workflow → set `apply=true`.
+1. Commit or update `batch-*-drafts.json`
+2. Merge PR to `production/astro`
+3. GitHub Actions auto-applies (no manual trigger)
 
-See `docs/cloud-content-pipeline.md` for the full durable architecture.
+Optional override: `npm run content:trigger-visit-priority-pipeline -- --apply`
 
 ## What it does
 
