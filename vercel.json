@@ -27,6 +27,9 @@
     "api/cron/requeue-failed.js": {
       "maxDuration": 30
     },
+    "api/cron/run-visit-priority-pipeline.js": {
+      "maxDuration": 300
+    },
     "api/og/answer/[slug].js": {
       "maxDuration": 10
     }
@@ -63,6 +66,10 @@
     {
       "path": "/api/reports/social-status-email",
       "schedule": "0 13 * * 5"
+    },
+    {
+      "path": "/api/cron/run-visit-priority-pipeline?apply=1",
+      "schedule": "0 14 * * *"
     }
   ],
   "rewrites": [
