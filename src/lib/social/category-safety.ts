@@ -9,8 +9,7 @@ export type CategorySafetyTier = 'excluded' | 'restricted' | 'standard';
  *
  * Tier meanings:
  * - excluded: never selected for automated generation at all.
- * - restricted: eligible, but reflection posts are disallowed and
- *   question_insight posts must include the fixed crisis-resource line.
+ * - restricted: eligible, but question_insight posts must include the fixed crisis-resource line.
  *   No category uses this tier yet; it is reserved for future policy work.
  * - standard: normal pipeline, no additional category-level restrictions.
  */

@@ -221,27 +221,6 @@ function buildSourceSummary(question) {
   };
 }
 
-function tryTrimInsightToLimit(text, maxLength) {
-  const linkMatch = text.match(/^([\s\S]+?)\s+(Read more:\s+https?:\/\/\S+)\s*$/i);
-  if (!linkMatch) return null;
-
-  const [, body, link] = linkMatch;
-  const linkXLength = getXWeightedLength(link);
-  const targetBodyLength = maxLength - linkXLength - 1;
-  if (targetBodyLength < 40) return null;
-
-  let trimmed = body.trimEnd();
-  for (let i = 0; i < 20 && getXWeightedLength(trimmed) > targetBodyLength; i += 1) {
-    const lastSpace = trimmed.lastIndexOf(' ');
-    if (lastSpace < 10) break;
-    trimmed = trimmed.slice(0, lastSpace);
-  }
-  trimmed = trimmed.replace(/[,;:-]+$/, '').trimEnd();
-
-  const candidate = `${trimmed} ${link}`;
-  return getXWeightedLength(candidate) <= maxLength ? candidate : null;
-}
-
 function parseGeneratedJson(text, options) {
   const parsed = parseJsonDefensively(text);
   if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
@@ -249,70 +228,68 @@ function parseGeneratedJson(text, options) {
   }
 
   let questionInsight = cleanText(parsed.question_insight);
-  const reflection = cleanText(parsed.reflection);
 
-  if (!questionInsight || (options.requireReflection && !reflection)) {
+  if (!questionInsight) {
     throw new Error('anthropic_json_missing_fields');
   }
 
   const questionInsightXLength = getXWeightedLength(questionInsight);
   if (questionInsightXLength > options.questionInsightMaxLength) {
-    const salvaged = tryTrimInsightToLimit(questionInsight, options.questionInsightMaxLength);
-    if (salvaged) {
-      questionInsight = salvaged;
-    } else {
+    let trimmed = questionInsight.trimEnd();
+    for (let i = 0; i < 20 && getXWeightedLength(trimmed) > options.questionInsightMaxLength; i += 1) {
+      const lastSpace = trimmed.lastIndexOf(' ');
+      if (lastSpace < 10) break;
+      trimmed = trimmed.slice(0, lastSpace);
+    }
+    trimmed = trimmed.replace(/[,;:-]+$/, '').trimEnd();
+    questionInsight = trimmed;
+
+    if (getXWeightedLength(questionInsight) > options.questionInsightMaxLength) {
       throw new Error(`question_insight_too_long:${questionInsightXLength}`);
     }
   }
 
-  if (reflection && reflection.length > 200) {
-    throw new Error(`reflection_too_long:${reflection.length}`);
-  }
-
-  return { questionInsight, reflection };
+  return { questionInsight };
 }
 
-async function generateInsightAndReflection(question, questionOnlyText, apiKey, categorySafetyTier) {
+async function generateQuestionInsightPost(question, questionOnlyText, apiKey, categorySafetyTier) {
   const source = buildSourceSummary(question);
   const restricted = categorySafetyTier === 'restricted';
   const appendedCrisisLine = `\n\n${RESTRICTED_CATEGORY_CRISIS_RESOURCE_LINE}`;
-  const questionInsightMaxLength = restricted ? 260 - appendedCrisisLine.length : 260;
+  const answerLinkBlock = `\n\n${source.url}`;
+  const questionInsightMaxLength = restricted
+    ? 260 - appendedCrisisLine.length - getXWeightedLength(answerLinkBlock)
+    : 260 - getXWeightedLength(answerLinkBlock);
   if (questionInsightMaxLength < 80) throw new Error('restricted_question_insight_budget_too_small');
 
   const text = await callAnthropicText({
     apiKey,
     system: BRAND_SYSTEM_PROMPT,
-    maxTokens: 500,
+    maxTokens: 400,
     temperature: 0.5,
-    user: `Create two X post drafts from this Deeper Global question record.
+    user: `Create one X post draft from this Deeper Global question record.
 
 Rules:
-- Return ONLY valid JSON with exactly these fields: "question_insight" and "reflection".
-- Use this exact question text to open the "question_insight" post: ${JSON.stringify(questionOnlyText)}. Do not rephrase or shorten it.
-- "question_insight": begin with that exact question text, then 1-2 sentences of genuine insight paraphrased from short_answer/key_takeaways, never copied verbatim, then exactly this link text and URL: Read more: ${source.url}
-- "question_insight" must be under ${questionInsightMaxLength} X-weighted characters total: count ordinary text normally, but count the full URL as ${X_TCO_URL_LENGTH} characters because X shortens links with t.co${restricted ? `; the app will append this crisis-resource line afterward, so do not include it yourself: ${JSON.stringify(RESTRICTED_CATEGORY_CRISIS_RESOURCE_LINE)}` : ''}.
-- "reflection": ${
-      restricted
-        ? 'return an empty string because reflection posts are disallowed for restricted categories.'
-        : 'a related open-ended reflective prompt inspired by the same theme/category, designed to invite replies rather than just reads. Under 200 characters. Do not include a URL — a link will be appended automatically.'
-    }
+- Return ONLY valid JSON with exactly this field: "question_insight".
+- Use this exact question text to open the post: ${JSON.stringify(questionOnlyText)}. Do not rephrase or shorten it.
+- "question_insight": begin with that exact question text, then 1-2 sentences of genuine insight paraphrased from short_answer/key_takeaways, never copied verbatim. Do not include any URL.
+- "question_insight" must be under ${questionInsightMaxLength} X-weighted characters total${restricted ? `; the app will append this crisis-resource line afterward, so do not include it yourself: ${JSON.stringify(RESTRICTED_CATEGORY_CRISIS_RESOURCE_LINE)}` : ''}.
 
 Source:
 ${JSON.stringify(source, null, 2)}`,
   });
 
-  const generated = parseGeneratedJson(text, {
-    requireReflection: !restricted,
-    questionInsightMaxLength,
-  });
+  const generated = parseGeneratedJson(text, { questionInsightMaxLength });
+  const withLink = `${generated.questionInsight}${answerLinkBlock}`;
 
-  return {
-    questionInsight: restricted ? `${generated.questionInsight}${appendedCrisisLine}` : generated.questionInsight,
-    reflection: generated.reflection,
-  };
+  if (getXWeightedLength(withLink) > 260) {
+    throw new Error(`question_insight_too_long:${getXWeightedLength(withLink)}`);
+  }
+
+  return restricted ? `${withLink}${appendedCrisisLine}` : withLink;
 }
 
-async function generateSocialDraftSet(question, anthropicApiKey, logger = console) {
+export async function generateSocialDraftSet(question, anthropicApiKey, logger = console) {
   const rawQuestion = cleanText(question.question);
   if (!rawQuestion) throw new Error('question_text_required');
   const categorySafetyTier = getCategorySafetyTier(question.category);
@@ -344,17 +321,18 @@ async function generateSocialDraftSet(question, anthropicApiKey, logger = consol
     path: questionOnlyPath,
   });
 
-  const generated = await generateInsightAndReflection(question, questionOnly, anthropicApiKey, categorySafetyTier);
-  const questionUrl = `https://www.deeper.global/answers/${question.slug}/`;
-
-  const drafts = [
-    { format: 'question_only', body: `${questionOnly}\n${questionUrl}` },
-    { format: 'question_insight', body: generated.questionInsight },
-  ];
-
-  if (categorySafetyTier !== 'restricted') {
-    drafts.push({ format: 'reflection', body: `${generated.reflection}\n${questionUrl}` });
+  let questionInsightBody;
+  try {
+    questionInsightBody = await generateQuestionInsightPost(question, questionOnly, anthropicApiKey, categorySafetyTier);
+  } catch (error) {
+    logger.error('social_generation_failed_no_drafts_written', {
+      question_id: question.id,
+      error,
+    });
+    throw error;
   }
+
+  const drafts = [{ format: 'question_insight', body: questionInsightBody }];
 
   return { questionOnlyPath, drafts };
 }
@@ -387,7 +365,7 @@ async function supabaseRequest(path, options = {}) {
   return data;
 }
 
-async function getFeaturedQuestions(strategy, limit) {
+export async function getFeaturedQuestions(strategy, limit) {
   const params = new URLSearchParams({
     select: '*',
     limit: String(Math.max(1, Math.min(limit, 100))),
@@ -404,7 +382,7 @@ async function getFeaturedQuestions(strategy, limit) {
   return supabaseRequest(`featured_questions?${params.toString()}`);
 }
 
-async function getQuestionForSocialPost(questionId) {
+export async function getQuestionForSocialPost(questionId) {
   const params = new URLSearchParams({
     select: 'id,question,slug,category,short_answer,key_takeaways',
     id: `eq.${questionId}`,
@@ -413,7 +391,7 @@ async function getQuestionForSocialPost(questionId) {
   return Array.isArray(rows) ? rows[0] ?? null : null;
 }
 
-async function createDraftPost(questionId, format, body, scheduledFor) {
+export async function createDraftPost(questionId, format, body, scheduledFor) {
   const rows = await supabaseRequest('social_posts', {
     method: 'POST',
     body: JSON.stringify({
@@ -427,7 +405,7 @@ async function createDraftPost(questionId, format, body, scheduledFor) {
   return Array.isArray(rows) ? rows[0] ?? null : rows;
 }
 
-async function generateAndMaybeSaveSocialDrafts(options) {
+export async function generateAndMaybeSaveSocialDrafts(options) {
   const selectedStrategy = selectSocialDraftStrategy(options.now);
   const strategy = options.questionId ? 'manual_question_id' : selectedStrategy;
   let questionId = options.questionId;

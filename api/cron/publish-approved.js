@@ -7,6 +7,7 @@
  */
 
 import { TwitterApi } from 'twitter-api-v2';
+import { extractAnswerSlugFromBody, validateSocialPostForPublish } from '../lib/social-publish-validation.mjs';
 
 // ── X weighted length (mirrors generate-drafts logic) ────────────────────────
 
@@ -143,7 +144,30 @@ async function deferSameQuestionPosts(url, key, questionId, publishedPostId) {
   });
 }
 
-// ── X posting ─────────────────────────────────────────────────────────────────
+async function getQuestionSlugById(url, key, questionId) {
+  const qs = new URLSearchParams({
+    select: 'slug',
+    id: `eq.${questionId}`,
+  });
+  const rows = await supabaseRequest(url, key, `questions_master?${qs}`);
+  const row = Array.isArray(rows) ? rows[0] : null;
+  return typeof row?.slug === 'string' && row.slug.trim() ? row.slug.trim() : null;
+}
+
+async function validatePostForPublish(url, key, post) {
+  const questionSlug = await getQuestionSlugById(url, key, post.question_id);
+  if (!questionSlug) {
+    return { ok: false, error: `x_post_question_not_found:${post.question_id}`, embedded_slug: null, question_slug: null };
+  }
+
+  const validationError = validateSocialPostForPublish(post.body ?? '', questionSlug);
+  return {
+    ok: !validationError,
+    error: validationError,
+    embedded_slug: extractAnswerSlugFromBody(post.body ?? ''),
+    question_slug: questionSlug,
+  };
+}
 
 function summarizeError(error) {
   const message = error instanceof Error ? error.message : String(error);
@@ -227,6 +251,45 @@ export default async function handler(req, res) {
         body_weighted_length: getXWeightedLength(post.body ?? ''),
       };
       console.log('social_publish_selected_post', selected);
+      const validation = await validatePostForPublish(url, key, post);
+      console.log('social_publish_validation', {
+        post_id: post.id,
+        ok: validation.ok,
+        error: validation.error,
+        embedded_slug: validation.embedded_slug,
+        question_slug: validation.question_slug,
+      });
+
+      if (!validation.ok) {
+        if (dryRun) {
+          results.push({
+            ...selected,
+            status: 'invalid',
+            x_post_id: null,
+            error: validation.error,
+          });
+          continue;
+        }
+
+        console.error('social_publish_validation_failed', {
+          post_id: post.id,
+          error: validation.error,
+        });
+        await markFailed(url, key, post.id).catch((updateError) => {
+          console.error('social_publish_mark_failed_error', {
+            post_id: post.id,
+            error: summarizeError(updateError),
+          });
+        });
+        results.push({
+          ...selected,
+          status: 'failed',
+          x_post_id: null,
+          error: validation.error,
+        });
+        continue;
+      }
+
       if (dryRun) {
         results.push({ ...selected, status: 'dry_run', x_post_id: null, error: null });
         continue;
@@ -245,13 +308,12 @@ export default async function handler(req, res) {
       }
 
       try {
-        const bodyUrlMatch = (claimedPost.body ?? '').match(/https?:\/\/deeper\.global\/answers\/(\S+)/);
-        const embeddedSlug = bodyUrlMatch ? bodyUrlMatch[1] : null;
         console.log('social_publish_attempt', {
           post_id: claimedPost.id,
           format: claimedPost.format,
           question_id: claimedPost.question_id,
-          embedded_slug: embeddedSlug,
+          embedded_slug: validation.embedded_slug,
+          question_slug: validation.question_slug,
           body_weighted_length: getXWeightedLength(claimedPost.body ?? ''),
         });
         const published = await postToX(claimedPost.body);
@@ -297,6 +359,7 @@ export default async function handler(req, res) {
       found: posts.length,
       published: results.filter((r) => r.status === 'published').length,
       failed: results.filter((r) => r.status === 'failed').length,
+      invalid: results.filter((r) => r.status === 'invalid').length,
       results,
     });
   } catch (error) {

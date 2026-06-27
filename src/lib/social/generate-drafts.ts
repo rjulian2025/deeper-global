@@ -241,65 +241,38 @@ function getXWeightedLength(text: string) {
   return text.replace(/https?:\/\/\S+/g, 'x'.repeat(X_TCO_URL_LENGTH)).length;
 }
 
-/**
- * When the model generates a question_insight that's slightly over the limit,
- * try to recover by trimming the body text before the trailing URL link.
- * This handles the common case where the model overshoots by a few words.
- */
-function tryTrimInsightToLimit(text: string, maxLength: number): string | null {
-  // The post always ends with "Read more: <url>" — split on that pattern
-  const linkMatch = text.match(/^([\s\S]+?)\s+(Read more:\s+https?:\/\/\S+)\s*$/i);
-  if (!linkMatch) return null;
-
-  const [, body, link] = linkMatch;
-  const linkXLength = getXWeightedLength(link);
-  const targetBodyLength = maxLength - linkXLength - 1; // -1 for the space separator
-
-  if (targetBodyLength < 40) return null; // too short to be useful
-
-  let trimmed = body.trimEnd();
-  for (let i = 0; i < 20 && getXWeightedLength(trimmed) > targetBodyLength; i++) {
-    const lastSpace = trimmed.lastIndexOf(' ');
-    if (lastSpace < 10) break;
-    trimmed = trimmed.slice(0, lastSpace);
-  }
-  trimmed = trimmed.replace(/[,;:—–\-]+$/, '').trimEnd();
-
-  const candidate = `${trimmed} ${link}`;
-  return getXWeightedLength(candidate) <= maxLength ? candidate : null;
-}
-
-function parseGeneratedJson(text: string, options: { requireReflection: boolean; questionInsightMaxLength: number }) {
+function parseGeneratedJson(text: string, options: { questionInsightMaxLength: number }) {
   const parsed = parseJsonDefensively(text);
   if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
     throw new Error('anthropic_json_not_object');
   }
 
   let questionInsight = cleanText((parsed as { question_insight?: unknown }).question_insight);
-  const reflection = cleanText((parsed as { reflection?: unknown }).reflection);
 
-  if (!questionInsight || (options.requireReflection && !reflection)) {
+  if (!questionInsight) {
     throw new Error('anthropic_json_missing_fields');
   }
 
   const questionInsightXLength = getXWeightedLength(questionInsight);
   if (questionInsightXLength > options.questionInsightMaxLength) {
-    const salvaged = tryTrimInsightToLimit(questionInsight, options.questionInsightMaxLength);
-    if (salvaged) {
-      questionInsight = salvaged;
-    } else {
+    let trimmed = questionInsight.trimEnd();
+    for (let i = 0; i < 20 && getXWeightedLength(trimmed) > options.questionInsightMaxLength; i++) {
+      const lastSpace = trimmed.lastIndexOf(' ');
+      if (lastSpace < 10) break;
+      trimmed = trimmed.slice(0, lastSpace);
+    }
+    trimmed = trimmed.replace(/[,;:—–\-]+$/, '').trimEnd();
+    questionInsight = trimmed;
+
+    if (getXWeightedLength(questionInsight) > options.questionInsightMaxLength) {
       throw new Error(`question_insight_too_long:${questionInsightXLength}`);
     }
   }
 
-  if (reflection && reflection.length > 200) {
-    throw new Error(`reflection_too_long:${reflection.length}`);
-  }
-
-  return { questionInsight, reflection };
+  return { questionInsight };
 }
 
-async function generateInsightAndReflection(
+async function generateQuestionInsightPost(
   question: SocialQuestionSource,
   questionOnlyText: string,
   apiKey: string,
@@ -308,7 +281,10 @@ async function generateInsightAndReflection(
   const source = buildSourceSummary(question);
   const restricted = categorySafetyTier === 'restricted';
   const appendedCrisisLine = `\n\n${RESTRICTED_CATEGORY_CRISIS_RESOURCE_LINE}`;
-  const questionInsightMaxLength = restricted ? 260 - appendedCrisisLine.length : 260;
+  const answerLinkBlock = `\n\n${source.url}`;
+  const questionInsightMaxLength = restricted
+    ? 260 - appendedCrisisLine.length - getXWeightedLength(answerLinkBlock)
+    : 260 - getXWeightedLength(answerLinkBlock);
   if (questionInsightMaxLength < 80) {
     throw new Error('restricted_question_insight_budget_too_small');
   }
@@ -316,34 +292,28 @@ async function generateInsightAndReflection(
   const text = await callAnthropicText({
     apiKey,
     system: BRAND_SYSTEM_PROMPT,
-    maxTokens: 500,
+    maxTokens: 400,
     temperature: 0.5,
-    user: `Create two X post drafts from this Deeper Global question record.
+    user: `Create one X post draft from this Deeper Global question record.
 
 Rules:
-- Return ONLY valid JSON with exactly these fields: "question_insight" and "reflection".
-- Use this exact question text to open the "question_insight" post: ${JSON.stringify(questionOnlyText)}. Do not rephrase or shorten it.
-- "question_insight": begin with that exact question text, then 1-2 sentences of genuine insight paraphrased from short_answer/key_takeaways, never copied verbatim, then exactly this link text and URL: Read more: ${source.url}
-- "question_insight" must be under ${questionInsightMaxLength} X-weighted characters total: count ordinary text normally, but count the full URL as ${X_TCO_URL_LENGTH} characters because X shortens links with t.co${restricted ? `; the app will append this crisis-resource line afterward, so do not include it yourself: ${JSON.stringify(RESTRICTED_CATEGORY_CRISIS_RESOURCE_LINE)}` : ''}.
-- "reflection": ${
-      restricted
-        ? 'return an empty string because reflection posts are disallowed for restricted categories.'
-        : 'a related open-ended reflective prompt inspired by the same theme/category, designed to invite replies rather than just reads. Under 200 characters. Do not include a URL — a link will be appended automatically.'
-    }
+- Return ONLY valid JSON with exactly this field: "question_insight".
+- Use this exact question text to open the post: ${JSON.stringify(questionOnlyText)}. Do not rephrase or shorten it.
+- "question_insight": begin with that exact question text, then 1-2 sentences of genuine insight paraphrased from short_answer/key_takeaways, never copied verbatim. Do not include any URL.
+- "question_insight" must be under ${questionInsightMaxLength} X-weighted characters total${restricted ? `; the app will append this crisis-resource line afterward, so do not include it yourself: ${JSON.stringify(RESTRICTED_CATEGORY_CRISIS_RESOURCE_LINE)}` : ''}.
 
 Source:
 ${JSON.stringify(source, null, 2)}`,
   });
 
-  const generated = parseGeneratedJson(text, {
-    requireReflection: !restricted,
-    questionInsightMaxLength,
-  });
+  const generated = parseGeneratedJson(text, { questionInsightMaxLength });
+  const withLink = `${generated.questionInsight}${answerLinkBlock}`;
 
-  return {
-    questionInsight: restricted ? `${generated.questionInsight}${appendedCrisisLine}` : generated.questionInsight,
-    reflection: generated.reflection,
-  };
+  if (getXWeightedLength(withLink) > 260) {
+    throw new Error(`question_insight_too_long:${getXWeightedLength(withLink)}`);
+  }
+
+  return restricted ? `${withLink}${appendedCrisisLine}` : withLink;
 }
 
 export async function generateSocialDraftSet(
@@ -382,9 +352,9 @@ export async function generateSocialDraftSet(
     path: questionOnlyPath,
   });
 
-  let generated: Awaited<ReturnType<typeof generateInsightAndReflection>>;
+  let questionInsightBody: string;
   try {
-    generated = await generateInsightAndReflection(question, questionOnly, anthropicApiKey, categorySafetyTier);
+    questionInsightBody = await generateQuestionInsightPost(question, questionOnly, anthropicApiKey, categorySafetyTier);
   } catch (error) {
     logger.error('social_generation_failed_no_drafts_written', {
       question_id: question.id,
@@ -393,16 +363,7 @@ export async function generateSocialDraftSet(
     throw error;
   }
 
-  const questionUrl = `https://www.deeper.global/answers/${question.slug}/`;
-
-  const drafts: GeneratedSocialDraft[] = [
-    { format: 'question_only', body: `${questionOnly}\n${questionUrl}` },
-    { format: 'question_insight', body: generated.questionInsight },
-  ];
-
-  if (categorySafetyTier !== 'restricted') {
-    drafts.push({ format: 'reflection', body: `${generated.reflection}\n${questionUrl}` });
-  }
+  const drafts: GeneratedSocialDraft[] = [{ format: 'question_insight', body: questionInsightBody }];
 
   return {
     questionOnlyPath,

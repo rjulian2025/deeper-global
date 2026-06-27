@@ -1,5 +1,6 @@
 import { TwitterApi } from 'twitter-api-v2';
 import type { SocialPost } from './db';
+import { validateSocialPostForPublish } from './publish-validation';
 
 // X shortens all URLs to t.co links counted as this many characters.
 const X_TCO_URL_LENGTH = 23;
@@ -18,6 +19,7 @@ export type XCredentials = {
 
 export type PublishApprovedPostsDeps = {
   getApprovedPostsToPublish: (limit: number, now?: Date) => Promise<SocialPost[]>;
+  getQuestionSlug: (questionId: string) => Promise<string | null>;
   postToX: (body: string) => Promise<{ id: string }>;
   markPublished: (postId: string, xPostId: string) => Promise<SocialPost>;
   markFailed: (postId: string) => Promise<SocialPost>;
@@ -85,13 +87,46 @@ export async function publishApprovedPosts(deps: PublishApprovedPostsDeps, optio
   const posts = await deps.getApprovedPostsToPublish(limit, options.now);
   const results: Array<{
     post_id: string;
-    status: 'dry_run' | 'published' | 'failed';
+    status: 'dry_run' | 'published' | 'failed' | 'invalid';
     x_post_id: string | null;
     body: string;
     error: string | null;
   }> = [];
 
   for (const post of posts) {
+    const questionSlug = await deps.getQuestionSlug(post.question_id);
+    if (!questionSlug) {
+      const error = `x_post_question_not_found:${post.question_id}`;
+      if (!dryRun) {
+        logger.error('social_publish_validation_failed', { post_id: post.id, error });
+        await deps.markFailed(post.id);
+      }
+      results.push({
+        post_id: post.id,
+        status: dryRun ? 'invalid' : 'failed',
+        x_post_id: null,
+        body: post.body,
+        error,
+      });
+      continue;
+    }
+
+    const validationError = validateSocialPostForPublish(post.body, questionSlug);
+    if (validationError) {
+      if (!dryRun) {
+        logger.error('social_publish_validation_failed', { post_id: post.id, error: validationError });
+        await deps.markFailed(post.id);
+      }
+      results.push({
+        post_id: post.id,
+        status: dryRun ? 'invalid' : 'failed',
+        x_post_id: null,
+        body: post.body,
+        error: validationError,
+      });
+      continue;
+    }
+
     if (dryRun) {
       results.push({
         post_id: post.id,
@@ -135,6 +170,7 @@ export async function publishApprovedPosts(deps: PublishApprovedPostsDeps, optio
     found: posts.length,
     published: results.filter((result) => result.status === 'published').length,
     failed: results.filter((result) => result.status === 'failed').length,
+    invalid: results.filter((result) => result.status === 'invalid').length,
     results,
   };
 }
