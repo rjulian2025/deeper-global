@@ -95,12 +95,12 @@ GitHub Actions workflows pull production secrets at runtime. Add **only**:
 |---|---|
 | `VERCEL_TOKEN` | [vercel.com/account/tokens](https://vercel.com/account/tokens) |
 
-Project `orgId` / `projectId` are in `.github/vercel-project.json` (org ID resolved via Vercel API when missing).
+Project `orgId` / `projectId` are in `.github/vercel-project.json`. Commit `orgId` locally via `.github/vercel-project.md` instructions; CI falls back to API resolution when empty.
 
 **Remove if still present:** `CRON_SECRET`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, `SUPABASE_SERVICE_ROLE_KEY`, `ANTHROPIC_API_KEY` from GitHub repository secrets.
 
 ### Admin health
 
-`GET /api/admin/health` (Bearer `CRON_SECRET` or `ADMIN_PASSPHRASE`) returns existence/length/format checks only, never secret values.
+`GET /api/admin/health` (Bearer `CRON_SECRET` for automation, or `ADMIN_PASSPHRASE` from the console) returns existence/length/format checks only, never secret values.
 
-`/admin/` provides the same operations from a browser (noindex).
+`/admin/` unlock requires `ADMIN_PASSPHRASE` only (`GET /api/admin/verify-console`).

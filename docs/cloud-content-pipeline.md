@@ -24,7 +24,7 @@ Vercel production (secret vault)
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `ANTHROPIC_API_KEY`
 - `CRON_SECRET` (rotate via `./scripts/setup-github-cron-secret.sh`)
-- `ADMIN_PASSPHRASE` (optional; unlocks `/admin/` console without exposing CRON_SECRET)
+- `ADMIN_PASSPHRASE` (required for `/admin/` console; separate from `CRON_SECRET`)
 
 ### GitHub Actions
 
@@ -49,8 +49,8 @@ No GitHub secret sync step. Actions pull the current value from Vercel on every 
 | Surface | Use |
 | --- | --- |
 | GitHub Actions → Visit Priority Content Pipeline | `workflow_dispatch` with apply on/off |
-| `/admin/` | Health check + dry run / apply (passphrase or CRON_SECRET) |
-| `GET /api/admin/health` | Bearer `CRON_SECRET` or `ADMIN_PASSPHRASE` |
+| `/admin/` | Health check + dry run / apply (**ADMIN_PASSPHRASE** only; CRON_SECRET does not unlock) |
+| `GET /api/admin/health` | Bearer `CRON_SECRET` (CI/cron) or `ADMIN_PASSPHRASE` (console) |
 
 ## Weekly canary
 

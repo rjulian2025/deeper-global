@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { createClient } from '@supabase/supabase-js';
-import { isAdminAuthorized, readJsonBody, cleanText } from '../../scripts/lib/admin-auth.mjs';
+import { isAdminOrConsoleAuthorized, readJsonBody, cleanText } from '../../scripts/lib/admin-auth.mjs';
 import { runVisitPriorityPipeline, VISIT_PRIORITY_MANIFEST } from '../../scripts/lib/visit-priority-pipeline.mjs';
 
 export default async function handler(req, res) {
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  if (!isAdminAuthorized(req)) {
+  if (!isAdminOrConsoleAuthorized(req)) {
     res.statusCode = 401;
     res.end(JSON.stringify({ error: 'Unauthorized.' }));
     return;

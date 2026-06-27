@@ -10,25 +10,41 @@ export function resolveAdminPassphrase() {
   return cleanText(process.env.ADMIN_PASSPHRASE);
 }
 
-export function isAdminAuthorized(req) {
+function readBearerToken(req) {
+  const authHeader = req.headers?.authorization ?? req.headers?.Authorization;
+  if (typeof authHeader !== 'string' || !authHeader.startsWith('Bearer ')) {
+    return '';
+  }
+  return authHeader.slice('Bearer '.length);
+}
+
+/** Machine-to-machine admin auth (cron secret). Used by scheduled jobs and GitHub Actions. */
+export function isCronAuthorized(req) {
   const secret = resolveAdminSecret();
-  const passphrase = resolveAdminPassphrase();
+  if (!secret) return false;
 
   const authHeader = req.headers?.authorization ?? req.headers?.Authorization;
   const headerSecret = req.headers?.['x-report-secret'] ?? req.headers?.['x-cron-secret'];
   const querySecret = req.query?.secret;
 
-  const bearer = typeof authHeader === 'string' && authHeader.startsWith('Bearer ')
-    ? authHeader.slice('Bearer '.length)
-    : '';
+  return authHeader === `Bearer ${secret}` || headerSecret === secret || querySecret === secret;
+}
 
-  const matchesCron =
-    Boolean(secret) &&
-    (authHeader === `Bearer ${secret}` || headerSecret === secret || querySecret === secret);
+/** Human console auth only. Separate from CRON_SECRET so automation keys cannot unlock /admin/. */
+export function isConsolePassphraseAuthorized(req) {
+  const passphrase = resolveAdminPassphrase();
+  if (!passphrase) return false;
+  return readBearerToken(req) === passphrase;
+}
 
-  const matchesPassphrase = Boolean(passphrase) && bearer === passphrase;
+/** Cron-only gate for admin API routes (default). */
+export function isAdminAuthorized(req) {
+  return isCronAuthorized(req);
+}
 
-  return matchesCron || matchesPassphrase;
+/** Cron or console passphrase (for routes the /admin/ UI calls after unlock). */
+export function isAdminOrConsoleAuthorized(req) {
+  return isCronAuthorized(req) || isConsolePassphraseAuthorized(req);
 }
 
 export function readJsonBody(req) {

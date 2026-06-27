@@ -18,19 +18,19 @@ import '@/styles/admin-console.css';
   >
     <div class="admin-console-panel">
       <p class="admin-console-note">
-        Use the <code>ADMIN_PASSPHRASE</code> or <code>CRON_SECRET</code> value from Vercel production.
-        Nothing is stored on the server; your key stays in this browser session only.
+        Enter <code>ADMIN_PASSPHRASE</code> from Vercel production. CRON_SECRET cannot unlock this
+        console. Your passphrase stays in this browser session only.
       </p>
 
       <section id="admin-unlock">
         <div class="admin-console-field">
-          <label for="admin-access-key">Access key</label>
+          <label for="admin-access-key">Admin passphrase</label>
           <input
             id="admin-access-key"
             name="access-key"
             type="password"
             autocomplete="current-password"
-            placeholder="ADMIN_PASSPHRASE or CRON_SECRET"
+            placeholder="ADMIN_PASSPHRASE"
           />
         </div>
         <div class="admin-console-actions">
@@ -130,12 +130,22 @@ import '@/styles/admin-console.css';
       </table>`;
   }
 
-  async function verifyAccess(token) {
-    const response = await fetch('/api/admin/health', {
+  async function verifyConsoleUnlock(token) {
+    const response = await fetch('/api/admin/verify-console', {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (!response.ok) {
-      throw new Error(`Access denied (HTTP ${response.status}).`);
+      throw new Error(`Passphrase rejected (HTTP ${response.status}).`);
+    }
+    return response.json();
+  }
+
+  async function fetchHealth() {
+    const response = await fetch('/api/admin/health', {
+      headers: { Authorization: `Bearer ${getToken()}` },
+    });
+    if (!response.ok) {
+      throw new Error(`Health check failed (HTTP ${response.status}).`);
     }
     return response.json();
   }
@@ -168,7 +178,7 @@ import '@/styles/admin-console.css';
     unlockBtn.disabled = true;
     setStatus(unlockStatus, 'Verifying…');
     try {
-      await verifyAccess(token);
+      await verifyConsoleUnlock(token);
       setToken(token);
       showTools(true);
       setStatus(unlockStatus, '');
@@ -193,7 +203,7 @@ import '@/styles/admin-console.css';
     healthBtn.disabled = true;
     setStatus(actionStatus, 'Fetching health…');
     try {
-      const data = await verifyAccess(getToken());
+      const data = await fetchHealth();
       showOutput(renderHealthTable(data));
       setStatus(actionStatus, 'Health check complete.', 'is-ok');
     } catch (error) {
@@ -238,7 +248,7 @@ import '@/styles/admin-console.css';
 
   const existing = getToken();
   if (existing) {
-    verifyAccess(existing)
+    verifyConsoleUnlock(existing)
       .then(() => {
         showTools(true);
       })
