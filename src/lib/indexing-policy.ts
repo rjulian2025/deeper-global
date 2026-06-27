@@ -53,6 +53,7 @@ export const REDIRECT_SOURCE_SLUGS = new Set([
   'why-do-i-feel-so-lonely-even-when-im-surrounded-by-people-p7q8r9',
   'why-am-i-losing-faith-in-everything-i-used-to-believe',
   'how-do-i-find-my-purpose-when-nothing-feels-meaningful-h8i9j1',
+  'why-do-i-feel-guilty-for-doubting-my-fai-181083-035',
 ]);
 
 export function isRedirectSourceSlug(slug: string) {

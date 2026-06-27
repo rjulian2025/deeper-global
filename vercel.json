@@ -221,7 +221,7 @@
     },
     {
       "source": "/answers/why-do-i-feel-guilty-for-doubting-my-faith",
-      "destination": "/answers/why-do-i-feel-guilty-for-doubting-my-fai-181083-035/",
+      "destination": "/answers/why-do-i-feel-guilty-for-questioning-my-religious--186602-025/",
       "permanent": true
     },
     {
@@ -342,6 +342,11 @@
     {
       "source": "/answers/how-do-i-find-my-purpose-when-nothing-feels-meaningful-h8i9j1",
       "destination": "/answers/how-do-i-find-my-purpose-when-nothing-feels-meaningful-anymore/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-guilty-for-doubting-my-fai-181083-035",
+      "destination": "/answers/why-do-i-feel-guilty-for-questioning-my-religious--186602-025/",
       "permanent": true
     }
   ]
