@@ -2,8 +2,9 @@ name: Visit Priority Content Pipeline
 
 # Durable executor: production secrets live on Vercel.
 # Credential sources (first match wins):
-#   1. GitHub secret CRON_SECRET (matches Vercel production)
+#   1. GitHub secret CRON_SECRET → production admin API
 #   2. VERCEL_TOKEN + VERCEL_ORG_ID + VERCEL_PROJECT_ID → vercel pull → local pipeline script
+#   3. SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY (+ ANTHROPIC_API_KEY for rewrites) → local pipeline script
 #
 # Cloud agents prepare content in git; this workflow applies it.
 
@@ -45,6 +46,9 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           DISPATCH_APPLY: ${{ github.event_name == 'workflow_dispatch' && inputs.apply }}
           PUSH_APPLY: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[visit-priority-apply]') }}
           REWRITE_ONLY_UNSTAGED_INPUT: ${{ github.event_name == 'workflow_dispatch' && inputs.rewrite_only_unstaged }}
@@ -80,14 +84,20 @@ jobs:
             exit 0
           fi
 
-          if [ -z "${VERCEL_TOKEN:-}" ] || [ -z "${VERCEL_ORG_ID:-}" ] || [ -z "${VERCEL_PROJECT_ID:-}" ]; then
-            echo "::error::Missing credentials. Add GitHub secret CRON_SECRET, or VERCEL_TOKEN + VERCEL_ORG_ID + VERCEL_PROJECT_ID."
+          if [ -n "${VERCEL_TOKEN:-}" ] && [ -n "${VERCEL_ORG_ID:-}" ] && [ -n "${VERCEL_PROJECT_ID:-}" ]; then
+            echo "Using VERCEL_TOKEN → vercel pull → local pipeline script"
+            npm install --global vercel@latest
+            vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+          elif [ -n "${SUPABASE_URL:-}" ] && [ -n "${SUPABASE_SERVICE_ROLE_KEY:-}" ]; then
+            echo "Using SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY → local pipeline script"
+            export SUPABASE_URL SUPABASE_SERVICE_ROLE_KEY ANTHROPIC_API_KEY
+          else
+            echo "::error::Missing credentials. Add one of:"
+            echo "  • CRON_SECRET (matches Vercel production)"
+            echo "  • VERCEL_TOKEN + VERCEL_ORG_ID + VERCEL_PROJECT_ID"
+            echo "  • SUPABASE_SERVICE_ROLE_KEY (SUPABASE_URL already configured)"
             exit 1
           fi
-
-          echo "Using VERCEL_TOKEN → vercel pull → local pipeline script"
-          npm install --global vercel@latest
-          vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
 
           ARGS=""
           if [ "$APPLY" = "true" ]; then ARGS="$ARGS --apply"; fi
