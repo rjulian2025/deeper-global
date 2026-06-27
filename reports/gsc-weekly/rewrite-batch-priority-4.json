@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-06-27T00:00:00.000Z",
+  "mode": "recommend",
+  "scope": "upgrade_existing_only",
+  "note": "Top 4 GSC impression-momentum pages to rewrite before or in parallel with the visit-priority 25 new-pair batch.",
+  "success_metric": "gsc_clicks",
+  "slugs": [
+    "why-do-i-feel-guilty-for-taking-time-off-189668-007",
+    "how-do-i-cope-with-the-emotional-pain-of-divorce",
+    "why-do-i-feel-lonely-in-my-relationship-191368-010",
+    "how-do-i-apologize-effectively-when-ive-hurt-someone"
+  ],
+  "auto_stage_slugs": []
+}
