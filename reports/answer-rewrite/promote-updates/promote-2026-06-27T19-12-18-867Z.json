@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-06-27T19:12:18.867Z",
+  "mode": "dry-run",
+  "prompt_version": "deeper-health-copywriter-v1",
+  "candidates": [
+    {
+      "slug": "what-is-existentialism-and-can-it-help-when-life-feels-meaningless",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        }
+      ],
+      "promoted": false
+    }
+  ]
+}

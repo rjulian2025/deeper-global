@@ -1,0 +1,334 @@
+{
+  "generated_at": "2026-06-27T19:12:01.148Z",
+  "mode": "applied",
+  "prompt_version": "deeper-health-copywriter-v1",
+  "candidates": [
+    {
+      "slug": "can-life-be-meaningful-without-believing-in-god",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "unresolved hedge: \"Community may matter most. Isolation amplifies the sense that meaning without religious belief is fragile or incomplete.…\"",
+          "severity": "WARN",
+          "action": "system prompt fix"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 635 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-believers-make-sense-of-suffering-if-god-is-loving",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 704 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-build-a-personal-spiritual-practice-outside-organized-religion",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 609 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-live-with-knowing-everyone-i-love-will-die-someday",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 737 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-make-new-friends-after-leaving-my-church",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 689 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-respect-my-familys-faith-while-i-no-longer-believe",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 592 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-talk-to-my-children-about-death-without-an-afterlife",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 676 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "how-do-i-tell-my-partner-im-no-longer-religious",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 692 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "is-it-normal-to-grieve-the-loss-of-my-faith-like-a-death",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 698 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "is-it-okay-if-i-never-find-a-single-life-purpose",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 688 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "what-is-existentialism-and-can-it-help-when-life-feels-meaningless",
+      "qa_score": "FAIL",
+      "qa_issues": [
+        {
+          "field": "lede",
+          "issue": "does not open with canonical_answer verbatim",
+          "severity": "FAIL",
+          "action": "rerun"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        }
+      ],
+      "promoted": false
+    },
+    {
+      "slug": "what-is-faith-deconstruction-and-how-is-it-different-from-a-crisis-of-faith",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 639 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-am-i-questioning-all-my-beliefs-in-midlife",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "word_count",
+          "issue": "combined body 681 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-do-bad-things-happen-to-good-people",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "what_can_help",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "when_to_reach_out",
+          "issue": "opening may rely on prior context (spot-check)",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 577 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    },
+    {
+      "slug": "why-does-achieving-my-goals-leave-me-feeling-empty",
+      "qa_score": "WARN",
+      "qa_issues": [
+        {
+          "field": "primary_term",
+          "issue": "does not clearly match condition in question",
+          "severity": "WARN",
+          "action": "manual edit"
+        },
+        {
+          "field": "word_count",
+          "issue": "combined body 624 words (target 350–550)",
+          "severity": "WARN",
+          "action": "rerun"
+        }
+      ],
+      "promoted": true
+    }
+  ]
+}

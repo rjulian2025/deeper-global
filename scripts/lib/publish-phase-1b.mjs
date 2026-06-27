@@ -32,6 +32,12 @@ export const PHASE_1B_CAMPAIGNS = {
     reviewStatus: 'reviewed',
     reviewedBy: 'codex-seo-review',
   },
+  'spirituality-meaning': {
+    promptVersion: 'deeper-spirituality-meaning-v1',
+    citationNote: 'Spirituality & Meaning hub Part C batch (15 high-confidence candidates).',
+    reviewStatus: 'draft',
+    reviewedBy: null,
+  },
 };
 
 function cleanText(value) {
