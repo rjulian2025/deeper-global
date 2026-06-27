@@ -1,8 +1,11 @@
 name: Visit Priority Content Pipeline
 
-# Durable executor: secrets live on Vercel production only.
-# This workflow needs ONE GitHub repository secret: CRON_SECRET (must match Vercel production).
-# Cloud agents prepare content in git; this workflow applies it via the production admin API.
+# Durable executor: production secrets live on Vercel.
+# Credential sources (first match wins):
+#   1. GitHub secret CRON_SECRET (matches Vercel production)
+#   2. VERCEL_TOKEN + VERCEL_ORG_ID + VERCEL_PROJECT_ID → vercel pull → local pipeline script
+#
+# Cloud agents prepare content in git; this workflow applies it.
 
 on:
   workflow_dispatch:
@@ -15,36 +18,81 @@ on:
         description: Only rewrite slugs without existing staging_rewrite_at
         type: boolean
         default: false
+  push:
+    branches:
+      - production/astro
+    paths:
+      - '.github/workflows/visit-priority-pipeline.yml'
+      - 'reports/phase-1b/visit-priority/**'
 
 jobs:
   pipeline:
     runs-on: ubuntu-latest
     steps:
-      - name: Validate CRON_SECRET is configured
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run visit-priority pipeline
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          DISPATCH_APPLY: ${{ github.event_name == 'workflow_dispatch' && inputs.apply }}
+          PUSH_APPLY: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[visit-priority-apply]') }}
+          REWRITE_ONLY_UNSTAGED_INPUT: ${{ github.event_name == 'workflow_dispatch' && inputs.rewrite_only_unstaged }}
         run: |
-          if [ -z "${{ secrets.CRON_SECRET }}" ]; then
-            echo "::error::Missing GitHub repository secret CRON_SECRET. Add it once in Settings → Secrets → Actions."
+          set -euo pipefail
+
+          APPLY=false
+          if [ "$DISPATCH_APPLY" = "true" ] || [ "$PUSH_APPLY" = "true" ]; then
+            APPLY=true
+          fi
+
+          REWRITE_ONLY_UNSTAGED=false
+          if [ "$REWRITE_ONLY_UNSTAGED_INPUT" = "true" ]; then
+            REWRITE_ONLY_UNSTAGED=true
+          fi
+
+          PAYLOAD=$(node -e "console.log(JSON.stringify({ apply: process.env.APPLY === 'true', rewriteOnlyUnstaged: process.env.REWRITE_ONLY_UNSTAGED === 'true' }))")
+          export APPLY REWRITE_ONLY_UNSTAGED
+
+          if [ -n "${CRON_SECRET:-}" ]; then
+            echo "Using CRON_SECRET → production admin API"
+            RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "https://www.deeper.global/api/admin/run-visit-priority-pipeline" \
+              -H "Authorization: Bearer ${CRON_SECRET}" \
+              -H "Content-Type: application/json" \
+              -d "${PAYLOAD}")
+            HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+            BODY=$(echo "$RESPONSE" | sed '$d')
+            echo "$BODY" | tee pipeline-response.json
+            if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 300 ]; then
+              echo "::error::Pipeline request failed with HTTP ${HTTP_CODE}"
+              exit 1
+            fi
+            exit 0
+          fi
+
+          if [ -z "${VERCEL_TOKEN:-}" ] || [ -z "${VERCEL_ORG_ID:-}" ] || [ -z "${VERCEL_PROJECT_ID:-}" ]; then
+            echo "::error::Missing credentials. Add GitHub secret CRON_SECRET, or VERCEL_TOKEN + VERCEL_ORG_ID + VERCEL_PROJECT_ID."
             exit 1
           fi
 
-      - name: Call production visit-priority pipeline
-        env:
-          CRON_SECRET: ${{ secrets.CRON_SECRET }}
-          APPLY: ${{ inputs.apply }}
-          REWRITE_ONLY_UNSTAGED: ${{ inputs.rewrite_only_unstaged }}
-        run: |
-          PAYLOAD=$(node -e "console.log(JSON.stringify({ apply: process.env.APPLY === 'true', rewriteOnlyUnstaged: process.env.REWRITE_ONLY_UNSTAGED === 'true' }))")
-          RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "https://www.deeper.global/api/admin/run-visit-priority-pipeline" \
-            -H "Authorization: Bearer ${CRON_SECRET}" \
-            -H "Content-Type: application/json" \
-            -d "${PAYLOAD}")
-          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
-          BODY=$(echo "$RESPONSE" | sed '$d')
-          echo "$BODY" | tee pipeline-response.json
-          if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 300 ]; then
-            echo "::error::Pipeline request failed with HTTP ${HTTP_CODE}"
-            exit 1
-          fi
+          echo "Using VERCEL_TOKEN → vercel pull → local pipeline script"
+          npm install --global vercel@latest
+          vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+
+          ARGS=""
+          if [ "$APPLY" = "true" ]; then ARGS="$ARGS --apply"; fi
+          if [ "$REWRITE_ONLY_UNSTAGED" = "true" ]; then ARGS="$ARGS --rewrite-only-unstaged"; fi
+          npm run content:run-visit-priority-pipeline -- $ARGS | tee pipeline-response.json
 
       - name: Upload pipeline response
         if: always()
