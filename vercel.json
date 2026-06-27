@@ -9,6 +9,15 @@
     "api/geocode-backfill.js": {
       "maxDuration": 60
     },
+    "api/admin/run-visit-priority-pipeline.js": {
+      "maxDuration": 300
+    },
+    "api/admin/rewrite-answers-claude.js": {
+      "maxDuration": 300
+    },
+    "api/admin/publish-phase-1b-drafts.js": {
+      "maxDuration": 60
+    },
     "api/cron/publish-approved.js": {
       "maxDuration": 30
     },

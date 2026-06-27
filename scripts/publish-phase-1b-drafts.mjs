@@ -2,109 +2,34 @@
 /**
  * Publish approved new-question drafts into questions_master.
  *
- * Phase 1B dry run:
- *   npm run content:publish-phase-1b -- reports/phase-1b/draft-answers/batch-01-drafts.json
- *
- * Phase 1B apply:
- *   npm run content:publish-phase-1b -- --apply reports/phase-1b/draft-answers/batch-01-drafts.json
- *
- * AI sprint dry run:
- *   npm run content:publish-ai-sprint -- reports/ai-sprint/draft-answers/batch-01-drafts.json
- *
- * AI sprint apply:
- *   npm run content:publish-ai-sprint -- --apply reports/ai-sprint/draft-answers/batch-01-drafts.json
+ * Uses direct Supabase write when credentials are available, otherwise the
+ * secured production admin API (CRON_SECRET).
  */
-import { randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { createClient } from '@supabase/supabase-js';
+import { bootstrapCloudEnv } from './lib/cloud-env.mjs';
+import { loadDraftsFromPaths, publishPhase1bDrafts, resolveCampaignConfig } from './lib/publish-phase-1b.mjs';
+import { postAdminApply } from './lib/remote-admin-request.mjs';
 import { resolveSupabaseConfig } from './lib/supabase-env.mjs';
 
-const REVIEWED_BY = 'codex-seo-review';
-const CAMPAIGNS = {
-  'phase-1b': {
-    promptVersion: 'deeper-phase-1b-new-question-v1',
-    citationNote: 'Phase 1B new-question batch promotion.',
-  },
-  'ai-sprint': {
-    promptVersion: 'deeper-ai-concerns-sprint-v1',
-    citationNote: 'AI mental health concerns sprint promotion.',
-  },
-  'adhd-hub': {
-    promptVersion: 'deeper-adhd-hub-v1',
-    citationNote: 'ADHD authority hub seed batch promotion.',
-  },
-  'imago-hub': {
-    promptVersion: 'deeper-imago-hub-v1',
-    citationNote: 'Imago Relationship Therapy hub seed batch promotion.',
-  },
-};
-
-function cleanText(value) {
-  return typeof value === 'string' ? value.replace(/\s+/g, ' ').trim() : '';
-}
-
-function normalizeSafetyFlags(value) {
-  if (!Array.isArray(value)) return [];
-  return value.map((item) => cleanText(item)).filter(Boolean);
-}
-
-function requireArray(value, label, draft) {
-  if (!Array.isArray(value) || value.length === 0) {
-    throw new Error(`${draft.slug}: missing required array ${label}.`);
-  }
-  return value;
-}
-
-function answerTextFromSections(sections) {
-  return sections
-    .map((section) => {
-      const heading = cleanText(section.heading);
-      const body = cleanText(section.body);
-      return heading ? `## ${heading}\n\n${body}` : body;
-    })
-    .filter(Boolean)
-    .join('\n\n');
-}
-
-function wordCount(value) {
-  return cleanText(value).split(/\s+/).filter(Boolean).length;
-}
-
-function sourceRefsForInsert(value, draft) {
-  const sourceRefs = requireArray(value, 'source_refs', draft)
-    .map((source) => ({
-      title: cleanText(source?.title),
-      url: cleanText(source?.url),
-      publisher: cleanText(source?.publisher),
-      note: cleanText(source?.note),
-    }))
-    .filter((source) => source.title || source.url);
-
-  if (!sourceRefs.length) {
-    throw new Error(`${draft.slug}: at least one source reference with title or URL is required.`);
-  }
-
-  return sourceRefs;
-}
-
-function entitiesFromDraft(draft) {
-  const names = [draft.primary_theme, draft.category, ...(Array.isArray(draft.related_themes) ? draft.related_themes : [])]
-    .map((name) => cleanText(name))
-    .filter(Boolean);
-
-  return Array.from(new Set(names)).map((name) => ({ name, type: 'Topic' }));
-}
+const DEFAULT_REMOTE_URL = 'https://www.deeper.global/api/admin/publish-phase-1b-drafts';
 
 function parseArgs(argv) {
   let campaign = 'phase-1b';
   const paths = [];
   let apply = false;
+  let skipExisting = true;
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
 
     if (arg === '--apply') {
       apply = true;
+      continue;
+    }
+
+    if (arg === '--fail-on-existing') {
+      skipExisting = false;
       continue;
     }
 
@@ -122,160 +47,54 @@ function parseArgs(argv) {
     paths.push(arg);
   }
 
-  const campaignConfig = CAMPAIGNS[campaign];
-  if (!campaignConfig) {
-    throw new Error(`Unknown campaign "${campaign}". Use one of: ${Object.keys(CAMPAIGNS).join(', ')}`);
-  }
-
-  return { apply, campaign, campaignConfig, paths };
+  resolveCampaignConfig(campaign);
+  return { apply, campaign, paths, skipExisting };
 }
 
-function citationNotesFromDraft(draft, campaignConfig) {
-  const notes = [
-    campaignConfig.citationNote,
-    cleanText(draft.draft_notes) && `Draft notes: ${cleanText(draft.draft_notes)}`,
-    normalizeSafetyFlags(draft.safety_flags).length && `Safety flags: ${normalizeSafetyFlags(draft.safety_flags).join(', ')}`,
-    Array.isArray(draft.citation_gaps) && draft.citation_gaps.length && `Citation follow-ups: ${draft.citation_gaps.map((gap) => cleanText(gap)).filter(Boolean).join(' ')}`,
-  ].filter(Boolean);
-
-  return notes.join('\n');
-}
-
-function rowFromDraft(draft, campaignConfig) {
-  const question = cleanText(draft.question);
-  const slug = cleanText(draft.slug);
-  const category = cleanText(draft.category);
-  const sections = requireArray(draft.answer_sections, 'answer_sections', draft);
-  const answer = answerTextFromSections(sections);
-
-  if (!question) throw new Error(`${slug || 'unknown draft'}: question is required.`);
-  if (!slug) throw new Error(`${question}: slug is required.`);
-  if (!category) throw new Error(`${slug}: category is required.`);
-  if (!answer) throw new Error(`${slug}: answer text is required.`);
-
-  return {
-    id: randomUUID(),
-    question,
-    answer,
-    word_count: wordCount(answer),
-    short_answer: cleanText(draft.improved_summary || draft.suggested_schema_answer),
-    raw_category: category,
-    category,
-    slug,
-    published: true,
-    improved_title: cleanText(draft.improved_title),
-    improved_meta_description: cleanText(draft.improved_meta_description),
-    improved_summary: cleanText(draft.improved_summary),
-    answer_sections: sections,
-    key_takeaways: requireArray(draft.key_takeaways, 'key_takeaways', draft),
-    care_note: cleanText(draft.care_note),
-    related_questions: Array.isArray(draft.related_questions) ? draft.related_questions : [],
-    suggested_schema_question: cleanText(draft.suggested_schema_question || question),
-    suggested_schema_answer: cleanText(draft.suggested_schema_answer || draft.improved_summary),
-    primary_theme: cleanText(draft.primary_theme || category),
-    related_themes: Array.isArray(draft.related_themes) ? draft.related_themes : [],
-    citation_notes: citationNotesFromDraft(draft, campaignConfig),
-    content_prompt_version: campaignConfig.promptVersion,
-    content_enriched_at: new Date().toISOString(),
-    review_status: 'reviewed',
-    reviewed_by: REVIEWED_BY,
-    source_refs: sourceRefsForInsert(draft.source_refs, draft),
-    primary_entities: entitiesFromDraft(draft).slice(0, 3),
-    related_entities: entitiesFromDraft(draft),
-  };
-}
-
-function loadRows(paths, campaignConfig) {
-  const drafts = paths.flatMap((path) => {
-    const parsed = JSON.parse(readFileSync(path, 'utf8'));
-    if (!Array.isArray(parsed)) {
-      throw new Error(`${path} must contain a JSON array.`);
-    }
-    return parsed;
+async function publishRemotely({ apply, campaign, paths, skipExisting, remoteUrl }) {
+  const drafts = loadDraftsFromPaths(paths);
+  return postAdminApply({
+    url: remoteUrl,
+    body: { apply, campaign, skipExisting, drafts },
   });
-
-  const rows = drafts.map((draft) => rowFromDraft(draft, campaignConfig));
-  const duplicateInputSlugs = rows
-    .map((row) => row.slug)
-    .filter((slug, index, slugs) => slugs.indexOf(slug) !== index);
-
-  if (duplicateInputSlugs.length) {
-    throw new Error(`Duplicate input slugs: ${Array.from(new Set(duplicateInputSlugs)).join(', ')}`);
-  }
-
-  return rows;
 }
 
 async function main() {
-  const { apply, campaign, campaignConfig, paths } = parseArgs(process.argv.slice(2));
+  const args = parseArgs(process.argv.slice(2));
+  const remoteUrl = process.env.DGP_PUBLISH_PHASE_1B_URL ?? DEFAULT_REMOTE_URL;
 
-  if (!paths.length) {
+  if (!args.paths.length) {
     throw new Error('Pass one or more draft JSON files.');
   }
 
-  const rows = loadRows(paths, campaignConfig);
-  const { url, key } = resolveSupabaseConfig({ requireWrite: apply });
-  const supabase = createClient(url, key, { auth: { persistSession: false } });
-  const slugs = rows.map((row) => row.slug);
+  bootstrapCloudEnv();
 
-  const { data: existingRows, error: existingError } = await supabase
-    .from('questions_master')
-    .select('slug, review_status')
-    .in('slug', slugs);
+  let report;
+  try {
+    const drafts = loadDraftsFromPaths(args.paths);
+    const { url, key } = resolveSupabaseConfig({ requireWrite: args.apply });
+    const supabase = createClient(url, key, { auth: { persistSession: false } });
+    report = await publishPhase1bDrafts({
+      supabase,
+      drafts,
+      campaign: args.campaign,
+      apply: args.apply,
+      skipExisting: args.skipExisting,
+    });
+    report.apply_path = 'direct_write';
+  } catch (error) {
+    if (
+      !args.apply ||
+      !/Missing Supabase credentials|SUPABASE_SERVICE_ROLE_KEY|Write access requires/i.test(error.message ?? '')
+    ) {
+      throw error;
+    }
 
-  if (existingError) throw existingError;
-  if (existingRows?.length) {
-    throw new Error(`Refusing to publish over existing slugs: ${existingRows.map((row) => row.slug).join(', ')}`);
+    report = await publishRemotely({ ...args, remoteUrl });
+    report.apply_path = 'remote_admin';
   }
 
-  const { count: beforeCount, error: beforeCountError } = await supabase
-    .from('questions_master')
-    .select('id', { count: 'exact', head: true });
-
-  if (beforeCountError) throw beforeCountError;
-
-  if (!apply) {
-    console.log(
-      JSON.stringify(
-        {
-          mode: 'dry-run',
-          campaign,
-          rowsReady: rows.length,
-          beforeCount,
-          expectedAfterCount: (beforeCount ?? 0) + rows.length,
-          slugs,
-        },
-        null,
-        2
-      )
-    );
-    return;
-  }
-
-  const { error: insertError } = await supabase.from('questions_master').insert(rows);
-  if (insertError) throw insertError;
-
-  const { count: afterCount, error: afterCountError } = await supabase
-    .from('questions_master')
-    .select('id', { count: 'exact', head: true });
-
-  if (afterCountError) throw afterCountError;
-
-  console.log(
-    JSON.stringify(
-      {
-        mode: 'applied',
-        campaign,
-        inserted: rows.length,
-        beforeCount,
-        afterCount,
-        expectedAfterCount: (beforeCount ?? 0) + rows.length,
-        slugs,
-      },
-      null,
-      2
-    )
-  );
+  console.log(JSON.stringify(report, null, 2));
 }
 
 main().catch((error) => {

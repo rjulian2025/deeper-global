@@ -84,7 +84,7 @@ function draft({
     ],
     care_note: careNote,
     related_questions: related,
-    suggested_schema_faq: question,
+    suggested_schema_question: question,
     suggested_schema_answer: schemaAnswer,
     primary_theme: theme || category,
     related_themes: themes,

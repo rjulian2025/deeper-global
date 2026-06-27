@@ -39,7 +39,7 @@
       "How do I figure out who I am outside of what other people expect?",
       "Why do compliments make me uncomfortable?"
     ],
-    "suggested_schema_faq": "How can I stop comparing myself to everyone else?",
+    "suggested_schema_question": "How can I stop comparing myself to everyone else?",
     "suggested_schema_answer": "Reduce harmful comparison by limiting triggers, reconnecting with your own values, practicing self-compassion, and remembering that others' public wins rarely show their full struggles.",
     "primary_theme": "Identity & Self-Worth",
     "related_themes": [
@@ -114,7 +114,7 @@
       "What should I do if I have no one to talk to?",
       "How do I figure out who I am outside of what other people expect?"
     ],
-    "suggested_schema_faq": "What should I do if I feel different from everyone at school?",
+    "suggested_schema_question": "What should I do if I feel different from everyone at school?",
     "suggested_schema_answer": "If you feel different at school, seek safe connections through shared interests, talk to a trusted adult if needed, and remember that being different is not the same as being wrong.",
     "primary_theme": "Teens & Identity",
     "related_themes": [
@@ -190,7 +190,7 @@
       "How do I tell my partner I feel disconnected?",
       "Why do I miss someone who treated me badly?"
     ],
-    "suggested_schema_faq": "Can low self-esteem affect relationships?",
+    "suggested_schema_question": "Can low self-esteem affect relationships?",
     "suggested_schema_answer": "Low self-esteem can affect relationships through reassurance seeking, conflict avoidance, and difficulty accepting care; therapy and boundaries can help without blaming you for mistreatment.",
     "primary_theme": "Identity & Self-Worth",
     "related_themes": [
@@ -265,7 +265,7 @@
       "How can teens build confidence without pretending to be someone else?",
       "Why do compliments make me uncomfortable?"
     ],
-    "suggested_schema_faq": "Why does social media make me feel worse about myself?",
+    "suggested_schema_question": "Why does social media make me feel worse about myself?",
     "suggested_schema_answer": "Social media can hurt self-esteem by showing curated highlights that fuel comparison and FOMO; limits, curated follows, sleep protection, and offline connection often help.",
     "primary_theme": "Teens & Identity",
     "related_themes": [
@@ -341,7 +341,7 @@
       "How can I cope with loneliness after a breakup?",
       "When does grief become something I should get help for?"
     ],
-    "suggested_schema_faq": "What should I do if I have no one to talk to?",
+    "suggested_schema_question": "What should I do if I have no one to talk to?",
     "suggested_schema_answer": "If you have no one to talk to, use warm lines or crisis support for immediate listening, consider therapy or groups for steady connection, and take small steps to rebuild relationships over time.",
     "primary_theme": "Loneliness & Isolation",
     "related_themes": [
@@ -417,7 +417,7 @@
       "Why do I isolate myself when I am struggling?",
       "How can I cope with loneliness after a breakup?"
     ],
-    "suggested_schema_faq": "Why do I feel lonely even when I am around people?",
+    "suggested_schema_question": "Why do I feel lonely even when I am around people?",
     "suggested_schema_answer": "Loneliness around people often reflects emotional disconnection rather than lack of company; deeper honesty, better-fit relationships, and support can help.",
     "primary_theme": "Loneliness & Isolation",
     "related_themes": [
@@ -492,7 +492,7 @@
       "How do I ask for reassurance without pushing my partner away?",
       "How do I figure out who I am outside of what other people expect?"
     ],
-    "suggested_schema_faq": "Why do compliments make me uncomfortable?",
+    "suggested_schema_question": "Why do compliments make me uncomfortable?",
     "suggested_schema_answer": "Compliments may feel uncomfortable due to low self-esteem, unfamiliar praise, or mistrust; a simple thank you and gradual self-compassion practice often help.",
     "primary_theme": "Identity & Self-Worth",
     "related_themes": [
@@ -567,7 +567,7 @@
       "Can low self-esteem affect relationships?",
       "Why do I feel lonely even when I am around people?"
     ],
-    "suggested_schema_faq": "How do I tell my partner I feel disconnected?",
+    "suggested_schema_question": "How do I tell my partner I feel disconnected?",
     "suggested_schema_answer": "Tell your partner you feel disconnected using gentle \"I\" statements, name what you miss, invite their perspective, and suggest small daily steps to rebuild closeness.",
     "primary_theme": "Relationships & Communication",
     "related_themes": [
@@ -642,7 +642,7 @@
       "When does grief become something I should get help for?",
       "Can loneliness affect my mental health?"
     ],
-    "suggested_schema_faq": "How can I cope with loneliness after a breakup?",
+    "suggested_schema_question": "How can I cope with loneliness after a breakup?",
     "suggested_schema_answer": "Cope with post-breakup loneliness by grieving normally, rebuilding structure, leaning on support, limiting ex contact, and giving yourself time without rushing into replacement relationships.",
     "primary_theme": "Relationships & Divorce",
     "related_themes": [
@@ -717,7 +717,7 @@
       "How can I stop comparing myself to everyone else?",
       "How do I figure out who I am outside of what other people expect?"
     ],
-    "suggested_schema_faq": "How can teens build confidence without pretending to be someone else?",
+    "suggested_schema_question": "How can teens build confidence without pretending to be someone else?",
     "suggested_schema_answer": "Teens can build authentic confidence through values-aligned actions, skill-building, small brave steps, and relationships that accept the real you rather than a performed persona.",
     "primary_theme": "Teens & Identity",
     "related_themes": [
@@ -792,7 +792,7 @@
       "Why do I feel guilty when I rest?",
       "Why do I isolate myself when I am struggling?"
     ],
-    "suggested_schema_faq": "Why do I feel like I am not good enough?",
+    "suggested_schema_question": "Why do I feel like I am not good enough?",
     "suggested_schema_answer": "Feeling not good enough often stems from harsh self-talk, comparison, or past criticism; self-compassion, evidence-checking, and therapy can help without tying worth to achievement.",
     "primary_theme": "Identity & Self-Worth",
     "related_themes": [
@@ -867,7 +867,7 @@
       "Why do I miss someone who treated me badly?",
       "What should I do if my partner refuses to talk about problems?"
     ],
-    "suggested_schema_faq": "How do I ask for reassurance without pushing my partner away?",
+    "suggested_schema_question": "How do I ask for reassurance without pushing my partner away?",
     "suggested_schema_answer": "Ask for reassurance by naming your fear, making one clear request, using self-soothing between asks, and discussing helpful patterns with your partner to avoid overwhelming them.",
     "primary_theme": "Relationships & Communication",
     "related_themes": [
@@ -942,7 +942,7 @@
       "When does grief become something I should get help for?",
       "How can couples rebuild trust after lying?"
     ],
-    "suggested_schema_faq": "Why do I miss someone who treated me badly?",
+    "suggested_schema_question": "Why do I miss someone who treated me badly?",
     "suggested_schema_answer": "Missing someone who treated you badly often reflects attachment and grief, not proof you should return; support, safety planning, and no contact often help when abuse was involved.",
     "primary_theme": "Relationships & Divorce",
     "related_themes": [
@@ -1018,7 +1018,7 @@
       "Can loneliness affect my mental health?",
       "What should I do if I have no one to talk to?"
     ],
-    "suggested_schema_faq": "Can trauma affect grief?",
+    "suggested_schema_question": "Can trauma affect grief?",
     "suggested_schema_answer": "Trauma can shape grief through shock, intrusive memories, and hypervigilance after sudden or violent loss; trauma-informed grief support addresses both mourning and safety fears.",
     "primary_theme": "Trauma & Grief",
     "related_themes": [
@@ -1102,7 +1102,7 @@
       "Why do I isolate myself when I am struggling?",
       "Can loneliness affect my mental health?"
     ],
-    "suggested_schema_faq": "How can I support someone grieving a traumatic death?",
+    "suggested_schema_question": "How can I support someone grieving a traumatic death?",
     "suggested_schema_answer": "Support someone after traumatic death with consistent presence, practical help, nonjudgmental listening, and attention to crisis signs without trying to fix their grief.",
     "primary_theme": "Trauma & Grief",
     "related_themes": [
@@ -1184,7 +1184,7 @@
       "Why do I feel like I am not good enough?",
       "How do I make time for myself when everyone needs something from me?"
     ],
-    "suggested_schema_faq": "How do I figure out who I am outside of what other people expect?",
+    "suggested_schema_question": "How do I figure out who I am outside of what other people expect?",
     "suggested_schema_answer": "Discover who you are outside others' expectations by exploring values, trying small experiments, setting boundaries, and noticing what feels authentically yours over time.",
     "primary_theme": "Identity & Self-Worth",
     "related_themes": [
@@ -1259,7 +1259,7 @@
       "Why do I feel like I am not good enough?",
       "Can loneliness affect my mental health?"
     ],
-    "suggested_schema_faq": "Why do I feel guilty when I rest?",
+    "suggested_schema_question": "Why do I feel guilty when I rest?",
     "suggested_schema_answer": "Rest guilt often comes from productivity culture and caregiving overload; treating rest as necessary recovery and scheduling it intentionally can reduce shame over time.",
     "primary_theme": "Work & Life Balance",
     "related_themes": [
@@ -1334,7 +1334,7 @@
       "When does grief become something I should get help for?",
       "What should I do if I have no one to talk to?"
     ],
-    "suggested_schema_faq": "What should I do if my teen says they hate themselves?",
+    "suggested_schema_question": "What should I do if my teen says they hate themselves?",
     "suggested_schema_answer": "If your teen says they hate themselves, stay calm, listen, ask directly about self-harm and safety, and connect them to professional or crisis support if needed.",
     "primary_theme": "Teen-Specific Questions",
     "related_themes": [
@@ -1411,7 +1411,7 @@
       "Why do I miss someone who treated me badly?",
       "Can low self-esteem affect relationships?"
     ],
-    "suggested_schema_faq": "How can couples rebuild trust after lying?",
+    "suggested_schema_question": "How can couples rebuild trust after lying?",
     "suggested_schema_answer": "Couples rebuild trust after lying through full accountability, transparent behavior, patience with the hurt partner's process, and often professional support over time.",
     "primary_theme": "Relationships & Communication",
     "related_themes": [
@@ -1486,7 +1486,7 @@
       "Why do I isolate myself when I am struggling?",
       "Can loneliness affect my mental health?"
     ],
-    "suggested_schema_faq": "How do I make time for myself when everyone needs something from me?",
+    "suggested_schema_question": "How do I make time for myself when everyone needs something from me?",
     "suggested_schema_answer": "Make time for yourself amid competing demands by protecting small daily blocks, sharing load, setting clear limits, and treating rest as necessary maintenance.",
     "primary_theme": "Work & Life Balance",
     "related_themes": [
@@ -1561,7 +1561,7 @@
       "Why do I miss someone who treated me badly?",
       "Can low self-esteem affect relationships?"
     ],
-    "suggested_schema_faq": "What should I do if my partner refuses to talk about problems?",
+    "suggested_schema_question": "What should I do if my partner refuses to talk about problems?",
     "suggested_schema_answer": "If your partner refuses to discuss problems, name the pattern calmly, schedule structured talks, consider couples therapy, and prioritize safety if silence is used to punish or control.",
     "primary_theme": "Relationships & Communication",
     "related_themes": [
@@ -1636,7 +1636,7 @@
       "Why do I isolate myself when I am struggling?",
       "What should I do if I have no one to talk to?"
     ],
-    "suggested_schema_faq": "When does grief become something I should get help for?",
+    "suggested_schema_question": "When does grief become something I should get help for?",
     "suggested_schema_answer": "Consider professional grief help when daily life stays impaired, safety feels at risk, or intense pain persists without relief; grief timelines vary and seeking support is not failure.",
     "primary_theme": "Grief & Loss",
     "related_themes": [
@@ -1714,7 +1714,7 @@
       "Why do I feel like I am not good enough?",
       "When does grief become something I should get help for?"
     ],
-    "suggested_schema_faq": "Why do I isolate myself when I am struggling?",
+    "suggested_schema_question": "Why do I isolate myself when I am struggling?",
     "suggested_schema_answer": "Isolating when struggling often reflects shame, exhaustion, or mood changes; gentle reconnection, basic self-care, and therapy can help without forcing instant socializing.",
     "primary_theme": "Loneliness & Isolation",
     "related_themes": [
@@ -1786,7 +1786,7 @@
       "Why do I isolate myself when I am struggling?",
       "How do I tell my partner I feel disconnected?"
     ],
-    "suggested_schema_faq": "Why does work stress make me irritable at home?",
+    "suggested_schema_question": "Why does work stress make me irritable at home?",
     "suggested_schema_answer": "Work stress often causes home irritability by draining emotional bandwidth; transition rituals, boundaries, decompression, and rest can reduce spillover over time.",
     "primary_theme": "Work, Stress & Burnout",
     "related_themes": [
@@ -1861,7 +1861,7 @@
       "How can I cope with loneliness after a breakup?",
       "Can low self-esteem affect relationships?"
     ],
-    "suggested_schema_faq": "Can loneliness affect my mental health?",
+    "suggested_schema_question": "Can loneliness affect my mental health?",
     "suggested_schema_answer": "Loneliness can affect mental and physical health over time; treating connection as a health need and taking supported social steps often helps.",
     "primary_theme": "Loneliness & Isolation",
     "related_themes": [

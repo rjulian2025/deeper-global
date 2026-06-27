@@ -11,9 +11,15 @@ function getArg(name) {
 function getAccessToken() {
   if (process.env.SUPABASE_ACCESS_TOKEN) return process.env.SUPABASE_ACCESS_TOKEN;
 
-  return execFileSync('security', ['find-generic-password', '-s', 'Supabase CLI', '-a', 'access-token', '-w'], {
-    encoding: 'utf8',
-  }).trim();
+  try {
+    return execFileSync('security', ['find-generic-password', '-s', 'Supabase CLI', '-a', 'access-token', '-w'], {
+      encoding: 'utf8',
+    }).trim();
+  } catch {
+    throw new Error(
+      'Missing SUPABASE_ACCESS_TOKEN. Set it in cloud agent secrets or run `supabase login` locally once.'
+    );
+  }
 }
 
 const file = getArg('--file');
