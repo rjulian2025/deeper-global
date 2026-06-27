@@ -64,6 +64,9 @@ You do not need to inspect the output for spaces or newlines.
 | `api/reports/intent-email.js` | same |
 | `api/sync-trends.js` | same |
 | `api/admin/apply-enrichment.js` | same |
+| `api/admin/publish-phase-1b-drafts.js` | same |
+| `api/admin/rewrite-answers-claude.js` | same |
+| `api/admin/run-visit-priority-pipeline.js` | same |
 | `scripts/lib/supabase-env.mjs` | local dev credential resolver |
 
 Vercel's own cron scheduler injects the stored value automatically. There are
