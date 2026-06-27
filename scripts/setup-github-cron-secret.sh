@@ -42,7 +42,7 @@ echo "→ Rotating CRON_SECRET on Vercel production..."
 vercel env rm CRON_SECRET production --yes
 vercel env add CRON_SECRET production --value "$NEW_SECRET" --yes
 
-echo "→ Optional: set ADMIN_PASSPHRASE for /admin console (separate from CRON_SECRET)..."
+echo "→ Set ADMIN_PASSPHRASE for /admin/ console (required; separate from CRON_SECRET)..."
 echo "    vercel env add ADMIN_PASSPHRASE production --value \"\$(openssl rand -hex 24)\" --yes"
 
 BRANCH=$(git branch --show-current)
@@ -67,7 +67,7 @@ GitHub Actions setup (one-time):
      SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY (only needed on Vercel now)
 
 Verify:
-  • /admin/ after deploy (ADMIN_PASSPHRASE or CRON_SECRET)
+  • /admin/ after deploy (ADMIN_PASSPHRASE only)
   • GET /api/admin/health with Bearer auth
   • Actions → Pipeline Credentials Check
 EOF
