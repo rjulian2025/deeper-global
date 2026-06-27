@@ -4,9 +4,14 @@ No local terminal work is required after one-time setup (see `docs/cloud-content
 
 ## One-time setup (repo admin)
 
-```bash
-./scripts/setup-github-cron-secret.sh
-```
+1. Add `VERCEL_TOKEN` to GitHub Actions secrets
+2. Rotate `CRON_SECRET` on Vercel: `./scripts/setup-github-cron-secret.sh`
+3. Optional: set `ADMIN_PASSPHRASE` on Vercel for `/admin/`
+
+## Trigger without Terminal
+
+- **GitHub mobile / web:** Actions → Visit Priority Content Pipeline → Run workflow
+- **Browser:** `/admin/` (health + dry run / apply)
 
 ## How cloud agents run the pipeline (after setup)
 

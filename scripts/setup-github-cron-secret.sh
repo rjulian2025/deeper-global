@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
-# One-time setup: sync CRON_SECRET between Vercel production and GitHub Actions.
+# One-time setup: rotate CRON_SECRET on Vercel production (single source of truth).
 #
-# Vercel dashboard cannot copy encrypted secrets. Rotate once via CLI and set
-# the same value in both places in a single terminal session.
+# GitHub Actions pulls secrets at runtime via VERCEL_TOKEN — do NOT duplicate
+# CRON_SECRET in GitHub repository secrets.
 #
 # Prerequisites:
 #   vercel login
-#   vercel link --project deeper-global-www-production   (from repo root)
-#   gh auth login
+#   vercel link --project deeper-global-h65m   (from repo root)
 #
 # Usage:
 #   ./scripts/setup-github-cron-secret.sh
@@ -24,7 +23,7 @@ while [ $# -gt 0 ]; do
       shift 2
       ;;
     -h|--help)
-      sed -n '1,20p' "$0"
+      sed -n '1,24p' "$0"
       exit 0
       ;;
     *)
@@ -35,7 +34,6 @@ while [ $# -gt 0 ]; do
 done
 
 command -v vercel >/dev/null || { echo "Install Vercel CLI: npm i -g vercel" >&2; exit 1; }
-command -v gh >/dev/null || { echo "Install GitHub CLI: https://cli.github.com/" >&2; exit 1; }
 command -v openssl >/dev/null || { echo "openssl is required" >&2; exit 1; }
 
 NEW_SECRET=$(openssl rand -hex 32)
@@ -44,29 +42,32 @@ echo "→ Rotating CRON_SECRET on Vercel production..."
 vercel env rm CRON_SECRET production --yes
 vercel env add CRON_SECRET production --value "$NEW_SECRET" --yes
 
-echo "→ Setting GitHub repository secret CRON_SECRET..."
-gh secret set CRON_SECRET --body "$NEW_SECRET" --repo "$REPO"
+echo "→ Optional: set ADMIN_PASSPHRASE for /admin console (separate from CRON_SECRET)..."
+echo "    vercel env add ADMIN_PASSPHRASE production --value \"\$(openssl rand -hex 24)\" --yes"
 
 BRANCH=$(git branch --show-current)
 if [ "$BRANCH" != "production/astro" ]; then
   echo "→ Checkout production/astro before redeploy push:"
   echo "    git checkout production/astro && git pull"
-  echo "    git commit --allow-empty -m 'chore: redeploy after CRON_SECRET sync [visit-priority-apply]'"
+  echo "    git commit --allow-empty -m 'chore: redeploy after CRON_SECRET rotation [visit-priority-apply]'"
   echo "    git push origin production/astro"
 else
   echo "→ Triggering production redeploy (Vercel must load the new secret)..."
-  git commit --allow-empty -m "chore: redeploy after CRON_SECRET sync to GitHub [visit-priority-apply]"
+  git commit --allow-empty -m "chore: redeploy after CRON_SECRET rotation [visit-priority-apply]"
   git push origin production/astro
 fi
 
 cat <<EOF
 
-Done. CRON_SECRET is now synced between Vercel and GitHub.
+Done. CRON_SECRET lives only on Vercel production.
 
-Next:
-  1. Wait for the Vercel production deploy to finish.
-  2. GitHub Actions will run the visit-priority pipeline (apply=true on this push).
-  3. Weekly canary: Actions → Pipeline Credentials Check (Mondays 12:00 UTC).
+GitHub Actions setup (one-time):
+  1. Add VERCEL_TOKEN in GitHub → ${REPO} → Settings → Secrets → Actions
+  2. Remove legacy duplicate secrets if present: CRON_SECRET, VERCEL_ORG_ID, VERCEL_PROJECT_ID,
+     SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY (only needed on Vercel now)
 
-Future batches: merge draft JSON to production/astro → auto-apply, no manual steps.
+Verify:
+  • /admin/ after deploy (ADMIN_PASSPHRASE or CRON_SECRET)
+  • GET /api/admin/health with Bearer auth
+  • Actions → Pipeline Credentials Check
 EOF

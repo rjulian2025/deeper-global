@@ -80,6 +80,7 @@ export function shouldIncludePathInSitemap(pathname: string) {
   if (path.startsWith('/entities/') || path.startsWith('/categories/')) return false;
   if (path.startsWith('/design-evolution/')) return false;
   if (path === '/answers/random/') return false;
+  if (path === '/admin/') return false;
 
   return shouldIncludeAnswerPathInSitemap(path);
 }

@@ -35,7 +35,7 @@ function main() {
 Failed to trigger GitHub Actions workflow.
 
 Prerequisites (one-time):
-  1. ./scripts/setup-github-cron-secret.sh  (syncs CRON_SECRET to GitHub)
+  1. VERCEL_TOKEN in GitHub → Settings → Secrets → Actions
   2. gh CLI authenticated: gh auth login
 
 After setup, merging *-drafts.json to production/astro auto-applies.
