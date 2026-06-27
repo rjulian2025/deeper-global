@@ -17,7 +17,10 @@ export type ReviewerExpertiseDomain = {
 export type ReviewerContentGroup = {
   name: string;
   slugs: string[];
+  /** Static hub URL (e.g. curated /adhd/). */
   viewAllPath?: string;
+  /** Canonical taxonomy slug; resolves to the largest live category hub at build time. */
+  viewAllTopicSlug?: string;
 };
 
 export type ReviewerServiceOffering = {
@@ -28,7 +31,10 @@ export type ReviewerServiceOffering = {
 };
 
 export type ReviewerHubConnection = {
-  hubPath: string;
+  /** Static hub URL (e.g. curated /adhd/). */
+  hubPath?: string;
+  /** Canonical taxonomy slug; resolves to the largest live category hub at build time. */
+  hubTopicSlug?: string;
   hubLabel: string;
   summary: string;
 };
@@ -143,7 +149,7 @@ export const reviewerProfiles: ReviewerProfile[] = [
     reviewedContentGroups: [
       {
         name: 'Meaning & existential questions',
-        viewAllPath: '/categories/meaning-faith-and-existential-questions/',
+        viewAllTopicSlug: 'meaning-faith-and-existential-questions',
         slugs: [
           'how-do-i-find-meaning-in-life-when-everything-feel-186602-024',
           'why-do-i-feel-empty-even-when-my-life-looks-177941-018',
@@ -153,7 +159,7 @@ export const reviewerProfiles: ReviewerProfile[] = [
       },
       {
         name: 'Faith transitions & spiritual doubt',
-        viewAllPath: '/categories/meaning-faith-and-existential-questions/',
+        viewAllTopicSlug: 'meaning-faith-and-existential-questions',
         slugs: [
           'what-do-i-do-when-im-losing-faith-in-everything-i--186602-023',
           'why-am-i-losing-faith-in-everything-i-used-to-believe',
@@ -167,7 +173,7 @@ export const reviewerProfiles: ReviewerProfile[] = [
     reviewedKnowledgeIntro:
       'Content reviewed for philosophical depth, honest framing of uncertainty, and language that holds space for people navigating questions that don\'t have clean answers.',
     hubConnection: {
-      hubPath: '/categories/meaning-faith-and-existential-questions/',
+      hubTopicSlug: 'meaning-faith-and-existential-questions',
       hubLabel: 'Meaning & faith hub',
       summary:
         'Explore answers about existential questions, spiritual doubt, faith transitions, and the search for meaning — reviewed through a philosophical lens.',

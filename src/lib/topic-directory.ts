@@ -58,7 +58,8 @@ const EDITORIAL_TOPIC_GROUPS: Array<{ name: string; description: string; slugs: 
   },
 ];
 
-function topicDirectoryHref(topicSlug: string, questions: Question[]) {
+/** Canonical taxonomy slugs map to many DB categories; link to the largest live sub-tag hub. */
+export function getCanonicalTopicCategoryHref(topicSlug: string, questions: Question[]) {
   const categoryCounts = new Map<string, number>();
 
   for (const question of questions) {
@@ -207,7 +208,7 @@ export function getEditorialTopicDirectory(questions: Question[]): EditorialTopi
         name: topic.name,
         slug: topic.slug,
         count: topic.count,
-        href: topicDirectoryHref(topic.slug, questions),
+        href: getCanonicalTopicCategoryHref(topic.slug, questions),
       })),
     discoveryLinks: getGroupDiscoveryLinks(group.slugs, questions),
   })).filter((group) => group.topics.length > 0);

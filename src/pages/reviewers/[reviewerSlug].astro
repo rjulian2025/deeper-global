@@ -6,7 +6,7 @@ import ReviewerVideoCard from '@/components/reviewers/ReviewerVideoCard.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getQuestions } from '@/lib/supabase';
 import { getReviewedByLabel } from '@/lib/trust';
-import { buildReviewGroupDisplays, topicAnswersLabel } from '@/lib/reviewer-page';
+import { buildReviewGroupDisplays, resolveReviewerProfilePaths, topicAnswersLabel } from '@/lib/reviewer-page';
 import { reviewerProfilesBySlug, type ReviewerProfile } from '@/data/reviewers';
 import '@/styles/reviewer-profile.css';
 
@@ -17,8 +17,8 @@ export async function getStaticPaths() {
   }));
 }
 
-const reviewer = Astro.props.reviewer as ReviewerProfile;
 const questions = await getQuestions();
+const reviewer = resolveReviewerProfilePaths(Astro.props.reviewer as ReviewerProfile, questions);
 const questionsBySlug = new Map(questions.map((question) => [question.slug, question]));
 const reviewedAnswers = questions
   .filter((question) => getReviewedByLabel(question) === reviewer.id)

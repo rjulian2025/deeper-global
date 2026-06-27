@@ -1,5 +1,6 @@
 import type { Question } from '@/lib/supabase';
 import type { ReviewerContentGroup, ReviewerProfile, ReviewerServiceOffering } from '@/data/reviewers';
+import { getCanonicalTopicCategoryHref } from '@/lib/topic-directory';
 
 export type ReviewerQuickLink = {
   label: string;
@@ -23,6 +24,32 @@ export type ReviewGroupDisplay = {
 export const REVIEWER_EXCERPT_MAX = 140;
 export const REVIEWER_GROUP_VISIBLE_MAX = 3;
 
+function resolveTopicHubPath(topicSlug: string | undefined, fallback: string | undefined, questions: Question[]) {
+  if (topicSlug) return getCanonicalTopicCategoryHref(topicSlug, questions);
+  return fallback;
+}
+
+/** Resolve canonical taxonomy slugs to live category hub URLs at build time. */
+export function resolveReviewerProfilePaths(reviewer: ReviewerProfile, questions: Question[]): ReviewerProfile {
+  return {
+    ...reviewer,
+    reviewedContentGroups: reviewer.reviewedContentGroups?.map((group) => ({
+      ...group,
+      viewAllPath: resolveTopicHubPath(group.viewAllTopicSlug, group.viewAllPath, questions),
+    })),
+    hubConnection: reviewer.hubConnection
+      ? {
+          ...reviewer.hubConnection,
+          hubPath: resolveTopicHubPath(
+            reviewer.hubConnection.hubTopicSlug,
+            reviewer.hubConnection.hubPath,
+            questions
+          ),
+        }
+      : undefined,
+  };
+}
+
 export function buildReviewerQuickLinks(reviewer: ReviewerProfile): ReviewerQuickLink[] {
   const links: ReviewerQuickLink[] = [];
 
@@ -34,7 +61,7 @@ export function buildReviewerQuickLinks(reviewer: ReviewerProfile): ReviewerQuic
     links.push({ label: 'View reviewed answers', href: '#reviewed-knowledge' });
   }
 
-  if (reviewer.hubConnection) {
+  if (reviewer.hubConnection?.hubPath) {
     links.push({
       label: reviewer.hubConnection.hubLabel,
       href: reviewer.hubConnection.hubPath,

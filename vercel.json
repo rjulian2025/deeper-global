@@ -348,6 +348,11 @@
       "source": "/answers/why-do-i-feel-guilty-for-doubting-my-fai-181083-035",
       "destination": "/answers/why-do-i-feel-guilty-for-questioning-my-religious--186602-025/",
       "permanent": true
+    },
+    {
+      "source": "/categories/meaning-faith-and-existential-questions",
+      "destination": "/categories/spiritual-doubt/",
+      "permanent": true
     }
   ]
 }
