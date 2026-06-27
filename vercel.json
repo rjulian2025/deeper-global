@@ -333,6 +333,16 @@
       "source": "/answers/why-do-i-feel-so-lonely-even-when-im-surrounded-by-people-p7q8r9",
       "destination": "/answers/why-do-i-feel-so-lonely-even-when-im-surrounded-by-people/",
       "permanent": true
+    },
+    {
+      "source": "/answers/why-am-i-losing-faith-in-everything-i-used-to-believe",
+      "destination": "/answers/what-do-i-do-when-im-losing-faith-in-everything-i--186602-023/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-find-my-purpose-when-nothing-feels-meaningful-h8i9j1",
+      "destination": "/answers/how-do-i-find-my-purpose-when-nothing-feels-meaningful-anymore/",
+      "permanent": true
     }
   ]
 }

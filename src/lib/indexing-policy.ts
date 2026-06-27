@@ -51,6 +51,8 @@ export const REDIRECT_SOURCE_SLUGS = new Set([
   'why-do-i-feel-like-im-failing-at-everyth-177940-030',
   'why-do-i-feel-like-im-pretending-to-be-s-177940-018',
   'why-do-i-feel-so-lonely-even-when-im-surrounded-by-people-p7q8r9',
+  'why-am-i-losing-faith-in-everything-i-used-to-believe',
+  'how-do-i-find-my-purpose-when-nothing-feels-meaningful-h8i9j1',
 ]);
 
 export function isRedirectSourceSlug(slug: string) {
