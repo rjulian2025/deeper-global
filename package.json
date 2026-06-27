@@ -24,6 +24,7 @@
     "content:generate-visit-priority-25": "node scripts/generate-visit-priority-batch-25-drafts.mjs",
     "content:publish-visit-priority-25": "node scripts/publish-phase-1b-drafts.mjs --campaign visit-priority reports/phase-1b/visit-priority/batch-25-drafts.json",
     "content:run-visit-priority-pipeline": "node scripts/run-visit-priority-pipeline.mjs",
+    "content:trigger-visit-priority-pipeline": "node scripts/trigger-visit-priority-pipeline.mjs",
     "content:rewrite-gsc-priority-4": "node scripts/rewrite-answers-claude.mjs --apply --slugs-file reports/gsc-weekly/rewrite-batch-priority-4.json",
     "content:review-addiction": "node scripts/review-addiction-answers.mjs",
     "content:review-performance": "node scripts/review-performance-answers.mjs",

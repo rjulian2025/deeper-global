@@ -2,17 +2,19 @@
 
 No local terminal work is required. Run from a cloud agent or GitHub Actions after secrets are configured (see `docs/cloud-content-pipeline.md`).
 
-## Apply everything
+## How cloud agents run the pipeline
+
+### Option A: Trigger GitHub Actions (recommended)
 
 ```bash
-npm run content:run-visit-priority-pipeline -- --apply
+npm run content:trigger-visit-priority-pipeline -- --apply
 ```
 
-## Dry run
+### Option B: GitHub UI
 
-```bash
-npm run content:run-visit-priority-pipeline
-```
+Actions → **Visit Priority Content Pipeline** → Run workflow → set `apply=true`.
+
+See `docs/cloud-content-pipeline.md` for the full durable architecture.
 
 ## What it does
 

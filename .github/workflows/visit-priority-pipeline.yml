@@ -1,5 +1,9 @@
 name: Visit Priority Content Pipeline
 
+# Durable executor: secrets live on Vercel production only.
+# This workflow needs ONE GitHub repository secret: CRON_SECRET (must match Vercel production).
+# Cloud agents prepare content in git; this workflow applies it via the production admin API.
+
 on:
   workflow_dispatch:
     inputs:
@@ -16,32 +20,36 @@ jobs:
   pipeline:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-
-      - run: npm ci
-
-      - name: Run visit-priority pipeline
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-          CRON_SECRET: ${{ secrets.CRON_SECRET }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - name: Validate CRON_SECRET is configured
         run: |
-          ARGS=""
-          if [ "${{ inputs.apply }}" = "true" ]; then ARGS="$ARGS --apply"; fi
-          if [ "${{ inputs.rewrite_only_unstaged }}" = "true" ]; then ARGS="$ARGS --rewrite-only-unstaged"; fi
-          npm run content:run-visit-priority-pipeline -- $ARGS
+          if [ -z "${{ secrets.CRON_SECRET }}" ]; then
+            echo "::error::Missing GitHub repository secret CRON_SECRET. Add it once in Settings → Secrets → Actions."
+            exit 1
+          fi
 
-      - name: Upload pipeline report
+      - name: Call production visit-priority pipeline
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          APPLY: ${{ inputs.apply }}
+          REWRITE_ONLY_UNSTAGED: ${{ inputs.rewrite_only_unstaged }}
+        run: |
+          PAYLOAD=$(node -e "console.log(JSON.stringify({ apply: process.env.APPLY === 'true', rewriteOnlyUnstaged: process.env.REWRITE_ONLY_UNSTAGED === 'true' }))")
+          RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "https://www.deeper.global/api/admin/run-visit-priority-pipeline" \
+            -H "Authorization: Bearer ${CRON_SECRET}" \
+            -H "Content-Type: application/json" \
+            -d "${PAYLOAD}")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+          echo "$BODY" | tee pipeline-response.json
+          if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 300 ]; then
+            echo "::error::Pipeline request failed with HTTP ${HTTP_CODE}"
+            exit 1
+          fi
+
+      - name: Upload pipeline response
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: visit-priority-pipeline-report
-          path: reports/phase-1b/visit-priority/pipeline-run-*.json
+          name: visit-priority-pipeline-response
+          path: pipeline-response.json
           if-no-files-found: ignore
