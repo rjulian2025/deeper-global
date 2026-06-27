@@ -2,102 +2,89 @@
 
 Production content runs without per-session secret setup. **Secrets are not stored in cloud agent VMs.**
 
-## Architecture (durable)
+## Architecture (permanent)
 
 ```text
 Cloud agent (no production secrets)
-  → commits draft JSON + manifest to git
-  → triggers GitHub Actions (gh workflow run) OR manual Run workflow
+  → commits draft JSON to git
+  → merges to production/astro
 GitHub Actions (one durable secret: CRON_SECRET)
+  → auto-applies when *-drafts.json changes
   → POST https://www.deeper.global/api/admin/run-visit-priority-pipeline
-Vercel production (all real secrets)
-  → SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY, etc.
-  → inserts rows + runs Claude rewrites
+Vercel production (secret vault)
+  → SUPABASE_SERVICE_ROLE_KEY, ANTHROPIC_API_KEY, CRON_SECRET, etc.
+  → executes inserts + Claude rewrites
 ```
 
-### Why cloud agents lose secrets
+## One-time setup (do this once)
 
-| Store | Problem |
-| --- | --- |
-| `~/.config/deeper-global/secrets.env` | Ephemeral cloud VM; wiped each session |
-| Cursor Secrets injection | Works when configured, but easy to mis-scope or omit |
-| `vercel env pull` / Supabase CLI | Requires CLI auth that does not persist in cloud agents |
-| Multiple fallback paths | Each failure mode looks like "secrets lost again" |
+Vercel dashboard **cannot copy** encrypted `CRON_SECRET`. Rotate once via CLI and sync to GitHub in the same terminal session:
 
-**Fix:** cloud agents never hold production credentials. They edit git and trigger the durable executor.
+```bash
+# From repo root, after: vercel login && vercel link --project deeper-global-www-production
+chmod +x scripts/setup-github-cron-secret.sh
+./scripts/setup-github-cron-secret.sh
+```
 
-## One-time setup (do this once, not per agent session)
+This script:
 
-### 1. Vercel production (already your secret vault)
+1. Generates a clean `CRON_SECRET` (`openssl rand -hex 32`)
+2. Sets it on Vercel production
+3. Sets the same value in GitHub → Settings → Secrets → Actions
+4. Pushes an empty commit to `production/astro` to redeploy and apply the pending batch
 
-Confirm these exist on Vercel production for `deeper-global`:
+### Confirm Vercel production env (already required)
 
 - `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `ANTHROPIC_API_KEY`
-- `CRON_SECRET`
+- `CRON_SECRET` (set by setup script)
 
-### 2. GitHub repository secret (durable executor)
+### Weekly canary
 
-Add **one** secret in GitHub → Settings → Secrets and variables → Actions:
+`Pipeline Credentials Check` runs Mondays 12:00 UTC. It dry-runs the admin API and fails if `CRON_SECRET` drifts or is missing.
 
-| Secret | Value |
+## Automation after setup
+
+| Event | Behavior |
 | --- | --- |
-| `CRON_SECRET` | Same value as Vercel production `CRON_SECRET` |
+| Merge `*-drafts.json` under `reports/phase-1b/visit-priority/` to `production/astro` | **Auto-apply** (insert + rewrite) |
+| Merge candidates/summary only | Dry-run (report artifact only) |
+| Commit message contains `[visit-priority-apply]` | Force apply |
+| Manual: Actions → Visit Priority Content Pipeline | Choose apply on/off |
 
-### 3. Deploy admin API routes
+Cloud agents **do not trigger workflows manually**. Merge the PR; Actions handles the rest.
 
-Merge and deploy the branch containing:
+## How cloud agents run future batches
 
-- `api/admin/run-visit-priority-pipeline.js`
-- `api/admin/publish-phase-1b-drafts.js`
-- `api/admin/rewrite-answers-claude.js`
+1. Generate or edit `reports/phase-1b/visit-priority/batch-*-drafts.json`
+2. Open PR → merge to `production/astro`
+3. Done (pipeline runs automatically)
 
-## How cloud agents run the pipeline
-
-### Option A: Trigger GitHub Actions (recommended)
-
-```bash
-node scripts/trigger-visit-priority-pipeline.mjs --apply
-```
-
-Requires `gh` CLI auth to the repo (usually already available when the agent can push).
-
-### Option B: GitHub UI
-
-Actions → **Visit Priority Content Pipeline** → Run workflow → set `apply=true`.
-
-### Option C: Direct production API (only if CRON_SECRET is injected)
+Optional explicit trigger:
 
 ```bash
-npm run content:run-visit-priority-pipeline -- --apply
+npm run content:trigger-visit-priority-pipeline -- --apply
 ```
 
-Use only when `CRON_SECRET` is reliably injected. Prefer Option A otherwise.
+Requires `gh` CLI with workflow dispatch permission.
 
 ## What the pipeline does
 
-1. Inserts up to **25** new rows from `reports/phase-1b/visit-priority/batch-25-drafts.json` (`review_status = draft`, skips existing slugs)
-2. Rewrites **4** GSC momentum pages from `reports/gsc-weekly/rewrite-batch-priority-4.json` into `staging_*`
-3. Returns JSON report in GitHub Actions artifacts
+1. Inserts up to **25** new rows from `batch-25-drafts.json` (`review_status = draft`, skips existing slugs)
+2. Rewrites **4** GSC momentum pages from `rewrite-batch-priority-4.json` into `staging_*`
+3. Uploads JSON report as a GitHub Actions artifact
 
-## Regenerating the batch
+## Credential fallbacks (optional)
 
-Cloud agent updates ranked candidates and drafts in-repo:
+If you prefer not to duplicate `CRON_SECRET`, add instead:
 
-```bash
-node scripts/generate-visit-priority-batch-25-drafts.mjs
-```
+| Secrets | Path |
+| --- | --- |
+| `VERCEL_TOKEN` + `VERCEL_ORG_ID` + `VERCEL_PROJECT_ID` | `vercel pull` in Actions |
+| `SUPABASE_SERVICE_ROLE_KEY` (+ `ANTHROPIC_API_KEY`) | Direct Supabase write in Actions |
 
-Then trigger the pipeline (Option A or B).
-
-## Do not use Codex for this
-
-Codex generates **content** (draft JSON). Secret persistence and pipeline execution are **repo infrastructure** problems, solved by:
-
-- Vercel as secret vault
-- GitHub Actions as durable trigger
-- Admin API as execution layer
+`CRON_SECRET` is the recommended path: one secret, no duplication of Supabase/Anthropic keys in GitHub.
 
 ## Safety
 
