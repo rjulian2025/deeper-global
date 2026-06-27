@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 /**
- * Claude rewrite → QA → repair → em-dash sanitize → promote for visit-priority 25.
+ * Visit-priority 25: same pipeline as docs/content-governance.md (June 1099-page rewrite).
  *
- * Dry run (rewrite skipped unless --apply):
+ *   Rewrite → Sanitize → Repair → QA → Promote (dry-run) → Promote (--apply)
+ *
+ * Dry run (rewrite preview only):
  *   npm run content:run-visit-priority-25-rewrite-pipeline
  *
  * Full pipeline:
@@ -53,6 +55,7 @@ function main() {
     JSON.stringify(
       {
         pipeline: 'visit-priority-25-rewrite',
+        contract: 'docs/content-governance.md',
         mode: args.apply ? 'apply' : 'dry-run',
         slug_count: slugs.length,
         slugs_file: SLUGS_FILE,
@@ -71,26 +74,30 @@ function main() {
     args.batchSize,
   ];
   if (args.apply) rewriteArgs.push('--apply');
-  run('Claude rewrite → staging_* fields', 'node', rewriteArgs);
+  run('1/6 Claude rewrite → staging_* fields', 'node', rewriteArgs);
 
   if (!args.apply) {
-    console.log('\nDry run complete. Re-run with --apply to QA, repair, sanitize, and promote.');
+    console.log('\nDry run complete. Re-run with --apply for sanitize → repair → QA → promote.');
     return;
   }
 
-  run('QA staging batch (latest rewrite CSV)', 'node', ['scripts/qa-answer-rewrite-batch.mjs']);
+  run('2/6 Sanitize em-dashes in staging', 'node', ['scripts/sanitize-staging-emdash.mjs', '--apply']);
 
-  run('Repair QA issues on staging fields', 'node', [
+  run('3/6 Repair staging QA issues (25 slugs)', 'node', [
     'scripts/repair-staging-rewrite.mjs',
     '--apply',
     ...slugArgs(slugs),
   ]);
 
-  run('Re-QA after repair', 'node', ['scripts/qa-answer-rewrite-batch.mjs']);
+  run('4/6 QA (latest rewrite CSV batch)', 'node', ['scripts/qa-answer-rewrite-batch.mjs']);
 
-  run('Sanitize em-dashes in staging fields', 'node', ['scripts/sanitize-staging-emdash.mjs', '--apply']);
+  run('5/6 Promote dry-run', 'node', [
+    'scripts/promote-answer-rewrite.mjs',
+    '--allow-warn',
+    ...slugArgs(slugs),
+  ]);
 
-  run('Promote staging → live answer fields', 'node', [
+  run('6/6 Promote apply → live answer fields', 'node', [
     'scripts/promote-answer-rewrite.mjs',
     '--apply',
     '--allow-warn',
@@ -98,7 +105,7 @@ function main() {
   ]);
 
   console.log('\n✓ Visit-priority 25 rewrite pipeline complete.');
-  console.log('  Next: npm run deploy:prod (or push to production/astro) to rebuild static answer pages.');
+  console.log('  Next: npm run deploy:prod (rebuilds static pages with promoted copy).');
 }
 
 try {
