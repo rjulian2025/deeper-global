@@ -125,6 +125,34 @@ Answer pages prefer staging when present (`src/lib/content.ts`):
 
 After promote, live fields and staging align; preview and production stay consistent.
 
+## Reviewer assignment (content-type axis)
+
+Hub category and reviewer assignment are **independent**. A page can live in Spirituality & Meaning sub-tags while retaining a clinical reviewer if the content requires clinical expertise.
+
+### Rick Julian (`rick-julian`) — philosophical / meaning content
+
+Assign when the answer is primarily about faith transitions, meaning-making, purpose, identity, or philosophical inquiry **without** a clinical centerpiece. Examples: faith deconstruction, partner or family disclosure about belief change, building a personal practice, midlife questioning, existentialism as a framework, social dynamics after leaving a community.
+
+Display title: **Editorial Reviewer** (not "Clinical Reviewer"). Set `reviewAttributionPrefix: 'Editorially reviewed by'` on the profile in `src/data/reviewers.ts`.
+
+### Clinical reviewers (e.g. David K. Gore, PhD)
+
+Keep (or assign) when content touches **any** of:
+
+- Anxiety or existential anxiety as a presenting concern
+- Trauma (including religious or spiritual trauma as a clinical construct)
+- Grief framed as clinical symptom or bereavement process
+- Depression-adjacency or hopelessness/despair as primary frame
+- Mortality fear as acute presenting distress (death anxiety, hell fear)
+- Professional-help triage / differential ("do I need a therapist?")
+- Crisis-safety centerpiece (988, self-harm risk, escalation thresholds)
+
+Standard optional therapist mention or 988 footer in `when_to_reach_out` **alone** does not automatically require a clinical reviewer.
+
+### Batch workflow
+
+Before promote: classify each draft `(a)` philosophical/meaning or `(b)` clinical-adjacent; set `reviewed_by` accordingly. Do not bulk-assign Rick Julian to an entire hub category.
+
 ## QA scores
 
 - **PASS** — eligible for promote

@@ -104,15 +104,22 @@ export function isDraftReviewStatus(question: Question) {
   return getReviewStatusLabel(question) === 'draft';
 }
 
+export function getReviewerTrustRoleLabel(reviewerProfile: ReviewerProfile, isDraft = false) {
+  if (isDraft) return 'Expert Reviewer';
+  return reviewerProfile.trustRoleLabel ?? 'Clinical Reviewer';
+}
+
+export function getReviewerAttributionPrefix(reviewerProfile: ReviewerProfile, isDraft = false) {
+  if (isDraft) return 'Expert reviewed by';
+  return reviewerProfile.reviewAttributionPrefix ?? 'Clinically reviewed by';
+}
+
 export function getReviewerAttributionHeadline(question: Question) {
   const reviewerProfile = getReviewerProfile(question);
   if (!reviewerProfile) return '';
 
-  if (isDraftReviewStatus(question)) {
-    return `Expert reviewed by ${reviewerProfile.name}`;
-  }
-
-  return `Clinically reviewed by ${reviewerProfile.name}`;
+  const prefix = getReviewerAttributionPrefix(reviewerProfile, isDraftReviewStatus(question));
+  return `${prefix} ${reviewerProfile.name}`;
 }
 
 export function getReviewerAttributionDetail(question: Question) {

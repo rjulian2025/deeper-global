@@ -81,6 +81,10 @@ export type ReviewerProfile = {
   locationLine?: string;
   primaryCta?: { label: string; href: string };
   expertiseSummary?: string;
+  /** Sidebar trust label on answer pages (default: Clinical Reviewer). */
+  trustRoleLabel?: string;
+  /** Trust headline prefix (default: Clinically reviewed by). */
+  reviewAttributionPrefix?: string;
 };
 
 const PEACHTREE = 'https://peachtreepsychology.com';
@@ -97,6 +101,8 @@ export const reviewerProfiles: ReviewerProfile[] = [
     designation: 'Content reviewer for spirituality, meaning, and philosophical inquiry',
     credentialLine: 'Bestselling Author of The Way | A Modern Tao Te Ching',
     role: 'Author & Philosopher',
+    trustRoleLabel: 'Editorial Reviewer',
+    reviewAttributionPrefix: 'Editorially reviewed by',
     practiceUrl: 'https://www.rickjulian.com',
     image: '/authorities/rick-julian.png',
     imageAlt: 'Rick Julian — author and philosopher, content reviewer for spirituality and meaning at Deeper Global',

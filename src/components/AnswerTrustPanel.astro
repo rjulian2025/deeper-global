@@ -4,6 +4,7 @@ import {
   getReviewedAt,
   getReviewedByLabel,
   getReviewerAttributionDetail,
+  getReviewerAttributionPrefix,
   getReviewerProfile,
   getReviewerDisplayLabel,
   getReviewStatusLabel,
@@ -40,7 +41,7 @@ const hasMeaningfulTrustContent = Boolean(reviewedBy || reviewedAt || reviewStat
       {reviewerProfile ? (
         <div class="trust-reviewer">
           <p class="trust-reviewed-by">
-            {isDraftReview ? 'Expert reviewed by ' : 'Clinically reviewed by '}
+            {getReviewerAttributionPrefix(reviewerProfile, isDraftReview)}{' '}
             <a href={reviewerProfile.url}><strong>{reviewerProfile.name}</strong></a>
           </p>
           <p class="trust-credentials">{reviewerDetail}</p>

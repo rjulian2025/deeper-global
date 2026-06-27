@@ -25,7 +25,8 @@ const reviewedAnswers = questions
   .sort((a, b) => a.question.localeCompare(b.question));
 
 const displayName = reviewer.displayName ?? reviewer.name;
-const pageTitle = `${displayName} | Clinical Reviewer | Deeper Global`;
+const reviewerPageRole = reviewer.trustRoleLabel ?? 'Clinical Reviewer';
+const pageTitle = `${displayName} | ${reviewerPageRole} | Deeper Global`;
 const pageDescription = reviewer.designation
   ? `${displayName}. ${reviewer.designation}`
   : `${reviewer.name} reviews selected Deeper Global answers related to ${reviewer.specialtyLabel.toLowerCase()}.`;
