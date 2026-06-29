@@ -108,15 +108,15 @@ function buildOgSvgMarkup(options) {
     </linearGradient>
   </defs>
   <rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="url(#bg)" />
-  <text x="72" y="92" fill="#a8cde8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="600" letter-spacing="3.2">${escapeXml(EYEBROW)}</text>
-  <text fill="#fffdf9" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="600" letter-spacing="-0.5">
+  <text x="72" y="92" fill="#a8cde8" font-family="Inter, sans-serif" font-size="18" font-weight="600" letter-spacing="3.2">${escapeXml(EYEBROW)}</text>
+  <text fill="#fffdf9" font-family="'Noto Serif Display', serif" font-size="54" font-weight="600" letter-spacing="-0.5">
     ${options.headlineBlock}
   </text>
-  <text fill="rgba(255,253,249,0.72)" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="24" font-weight="400">
+  <text fill="rgba(255,253,249,0.72)" font-family="Inter, sans-serif" font-size="24" font-weight="400">
     ${subcopyTspans}
   </text>
-  <text x="72" y="572" fill="#a8cde8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="500" letter-spacing="0.4">deeper.global</text>
-  <text x="1128" y="572" text-anchor="end" fill="rgba(255,253,249,0.48)" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="500" letter-spacing="2.4">DEEPER GLOBAL</text>
+  <text x="72" y="572" fill="#a8cde8" font-family="Inter, sans-serif" font-size="22" font-weight="500" letter-spacing="0.4">deeper.global</text>
+  <text x="1128" y="572" text-anchor="end" fill="rgba(255,253,249,0.48)" font-family="Inter, sans-serif" font-size="18" font-weight="500" letter-spacing="2.4">DEEPER GLOBAL</text>
 </svg>`;
 }
 

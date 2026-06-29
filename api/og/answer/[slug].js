@@ -1,16 +1,9 @@
-import { Resvg } from '@resvg/resvg-js';
 import { fetchQuestionBySlug } from '../../lib/answer-api.mjs';
 import { buildAnswerOgSvg, getAnswerDisplayTitle } from '../../lib/og-answer-image.mjs';
+import { renderOgPng } from '../../lib/render-og-png.mjs';
 
 function cleanSlug(value) {
   return typeof value === 'string' ? value.trim().replace(/\.png$/i, '') : '';
-}
-
-function renderPng(svg) {
-  const resvg = new Resvg(svg, {
-    fitTo: { mode: 'width', value: 1200 },
-  });
-  return resvg.render().asPng();
 }
 
 export default async function handler(req, res) {
@@ -32,7 +25,7 @@ export default async function handler(req, res) {
 
     const title = getAnswerDisplayTitle(question);
     const svg = buildAnswerOgSvg(title);
-    const png = renderPng(svg);
+    const png = renderOgPng(svg);
 
     res.setHeader('Content-Type', 'image/png');
     res.setHeader('Cache-Control', 'public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400');
