@@ -1,3 +1,48 @@
+// Production hostnames allowed to send first-party intent events.
+// Preview/staging/branch deployments (e.g. *.vercel.app, localhost) and
+// non-production hosts must never write to Supabase intent_events.
+const PROD_HOSTS = new Set(['deeper.global', 'www.deeper.global']);
+
+// Same conservative obvious-bot/headless UA list used by the client-side guard
+// in src/layouts/BaseLayout.astro. Bots are allowed to crawl (robots.txt) but
+// are not counted in analytics. Matched requests are ignored silently (204).
+const BOT_UA = /(bot|crawl|spider|slurp|headless|phantom|selenium|playwright|puppeteer|pingdom|uptime|monitor|bytespider|gptbot|claudebot|perplexitybot|ccbot|googlebot|bingbot|semrush|ahrefs|dotbot|petalbot|youbot|omgilibot|facebookbot|diffbot|applebot-extended)/i;
+
+// Tradeoff note on Origin/Referer enforcement:
+// sendBeacon() and fetch() from a real browser on deeper.global carry an
+// `Origin` header (and usually `Referer`) that matches the production host.
+// Some privacy tools strip Referer but keep Origin; a few strip both. To avoid
+// dropping legitimate production users, we accept a request when EITHER:
+//   (a) Origin host is a PROD_HOST, or
+//   (b) Referer host is a PROD_HOST, or
+//   (c) both Origin and Referer are absent AND the User-Agent is not a bot
+//       (covers edge privacy configs on real browsers).
+// We explicitly REJECT when an Origin/Referer IS present but points at a
+// non-production host (preview/staging/localhost/vercel.app). This blocks
+// preview/branch deployments and cross-origin test harnesses without blocking
+// normal users whose browsers simply omit the headers.
+function isAllowedOrigin(req) {
+  const header = (value) => {
+    if (!value) return null;
+    try {
+      const host = new URL(value).hostname;
+      return host || null;
+    } catch {
+      return null;
+    }
+  };
+
+  const originHost = header(req.headers['origin']);
+  const refererHost = header(req.headers['referer']);
+
+  if (originHost) return PROD_HOSTS.has(originHost);
+  if (refererHost) return PROD_HOSTS.has(refererHost);
+
+  // Both absent: allow only for non-bot user agents (real-browser privacy case).
+  const userAgent = req.headers['user-agent'] ?? '';
+  return !BOT_UA.test(userAgent);
+}
+
 const ALLOWED_EVENTS = new Set([
   'answer_viewed',
   'category_viewed',
@@ -190,6 +235,17 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'method_not_allowed' });
+  }
+
+  // Reject obvious bots/headless browsers silently. Do not write to Supabase.
+  const userAgent = req.headers['user-agent'] ?? '';
+  if (BOT_UA.test(userAgent)) {
+    return res.status(204).end();
+  }
+
+  // Reject non-production origins (preview/staging/localhost/cross-origin).
+  if (!isAllowedOrigin(req)) {
+    return res.status(204).end();
   }
 
   const event = sanitizeEvent(bodyFromRequest(req), req);

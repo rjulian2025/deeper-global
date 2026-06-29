@@ -12,6 +12,13 @@ const DEFAULT_OG_IMAGE_HEIGHT = 630;
 // Add new prototype path prefixes here when needed.
 const ANALYTICS_EXCLUDED_PREFIXES = ['/design-evolution/'];
 
+// Analytics (GA4 + first-party intent events) fire only on the production
+// hostnames. Preview/staging/branch deployments (e.g. *.vercel.app, localhost)
+// must never pollute GA4 or Supabase intent_events. Bots are still allowed to
+// crawl via robots.txt, but the client-side guard below keeps them out of
+// analytics. See also api/intent-event.js for the matching server guard.
+const PROD_HOSTS = new Set(['deeper.global', 'www.deeper.global']);
+
 type Props = {
   title?: string;
   description?: string;
@@ -41,7 +48,9 @@ const {
   imageHeight = DEFAULT_OG_IMAGE_HEIGHT,
 } = Astro.props;
 
+const isProdHost = PROD_HOSTS.has(Astro.url.hostname);
 const suppressAnalytics =
+  !isProdHost ||
   noAnalytics ||
   ANALYTICS_EXCLUDED_PREFIXES.some((prefix) => Astro.url.pathname.startsWith(prefix));
 
@@ -111,11 +120,17 @@ const structuredData = {
         <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
           window.dataLayer = window.dataLayer || [];
           window.gtag = function gtag(){window.dataLayer.push(arguments);}
-          window.gtag('js', new Date());
-          window.gtag('config', GA_MEASUREMENT_ID, {
-            page_location: `${window.location.origin}${window.location.pathname}`,
-            page_path: window.location.pathname,
-          });
+          // Obvious bots/headless browsers skip GA4 config so no page_view (and
+          // no custom events from the IIFE below) are sent. The gtag loader
+          // only defines the queue — it sends no data without a config command.
+          // Bots may still crawl (see robots.txt); they just are not counted.
+          if (!/(bot|crawl|spider|slurp|headless|phantom|selenium|playwright|puppeteer|pingdom|uptime|monitor|bytespider|gptbot|claudebot|perplexitybot|ccbot|googlebot|bingbot|semrush|ahrefs|dotbot|petalbot|youbot|omgilibot|facebookbot|diffbot|applebot-extended)/i.test(navigator.userAgent)) {
+            window.gtag('js', new Date());
+            window.gtag('config', GA_MEASUREMENT_ID, {
+              page_location: `${window.location.origin}${window.location.pathname}`,
+              page_path: window.location.pathname,
+            });
+          }
         </script>
       </>
     )}
@@ -194,6 +209,12 @@ const structuredData = {
     </div>
     {!suppressAnalytics && <script is:inline define:vars={{ INTENT_EVENT_ENDPOINT }}>
       (() => {
+        // Obvious bots/headless browsers/crawlers are allowed to crawl (see
+        // robots.txt) but must not be counted in GA4 or first-party intent
+        // events. Conservative UA match — should never match a normal browser.
+        const BOT_UA = /(bot|crawl|spider|slurp|headless|phantom|selenium|playwright|puppeteer|pingdom|uptime|monitor|bytespider|gptbot|claudebot|perplexitybot|ccbot|googlebot|bingbot|semrush|ahrefs|dotbot|petalbot|youbot|omgilibot|facebookbot|diffbot|applebot-extended)/i;
+        if (BOT_UA.test(navigator.userAgent)) return;
+
         const MAX_PARAM_LENGTH = 100;
         const sameHost = window.location.hostname;
         const path = window.location.pathname;
