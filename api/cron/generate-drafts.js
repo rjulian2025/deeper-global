@@ -102,64 +102,6 @@ function getXWeightedLength(text) {
   return text.replace(/https?:\/\/\S+/g, 'x'.repeat(X_TCO_URL_LENGTH)).length;
 }
 
-function stripJsonFence(text) {
-  return text
-    .trim()
-    .replace(/^```(?:json)?\s*/i, '')
-    .replace(/\s*```$/i, '')
-    .trim();
-}
-
-function extractFirstJsonObject(text) {
-  const start = text.indexOf('{');
-  if (start === -1) return null;
-
-  let depth = 0;
-  let inString = false;
-  let escaped = false;
-
-  for (let index = start; index < text.length; index += 1) {
-    const char = text[index];
-
-    if (escaped) {
-      escaped = false;
-      continue;
-    }
-
-    if (char === '\\') {
-      escaped = inString;
-      continue;
-    }
-
-    if (char === '"') {
-      inString = !inString;
-      continue;
-    }
-
-    if (inString) continue;
-
-    if (char === '{') depth += 1;
-    if (char === '}') {
-      depth -= 1;
-      if (depth === 0) return text.slice(start, index + 1);
-    }
-  }
-
-  return null;
-}
-
-function parseJsonDefensively(text) {
-  const stripped = stripJsonFence(text);
-
-  try {
-    return JSON.parse(stripped);
-  } catch (primaryError) {
-    const extracted = extractFirstJsonObject(stripped);
-    if (!extracted) throw primaryError;
-    return JSON.parse(extracted);
-  }
-}
-
 function extractTextFromAnthropicPayload(payload) {
   const content = payload?.content;
   if (!Array.isArray(content)) return '';
@@ -207,86 +149,31 @@ Question: ${question}`,
   return truncateAtWord(text.replace(/^["']|["']$/g, ''), 200);
 }
 
-function buildSourceSummary(question) {
-  const takeaways = Array.isArray(question.key_takeaways)
-    ? question.key_takeaways.map(cleanText).filter(Boolean).slice(0, 4)
-    : [];
-
-  return {
-    question: cleanText(question.question),
-    category: cleanText(question.category),
-    short_answer: cleanText(question.short_answer),
-    key_takeaways: takeaways,
-    url: `https://www.deeper.global/answers/${question.slug}/`,
-  };
-}
-
-function parseGeneratedJson(text, options) {
-  const parsed = parseJsonDefensively(text);
-  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
-    throw new Error('anthropic_json_not_object');
-  }
-
-  let questionInsight = cleanText(parsed.question_insight);
-
-  if (!questionInsight) {
-    throw new Error('anthropic_json_missing_fields');
-  }
-
-  const questionInsightXLength = getXWeightedLength(questionInsight);
-  if (questionInsightXLength > options.questionInsightMaxLength) {
-    let trimmed = questionInsight.trimEnd();
-    for (let i = 0; i < 20 && getXWeightedLength(trimmed) > options.questionInsightMaxLength; i += 1) {
-      const lastSpace = trimmed.lastIndexOf(' ');
-      if (lastSpace < 10) break;
-      trimmed = trimmed.slice(0, lastSpace);
-    }
-    trimmed = trimmed.replace(/[,;:-]+$/, '').trimEnd();
-    questionInsight = trimmed;
-
-    if (getXWeightedLength(questionInsight) > options.questionInsightMaxLength) {
-      throw new Error(`question_insight_too_long:${questionInsightXLength}`);
-    }
-  }
-
-  return { questionInsight };
-}
-
-async function generateQuestionInsightPost(question, questionOnlyText, apiKey, categorySafetyTier) {
-  const source = buildSourceSummary(question);
+/**
+ * The post body is the question itself plus the answer link, nothing more.
+ * Explanation/insight only happens on deeper.global after the click-through;
+ * the X post must never start to answer the question.
+ */
+function buildQuestionOnlyPost(question, questionOnlyText, categorySafetyTier) {
+  const url = `https://www.deeper.global/answers/${question.slug}/`;
   const restricted = categorySafetyTier === 'restricted';
-  const appendedCrisisLine = `\n\n${RESTRICTED_CATEGORY_CRISIS_RESOURCE_LINE}`;
-  const answerLinkBlock = `\n\n${source.url}`;
-  const questionInsightMaxLength = restricted
-    ? 260 - appendedCrisisLine.length - getXWeightedLength(answerLinkBlock)
-    : 260 - getXWeightedLength(answerLinkBlock);
-  if (questionInsightMaxLength < 80) throw new Error('restricted_question_insight_budget_too_small');
+  const linkBlock = `\n\n${url}`;
+  const crisisBlock = restricted ? `\n\n${RESTRICTED_CATEGORY_CRISIS_RESOURCE_LINE}` : '';
+  const maxQuestionLength = 280 - getXWeightedLength(linkBlock) - crisisBlock.length;
 
-  const text = await callAnthropicText({
-    apiKey,
-    system: BRAND_SYSTEM_PROMPT,
-    maxTokens: 400,
-    temperature: 0.5,
-    user: `Create one X post draft from this Deeper Global question record.
+  if (maxQuestionLength < 40) throw new Error('question_only_budget_too_small');
 
-Rules:
-- Return ONLY valid JSON with exactly this field: "question_insight".
-- Use this exact question text to open the post: ${JSON.stringify(questionOnlyText)}. Do not rephrase or shorten it.
-- "question_insight": begin with that exact question text, then 1-2 sentences of genuine insight paraphrased from short_answer/key_takeaways, never copied verbatim. Do not include any URL.
-- "question_insight" must be under ${questionInsightMaxLength} X-weighted characters total${restricted ? `; the app will append this crisis-resource line afterward, so do not include it yourself: ${JSON.stringify(RESTRICTED_CATEGORY_CRISIS_RESOURCE_LINE)}` : ''}.
+  const questionText =
+    getXWeightedLength(questionOnlyText) > maxQuestionLength
+      ? truncateAtWord(questionOnlyText, maxQuestionLength)
+      : questionOnlyText;
 
-Source:
-${JSON.stringify(source, null, 2)}`,
-  });
-
-  const generated = parseGeneratedJson(text, { questionInsightMaxLength });
-  const withLink = `${generated.questionInsight}${answerLinkBlock}`;
-
-  if (getXWeightedLength(withLink) > 260) {
-    throw new Error(`question_insight_too_long:${getXWeightedLength(withLink)}`);
+  const body = `${questionText}${linkBlock}${crisisBlock}`;
+  if (getXWeightedLength(body) > 280) {
+    throw new Error(`question_only_post_too_long:${getXWeightedLength(body)}`);
   }
 
-  return restricted ? `${withLink}${appendedCrisisLine}` : withLink;
+  return body;
 }
 
 export async function generateSocialDraftSet(question, anthropicApiKey, logger = console) {
@@ -321,9 +208,9 @@ export async function generateSocialDraftSet(question, anthropicApiKey, logger =
     path: questionOnlyPath,
   });
 
-  let questionInsightBody;
+  let questionOnlyBody;
   try {
-    questionInsightBody = await generateQuestionInsightPost(question, questionOnly, anthropicApiKey, categorySafetyTier);
+    questionOnlyBody = buildQuestionOnlyPost(question, questionOnly, categorySafetyTier);
   } catch (error) {
     logger.error('social_generation_failed_no_drafts_written', {
       question_id: question.id,
@@ -332,7 +219,7 @@ export async function generateSocialDraftSet(question, anthropicApiKey, logger =
     throw error;
   }
 
-  const drafts = [{ format: 'question_insight', body: questionInsightBody }];
+  const drafts = [{ format: 'question_only', body: questionOnlyBody }];
 
   return { questionOnlyPath, drafts };
 }
