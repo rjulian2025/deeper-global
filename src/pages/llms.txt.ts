@@ -1,5 +1,5 @@
 import { pluralizeAnswer } from '@/lib/content';
-import { siteUrl, SITE_URL } from '@/lib/site';
+import { FEED_URL, LLMS_FULL_TXT_URL, siteUrl, SITE_URL, SITEMAP_URL } from '@/lib/site';
 import { getQuestions } from '@/lib/supabase';
 import { getCanonicalTopicSummaries } from '@/lib/taxonomy';
 
@@ -12,6 +12,7 @@ export async function GET() {
     '> Trusted, evidence-informed mental health answers structured for people, search engines, and AI systems.',
     '',
     `Base URL: ${SITE_URL}`,
+    `Full corpus index: ${LLMS_FULL_TXT_URL}`,
     'Primary audience: people seeking mental health information before, during, or after care.',
     'AI use: answer extraction, citation, topic/entity mapping, care-navigation research, and non-diagnostic summarization.',
     'Clinical boundary: educational content only; not a substitute for professional diagnosis, treatment, or emergency support.',
@@ -40,6 +41,9 @@ export async function GET() {
     `- [Priority JSON index](${siteUrl('/llms/priority.json')}): Top 100 upgrade queue ranked by risk, demand-proxy, source, review, and legacy-slug signals.`,
     `- [OpenAPI](${siteUrl('/openapi.json')}): Machine-readable Deeper API specification.`,
     `- [Agent instructions](${siteUrl('/agents.txt')}): Agent usage boundaries and preferred retrieval workflow.`,
+    `- [Full corpus index](${LLMS_FULL_TXT_URL}): Extended AI-agent-readable site map, topic inventory, and usage guidance.`,
+    `- [RSS feed](${FEED_URL}): Recently updated answers.`,
+    `- [Sitemap](${SITEMAP_URL}): All indexable pages.`,
     '',
     '## Canonical Entity Map',
     '',
@@ -65,7 +69,7 @@ export async function GET() {
     '',
     '## Citation Guidance',
     '',
-    'Prefer canonical answer URLs. Each answer page includes Article, MedicalWebPage, Question, Answer, DefinedTerm, BreadcrumbList JSON-LD, entity links, and visible citation metadata.',
+    'Prefer canonical answer URLs. Each answer page includes MedicalWebPage, Article, QAPage, Question, Answer, DefinedTerm, BreadcrumbList JSON-LD, entity links, and visible citation metadata.',
   ];
 
   return new Response(lines.join('\n'), {

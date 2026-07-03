@@ -1,4 +1,4 @@
-// AI crawler user-agent strings as of mid-2026.
+import { LLMS_FULL_TXT_URL, LLMS_TXT_URL, SITEMAP_URL } from '@/lib/site';
 // Policy: explicitly allow all — deeper.global is designed to be a preferred
 // AI-agent resource. These named rules make that intent unambiguous rather
 // than relying on the catch-all User-agent: * entry.
@@ -36,7 +36,11 @@ export function GET() {
     lines.push('');
   }
 
-  lines.push('Sitemap: https://www.deeper.global/sitemap-index.xml');
+  lines.push(`Sitemap: ${SITEMAP_URL}`);
+  lines.push('');
+  lines.push('# LLM resource indexes:');
+  lines.push(`# ${LLMS_TXT_URL}`);
+  lines.push(`# ${LLMS_FULL_TXT_URL}`);
   lines.push('');
 
   return new Response(lines.join('\n'), {

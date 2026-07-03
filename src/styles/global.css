@@ -3136,3 +3136,36 @@ body:has(.home-page) .container {
     gap: var(--space-10);
   }
 }
+
+.corpus-section .corpus-lede {
+  margin: var(--space-4) 0 0;
+  max-width: 42rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.corpus-section .corpus-note {
+  margin: var(--space-3) 0 0;
+  max-width: 42rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.corpus-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.corpus-links a {
+  color: var(--ink);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.corpus-links a:hover {
+  color: var(--accent);
+}

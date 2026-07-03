@@ -38,6 +38,7 @@ import {
 import { getAnswerPractitionerLink } from '@/lib/practitioner-links';
 import { resolveSemanticEnrichmentSync, getPilotEnrichmentBySlug } from '@/lib/semantic-enrichment';
 import { CONTENT_LICENSE_URL, organizationId, siteUrl, websiteId } from '@/lib/site';
+import { qaPageNode } from '@/lib/schema';
 import {
   getReviewedAt,
   getReviewedByLabel,
@@ -114,6 +115,7 @@ const questionId = `${answerUrl}#question`;
 const answerId = `${answerUrl}#accepted-answer`;
 const articleId = `${answerUrl}#article`;
 const pageId = `${answerUrl}#webpage`;
+const qaPageId = `${answerUrl}#qapage`;
 const shouldIndex = shouldIndexQuestion(question);
 const practitionerLink = getAnswerPractitionerLink(question.slug);
 const isAiMentalHealthAnswer = isAiMentalHealthSprintQuestion(question);
@@ -191,12 +193,20 @@ const jsonLd = {
         '@id': `${entityUrl}#entity`,
       },
       mainEntity: {
-        '@id': articleId,
+        '@id': qaPageId,
       },
       ...reviewedBySchema,
       ...sourceCitationSchema,
       ...licenseSchema,
     },
+    qaPageNode({
+      pageUrl: answerUrl,
+      pageId: qaPageId,
+      question: schemaQuestion,
+      answer: schemaAnswerText,
+      questionId,
+      answerId,
+    }),
     {
       '@type': 'Article',
       '@id': articleId,
