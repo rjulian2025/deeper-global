@@ -127,6 +127,7 @@ const supabase = hasSupabaseConfig
   : null;
 
 let questionsCache: Promise<Question[]> | null = null;
+let modalitiesCache: Promise<Modality[]> | null = null;
 const pageSize = 1000;
 
 function requireSupabase() {
@@ -220,6 +221,16 @@ export async function getModalities(): Promise<Modality[]> {
     return [];
   }
 
+  // Module-level cache (same pattern as questionsCache): answer pages call
+  // this per page, so without it every static page issues its own query.
+  if (!modalitiesCache) {
+    modalitiesCache = fetchModalities();
+  }
+
+  return modalitiesCache;
+}
+
+async function fetchModalities(): Promise<Modality[]> {
   const { data, error } = await requireSupabase()
     .from('modalities')
     .select('*')
