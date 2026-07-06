@@ -1,0 +1,8 @@
+# Reduce AI agent context noise (does not affect builds or deploys).
+_archive/
+reports/
+node_modules/
+dist/
+.astro/
+.git/
+package-lock.json
