@@ -680,51 +680,6 @@ h3 {
   background: var(--ocean-bright);
 }
 
-.trending-row {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding-bottom: var(--space-2);
-  padding-right: var(--space-6);
-  width: 100%;
-}
-
-.trending-row::-webkit-scrollbar {
-  display: none;
-}
-
-.trending-label {
-  font-family: var(--font-sans);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.trending-chip {
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  color: var(--white);
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 100px;
-  padding: var(--space-2) var(--space-4);
-  white-space: nowrap;
-  flex-shrink: 0;
-  text-decoration: none;
-  transition: background 0.15s ease;
-}
-
-.trending-chip:hover {
-  background: rgba(255, 255, 255, 0.22);
-}
-
 .trend-row {
   display: flex;
   flex-wrap: wrap;

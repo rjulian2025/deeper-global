@@ -85,8 +85,10 @@ export const aiMentalHealthClusters = [
 
 export const aiMentalHealthHubSlugs = [...new Set(aiMentalHealthClusters.flatMap((cluster) => cluster.slugs))];
 
+const aiMentalHealthHubSlugSet = new Set(aiMentalHealthHubSlugs);
+
 export function isAiMentalHealthHubSlug(slug: string) {
-  return aiMentalHealthHubSlugs.includes(slug);
+  return aiMentalHealthHubSlugSet.has(slug);
 }
 
 export function isAiMentalHealthSprintQuestion(question: Question) {

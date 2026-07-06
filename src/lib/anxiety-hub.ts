@@ -92,8 +92,10 @@ export const anxietyHubClusters = [
 
 export const anxietyHubSlugs = [...new Set(anxietyHubClusters.flatMap((cluster) => cluster.slugs))];
 
+const anxietyHubSlugSet = new Set(anxietyHubSlugs);
+
 export function isAnxietyHubSlug(slug: string) {
-  return anxietyHubSlugs.includes(slug);
+  return anxietyHubSlugSet.has(slug);
 }
 
 export function getAnxietyHubQuestions(questions: Question[]) {

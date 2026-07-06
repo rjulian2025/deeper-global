@@ -82,8 +82,10 @@ export const adhdHubClusters = [
 
 export const adhdHubSlugs = [...new Set(adhdHubClusters.flatMap((cluster) => cluster.slugs))];
 
+const adhdHubSlugSet = new Set(adhdHubSlugs);
+
 export function isAdhdHubSlug(slug: string) {
-  return adhdHubSlugs.includes(slug);
+  return adhdHubSlugSet.has(slug);
 }
 
 export function getAdhdHubQuestions(questions: Question[]) {

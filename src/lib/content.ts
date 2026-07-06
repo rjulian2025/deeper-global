@@ -1,6 +1,6 @@
-import { adhdHubSlugs, isAdhdHubSlug } from './adhd-hub';
-import { aiMentalHealthHubSlugs, isAiMentalHealthHubSlug } from './ai-mental-health-hub';
-import { anxietyHubSlugs, isAnxietyHubSlug } from './anxiety-hub';
+import { isAdhdHubSlug } from './adhd-hub';
+import { isAiMentalHealthHubSlug } from './ai-mental-health-hub';
+import { isAnxietyHubSlug } from './anxiety-hub';
 import { isModalityAnswerSlug } from './modality-hub';
 import type { AnswerSection, Question } from './supabase';
 import { siteUrl } from './site';
@@ -190,15 +190,7 @@ export function resolveFollowUpQuestions(
   const resolved: Question[] = [];
 
   for (const text of rawFollowUps) {
-    const normalized = text.trim().toLowerCase().replace(/[?.,!]/g, '');
-
-    let match =
-      allQuestions.find((q) => {
-        const qText = (q.question ?? '').trim().toLowerCase().replace(/[?.,!]/g, '');
-        const qTitle = (q.improved_title ?? '').trim().toLowerCase().replace(/[?.,!]/g, '');
-
-        return qText === normalized || qTitle === normalized;
-      }) ?? findQuestionForFollowUpText(text, allQuestions, index);
+    const match = findQuestionForFollowUpText(text, allQuestions, index);
 
     if (!match || match.slug === question.slug || seen.has(match.slug)) continue;
 
@@ -471,10 +463,16 @@ function normalizeMatchText(value: string) {
 function buildQuestionTextIndex(questions: Question[]) {
   const index = new Map<string, Question>();
 
+  // First entry wins so exact-match lookups resolve to the earliest question
+  // in the (newest-first) array, matching the previous linear-scan behavior.
+  const add = (key: string, question: Question) => {
+    if (key && !index.has(key)) index.set(key, question);
+  };
+
   for (const question of questions) {
-    index.set(normalizeMatchText(question.question), question);
+    add(normalizeMatchText(question.question), question);
     const title = question.improved_title?.trim();
-    if (title) index.set(normalizeMatchText(title), question);
+    if (title) add(normalizeMatchText(title), question);
   }
 
   return index;
@@ -584,16 +582,16 @@ export function getRelatedQuestions(current: Question, questions: Question[], li
       if (isAnxietyHubSlug(current.slug) && isAnxietyHubSlug(question.slug)) score += 5;
       if (isModalityAnswerSlug(current.slug) && isModalityAnswerSlug(question.slug)) score += 4;
 
-      const currentInAdhdCluster = adhdHubSlugs.includes(current.slug);
-      const candidateInAdhdCluster = adhdHubSlugs.includes(question.slug);
+      const currentInAdhdCluster = isAdhdHubSlug(current.slug);
+      const candidateInAdhdCluster = isAdhdHubSlug(question.slug);
       if (currentInAdhdCluster && candidateInAdhdCluster) score += 3;
 
-      const currentInAiCluster = aiMentalHealthHubSlugs.includes(current.slug);
-      const candidateInAiCluster = aiMentalHealthHubSlugs.includes(question.slug);
+      const currentInAiCluster = isAiMentalHealthHubSlug(current.slug);
+      const candidateInAiCluster = isAiMentalHealthHubSlug(question.slug);
       if (currentInAiCluster && candidateInAiCluster) score += 3;
 
-      const currentInAnxietyCluster = anxietyHubSlugs.includes(current.slug);
-      const candidateInAnxietyCluster = anxietyHubSlugs.includes(question.slug);
+      const currentInAnxietyCluster = isAnxietyHubSlug(current.slug);
+      const candidateInAnxietyCluster = isAnxietyHubSlug(question.slug);
       if (currentInAnxietyCluster && candidateInAnxietyCluster) score += 3;
 
       return { question, score };
