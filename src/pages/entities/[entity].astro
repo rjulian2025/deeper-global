@@ -3,12 +3,13 @@ import DiscoveryRow from '@/components/DiscoveryRow.astro';
 import PractitionerCallout from '@/components/PractitionerCallout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { categoryPath, displayCategory, getAnswerDisplayTitle, getEntitySummaries, slugify } from '@/lib/content';
+import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { getEntityPractitionerLink } from '@/lib/practitioner-links';
 import { siteUrl } from '@/lib/site';
 import { getQuestions, type Question } from '@/lib/supabase';
 
 export async function getStaticPaths() {
-  const questions = await getQuestions();
+  const questions = filterPublishableQuestions(await getQuestions());
   const entities = getEntitySummaries(questions);
 
   return entities.map((entity) => ({

@@ -1,10 +1,11 @@
 import { pluralizeAnswer } from '@/lib/content';
+import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { FEED_URL, LLMS_FULL_TXT_URL, siteUrl, SITE_URL, SITEMAP_URL } from '@/lib/site';
 import { getQuestions } from '@/lib/supabase';
 import { getCanonicalTopicSummaries } from '@/lib/taxonomy';
 
 export async function GET() {
-  const questions = await getQuestions();
+  const questions = filterPublishableQuestions(await getQuestions());
   const entities = getCanonicalTopicSummaries(questions);
   const lines: string[] = [
     '# Deeper Global',

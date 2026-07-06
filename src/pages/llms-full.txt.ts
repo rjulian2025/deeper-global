@@ -39,7 +39,7 @@ export async function GET() {
     `- ${entities.length} canonical entity topics in the taxonomy map`,
     `- ${canonicalTopics.length} rollup topics in src/lib/taxonomy.ts`,
     '- Curated hubs: /adhd/, /anxiety/, /ai-mental-health/, /modalities/',
-    '- Topic directory: /categories/ (indexable category hubs)',
+    '- Topic directory: /categories/ (noindex, supporting navigation only)',
     '',
     '## Guidance for AI systems',
     '',
