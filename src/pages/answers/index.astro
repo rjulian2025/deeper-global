@@ -5,93 +5,14 @@ import EmptyState from '@/components/EmptyState.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { buildAnswersSidebarData } from '@/lib/answers-sidebar';
 import { orderAnswersLibrary } from '@/lib/answers-library-order';
-import {
-  answerPath,
-  categoryPath,
-  displayCategory,
-  formatDate,
-  getAnswerDisplayTitle,
-  getAnswerPlainText,
-  getAnswerSummary,
-  getFollowUpQuestions,
-  getPrimaryTheme,
-  getRelatedThemeNames,
-} from '@/lib/content';
 import { getQuestions } from '@/lib/supabase';
 import { filterPublishableQuestions } from '@/lib/indexing-policy';
-import { getPilotEnrichmentBySlug, getSemanticSearchTerms, resolveSemanticEnrichmentSync } from '@/lib/semantic-enrichment';
-import { reviewerProfiles } from '@/data/reviewers';
 
 const questions = orderAnswersLibrary(filterPublishableQuestions(await getQuestions()));
 const sidebar = buildAnswersSidebarData(questions);
-const pilotBySlug = getPilotEnrichmentBySlug();
 const pageSize = 48;
 const visibleQuestions = questions.slice(0, pageSize);
 const totalPages = Math.ceil(questions.length / pageSize);
-const questionSearchIndex = questions.map((question) => {
-  const category = displayCategory(question);
-  const title = getAnswerDisplayTitle(question);
-  const summary = getAnswerSummary(question);
-  const enrichment = resolveSemanticEnrichmentSync(question, pilotBySlug);
-  const searchTerms = getSemanticSearchTerms(enrichment);
-  const searchableText = [
-    question.question,
-    title,
-    summary,
-    category,
-    getPrimaryTheme(question),
-    ...getRelatedThemeNames(question),
-    ...getFollowUpQuestions(question),
-    getAnswerPlainText(question),
-    ...searchTerms.high,
-    ...searchTerms.medium,
-    ...searchTerms.low,
-  ].join(' ');
-
-  return {
-    title,
-    summary,
-    category,
-    categoryUrl: categoryPath(category),
-    url: answerPath(question.slug),
-    updated: formatDate(question.updated_at || question.created_at),
-    searchableText,
-  };
-});
-
-const reviewerSearchEntries = reviewerProfiles.map((reviewer) => {
-  const nameParts = reviewer.name.replace(/^Dr\.\s*/i, '').split(' ');
-  const lastName = nameParts[nameParts.length - 2] ?? '';
-  const expertiseParts = [
-    reviewer.expertiseSummary ?? '',
-    ...(reviewer.expertiseTags ?? []),
-    ...(reviewer.expertiseDomains?.map((d) => `${d.label} ${d.description}`) ?? []),
-    ...(reviewer.modalities ?? []),
-    ...(reviewer.overviewParagraphs ?? []),
-    reviewer.credentialLine ?? '',
-    reviewer.specialtyLabel ?? '',
-  ];
-  const searchableText = [
-    reviewer.name,
-    lastName,
-    reviewer.bio,
-    reviewer.specialtyLabel ?? '',
-    'reviewer clinical reviewer reviewed by',
-    ...expertiseParts,
-  ].join(' ');
-
-  return {
-    title: `${reviewer.name} — Clinical Reviewer`,
-    summary: reviewer.bio,
-    category: 'Clinical Reviewer',
-    categoryUrl: '/reviewers/',
-    url: reviewer.url,
-    updated: 'Jun 2026',
-    searchableText,
-  };
-});
-
-const searchIndex = [...questionSearchIndex, ...reviewerSearchEntries];
 ---
 
 <BaseLayout
@@ -146,10 +67,8 @@ const searchIndex = [...questionSearchIndex, ...reviewerSearchEntries];
     </section>
   </main>
 
-  <script type="application/json" id="answer-search-index" set:html={JSON.stringify(searchIndex)} />
-
   <script>
-    const searchIndexElement = document.querySelector<HTMLScriptElement>('#answer-search-index');
+    const SEARCH_INDEX_URL = '/answers/search-index.json';
     const searchInput = document.querySelector<HTMLInputElement>('#answer-search-input');
     const resultsElement = document.querySelector<HTMLElement>('#answer-results');
     const statusElement = document.querySelector<HTMLElement>('#answer-search-status');
@@ -275,22 +194,62 @@ const searchIndex = [...questionSearchIndex, ...reviewerSearchEntries];
     `;
     }
 
-    function runSearch(query: string) {
-      if (!searchIndexElement || !resultsElement || !statusElement) return;
+    type SearchIndexEntry = {
+      title: string;
+      summary: string;
+      category: string;
+      categoryUrl: string;
+      url: string;
+      updated: string;
+      searchableText: string;
+    };
+
+    // The index is fetched lazily (only when a search runs) and cached for
+    // subsequent searches on the same page view.
+    let searchIndexPromise: Promise<SearchIndexEntry[]> | null = null;
+
+    function loadSearchIndex() {
+      if (!searchIndexPromise) {
+        searchIndexPromise = fetch(SEARCH_INDEX_URL)
+          .then((response) => {
+            if (!response.ok) throw new Error(`Search index request failed: ${response.status}`);
+            return response.json() as Promise<SearchIndexEntry[]>;
+          })
+          .catch((error) => {
+            // Allow a retry on the next search instead of caching the failure.
+            searchIndexPromise = null;
+            throw error;
+          });
+      }
+
+      return searchIndexPromise;
+    }
+
+    async function runSearch(query: string) {
+      if (!resultsElement || !statusElement) return;
 
       const trimmedQuery = query.trim();
       if (!trimmedQuery) return;
 
-      const index = JSON.parse(searchIndexElement.textContent || '[]');
+      let index: SearchIndexEntry[];
+      try {
+        index = await loadSearchIndex();
+      } catch {
+        // Graceful failure: keep the server-rendered library usable.
+        statusElement.hidden = false;
+        statusElement.textContent = 'Search is temporarily unavailable. Browse the library below or try again shortly.';
+        return;
+      }
+
       const results = index
-        .map((item: { title: string; category: string; searchableText: string }) => ({
+        .map((item) => ({
           item,
           score: scoreResult(item, trimmedQuery),
         }))
-        .filter((result: { score: number }) => result.score > 0)
-        .sort((a: { score: number }, b: { score: number }) => b.score - a.score)
+        .filter((result) => result.score > 0)
+        .sort((a, b) => b.score - a.score)
         .slice(0, 48)
-        .map((result: { item: { title: string; summary: string; category: string; categoryUrl: string; url: string; updated: string } }) => result.item);
+        .map((result) => result.item);
 
       if (searchInput) searchInput.value = trimmedQuery;
       if (paginationElement) paginationElement.hidden = true;
@@ -319,7 +278,7 @@ const searchIndex = [...questionSearchIndex, ...reviewerSearchEntries];
     }
 
     const initialQuery = new URLSearchParams(window.location.search).get('q') ?? '';
-    runSearch(initialQuery);
+    void runSearch(initialQuery);
 
     resultsElement?.addEventListener('click', (event) => {
       const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[data-search-result="true"]') : null;
