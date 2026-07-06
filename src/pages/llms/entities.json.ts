@@ -1,9 +1,10 @@
+import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { SITE_URL, siteUrl } from '@/lib/site';
 import { getQuestions } from '@/lib/supabase';
 import { getCanonicalTopicSummaries } from '@/lib/taxonomy';
 
 export async function GET() {
-  const questions = await getQuestions();
+  const questions = filterPublishableQuestions(await getQuestions());
   const entities = getCanonicalTopicSummaries(questions).map((entity) => ({
     name: entity.name,
     slug: entity.slug,

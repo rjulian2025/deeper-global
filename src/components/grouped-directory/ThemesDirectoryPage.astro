@@ -5,6 +5,7 @@ import GroupedDirectoryLayout from '@/components/grouped-directory/GroupedDirect
 import GroupedDirectorySidebar from '@/components/grouped-directory/GroupedDirectorySidebar.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getEntitySummaries } from '@/lib/content';
+import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { buildGroupedThemeClusters, getTrendingThemeEntries } from '@/lib/theme-directory';
 import { siteUrl } from '@/lib/site';
 import { getQuestions } from '@/lib/supabase';
@@ -16,7 +17,7 @@ type Props = {
 
 const { canonicalPath = '/entities/' } = Astro.props;
 
-const questions = await getQuestions();
+const questions = filterPublishableQuestions(await getQuestions());
 const entities = getEntitySummaries(questions);
 const clusters = buildGroupedThemeClusters(entities);
 const trendingThemes = getTrendingThemeEntries(questions, entities, 3);

@@ -10,13 +10,14 @@ import { CONTENT_LICENSE_NAME, CONTENT_LICENSE_URL, SITE_URL, siteUrl } from '@/
 import { getQuestions } from '@/lib/supabase';
 import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { getSourceRefs } from '@/lib/trust';
-import { getReviewTier, getRiskClass, getUpgradePriority } from '@/lib/taxonomy';
+import { getCanonicalTopic, getReviewTier, getRiskClass, getUpgradePriority } from '@/lib/taxonomy';
 
 export async function GET() {
   const questions = filterPublishableQuestions(await getQuestions());
   const answers = questions.map((question) => {
     const citation = getQuestionCitation(question);
     const priority = getUpgradePriority(question);
+    const canonicalTopic = getCanonicalTopic(question.category || question.raw_category || question.primary_theme);
 
     return {
       id: question.id,
@@ -27,6 +28,7 @@ export async function GET() {
       title: getAnswerDisplayTitle(question),
       original_question: question.question,
       topic: displayCategory(question),
+      topic_canonical: { name: canonicalTopic.name, slug: canonicalTopic.slug },
       summary: getAnswerSummary(question),
       extract: truncate(getAnswerPlainText(question), 600),
       risk_class: getRiskClass(question),

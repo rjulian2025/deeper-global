@@ -6,13 +6,14 @@ import GroupedDirectoryLayout from '@/components/grouped-directory/GroupedDirect
 import GroupedDirectorySidebar from '@/components/grouped-directory/GroupedDirectorySidebar.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getCategorySummaries } from '@/lib/content';
+import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { buildGroupedTopicClusters, getTrendingTopicEntries } from '@/lib/theme-directory';
 import { siteUrl } from '@/lib/site';
 import { getUnexpectedOverlapLinks } from '@/lib/unexpected-overlaps';
 import { getQuestions } from '@/lib/supabase';
 import '@/styles/grouped-directory.css';
 
-const questions = await getQuestions();
+const questions = filterPublishableQuestions(await getQuestions());
 const categories = getCategorySummaries(questions);
 const clusters = buildGroupedTopicClusters(categories);
 const trendingTopics = getTrendingTopicEntries(questions, categories, 3);
