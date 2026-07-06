@@ -182,15 +182,16 @@ export function getFollowUpQuestions(question: Question) {
 
 export function resolveFollowUpQuestions(
   question: Question,
-  allQuestions: Question[]
+  allQuestions: Question[],
+  context?: RelatedContentContext
 ): Question[] {
+  const ctx = context ?? buildRelatedContentContext(allQuestions);
   const rawFollowUps = getFollowUpQuestions(question);
-  const index = buildQuestionTextIndex(allQuestions);
   const seen = new Set<string>();
   const resolved: Question[] = [];
 
   for (const text of rawFollowUps) {
-    const match = findQuestionForFollowUpText(text, allQuestions, index);
+    const match = findQuestionForFollowUpText(text, ctx);
 
     if (!match || match.slug === question.slug || seen.has(match.slug)) continue;
 
@@ -452,12 +453,71 @@ export type FollowUpLink = {
   matched: boolean;
 };
 
+/**
+ * Precomputed corpus indexes for related/follow-up matching. Build this once
+ * per static build (e.g. in getStaticPaths) and pass it to
+ * getRelatedQuestions / resolveFollowUpQuestions / resolveFollowUpQuestionLinks;
+ * otherwise each call rebuilds the full-corpus indexes, which is O(N²) across
+ * all answer pages.
+ */
+export type RelatedContentContext = {
+  questions: Question[];
+  /** First-wins normalized question/title exact-match index. */
+  textIndex: Map<string, Question>;
+  /** Normalized question + title texts per question, in corpus order (fuzzy matching). */
+  normalizedTexts: Array<{ question: Question; candidates: string[] }>;
+  /** Normalized primary + related theme names per slug (candidate side of scoring). */
+  themeNamesBySlug: Map<string, string[]>;
+  /** Theme names plus category per slug (current side of scoring). */
+  themeSetsBySlug: Map<string, Set<string>>;
+};
+
+export function buildRelatedContentContext(questions: Question[]): RelatedContentContext {
+  const normalizedTexts: Array<{ question: Question; candidates: string[] }> = [];
+  const themeNamesBySlug = new Map<string, string[]>();
+  const themeSetsBySlug = new Map<string, Set<string>>();
+
+  for (const question of questions) {
+    normalizedTexts.push({ question, candidates: questionTextCandidates(question) });
+    themeNamesBySlug.set(question.slug, questionThemeNames(question));
+    themeSetsBySlug.set(question.slug, questionThemeSet(question));
+  }
+
+  return {
+    questions,
+    textIndex: buildQuestionTextIndex(questions),
+    normalizedTexts,
+    themeNamesBySlug,
+    themeSetsBySlug,
+  };
+}
+
 function normalizeMatchText(value: string) {
   return value
     .toLowerCase()
     .replace(/[^\w\s]/g, '')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+function questionTextCandidates(question: Question) {
+  const candidates = [normalizeMatchText(question.question)];
+  if (question.improved_title?.trim()) {
+    candidates.push(normalizeMatchText(question.improved_title));
+  }
+  return candidates;
+}
+
+function questionThemeNames(question: Question) {
+  return [getPrimaryTheme(question), ...getRelatedThemeNames(question)]
+    .map((theme) => normalizeMatchText(theme))
+    .filter(Boolean);
+}
+
+function questionThemeSet(question: Question) {
+  return new Set(
+    [...questionThemeNames(question), normalizeMatchText(displayCategory(question))].filter(Boolean)
+  );
 }
 
 function buildQuestionTextIndex(questions: Question[]) {
@@ -482,26 +542,21 @@ function looksLikeSlug(value: string) {
   return /^[a-z0-9]+(?:-[a-z0-9]+)+$/.test(value);
 }
 
-function findQuestionForFollowUpText(text: string, questions: Question[], index: Map<string, Question>) {
+function findQuestionForFollowUpText(text: string, context: RelatedContentContext) {
   const trimmed = text.trim();
   if (!trimmed) return null;
 
   if (looksLikeSlug(trimmed)) {
-    return questions.find((question) => question.slug === trimmed) ?? null;
+    return context.questions.find((question) => question.slug === trimmed) ?? null;
   }
 
   const normalized = normalizeMatchText(trimmed);
-  const exact = index.get(normalized);
+  const exact = context.textIndex.get(normalized);
   if (exact) return exact;
 
   let best: { question: Question; score: number } | null = null;
 
-  for (const question of questions) {
-    const candidates = [normalizeMatchText(question.question)];
-    if (question.improved_title?.trim()) {
-      candidates.push(normalizeMatchText(question.improved_title));
-    }
-
+  for (const { question, candidates } of context.normalizedTexts) {
     for (const candidate of candidates) {
       if (!candidate) continue;
       if (candidate === normalized) return question;
@@ -518,14 +573,15 @@ function findQuestionForFollowUpText(text: string, questions: Question[], index:
 export function resolveFollowUpQuestionLinks(
   question: Question,
   questions: Question[],
-  limit = 6
+  limit = 6,
+  context?: RelatedContentContext
 ): FollowUpLink[] {
-  const index = buildQuestionTextIndex(questions);
+  const ctx = context ?? buildRelatedContentContext(questions);
   const links: FollowUpLink[] = [];
   const seen = new Set<string>();
 
   for (const text of getFollowUpQuestions(question)) {
-    const match = findQuestionForFollowUpText(text, questions, index);
+    const match = findQuestionForFollowUpText(text, ctx);
     if (match && match.slug !== question.slug && !seen.has(match.slug)) {
       seen.add(match.slug);
       links.push({
@@ -548,23 +604,32 @@ export function resolveFollowUpQuestionLinks(
   return links.slice(0, limit);
 }
 
-function sharedThemeScore(current: Question, candidate: Question) {
-  const currentThemes = new Set(
-    [getPrimaryTheme(current), ...getRelatedThemeNames(current), displayCategory(current)]
-      .map((theme) => normalizeMatchText(theme))
-      .filter(Boolean)
-  );
+function sharedThemeScore(
+  currentThemes: Set<string>,
+  candidate: Question,
+  context: RelatedContentContext
+) {
+  const candidateThemes = context.themeNamesBySlug.get(candidate.slug) ?? questionThemeNames(candidate);
 
   let score = 0;
-  for (const theme of [getPrimaryTheme(candidate), ...getRelatedThemeNames(candidate)]) {
-    if (currentThemes.has(normalizeMatchText(theme))) score += 3;
+  for (const theme of candidateThemes) {
+    if (currentThemes.has(theme)) score += 3;
   }
   return score;
 }
 
-export function getRelatedQuestions(current: Question, questions: Question[], limit = 4) {
+export function getRelatedQuestions(
+  current: Question,
+  questions: Question[],
+  limit = 4,
+  context?: RelatedContentContext
+) {
+  const ctx = context ?? buildRelatedContentContext(questions);
+  // `current` may come from outside the corpus (e.g. the getQuestionBySlug
+  // fallback), so fall back to computing its theme set directly.
+  const currentThemes = ctx.themeSetsBySlug.get(current.slug) ?? questionThemeSet(current);
   const followUpSlugs = new Set(
-    resolveFollowUpQuestionLinks(current, questions)
+    resolveFollowUpQuestionLinks(current, questions, 6, ctx)
       .map((link) => link.slug)
       .filter((slug): slug is string => Boolean(slug))
   );
@@ -575,7 +640,7 @@ export function getRelatedQuestions(current: Question, questions: Question[], li
       let score = 0;
 
       if (displayCategory(question) === displayCategory(current)) score += 2;
-      score += sharedThemeScore(current, question);
+      score += sharedThemeScore(currentThemes, question, ctx);
       if (followUpSlugs.has(question.slug)) score += 6;
       if (isAdhdHubSlug(current.slug) && isAdhdHubSlug(question.slug)) score += 5;
       if (isAiMentalHealthHubSlug(current.slug) && isAiMentalHealthHubSlug(question.slug)) score += 5;
