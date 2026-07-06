@@ -1,0 +1,101 @@
+---
+import DiscoveryRow from '@/components/DiscoveryRow.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getAnswerDisplayTitle, getCategoryMetaDescription } from '@/lib/content';
+import { filterPublishableQuestions } from '@/lib/indexing-policy';
+import { siteUrl, websiteId } from '@/lib/site';
+import { getQuestions, type Question } from '@/lib/supabase';
+import { canonicalTopics, getCanonicalTopic } from '@/lib/taxonomy';
+
+export async function getStaticPaths() {
+  const questions = filterPublishableQuestions(await getQuestions());
+
+  return canonicalTopics.map((topic) => ({
+    params: { topic: topic.slug },
+    props: {
+      topic,
+      questions: questions.filter(
+        (question) =>
+          getCanonicalTopic(question.category || question.raw_category || question.primary_theme).slug === topic.slug
+      ),
+    },
+  }));
+}
+
+const topic = Astro.props.topic as (typeof canonicalTopics)[number];
+const questions = (Astro.props.questions ?? []) as Question[];
+const topicUrl = siteUrl(`/topics/${topic.slug}`);
+const description = getCategoryMetaDescription(topic.name, questions.length);
+
+const jsonLd = {
+  '@graph': [
+    {
+      '@type': 'DefinedTerm',
+      '@id': `${topicUrl}#topic`,
+      name: topic.name,
+      url: topicUrl,
+      alternateName: topic.aliases,
+      inDefinedTermSet: 'Deeper Global Canonical Topic Map',
+    },
+    {
+      '@type': 'CollectionPage',
+      '@id': `${topicUrl}#collection`,
+      url: topicUrl,
+      name: `${topic.name} questions and answers`,
+      description,
+      isPartOf: {
+        '@id': websiteId(),
+      },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: questions.length,
+        itemListElement: questions.slice(0, 24).map((question, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          url: siteUrl(`/answers/${question.slug}`),
+          name: getAnswerDisplayTitle(question),
+        })),
+      },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={`${topic.name} | Deeper Global Topics`}
+  description={description}
+  canonicalPath={`/topics/${topic.slug}`}
+  jsonLd={jsonLd}
+  noindex={true}
+>
+  <main class="discovery-surface hub-page">
+    <section class="catalog-hero">
+      <div class="container">
+        <p class="eyebrow">Topic</p>
+        <h1>{topic.name}</h1>
+        <p class="lede">{description}</p>
+        <p class="editorial-meta discovery-meta">
+          <a href="/topics/">All topics</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container discovery-list answer-list">
+        {questions.map((question) => <DiscoveryRow question={question} />)}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .discovery-surface .editorial-meta a {
+    color: var(--d-link);
+    text-decoration: none;
+  }
+
+  .discovery-surface .editorial-meta a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

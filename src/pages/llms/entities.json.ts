@@ -10,6 +10,7 @@ export async function GET() {
     slug: entity.slug,
     canonical_url: siteUrl(`/entities/${entity.slug}`),
     topic_url: siteUrl(`/categories/${entity.slug}`),
+    canonical_topic_url: siteUrl(`/topics/${entity.slug}`),
     aliases: entity.aliases,
     answer_count: entity.count,
     representative_answer_slugs: entity.relatedQuestionSlugs,
