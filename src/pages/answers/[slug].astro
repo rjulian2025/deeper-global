@@ -13,6 +13,7 @@ import { getModalityCardsForAnswer, modalityPath } from '@/lib/modality-hub';
 import {
   answerPath,
   bodyTextToParagraphHtml,
+  buildRelatedContentContext,
   categoryPath,
   displayCategory,
   formatAnswerHtml,
@@ -34,6 +35,7 @@ import {
   shouldIndexQuestion,
   slugify,
   truncate,
+  type RelatedContentContext,
 } from '@/lib/content';
 import { getAnswerPractitionerLink } from '@/lib/practitioner-links';
 import { resolveSemanticEnrichmentSync, getPilotEnrichmentBySlug } from '@/lib/semantic-enrichment';
@@ -57,12 +59,16 @@ import { answerOgImagePath } from '@/lib/og-answer-image';
 
 export async function getStaticPaths() {
   const questions = filterPublishableQuestions(await getQuestions());
+  // Built once per build and shared by every answer page via props; without
+  // this each page rebuilds the full-corpus matching indexes.
+  const relatedContext = buildRelatedContentContext(questions);
 
   return questions.map((question) => ({
     params: { slug: question.slug },
     props: {
       question,
       allQuestions: questions,
+      relatedContext,
     },
   }));
 }
@@ -70,9 +76,11 @@ export async function getStaticPaths() {
 const {
   question: suppliedQuestion,
   allQuestions: suppliedQuestions,
+  relatedContext: suppliedRelatedContext,
 } = Astro.props as {
   question?: Question;
   allQuestions?: Question[];
+  relatedContext?: RelatedContentContext;
 };
 
 const question = suppliedQuestion ?? (await getQuestionBySlug(Astro.params.slug ?? ''));
@@ -82,8 +90,9 @@ if (!question) {
 }
 
 const allQuestions = suppliedQuestions ?? (await getQuestions());
+const relatedContext = suppliedRelatedContext ?? buildRelatedContentContext(allQuestions);
 const allModalities = await getModalities();
-const relatedQuestions = getRelatedQuestions(question, allQuestions);
+const relatedQuestions = getRelatedQuestions(question, allQuestions, 4, relatedContext);
 const relatedModalities = getModalityCardsForAnswer(question.slug, allModalities);
 const category = displayCategory(question);
 const displayTitle = getAnswerDisplayTitle(question);
@@ -91,7 +100,7 @@ const summary = getAnswerSummary(question);
 const schemaQuestion = getAnswerSchemaQuestion(question);
 const schemaAnswerText = getAnswerSchemaAnswer(question);
 const keyTakeaways = getDisplayKeyTakeaways(question);
-const followUpQuestions = resolveFollowUpQuestions(question, allQuestions);
+const followUpQuestions = resolveFollowUpQuestions(question, allQuestions, relatedContext);
 const primaryTheme = getPrimaryTheme(question);
 const updatedAt = question.updated_at || question.created_at;
 const crisisSensitive = isCrisisSensitive(question);
