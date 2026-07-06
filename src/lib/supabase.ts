@@ -144,8 +144,23 @@ export async function getQuestions(limit?: number) {
   return limit ? questions.slice(0, limit) : questions;
 }
 
+/**
+ * Vercel sets VERCEL=1 and CI=1 during builds. Local `astro dev` / `astro build`
+ * without Supabase config keeps working (empty corpus), but a production/CI
+ * build must never silently ship a near-empty site.
+ */
+function isProductionBuildContext() {
+  return Boolean(process.env.VERCEL || process.env.CI);
+}
+
 async function getAllQuestions() {
   if (!hasSupabaseConfig) {
+    if (isProductionBuildContext()) {
+      throw new Error(
+        'Supabase config is missing in a production/CI build. Set SUPABASE_URL and SUPABASE_ANON_KEY ' +
+          '(or PUBLIC_/NEXT_PUBLIC_ variants) so the build cannot ship an empty answer corpus.'
+      );
+    }
     return [] as Question[];
   }
 
