@@ -1,10 +1,11 @@
 import { displayCategory, getAnswerDisplayTitle, getQuestionCitation } from '@/lib/content';
+import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { SITE_URL } from '@/lib/site';
 import { getQuestions } from '@/lib/supabase';
 import { getReviewTier, getRiskClass, getUpgradePriority } from '@/lib/taxonomy';
 
 export async function GET() {
-  const questions = await getQuestions();
+  const questions = filterPublishableQuestions(await getQuestions());
   const priority = questions
     .map((question) => {
       const citation = getQuestionCitation(question);
