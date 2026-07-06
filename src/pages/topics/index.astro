@@ -1,0 +1,94 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { pluralizeAnswer } from '@/lib/content';
+import { filterPublishableQuestions } from '@/lib/indexing-policy';
+import { siteUrl } from '@/lib/site';
+import { getQuestions } from '@/lib/supabase';
+import { getCanonicalTopicSummaries } from '@/lib/taxonomy';
+
+const questions = filterPublishableQuestions(await getQuestions());
+const topics = getCanonicalTopicSummaries(questions);
+
+const jsonLd = {
+  '@type': 'DefinedTermSet',
+  name: 'Deeper Global Canonical Topics',
+  url: siteUrl('/topics/'),
+  hasDefinedTerm: topics.map((topic) => ({
+    '@type': 'DefinedTerm',
+    name: topic.name,
+    url: siteUrl(`/topics/${topic.slug}`),
+  })),
+};
+---
+
+<BaseLayout
+  title="Mental Health Topics | Deeper Global"
+  description="The canonical mental health topics that organize the Deeper Global answer corpus."
+  canonicalPath="/topics/"
+  jsonLd={jsonLd}
+  noindex={true}
+>
+  <main class="discovery-surface hub-page">
+    <section class="catalog-hero">
+      <div class="container">
+        <p class="eyebrow">Topics</p>
+        <h1>Canonical mental health topics</h1>
+        <p class="lede">The core topics that organize every Deeper Global answer.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <ul class="topics-index-list">
+          {
+            topics.map((topic) => (
+              <li>
+                <a href={`/topics/${topic.slug}/`}>{topic.name}</a>
+                <span>{pluralizeAnswer(topic.count)}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .topics-index-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3, 0.75rem);
+  }
+
+  .topics-index-list li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4, 1rem);
+    padding: var(--space-4, 1rem) 0;
+    border-bottom: 1px solid var(--d-line);
+  }
+
+  .topics-index-list a {
+    font-family: var(--font-serif, inherit);
+    font-size: 1.125rem;
+    color: var(--d-link);
+    text-decoration: none;
+  }
+
+  .topics-index-list a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .topics-index-list span {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--d-muted);
+    white-space: nowrap;
+  }
+</style>

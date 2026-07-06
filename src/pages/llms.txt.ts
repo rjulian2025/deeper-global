@@ -30,6 +30,7 @@ export async function GET() {
     `- [AI use policy](${siteUrl('/ai-use')}): Public boundaries for agent, retrieval, and developer use of Deeper Global content.`,
     `- [API terms](${siteUrl('/api-terms')}): Developer preview terms, attribution requirements, commercial-use boundary, and rate-limit expectations.`,
     `- [Topics](${siteUrl('/categories')}): Public topic hubs.`,
+    `- [Canonical topic directory](${siteUrl('/topics')}): The 16 canonical topics from src/lib/taxonomy.ts (noindex, follow).`,
     `- [Entities](${siteUrl('/entities')}): Canonical mental health entity map.`,
     `- [Protocol](${siteUrl('/protocol')}): Content governance and trust protocol.`,
     `- [Reviewers](${siteUrl('/reviewers')}): Named clinical reviewers for selected answers.`,

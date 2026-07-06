@@ -80,7 +80,7 @@ export function shouldIncludeAnswerPathInSitemap(pathname: string) {
 export function shouldIncludePathInSitemap(pathname: string) {
   const path = pathname.endsWith('/') || pathname.includes('.') ? pathname : `${pathname}/`;
 
-  if (path.startsWith('/entities/') || path.startsWith('/categories/')) return false;
+  if (path.startsWith('/entities/') || path.startsWith('/categories/') || path.startsWith('/topics/')) return false;
   if (path.startsWith('/design-evolution/')) return false;
   if (path === '/answers/random/') return false;
 
