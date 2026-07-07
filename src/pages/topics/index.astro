@@ -5,9 +5,11 @@ import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { siteUrl } from '@/lib/site';
 import { getQuestions } from '@/lib/supabase';
 import { getCanonicalTopicSummaries } from '@/lib/taxonomy';
+import { logTopicFallbackReport } from '@/lib/topic-fallback-report';
 
 const questions = filterPublishableQuestions(await getQuestions());
 const topics = getCanonicalTopicSummaries(questions);
+logTopicFallbackReport(questions);
 
 const jsonLd = {
   '@type': 'DefinedTermSet',
