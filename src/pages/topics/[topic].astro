@@ -6,6 +6,7 @@ import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { siteUrl, websiteId } from '@/lib/site';
 import { getQuestions, type Question } from '@/lib/supabase';
 import { canonicalTopics, getCanonicalTopic } from '@/lib/taxonomy';
+import { getTopicContent } from '@/lib/topic-content';
 
 export async function getStaticPaths() {
   const questions = filterPublishableQuestions(await getQuestions());
@@ -26,6 +27,13 @@ const topic = Astro.props.topic as (typeof canonicalTopics)[number];
 const questions = (Astro.props.questions ?? []) as Question[];
 const topicUrl = siteUrl(`/topics/${topic.slug}`);
 const description = getCategoryMetaDescription(topic.name, questions.length);
+const content = getTopicContent(topic.slug, topic.name);
+
+const startHereSlugs = new Set(content.startHereSlugs ?? []);
+const startHereQuestions = questions.filter((question) => startHereSlugs.has(question.slug));
+const remainingQuestions = startHereQuestions.length
+  ? questions.filter((question) => !startHereSlugs.has(question.slug))
+  : questions;
 
 const jsonLd = {
   '@graph': [
@@ -73,16 +81,73 @@ const jsonLd = {
       <div class="container">
         <p class="eyebrow">Topic</p>
         <h1>{topic.name}</h1>
-        <p class="lede">{description}</p>
+        <p class="lede">{content.intro}</p>
+        <p class="topic-meta-line">{getCategoryMetaDescription(topic.name, questions.length)}</p>
         <p class="editorial-meta discovery-meta">
           <a href="/topics/">All topics</a>
         </p>
       </div>
     </section>
 
+    {
+      content.curatedHubPath && (
+        <section class="section topic-curated-hub-callout">
+          <div class="container">
+            <p>
+              There's also a curated {topic.name.toLowerCase()} hub with deeper editorial coverage:{' '}
+              <a href={content.curatedHubPath}>visit the curated hub →</a>
+            </p>
+          </div>
+        </section>
+      )
+    }
+
+    <section class="section topic-trust-strip">
+      <div class="container">
+        <p>
+          Educational content only, not a substitute for professional diagnosis, treatment, or emergency support.{' '}
+          <a href="/protocol/">Read our content protocol</a>.
+        </p>
+        {
+          content.sensitive && (
+            <p class="topic-trust-crisis">
+              This topic can involve sensitive experiences. If you or someone else may be in danger, call or text 988
+              in the U.S. or contact local emergency services now.
+            </p>
+          )
+        }
+      </div>
+    </section>
+
+    {
+      startHereQuestions.length > 0 && (
+        <section class="section">
+          <div class="container">
+            <div class="hub-section-head">
+              <p class="eyebrow">Start here</p>
+              <h2>A few answers to begin with</h2>
+            </div>
+            <div class="discovery-list answer-list">
+              {startHereQuestions.map((question) => (
+                <DiscoveryRow question={question} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
     <section class="section">
-      <div class="container discovery-list answer-list">
-        {questions.map((question) => <DiscoveryRow question={question} />)}
+      <div class="container">
+        <div class="hub-section-head">
+          <p class="eyebrow">{startHereQuestions.length > 0 ? 'All answers' : 'Answers'}</p>
+          <h2>
+            {questions.length} answer{questions.length === 1 ? '' : 's'} about {topic.name.toLowerCase()}
+          </h2>
+        </div>
+        <div class="discovery-list answer-list">
+          {remainingQuestions.map((question) => <DiscoveryRow question={question} />)}
+        </div>
       </div>
     </section>
   </main>
@@ -97,5 +162,35 @@ const jsonLd = {
   .discovery-surface .editorial-meta a:hover {
     text-decoration: underline;
     text-underline-offset: 3px;
+  }
+
+  .topic-meta-line {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--d-muted);
+  }
+
+  .topic-curated-hub-callout p,
+  .topic-trust-strip p {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: var(--d-muted);
+  }
+
+  .topic-curated-hub-callout a,
+  .topic-trust-strip a {
+    color: var(--d-link);
+  }
+
+  .topic-trust-strip {
+    border-top: 1px solid var(--d-line);
+    border-bottom: 1px solid var(--d-line);
+    padding-top: var(--space-4, 1rem);
+    padding-bottom: var(--space-4, 1rem);
+  }
+
+  .topic-trust-crisis {
+    margin-top: var(--space-2, 0.5rem);
+    font-weight: 500;
   }
 </style>
