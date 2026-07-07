@@ -94,7 +94,13 @@ const jsonLd = {
         <section class="section topic-curated-hub-callout">
           <div class="container">
             <p>
-              There's also a curated {topic.name.toLowerCase()} hub with deeper editorial coverage:{' '}
+              {
+                content.curatedHubNote ?? (
+                  <>
+                    There's also a curated {topic.name.toLowerCase()} hub with deeper editorial coverage:{' '}
+                  </>
+                )
+              }
               <a href={content.curatedHubPath}>visit the curated hub →</a>
             </p>
           </div>

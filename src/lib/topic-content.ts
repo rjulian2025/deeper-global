@@ -4,8 +4,10 @@ export type TopicContentEntry = {
   intro: string;
   /** Slugs for a "Start here" section. Only populate once a human has picked them for a topic. */
   startHereSlugs?: string[];
-  /** Path to an existing curated hub this topic substantially overlaps with. */
+  /** Path to an existing curated hub related to this topic. */
   curatedHubPath?: string;
+  /** Overrides the default curated-hub callout sentence; use when the overlap with curatedHubPath is not one-to-one. */
+  curatedHubNote?: string;
   /** Marks topics that warrant an extra crisis/support note in the trust strip. */
   sensitive?: boolean;
 };
@@ -84,8 +86,10 @@ export const topicContent: Record<string, TopicContentEntry> = {
   'neurodivergence-and-attention': {
     slug: 'neurodivergence-and-attention',
     intro:
-      'Neurodivergence and attention questions cover ADHD, autism, and how a differently wired brain interacts with daily life, work, and relationships. This topic focuses on executive function, focus, and practical day-to-day strategies.',
+      'Neurodivergence and attention questions cover ADHD, autism, and how a differently wired brain interacts with daily life, work, and relationships. This topic currently covers a subset of our ADHD- and neurodivergence-related answers; more are organized under other topics for now.',
     curatedHubPath: '/adhd/',
+    curatedHubNote:
+      'This topic currently covers a subset of our ADHD- and neurodivergence-related answers. Our ADHD hub has broader, more curated coverage of this subject: ',
   },
   'gender-sexuality-and-intimacy': {
     slug: 'gender-sexuality-and-intimacy',
@@ -101,7 +105,8 @@ export const topicContent: Record<string, TopicContentEntry> = {
   'general-mental-health': {
     slug: 'general-mental-health',
     intro:
-      "This topic gathers mental health questions that span everyday emotional regulation, physical health connections, and how modern life, including AI tools and social media, intersects with mental well-being. It's a broader collection for questions that do not fit neatly into a single specialty area.",
+      "This is a broad, internal collection of everyday mental-health questions that do not yet fit neatly into one of our more specific topics, spanning emotional regulation, life transitions, and general psychoeducation. Some answers here may be reorganized under a more specific topic over time, so treat this as a general reference rather than a definitive guide to any one concern.",
+    sensitive: true,
   },
 };
 
