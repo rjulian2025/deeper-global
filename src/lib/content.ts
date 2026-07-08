@@ -2,7 +2,7 @@ import { isAdhdHubSlug } from './adhd-hub';
 import { isAiMentalHealthHubSlug } from './ai-mental-health-hub';
 import { isAnxietyHubSlug } from './anxiety-hub';
 import { isModalityAnswerSlug } from './modality-hub';
-import type { AnswerSection, Question } from './supabase';
+import { RETIRED_DUPLICATE_REVIEW_STATUS, type AnswerSection, type Question } from './supabase';
 import { siteUrl } from './site';
 
 const crisisTerms = [
@@ -328,6 +328,7 @@ export function shouldIndexQuestion(question: Question) {
   const status = question.review_status?.toLowerCase().trim();
 
   if (!status) return true;
+  if (status === RETIRED_DUPLICATE_REVIEW_STATUS) return false;
 
   return ['approved', 'published', 'reviewed'].includes(status);
 }
