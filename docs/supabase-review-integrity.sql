@@ -5,6 +5,11 @@
 -- That script promotes Kenneth-attributed drafts, demotes duplicate slugs,
 -- backfills related_questions, and corrects addiction prompt versions so
 -- rows satisfy the constraints below.
+--
+-- NOTE: as of 2026-07, this migration has never been applied to the live
+-- database (verified via pg_constraint) — review_status is currently an
+-- unconstrained text column. 'retired_duplicate' is included below so this
+-- stays consistent with src/lib/supabase.ts if the migration is ever run.
 
 do $$
 begin
@@ -13,7 +18,7 @@ begin
       add constraint questions_master_review_status_valid
       check (
         review_status is null
-        or review_status in ('draft', 'reviewed')
+        or review_status in ('draft', 'reviewed', 'retired_duplicate')
       );
   end if;
 

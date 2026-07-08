@@ -1,4 +1,4 @@
-import type { Question } from './supabase';
+import { RETIRED_DUPLICATE_REVIEW_STATUS, type Question } from './supabase';
 import { reviewerProfiles, reviewerProfilesById, type ReviewerProfile } from '@/data/reviewers';
 import { cleanText } from './content-utils';
 import { siteUrl } from './site';
@@ -165,5 +165,6 @@ export function getReviewStatusLabel(question: Question) {
 export function isIndexableReviewStatus(question: Question) {
   const status = getReviewStatusLabel(question);
   if (!status) return true;
+  if (status === RETIRED_DUPLICATE_REVIEW_STATUS) return false;
   return INDEXABLE_REVIEW_STATUSES.has(status);
 }

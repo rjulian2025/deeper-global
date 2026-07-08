@@ -1,5 +1,13 @@
 import { createClient } from '@supabase/supabase-js';
 
+/**
+ * review_status value marking an answer as a resolved content duplicate,
+ * permanently excluded from all publishable surfaces (static answer pages,
+ * llms/answers.json, topic pages, sitemap, search index). Distinct from
+ * 'draft', which means new content awaiting its first review.
+ */
+export const RETIRED_DUPLICATE_REVIEW_STATUS = 'retired_duplicate';
+
 export type Question = {
   id: number | string;
   question: string;

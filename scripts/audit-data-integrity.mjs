@@ -25,7 +25,7 @@ const OUT_MD = `${OUT_DIR}/audit-2026-06-14.md`;
 const MIN_ANSWER_COUNT = 950;
 const PAGE_SIZE = 1000;
 
-const VALID_REVIEW_STATUSES = new Set(['', 'draft', 'reviewed', 'approved', 'published']);
+const VALID_REVIEW_STATUSES = new Set(['', 'draft', 'reviewed', 'approved', 'published', 'retired_duplicate']);
 const INDEXABLE_REVIEW_STATUSES = new Set(['approved', 'published', 'reviewed']);
 const VALID_REVIEWER_IDS = new Set(['david-k-gore-phd', 'kenneth-w-christian-phd', 'alex-crenshaw-phd', 'rick-julian', 'michelle-morris-lpc', 'codex-seo-review']);
 const REVIEWER_ALIASES = {
