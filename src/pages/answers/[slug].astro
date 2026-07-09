@@ -41,6 +41,7 @@ import { getAnswerPractitionerLink } from '@/lib/practitioner-links';
 import { resolveSemanticEnrichmentSync, getPilotEnrichmentBySlug } from '@/lib/semantic-enrichment';
 import { CONTENT_LICENSE_URL, organizationId, siteUrl, websiteId } from '@/lib/site';
 import { qaPageNode } from '@/lib/schema';
+import { getCanonicalTopic } from '@/lib/taxonomy';
 import {
   getReviewedAt,
   getReviewedByLabel,
@@ -120,6 +121,13 @@ const extractableAnswer = truncate(schemaAnswerText || answerText, 700);
 const answerUrl = siteUrl(`/answers/${question.slug}`);
 const categoryUrl = siteUrl(categoryPath(category));
 const entityUrl = siteUrl(`/entities/${slugify(category)}`);
+// Canonical 16-topic taxonomy (src/lib/taxonomy.ts) — the same mapping used to
+// build /topics/[topic].astro, so this @id always matches an actually-built
+// page. `entityUrl` above stays intact as a secondary `mentions` relationship
+// to the raw-category entity page.
+const canonicalTopic = getCanonicalTopic(question.category || question.raw_category || question.primary_theme);
+const topicUrl = siteUrl(`/topics/${canonicalTopic.slug}`);
+const topicId = `${topicUrl}#topic`;
 const questionId = `${answerUrl}#question`;
 const answerId = `${answerUrl}#accepted-answer`;
 const articleId = `${answerUrl}#article`;
@@ -164,12 +172,17 @@ const relatedSidebarLinks: RelatedSidebarLink[] = [
   { href: categoryPath(category), label: `${category} topic hub` },
 ];
 
+// When a reviewer profile resolves, the full Person node is emitted once
+// (as a standalone graph node below) and referenced here by @id, instead of
+// being inlined three times across MedicalWebPage/Article/standalone.
 const reviewedBySchema = reviewedBy
   ? {
-      reviewedBy: reviewerSchemaNode ?? {
-        '@type': isInternalReviewerLabel(reviewedBy) ? 'Organization' : 'Person',
-        name: reviewerDisplayLabel,
-      },
+      reviewedBy: reviewerSchemaNode
+        ? { '@id': reviewerSchemaNode['@id'] }
+        : {
+            '@type': isInternalReviewerLabel(reviewedBy) ? 'Organization' : 'Person',
+            name: reviewerDisplayLabel,
+          },
     }
   : {};
 const sourceCitationSchema =
@@ -199,6 +212,9 @@ const jsonLd = {
         '@id': organizationId(),
       },
       about: {
+        '@id': topicId,
+      },
+      mentions: {
         '@id': `${entityUrl}#entity`,
       },
       mainEntity: {
@@ -211,8 +227,6 @@ const jsonLd = {
     qaPageNode({
       pageUrl: answerUrl,
       pageId: qaPageId,
-      question: schemaQuestion,
-      answer: schemaAnswerText,
       questionId,
       answerId,
     }),
@@ -234,6 +248,9 @@ const jsonLd = {
         '@id': pageId,
       },
       about: {
+        '@id': topicId,
+      },
+      mentions: {
         '@id': `${entityUrl}#entity`,
       },
       ...reviewedBySchema,
@@ -247,8 +264,10 @@ const jsonLd = {
       text: schemaQuestion,
       dateCreated: question.created_at,
       about: {
+        '@id': topicId,
+      },
+      mentions: {
         '@id': `${entityUrl}#entity`,
-        name: primaryTheme,
       },
       author: {
         '@id': organizationId(),
