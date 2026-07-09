@@ -11,19 +11,19 @@ export function questionEntity(item: QaSchemaItem) {
   };
 }
 
-/** QAPage wrapper for single-question answer pages. */
+/**
+ * QAPage wrapper for single-question answer pages. References the standalone
+ * Question/Answer nodes by @id rather than re-inlining their content, so the
+ * same @id is never defined twice with divergent properties in one @graph.
+ */
 export function qaPageNode({
   pageUrl,
   pageId,
-  question,
-  answer,
   questionId,
   answerId,
 }: {
   pageUrl: string;
   pageId: string;
-  question: string;
-  answer: string;
   questionId: string;
   answerId: string;
 }) {
@@ -32,15 +32,7 @@ export function qaPageNode({
     '@id': pageId,
     url: pageUrl,
     mainEntity: {
-      '@type': 'Question',
       '@id': questionId,
-      name: question,
-      text: question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        '@id': answerId,
-        text: answer,
-      },
     },
   };
 }

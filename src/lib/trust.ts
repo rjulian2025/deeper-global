@@ -139,7 +139,7 @@ export function getReviewerSchemaNode(question: Question) {
 
   return {
     '@type': 'Person',
-    '@id': siteUrl(`/reviewers/${reviewerProfile.slug}/#person`),
+    '@id': `${siteUrl(`/reviewers/${reviewerProfile.slug}`)}#person`,
     name: reviewerProfile.name,
     url: siteUrl(reviewerProfile.url),
     jobTitle: reviewerProfile.specialtyLabel,
