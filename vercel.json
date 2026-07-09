@@ -27,6 +27,9 @@
     "api/cron/requeue-failed.js": {
       "maxDuration": 30
     },
+    "api/cron/refill-social-queue.js": {
+      "maxDuration": 300
+    },
     "api/cron/run-visit-priority-pipeline.js": {
       "maxDuration": 300
     },
@@ -58,6 +61,10 @@
     {
       "path": "/api/cron/publish-approved",
       "schedule": "0 1 * * *"
+    },
+    {
+      "path": "/api/cron/refill-social-queue",
+      "schedule": "0 12 * * *"
     },
     {
       "path": "/api/reports/social-status-email",
