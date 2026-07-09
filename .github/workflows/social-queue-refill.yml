@@ -1,7 +1,7 @@
 name: Social Queue Refill
 
 # Trigger immediate @deeperglobal queue refill on production.
-# Uses CRON_SECRET (preferred) or Supabase + Anthropic GitHub secrets.
+# Uses CRON_SECRET from GitHub Actions secrets.
 
 on:
   workflow_dispatch:
@@ -14,48 +14,77 @@ on:
         description: Force refill even when queue looks healthy
         type: boolean
         default: false
+  push:
+    branches:
+      - production/astro
+    paths:
+      - '.github/workflows/social-queue-refill.yml'
 
 jobs:
   refill:
     runs-on: ubuntu-latest
     steps:
+      - name: Resolve refill flags
+        id: flags
+        env:
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          DISPATCH_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+          DISPATCH_FORCE: ${{ github.event_name == 'workflow_dispatch' && inputs.force }}
+        run: |
+          set -euo pipefail
+          DRY_RUN=false
+          FORCE=false
+          TRIGGER_PUBLISH=true
+
+          if [ "$DISPATCH_DRY_RUN" = "true" ]; then
+            DRY_RUN=true
+            TRIGGER_PUBLISH=false
+          fi
+          if [ "$DISPATCH_FORCE" = "true" ]; then
+            FORCE=true
+          fi
+          if printf '%s' "$COMMIT_MESSAGE" | grep -q '\[social-refill-now\]'; then
+            FORCE=true
+          fi
+
+          echo "dry_run=$DRY_RUN" >> "$GITHUB_OUTPUT"
+          echo "force=$FORCE" >> "$GITHUB_OUTPUT"
+          echo "trigger_publish=$TRIGGER_PUBLISH" >> "$GITHUB_OUTPUT"
+          echo "Refill flags: dry_run=$DRY_RUN force=$FORCE trigger_publish=$TRIGGER_PUBLISH"
+
       - name: Refill social queue on production
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          DRY_RUN: ${{ inputs.dry_run }}
-          FORCE: ${{ inputs.force }}
+          DRY_RUN: ${{ steps.flags.outputs.dry_run }}
+          FORCE: ${{ steps.flags.outputs.force }}
         run: |
           set -euo pipefail
 
-          if [ -n "${CRON_SECRET:-}" ]; then
-            QUERY=""
-            if [ "$DRY_RUN" = "true" ]; then QUERY="${QUERY}&dryRun=1"; fi
-            if [ "$FORCE" = "true" ]; then QUERY="${QUERY}&force=1"; fi
-            QUERY="${QUERY#&}"
-            URL="https://www.deeper.global/api/cron/refill-social-queue"
-            if [ -n "$QUERY" ]; then URL="${URL}?${QUERY}"; fi
-
-            echo "Calling production refill endpoint..."
-            RESPONSE=$(curl -sS -w "\n%{http_code}" "$URL" \
-              -H "Authorization: Bearer ${CRON_SECRET}")
-            HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
-            BODY=$(echo "$RESPONSE" | sed '$d')
-            echo "$BODY" | tee refill-response.json
-            if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 300 ]; then
-              echo "::error::Refill request failed with HTTP ${HTTP_CODE}"
-              exit 1
-            fi
-            exit 0
+          if [ -z "${CRON_SECRET:-}" ]; then
+            echo "::error::Missing CRON_SECRET GitHub secret."
+            exit 1
           fi
 
-          echo "::error::Missing CRON_SECRET GitHub secret."
-          exit 1
+          QUERY=""
+          if [ "$DRY_RUN" = "true" ]; then QUERY="${QUERY}&dryRun=1"; fi
+          if [ "$FORCE" = "true" ]; then QUERY="${QUERY}&force=1"; fi
+          QUERY="${QUERY#&}"
+          URL="https://www.deeper.global/api/cron/refill-social-queue"
+          if [ -n "$QUERY" ]; then URL="${URL}?${QUERY}"; fi
+
+          echo "Calling production refill endpoint..."
+          RESPONSE=$(curl -sS -w "\n%{http_code}" "$URL" \
+            -H "Authorization: Bearer ${CRON_SECRET}")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+          echo "$BODY" | tee refill-response.json
+          if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 300 ]; then
+            echo "::error::Refill request failed with HTTP ${HTTP_CODE}"
+            exit 1
+          fi
 
       - name: Publish one approved post
-        if: ${{ inputs.dry_run == false }}
+        if: ${{ steps.flags.outputs.trigger_publish == 'true' }}
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
