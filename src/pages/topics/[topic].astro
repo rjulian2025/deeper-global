@@ -74,7 +74,7 @@ const jsonLd = {
   description={description}
   canonicalPath={`/topics/${topic.slug}`}
   jsonLd={jsonLd}
-  noindex={true}
+  noindex={!content.indexable}
 >
   <main class="discovery-surface hub-page">
     <section class="catalog-hero">
@@ -135,7 +135,7 @@ const jsonLd = {
             </div>
             <div class="discovery-list answer-list">
               {startHereQuestions.map((question) => (
-                <DiscoveryRow question={question} />
+                <DiscoveryRow question={question} categoryOverride={topic.name} />
               ))}
             </div>
           </div>
@@ -152,7 +152,9 @@ const jsonLd = {
           </h2>
         </div>
         <div class="discovery-list answer-list">
-          {remainingQuestions.map((question) => <DiscoveryRow question={question} />)}
+          {remainingQuestions.map((question) => (
+            <DiscoveryRow question={question} categoryOverride={topic.name} />
+          ))}
         </div>
       </div>
     </section>
