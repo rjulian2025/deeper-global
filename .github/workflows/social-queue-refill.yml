@@ -1,0 +1,88 @@
+name: Social Queue Refill
+
+# Trigger immediate @deeperglobal queue refill on production.
+# Uses CRON_SECRET (preferred) or Supabase + Anthropic GitHub secrets.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Dry run only (no writes)
+        type: boolean
+        default: false
+      force:
+        description: Force refill even when queue looks healthy
+        type: boolean
+        default: false
+
+jobs:
+  refill:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Refill social queue on production
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          set -euo pipefail
+
+          if [ -n "${CRON_SECRET:-}" ]; then
+            QUERY=""
+            if [ "$DRY_RUN" = "true" ]; then QUERY="${QUERY}&dryRun=1"; fi
+            if [ "$FORCE" = "true" ]; then QUERY="${QUERY}&force=1"; fi
+            QUERY="${QUERY#&}"
+            URL="https://www.deeper.global/api/cron/refill-social-queue"
+            if [ -n "$QUERY" ]; then URL="${URL}?${QUERY}"; fi
+
+            echo "Calling production refill endpoint..."
+            RESPONSE=$(curl -sS -w "\n%{http_code}" "$URL" \
+              -H "Authorization: Bearer ${CRON_SECRET}")
+            HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+            BODY=$(echo "$RESPONSE" | sed '$d')
+            echo "$BODY" | tee refill-response.json
+            if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 300 ]; then
+              echo "::error::Refill request failed with HTTP ${HTTP_CODE}"
+              exit 1
+            fi
+            exit 0
+          fi
+
+          echo "::error::Missing CRON_SECRET GitHub secret."
+          exit 1
+
+      - name: Publish one approved post
+        if: ${{ inputs.dry_run == false }}
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          set -euo pipefail
+          if [ -z "${CRON_SECRET:-}" ]; then
+            echo "Skipping publish trigger (no CRON_SECRET)."
+            exit 0
+          fi
+
+          echo "Triggering publish-approved to post immediately if due..."
+          RESPONSE=$(curl -sS -w "\n%{http_code}" \
+            "https://www.deeper.global/api/cron/publish-approved" \
+            -H "Authorization: Bearer ${CRON_SECRET}")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+          echo "$BODY" | tee publish-response.json
+          if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 300 ]; then
+            echo "::error::Publish request failed with HTTP ${HTTP_CODE}"
+            exit 1
+          fi
+
+      - name: Upload responses
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: social-queue-refill-response
+          path: |
+            refill-response.json
+            publish-response.json
+          if-no-files-found: ignore
