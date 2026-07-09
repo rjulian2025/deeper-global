@@ -1,5 +1,6 @@
 import type { Question } from './supabase';
 import { shouldIndexQuestion } from './content';
+import { isTopicIndexable } from './topic-content';
 
 /** Slugs that 301 to a canonical answer via vercel.json — do not publish or sitemap. */
 export const REDIRECT_SOURCE_SLUGS = new Set([
@@ -80,7 +81,14 @@ export function shouldIncludeAnswerPathInSitemap(pathname: string) {
 export function shouldIncludePathInSitemap(pathname: string) {
   const path = pathname.endsWith('/') || pathname.includes('.') ? pathname : `${pathname}/`;
 
-  if (path.startsWith('/entities/') || path.startsWith('/categories/') || path.startsWith('/topics/')) return false;
+  if (path.startsWith('/entities/') || path.startsWith('/categories/')) return false;
+  if (path.startsWith('/topics/')) {
+    // /topics/ itself (the index) always stays out; child topic pages are an allowlist
+    // driven by topic-content.ts `indexable`, not a blanket prefix exclusion.
+    const match = path.match(/^\/topics\/([^/]+)\/$/);
+    if (!match) return false;
+    return isTopicIndexable(match[1]);
+  }
   if (path.startsWith('/design-evolution/')) return false;
   if (path === '/answers/random/') return false;
 

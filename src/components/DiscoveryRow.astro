@@ -8,11 +8,20 @@ type Props = {
   searchResult?: boolean;
   searchPosition?: number;
   summaryMaxLength?: number;
+  /** Overrides the visible category/byline label (e.g. the canonical topic name on /topics/{slug}/). */
+  categoryOverride?: string;
 };
 
-const { question, headingLevel = 2, searchResult = false, searchPosition, summaryMaxLength } = Astro.props;
+const {
+  question,
+  headingLevel = 2,
+  searchResult = false,
+  searchPosition,
+  summaryMaxLength,
+  categoryOverride,
+} = Astro.props;
 const Heading = `h${headingLevel}` as const;
-const category = displayCategory(question);
+const category = categoryOverride ?? displayCategory(question);
 const title = getAnswerDisplayTitle(question);
 const summary = summaryMaxLength ? truncate(getAnswerSummary(question), summaryMaxLength) : getAnswerSummary(question);
 const updated = formatDate(question.updated_at || question.created_at);

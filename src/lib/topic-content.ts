@@ -10,6 +10,8 @@ export type TopicContentEntry = {
   curatedHubNote?: string;
   /** Marks topics that warrant an extra crisis/support note in the trust strip. */
   sensitive?: boolean;
+  /** Whether /topics/{slug}/ is indexable. Defaults to false — set only after editorial sign-off. */
+  indexable?: boolean;
 };
 
 /**
@@ -71,6 +73,7 @@ export const topicContent: Record<string, TopicContentEntry> = {
     slug: 'therapy-and-care-navigation',
     intro:
       'Finding the right kind of professional support can be its own challenge. This topic covers how therapy works, what different treatment options involve, and how to navigate access to mental health care.',
+    indexable: true,
     startHereSlugs: [
       'how-do-i-know-if-i-need-therapy',
       'how-do-i-find-a-therapist-thats-right-fo-184729-014',
@@ -115,6 +118,7 @@ export const topicContent: Record<string, TopicContentEntry> = {
     slug: 'grief-and-loss',
     intro:
       "Grief and loss are natural responses to something ending, whether that's a death, a relationship, or a major life change. This topic gathers answers about mourning, complicated grief, and finding a way through loss at your own pace.",
+    sensitive: true,
     startHereSlugs: [
       'why-does-grief-come-in-waves',
       'how-long-is-it-normal-to-grieve-after-lo-184729-001',
@@ -126,6 +130,7 @@ export const topicContent: Record<string, TopicContentEntry> = {
     slug: 'work-and-burnout',
     intro:
       'Work and burnout questions cover the stress, exhaustion, and loss of purpose that can build up in a job or career, including the newer strain of AI-driven change fatigue and job-security anxiety. This topic addresses workplace pressure, work-life balance, and recognizing the line between normal stress and burnout.',
+    indexable: true,
     startHereSlugs: [
       'how-do-i-know-if-im-burned-out-or-just-s-190219-012',
       'why-work-stress-makes-me-irritable-at-home',
@@ -175,6 +180,7 @@ export const topicContent: Record<string, TopicContentEntry> = {
     slug: 'meaning-faith-and-existential-questions',
     intro:
       'Meaning, faith, and existential questions arise when the usual answers about purpose or belief stop feeling sufficient. This topic covers spiritual doubt, existential crisis, and the search for purpose that many people encounter at some point.',
+    indexable: true,
     startHereSlugs: [
       'what-is-existentialism-and-can-it-help-when-life-feels-meaningless',
       'is-it-normal-to-grieve-the-loss-of-my-faith-like-a-death',
@@ -200,4 +206,26 @@ export function getTopicContent(slug: string, name: string): TopicContentEntry {
       intro: fallbackIntro(name),
     }
   );
+}
+
+/**
+ * Hub precedence: a curated hub (e.g. /anxiety/, /adhd/) is the canonical indexable
+ * surface for its topic, so the corresponding /topics/{slug}/ page must stay noindex.
+ * Fails the build if this invariant is ever violated.
+ */
+function assertHubPrecedence(content: Record<string, TopicContentEntry>) {
+  for (const entry of Object.values(content)) {
+    if (entry.indexable && entry.curatedHubPath) {
+      throw new Error(
+        `topic-content.ts: "${entry.slug}" cannot be indexable while curatedHubPath is set ` +
+          `(${entry.curatedHubPath}). The curated hub takes indexation precedence over its canonical topic page.`
+      );
+    }
+  }
+}
+
+assertHubPrecedence(topicContent);
+
+export function isTopicIndexable(slug: string): boolean {
+  return Boolean(topicContent[slug]?.indexable);
 }
