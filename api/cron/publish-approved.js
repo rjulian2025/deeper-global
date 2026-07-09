@@ -6,8 +6,15 @@
  * Query params: dryRun=1, limit=N (default 1)
  */
 
+import { createClient } from '@supabase/supabase-js';
 import { TwitterApi } from 'twitter-api-v2';
 import { extractAnswerSlugFromBody, validateSocialPostForPublish } from '../lib/social-publish-validation.mjs';
+import {
+  getSocialQueueStats,
+  refillSocialQueue,
+  requeueFailedSocialPosts,
+  SOCIAL_QUEUE_MIN_APPROVED,
+} from '../../scripts/lib/social-queue-refill.mjs';
 
 // ── X weighted length (mirrors generate-drafts logic) ────────────────────────
 
@@ -235,7 +242,45 @@ export default async function handler(req, res) {
     const key = process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_ANON_KEY;
     if (!url || !key) throw new Error('Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY');
 
-    const posts = await getApprovedPostsToPublish(url, key, limit);
+    let posts = await getApprovedPostsToPublish(url, key, limit);
+
+    if (posts.length === 0 && !dryRun) {
+      const supabase = createClient(url, key, { auth: { persistSession: false } });
+      const queueStats = await getSocialQueueStats(supabase);
+      console.log('social_publish_queue_empty', queueStats);
+
+      if (queueStats.failedCount > 0) {
+        const requeued = await requeueFailedSocialPosts(supabase, 25);
+        console.log('social_publish_auto_requeue', { requeued: requeued.length });
+        if (requeued.length > 0) {
+          posts = await getApprovedPostsToPublish(url, key, limit);
+        }
+      }
+
+      if (posts.length === 0 && queueStats.approvedCount < SOCIAL_QUEUE_MIN_APPROVED) {
+        const anthropicApiKey = process.env.ANTHROPIC_API_KEY?.trim();
+        if (anthropicApiKey) {
+          const refill = await refillSocialQueue({
+            supabase,
+            anthropicApiKey,
+            dryRun: false,
+            force: false,
+            logger: console,
+          });
+          console.log('social_publish_auto_refill', {
+            action: refill.action,
+            generated: refill.generated,
+            requeued: refill.requeued,
+          });
+          if (refill.generated > 0 || refill.requeued > 0) {
+            posts = await getApprovedPostsToPublish(url, key, limit);
+          }
+        } else {
+          console.warn('social_publish_auto_refill_skipped', { reason: 'missing_anthropic_api_key' });
+        }
+      }
+    }
+
     const results = [];
     console.log('social_publish_approved_count', {
       approved_count: posts.length,
