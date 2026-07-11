@@ -29,13 +29,9 @@ If Instantly only provides a combined export, place that file here unchanged. Th
 
 ## Required column
 
-At minimum, each CSV needs a column the script can map to email. Recognized headers include:
+At minimum, each CSV needs a column the script can map to email.
 
-- `email`
-- `Email Address`
-- `Contact Email`
-- `Lead Email`
-- `E-mail`
+See [`docs/instantly-csv-headers.md`](../../docs/instantly-csv-headers.md) for the full list of compatible Instantly headers and status value mappings.
 
 ## What not to do
 
@@ -45,7 +41,19 @@ At minimum, each CSV needs a column the script can map to email. Recognized head
 
 ## Optional manual exclusions
 
-For one-off emails not in Instantly exports, add `input/manual-exclusions.csv` at the project root (sibling to this folder) with at least an `email` column.
+For one-off emails not in Instantly exports, add `input/manual-exclusions.csv` with columns:
+
+```csv
+email,reason,notes
+```
+
+- `email` (required)
+- `reason` (optional; defaults to `manual_exclusion`)
+- `notes` (optional audit text)
+
+## Optional role-based allowlist
+
+To keep a generic inbox address such as `info@known-practice.com`, add it to `input/role-based-allowlist.csv` before processing.
 
 ## Next step
 

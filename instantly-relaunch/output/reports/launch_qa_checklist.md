@@ -22,10 +22,10 @@ Check each item manually. Do not skip the approval gate at the end.
 - [ ] Reviewed `output/reports/relaunch_summary.md` for expected counts
 - [ ] Reviewed `output/suppression/master_suppression_list.csv`
 - [ ] Spot-checked 10-20 rows in `output/cleaned-leads/deeper_global_import_ready.csv`
-- [ ] Reviewed `output/reports/excluded_leads_report.csv` for unexpected exclusions
+- [ ] Reviewed `output/reports/excluded_leads_report.csv` for unexpected **hard exclusions**
 - [ ] Reviewed `output/reports/duplicate_leads_report.csv`
-- [ ] Resolved or accepted all rows in `output/reports/data_quality_flags.csv`
-- [ ] Ambiguous relevance flags reviewed (if any)
+- [ ] Reviewed `output/reports/data_quality_flags.csv` for **review-only** flags (`disposition=review_only`)
+- [ ] Resolved review-only flags or removed flagged rows from import-ready CSV
 
 ## C. Suppression integrity
 
@@ -35,6 +35,7 @@ Check each item manually. Do not skip the approval gate at the end.
 - [ ] Bounces appear in suppression list
 - [ ] No known active conversations included in import-ready file
 - [ ] Manual exclusions applied (if `input/manual-exclusions.csv` was used)
+- [ ] Role-based allowlist applied (if `input/role-based-allowlist.csv` was used)
 
 ## D. New campaign setup (Instantly)
 

@@ -8,6 +8,7 @@ No external APIs, no network calls, no Instantly integration.
 
 from __future__ import annotations
 
+import argparse
 import csv
 import re
 import sys
@@ -22,9 +23,11 @@ from typing import Iterable
 # ---------------------------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent.parent
-INPUT_OLD = ROOT / "input" / "old-campaign"
-INPUT_NEW = ROOT / "input" / "new-leads"
-INPUT_MANUAL_EXCLUSIONS = ROOT / "input" / "manual-exclusions.csv"
+DEFAULT_INPUT_OLD = ROOT / "input" / "old-campaign"
+DEFAULT_INPUT_NEW = ROOT / "input" / "new-leads"
+DEFAULT_MANUAL_EXCLUSIONS = ROOT / "input" / "manual-exclusions.csv"
+DEFAULT_ROLE_ALLOWLIST = ROOT / "input" / "role-based-allowlist.csv"
+SAMPLES_ROOT = ROOT / "working" / "samples"
 WORKING = ROOT / "working"
 OUTPUT_SUPPRESSION = ROOT / "output" / "suppression"
 OUTPUT_CLEANED = ROOT / "output" / "cleaned-leads"
@@ -63,6 +66,24 @@ STATUS_ALIASES = frozenset(
     }
 )
 
+REASON_ALIASES = frozenset(
+    {
+        "reason",
+        "suppression reason",
+        "exclusion reason",
+        "suppress reason",
+    }
+)
+
+NOTES_ALIASES = frozenset(
+    {
+        "notes",
+        "note",
+        "comment",
+        "comments",
+    }
+)
+
 IMPORT_FIELD_MAP: dict[str, tuple[str, ...]] = {
     "email": ("email", "e-mail", "email address", "contact email", "lead email"),
     "first_name": ("first name", "firstname", "first", "given name", "fname"),
@@ -76,12 +97,10 @@ IMPORT_FIELD_MAP: dict[str, tuple[str, ...]] = {
         "personalisation",
         "custom variable",
         "custom field",
-        "notes",
         "icebreaker",
     ),
 }
 
-# Filename keyword -> default suppression reason when status column is absent
 FILENAME_SUPPRESSION_RULES: list[tuple[tuple[str, ...], str]] = [
     (("sent", "contacted", "delivered", "outreach"), "previously_emailed"),
     (("reply", "replied", "response"), "replied"),
@@ -116,7 +135,6 @@ ROLE_BASED_LOCAL_PARTS = frozenset(
     }
 )
 
-# Status column values -> suppression reason
 STATUS_VALUE_RULES: list[tuple[tuple[str, ...], str]] = [
     (("sent", "contacted", "delivered", "completed", "finished"), "previously_emailed"),
     (("replied", "reply", "responded"), "replied"),
@@ -133,6 +151,15 @@ EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 # ---------------------------------------------------------------------------
 # Data structures
 # ---------------------------------------------------------------------------
+
+
+@dataclass
+class WorkflowPaths:
+    input_old: Path
+    input_new: Path
+    input_manual_exclusions: Path
+    input_role_allowlist: Path
+    use_samples: bool = False
 
 
 @dataclass
@@ -161,14 +188,23 @@ class ProcessingStats:
     suppression_records: int = 0
     unique_suppressed_emails: int = 0
     import_ready_count: int = 0
+    hard_excluded_count: int = 0
     excluded_suppressed: int = 0
     excluded_duplicates: int = 0
     excluded_invalid_email: int = 0
     excluded_missing_required: int = 0
     excluded_role_based: int = 0
     excluded_irrelevant: int = 0
-    flagged_ambiguous: int = 0
+    review_only_flag_count: int = 0
     suppression_reason_counts: dict[str, int] = field(default_factory=dict)
+
+
+@dataclass
+class LeadProcessingResult:
+    import_rows: list[dict[str, str]]
+    excluded_rows: list[dict[str, str]]
+    duplicate_rows: list[dict[str, str]]
+    review_flags: list[dict[str, str]]
 
 
 # ---------------------------------------------------------------------------
@@ -185,6 +221,14 @@ def log(message: str) -> None:
 
 def normalize_header(name: str) -> str:
     return re.sub(r"[\s_\-]+", " ", (name or "").strip().lower())
+
+
+def normalize_reason_token(raw: str, fallback: str = "manual_exclusion") -> str:
+    value = (raw or "").strip().lower()
+    if not value:
+        return fallback
+    token = re.sub(r"[^a-z0-9]+", "_", value).strip("_")
+    return token or fallback
 
 
 def find_column(headers: list[str], aliases: frozenset[str] | tuple[str, ...]) -> str | None:
@@ -259,10 +303,6 @@ def is_role_based_email(email: str) -> bool:
 
 
 def looks_like_therapist_lead(row: dict[str, str], mapping: dict[str, str | None]) -> bool | None:
-    """
-    Return True if clearly therapist-relevant, False if clearly irrelevant, None if ambiguous.
-    Heuristic only; flags ambiguous rows for human review instead of auto-dropping.
-    """
     company = (row.get(mapping.get("company") or "", "") or "").strip().lower()
     website = (row.get(mapping.get("website") or "", "") or "").strip().lower()
 
@@ -285,6 +325,7 @@ def looks_like_therapist_lead(row: dict[str, str], mapping: dict[str, str | None
     irrelevant_signals = (
         "restaurant",
         "plumbing",
+        "plumb",
         "real estate",
         "auto repair",
         "grocery",
@@ -327,6 +368,83 @@ def list_csv_files(directory: Path) -> list[Path]:
     if not directory.exists():
         return []
     return sorted(p for p in directory.iterdir() if p.is_file() and p.suffix.lower() == ".csv")
+
+
+def resolve_paths(use_samples: bool) -> WorkflowPaths:
+    if use_samples:
+        return WorkflowPaths(
+            input_old=SAMPLES_ROOT / "old-campaign",
+            input_new=SAMPLES_ROOT / "new-leads",
+            input_manual_exclusions=SAMPLES_ROOT / "manual-exclusions.csv",
+            input_role_allowlist=SAMPLES_ROOT / "role-based-allowlist.csv",
+            use_samples=True,
+        )
+    return WorkflowPaths(
+        input_old=DEFAULT_INPUT_OLD,
+        input_new=DEFAULT_INPUT_NEW,
+        input_manual_exclusions=DEFAULT_MANUAL_EXCLUSIONS,
+        input_role_allowlist=DEFAULT_ROLE_ALLOWLIST,
+        use_samples=False,
+    )
+
+
+def load_role_allowlist(path: Path) -> set[str]:
+    if not path.exists():
+        return set()
+
+    headers, rows = read_csv_rows(path)
+    email_col = find_column(headers, EMAIL_ALIASES) if headers else None
+    if not email_col:
+        log(f"WARNING: role-based allowlist has no email column: {path}")
+        return set()
+
+    allowed: set[str] = set()
+    for row in rows:
+        norm = normalize_email(row.get(email_col, ""))
+        if norm.is_valid and norm.normalized:
+            allowed.add(norm.normalized)
+    return allowed
+
+
+def make_hard_exclusion(
+    *,
+    email: str,
+    original_email: str,
+    source_file: str,
+    source_row: str,
+    exclusion_reason: str,
+    notes: str = "",
+) -> dict[str, str]:
+    return {
+        "email": email,
+        "original_email": original_email,
+        "source_file": source_file,
+        "source_row": source_row,
+        "exclusion_type": "hard_exclusion",
+        "exclusion_reason": exclusion_reason,
+        "notes": notes,
+    }
+
+
+def make_review_flag(
+    *,
+    email: str,
+    flag: str,
+    source_file: str,
+    source_row: str,
+    details: str,
+    recommended_action: str,
+) -> dict[str, str]:
+    return {
+        "email": email,
+        "disposition": "review_only",
+        "flag": flag,
+        "import_status": "included_pending_review",
+        "source_file": source_file,
+        "source_row": source_row,
+        "details": details,
+        "recommended_action": recommended_action,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -391,10 +509,64 @@ def collect_suppression_from_file(path: Path) -> list[SuppressionRecord]:
     return records
 
 
+def collect_manual_exclusion_records(path: Path) -> list[SuppressionRecord]:
+    headers, rows = read_csv_rows(path)
+    if not headers:
+        return []
+
+    email_col = find_column(headers, EMAIL_ALIASES)
+    if not email_col:
+        log(f"SKIP manual exclusions (no email column): {path}")
+        return []
+
+    reason_col = find_column(headers, REASON_ALIASES)
+    notes_col = find_column(headers, NOTES_ALIASES)
+    records: list[SuppressionRecord] = []
+
+    for row in rows:
+        norm = normalize_email(row.get(email_col, ""))
+        reason_raw = row.get(reason_col, "") if reason_col else ""
+        notes = row.get(notes_col, "") if notes_col else ""
+        reason = normalize_reason_token(reason_raw, fallback="manual_exclusion")
+
+        if not norm.normalized:
+            records.append(
+                SuppressionRecord(
+                    email="",
+                    suppression_reason="malformed_or_blank_email",
+                    source_file=path.name,
+                    original_status=reason_raw,
+                    notes=notes or f"original={norm.original!r}",
+                )
+            )
+            continue
+
+        if norm.is_malformed or not norm.is_valid:
+            records.append(
+                SuppressionRecord(
+                    email=norm.normalized or norm.original.lower(),
+                    suppression_reason="malformed_email",
+                    source_file=path.name,
+                    original_status=reason,
+                    notes=notes or f"original={norm.original!r}",
+                )
+            )
+            continue
+
+        records.append(
+            SuppressionRecord(
+                email=norm.normalized,
+                suppression_reason=reason,
+                source_file=path.name,
+                original_status=reason_raw,
+                notes=notes,
+            )
+        )
+
+    return records
+
+
 def merge_suppression_records(records: list[SuppressionRecord]) -> list[dict[str, str]]:
-    """
-    Merge multiple suppression hits per email. Preserve all reasons in notes when collapsed.
-    """
     by_email: dict[str, list[SuppressionRecord]] = defaultdict(list)
     for rec in records:
         key = rec.email or f"__blank__:{rec.source_file}:{rec.notes}"
@@ -427,11 +599,11 @@ def merge_suppression_records(records: list[SuppressionRecord]) -> list[dict[str
     return merged
 
 
-def build_master_suppression_list() -> tuple[list[dict[str, str]], ProcessingStats]:
+def build_master_suppression_list(paths: WorkflowPaths) -> tuple[list[dict[str, str]], ProcessingStats]:
     stats = ProcessingStats()
     all_records: list[SuppressionRecord] = []
 
-    old_files = list_csv_files(INPUT_OLD)
+    old_files = list_csv_files(paths.input_old)
     stats.old_campaign_files = len(old_files)
 
     for path in old_files:
@@ -440,25 +612,18 @@ def build_master_suppression_list() -> tuple[list[dict[str, str]], ProcessingSta
         all_records.extend(file_records)
         log(f"OLD-CAMPAIGN {path.name}: {len(file_records)} suppression candidate rows")
 
-    if INPUT_MANUAL_EXCLUSIONS.exists():
-        manual_records = collect_suppression_from_file(INPUT_MANUAL_EXCLUSIONS)
-        for rec in manual_records:
-            if rec.suppression_reason == "prior_campaign_contact":
-                rec.suppression_reason = "manual_exclusion"
+    if paths.input_manual_exclusions.exists():
+        manual_records = collect_manual_exclusion_records(paths.input_manual_exclusions)
         all_records.extend(manual_records)
         log(f"MANUAL-EXCLUSIONS: {len(manual_records)} rows")
 
     merged = merge_suppression_records(all_records)
     stats.suppression_records = len(merged)
-    stats.unique_suppressed_emails = len(
-        {row["email"] for row in merged if row["email"]}
-    )
+    stats.unique_suppressed_emails = len({row["email"] for row in merged if row["email"]})
 
     for row in merged:
         reason = row["suppression_reason"]
-        stats.suppression_reason_counts[reason] = (
-            stats.suppression_reason_counts.get(reason, 0) + 1
-        )
+        stats.suppression_reason_counts[reason] = stats.suppression_reason_counts.get(reason, 0) + 1
 
     return merged, stats
 
@@ -466,15 +631,6 @@ def build_master_suppression_list() -> tuple[list[dict[str, str]], ProcessingSta
 # ---------------------------------------------------------------------------
 # New lead cleaning
 # ---------------------------------------------------------------------------
-
-
-@dataclass
-class LeadProcessingResult:
-    import_rows: list[dict[str, str]]
-    excluded_rows: list[dict[str, str]]
-    duplicate_rows: list[dict[str, str]]
-    quality_flags: list[dict[str, str]]
-    ambiguous_rows: list[dict[str, str]]
 
 
 def build_suppression_lookup(
@@ -488,18 +644,21 @@ def build_suppression_lookup(
     return lookup
 
 
-def process_new_leads(suppression_rows: list[dict[str, str]], stats: ProcessingStats) -> LeadProcessingResult:
+def process_new_leads(
+    paths: WorkflowPaths,
+    suppression_rows: list[dict[str, str]],
+    stats: ProcessingStats,
+) -> LeadProcessingResult:
     suppression_lookup = build_suppression_lookup(suppression_rows)
+    role_allowlist = load_role_allowlist(paths.input_role_allowlist)
 
     import_rows: list[dict[str, str]] = []
     excluded_rows: list[dict[str, str]] = []
     duplicate_rows: list[dict[str, str]] = []
-    quality_flags: list[dict[str, str]] = []
-    ambiguous_rows: list[dict[str, str]] = []
-
+    review_flags: list[dict[str, str]] = []
     seen_emails: dict[str, str] = {}
 
-    new_files = list_csv_files(INPUT_NEW)
+    new_files = list_csv_files(paths.input_new)
     stats.new_lead_files = len(new_files)
 
     for path in new_files:
@@ -521,67 +680,48 @@ def process_new_leads(suppression_rows: list[dict[str, str]], stats: ProcessingS
             norm = normalize_email(raw_email)
             source_ref = f"{path.name}:row{idx}"
 
-            base_excluded = {
-                "email": norm.normalized or norm.original,
-                "original_email": norm.original,
-                "source_file": path.name,
-                "source_row": str(idx),
-                "exclusion_reason": "",
-                "notes": "",
-            }
-
             if not norm.normalized:
-                base_excluded["exclusion_reason"] = "missing_email"
-                excluded_rows.append(base_excluded)
-                stats.excluded_missing_required += 1
-                quality_flags.append(
-                    {
-                        "email": "",
-                        "flag": "missing_email",
-                        "source_file": path.name,
-                        "source_row": str(idx),
-                        "details": "No email value present",
-                    }
+                excluded_rows.append(
+                    make_hard_exclusion(
+                        email="",
+                        original_email=norm.original,
+                        source_file=path.name,
+                        source_row=str(idx),
+                        exclusion_reason="missing_email",
+                    )
                 )
+                stats.excluded_missing_required += 1
                 continue
 
             if norm.is_malformed or not norm.is_valid:
-                base_excluded["exclusion_reason"] = "invalid_or_malformed_email"
-                base_excluded["notes"] = f"normalized={norm.normalized!r}"
-                excluded_rows.append(base_excluded)
+                excluded_rows.append(
+                    make_hard_exclusion(
+                        email=norm.normalized,
+                        original_email=norm.original,
+                        source_file=path.name,
+                        source_row=str(idx),
+                        exclusion_reason="invalid_or_malformed_email",
+                        notes=f"normalized={norm.normalized!r}",
+                    )
+                )
                 stats.excluded_invalid_email += 1
-                quality_flags.append(
-                    {
-                        "email": norm.normalized,
-                        "flag": "malformed_email",
-                        "source_file": path.name,
-                        "source_row": str(idx),
-                        "details": f"original={norm.original!r}",
-                    }
-                )
                 continue
-
-            first_name = row.get(mapping.get("first_name") or "", "").strip()
-            last_name = row.get(mapping.get("last_name") or "", "").strip()
-            if not first_name and not last_name:
-                quality_flags.append(
-                    {
-                        "email": norm.normalized,
-                        "flag": "missing_name",
-                        "source_file": path.name,
-                        "source_row": str(idx),
-                        "details": "Both first_name and last_name are blank",
-                    }
-                )
 
             if norm.normalized in suppression_lookup:
                 hit = suppression_lookup[norm.normalized][0]
-                base_excluded["exclusion_reason"] = "suppressed"
-                base_excluded["notes"] = (
-                    f"suppression_reason={hit.get('suppression_reason', '')}; "
-                    f"source={hit.get('source_file', '')}"
+                excluded_rows.append(
+                    make_hard_exclusion(
+                        email=norm.normalized,
+                        original_email=norm.original,
+                        source_file=path.name,
+                        source_row=str(idx),
+                        exclusion_reason="suppressed",
+                        notes=(
+                            f"suppression_reason={hit.get('suppression_reason', '')}; "
+                            f"source={hit.get('source_file', '')}"
+                        ),
+                    )
                 )
-                excluded_rows.append(base_excluded)
                 stats.excluded_suppressed += 1
                 continue
 
@@ -596,51 +736,79 @@ def process_new_leads(suppression_rows: list[dict[str, str]], stats: ProcessingS
                     }
                 )
                 excluded_rows.append(
-                    {
-                        **base_excluded,
-                        "exclusion_reason": "duplicate_in_new_list",
-                        "notes": f"first_seen={seen_emails[norm.normalized]}",
-                    }
+                    make_hard_exclusion(
+                        email=norm.normalized,
+                        original_email=norm.original,
+                        source_file=path.name,
+                        source_row=str(idx),
+                        exclusion_reason="duplicate_in_new_list",
+                        notes=f"first_seen={seen_emails[norm.normalized]}",
+                    )
                 )
                 stats.excluded_duplicates += 1
                 continue
 
-            if is_role_based_email(norm.normalized):
-                base_excluded["exclusion_reason"] = "role_based_email"
-                base_excluded["notes"] = f"local_part={norm.normalized.split('@', 1)[0]}"
-                excluded_rows.append(base_excluded)
-                stats.excluded_role_based += 1
-                quality_flags.append(
-                    {
-                        "email": norm.normalized,
-                        "flag": "role_based_email",
-                        "source_file": path.name,
-                        "source_row": str(idx),
-                        "details": "Generic inbox address",
-                    }
+            if is_role_based_email(norm.normalized) and norm.normalized not in role_allowlist:
+                excluded_rows.append(
+                    make_hard_exclusion(
+                        email=norm.normalized,
+                        original_email=norm.original,
+                        source_file=path.name,
+                        source_row=str(idx),
+                        exclusion_reason="role_based_email",
+                        notes=(
+                            f"local_part={norm.normalized.split('@', 1)[0]}; "
+                            "override via input/role-based-allowlist.csv"
+                        ),
+                    )
                 )
+                stats.excluded_role_based += 1
                 continue
 
             relevance = looks_like_therapist_lead(row, mapping)
             if relevance is False:
-                base_excluded["exclusion_reason"] = "likely_irrelevant_record"
-                base_excluded["notes"] = "Heuristic mismatch for therapist outreach"
-                excluded_rows.append(base_excluded)
+                excluded_rows.append(
+                    make_hard_exclusion(
+                        email=norm.normalized,
+                        original_email=norm.original,
+                        source_file=path.name,
+                        source_row=str(idx),
+                        exclusion_reason="likely_irrelevant_record",
+                        notes="Heuristic mismatch for therapist outreach",
+                    )
+                )
                 stats.excluded_irrelevant += 1
                 continue
-            if relevance is None:
-                ambiguous_rows.append(
-                    {
-                        "email": norm.normalized,
-                        "source_file": path.name,
-                        "source_row": str(idx),
-                        "reason": "ambiguous_relevance",
-                        "notes": "Could not confirm therapist relevance from available fields",
-                    }
-                )
-                stats.flagged_ambiguous += 1
 
             seen_emails[norm.normalized] = source_ref
+
+            first_name = row.get(mapping.get("first_name") or "", "").strip()
+            last_name = row.get(mapping.get("last_name") or "", "").strip()
+            if not first_name and not last_name:
+                review_flags.append(
+                    make_review_flag(
+                        email=norm.normalized,
+                        flag="missing_name",
+                        source_file=path.name,
+                        source_row=str(idx),
+                        details="Both first_name and last_name are blank",
+                        recommended_action="Confirm identity before import or enrich from source",
+                    )
+                )
+                stats.review_only_flag_count += 1
+
+            if relevance is None:
+                review_flags.append(
+                    make_review_flag(
+                        email=norm.normalized,
+                        flag="ambiguous_relevance",
+                        source_file=path.name,
+                        source_row=str(idx),
+                        details="Could not confirm therapist relevance from available fields",
+                        recommended_action="Manually verify fit; remove from import-ready if not a therapist lead",
+                    )
+                )
+                stats.review_only_flag_count += 1
 
             import_row: dict[str, str] = {"email": norm.normalized}
             for target, source_col in mapping.items():
@@ -651,12 +819,12 @@ def process_new_leads(suppression_rows: list[dict[str, str]], stats: ProcessingS
             import_rows.append(import_row)
 
     stats.import_ready_count = len(import_rows)
+    stats.hard_excluded_count = len(excluded_rows)
     return LeadProcessingResult(
         import_rows=import_rows,
         excluded_rows=excluded_rows,
         duplicate_rows=duplicate_rows,
-        quality_flags=quality_flags,
-        ambiguous_rows=ambiguous_rows,
+        review_flags=review_flags,
     )
 
 
@@ -669,6 +837,14 @@ def write_summary_report(stats: ProcessingStats, result: LeadProcessingResult) -
     top_reasons = sorted(
         stats.suppression_reason_counts.items(), key=lambda item: (-item[1], item[0])
     )[:10]
+
+    hard_exclusion_counts: dict[str, int] = defaultdict(int)
+    for row in result.excluded_rows:
+        hard_exclusion_counts[row["exclusion_reason"]] += 1
+
+    review_flag_counts: dict[str, int] = defaultdict(int)
+    for row in result.review_flags:
+        review_flag_counts[row["flag"]] += 1
 
     lines = [
         "# Deeper.global Relaunch Summary",
@@ -700,44 +876,77 @@ def write_summary_report(stats: ProcessingStats, result: LeadProcessingResult) -
     lines.extend(
         [
             "",
-            "## New lead cleaning",
+            "## Hard exclusions (removed from import-ready file)",
             "",
-            f"- Excluded (suppressed): **{stats.excluded_suppressed}**",
-            f"- Excluded (duplicates in new list): **{stats.excluded_duplicates}**",
-            f"- Excluded (invalid/malformed email): **{stats.excluded_invalid_email}**",
-            f"- Excluded (missing email): **{stats.excluded_missing_required}**",
-            f"- Excluded (role-based addresses): **{stats.excluded_role_based}**",
-            f"- Excluded (likely irrelevant): **{stats.excluded_irrelevant}**",
-            f"- Ambiguous records flagged for review: **{stats.flagged_ambiguous}**",
-            f"- **Import-ready leads: {stats.import_ready_count}**",
+            f"- Total hard-excluded rows: **{stats.hard_excluded_count}**",
+            f"- Suppressed (prior contact): **{stats.excluded_suppressed}**",
+            f"- Duplicates in new list: **{stats.excluded_duplicates}**",
+            f"- Invalid / malformed email: **{stats.excluded_invalid_email}**",
+            f"- Missing email: **{stats.excluded_missing_required}**",
+            f"- Role-based addresses: **{stats.excluded_role_based}**",
+            f"- Likely irrelevant: **{stats.excluded_irrelevant}**",
             "",
-            "## Ambiguous records requiring human review",
+            "See `excluded_leads_report.csv` (column `exclusion_type=hard_exclusion`).",
+            "",
+            "### Hard exclusion reasons in this run",
             "",
         ]
     )
 
-    if result.ambiguous_rows:
-        lines.append(
-            f"See `data_quality_flags.csv` and review {len(result.ambiguous_rows)} ambiguous relevance rows."
-        )
-        for row in result.ambiguous_rows[:20]:
+    if hard_exclusion_counts:
+        for reason, count in sorted(hard_exclusion_counts.items()):
+            lines.append(f"- `{reason}`: {count}")
+    else:
+        lines.append("- None")
+
+    lines.extend(
+        [
+            "",
+            "## Review-only flags (still in import-ready file)",
+            "",
+            f"- Total review flags: **{stats.review_only_flag_count}**",
+            f"- **Import-ready leads: {stats.import_ready_count}**",
+            "",
+            "See `data_quality_flags.csv` (column `disposition=review_only`). These rows are included",
+            "but require human review before import.",
+            "",
+            "### Review flag types in this run",
+            "",
+        ]
+    )
+
+    if review_flag_counts:
+        for flag, count in sorted(review_flag_counts.items()):
+            lines.append(f"- `{flag}`: {count}")
+    else:
+        lines.append("- None")
+
+    ambiguous = [row for row in result.review_flags if row["flag"] == "ambiguous_relevance"]
+    lines.extend(["", "## Ambiguous records requiring human review", ""])
+    if ambiguous:
+        for row in ambiguous[:20]:
             lines.append(
-                f"- `{row['email']}` ({row['source_file']} row {row['source_row']}): {row['notes']}"
+                f"- `{row['email']}` ({row['source_file']} row {row['source_row']}): {row['details']}"
             )
-        if len(result.ambiguous_rows) > 20:
-            lines.append(f"- ... and {len(result.ambiguous_rows) - 20} more")
+        if len(ambiguous) > 20:
+            lines.append(f"- ... and {len(ambiguous) - 20} more")
     else:
         lines.append("- None flagged.")
 
     lines.extend(
         [
             "",
+            "## Role-based email policy",
+            "",
+            "Role-based addresses are hard-excluded by default. To allow a specific address,",
+            "add it to `input/role-based-allowlist.csv` and re-run.",
+            "",
             "## Recommendation before launch",
             "",
             "1. Confirm old Instantly campaign remains paused and archived.",
             "2. Review `master_suppression_list.csv` for unexpected gaps or duplicates.",
             "3. Spot-check `deeper_global_import_ready.csv` (10-20 rows minimum).",
-            "4. Resolve ambiguous relevance flags before import.",
+            "4. Resolve all `review_only` rows in `data_quality_flags.csv`.",
             "5. **Stop here.** Do not import into Instantly until a human explicitly approves.",
             "",
             "## Output files",
@@ -764,8 +973,8 @@ def write_summary_report(stats: ProcessingStats, result: LeadProcessingResult) -
 
 def ensure_directories() -> None:
     for directory in (
-        INPUT_OLD,
-        INPUT_NEW,
+        DEFAULT_INPUT_OLD,
+        DEFAULT_INPUT_NEW,
         WORKING,
         OUTPUT_SUPPRESSION,
         OUTPUT_CLEANED,
@@ -778,16 +987,33 @@ def ensure_directories() -> None:
     log("Starting Instantly relaunch local processing")
 
 
-def main() -> int:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Process Instantly CSV exports for Deeper.global relaunch (local only)."
+    )
+    parser.add_argument(
+        "--use-samples",
+        action="store_true",
+        help="Run against working/samples/ fixtures instead of input/ (for dry-run validation).",
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = parse_args(argv)
+    paths = resolve_paths(args.use_samples)
     ensure_directories()
 
-    if not list_csv_files(INPUT_OLD) and not INPUT_MANUAL_EXCLUSIONS.exists():
+    if paths.use_samples:
+        log("MODE: using working/samples fixtures (input/ untouched)")
+
+    if not list_csv_files(paths.input_old) and not paths.input_manual_exclusions.exists():
         log("WARNING: No old-campaign CSVs found. Suppression list will be minimal.")
 
-    if not list_csv_files(INPUT_NEW):
+    if not list_csv_files(paths.input_new):
         log("WARNING: No new-leads CSVs found. Import-ready output will be empty.")
 
-    suppression_rows, stats = build_master_suppression_list()
+    suppression_rows, stats = build_master_suppression_list(paths)
     write_csv(
         OUTPUT_SUPPRESSION / "master_suppression_list.csv",
         ["email", "suppression_reason", "source_file", "original_status", "notes"],
@@ -798,7 +1024,7 @@ def main() -> int:
         f"{stats.unique_suppressed_emails} unique emails"
     )
 
-    result = process_new_leads(suppression_rows, stats)
+    result = process_new_leads(paths, suppression_rows, stats)
 
     import_fieldnames = [
         "email",
@@ -817,7 +1043,15 @@ def main() -> int:
     )
     write_csv(
         OUTPUT_REPORTS / "excluded_leads_report.csv",
-        ["email", "original_email", "source_file", "source_row", "exclusion_reason", "notes"],
+        [
+            "email",
+            "original_email",
+            "source_file",
+            "source_row",
+            "exclusion_type",
+            "exclusion_reason",
+            "notes",
+        ],
         result.excluded_rows,
     )
     write_csv(
@@ -827,13 +1061,24 @@ def main() -> int:
     )
     write_csv(
         OUTPUT_REPORTS / "data_quality_flags.csv",
-        ["email", "flag", "source_file", "source_row", "details"],
-        result.quality_flags,
+        [
+            "email",
+            "disposition",
+            "flag",
+            "import_status",
+            "source_file",
+            "source_row",
+            "details",
+            "recommended_action",
+        ],
+        result.review_flags,
     )
 
     write_summary_report(stats, result)
 
     log("Processing complete")
+    log(f"Hard-excluded: {stats.hard_excluded_count}")
+    log(f"Review-only flags: {stats.review_only_flag_count}")
     log(f"Import-ready leads: {stats.import_ready_count}")
     log("No live Instantly changes were made.")
 

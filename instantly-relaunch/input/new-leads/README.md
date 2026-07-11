@@ -12,7 +12,9 @@ Suggested filename: `deeper-global-candidates.csv` (any `.csv` name is accepted)
 
 ## Recommended columns
 
-Include whatever Instantly needs for import. The processor maps common headers to:
+Include whatever Instantly needs for import.
+
+Full header reference: [`docs/instantly-csv-headers.md`](../../docs/instantly-csv-headers.md)
 
 | Output field | Accepted source headers |
 |---|---|
@@ -29,15 +31,24 @@ Columns not present in your source CSV are left blank in the import-ready output
 
 ## Quality expectations
 
-The processor will flag or exclude:
+### Hard exclusions (removed from import-ready file)
+
+See `output/reports/excluded_leads_report.csv`:
 
 - Emails already in the old campaign / suppression list
 - Duplicate emails within this folder's files
 - Blank or malformed emails
-- Generic role-based addresses (`info@`, `admin@`, `support@`, etc.)
-- Records that clearly look non-therapist (heuristic; see `data_quality_flags.csv`)
+- Generic role-based addresses (`info@`, `admin@`, `support@`, etc.) unless on `input/role-based-allowlist.csv`
+- Records that clearly look non-therapist (heuristic)
 
-Ambiguous records (cannot confirm therapist relevance) are **kept** but flagged for manual review.
+### Review-only flags (still in import-ready file)
+
+See `output/reports/data_quality_flags.csv`:
+
+- Missing first and last name
+- Ambiguous therapist relevance
+
+Review these before import. Remove rows from the import-ready CSV manually if they fail review.
 
 ## What not to do
 

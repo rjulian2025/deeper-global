@@ -31,9 +31,12 @@ Desired exports (use closest available if Instantly groups them):
 
 Place your new Deeper.global candidate list in `input/new-leads/`.
 
-Optional: add one-off exclusions to `input/manual-exclusions.csv` (same columns as any export with an `email` field).
+Optional files at the project root of `input/`:
 
-See `input/old-campaign/README.md` and `input/new-leads/README.md` for detailed intake rules.
+- `manual-exclusions.csv` with columns `email`, `reason`, `notes`
+- `role-based-allowlist.csv` with column `email` (override role-based hard exclusions)
+
+See `input/old-campaign/README.md`, `input/new-leads/README.md`, and `docs/instantly-csv-headers.md` for compatible Instantly CSV headers.
 
 ### 2. Run the processor
 
@@ -51,7 +54,7 @@ No dependencies required (Python 3.10+ standard library only).
 | `output/cleaned-leads/deeper_global_import_ready.csv` | Import-ready leads for a new Deeper.global campaign |
 | `output/reports/excluded_leads_report.csv` | Every removed new lead with reason |
 | `output/reports/duplicate_leads_report.csv` | Duplicate emails within the new list |
-| `output/reports/data_quality_flags.csv` | Invalid, role-based, or ambiguous rows |
+| `output/reports/data_quality_flags.csv` | Review-only flags (rows still in import-ready file) |
 | `output/reports/relaunch_summary.md` | Run summary and recommendation |
 | `output/reports/launch_qa_checklist.md` | Manual pre-launch checklist |
 | `working/processing_audit.log` | Timestamped processing log |
@@ -71,9 +74,12 @@ Do **not** import into Instantly until you have:
 ```
 instantly-relaunch/
   input/
-    old-campaign/          # Instantly exports (read-only for the script)
-    new-leads/             # New candidate list CSVs
-    manual-exclusions.csv  # Optional manual suppressions
+    old-campaign/            # Instantly exports (read-only for the script)
+    new-leads/               # New candidate list CSVs
+    manual-exclusions.csv    # Optional: email, reason, notes
+    role-based-allowlist.csv # Optional: allow role-based emails through
+  docs/
+    instantly-csv-headers.md # Compatible Instantly column reference
   output/
     suppression/
     cleaned-leads/
@@ -103,11 +109,15 @@ Reason assignment (in order):
 
 Malformed or blank emails are recorded with `malformed_or_blank_email` or `malformed_email` reasons.
 
-## How new leads are cleaned
+## Hard exclusions vs review-only flags
 
-Each row in `input/new-leads/*.csv` is checked against:
+The processor writes two separate report types:
 
-| Check | Exclusion reason |
+### Hard exclusions (`excluded_leads_report.csv`)
+
+Rows **removed** from the import-ready file. Column `exclusion_type` is always `hard_exclusion`.
+
+| Check | `exclusion_reason` |
 |---|---|
 | On master suppression list | `suppressed` |
 | Duplicate email in new list | `duplicate_in_new_list` |
@@ -116,7 +126,16 @@ Each row in `input/new-leads/*.csv` is checked against:
 | Role-based inbox (`info@`, `admin@`, `support@`, etc.) | `role_based_email` |
 | Clearly non-therapist record (heuristic) | `likely_irrelevant_record` |
 
-Ambiguous therapist relevance is **not** auto-excluded; it is flagged for human review.
+### Review-only flags (`data_quality_flags.csv`)
+
+Rows **still included** in `deeper_global_import_ready.csv` but flagged for human review. Column `disposition` is always `review_only`.
+
+| Flag | Meaning |
+|---|---|
+| `missing_name` | Both first and last name are blank |
+| `ambiguous_relevance` | Could not confirm therapist fit from available fields |
+
+Resolve review flags before import. Remove rows manually from the import-ready CSV if needed.
 
 ## Email normalization
 
@@ -126,11 +145,11 @@ Ambiguous therapist relevance is **not** auto-excluded; it is flagged for human 
 - Validate with a basic `local@domain.tld` pattern
 - Preserve original values in exclusion/quality reports
 
-## Detected column names
+## Instantly CSV headers
 
-The script maps common header variants automatically. Supported import fields:
+Full header compatibility reference: [`docs/instantly-csv-headers.md`](docs/instantly-csv-headers.md)
 
-`email`, `first_name`, `last_name`, `company`, `website`, `city`, `state`, `personalization`
+Import fields mapped automatically: `email`, `first_name`, `last_name`, `company`, `website`, `city`, `state`, `personalization`
 
 Only columns present (or mappable) in your new-leads CSV are included in the import-ready file.
 
@@ -149,8 +168,18 @@ Draft sequence placeholder lives at `output/campaign-copy/deeper_global_sequence
 - Review `excluded_leads_report.csv` for `exclusion_reason`
 
 **Unexpected role-based exclusions**
-- Role-based filtering is on by default for generic inboxes
-- Re-include specific addresses by removing them from the new list and contacting manually, or adjust the script's `ROLE_BASED_LOCAL_PARTS` set if your team approves a policy change
+- Role-based filtering is on by default for generic inboxes (`info@`, `admin@`, `support@`, etc.)
+- **Override per email:** add the address to `input/role-based-allowlist.csv` and re-run
+- **Override policy:** edit `ROLE_BASED_LOCAL_PARTS` in `working/process_leads.py` only with team approval
+- **Manual re-include after run:** copy approved rows from `excluded_leads_report.csv` into a separate human-reviewed import file (do not edit generated outputs in place)
+
+## Dry-run validation (sample fixtures)
+
+Built-in sample CSVs under `working/samples/` validate the processor without touching `input/`:
+
+```bash
+python3 instantly-relaunch/working/process_leads.py --use-samples
+```
 
 ## Re-running
 
