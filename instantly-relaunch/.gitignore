@@ -1,0 +1,12 @@
+# Generated on each run of working/process_leads.py
+working/processing_audit.log
+
+output/suppression/*.csv
+output/cleaned-leads/*.csv
+output/reports/excluded_leads_report.csv
+output/reports/duplicate_leads_report.csv
+output/reports/data_quality_flags.csv
+output/reports/relaunch_summary.md
+
+# Keep directory placeholders and static templates
+!output/**/.gitkeep
