@@ -8,7 +8,7 @@ const rateLimitBuckets = new Map();
 const REVIEWER_PROFILES = {
   'david-k-gore-phd': {
     id: 'david-k-gore-phd',
-    name: 'David K. Gore, PhD',
+    name: 'Kenneth W. Christian, PhD',
     specialty_label: 'Addiction & Recovery',
     profile_url: `${SITE_URL}/reviewers/david-k-gore-phd/`,
   },

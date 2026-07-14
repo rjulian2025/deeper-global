@@ -540,10 +540,10 @@ export const reviewerProfiles: ReviewerProfile[] = [
   {
     id: 'david-k-gore-phd',
     slug: 'david-k-gore-phd',
-    name: 'David K. Gore, PhD',
+    name: 'Kenneth W. Christian, PhD',
     specialtyLabel: 'Addiction & Recovery',
     credentialLine: 'Licensed psychologist · 40+ years clinical experience',
-    bio: 'David K. Gore, PhD is a licensed psychologist with more than four decades of clinical experience. He reviews selected Deeper Global answers related to addiction, recovery, substance use, and related care navigation.',
+    bio: 'Kenneth W. Christian, PhD is a licensed psychologist with more than four decades of clinical experience. He reviews selected Deeper Global answers related to addiction, recovery, substance use, and related care navigation.',
     expertiseTags: [
       'addiction',
       'substance use',
