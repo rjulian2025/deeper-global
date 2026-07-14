@@ -135,7 +135,7 @@ Assign when the answer is primarily about faith transitions, meaning-making, pur
 
 Display title: **Editorial Reviewer** (not "Clinical Reviewer"). Set `reviewAttributionPrefix: 'Editorially reviewed by'` on the profile in `src/data/reviewers.ts`.
 
-### Clinical reviewers (e.g. David K. Gore, PhD)
+### Clinical reviewers (e.g. Kenneth W. Christian, PhD)
 
 Keep (or assign) when content touches **any** of:
 
