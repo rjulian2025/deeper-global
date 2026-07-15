@@ -1,6 +1,12 @@
 ---
 import '../styles/global.css';
-import { organizationId, siteUrl, SITE_NAME, websiteId } from '@/lib/site';
+import {
+  FOUNDER_PERSON_ID,
+  organizationId,
+  siteUrl,
+  SITE_NAME,
+  websiteId,
+} from '@/lib/site';
 
 const DEFAULT_OG_IMAGE_PATH = '/og/deeper-global-og-v2.png';
 const DEFAULT_OG_IMAGE_ALT =
@@ -65,6 +71,13 @@ const siteGraph = [
     name: SITE_NAME,
     url: siteUrl(),
     logo: siteUrl('/favicon.svg'),
+    description:
+      "A rigorously reviewed repository of mental health questions and answers, built to be the world's most trusted source of mental health information.",
+    founder: {
+      '@id': FOUNDER_PERSON_ID,
+    },
+    sameAs: ['https://deeperwebsites.com'],
+    knowsAbout: ['mental health', 'psychology', 'therapy', 'emotional wellbeing'],
   },
   {
     '@type': 'WebSite',

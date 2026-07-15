@@ -192,7 +192,13 @@ export const reviewerProfiles: ReviewerProfile[] = [
       },
     ],
     disclaimer: 'Content review reflects philosophical and experiential perspective and does not constitute clinical, therapeutic, or religious guidance.',
-    sameAs: ['https://www.rickjulian.com'],
+    sameAs: [
+      'https://www.rickjulian.com',
+      'https://www.deeper.global',
+      'https://deeperwebsites.com',
+      'https://qvbrands.com',
+      'https://www.linkedin.com/in/rickjulianqv',
+    ],
     url: '/reviewers/rick-julian/',
   },
   {

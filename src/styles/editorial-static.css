@@ -131,3 +131,35 @@
   border: none;
   padding: 0;
 }
+
+/* About page: founder portrait (modest, left-aligned) */
+.about-founder {
+  margin: 0 0 var(--space-6);
+  max-width: 11.25rem;
+}
+
+.about-founder__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.about-founder__caption {
+  margin-top: var(--space-3);
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--d-muted);
+}
+
+.about-founder__caption strong {
+  color: var(--d-heading);
+  font-weight: 600;
+}
+
+.about-ecosystem {
+  margin-top: var(--space-10);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--d-line);
+  color: var(--d-muted);
+}

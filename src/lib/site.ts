@@ -28,3 +28,12 @@ export function organizationId() {
 export function websiteId() {
   return `${siteUrl()}#website`;
 }
+
+/** Canonical Person @id for Rick Julian (mirrored on rickjulian.com). */
+export const FOUNDER_PERSON_ID = 'https://rickjulian.com/#person';
+export const FOUNDER_PERSON_URL = 'https://rickjulian.com';
+export const FOUNDER_IMAGE_PATH = '/images/rick-julian.jpg';
+
+export function aboutPageId() {
+  return `${siteUrl('/about/')}#webpage`;
+}
