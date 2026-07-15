@@ -2,7 +2,9 @@
 import '../styles/global.css';
 import {
   FOUNDER_PERSON_ID,
+  FOUNDER_PERSON_URL,
   organizationId,
+  QV_BRANDS_ORGANIZATION_ID,
   siteUrl,
   SITE_NAME,
   websiteId,
@@ -42,7 +44,7 @@ type Props = {
 
 const {
   title = `${SITE_NAME} | Mental health answers worth asking`,
-  description = 'Expert-vetted answers for the questions you ask when no one is looking: too personal, too tangled, or too hard to ask out loud.',
+  description = 'Clinically reviewed answers for the questions you ask when no one is looking: too personal, too tangled, or too hard to ask out loud.',
   canonicalPath = Astro.url.pathname,
   ogType = 'website',
   jsonLd,
@@ -75,7 +77,13 @@ const siteGraph = [
       "A rigorously reviewed repository of mental health questions and answers, built to be the world's most trusted source of mental health information.",
     founder: {
       '@id': FOUNDER_PERSON_ID,
+      name: 'Rick Julian',
+      url: FOUNDER_PERSON_URL,
     },
+    parentOrganization: {
+      '@id': QV_BRANDS_ORGANIZATION_ID,
+    },
+    publishingPrinciples: siteUrl('/editorial-policy/'),
     sameAs: ['https://deeperwebsites.com'],
     knowsAbout: ['mental health', 'psychology', 'therapy', 'emotional wellbeing'],
   },

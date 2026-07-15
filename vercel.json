@@ -87,6 +87,17 @@
   ],
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "deeper.global"
+        }
+      ],
+      "destination": "https://www.deeper.global/:path*",
+      "permanent": true
+    },
+    {
       "source": "/openapi.json",
       "destination": "/api/v1/openapi.json",
       "permanent": true
