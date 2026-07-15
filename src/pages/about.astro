@@ -1,40 +1,130 @@
 ---
 import EditorialStaticLayout from '@/components/editorial/EditorialStaticLayout.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import {
+  aboutPageId,
+  FOUNDER_IMAGE_PATH,
+  FOUNDER_PERSON_ID,
+  FOUNDER_PERSON_URL,
+  organizationId,
+  siteUrl,
+} from '@/lib/site';
+
+const title = 'About Deeper Global | Mission, Editorial Process & Founder';
+const description =
+  'Deeper Global exists to answer one question well: when someone searches for mental health information, what would it take for them to trust what they find?';
+
+const founderImageUrl = siteUrl(FOUNDER_IMAGE_PATH);
+
+const jsonLd = {
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': FOUNDER_PERSON_ID,
+      name: 'Rick Julian',
+      url: FOUNDER_PERSON_URL,
+      image: founderImageUrl,
+      jobTitle: 'Founder',
+      worksFor: {
+        '@id': organizationId(),
+      },
+      description:
+        'Digital strategist and founder of Deeper Global, a reviewed repository of mental health information, and Deeper Websites, a growth studio for mental health practitioners.',
+      sameAs: [
+        siteUrl(),
+        'https://deeperwebsites.com',
+        'https://qvbrands.com',
+        'https://www.linkedin.com/in/rickjulianqv',
+      ],
+    },
+    {
+      '@type': 'AboutPage',
+      '@id': aboutPageId(),
+      url: siteUrl('/about/'),
+      name: 'About Deeper Global',
+      isPartOf: {
+        '@id': organizationId(),
+      },
+      about: {
+        '@id': organizationId(),
+      },
+      mainEntity: {
+        '@id': FOUNDER_PERSON_ID,
+      },
+    },
+  ],
+};
 ---
 
-<BaseLayout
-  title="About Deeper Global | Trusted Mental Health Intelligence"
-  description="Learn about Deeper Global's mission to make trusted mental health answers more accessible."
-  canonicalPath="/about"
->
+<BaseLayout title={title} description={description} canonicalPath="/about" jsonLd={jsonLd}>
   <EditorialStaticLayout
     eyebrow="About"
-    title="Deeper Global helps people find clear, trustworthy answers to mental health questions."
-    lede="Our goal is simple: make it easier to understand what you may be feeling, what it might mean, and what kinds of support could help."
+    title="About Deeper Global"
+    lede="Deeper Global exists to answer one question well: when someone searches for mental health information, what would it take for them to trust what they find?"
   >
-    <h2>What We're Building</h2>
     <p>
-      Deeper Global is a mental health resource built around real questions people ask when they are stressed, overwhelmed, uncertain, or trying to understand themselves better.
+      We're building the world's most trusted repository of mental health questions and answers: a
+      resource designed from the ground up for how people actually seek help today, whether through a
+      search engine, an AI assistant, or a late-night question they're not ready to ask anyone out
+      loud.
     </p>
     <p>
-      We organize answers by topic so you can explore related concerns, learn at your own pace, and find language for what you may be experiencing.
-    </p>
-
-    <h2>Why Trust Comes First</h2>
-    <p>
-      Mental health information should be handled carefully.
-    </p>
-    <p>
-      Our content is designed to be clear, grounded, and responsible. We aim to distinguish education from diagnosis, include crisis guidance when needed, and protect the privacy of people looking for help.
+      Every answer on Deeper Global is rigorously sourced, editorially reviewed, and organized within
+      a clinically informed taxonomy of mental health topics. We don't chase trends or traffic. We
+      build answers meant to hold up: for the person reading them and for the professionals whose work
+      they reflect.
     </p>
 
-    <h2>Where We're Going</h2>
+    <h2>How We Work</h2>
     <p>
-      Over time, Deeper Global can help connect people with better resources, including therapists, treatment options, and trusted support.
+      Deeper Global answers are developed through a structured editorial pipeline: each question is
+      researched against established clinical and academic sources, drafted for clarity and accuracy,
+      reviewed for tone and safety, and mapped to one of sixteen canonical mental health topics.
+      Sensitive subjects receive additional handling standards. Our goal is that every answer is
+      accurate enough for a clinician to stand behind and clear enough for anyone to understand.
     </p>
     <p>
-      But the foundation will stay the same: helping people feel more informed, less alone, and better prepared to take the next step.
+      We are not a substitute for professional care, and we say so. Deeper Global is a starting point:
+      reliable ground to stand on while you find the right support.
+    </p>
+
+    <h2>Founder</h2>
+    <figure class="about-founder">
+      <img
+        class="about-founder__photo"
+        src={FOUNDER_IMAGE_PATH}
+        alt="Rick Julian, founder of Deeper Global"
+        width="180"
+        height="233"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption class="about-founder__caption">
+        <strong>Rick Julian</strong>, Founder
+      </figcaption>
+    </figure>
+    <p>
+      I built Deeper Global because the internet's mental health information is vast, uneven, and
+      often untrustworthy at exactly the moment people are most vulnerable.
+    </p>
+    <p>
+      My background is in digital strategy and brand development: years spent helping organizations
+      be found and understood online. Working with mental health practitioners, I kept seeing the same
+      gap: extraordinary clinical knowledge on one side, and on the other, millions of people searching
+      for answers and landing on content written for algorithms rather than for them.
+    </p>
+    <p>
+      Deeper Global is my attempt to close that gap: a repository built to earn trust, one carefully
+      reviewed answer at a time. The vision is simple to state and long to build: the largest, most
+      trusted body of mental health information in the world, freely accessible, and worthy of the
+      people who turn to it.
+    </p>
+
+    <p class="about-ecosystem">
+      Deeper Global is part of the Deeper ecosystem, alongside
+      <a href="https://deeperwebsites.com">Deeper Websites</a>, which helps mental health
+      practitioners build their presence online. Learn more about Rick at
+      <a href="https://rickjulian.com">rickjulian.com</a>.
     </p>
   </EditorialStaticLayout>
 </BaseLayout>

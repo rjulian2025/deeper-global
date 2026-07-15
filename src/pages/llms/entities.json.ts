@@ -61,6 +61,22 @@ export async function GET() {
       generated_at: new Date().toISOString(),
       count: entities.length,
       entities,
+      people: [
+        {
+          id: 'rick-julian',
+          type: 'Person',
+          name: 'Rick Julian',
+          role: 'Founder',
+          url: 'https://rickjulian.com',
+          sameAs: [
+            SITE_URL,
+            'https://deeperwebsites.com',
+            'https://qvbrands.com',
+            'https://www.linkedin.com/in/rickjulianqv',
+          ],
+          description: 'Founder of Deeper Global and Deeper Websites.',
+        },
+      ],
     },
     {
       headers: {

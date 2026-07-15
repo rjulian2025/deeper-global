@@ -63,6 +63,7 @@ export async function GET() {
     '## Core pages',
     '',
     `- [Home](${siteUrl()}): Mission and discovery entry`,
+    `- [About](${siteUrl('/about')}): Mission, editorial process, and founder`,
     `- [Answers library](${siteUrl('/answers')}): Searchable answer corpus`,
     `- [Modalities](${siteUrl('/modalities')}): Therapy approach guides`,
     `- [ADHD hub](${siteUrl('/adhd')})`,
