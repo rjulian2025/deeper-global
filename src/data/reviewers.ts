@@ -369,26 +369,26 @@ export const reviewerProfiles: ReviewerProfile[] = [
       },
       {
         name: 'Standalone Diagnostic Evaluation',
-        price: '$700',
+        price: '$900-$1,100',
         description:
           'Focused evaluation for adults seeking diagnostic clarity before treatment or when documentation is needed.',
         href: peachtreeReferralUrl('/service/diagnostic-evaluation', 'alex_crenshaw_service_diagnostic_evaluation'),
       },
       {
         name: 'OCD Evaluation',
-        price: '$700',
+        price: '$900-$1,100',
         description: 'Targeted assessment for adults who suspect OCD or need clarity before ERP-based treatment.',
         href: peachtreeReferralUrl('/service/ocd-testing', 'alex_crenshaw_service_ocd_testing'),
       },
       {
         name: 'Anxiety Evaluation',
-        price: '$700',
+        price: '$900-$1,100',
         description: 'Structured assessment to identify specific anxiety presentations and treatment direction.',
         href: peachtreeReferralUrl('/service/anxiety-assessment', 'alex_crenshaw_service_anxiety_assessment'),
       },
       {
         name: 'Depression Evaluation',
-        price: '$700',
+        price: '$900-$1,100',
         description: 'Clinical assessment to identify depressive presentation and rule out overlapping conditions.',
         href: peachtreeReferralUrl('/service/depression-evaluation', 'alex_crenshaw_service_depression_evaluation'),
       },
