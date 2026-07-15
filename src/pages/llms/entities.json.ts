@@ -1,6 +1,13 @@
 import { getCategorySummaries } from '@/lib/content';
 import { filterPublishableQuestions } from '@/lib/indexing-policy';
-import { SITE_URL, siteUrl } from '@/lib/site';
+import {
+  FOUNDER_PERSON_ID,
+  FOUNDER_PERSON_URL,
+  organizationId,
+  QV_BRANDS_ORGANIZATION_ID,
+  SITE_URL,
+  siteUrl,
+} from '@/lib/site';
 import { getQuestions } from '@/lib/supabase';
 import { getCanonicalTopic, getCanonicalTopicSummaries } from '@/lib/taxonomy';
 
@@ -65,16 +72,30 @@ export async function GET() {
         {
           id: 'rick-julian',
           type: 'Person',
+          '@id': FOUNDER_PERSON_ID,
           name: 'Rick Julian',
           role: 'Founder',
-          url: 'https://rickjulian.com',
+          url: FOUNDER_PERSON_URL,
           sameAs: [
             SITE_URL,
             'https://deeperwebsites.com',
-            'https://qvbrands.com',
+            'https://www.qvbrands.com',
             'https://www.linkedin.com/in/rickjulianqv',
           ],
           description: 'Founder of Deeper Global and Deeper Websites.',
+        },
+      ],
+      organizations: [
+        {
+          id: 'deeper-global',
+          type: 'Organization',
+          '@id': organizationId(),
+          name: 'Deeper Global',
+          url: SITE_URL,
+          parentOrganization: QV_BRANDS_ORGANIZATION_ID,
+          publishingPrinciples: siteUrl('/editorial-policy/'),
+          description:
+            'A clinically reviewed repository of mental health questions and answers.',
         },
       ],
     },

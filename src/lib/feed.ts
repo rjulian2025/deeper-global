@@ -54,7 +54,7 @@ export function buildRssFeed(items: FeedItem[]) {
   <channel>
     <title>${escapeXml(SITE_NAME)} — Mental Health Answers</title>
     <link>${SITE_URL}/</link>
-    <description>Recently updated expert-vetted mental health answers from Deeper Global — structured for people, search engines, and AI systems.</description>
+    <description>Recently updated clinically reviewed mental health answers from Deeper Global: structured for people, search engines, and AI systems.</description>
     <language>en-us</language>
     <lastBuildDate>${toRfc822(latestDate)}</lastBuildDate>
     <atom:link href="${FEED_URL}" rel="self" type="application/rss+xml"/>

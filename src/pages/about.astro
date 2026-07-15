@@ -8,34 +8,21 @@ import {
   FOUNDER_PERSON_URL,
   organizationId,
   siteUrl,
+  websiteId,
 } from '@/lib/site';
 
 const title = 'About Deeper Global | Mission, Editorial Process & Founder';
 const description =
   'Deeper Global exists to answer one question well: when someone searches for mental health information, what would it take for them to trust what they find?';
 
-const founderImageUrl = siteUrl(FOUNDER_IMAGE_PATH);
-
 const jsonLd = {
   '@graph': [
     {
+      // Thin Person reference only; full biographical block lives on www.rickjulian.com.
       '@type': 'Person',
       '@id': FOUNDER_PERSON_ID,
       name: 'Rick Julian',
       url: FOUNDER_PERSON_URL,
-      image: founderImageUrl,
-      jobTitle: 'Founder',
-      worksFor: {
-        '@id': organizationId(),
-      },
-      description:
-        'Digital strategist and founder of Deeper Global, a reviewed repository of mental health information, and Deeper Websites, a growth studio for mental health practitioners.',
-      sameAs: [
-        siteUrl(),
-        'https://deeperwebsites.com',
-        'https://qvbrands.com',
-        'https://www.linkedin.com/in/rickjulianqv',
-      ],
     },
     {
       '@type': 'AboutPage',
@@ -43,7 +30,7 @@ const jsonLd = {
       url: siteUrl('/about/'),
       name: 'About Deeper Global',
       isPartOf: {
-        '@id': organizationId(),
+        '@id': websiteId(),
       },
       about: {
         '@id': organizationId(),
@@ -69,7 +56,7 @@ const jsonLd = {
       loud.
     </p>
     <p>
-      Every answer on Deeper Global is rigorously sourced, editorially reviewed, and organized within
+      Every answer on Deeper Global is rigorously sourced, clinically reviewed, and organized within
       a clinically informed taxonomy of mental health topics. We don't chase trends or traffic. We
       build answers meant to hold up: for the person reading them and for the professionals whose work
       they reflect.
@@ -124,7 +111,7 @@ const jsonLd = {
       Deeper Global is part of the Deeper ecosystem, alongside
       <a href="https://deeperwebsites.com">Deeper Websites</a>, which helps mental health
       practitioners build their presence online. Learn more about Rick at
-      <a href="https://rickjulian.com">rickjulian.com</a>.
+      <a href="https://www.rickjulian.com/">rickjulian.com</a>.
     </p>
   </EditorialStaticLayout>
 </BaseLayout>

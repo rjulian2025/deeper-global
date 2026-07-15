@@ -5,7 +5,7 @@ const OG_HEIGHT = 630;
 const EYEBROW = 'THE QUESTIONS YOU ASK WHEN NO ONE IS LOOKING';
 const DEFAULT_HEADLINE = 'Mental health answers worth asking';
 const DEFAULT_SUBCOPY =
-  'Expert-vetted mental health answers for questions too personal, too tangled, or too hard to ask out loud.';
+  'Clinically reviewed mental health answers for questions too personal, too tangled, or too hard to ask out loud.';
 
 export const OG_IMAGE_WIDTH = OG_WIDTH;
 export const OG_IMAGE_HEIGHT = OG_HEIGHT;

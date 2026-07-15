@@ -196,7 +196,7 @@ export const reviewerProfiles: ReviewerProfile[] = [
       'https://www.rickjulian.com',
       'https://www.deeper.global',
       'https://deeperwebsites.com',
-      'https://qvbrands.com',
+      'https://www.qvbrands.com',
       'https://www.linkedin.com/in/rickjulianqv',
     ],
     url: '/reviewers/rick-julian/',

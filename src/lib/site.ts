@@ -29,10 +29,13 @@ export function websiteId() {
   return `${siteUrl()}#website`;
 }
 
-/** Canonical Person @id for Rick Julian (mirrored on rickjulian.com). */
-export const FOUNDER_PERSON_ID = 'https://rickjulian.com/#person';
-export const FOUNDER_PERSON_URL = 'https://rickjulian.com';
+/** Canonical Person @id for Rick Julian (lives on www.rickjulian.com). */
+export const FOUNDER_PERSON_ID = 'https://www.rickjulian.com/#person';
+export const FOUNDER_PERSON_URL = 'https://www.rickjulian.com/';
 export const FOUNDER_IMAGE_PATH = '/images/rick-julian.jpg';
+
+/** Canonical Organization @id for QV Brands (parent of Deeper Global). */
+export const QV_BRANDS_ORGANIZATION_ID = 'https://www.qvbrands.com/#organization';
 
 export function aboutPageId() {
   return `${siteUrl('/about/')}#webpage`;

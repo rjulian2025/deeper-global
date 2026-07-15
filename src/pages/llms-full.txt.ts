@@ -20,7 +20,7 @@ export async function GET() {
   const lines: string[] = [
     `# ${SITE_NAME} — Full Corpus Index`,
     '',
-    '> Structured mental-health answer corpus — expert-vetted Q&A designed for people, search engines, and AI systems.',
+    '> Structured mental-health answer corpus: clinically reviewed Q&A designed for people, search engines, and AI systems.',
     '',
     `A shorter index lives at ${LLMS_TXT_URL}.`,
     '',
