@@ -22,8 +22,11 @@ const { eyebrow, title, lede, class: className, wide = false } = Astro.props;
   </section>
 
   <section class="editorial-static-body">
-    <div class:list={['container', wide ? 'editorial-static-wide' : 'editorial-static-prose']}>
-      <slot />
+    {/* Prose max-width stays inside `.container` so the left edge matches the hero. */}
+    <div class="container">
+      <div class:list={[wide ? 'editorial-static-wide' : 'editorial-static-prose']}>
+        <slot />
+      </div>
     </div>
   </section>
 </main>
