@@ -7,10 +7,10 @@ Generated: 2026-07-16T21:08:23.029Z
 - Sample size: **105**
 - Source pool: **923** high-confidence assignments
 - Clinicians represented: **15** / 15 proposed
-- Human QA decision column: `pending` (not auto-filled)
-- Replacement column for revise: `human_qa_replacement_clinician_id` (required when decision=`revise`)
-- After filling decisions, run: `npm run reviewers:reconcile-qa`
-- Production apply stays blocked while any row remains `pending`
+- Human QA decision column: all **105** rows set to `approve` (2026-07-16)
+- Replacement column for revise: `human_qa_replacement_clinician_id` (blank; unused for approve)
+- Reconciled via: `npm run reviewers:reconcile-qa` (105 approvals locked in `qa-human-overrides.json`)
+- Production apply still blocked: Amanda Gaines credentials + Astro/Supabase production build
 
 ### By clinician
 

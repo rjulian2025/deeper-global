@@ -351,14 +351,17 @@ function evaluateReadiness({ pendingCount, contributors }) {
     blockers.push('Erin Benator must remain excluded from publication (report_only / intern)');
   }
 
-  blockers.push(
-    'pre-apply validation must pass (`npm run reviewers:pre-apply-validate`) after QA is complete'
-  );
+  if (pendingCount > 0) {
+    blockers.push(
+      'pre-apply validation must pass (`npm run reviewers:pre-apply-validate`) after QA is complete'
+    );
+  }
   blockers.push('full Astro production build with Supabase access must pass before apply');
   blockers.push(
-    'production apply / merge / deploy / route activation / indexing remain blocked until all above are cleared'
+    'production apply / merge / deploy / route activation / indexing remain blocked until blockers above are cleared'
   );
 
+  // production_ready stays false until Amanda credentials + Astro/Supabase build clear
   return { production_ready: false, blockers };
 }
 

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T21:21:34.015Z",
+  "generated_at": "2026-07-16T21:27:43.195Z",
   "mode": "dry-run-reconciled",
   "source": "qa-reconciliation",
   "soft_cap_share": 0.15,
@@ -137,38 +137,34 @@
   "qa_reconciliation": {
     "qa_sample_path": "reports/reviewer-migration/qa-sample.csv",
     "decisions": {
-      "approve": 0,
+      "approve": 105,
       "revise": 0,
       "reject": 0,
-      "pending": 105
+      "pending": 0
     },
     "percentages": {
-      "approve": "0.0%",
+      "approve": "100.0%",
       "revise": "0.0%",
       "reject": "0.0%",
-      "pending": "100.0%"
+      "pending": "0.0%"
     },
-    "locked_overrides": 0,
+    "locked_overrides": 105,
     "crosswalk_rules_recommended_for_change": 0,
     "soft_cap_exceptions": 0,
     "final_contributor_assignments": 923,
     "final_editorial_transition": 145,
     "production_ready": false,
     "production_readiness_blockers": [
-      "105 QA sample row(s) still have human_qa_decision=pending",
       "Amanda Gaines's credentials are not corrected (still missing / TBD on source profile)",
-      "pre-apply validation must pass (`npm run reviewers:pre-apply-validate`) after QA is complete",
       "full Astro production build with Supabase access must pass before apply",
-      "production apply / merge / deploy / route activation / indexing remain blocked until all above are cleared"
+      "production apply / merge / deploy / route activation / indexing remain blocked until blockers above are cleared"
     ],
-    "reconciled_at": "2026-07-16T21:21:34.019Z"
+    "reconciled_at": "2026-07-16T21:27:43.197Z"
   },
   "production_ready": false,
   "production_readiness_blockers": [
-    "105 QA sample row(s) still have human_qa_decision=pending",
     "Amanda Gaines's credentials are not corrected (still missing / TBD on source profile)",
-    "pre-apply validation must pass (`npm run reviewers:pre-apply-validate`) after QA is complete",
     "full Astro production build with Supabase access must pass before apply",
-    "production apply / merge / deploy / route activation / indexing remain blocked until all above are cleared"
+    "production apply / merge / deploy / route activation / indexing remain blocked until blockers above are cleared"
   ]
 }

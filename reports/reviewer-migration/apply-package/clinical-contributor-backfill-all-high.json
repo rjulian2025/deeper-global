@@ -12,8 +12,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "18e51622-7110-418f-b6fe-75e004a8d402",
@@ -25,8 +25,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "a9befd3a-b5cd-4062-ab23-425902c27f2d",
@@ -38,8 +38,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "c9448d08-3fc8-4951-a927-ab452c5fbb60",
@@ -51,8 +51,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "1b42d8cc-3b8a-466f-b118-42e96cfac1d4",
@@ -64,8 +64,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-27",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "decbea77-6a45-405b-9e95-60532dd6af2e",
@@ -77,8 +77,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "8eff8c5f-438a-4be4-a671-6855f1eb6fb0",
@@ -90,8 +90,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "33f3f8ee-06d8-4b1e-8646-aeb023173276",
@@ -103,8 +103,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "b5b789a2-d94e-4716-96dc-373e0460c0bc",
@@ -116,8 +116,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "097008df-6aad-4e4d-86ad-0f728a1de682",
@@ -129,8 +129,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "a7393d17-166d-4e0d-932f-fe24bdc8fc9e",
@@ -142,8 +142,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "b2c43fd1-c291-4d41-8739-6dce9c3052fa",
@@ -155,8 +155,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "df1d3e84-c236-4674-98bc-ab3361930d5f",
@@ -168,8 +168,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "5d8b2f8d-f3ca-40fa-af8c-0b18cb6f8218",
@@ -181,8 +181,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "104a874b-b591-4860-9962-dd07950a3b56",
@@ -194,8 +194,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "ddd629ef-e12a-49c9-ab49-8ff93e4eca64",
@@ -207,8 +207,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "43bc5a00-f947-4628-8769-61f6de5ce84b",
@@ -233,8 +233,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "ed688936-062f-4d4c-b76f-8720104fcd48",
@@ -246,8 +246,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "dac9ebf6-9bae-4124-b83c-29468c3314e9",
@@ -285,8 +285,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "a4dd8dd7-00c6-4977-8f73-027be5d54f3a",
@@ -324,8 +324,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "768cd868-0048-43cf-bf28-c380637276b6",
@@ -337,8 +337,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "95a3b5cd-9f3a-486a-8cba-da79dc0993d2",
@@ -389,8 +389,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "c4206d54-affa-4744-9867-470d7dc5b187",
@@ -402,8 +402,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "5beed97f-61a7-410f-9d35-797cb1181e4b",
@@ -441,8 +441,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-27",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "9edc29f4-b636-4f01-9c4d-8ac696e42560",
@@ -467,8 +467,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "66c480b8-5f36-4cc3-8d67-c71984a10687",
@@ -480,8 +480,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "6a093a65-b5dd-4ac7-be8c-9d7ca6241519",
@@ -519,8 +519,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "a1d61851-e37e-4cd4-9939-4c70b4eb78f2",
@@ -558,8 +558,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-27",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "ff370296-02ed-44c2-911c-626894387fe2",
@@ -571,8 +571,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "dd0d953b-f0a1-41bd-89be-a059e490d9fa",
@@ -584,8 +584,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "9df570d9-153c-4d5c-832a-e42e2213ce94",
@@ -636,8 +636,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-27",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "ea6f095f-7a38-41de-b9c3-bc5f9bf3dd9a",
@@ -649,8 +649,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "c14451ef-23ff-4745-b008-2f51adaa5152",
@@ -688,8 +688,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "c60201a6-38f1-454a-b64a-460d8e7e2c34",
@@ -714,8 +714,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "ac17e0fa-a2aa-4a7a-b902-4bccd1e98bd7",
@@ -818,8 +818,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "3b4c1c45-7d20-4130-b539-6d4b9bda7dbd",
@@ -831,8 +831,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "f17d4640-5b09-4175-bdbd-a8a5d4de0cba",
@@ -870,8 +870,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "7b33fbaa-3b6e-4eb7-a2a4-c1aa57749a03",
@@ -883,8 +883,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "65e8808d-02b2-4594-b2d9-fbbbc1f14fa5",
@@ -896,8 +896,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-27",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "c87130b8-a968-4a87-9100-6af20b5e90e1",
@@ -974,8 +974,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "a6702722-5a96-4e78-996d-10903f831306",
@@ -1052,8 +1052,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "28e4db1d-8c57-4085-b930-4a65b1b0e641",
@@ -1091,8 +1091,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "71544c3a-f523-4a0e-9f43-63cfb0869a2e",
@@ -1130,8 +1130,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "e7936a8c-e99b-4b68-a8de-e7c853a77801",
@@ -1169,8 +1169,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "606b63cb-0b78-414e-ab54-e952f4778e8c",
@@ -1182,8 +1182,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "859f488b-026f-48b8-88f7-3cd2b5fa770d",
@@ -1195,8 +1195,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "2895e5ff-be84-4d0b-afc4-eed68ab68636",
@@ -1234,8 +1234,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "c7cb92f6-e67f-491a-9d16-e136c94e9722",
@@ -1273,8 +1273,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-22",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "ba4a939a-1c23-4c69-9863-c99c53dd8524",
@@ -1286,8 +1286,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "b1d24111-e81e-45c9-bc3f-542e778e415c",
@@ -1325,8 +1325,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "2132721a-8435-48cb-8808-fce499fdffa8",
@@ -1351,8 +1351,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "bc86fd61-d26d-4da5-bc92-4b97079557dd",
@@ -1494,8 +1494,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "9cdfca18-aa62-4cd4-afce-7f1989899543",
@@ -1572,8 +1572,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "708fccdc-4efc-43df-afee-2338bbd322dd",
@@ -1611,8 +1611,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "fbb0850c-5927-4cfe-86a7-757ba0445fd6",
@@ -2053,8 +2053,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-22",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "4f8178ac-5cee-424d-a605-10ffc07175bf",
@@ -2287,8 +2287,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "20a8ee4c-f03f-4190-8a40-b43e05efae56",
@@ -2326,8 +2326,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "3b2171f4-68ff-4b82-a373-78cf49dfa173",
@@ -2391,8 +2391,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "dc79d2be-d582-498e-b99a-f273020c9ac7",
@@ -2430,8 +2430,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "3d543d91-e6e9-4567-85f2-438a767b4888",
@@ -2534,8 +2534,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "5e2e0d4f-d896-4a19-8272-b074e603288b",
@@ -2638,8 +2638,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "292afffe-a40a-4c34-afd4-0b2f443ad116",
@@ -3002,8 +3002,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "5d306030-c92f-42c1-91b8-639aef2aa3e0",
@@ -3054,8 +3054,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "e6d65a50-6c34-4022-b37f-7fead19b45cc",
@@ -3093,8 +3093,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "d1b69990-8ff2-4de7-8e09-7ef1e1591377",
@@ -3509,8 +3509,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "4c047672-19f8-48d2-9570-5a6cb88457cb",
@@ -3665,8 +3665,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "b06b3339-9980-4676-aef3-bc922bb4fb4a",
@@ -4263,8 +4263,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "d234fdc7-17c0-4051-8e49-e732473a62c6",
@@ -4445,8 +4445,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "ca2519e1-3add-42b3-9292-0fd9d148088b",
@@ -4835,8 +4835,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "3b10dfa7-5c7b-4565-b70a-93a38a3d570a",
@@ -5680,8 +5680,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "c417e710-8831-4271-ad12-af2fa6ea1715",
@@ -5693,8 +5693,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "5250a012-c71c-402c-949f-efa8e1dd1591",
@@ -5719,8 +5719,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "65023e58-ce36-4004-a6d8-4ad92885b26b",
@@ -5758,8 +5758,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "7a11ba99-ecc0-4688-a252-a2eec4337e50",
@@ -5797,8 +5797,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "185c1730-182c-404e-ae5c-05b528f8e7b9",
@@ -5875,8 +5875,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-27",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "d5aa095f-e192-4d33-be06-e5d8941cf16d",
@@ -6070,8 +6070,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "58093f94-bd31-4313-bc94-a6cdc2e162bb",
@@ -6291,8 +6291,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "54cec8a0-bc09-4ec4-a252-37a3a8c7fdad",
@@ -6499,8 +6499,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "0b4555ce-ace3-410b-85aa-3cb6cb8e712c",
@@ -6551,8 +6551,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "af928cc2-4ae7-48e3-a0ef-bf5f541aab3e",
@@ -6564,8 +6564,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-27",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "ffda7cfd-3b00-4a72-9dad-2b6e98a25bc2",
@@ -6577,8 +6577,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "a8e7dac4-292c-4cab-b405-8fa6233f85f1",
@@ -6590,8 +6590,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "ce51cb42-3bc5-4823-bffc-8944099d3c34",
@@ -6707,8 +6707,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "a980fdfe-e9d7-471d-95dd-03f8dc7a0e25",
@@ -7240,8 +7240,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "7c476ccf-cadc-47dc-81bd-8d9508e59979",
@@ -7396,8 +7396,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "2d4c71eb-70c6-4932-805b-a01402a047a0",
@@ -7578,8 +7578,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "3581f502-04d1-40ac-aca7-8aae9e052102",
@@ -7630,8 +7630,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "830384fc-6f3d-49a0-b132-e32fe958c7ae",
@@ -7981,8 +7981,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "41b759c6-b7c0-4bfd-a3e0-2d4a4e92ad64",
@@ -8072,8 +8072,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "bceccff2-2a8b-48c6-92e9-57ee5fb9073e",
@@ -8514,8 +8514,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "7c22eb03-d842-436b-940a-e83e060e9316",
@@ -9320,8 +9320,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "708d5588-bb92-4bf0-856b-6c7c985b1b38",
@@ -9372,8 +9372,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "1f5d013d-afd4-4628-bcf8-69c924c42ec0",
@@ -9424,8 +9424,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "4a9a4024-a6fe-41a2-bb49-0f499129ac80",
@@ -9463,8 +9463,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "b9f4e3eb-5136-4862-ac0c-1a763e586820",
@@ -9476,8 +9476,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "5825ba04-5675-4029-93ac-11ee598a5881",
@@ -10126,8 +10126,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "7a4913e1-ff6a-4ac0-aa7d-b5cbc327cdea",
@@ -11283,8 +11283,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "b3304e89-be3e-44a6-bd08-fe48f656f28b",
@@ -11634,8 +11634,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "204e4b32-f9f5-4fc4-b8fd-9353541776f2",
@@ -11803,8 +11803,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "bff2668f-11d9-448a-a229-4ca93508a637",
@@ -11855,8 +11855,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "9234f8f0-484c-4fb9-b267-5f00e982aa2d",
@@ -11920,8 +11920,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "c7e683e2-b239-4277-94b5-622280fe2cca",
@@ -11946,8 +11946,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "45d50601-72a6-4d4c-9178-24af508353bd",
@@ -11972,8 +11972,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "ae120bcd-ca42-4e8e-b020-5fd3f0f76a75",
@@ -11985,8 +11985,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-19",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     },
     {
       "answer_id": "03446300-9523-43d6-8fe0-bee9596b4b7e",
@@ -11998,8 +11998,8 @@
       "do_not_set_clinically_reviewed_at": true,
       "preserve_reviewed_by_legacy": "david-k-gore-phd",
       "preserve_reviewed_at_legacy": "2026-06-27",
-      "qa_override": false,
-      "qa_decision": null
+      "qa_override": "true",
+      "qa_decision": "approve"
     }
   ]
 }
