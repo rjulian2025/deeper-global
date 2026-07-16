@@ -733,7 +733,7 @@
   {
     "slug": "amanda-gaines",
     "fullName": "Amanda Gaines",
-    "credentials": null,
+    "credentials": "MSW",
     "professionalTitle": "Master Social Worker",
     "shortBio": "Amanda Gaines is a Master Social Worker with a Bachelor of Science in Biology from Wingate University and a Master of Social Work from Kennesaw State University, where she served as Vice President of the Phi Alpha Social Work Honor Society.",
     "fullBio": "Amanda Gaines is a Master Social Worker with a Bachelor of Science in Biology from Wingate University and a Master of Social Work from Kennesaw State University, where she served as Vice President of the Phi Alpha Social Work Honor Society.\n\nIn her practice, Amanda takes an inclusive, trauma-informed, and strengths-based approach. She believes that each client's story is unique, and she tailors each session to meet the individual needs of the person in front of her. Amanda understands that meaningful change in therapy takes patience, dedication, and courage—and she is passionate about walking alongside her clients as they navigate their own journeys of growth and healing.\n\nAmanda has worked in organizations including The Department of Veterans Affairs, immigration nonprofits, and virtual intensive outpatient programs (IOPs). She has experience collaborating with clients across the lifespan, from young adults (18+) through older adults (65+), and has a particular passion for supporting young adults and members of the LGBTQIA+ community. Her focus is on creating an empowering, affirming space where clients feel seen, supported, and encouraged to thrive.",
@@ -772,8 +772,6 @@
       "summary": "Offices: Marietta | 555 Sun Valley Drive, Suite M-2, Roswell, GA 30076 | In-person & Online Sessions Available"
     },
     "supervisionNotes": null,
-    "missingFields": [
-      "credentials"
-    ]
+    "missingFields": []
   }
 ]

@@ -10,7 +10,8 @@ Generated: 2026-07-16T21:08:23.029Z
 - Human QA decision column: all **105** rows set to `approve` (2026-07-16)
 - Replacement column for revise: `human_qa_replacement_clinician_id` (blank; unused for approve)
 - Reconciled via: `npm run reviewers:reconcile-qa` (105 approvals locked in `qa-human-overrides.json`)
-- Production apply still blocked: Amanda Gaines credentials + Astro/Supabase production build
+- Amanda Gaines credentials corrected: MSW (Master of Social Work), Kennesaw State University
+- Production apply still blocked: Astro/Supabase production build + explicit go-ahead
 
 ### By clinician
 

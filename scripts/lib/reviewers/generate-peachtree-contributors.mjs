@@ -65,8 +65,9 @@ const ROLE_RULES = {
   'amanda-gaines': {
     roleClass: 'master_social_worker',
     assignmentEligibility: 'public',
-    licenseTypes: [],
-    credentialNote: 'Credentials abbreviation not stated on public profile; title is Master Social Worker.',
+    licenseTypes: ['MSW'],
+    credentialNote:
+      'Credentials corrected: MSW (Master of Social Work), Kennesaw State University. Professional title: Master Social Worker.',
   },
 };
 

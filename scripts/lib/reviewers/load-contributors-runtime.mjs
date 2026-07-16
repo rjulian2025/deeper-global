@@ -77,7 +77,6 @@ export function loadContributorsRuntime() {
       id: rules.id,
       slug: rules.id,
       fullName: row.fullName,
-      // null when source profile omits credentials (e.g. Amanda Gaines until corrected)
       credentials: row.credentials ?? null,
       professionalTitle: row.professionalTitle,
       specialties,

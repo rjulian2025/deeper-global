@@ -19,7 +19,7 @@ Never apply DB backfill before the code that can render the new attribution stat
 | C1 | Apply additive SQL only | Low; old code ignores columns |
 | C2 | Backfill contributor + editorial + legacy bulk flags | Medium; requires rollback mapping |
 | C3 | Human QA on `qa-sample.csv`, then `npm run reviewers:reconcile-qa` | Gate (production paused until complete) |
-| C3b | Clear readiness blockers (no pending QA, Amanda credentials, Erin excluded, pre-apply validate, Astro+Supabase build) | Gate |
+| C3b | Clear readiness blockers (no pending QA, Amanda MSW credentials corrected, Erin excluded, pre-apply validate, Astro+Supabase build) | Gate |
 | C4 | Activate profile index/directory for complete profiles | SEO |
 | C5 | Optional Ken alias redirects | URL |
 

@@ -44,7 +44,6 @@ No clinician exceeds the 15% soft cap after reconciliation.
 
 ### Exact blockers
 
-- Amanda Gaines's credentials are not corrected (still missing / TBD on source profile)
 - full Astro production build with Supabase access must pass before apply
 - production apply / merge / deploy / route activation / indexing remain blocked until blockers above are cleared
 

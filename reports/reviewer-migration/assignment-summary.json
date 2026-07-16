@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T21:27:43.195Z",
+  "generated_at": "2026-07-16T21:29:33.775Z",
   "mode": "dry-run-reconciled",
   "source": "qa-reconciliation",
   "soft_cap_share": 0.15,
@@ -155,15 +155,13 @@
     "final_editorial_transition": 145,
     "production_ready": false,
     "production_readiness_blockers": [
-      "Amanda Gaines's credentials are not corrected (still missing / TBD on source profile)",
       "full Astro production build with Supabase access must pass before apply",
       "production apply / merge / deploy / route activation / indexing remain blocked until blockers above are cleared"
     ],
-    "reconciled_at": "2026-07-16T21:27:43.197Z"
+    "reconciled_at": "2026-07-16T21:29:33.777Z"
   },
   "production_ready": false,
   "production_readiness_blockers": [
-    "Amanda Gaines's credentials are not corrected (still missing / TBD on source profile)",
     "full Astro production build with Supabase access must pass before apply",
     "production apply / merge / deploy / route activation / indexing remain blocked until blockers above are cleared"
   ]
