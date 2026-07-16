@@ -1,7 +1,8 @@
 ---
 /**
- * Peachtree Psychology organization profile (Phase A preparation).
- * noindex until contributor graph and public attribution rollout are complete.
+ * Peachtree Psychology organization profile.
+ * Retains noindex until clinician profiles are approved, attribution migration
+ * is applied, and aggregate counts are derived from production data.
  */
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import {
@@ -9,11 +10,14 @@ import {
   getPublishableClinicalContributors,
   peachtreeClinicalContributors,
 } from '@/data/clinical-contributors';
+import proposedAggregate from '@/data/organizations/peachtree-aggregate.proposed.json';
 import { siteUrl, websiteId } from '@/lib/site';
 
 const org = getPeachtreePsychologyOrganization();
-const publishable = getPublishableClinicalContributors();
-const incomplete = peachtreeClinicalContributors.filter((c) => c.profileStatus === 'incomplete');
+const publishable = getPublishableClinicalContributors().filter((c) => c.assignmentEligibility !== 'report_only');
+const incomplete = peachtreeClinicalContributors.filter(
+  (c) => c.profileStatus === 'incomplete' || c.assignmentEligibility === 'report_only'
+);
 const pageUrl = siteUrl(org.url);
 
 const specialties = [...new Set(publishable.flatMap((c) => c.specialties))].sort((a, b) =>
@@ -50,8 +54,7 @@ const jsonLd = {
         itemListElement: publishable.map((clinician, index) => ({
           '@type': 'ListItem',
           position: index + 1,
-          // Deeper reviewer routes for Peachtree clinicians (except Alex) are not activated in Phase A–B.
-          url: clinician.id === 'alex-crenshaw-phd' ? siteUrl(`/reviewers/${clinician.slug}/`) : clinician.externalPracticeUrl,
+          url: siteUrl(`/reviewers/${clinician.slug}/`),
           name: clinician.fullName,
         })),
       },
@@ -78,6 +81,10 @@ const jsonLd = {
           <span class="meta-sep" aria-hidden="true">·</span>
           {org.locationLine}
         </p>
+        <p class="editorial-meta">
+          Proposed specialty-matched coverage (pre-apply): {proposedAggregate.aggregate_high_confidence_answers} answers
+          across {proposedAggregate.clinician_count} clinicians. Counts remain provisional until production apply.
+        </p>
       </div>
     </section>
 
@@ -95,30 +102,26 @@ const jsonLd = {
 
     <section class="section">
       <div class="container">
-        <h2>Clinicians</h2>
-        <p class="editorial-meta">{publishable.length} publishable profiles · {incomplete.length} incomplete / report-only</p>
+        <h2>Participating clinicians</h2>
+        <p class="editorial-meta">
+          {publishable.length} eligible profiles prepared · {incomplete.length} incomplete / report-only
+        </p>
         <div class="discovery-list">
           {
-            publishable.map((clinician) => {
-              const href =
-                clinician.id === 'alex-crenshaw-phd'
-                  ? `/reviewers/${clinician.slug}/`
-                  : clinician.externalPracticeUrl;
-              const external = clinician.id !== 'alex-crenshaw-phd';
-              return (
-                <article class="discovery-row">
-                  <h3 class="discovery-row-title">
-                    <a href={href} rel={external ? 'noopener noreferrer' : undefined}>
-                      {clinician.fullName}
-                    </a>
-                  </h3>
-                  <p class="editorial-meta discovery-meta">
-                    {clinician.credentialLine} · {clinician.specialtyLabel}
-                  </p>
-                  <p class="discovery-summary">{clinician.shortBio}</p>
-                </article>
-              );
-            })
+            publishable.map((clinician) => (
+              <article class="discovery-row">
+                <h3 class="discovery-row-title">
+                  <a href={`/reviewers/${clinician.slug}/`}>{clinician.fullName}</a>
+                </h3>
+                <p class="editorial-meta discovery-meta">
+                  {clinician.credentialLine} · {clinician.specialtyLabel}
+                </p>
+                <p class="discovery-summary">{clinician.shortBio}</p>
+                <p class="editorial-meta">
+                  <a href={clinician.externalPracticeUrl} rel="noopener noreferrer">External Peachtree profile</a>
+                </p>
+              </article>
+            ))
           }
         </div>
       </div>
@@ -127,7 +130,22 @@ const jsonLd = {
     <section class="section">
       <div class="container">
         <h2>Specialties represented</h2>
-        <p>{specialties.slice(0, 40).join(' · ')}{specialties.length > 40 ? ' · …' : ''}</p>
+        <p>{specialties.slice(0, 48).join(' · ')}{specialties.length > 48 ? ' · …' : ''}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Associated Deeper topics (proposed)</h2>
+        <ul>
+          {
+            proposedAggregate.top_topics.slice(0, 12).map(([topic, count]) => (
+              <li>
+                {topic}: {count} proposed answers
+              </li>
+            ))
+          }
+        </ul>
       </div>
     </section>
   </main>

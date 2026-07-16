@@ -1,0 +1,101 @@
+{
+  "generated_at": "2026-07-16T21:11:37.835418Z",
+  "aggregate_high_confidence_answers": 923,
+  "clinician_count": 15,
+  "top_topics": [
+    [
+      "Identity & Self-Worth",
+      164
+    ],
+    [
+      "Relationships & Communication",
+      164
+    ],
+    [
+      "Anxiety & Stress",
+      138
+    ],
+    [
+      "Depression",
+      111
+    ],
+    [
+      "Addiction & Recovery",
+      103
+    ],
+    [
+      "Work & Burnout",
+      72
+    ],
+    [
+      "Family & Parenting",
+      49
+    ],
+    [
+      "Grief & Loss",
+      35
+    ],
+    [
+      "Trauma & Safety",
+      34
+    ],
+    [
+      "Meaning, Faith & Existential Questions",
+      17
+    ],
+    [
+      "General Mental Health",
+      14
+    ],
+    [
+      "Gender, Sexuality & Intimacy",
+      11
+    ],
+    [
+      "Teens & Identity",
+      10
+    ],
+    [
+      "Neurodivergence & Attention",
+      1
+    ]
+  ],
+  "top_themes": [
+    [
+      "anxiety-and-mood",
+      249
+    ],
+    [
+      "relationships-and-connection",
+      175
+    ],
+    [
+      "identity-and-self-worth",
+      164
+    ],
+    [
+      "trauma-and-safety",
+      137
+    ],
+    [
+      "work-and-purpose",
+      72
+    ],
+    [
+      "family-and-parenting",
+      59
+    ],
+    [
+      "life-transitions-and-change",
+      49
+    ],
+    [
+      "spirituality-and-meaning",
+      17
+    ],
+    [
+      "care-and-therapy",
+      1
+    ]
+  ]
+}

@@ -48,16 +48,12 @@ import {
   getReviewerDisplayLabel,
   getReviewerProfile,
   getReviewerSchemaNode,
-  getReviewerTrustRoleLabel,
   getReviewStatusLabel,
   getSourceRefs,
-  isDraftReviewStatus,
   isInternalReviewerLabel,
 } from '@/lib/trust';
-import {
-  formatPublicAttributionDate,
-  resolvePublicAttributionView,
-} from '@/lib/attribution/public-labels';
+import AnswerAttributionBlock from '@/components/attribution/AnswerAttributionBlock.astro';
+import { resolveAttribution } from '@/lib/attribution/resolve-attribution';
 import { getQuestionBySlug, getQuestions, getModalities, type Question } from '@/lib/supabase';
 import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { answerOgImagePath } from '@/lib/og-answer-image';
@@ -147,7 +143,6 @@ const reviewedBy = getReviewedByLabel(question);
 const reviewerDisplayLabel = getReviewerDisplayLabel(question);
 const reviewerProfile = getReviewerProfile(question);
 const reviewedAt = getReviewedAt(question);
-const isDraftReview = isDraftReviewStatus(question);
 const reviewStatus = getReviewStatusLabel(question);
 const reviewStatusDisplay = reviewStatus
   ? reviewStatus.replace(/[-_]+/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
@@ -156,12 +151,11 @@ const sourceRefs = getSourceRefs(question);
 const sourceCitationUrls = sourceRefs.map((source) => source.url).filter(Boolean);
 const displayLede = getDisplayLede(question);
 const reviewerSchemaNode = getReviewerSchemaNode(question);
-const publicAttribution = resolvePublicAttributionView({ question, reviewerProfile });
-const attributionDateLabel = publicAttribution.dateValue
-  ? formatPublicAttributionDate(publicAttribution, formatDate(publicAttribution.dateValue))
-  : null;
-const trustUpdatedLabel = formatDate(updatedAt);
-const hasTrustSidebar = Boolean(reviewedBy || reviewedAt || reviewStatusDisplay || sourceRefs.length > 0);
+const attribution = resolveAttribution({ question, reviewerProfile });
+const trustUpdatedLabel = attribution.updatedAt ? formatDate(attribution.updatedAt) : formatDate(updatedAt);
+const hasTrustSidebar = Boolean(
+  attribution.state !== 'none' || reviewedBy || reviewedAt || reviewStatusDisplay || sourceRefs.length > 0
+);
 
 type RelatedSidebarLink = { href: string; label: string };
 
@@ -180,19 +174,25 @@ const relatedSidebarLinks: RelatedSidebarLink[] = [
   { href: categoryPath(category), label: `${category} topic hub` },
 ];
 
-// When a reviewer profile resolves, the full Person node is emitted once
-// (as a standalone graph node below) and referenced here by @id, instead of
-// being inlined three times across MedicalWebPage/Article/standalone.
-const reviewedBySchema = reviewedBy
-  ? {
-      reviewedBy: reviewerSchemaNode
-        ? { '@id': reviewerSchemaNode['@id'] }
-        : {
+// Schema accuracy: only true clinical reviewers use reviewedBy.
+// Specialty contributors are linked as contributor / mentions Person entities.
+const reviewedBySchema =
+  attribution.schemaRole === 'reviewedBy' && reviewerSchemaNode
+    ? { reviewedBy: { '@id': reviewerSchemaNode['@id'] } }
+    : attribution.schemaRole === 'reviewedBy' && reviewedBy
+      ? {
+          reviewedBy: {
             '@type': isInternalReviewerLabel(reviewedBy) ? 'Organization' : 'Person',
-            name: reviewerDisplayLabel,
+            name: reviewerDisplayLabel || attribution.personName,
           },
-    }
-  : {};
+        }
+      : {};
+const contributorSchema =
+  attribution.schemaRole === 'contributor' && reviewerSchemaNode
+    ? {
+        contributor: { '@id': reviewerSchemaNode['@id'] },
+      }
+    : {};
 const sourceCitationSchema =
   sourceCitationUrls.length > 0
     ? {
@@ -229,6 +229,7 @@ const jsonLd = {
         '@id': qaPageId,
       },
       ...reviewedBySchema,
+      ...contributorSchema,
       ...sourceCitationSchema,
       ...licenseSchema,
     },
@@ -262,6 +263,7 @@ const jsonLd = {
         '@id': `${entityUrl}#entity`,
       },
       ...reviewedBySchema,
+      ...contributorSchema,
       ...sourceCitationSchema,
       ...licenseSchema,
     },
@@ -377,23 +379,20 @@ const jsonLd = {
 
           <p class="editorial-meta">
             {category}
-            <span class="meta-sep" aria-hidden="true">·</span>
             {
-              reviewerProfile
-                ? getReviewerTrustRoleLabel(reviewerProfile, isDraftReview)
-                : reviewerDisplayLabel
-                  ? reviewerDisplayLabel
-                  : reviewedBy
-                    ? 'Clinical contributor'
-                    : 'Reviewed'
-            }
-            {
-              attributionDateLabel ? (
+              attribution.publicRoleLabel && (
                 <>
                   <span class="meta-sep" aria-hidden="true">·</span>
-                  {attributionDateLabel}
+                  {attribution.state === 'clinical_reviewer'
+                    ? 'Clinical reviewer'
+                    : attribution.state === 'editorial_named' || attribution.state === 'editorial_deeper'
+                      ? 'Editorial review'
+                      : 'Clinical contributor'}
                 </>
-              ) : (
+              )
+            }
+            {
+              attribution.showUpdatedDate && (
                 <>
                   <span class="meta-sep" aria-hidden="true">·</span>
                   Updated {trustUpdatedLabel}
@@ -516,33 +515,9 @@ const jsonLd = {
             <section class="sidebar-block answer-trust-panel" aria-label="Editorial review information" data-ai-section="editorial-trust">
               <p class="sidebar-block-heading">Trust</p>
 
-              <div class="trust-identity">
-                {
-                  reviewerProfile ? (
-                    <>
-                      <p class="trust-name">
-                        <a href={reviewerProfile.url}>{reviewerProfile.name}</a>
-                      </p>
-                      <p class="trust-role">{getReviewerTrustRoleLabel(reviewerProfile, isDraftReview)}</p>
-                      <p class="trust-specialty">{reviewerProfile.specialtyLabel}</p>
-                    </>
-                  ) : reviewerDisplayLabel ? (
-                    <p class="trust-name">{reviewerDisplayLabel}</p>
-                  ) : reviewedBy ? (
-                    <p class="trust-name">Clinically reviewed</p>
-                  ) : null
-                }
-              </div>
+              <AnswerAttributionBlock attribution={attribution} />
 
               <ul class="trust-facts">
-                {attributionDateLabel ? <li>{attributionDateLabel}</li> : <li>Updated {trustUpdatedLabel}</li>}
-                {
-                  reviewerProfile?.practiceName === 'Peachtree Psychology' && (
-                    <li>
-                      <a href="/organizations/peachtree-psychology/">Peachtree Psychology</a>
-                    </li>
-                  )
-                }
                 {
                   sourceRefs.length > 0 && (
                     <li>

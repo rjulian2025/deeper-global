@@ -77,13 +77,35 @@ export function shouldIncludeAnswerPathInSitemap(pathname: string) {
   return !isRedirectSourceSlug(segment);
 }
 
+/** Peachtree contributor profiles prepared in Phase C; noindex + sitemap-excluded until apply approval. */
+const PREPARED_NONINDEX_REVIEWER_SLUGS = new Set([
+  'laura-hilsen',
+  'michaela-hilburn',
+  'liz-webb',
+  'kelsey-donahue',
+  'jackie-malone',
+  'jeannine-jannot',
+  'lexi-cooper',
+  'meredith-price',
+  'sarah-evers',
+  'samantha-bryant',
+  'erin-benator',
+  'lynn-lane',
+  'lauren-sanders',
+  'susan-keenan',
+  'amanda-gaines',
+  'david-k-gore-phd', // misnamed Ken alias; keep URL, exclude from sitemap
+]);
+
 /** Paths excluded from sitemap.xml — URLs remain live; crawl budget only. */
 export function shouldIncludePathInSitemap(pathname: string) {
   const path = pathname.endsWith('/') || pathname.includes('.') ? pathname : `${pathname}/`;
 
   if (path.startsWith('/entities/') || path.startsWith('/categories/')) return false;
-  // Organization contributor pages stay out of sitemap until Phase C activation.
+  // Organization contributor pages stay out of sitemap until activation approval.
   if (path.startsWith('/organizations/')) return false;
+  const reviewerMatch = path.match(/^\/reviewers\/([^/]+)\/$/);
+  if (reviewerMatch && PREPARED_NONINDEX_REVIEWER_SLUGS.has(reviewerMatch[1])) return false;
   if (path.startsWith('/topics/')) {
     // /topics/ itself (the index) always stays out; child topic pages are an allowlist
     // driven by topic-content.ts `indexable`, not a blanket prefix exclusion.
