@@ -18,9 +18,18 @@ Never apply DB backfill before the code that can render the new attribution stat
 | C0 | Merge/deploy code (this PR) with noindex profiles | Low |
 | C1 | Apply additive SQL only | Low; old code ignores columns |
 | C2 | Backfill contributor + editorial + legacy bulk flags | Medium; requires rollback mapping |
-| C3 | Human QA sign-off on `qa-sample.csv` | Gate |
+| C3 | Human QA on `qa-sample.csv`, then `npm run reviewers:reconcile-qa` | Gate (production paused until complete) |
+| C3b | Clear readiness blockers (no pending QA, Amanda credentials, Erin excluded, pre-apply validate, Astro+Supabase build) | Gate |
 | C4 | Activate profile index/directory for complete profiles | SEO |
 | C5 | Optional Ken alias redirects | URL |
+
+## Human QA reconciliation (pre-apply)
+
+1. Complete `human_qa_decision` on `reports/reviewer-migration/qa-sample.csv` (`approve` / `revise` / `reject`; no `pending`).
+2. For `revise`, set `human_qa_replacement_clinician_id` + `human_qa_notes`.
+3. Run `npm run reviewers:reconcile-qa` (locks overrides in `src/data/clinical-contributors/qa-human-overrides.json`; regenerates reports + apply package).
+4. Review `qa-reconciliation-summary.md` and `qa-systemic-findings.md` before any apply.
+5. Do not merge, deploy, activate routes, or change indexing while QA is in progress.
 
 ## Emergency rollback
 

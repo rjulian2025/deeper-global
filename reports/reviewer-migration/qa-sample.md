@@ -8,6 +8,9 @@ Generated: 2026-07-16T21:08:23.029Z
 - Source pool: **923** high-confidence assignments
 - Clinicians represented: **15** / 15 proposed
 - Human QA decision column: `pending` (not auto-filled)
+- Replacement column for revise: `human_qa_replacement_clinician_id` (required when decision=`revise`)
+- After filling decisions, run: `npm run reviewers:reconcile-qa`
+- Production apply stays blocked while any row remains `pending`
 
 ### By clinician
 

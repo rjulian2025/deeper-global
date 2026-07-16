@@ -124,6 +124,7 @@
     "reviewers:validate": "node scripts/reviewers-validate.mjs",
     "reviewers:rollback": "node scripts/reviewers-rollback.mjs",
     "reviewers:phase-c-prep": "node scripts/lib/reviewers/phase-c-prep.mjs",
+    "reviewers:reconcile-qa": "node scripts/reviewers-reconcile-qa.mjs",
     "reviewers:profile-readiness": "node scripts/reviewers-profile-readiness.mjs",
     "reviewers:pre-apply-validate": "node scripts/reviewers-pre-apply-validate.mjs",
     "reviewers:post-apply-validate": "node scripts/reviewers-post-apply-validate.mjs"

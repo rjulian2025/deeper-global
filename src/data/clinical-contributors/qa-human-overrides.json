@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "description": "Human QA overrides for clinical contributor assignments. Automatic assign runs must never overwrite these decisions.",
+  "updated_at": "2026-07-16T21:21:33.930Z",
+  "overrides": {}
+}

@@ -506,6 +506,9 @@ export async function runAssignment({ includeMedium = false, includeReportOnly =
     }));
   }
 
+  // Human QA overrides are locked: never let automatic assignment overwrite them.
+  applyHumanQaOverrides(details, contributors);
+
   const high = details.filter((d) => d.proposed_contributor_id && d.confidence === 'high');
   const medium = details.filter((d) => d.confidence === 'medium');
   const low = details.filter((d) => d.confidence === 'low');
@@ -600,6 +603,78 @@ export async function runAssignment({ includeMedium = false, includeReportOnly =
     contributors,
     answers,
   };
+}
+
+function loadHumanQaOverrides() {
+  const path = join(root, 'src/data/clinical-contributors/qa-human-overrides.json');
+  try {
+    const doc = JSON.parse(readFileSync(path, 'utf8'));
+    return doc?.overrides && typeof doc.overrides === 'object' ? doc.overrides : {};
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * Apply locked human QA decisions on top of automatic scoring.
+ * approve/revise/reject_with_fallback force the human clinician;
+ * reject forces unmatched/editorial transition.
+ */
+function applyHumanQaOverrides(details, contributors) {
+  const overrides = loadHumanQaOverrides();
+  if (!Object.keys(overrides).length) return;
+  const byId = new Map(contributors.map((c) => [c.id, c]));
+
+  for (const detail of details) {
+    const override = overrides[detail.answer_slug];
+    if (!override || override.locked !== true) continue;
+
+    if (
+      (override.decision === 'approve' ||
+        override.decision === 'revise' ||
+        override.decision === 'reject_with_fallback') &&
+      override.clinician_id
+    ) {
+      const clinician = byId.get(override.clinician_id);
+      if (!clinician) continue;
+      detail.proposed_contributor_id = clinician.id;
+      detail.proposed_contributor_name = clinician.fullName;
+      detail.best_contributor_id = clinician.id;
+      detail.best_contributor_name = clinician.fullName;
+      detail.matched_specialty = override.matched_specialty || clinician.specialties[0] || detail.matched_specialty;
+      detail.confidence = 'high';
+      detail.score = override.decision === 'revise' ? 100 : detail.score;
+      detail.proposed_public_label = 'Clinical contributor';
+      detail.assignment_method =
+        override.decision === 'approve'
+          ? ASSIGNMENT_METHOD
+          : override.decision === 'revise'
+            ? 'human_qa_override'
+            : 'human_qa_reject_fallback';
+      detail.approval_source_internal = APPROVAL_SOURCE;
+      detail.profile_completeness = clinician.profileStatus;
+      detail.profile_publishable = clinician.publishable;
+      detail.blocked_incomplete = false;
+      detail.qa_override = true;
+      detail.qa_decision = override.decision;
+      if (override.match_reasons) detail.match_reasons = override.match_reasons;
+      continue;
+    }
+
+    if (override.decision === 'reject') {
+      detail.proposed_contributor_id = null;
+      detail.proposed_contributor_name = null;
+      detail.proposed_public_label = null;
+      detail.assignment_method = null;
+      detail.approval_source_internal = null;
+      detail.confidence = 'medium';
+      detail.qa_override = true;
+      detail.qa_decision = 'reject';
+      detail.exclusions_evaluated = [detail.exclusions_evaluated, 'human_qa_reject']
+        .filter(Boolean)
+        .join('|');
+    }
+  }
 }
 
 function buildDetail({

@@ -1,1 +1,2 @@
-answer_id,answer_slug,contributor_id,score,confidence,reason
+contributor_id,contributor_name,assigned_count,soft_cap_count,over_by,reason
+
