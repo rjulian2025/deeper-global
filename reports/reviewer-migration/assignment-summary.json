@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T21:29:33.775Z",
+  "generated_at": "2026-07-16T21:59:48.100Z",
   "mode": "dry-run-reconciled",
   "source": "qa-reconciliation",
   "soft_cap_share": 0.15,
@@ -155,14 +155,37 @@
     "final_editorial_transition": 145,
     "production_ready": false,
     "production_readiness_blockers": [
+      "Supabase URL + anon key unavailable in agent environment (blocks Astro production build)",
       "full Astro production build with Supabase access must pass before apply",
       "production apply / merge / deploy / route activation / indexing remain blocked until blockers above are cleared"
     ],
-    "reconciled_at": "2026-07-16T21:29:33.777Z"
+    "reconciled_at": "2026-07-16T21:59:48.102Z"
   },
   "production_ready": false,
   "production_readiness_blockers": [
+    "Supabase URL + anon key unavailable in agent environment (blocks Astro production build)",
     "full Astro production build with Supabase access must pass before apply",
     "production apply / merge / deploy / route activation / indexing remain blocked until blockers above are cleared"
-  ]
+  ],
+  "apply_blocked": true,
+  "final_readiness_gate": {
+    "status": "blocked_missing_supabase_credentials",
+    "report": "reports/reviewer-migration/final-readiness-gate.md",
+    "required_variable_groups": [
+      "SUPABASE_URL|PUBLIC_SUPABASE_URL|NEXT_PUBLIC_SUPABASE_URL",
+      "SUPABASE_ANON_KEY|PUBLIC_SUPABASE_ANON_KEY|NEXT_PUBLIC_SUPABASE_ANON_KEY"
+    ],
+    "resume_commands": [
+      "npm run env:sync",
+      "npm run env:check",
+      "npm run reviewers:reconcile-qa",
+      "npm run reviewers:pre-apply-validate",
+      "npm run check",
+      "npm run build"
+    ],
+    "public_corpus_reachable": true,
+    "public_corpus_total": 1146,
+    "astro_check_run": false,
+    "astro_build_run": false
+  }
 }
