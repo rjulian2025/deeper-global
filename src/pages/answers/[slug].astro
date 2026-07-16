@@ -54,6 +54,10 @@ import {
   isDraftReviewStatus,
   isInternalReviewerLabel,
 } from '@/lib/trust';
+import {
+  formatPublicAttributionDate,
+  resolvePublicAttributionView,
+} from '@/lib/attribution/public-labels';
 import { getQuestionBySlug, getQuestions, getModalities, type Question } from '@/lib/supabase';
 import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { answerOgImagePath } from '@/lib/og-answer-image';
@@ -152,7 +156,11 @@ const sourceRefs = getSourceRefs(question);
 const sourceCitationUrls = sourceRefs.map((source) => source.url).filter(Boolean);
 const displayLede = getDisplayLede(question);
 const reviewerSchemaNode = getReviewerSchemaNode(question);
-const trustReviewedLabel = formatDate(reviewedAt || updatedAt);
+const publicAttribution = resolvePublicAttributionView({ question, reviewerProfile });
+const attributionDateLabel = publicAttribution.dateValue
+  ? formatPublicAttributionDate(publicAttribution, formatDate(publicAttribution.dateValue))
+  : null;
+const trustUpdatedLabel = formatDate(updatedAt);
 const hasTrustSidebar = Boolean(reviewedBy || reviewedAt || reviewStatusDisplay || sourceRefs.length > 0);
 
 type RelatedSidebarLink = { href: string; label: string };
@@ -376,11 +384,22 @@ const jsonLd = {
                 : reviewerDisplayLabel
                   ? reviewerDisplayLabel
                   : reviewedBy
-                    ? 'Clinically reviewed'
+                    ? 'Clinical contributor'
                     : 'Reviewed'
             }
-            <span class="meta-sep" aria-hidden="true">·</span>
-            Updated {trustReviewedLabel}
+            {
+              attributionDateLabel ? (
+                <>
+                  <span class="meta-sep" aria-hidden="true">·</span>
+                  {attributionDateLabel}
+                </>
+              ) : (
+                <>
+                  <span class="meta-sep" aria-hidden="true">·</span>
+                  Updated {trustUpdatedLabel}
+                </>
+              )
+            }
             {
               sourceRefs.length > 0 && (
                 <>
@@ -516,7 +535,14 @@ const jsonLd = {
               </div>
 
               <ul class="trust-facts">
-                <li>Reviewed {trustReviewedLabel}</li>
+                {attributionDateLabel ? <li>{attributionDateLabel}</li> : <li>Updated {trustUpdatedLabel}</li>}
+                {
+                  reviewerProfile?.practiceName === 'Peachtree Psychology' && (
+                    <li>
+                      <a href="/organizations/peachtree-psychology/">Peachtree Psychology</a>
+                    </li>
+                  )
+                }
                 {
                   sourceRefs.length > 0 && (
                     <li>

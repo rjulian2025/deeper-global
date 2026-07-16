@@ -115,7 +115,14 @@
     "seo:priority": "node scripts/generate-indexation-priority.mjs",
     "seo:gsc-coverage": "node scripts/audit-gsc-index-coverage.mjs",
     "seo:p1-sources": "node scripts/prepare-p1-enrichment-sources.mjs",
-    "seo:indexnow": "node scripts/submit-indexnow.mjs"
+    "seo:indexnow": "node scripts/submit-indexnow.mjs",
+    "reviewers:generate-peachtree": "node scripts/lib/reviewers/generate-peachtree-contributors.mjs",
+    "reviewers:export-crosswalk": "node scripts/lib/reviewers/export-crosswalk-json.mjs",
+    "reviewers:export-canonical": "node scripts/lib/reviewers/export-canonical-registry.mjs",
+    "reviewers:audit": "node scripts/reviewers-audit.mjs",
+    "reviewers:assign": "node scripts/assign-clinical-reviewers.mjs --dry-run",
+    "reviewers:validate": "node scripts/reviewers-validate.mjs",
+    "reviewers:rollback": "node scripts/reviewers-rollback.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.104.2",

@@ -549,7 +549,7 @@ export const reviewerProfiles: ReviewerProfile[] = [
     name: 'Kenneth W. Christian, PhD',
     specialtyLabel: 'Addiction & Recovery',
     credentialLine: 'Licensed psychologist · 40+ years clinical experience',
-    bio: 'Kenneth W. Christian, PhD is a licensed psychologist with more than four decades of clinical experience. He reviews selected Deeper Global answers related to addiction, recovery, substance use, and related care navigation.',
+    bio: 'Kenneth W. Christian, PhD is a licensed psychologist with more than four decades of clinical experience. Legacy answers currently resolve to this misnamed reviewer ID; see reviewer-identity.ts for canonical consolidation.',
     expertiseTags: [
       'addiction',
       'substance use',
@@ -558,14 +558,19 @@ export const reviewerProfiles: ReviewerProfile[] = [
       'sobriety',
       'family impact of addiction',
     ],
-    disclaimer: 'Clinical review is educational and does not create a therapist-client relationship.',
+    disclaimer:
+      'Legacy attribution ID. Specialty-matched clinical contributor migration treats this as an alias of kenneth-w-christian-phd. Educational content only; does not create a therapist-client relationship.',
     sameAs: [],
     url: '/reviewers/david-k-gore-phd/',
+    // Public label honesty: do not present bulk legacy attribution as clinical review.
+    trustRoleLabel: 'Clinical contributor',
+    reviewAttributionPrefix: 'Clinical contributor',
   },
   {
     id: 'kenneth-w-christian-phd',
     slug: 'kenneth-w-christian-phd',
     name: 'Kenneth W. Christian, PhD',
+    displayName: 'Kenneth W. Christian, PhD',
     specialtyLabel: 'Performance, Purpose & Self-Limiting Patterns',
     credentialLine: 'Performance, Purpose & Self-Limiting Patterns',
     bio: 'Kenneth W. Christian, PhD is a psychologist and performance psychology specialist whose work focuses on underachievement, self-limiting behavior, procrastination, perfectionism, and the psychological barriers that keep capable people from acting on their potential. He is the author of Your Own Worst Enemy: Breaking the Habit of Adult Underachievement.',
@@ -580,12 +585,22 @@ export const reviewerProfiles: ReviewerProfile[] = [
       'achievement anxiety',
       'self-worth tied to success',
     ],
-    disclaimer: 'Clinical review is educational and does not create a therapist-client relationship.',
+    disclaimer: 'Educational attribution only; does not create a therapist-client relationship.',
     sameAs: [],
     url: '/reviewers/kenneth-w-christian-phd/',
+    trustRoleLabel: 'Clinical contributor',
+    reviewAttributionPrefix: 'Clinical contributor',
   },
 ];
 
 export const reviewerProfilesById = new Map(reviewerProfiles.map((profile) => [profile.id, profile]));
 
 export const reviewerProfilesBySlug = new Map(reviewerProfiles.map((profile) => [profile.slug, profile]));
+
+/**
+ * Public directory list: hide misnamed Ken alias so two Ken rows are not shown.
+ * Profile routes remain for URL stability until redirects are validated.
+ */
+export function getPublicDirectoryReviewers(): ReviewerProfile[] {
+  return reviewerProfiles.filter((profile) => profile.id !== 'david-k-gore-phd');
+}

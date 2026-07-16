@@ -1,0 +1,586 @@
+{
+  "generated_at": "2026-07-16T20:16:05.681Z",
+  "mode": "dry-run",
+  "source": "public_api",
+  "includeMedium": false,
+  "soft_cap_share": 0.15,
+  "soft_cap_count": 160,
+  "assignment_method": "specialty_matched_organizational_approval",
+  "approval_source": "peachtree_psychology_susan_keenan",
+  "total_answers": 1146,
+  "ken_evaluated": 1068,
+  "protected_preserved": 78,
+  "counts": {
+    "ken_evaluated": 1068,
+    "high_confidence_proposed": 923,
+    "medium_confidence_total": 145,
+    "medium_confidence_proposed": 0,
+    "medium_unassigned_default": 145,
+    "low_confidence": 0,
+    "low_confidence_unassigned": 0,
+    "unmatched": 0,
+    "blocked_incomplete_profiles": 0,
+    "ken_remaining_under_high_only": 145,
+    "ken_remaining_if_medium_included": 0,
+    "medium_would_assign_if_included": 145,
+    "unmatched_default": 145
+  },
+  "distribution_high_only": {
+    "laura-hilsen": {
+      "fullName": "Laura Hilsen",
+      "proposed_high": 100,
+      "proposed_all_included": 100,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "michaela-hilburn": {
+      "fullName": "Michaela Hilburn",
+      "proposed_high": 84,
+      "proposed_all_included": 84,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "liz-webb": {
+      "fullName": "Liz Webb",
+      "proposed_high": 45,
+      "proposed_all_included": 45,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "kelsey-donahue": {
+      "fullName": "Kelsey Madsen (Donahue)",
+      "proposed_high": 39,
+      "proposed_all_included": 39,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "jackie-malone": {
+      "fullName": "Jackie Malone",
+      "proposed_high": 78,
+      "proposed_all_included": 78,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "alex-crenshaw-phd": {
+      "fullName": "Dr. Alex Crenshaw",
+      "proposed_high": 47,
+      "proposed_all_included": 47,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "jeannine-jannot": {
+      "fullName": "Jeannine Jannot, Ph.D.",
+      "proposed_high": 18,
+      "proposed_all_included": 18,
+      "profileStatus": "complete",
+      "assignmentEligibility": "restricted",
+      "publishable": true
+    },
+    "lexi-cooper": {
+      "fullName": "Lexi Cooper",
+      "proposed_high": 33,
+      "proposed_all_included": 33,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "meredith-price": {
+      "fullName": "Meredith Price",
+      "proposed_high": 71,
+      "proposed_all_included": 71,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "sarah-evers": {
+      "fullName": "Sarah Evers",
+      "proposed_high": 45,
+      "proposed_all_included": 45,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "samantha-bryant": {
+      "fullName": "Samantha Bryant",
+      "proposed_high": 124,
+      "proposed_all_included": 124,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "erin-benator": {
+      "fullName": "Erin Benator",
+      "proposed_high": 0,
+      "proposed_all_included": 0,
+      "profileStatus": "incomplete",
+      "assignmentEligibility": "report_only",
+      "publishable": false
+    },
+    "lynn-lane": {
+      "fullName": "Lynn Lane",
+      "proposed_high": 79,
+      "proposed_all_included": 79,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "lauren-sanders": {
+      "fullName": "Lauren Sanders",
+      "proposed_high": 3,
+      "proposed_all_included": 3,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "susan-keenan": {
+      "fullName": "Susan L. Keenan",
+      "proposed_high": 106,
+      "proposed_all_included": 106,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "amanda-gaines": {
+      "fullName": "Amanda Gaines",
+      "proposed_high": 51,
+      "proposed_all_included": 51,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    }
+  },
+  "distribution_if_medium_included": {
+    "laura-hilsen": {
+      "fullName": "Laura Hilsen",
+      "proposed_high": 100,
+      "proposed_all_included": 105,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "michaela-hilburn": {
+      "fullName": "Michaela Hilburn",
+      "proposed_high": 84,
+      "proposed_all_included": 89,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "liz-webb": {
+      "fullName": "Liz Webb",
+      "proposed_high": 45,
+      "proposed_all_included": 51,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "kelsey-donahue": {
+      "fullName": "Kelsey Madsen (Donahue)",
+      "proposed_high": 39,
+      "proposed_all_included": 47,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "jackie-malone": {
+      "fullName": "Jackie Malone",
+      "proposed_high": 78,
+      "proposed_all_included": 95,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "alex-crenshaw-phd": {
+      "fullName": "Dr. Alex Crenshaw",
+      "proposed_high": 47,
+      "proposed_all_included": 81,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "jeannine-jannot": {
+      "fullName": "Jeannine Jannot, Ph.D.",
+      "proposed_high": 18,
+      "proposed_all_included": 26,
+      "profileStatus": "complete",
+      "assignmentEligibility": "restricted",
+      "publishable": true
+    },
+    "lexi-cooper": {
+      "fullName": "Lexi Cooper",
+      "proposed_high": 33,
+      "proposed_all_included": 41,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "meredith-price": {
+      "fullName": "Meredith Price",
+      "proposed_high": 71,
+      "proposed_all_included": 86,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "sarah-evers": {
+      "fullName": "Sarah Evers",
+      "proposed_high": 45,
+      "proposed_all_included": 51,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "samantha-bryant": {
+      "fullName": "Samantha Bryant",
+      "proposed_high": 124,
+      "proposed_all_included": 134,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "erin-benator": {
+      "fullName": "Erin Benator",
+      "proposed_high": 0,
+      "proposed_all_included": 0,
+      "profileStatus": "incomplete",
+      "assignmentEligibility": "report_only",
+      "publishable": false
+    },
+    "lynn-lane": {
+      "fullName": "Lynn Lane",
+      "proposed_high": 79,
+      "proposed_all_included": 84,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "lauren-sanders": {
+      "fullName": "Lauren Sanders",
+      "proposed_high": 3,
+      "proposed_all_included": 13,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "susan-keenan": {
+      "fullName": "Susan L. Keenan",
+      "proposed_high": 106,
+      "proposed_all_included": 113,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    },
+    "amanda-gaines": {
+      "fullName": "Amanda Gaines",
+      "proposed_high": 51,
+      "proposed_all_included": 52,
+      "profileStatus": "complete",
+      "assignmentEligibility": "public",
+      "publishable": true
+    }
+  },
+  "soft_cap_exceptions": [],
+  "unmatched_end_state_scenarios": {
+    "A_retain_ken": {
+      "count": 145,
+      "description": "Retain current Ken attribution on unmatched answers"
+    },
+    "B_remove_named_use_editorial": {
+      "count": 145,
+      "description": "Remove unsupported named-person attribution; mark as Deeper editorial review where editorial review is supported"
+    },
+    "C_pending_future_specialist": {
+      "count": 145,
+      "description": "Leave pending future specialist assignment without named clinical person"
+    },
+    "recommendation": "Prefer scenario B for honesty: remove unsupported named-person attribution and use accurate Deeper editorial attribution without implying clinical review. Do not retain Ken on answers with no defensible specialty match."
+  },
+  "sample_explanations": [
+    {
+      "slug": "am-i-becoming-too-dependent-on-ai-to-make-decision-189142-016",
+      "topic": "Work & Burnout",
+      "theme": "work-and-purpose",
+      "from": "david-k-gore-phd",
+      "to": "laura-hilsen",
+      "to_name": "Laura Hilsen",
+      "confidence": "high",
+      "specialty": "Work/Life Balance",
+      "score": 100,
+      "reasons": "exact_topic:work-and-burnout via Life Transitions (w=0.45)|exact_topic:work-and-burnout via Work/Life Balance (w=1)",
+      "public_label": "Clinical contributor",
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "am-i-losing-my-ability-to-connect-with-real-people-189142-008",
+      "topic": "Anxiety & Stress",
+      "theme": "anxiety-and-mood",
+      "from": "david-k-gore-phd",
+      "to": "meredith-price",
+      "to_name": "Meredith Price",
+      "confidence": "high",
+      "specialty": "Stress",
+      "score": 100,
+      "reasons": "exact_topic:anxiety-and-stress via Pregnancy, Prenatal, Postpartum (w=0.5)|demoted_missing_keyword_support|exact_topic:anxiety-and-stress via Depression (w=0.35)|parent_theme:anxiety-and-mood via Depression|exact_topic:anxiety-and-stress via Anxiety (w=1)|preferred_specialty_keyword:Anxiety|alt_topic:anxiety-and-stress via Infertility (w=0.5)|demoted_missing_keyword_support|exact_topic:anxiety-and-stress via Stress (w=1)",
+      "public_label": "Clinical contributor",
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "am-i-weak-if-i-need-medication-for-my-me-181083-055",
+      "topic": "Identity & Self-Worth",
+      "theme": "identity-and-self-worth",
+      "from": "david-k-gore-phd",
+      "to": "samantha-bryant",
+      "to_name": "Samantha Bryant",
+      "confidence": "high",
+      "specialty": "Self Esteem",
+      "score": 100,
+      "reasons": "exact_topic:identity-and-self-worth via Body Image (w=0.4)|demoted_missing_keyword_support|exact_topic:identity-and-self-worth via Life Transitions (w=0.4)|exact_topic:identity-and-self-worth via Self Esteem (w=1)",
+      "public_label": "Clinical contributor",
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "are-there-specific-depression-challenges-for-lgbtq-individuals",
+      "topic": "Depression",
+      "theme": "anxiety-and-mood",
+      "from": "david-k-gore-phd",
+      "to": "michaela-hilburn",
+      "to_name": "Michaela Hilburn",
+      "confidence": "high",
+      "specialty": "Depression",
+      "score": 100,
+      "reasons": "parent_theme:anxiety-and-mood via Anxiety|alias_keyword:stress|exact_topic:depression via Depression (w=1)|preferred_specialty_keyword:Depression",
+      "public_label": "Clinical contributor",
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "ask-for-reassurance-without-pushing-partner-away",
+      "topic": "Relationships & Communication",
+      "theme": "relationships-and-connection",
+      "from": "david-k-gore-phd",
+      "to": "samantha-bryant",
+      "to_name": "Samantha Bryant",
+      "confidence": "high",
+      "specialty": "Marital and Premarital",
+      "score": 100,
+      "reasons": "parent_theme:relationships-and-connection via Bisexual|exact_topic:relationships-and-communication via Codependency (w=1)|exact_topic:relationships-and-communication via Marital and Premarital (w=1)",
+      "public_label": "Clinical contributor",
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "can-ai-griefbots-make-grief-harder-to-process",
+      "topic": "Grief & Loss",
+      "theme": "life-transitions-and-change",
+      "from": "david-k-gore-phd",
+      "to": "lauren-sanders",
+      "to_name": "Lauren Sanders",
+      "confidence": "high",
+      "specialty": "Grief",
+      "score": 100,
+      "reasons": "parent_theme:life-transitions-and-change via Cancer|exact_topic:grief-and-loss via Grief (w=1)|preferred_specialty_keyword:Grief",
+      "public_label": "Clinical contributor",
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "can-ai-help-me-process-grief-or-trauma-189142-018",
+      "topic": "Trauma & Safety",
+      "theme": "trauma-and-safety",
+      "from": "david-k-gore-phd",
+      "to": "lexi-cooper",
+      "to_name": "Lexi Cooper",
+      "confidence": "high",
+      "specialty": "Trauma",
+      "score": 100,
+      "reasons": "exact_topic:trauma-and-safety via Trauma (w=1)|preferred_specialty_keyword:Trauma",
+      "public_label": "Clinical contributor",
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "can-i-drink-alcohol-while-taking-psychia-181083-061",
+      "topic": "Addiction & Recovery",
+      "theme": "trauma-and-safety",
+      "from": "david-k-gore-phd",
+      "to": "amanda-gaines",
+      "to_name": "Amanda Gaines",
+      "confidence": "high",
+      "specialty": "Addictive Behaviors",
+      "score": 100,
+      "reasons": "parent_theme:trauma-and-safety via Trauma & PTSD|exact_topic:addiction-and-recovery via Substance Use (w=1)|exact_topic:addiction-and-recovery via Addictive Behaviors (w=1)",
+      "public_label": "Clinical contributor",
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "can-religious-trauma-be-real-even-if-not-181083-042",
+      "topic": "Meaning, Faith & Existential Questions",
+      "theme": "spirituality-and-meaning",
+      "from": "david-k-gore-phd",
+      "to": "samantha-bryant",
+      "to_name": "Samantha Bryant",
+      "confidence": "high",
+      "specialty": "Trauma and PTSD",
+      "score": 93,
+      "reasons": "alias_keyword:shame|exact_topic:meaning-faith-and-existential-questions via Spirituality (w=0.85)|alias_keyword:Trauma",
+      "public_label": "Clinical contributor",
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "help-someone-believes-ai-is-sending-secret-messages",
+      "topic": "Family & Parenting",
+      "theme": "family-and-parenting",
+      "from": "david-k-gore-phd",
+      "to": "jeannine-jannot",
+      "to_name": "Jeannine Jannot, Ph.D.",
+      "confidence": "high",
+      "specialty": "Child",
+      "score": 100,
+      "reasons": "exact_topic:family-and-parenting via Parenting (w=1)|preferred_specialty_keyword:Parenting|exact_topic:family-and-parenting via Child (w=1)",
+      "public_label": "Clinical contributor",
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "how-can-couples-rebuild-trust-after-lying",
+      "topic": "Relationships & Communication",
+      "theme": "relationships-and-connection",
+      "from": "david-k-gore-phd",
+      "to": "alex-crenshaw-phd",
+      "to_name": "Dr. Alex Crenshaw",
+      "confidence": "high",
+      "specialty": "Couples",
+      "score": 100,
+      "reasons": "exact_topic:relationships-and-communication via Couples (w=1)|preferred_specialty_keyword:couples",
+      "public_label": "Clinical contributor",
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "how-can-i-communicate-better-with-someone-who-has-a-different-communication-style",
+      "topic": "Relationships & Communication",
+      "theme": "relationships-and-connection",
+      "from": "david-k-gore-phd",
+      "to": "laura-hilsen",
+      "to_name": "Laura Hilsen",
+      "confidence": "high",
+      "specialty": "Infidelity",
+      "score": 100,
+      "reasons": "exact_topic:relationships-and-communication via Relationship Issues (w=1)|exact_topic:relationships-and-communication via Divorce (w=1)|exact_topic:relationships-and-communication via Infidelity (w=1)",
+      "public_label": "Clinical contributor",
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "how-can-i-create-a-calming-environment-at-home",
+      "topic": "General Mental Health",
+      "theme": "life-transitions-and-change",
+      "from": "david-k-gore-phd",
+      "to": "jackie-malone",
+      "to_name": "Jackie Malone",
+      "confidence": "high",
+      "specialty": "Stress",
+      "score": 86,
+      "reasons": "exact_topic:general-mental-health via Anxiety (w=0.45)|alias_keyword:stress|exact_topic:general-mental-health via Body Image (w=0.55)|demoted_missing_keyword_support|exact_topic:general-mental-health via Life Transitions (w=0.7)|alias_keyword:adjustment|alt_topic:general-mental-health via Stress (w=0.45)|alias_keyword:stress",
+      "public_label": "Clinical contributor",
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "how-can-i-develop-a-stronger-sense-of-identity",
+      "topic": "Identity & Self-Worth",
+      "theme": "identity-and-self-worth",
+      "from": "david-k-gore-phd",
+      "to": "jackie-malone",
+      "to_name": "Jackie Malone",
+      "confidence": "high",
+      "specialty": "Self Esteem",
+      "score": 100,
+      "reasons": "exact_topic:identity-and-self-worth via Body Image (w=0.4)|demoted_missing_keyword_support|exact_topic:identity-and-self-worth via Life Transitions (w=0.4)|exact_topic:identity-and-self-worth via Self Esteem (w=1)",
+      "public_label": "Clinical contributor",
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "can-ai-chatbots-make-delusional-thoughts-worse",
+      "topic": "General Mental Health",
+      "theme": "life-transitions-and-change",
+      "from": "david-k-gore-phd",
+      "to": null,
+      "to_name": null,
+      "confidence": "medium",
+      "specialty": "Life Transitions",
+      "score": 70,
+      "reasons": "exact_topic:general-mental-health via Anxiety (w=0.45)|exact_topic:general-mental-health via Body Image (w=0.55)|demoted_missing_keyword_support|exact_topic:general-mental-health via Life Transitions (w=0.7)|alt_topic:general-mental-health via Stress (w=0.45)",
+      "public_label": null,
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "can-ai-companions-be-risky-for-lonely-teens",
+      "topic": "Teens & Identity",
+      "theme": "family-and-parenting",
+      "from": "david-k-gore-phd",
+      "to": null,
+      "to_name": null,
+      "confidence": "medium",
+      "specialty": "Self Esteem",
+      "score": 78,
+      "reasons": "exact_topic:teens-and-identity via Family Conflict (w=0.7)|tied_topic:teens-and-identity via Parenting (w=0.7)|alias_keyword:shame",
+      "public_label": null,
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "can-ai-companions-reduce-loneliness-or-make-it-worse",
+      "topic": "Loneliness & Belonging",
+      "theme": "relationships-and-connection",
+      "from": "david-k-gore-phd",
+      "to": null,
+      "to_name": null,
+      "confidence": "medium",
+      "specialty": "Building Healthy Relationships",
+      "score": 56,
+      "reasons": "exact_topic:loneliness-and-belonging via Building Healthy Relationships (w=0.45)|parent_theme:relationships-and-connection via Building Healthy Relationships",
+      "public_label": null,
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "can-ai-chatbots-make-delusional-thoughts-worse",
+      "topic": "General Mental Health",
+      "theme": "life-transitions-and-change",
+      "from": "david-k-gore-phd",
+      "to": null,
+      "to_name": null,
+      "confidence": "medium",
+      "specialty": "Life Transitions",
+      "score": 70,
+      "reasons": "exact_topic:general-mental-health via Anxiety (w=0.45)|exact_topic:general-mental-health via Body Image (w=0.55)|demoted_missing_keyword_support|exact_topic:general-mental-health via Life Transitions (w=0.7)|alt_topic:general-mental-health via Stress (w=0.45)",
+      "public_label": null,
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "can-ai-companions-be-risky-for-lonely-teens",
+      "topic": "Teens & Identity",
+      "theme": "family-and-parenting",
+      "from": "david-k-gore-phd",
+      "to": null,
+      "to_name": null,
+      "confidence": "medium",
+      "specialty": "Self Esteem",
+      "score": 78,
+      "reasons": "exact_topic:teens-and-identity via Family Conflict (w=0.7)|tied_topic:teens-and-identity via Parenting (w=0.7)|alias_keyword:shame",
+      "public_label": null,
+      "misleading_review_date_today": true
+    },
+    {
+      "slug": "can-ai-companions-reduce-loneliness-or-make-it-worse",
+      "topic": "Loneliness & Belonging",
+      "theme": "relationships-and-connection",
+      "from": "david-k-gore-phd",
+      "to": null,
+      "to_name": null,
+      "confidence": "medium",
+      "specialty": "Building Healthy Relationships",
+      "score": 56,
+      "reasons": "exact_topic:loneliness-and-belonging via Building Healthy Relationships (w=0.45)|parent_theme:relationships-and-connection via Building Healthy Relationships",
+      "public_label": null,
+      "misleading_review_date_today": true
+    }
+  ]
+}

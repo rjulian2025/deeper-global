@@ -1,0 +1,134 @@
+---
+/**
+ * Peachtree Psychology organization profile (Phase A preparation).
+ * noindex until contributor graph and public attribution rollout are complete.
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import {
+  getPeachtreePsychologyOrganization,
+  getPublishableClinicalContributors,
+  peachtreeClinicalContributors,
+} from '@/data/clinical-contributors';
+import { siteUrl, websiteId } from '@/lib/site';
+
+const org = getPeachtreePsychologyOrganization();
+const publishable = getPublishableClinicalContributors();
+const incomplete = peachtreeClinicalContributors.filter((c) => c.profileStatus === 'incomplete');
+const pageUrl = siteUrl(org.url);
+
+const specialties = [...new Set(publishable.flatMap((c) => c.specialties))].sort((a, b) =>
+  a.localeCompare(b)
+);
+
+const jsonLd = {
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${pageUrl}#organization`,
+      name: org.name,
+      url: pageUrl,
+      sameAs: org.sameAs,
+      description: org.shortOverview,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '555 Sun Valley Drive, Suite M-2',
+        addressLocality: 'Roswell',
+        addressRegion: 'GA',
+        postalCode: '30076',
+      },
+    },
+    {
+      '@type': 'CollectionPage',
+      '@id': `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: `${org.name} | Clinical contributors`,
+      isPartOf: { '@id': websiteId() },
+      about: { '@id': `${pageUrl}#organization` },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: publishable.length,
+        itemListElement: publishable.map((clinician, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          // Deeper reviewer routes for Peachtree clinicians (except Alex) are not activated in Phase A–B.
+          url: clinician.id === 'alex-crenshaw-phd' ? siteUrl(`/reviewers/${clinician.slug}/`) : clinician.externalPracticeUrl,
+          name: clinician.fullName,
+        })),
+      },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={`${org.name} | Clinical contributors | Deeper Global`}
+  description={org.shortOverview}
+  canonicalPath={org.url}
+  jsonLd={jsonLd}
+  noindex={true}
+>
+  <main class="discovery-surface">
+    <section class="catalog-hero">
+      <div class="container">
+        <p class="eyebrow">Organization</p>
+        <h1>{org.name}</h1>
+        <p class="lede">{org.shortOverview}</p>
+        <p class="editorial-meta discovery-meta">
+          <a href={org.externalUrl} rel="noopener noreferrer">peachtreepsychology.com</a>
+          <span class="meta-sep" aria-hidden="true">·</span>
+          {org.locationLine}
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Relationship to Deeper Global</h2>
+        <p>{org.relationshipLanguage}</p>
+        <p>
+          Public answer pages that name a Peachtree clinician use the label <strong>Clinical contributor</strong>. That
+          reflects specialty-matched organizational approval, not an individual page-by-page clinical review unless a
+          separate clinical review record exists.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Clinicians</h2>
+        <p class="editorial-meta">{publishable.length} publishable profiles · {incomplete.length} incomplete / report-only</p>
+        <div class="discovery-list">
+          {
+            publishable.map((clinician) => {
+              const href =
+                clinician.id === 'alex-crenshaw-phd'
+                  ? `/reviewers/${clinician.slug}/`
+                  : clinician.externalPracticeUrl;
+              const external = clinician.id !== 'alex-crenshaw-phd';
+              return (
+                <article class="discovery-row">
+                  <h3 class="discovery-row-title">
+                    <a href={href} rel={external ? 'noopener noreferrer' : undefined}>
+                      {clinician.fullName}
+                    </a>
+                  </h3>
+                  <p class="editorial-meta discovery-meta">
+                    {clinician.credentialLine} · {clinician.specialtyLabel}
+                  </p>
+                  <p class="discovery-summary">{clinician.shortBio}</p>
+                </article>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Specialties represented</h2>
+        <p>{specialties.slice(0, 40).join(' · ')}{specialties.length > 40 ? ' · …' : ''}</p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -105,12 +105,19 @@ export function isDraftReviewStatus(question: Question) {
 }
 
 export function getReviewerTrustRoleLabel(reviewerProfile: ReviewerProfile, isDraft = false) {
-  if (isDraft) return 'Expert Reviewer';
-  return reviewerProfile.trustRoleLabel ?? 'Clinical Reviewer';
+  if (isDraft) return 'Expert reviewer';
+  return reviewerProfile.trustRoleLabel ?? 'Clinical reviewer';
 }
 
 export function getReviewerAttributionPrefix(reviewerProfile: ReviewerProfile, isDraft = false) {
   if (isDraft) return 'Expert reviewed by';
+  // Specialty-contributor and legacy Ken labels must not say "Reviewed by".
+  if (reviewerProfile.trustRoleLabel === 'Clinical contributor') {
+    return reviewerProfile.reviewAttributionPrefix ?? 'Clinical contributor';
+  }
+  if (reviewerProfile.trustRoleLabel === 'Editorial Reviewer') {
+    return reviewerProfile.reviewAttributionPrefix ?? 'Editorially reviewed by';
+  }
   return reviewerProfile.reviewAttributionPrefix ?? 'Clinically reviewed by';
 }
 

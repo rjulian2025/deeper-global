@@ -82,6 +82,8 @@ export function shouldIncludePathInSitemap(pathname: string) {
   const path = pathname.endsWith('/') || pathname.includes('.') ? pathname : `${pathname}/`;
 
   if (path.startsWith('/entities/') || path.startsWith('/categories/')) return false;
+  // Organization contributor pages stay out of sitemap until Phase C activation.
+  if (path.startsWith('/organizations/')) return false;
   if (path.startsWith('/topics/')) {
     // /topics/ itself (the index) always stays out; child topic pages are an allowlist
     // driven by topic-content.ts `indexable`, not a blanket prefix exclusion.

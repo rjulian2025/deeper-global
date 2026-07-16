@@ -1,12 +1,14 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { reviewerProfiles } from '@/lib/trust';
+import { getPublicDirectoryReviewers } from '@/data/reviewers';
 import '@/styles/reviewer-profile.css';
+
+const directoryReviewers = getPublicDirectoryReviewers();
 ---
 
 <BaseLayout
-  title="Clinical Reviewers | Deeper Global"
-  description="Meet the clinical reviewers who review selected Deeper Global mental health answers."
+  title="Clinical Reviewers & Contributors | Deeper Global"
+  description="Meet the clinicians and editorial reviewers associated with selected Deeper Global mental health answers."
   canonicalPath="/reviewers"
 >
   <main class="discovery-surface reviewer-profile">
@@ -20,11 +22,12 @@ import '@/styles/reviewer-profile.css';
 
     <section class="reviewer-hero">
       <div class="container">
-        <p class="eyebrow">Clinical reviewers</p>
-        <h1>Who reviews our answers</h1>
+        <p class="eyebrow">Reviewers and contributors</p>
+        <h1>Who is associated with our answers</h1>
         <p class="reviewer-designation">
-          Some Deeper Global answers include a named clinical reviewer. Those pages show the reviewer, specialty area,
-          and last reviewed date recorded for that answer.
+          Some Deeper Global answers name a clinical reviewer, clinical contributor, or editorial reviewer. Labels and
+          dates depend on the attribution type; specialty-based contributor assignments do not imply page-by-page clinical
+          review.
         </p>
       </div>
     </section>
@@ -33,12 +36,14 @@ import '@/styles/reviewer-profile.css';
       <div class="container">
         <div class="discovery-list profile-directory">
           {
-            reviewerProfiles.map((reviewer) => (
+            directoryReviewers.map((reviewer) => (
               <article class="discovery-row profile-directory-row">
                 <h2 class="discovery-row-title">
                   <a href={reviewer.url}>{reviewer.displayName ?? reviewer.name}</a>
                 </h2>
-                <p class="editorial-meta discovery-meta">{reviewer.specialtyLabel}</p>
+                <p class="editorial-meta discovery-meta">
+                  {reviewer.trustRoleLabel ?? 'Clinical reviewer'} · {reviewer.specialtyLabel}
+                </p>
                 {reviewer.designation && <p class="reviewer-directory-designation">{reviewer.designation}</p>}
                 <p class="discovery-summary">{reviewer.bio}</p>
               </article>
