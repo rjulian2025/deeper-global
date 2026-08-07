@@ -1,16 +1,15 @@
 ---
-import type { ReviewerProfile } from '@/data/reviewers';
+import type { ReviewerVideoModule } from '@/data/reviewers';
 import { getVideoMetaLabel, isVideoInteractive } from '@/lib/reviewer-video';
 
 type Props = {
-  reviewer: ReviewerProfile;
+  video: ReviewerVideoModule;
+  fallbackPoster?: string;
 };
 
-const { reviewer } = Astro.props;
-const video = reviewer.videoModule;
-if (!video) return null;
+const { video, fallbackPoster } = Astro.props;
 
-const poster = video.poster ?? reviewer.image;
+const poster = video.poster ?? fallbackPoster;
 if (!poster) return null;
 
 const metaLabel = getVideoMetaLabel(video);
@@ -87,6 +86,9 @@ const playLabel = interactive
 
 <script>
   document.querySelectorAll('.reviewer-video-thumb[data-video-embed]').forEach((trigger) => {
+    if (trigger instanceof HTMLElement && trigger.dataset.videoBound === 'true') return;
+    if (trigger instanceof HTMLElement) trigger.dataset.videoBound = 'true';
+
     trigger.addEventListener('click', () => {
       const wrap = trigger.closest('.reviewer-video-stage-wrap');
       if (!wrap) return;

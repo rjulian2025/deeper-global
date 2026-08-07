@@ -90,6 +90,16 @@
   margin-bottom: 28px;
 }
 
+.reviewer-video-list {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.reviewer-video-list .reviewer-video-card {
+  margin-bottom: 0;
+}
+
 .reviewer-video-stage-wrap {
   position: relative;
   width: 100%;

@@ -149,7 +149,20 @@ const hiddenCount = Math.max(0, reviewedAnswers.length - visibleAnswers.length);
           <ReviewerSidebar slot="sidebar" reviewer={reviewer} />
 
           <div class="profile-main-inner">
-            {reviewer.videoModule && <ReviewerVideoCard reviewer={reviewer} />}
+            {
+              reviewer.videoModule && (
+                <ReviewerVideoCard video={reviewer.videoModule} fallbackPoster={reviewer.image} />
+              )
+            }
+            {
+              reviewer.additionalVideos && reviewer.additionalVideos.length > 0 && (
+                <section class="reviewer-video-list" aria-label={`More videos from ${displayName}`}>
+                  {reviewer.additionalVideos.map((video) => (
+                    <ReviewerVideoCard video={video} fallbackPoster={reviewer.image} />
+                  ))}
+                </section>
+              )
+            }
 
             {
               reviewer.clinicalPerspective && (
