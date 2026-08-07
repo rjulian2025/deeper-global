@@ -1,0 +1,153 @@
+{
+  "generated_at": "2026-08-07T13:21:45.153Z",
+  "mode": "apply",
+  "schema": {
+    "applied": false,
+    "already_present": true
+  },
+  "counts": {
+    "high_package": 923,
+    "editorial_package": 145,
+    "high_planned": 923,
+    "editorial_planned": 145
+  },
+  "guards": {
+    "erin_excluded": true,
+    "do_not_set_clinically_reviewed_at": true,
+    "preserve_reviewed_by_reviewed_at": true
+  },
+  "sample_high": [
+    {
+      "id": "77b03289-45c4-47bc-902a-c3d1fe4067c1",
+      "slug": "am-i-becoming-too-dependent-on-ai-to-make-decision-189142-016",
+      "before": {
+        "clinical_contributor_id": null,
+        "editorial_reviewer_id": null,
+        "reviewed_by": "david-k-gore-phd",
+        "reviewed_at": "2026-06-19"
+      },
+      "patch": {
+        "clinical_contributor_id": "laura-hilsen",
+        "clinical_contributor_assigned_at": "2026-08-07T13:21:45.151Z",
+        "clinical_contributor_method": "specialty_matched_organizational_approval",
+        "clinical_contributor_approval_source": "peachtree_psychology_susan_keenan",
+        "attribution_legacy_reviewed_by": "david-k-gore-phd",
+        "attribution_legacy_reviewed_at": "2026-06-19",
+        "attribution_legacy_bulk_approval": true
+      }
+    },
+    {
+      "id": "18e51622-7110-418f-b6fe-75e004a8d402",
+      "slug": "am-i-losing-my-ability-to-connect-with-real-people-189142-008",
+      "before": {
+        "clinical_contributor_id": null,
+        "editorial_reviewer_id": null,
+        "reviewed_by": "david-k-gore-phd",
+        "reviewed_at": "2026-06-19"
+      },
+      "patch": {
+        "clinical_contributor_id": "meredith-price",
+        "clinical_contributor_assigned_at": "2026-08-07T13:21:45.151Z",
+        "clinical_contributor_method": "specialty_matched_organizational_approval",
+        "clinical_contributor_approval_source": "peachtree_psychology_susan_keenan",
+        "attribution_legacy_reviewed_by": "david-k-gore-phd",
+        "attribution_legacy_reviewed_at": "2026-06-19",
+        "attribution_legacy_bulk_approval": true
+      }
+    },
+    {
+      "id": "a9befd3a-b5cd-4062-ab23-425902c27f2d",
+      "slug": "am-i-weak-if-i-need-medication-for-my-me-181083-055",
+      "before": {
+        "clinical_contributor_id": null,
+        "editorial_reviewer_id": null,
+        "reviewed_by": "david-k-gore-phd",
+        "reviewed_at": "2026-06-19"
+      },
+      "patch": {
+        "clinical_contributor_id": "samantha-bryant",
+        "clinical_contributor_assigned_at": "2026-08-07T13:21:45.151Z",
+        "clinical_contributor_method": "specialty_matched_organizational_approval",
+        "clinical_contributor_approval_source": "peachtree_psychology_susan_keenan",
+        "attribution_legacy_reviewed_by": "david-k-gore-phd",
+        "attribution_legacy_reviewed_at": "2026-06-19",
+        "attribution_legacy_bulk_approval": true
+      }
+    }
+  ],
+  "sample_editorial": [
+    {
+      "id": "9debf278-e4ba-4616-8dbf-988b81f6552c",
+      "slug": "can-ai-chatbots-make-delusional-thoughts-worse",
+      "before": {
+        "clinical_contributor_id": null,
+        "editorial_reviewer_id": null,
+        "reviewed_by": "david-k-gore-phd",
+        "reviewed_at": "2026-06-19"
+      },
+      "patch": {
+        "clinical_contributor_id": null,
+        "clinical_reviewer_id": null,
+        "editorial_review_status": "reviewed",
+        "editorial_reviewer_id": "deeper-editorial",
+        "editorially_reviewed_at": null,
+        "attribution_legacy_reviewed_by": "david-k-gore-phd",
+        "attribution_legacy_reviewed_at": "2026-06-19",
+        "attribution_legacy_bulk_approval": true
+      }
+    },
+    {
+      "id": "586965a5-afa8-4f2f-9084-5e1ef40d6cfb",
+      "slug": "can-ai-companions-be-risky-for-lonely-teens",
+      "before": {
+        "clinical_contributor_id": null,
+        "editorial_reviewer_id": null,
+        "reviewed_by": "david-k-gore-phd",
+        "reviewed_at": "2026-06-19"
+      },
+      "patch": {
+        "clinical_contributor_id": null,
+        "clinical_reviewer_id": null,
+        "editorial_review_status": "reviewed",
+        "editorial_reviewer_id": "deeper-editorial",
+        "editorially_reviewed_at": null,
+        "attribution_legacy_reviewed_by": "david-k-gore-phd",
+        "attribution_legacy_reviewed_at": "2026-06-19",
+        "attribution_legacy_bulk_approval": true
+      }
+    },
+    {
+      "id": "d71e60f0-ee8d-4f4c-a9da-d074fdc66430",
+      "slug": "can-ai-companions-reduce-loneliness-or-make-it-worse",
+      "before": {
+        "clinical_contributor_id": null,
+        "editorial_reviewer_id": null,
+        "reviewed_by": "david-k-gore-phd",
+        "reviewed_at": "2026-06-19"
+      },
+      "patch": {
+        "clinical_contributor_id": null,
+        "clinical_reviewer_id": null,
+        "editorial_review_status": "reviewed",
+        "editorial_reviewer_id": "deeper-editorial",
+        "editorially_reviewed_at": null,
+        "attribution_legacy_reviewed_by": "david-k-gore-phd",
+        "attribution_legacy_reviewed_at": "2026-06-19",
+        "attribution_legacy_bulk_approval": true
+      }
+    }
+  ],
+  "applied": {
+    "high": 923,
+    "editorial": 145,
+    "failures": []
+  },
+  "verification": {
+    "ok": true,
+    "blockers": [],
+    "high_with_contributor": 923,
+    "editorial_deeper": 145,
+    "erin_assigned": 0
+  },
+  "apply_path": "remote_admin"
+}

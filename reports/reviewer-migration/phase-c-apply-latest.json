@@ -1,0 +1,28 @@
+{
+  "ok": true,
+  "mode": "apply",
+  "apply_path": "remote_admin",
+  "schema": {
+    "applied": false,
+    "already_present": true
+  },
+  "counts": {
+    "high_package": 923,
+    "editorial_package": 145,
+    "high_planned": 923,
+    "editorial_planned": 145
+  },
+  "applied": {
+    "high": 923,
+    "editorial": 145,
+    "failures": []
+  },
+  "verification": {
+    "ok": true,
+    "blockers": [],
+    "high_with_contributor": 923,
+    "editorial_deeper": 145,
+    "erin_assigned": 0
+  },
+  "report": "reports/reviewer-migration/phase-c-apply-2026-08-07T13-22-26-612Z.json"
+}

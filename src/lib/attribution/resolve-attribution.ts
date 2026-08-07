@@ -108,36 +108,77 @@ export function resolveAttribution(input: {
     };
   }
 
-  // 2) Specialty clinical contributor (no review date)
-  if (contributorId || (reviewerProfile?.trustRoleLabel === 'Clinical contributor' && !legacyBulk)) {
-    const isContributorProfile = reviewerProfile?.trustRoleLabel === 'Clinical contributor';
-    if (contributorId || isContributorProfile) {
-      return {
-        state: 'clinical_contributor',
-        publicRoleLabel: 'Clinical contributor',
-        personName: reviewerProfile?.displayName || reviewerProfile?.name || contributorId,
-        personUrl: reviewerProfile?.url || null,
-        credentialsLine: reviewerProfile?.credentialLine || null,
-        specialties: (reviewerProfile?.expertiseTags || []).slice(0, 2),
-        practiceName: 'Peachtree Psychology',
-        practiceUrl: '/organizations/peachtree-psychology/',
-        reviewDate: null,
-        reviewDateKind: null,
-        updatedAt,
-        showUpdatedDate: Boolean(updatedAt),
-        schemaRole: 'contributor',
-        legacyBulkApproval: legacyBulk,
-        assignmentMethod:
-          (question.clinical_contributor_method as AssignmentMethod) ||
-          proposedAttribution?.assignmentMethod ||
-          SPECIALTY_ASSIGNMENT_METHOD,
-      };
-    }
+  // 2) Specialty clinical contributor (no review date). Prefer explicit DB id over profile inference.
+  if (contributorId) {
+    return {
+      state: 'clinical_contributor',
+      publicRoleLabel: 'Clinical contributor',
+      personName: reviewerProfile?.displayName || reviewerProfile?.name || contributorId,
+      personUrl: reviewerProfile?.url || null,
+      credentialsLine: reviewerProfile?.credentialLine || null,
+      specialties: (reviewerProfile?.expertiseTags || []).slice(0, 2),
+      practiceName: 'Peachtree Psychology',
+      practiceUrl: '/organizations/peachtree-psychology/',
+      reviewDate: null,
+      reviewDateKind: null,
+      updatedAt,
+      showUpdatedDate: Boolean(updatedAt),
+      schemaRole: 'contributor',
+      legacyBulkApproval: legacyBulk,
+      assignmentMethod:
+        (question.clinical_contributor_method as AssignmentMethod) ||
+        proposedAttribution?.assignmentMethod ||
+        SPECIALTY_ASSIGNMENT_METHOD,
+    };
   }
 
-  // 3) Legacy Ken bulk: strip misleading clinical review date; prepare editorial/contributor transition
+  // 3) Explicit editorial assignments win over legacy Ken bulk (post-apply editorial transition).
+  if (
+    editorialId === 'rick-julian' ||
+    reviewerProfile?.id === 'rick-julian' ||
+    reviewerProfile?.trustRoleLabel === 'Editorial Reviewer'
+  ) {
+    return {
+      state: 'editorial_named',
+      publicRoleLabel: 'Editorially reviewed by',
+      personName: reviewerProfile?.name || editorialId,
+      personUrl: reviewerProfile?.url || null,
+      credentialsLine: reviewerProfile?.credentialLine || null,
+      specialties: reviewerProfile ? [reviewerProfile.specialtyLabel] : [],
+      practiceName: null,
+      practiceUrl: null,
+      reviewDate: editoriallyReviewedAt || (!legacyBulk ? legacyReviewedAt : null),
+      reviewDateKind: editoriallyReviewedAt || legacyReviewedAt ? 'editorially_reviewed' : null,
+      updatedAt,
+      showUpdatedDate: Boolean(updatedAt),
+      schemaRole: 'editorial',
+      legacyBulkApproval: false,
+      assignmentMethod: 'manual_editorial_review',
+    };
+  }
+
+  if (editorialId === 'deeper-editorial' || question.editorial_review_status === 'reviewed') {
+    return {
+      state: 'editorial_deeper',
+      publicRoleLabel: 'Editorially reviewed by Deeper',
+      personName: null,
+      personUrl: null,
+      credentialsLine: null,
+      specialties: [],
+      practiceName: null,
+      practiceUrl: null,
+      reviewDate: null,
+      reviewDateKind: null,
+      updatedAt,
+      showUpdatedDate: Boolean(updatedAt),
+      schemaRole: 'editorial',
+      legacyBulkApproval: legacyBulk,
+      assignmentMethod: 'manual_editorial_review',
+    };
+  }
+
+  // 4) Legacy Ken bulk: strip misleading clinical review date when no specialty/editorial assignment yet.
   if (legacyBulk || (isKenLegacyId(question.reviewed_by) && !clinicallyReviewedAt)) {
-    // Until apply: show contributor-style honesty without inventing a specialty assignment.
     if (reviewerProfile) {
       return {
         state: 'legacy_ken_bulk',
@@ -173,52 +214,6 @@ export function resolveAttribution(input: {
       schemaRole: 'editorial',
       legacyBulkApproval: true,
       assignmentMethod: 'legacy_bulk_approval',
-    };
-  }
-
-  // 4) Named editorial reviewer (e.g. Rick)
-  if (
-    editorialId === 'rick-julian' ||
-    reviewerProfile?.id === 'rick-julian' ||
-    reviewerProfile?.trustRoleLabel === 'Editorial Reviewer'
-  ) {
-    return {
-      state: 'editorial_named',
-      publicRoleLabel: 'Editorially reviewed by',
-      personName: reviewerProfile?.name || editorialId,
-      personUrl: reviewerProfile?.url || null,
-      credentialsLine: reviewerProfile?.credentialLine || null,
-      specialties: reviewerProfile ? [reviewerProfile.specialtyLabel] : [],
-      practiceName: null,
-      practiceUrl: null,
-      reviewDate: editoriallyReviewedAt || (!legacyBulk ? legacyReviewedAt : null),
-      reviewDateKind: editoriallyReviewedAt || legacyReviewedAt ? 'editorially_reviewed' : null,
-      updatedAt,
-      showUpdatedDate: Boolean(updatedAt),
-      schemaRole: 'editorial',
-      legacyBulkApproval: false,
-      assignmentMethod: 'manual_editorial_review',
-    };
-  }
-
-  // 5) Deeper editorial end-state
-  if (editorialId === 'deeper-editorial' || question.editorial_review_status === 'reviewed') {
-    return {
-      state: 'editorial_deeper',
-      publicRoleLabel: 'Editorially reviewed by Deeper',
-      personName: null,
-      personUrl: null,
-      credentialsLine: null,
-      specialties: [],
-      practiceName: null,
-      practiceUrl: null,
-      reviewDate: null,
-      reviewDateKind: null,
-      updatedAt,
-      showUpdatedDate: Boolean(updatedAt),
-      schemaRole: 'editorial',
-      legacyBulkApproval: legacyBulk,
-      assignmentMethod: 'manual_editorial_review',
     };
   }
 
