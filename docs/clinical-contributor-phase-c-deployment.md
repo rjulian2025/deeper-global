@@ -1,4 +1,4 @@
-# Phase C deployment sequence (do not execute yet)
+# Phase C deployment sequence
 
 ## Compatibility plan
 
@@ -10,6 +10,21 @@
 6. Redirects for `david-k-gore-phd` remain deferred until validation.
 
 Never apply DB backfill before the code that can render the new attribution states is deployed.
+
+## Apply commands
+
+```bash
+# Dry run (local service role or CRON_SECRET → admin API)
+npm run reviewers:apply
+
+# Apply
+npm run reviewers:apply -- --apply
+
+# Or GitHub Actions: Clinical Attribution Apply (workflow_dispatch, apply=true)
+```
+
+Artifacts: `reports/reviewer-migration/apply-package/*`  
+Admin endpoint: `POST /api/admin/apply-clinical-attribution` (Bearer `CRON_SECRET`)
 
 ## Phased order
 
