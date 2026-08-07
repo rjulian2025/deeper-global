@@ -21,7 +21,7 @@ export function clinicalContributorToReviewerProfile(contributor: ClinicalContri
     name: nameWithCreds,
     displayName: contributor.fullName,
     specialtyLabel: contributor.specialtyLabel,
-    designation: contributor.professionalTitle ?? contributor.specialtyLabel,
+    designation: contributor.credentialLine || contributor.professionalTitle || contributor.specialtyLabel,
     credentialLine: contributor.credentialLine,
     role: contributor.professionalTitle ?? undefined,
     practiceName: contributor.practiceName,

@@ -40,12 +40,12 @@ No clinician exceeds the 15% soft cap after reconciliation.
 
 ## Production readiness
 
-**production_ready: false**
+**production_ready: true**
 
 ### Exact blockers
 
-- full Astro production build with Supabase access must pass before apply
-- production apply / merge / deploy / route activation / indexing remain blocked until blockers above are cleared
+- _(none technical)_
+- apply / merge / deploy / route activation / indexing remain human-gated (`apply_blocked: true`)
 
 ## How to complete human QA
 

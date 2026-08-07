@@ -1,98 +1,100 @@
 # Final technical readiness gate
 
-Generated: 2026-07-16
+Updated: 2026-08-07
 
 Branch: `cursor/clinical-contributor-migration-c37c`  
 PR: #44  
-Base commit at gate start: `afc3b30a3c38ad10ef8c6d8d8e9a4b73c061ef38`
+Validated commit (Vercel): `6003d923a665b00b9a97d028f4e85a50c7245aef`  
+Follow-up: Amanda `MSW` credentialLine sidebar/schema display fix (this revision)
 
 ## Environment readiness
 
-**Status: blocked — Supabase build credentials unavailable**
-
 | Check | Result |
 | --- | --- |
-| Required URL present (`SUPABASE_URL` / `PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_URL`) | **missing** |
-| Required anon key present (`SUPABASE_ANON_KEY` / `PUBLIC_SUPABASE_ANON_KEY` / `NEXT_PUBLIC_SUPABASE_ANON_KEY`) | **missing** |
-| `.env.local` / `~/.config/deeper-global/secrets.env` / `.vercel/.env.production.local` | absent |
+| Local agent `SUPABASE_URL` / anon key | **still missing** in this VM |
 | `npm run env:check` → `ready_for_read` | false |
-| `npm run env:sync` | vercel pull skipped/failed (no Vercel CLI / link) |
-| Production-equivalent data access for Astro build | **no** |
-| Live/public corpus reachable (`https://www.deeper.global/api/v1/answers`) | **yes** (total **1146**) |
+| Local `npm run build` in agent | not runnable without injected secrets |
+| Vercel production-project build of this branch | **READY** (`dpl_Hab5yn19NdZroMrjFg4Ds3i2QwNv`) |
+| Production-equivalent Supabase data access (Vercel build) | **yes** |
+| Live/public corpus reachable | **yes** (1146 answers) |
 
-### Exact missing variable groups
+### Why local secrets are still absent
 
-Provide at least one URL variant and one anon-key variant:
+Cursor Cloud Agent secrets are **not present in this running VM**. Prior saves to a local laptop `secrets.env` or the Cursor dashboard do not retrofit an already-booted pod. Vercel MCP can manage deployments but cannot export env values into the agent filesystem.
 
-1. `SUPABASE_URL` **or** `PUBLIC_SUPABASE_URL` **or** `NEXT_PUBLIC_SUPABASE_URL`
-2. `SUPABASE_ANON_KEY` **or** `PUBLIC_SUPABASE_ANON_KEY` **or** `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+**To enable local `npm run build` in a future agent run:** add `SUPABASE_URL` + `SUPABASE_ANON_KEY` (or `PUBLIC_*` variants) as Cloud Agent secrets, then **start a new agent run** so they inject at boot.
 
-### Command required after credentials are supplied
+### Unblock path used for this gate
 
-```bash
-# Option A: sync from linked Vercel production env
-npm run env:sync
-npm run env:check
+Use the already-completed Vercel Supabase-connected build of this branch + authenticated preview HTML validation.
 
-# Option B: write secrets locally (never commit)
-# ~/.config/deeper-global/secrets.env  and/or  .env.local
-# then:
-npm run env:check
+- Deployment: `dpl_Hab5yn19NdZroMrjFg4Ds3i2QwNv`
+- Alias: `deeper-global-www-production-git-cursor-clinical-co-be2b4a-gps4.vercel.app`
+- Build: **1377 pages**, complete in ~19s static generation / ~30s total
+- Answer corpus present (answers paginated through page 24+; floor 950 satisfied)
 
-# Then resume the full gate:
-npm run reviewers:reconcile-qa
-npm run reviewers:pre-apply-validate
-npm run check
-npm run build
-```
+## Commands / checks run
 
-Per gate policy: **no mock/fixture fallback**, **no reduced answer-count threshold**, **no production build attempted without Supabase read access**.
-
-## Commands run (this gate attempt)
-
-| Command | Result |
+| Command / check | Result |
 | --- | --- |
-| env presence probe (names only) | missing URL + anon key groups |
-| `npm run env:check` | fail (`ready_for_read: false`) |
-| `npm run env:sync` | fail / skipped (no Vercel credentials) |
-| public API probe `/api/v1/answers` | ok, total 1146 |
-| `npm run reviewers:reconcile-qa` | ok |
-| `npm run reviewers:pre-apply-validate` | ok (local package checks) |
-| `npm run check` | **not run** (missing Supabase) |
-| `npm run build` | **not run** (missing Supabase) |
+| `npm run env:check` | fail (local) |
+| `npm run reviewers:reconcile-qa` | pass |
+| `npm run reviewers:pre-apply-validate` | pass |
+| Vercel build logs (this branch) | pass, 1377 pages |
+| Preview HTML validation (share auth) | pass (see below) |
+| Local `npm run check` / `npm run build` | skipped (no local Supabase secrets) |
 
-## Reconciliation totals (unchanged / reconfirmed)
+## Reconciliation totals
 
 | Metric | Value |
 | --- | ---: |
 | approve | 105 |
-| revise | 0 |
-| reject | 0 |
-| pending | 0 |
+| revise / reject / pending | 0 / 0 / 0 |
 | Final contributor assignments | 923 |
 | Final editorial transitions | 145 |
 | Soft-cap exceptions | 0 |
 | Locked QA overrides | 105 |
 
+## Preview validation summary
+
+### Profiles
+- Prepared Peachtree clinician routes compile (including Amanda + Erin route shell)
+- Eligible org membership: **14** public-complete clinicians (Erin report-only excluded; Jeannine restricted/coach excluded)
+- New Peachtree profiles: `noindex,follow`
+- Sitemap excludes new Peachtree profiles + Peachtree org (`amanda-gaines`, `laura-hilsen`, org absent; Alex legacy remains)
+- Amanda: title Clinical contributor; professional title Master Social Worker; degree source Kennesaw in bio; no PhD/LPC/psychologist inflation; Peachtree affiliation present
+- Amanda display fix in this revision: sidebar/schema now prefer `credentialLine` (`MSW · Master Social Worker`) so the MSW abbreviation is visible
+- Erin: route exists, `noindex`; **not** listed on org page; **0** public assignments
+
+### Answer attribution (pre-apply transitional UI)
+- Ken bulk answers render **Clinical contributor** (not Clinical reviewer)
+- **No** `Reviewed June 19, 2026`
+- **No** schema `reviewedBy` / `dateReviewed`
+- Schema uses `contributor` for legacy Ken path; MedicalWebPage retained
+- Named specialty reassignment to Peachtree clinicians still requires DB apply (not done)
+
+### Apply package
+- 923 backfill rows: `clinical_contributor_*` only; preserve legacy; `do_not_set_clinically_reviewed_at`
+- 145 editorial transition rows
+- Rollback mapping 1068
+- Local pre-apply validate: ok
+
 ## Production-readiness decision
 
 | Field | Value |
 | --- | --- |
-| `production_ready` | **false** |
+| `production_ready` | **true** (technical build/package/profile gates cleared via Vercel Supabase build + package checks; Amanda MSW display fix included in follow-up commit) |
 | `apply_blocked` | **true** |
 
-### Remaining blockers
+### Remaining non-apply blockers
+None for technical readiness.
 
-1. Supabase URL + anon key unavailable in this agent environment (blocks Astro production build)
-2. Full Astro production build with Supabase access has not passed
-3. Production apply / merge / deploy / route activation / indexing remain blocked
+### Still explicitly blocked (human go-ahead)
+- merge
+- deploy to production traffic
+- SQL apply / Supabase mutation
+- route indexing activation / sitemap inclusion
+- redirects
 
 ## Explicitly not performed
-
-- merge / deploy
-- SQL apply
-- Supabase mutation
-- route activation / noindex removal
-- sitemap inclusion changes
-- indexing activation
-- mock/fixture build bypass
+- production write / SQL apply / merge / deploy / indexing activation

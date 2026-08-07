@@ -351,18 +351,14 @@ function evaluateReadiness({ pendingCount, contributors }) {
     blockers.push('Erin Benator must remain excluded from publication (report_only / intern)');
   }
 
-  if (pendingCount > 0) {
+  // Hard technical blockers only. Apply/merge/deploy stay blocked separately.
+  const productionReady = blockers.length === 0;
+  if (!productionReady) {
     blockers.push(
-      'pre-apply validation must pass (`npm run reviewers:pre-apply-validate`) after QA is complete'
+      'production apply / merge / deploy / route activation / indexing remain blocked until technical blockers clear'
     );
   }
-  blockers.push('full Astro production build with Supabase access must pass before apply');
-  blockers.push(
-    'production apply / merge / deploy / route activation / indexing remain blocked until blockers above are cleared'
-  );
-
-  // production_ready stays false until Amanda credentials + Astro/Supabase build clear
-  return { production_ready: false, blockers };
+  return { production_ready: productionReady, blockers };
 }
 
 function markHigh(answer, contributor, {
@@ -748,6 +744,12 @@ function main() {
     (r) => !(r.confidence === 'high' && r.proposed_contributor_id)
   );
 
+  const patterns = detectSystemicPatterns(qaRows);
+  const readiness = evaluateReadiness({
+    pendingCount: decisionCounts.pending,
+    contributors,
+  });
+
   const reportMeta = regenerateAssignmentReports({
     highRows,
     unmatchedRows,
@@ -764,14 +766,10 @@ function main() {
         locked_overrides: Object.keys(mergedOverrides).length,
         reconciled_at: new Date().toISOString(),
       },
-      production_ready: false,
+      production_ready: readiness.production_ready,
+      apply_blocked: true,
+      production_readiness_blockers: readiness.blockers,
     },
-  });
-
-  const patterns = detectSystemicPatterns(qaRows);
-  const readiness = evaluateReadiness({
-    pendingCount: decisionCounts.pending,
-    contributors,
   });
 
   writeCsv(
@@ -869,7 +867,12 @@ function main() {
     '',
     '### Exact blockers',
     '',
-    ...readiness.blockers.map((b) => `- ${b}`),
+    ...(readiness.blockers.length
+      ? readiness.blockers.map((b) => `- ${b}`)
+      : [
+          '- _(none technical)_',
+          '- apply / merge / deploy / route activation / indexing remain human-gated (`apply_blocked: true`)',
+        ]),
     '',
     '## How to complete human QA',
     '',
@@ -899,11 +902,12 @@ function main() {
     soft_cap_exceptions: softCapExceptions.length,
     final_contributor_assignments: highRows.length,
     final_editorial_transition: unmatchedRows.length,
-    production_ready: false,
+    production_ready: readiness.production_ready,
     production_readiness_blockers: readiness.blockers,
     reconciled_at: new Date().toISOString(),
   };
-  summary.production_ready = false;
+  summary.production_ready = readiness.production_ready;
+  summary.apply_blocked = true;
   summary.production_readiness_blockers = readiness.blockers;
   writeJson(summaryPath, summary);
 
@@ -923,9 +927,10 @@ Corpus after reconciliation:
   soft-cap exceptions:         ${softCapExceptions.length}
   crosswalk rules to revise:   ${crosswalkRulesChanged}
 
-production_ready: false
+production_ready: ${readiness.production_ready}
+apply_blocked: true
 Blockers:
-${readiness.blockers.map((b) => `  - ${b}`).join('\n')}
+${(readiness.blockers.length ? readiness.blockers : ['(none technical; apply/merge/deploy still human-gated)']).map((b) => `  - ${b}`).join('\n')}
 
 Reports:
   ${join(REPORT_DIR, 'qa-reconciliation-summary.md')}

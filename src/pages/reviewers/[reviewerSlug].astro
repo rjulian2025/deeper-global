@@ -72,7 +72,7 @@ const jsonLd = {
       '@id': personId,
       name: displayName,
       url: pageUrl,
-      jobTitle: reviewer.role || reviewer.specialtyLabel,
+      jobTitle: reviewer.credentialLine || reviewer.role || reviewer.specialtyLabel,
       description: reviewer.bio,
       knowsAbout: reviewer.expertiseTags,
       ...(reviewer.sameAs?.length ? { sameAs: reviewer.sameAs } : {}),
