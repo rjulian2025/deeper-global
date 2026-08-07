@@ -1,16 +1,14 @@
 ---
-import type { ReviewerProfile } from '@/data/reviewers';
+import type { ReviewerVideoModule } from '@/data/reviewers';
 import { getVideoMetaLabel, isVideoInteractive } from '@/lib/reviewer-video';
 
 type Props = {
-  reviewer: ReviewerProfile;
+  video: ReviewerVideoModule;
+  posterFallback?: string;
 };
 
-const { reviewer } = Astro.props;
-const video = reviewer.videoModule;
-if (!video) return null;
-
-const poster = video.poster ?? reviewer.image;
+const { video, posterFallback } = Astro.props;
+const poster = video.poster ?? posterFallback;
 if (!poster) return null;
 
 const metaLabel = getVideoMetaLabel(video);
@@ -74,7 +72,7 @@ const playLabel = interactive
         title={video.title}
         src=""
         data-embed-src={video.embedUrl}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
         allowfullscreen
         loading="lazy"
       ></iframe>

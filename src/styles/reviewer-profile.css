@@ -86,8 +86,18 @@
 }
 
 /* Video card — main column */
-.reviewer-video-card {
+.reviewer-video-list {
+  display: grid;
+  gap: 28px;
   margin-bottom: 28px;
+}
+
+.reviewer-video-card {
+  margin-bottom: 0;
+}
+
+.reviewer-video-list .reviewer-video-card:last-child {
+  margin-bottom: 0;
 }
 
 .reviewer-video-stage-wrap {
