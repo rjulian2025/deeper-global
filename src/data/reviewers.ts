@@ -67,6 +67,8 @@ export type ReviewerProfile = {
   overviewParagraphs?: string[];
   expertiseDomains?: ReviewerExpertiseDomain[];
   videoModule?: ReviewerVideoModule;
+  /** Extra videos shown below the featured videoModule on the profile page. */
+  additionalVideos?: ReviewerVideoModule[];
   clinicalPerspective?: string;
   reviewedContentGroups?: ReviewerContentGroup[];
   reviewedKnowledgeTitle?: string;
@@ -271,9 +273,36 @@ export const reviewerProfiles: ReviewerProfile[] = [
       title: 'Meet Dr. Alex Crenshaw, PhD',
       caption:
         'A short introduction to adult ADHD testing, diagnostic clarity, and evidence-based care.',
-      status: 'coming_soon',
-      statusLabel: 'Coming soon',
+      status: 'live',
+      embedUrl: 'https://www.youtube.com/embed/Bjuxl3H5isI',
+      poster: 'https://i.ytimg.com/vi/Bjuxl3H5isI/hqdefault.jpg',
     },
+    additionalVideos: [
+      {
+        title: 'Can You Have ADHD and Anxiety, Depression, Autism, or OCD?',
+        caption:
+          'How overlapping symptoms show up in adults, and why differential diagnosis matters before treatment.',
+        status: 'live',
+        embedUrl: 'https://www.youtube.com/embed/l9Q8TtJDDuE',
+        poster: 'https://i.ytimg.com/vi/l9Q8TtJDDuE/hqdefault.jpg',
+      },
+      {
+        title: '7 Signs of Adult ADHD a Psychologist Wants You to Know',
+        caption:
+          'Common adult ADHD patterns that are easy to miss when childhood stereotypes are the only reference point.',
+        status: 'live',
+        embedUrl: 'https://www.youtube.com/embed/9n2rWgShNFI',
+        poster: 'https://i.ytimg.com/vi/9n2rWgShNFI/hqdefault.jpg',
+      },
+      {
+        title: 'Why Smart, Successful Adults Miss Their Own ADHD for Years',
+        caption:
+          'How compensation, high achievement, and coping strategies can delay recognition of adult ADHD.',
+        status: 'live',
+        embedUrl: 'https://www.youtube.com/embed/Nc3XIxigunU',
+        poster: 'https://i.ytimg.com/vi/Nc3XIxigunU/hqdefault.jpg',
+      },
+    ],
     clinicalPerspective:
       'Many adults seek ADHD testing after years of wondering why effort, focus, and follow-through feel harder than they should.',
     reviewedContentGroups: [
