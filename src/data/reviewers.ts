@@ -66,7 +66,10 @@ export type ReviewerProfile = {
   imageAlt?: string;
   overviewParagraphs?: string[];
   expertiseDomains?: ReviewerExpertiseDomain[];
+  /** Single video card (legacy). Prefer `videoModules` when a reviewer has more than one. */
   videoModule?: ReviewerVideoModule;
+  /** Ordered list of video cards shown on the profile page. */
+  videoModules?: ReviewerVideoModule[];
   clinicalPerspective?: string;
   reviewedContentGroups?: ReviewerContentGroup[];
   reviewedKnowledgeTitle?: string;
@@ -484,6 +487,32 @@ export const reviewerProfiles: ReviewerProfile[] = [
       {
         label: 'Imago fit and consultation',
         description: 'When Imago is appropriate and what a pre-therapy consultation should cover.',
+      },
+    ],
+    videoModules: [
+      {
+        title: 'How Childhood Shows Up in Adulthood',
+        caption:
+          'Michelle explains how early relational patterns can reappear in adult partnerships, and why recognizing them matters for change.',
+        status: 'live',
+        poster: '/images/reviewers/michelle-morris-childhood-adulthood.jpg',
+        embedUrl: 'https://player.vimeo.com/video/1216404400?autoplay=1',
+      },
+      {
+        title: 'You Complete Me',
+        caption:
+          'A short look at the “you complete me” myth, and what healthier interdependence can look like for couples.',
+        status: 'live',
+        poster: '/images/reviewers/michelle-morris-you-complete-me.jpg',
+        embedUrl: 'https://player.vimeo.com/video/1216404399?autoplay=1',
+      },
+      {
+        title: 'What Is Imago',
+        caption:
+          'An introduction to Imago Relationship Therapy and how structured dialogue helps couples move beyond the same fight.',
+        status: 'live',
+        poster: '/images/reviewers/michelle-morris-what-is-imago.jpg',
+        embedUrl: 'https://player.vimeo.com/video/1214725663?h=4d2955045a&autoplay=1',
       },
     ],
     clinicalPerspective:

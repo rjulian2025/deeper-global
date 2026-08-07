@@ -7,6 +7,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getQuestions } from '@/lib/supabase';
 import { getReviewedByLabel } from '@/lib/trust';
 import { buildReviewGroupDisplays, resolveReviewerProfilePaths, topicAnswersLabel } from '@/lib/reviewer-page';
+import { getReviewerVideos } from '@/lib/reviewer-video';
 import { reviewerProfilesBySlug, type ReviewerProfile } from '@/data/reviewers';
 import '@/styles/reviewer-profile.css';
 
@@ -41,6 +42,7 @@ const overviewTitle = reviewer.overviewParagraphs?.length ? 'Clinical overview' 
 const overviewHeading = reviewer.overviewParagraphs?.length
   ? 'Assessment and diagnostic expertise'
   : `Background and expertise`;
+const reviewerVideos = getReviewerVideos(reviewer);
 ---
 
 <BaseLayout
@@ -73,7 +75,15 @@ const overviewHeading = reviewer.overviewParagraphs?.length
           <ReviewerSidebar slot="sidebar" reviewer={reviewer} />
 
           <div class="profile-main-inner">
-            {reviewer.videoModule && <ReviewerVideoCard reviewer={reviewer} />}
+            {
+              reviewerVideos.length > 0 && (
+                <div class="reviewer-video-list">
+                  {reviewerVideos.map((video) => (
+                    <ReviewerVideoCard video={video} posterFallback={reviewer.image} />
+                  ))}
+                </div>
+              )
+            }
 
             {
               reviewer.clinicalPerspective && (
