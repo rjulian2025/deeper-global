@@ -2,29 +2,64 @@
 
 Updated: 2026-08-07
 
-## Intent
+## Completed
 
-Execute Phase C after explicit go-ahead:
+| Step | Status |
+| --- | --- |
+| C0 Merge/deploy PR #44 | **done** (`68f9657` → production READY) |
+| Apply tooling | **done** (`npm run reviewers:apply`, admin API, GitHub Action) |
+| CRON_SECRET → admin API path | **verified working** |
+| Bundled migration SQL in admin runtime | **done** |
 
-1. **C0** Merge/deploy application code (noindex contributor profiles)
-2. **C1** Additive SQL attribution columns
-3. **C2** Backfill 923 clinical contributors + 145 editorial transitions
-4. **C4/C5** Indexing activation and Ken redirects remain deferred
+## Blocked: C1 additive SQL
 
-## Tooling added
+Production Supabase does **not** yet have the attribution columns, and neither GitHub Actions nor Vercel Production has a DDL credential:
 
-- `npm run reviewers:apply` / `npm run reviewers:apply -- --apply`
-- `POST /api/admin/apply-clinical-attribution`
-- GitHub Action: `Clinical Attribution Apply` (`workflow_dispatch`)
+- `SUPABASE_ACCESS_TOKEN` — missing
+- `SUPABASE_DB_PASSWORD` / `SUPABASE_DB_URL` / `POSTGRES_URL*` — missing
+- `SUPABASE_SERVICE_ROLE_KEY` in GitHub — missing (Vercel has it, but service role cannot run `ALTER TABLE`)
 
-## Guards
+Latest failed apply run: https://github.com/rjulian2025/deeper-global/actions/runs/31181629295
 
-- Does not mutate `reviewed_by` / `reviewed_at`
-- Does not set `clinically_reviewed_at`
-- Erin Benator excluded
-- Soft-cap exceptions remain 0 in package
-- Rollback mapping retained at `apply-package/rollback-mapping.json`
+Error:
 
-## Execution path
+> Additive attribution columns are missing and migration could not be applied from this runtime.
 
-This cloud agent VM has no Supabase/CRON secrets. Apply is executed via GitHub Actions secrets after C0 merge/deploy.
+## Unblock (pick one)
+
+### Option A — paste SQL once (fastest)
+
+In Supabase SQL editor for project `ldizjhrfnxaacedmbujt`, run:
+
+`supabase/migrations/20260716210000_clinical_attribution_model.sql`
+
+Then re-run apply:
+
+```bash
+# from a machine/agent with CRON_SECRET, or push to production/astro with:
+# [clinical-attribution-apply] in the commit message
+npm run reviewers:apply -- --apply --force-remote
+```
+
+Or push an empty/status commit containing `[clinical-attribution-apply]` that touches a watched path under `reports/reviewer-migration/`.
+
+### Option B — add one secret, then re-run
+
+Add **either** to GitHub Actions secrets **or** Vercel Production:
+
+- `SUPABASE_ACCESS_TOKEN` (Supabase personal access token), or
+- `SUPABASE_DB_PASSWORD` / `POSTGRES_URL`
+
+Then push `[clinical-attribution-apply]` again.
+
+## Still deferred after C1/C2
+
+- C4 profile indexing / sitemap inclusion
+- C5 Ken alias redirects
+
+## Package ready for C2
+
+- 923 high-confidence clinical contributor rows
+- 145 editorial transition rows
+- Rollback mapping 1068
+- Erin excluded; Amanda MSW; QA 105/105 approve
