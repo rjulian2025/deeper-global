@@ -90,11 +90,31 @@ function resolveProfileById(id: string): ReviewerProfile | null {
   return null;
 }
 
-export function getReviewerProfile(question: Question & { clinical_contributor_id?: string | null }) {
+export function getReviewerProfile(
+  question: Question & {
+    clinical_contributor_id?: string | null;
+    clinical_reviewer_id?: string | null;
+    editorial_reviewer_id?: string | null;
+  }
+) {
   // Prefer additive contributor field when present (post-migration).
   const contributorId = cleanText(question.clinical_contributor_id);
   if (contributorId) {
     return resolveProfileById(contributorId);
+  }
+
+  const clinicalReviewerId = cleanText(question.clinical_reviewer_id);
+  if (clinicalReviewerId) {
+    return resolveProfileById(clinicalReviewerId);
+  }
+
+  const editorialId = cleanText(question.editorial_reviewer_id);
+  // Deeper editorial is org-level; do not fall back to legacy reviewed_by person.
+  if (editorialId === 'deeper-editorial') {
+    return null;
+  }
+  if (editorialId) {
+    return resolveProfileById(editorialId);
   }
 
   const reviewedBy = getReviewedByLabel(question);
