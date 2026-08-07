@@ -1,0 +1,3 @@
+legacy_id,displayed_name,specialty_lane,canonical_id,status,live_answer_count,notes
+kenneth-w-christian-phd,"Kenneth W. Christian, PhD","Performance, Purpose & Self-Limiting Patterns",kenneth-w-christian-phd,canonical,0,Canonical Ken person ID; 0 live answers currently
+david-k-gore-phd,"Kenneth W. Christian, PhD",Addiction & Recovery,kenneth-w-christian-phd,legacy_alias_misnamed,1068,Misnamed ID displaying as Ken; holds bulk corpus; redirect later; hide duplicate directory entry

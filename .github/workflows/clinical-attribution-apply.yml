@@ -1,0 +1,63 @@
+name: Clinical Attribution Apply
+
+# Phase C: apply additive attribution schema + Peachtree clinical contributor backfill.
+# Requires GitHub secrets (one of):
+#   CRON_SECRET → production admin API (after C0 merge/deploy)
+#   SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY → direct write
+# Optional for C1 DDL if columns missing:
+#   SUPABASE_ACCESS_TOKEN or SUPABASE_DB_PASSWORD
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: Apply schema + backfill to production Supabase
+        type: boolean
+        default: false
+      force_remote:
+        description: Force production admin API path even if local service role exists
+        type: boolean
+        default: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run clinical attribution apply
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          APPLY: ${{ inputs.apply }}
+          FORCE_REMOTE: ${{ inputs.force_remote }}
+        run: |
+          set -euo pipefail
+          ARGS=()
+          if [ "${APPLY}" = "true" ]; then
+            ARGS+=(--apply)
+          fi
+          if [ "${FORCE_REMOTE}" = "true" ]; then
+            ARGS+=(--force-remote)
+          fi
+          node scripts/apply-clinical-attribution.mjs "${ARGS[@]}" | tee reports/reviewer-migration/phase-c-apply-workflow.json
+
+      - name: Upload apply report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase-c-apply-report
+          path: reports/reviewer-migration/phase-c-apply*.json
+          if-no-files-found: ignore

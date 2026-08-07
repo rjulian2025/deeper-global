@@ -40,18 +40,16 @@ const testingOptionsHref =
 
     <div class="profile-sidebar-block profile-sidebar-credentials">
       {
-        reviewer.role ? (
+        // Prefer credentialLine so abbreviations like MSW remain visible alongside titles.
+        reviewer.credentialLine ? (
+          <p class="profile-sidebar-role">{reviewer.credentialLine}</p>
+        ) : reviewer.role ? (
           <p class="profile-sidebar-role">{reviewer.role}</p>
         ) : (
-          <p class="profile-sidebar-role">{reviewer.credentialLine || reviewer.specialtyLabel}</p>
+          <p class="profile-sidebar-role">{reviewer.specialtyLabel}</p>
         )
       }
       {practiceLocation && <p class="profile-sidebar-secondary">{practiceLocation}</p>}
-      {
-        !practiceLocation && reviewer.credentialLine && reviewer.role && (
-          <p class="profile-sidebar-secondary">{reviewer.credentialLine}</p>
-        )
-      }
       {reviewer.academicAffiliation && <p class="profile-sidebar-secondary">{reviewer.academicAffiliation}</p>}
     </div>
 

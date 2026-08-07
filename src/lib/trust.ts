@@ -1,5 +1,7 @@
 import { RETIRED_DUPLICATE_REVIEW_STATUS, type Question } from './supabase';
 import { reviewerProfiles, reviewerProfilesById, type ReviewerProfile } from '@/data/reviewers';
+import { peachtreeClinicalContributorsById } from '@/data/clinical-contributors';
+import { clinicalContributorToReviewerProfile } from '@/data/clinical-contributors/to-reviewer-profile';
 import { cleanText } from './content-utils';
 import { siteUrl } from './site';
 
@@ -80,14 +82,28 @@ export function isInternalReviewerLabel(label: string) {
   return INTERNAL_REVIEWER_LABELS.has(label.toLowerCase().trim());
 }
 
-export function getReviewerProfile(question: Question) {
+function resolveProfileById(id: string): ReviewerProfile | null {
+  const legacy = reviewerProfilesById.get(id);
+  if (legacy) return legacy;
+  const contributor = peachtreeClinicalContributorsById.get(id);
+  if (contributor) return clinicalContributorToReviewerProfile(contributor);
+  return null;
+}
+
+export function getReviewerProfile(question: Question & { clinical_contributor_id?: string | null }) {
+  // Prefer additive contributor field when present (post-migration).
+  const contributorId = cleanText(question.clinical_contributor_id);
+  if (contributorId) {
+    return resolveProfileById(contributorId);
+  }
+
   const reviewedBy = getReviewedByLabel(question);
   if (!reviewedBy) return null;
 
   const reviewerId = REVIEWER_ALIASES[reviewedBy.toLowerCase().trim()] ?? REVIEWER_ALIASES[normalizeReviewerLabel(reviewedBy)];
   if (!reviewerId) return null;
 
-  return reviewerProfilesById.get(reviewerId) ?? null;
+  return resolveProfileById(reviewerId);
 }
 
 export function getReviewerDisplayLabel(question: Question) {
@@ -105,12 +121,19 @@ export function isDraftReviewStatus(question: Question) {
 }
 
 export function getReviewerTrustRoleLabel(reviewerProfile: ReviewerProfile, isDraft = false) {
-  if (isDraft) return 'Expert Reviewer';
-  return reviewerProfile.trustRoleLabel ?? 'Clinical Reviewer';
+  if (isDraft) return 'Expert reviewer';
+  return reviewerProfile.trustRoleLabel ?? 'Clinical reviewer';
 }
 
 export function getReviewerAttributionPrefix(reviewerProfile: ReviewerProfile, isDraft = false) {
   if (isDraft) return 'Expert reviewed by';
+  // Specialty-contributor and legacy Ken labels must not say "Reviewed by".
+  if (reviewerProfile.trustRoleLabel === 'Clinical contributor') {
+    return reviewerProfile.reviewAttributionPrefix ?? 'Clinical contributor';
+  }
+  if (reviewerProfile.trustRoleLabel === 'Editorial Reviewer') {
+    return reviewerProfile.reviewAttributionPrefix ?? 'Editorially reviewed by';
+  }
   return reviewerProfile.reviewAttributionPrefix ?? 'Clinically reviewed by';
 }
 
@@ -137,14 +160,28 @@ export function getReviewerSchemaNode(question: Question) {
   const reviewerProfile = getReviewerProfile(question);
   if (!reviewerProfile) return null;
 
+  const personId = `${siteUrl(`/reviewers/${reviewerProfile.slug}`)}#person`;
+  const affiliation =
+    reviewerProfile.practiceName === 'Peachtree Psychology'
+      ? {
+          affiliation: {
+            '@type': 'Organization',
+            '@id': `${siteUrl('/organizations/peachtree-psychology/')}#organization`,
+            name: 'Peachtree Psychology',
+            url: siteUrl('/organizations/peachtree-psychology/'),
+          },
+        }
+      : {};
+
   return {
     '@type': 'Person',
-    '@id': `${siteUrl(`/reviewers/${reviewerProfile.slug}`)}#person`,
+    '@id': personId,
     name: reviewerProfile.name,
     url: siteUrl(reviewerProfile.url),
-    jobTitle: reviewerProfile.specialtyLabel,
+    jobTitle: reviewerProfile.role || reviewerProfile.specialtyLabel,
     knowsAbout: reviewerProfile.expertiseTags,
     ...(reviewerProfile.sameAs.length > 0 ? { sameAs: reviewerProfile.sameAs } : {}),
+    ...affiliation,
   };
 }
 

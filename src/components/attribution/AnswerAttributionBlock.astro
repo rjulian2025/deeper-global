@@ -1,0 +1,109 @@
+---
+import { formatDate } from '@/lib/content';
+import type { ResolvedAttribution } from '@/lib/attribution/resolve-attribution';
+
+type Props = {
+  attribution: ResolvedAttribution;
+  compact?: boolean;
+};
+
+const { attribution, compact = false } = Astro.props;
+const specialtyLine = attribution.specialties.filter(Boolean).slice(0, 2).join(' · ');
+const reviewDateLabel =
+  attribution.reviewDate && attribution.reviewDateKind === 'clinically_reviewed'
+    ? `Reviewed ${formatDate(attribution.reviewDate)}`
+    : attribution.reviewDate && attribution.reviewDateKind === 'editorially_reviewed'
+      ? `Editorially reviewed ${formatDate(attribution.reviewDate)}`
+      : null;
+const updatedLabel =
+  attribution.showUpdatedDate && attribution.updatedAt ? `Updated ${formatDate(attribution.updatedAt)}` : null;
+---
+
+{
+  attribution.state !== 'none' && (
+    <div class:list={['answer-attribution-block', compact && 'answer-attribution-block--compact']}>
+      {
+        attribution.publicRoleLabel && (
+          <p class="answer-attribution-role">{attribution.publicRoleLabel}</p>
+        )
+      }
+
+      {
+        attribution.personName && (
+          <p class="answer-attribution-name">
+            {
+              attribution.personUrl ? (
+                <a href={attribution.personUrl}>{attribution.personName}</a>
+              ) : (
+                attribution.personName
+              )
+            }
+          </p>
+        )
+      }
+
+      {
+        attribution.credentialsLine && attribution.state !== 'editorial_deeper' && (
+          <p class="answer-attribution-credentials">{attribution.credentialsLine}</p>
+        )
+      }
+
+      {
+        specialtyLine && (attribution.state === 'clinical_contributor' || attribution.state === 'legacy_ken_bulk') && (
+          <p class="answer-attribution-specialties">{specialtyLine}</p>
+        )
+      }
+
+      {
+        attribution.practiceName && attribution.practiceUrl && (
+          <p class="answer-attribution-practice">
+            <a href={attribution.practiceUrl}>{attribution.practiceName}</a>
+          </p>
+        )
+      }
+
+      {
+        reviewDateLabel && (
+          <p class="answer-attribution-date">{reviewDateLabel}</p>
+        )
+      }
+
+      {
+        !reviewDateLabel && updatedLabel && (
+          <p class="answer-attribution-date answer-attribution-date--updated">{updatedLabel}</p>
+        )
+      }
+    </div>
+  )
+}
+
+<style>
+  .answer-attribution-block {
+    display: grid;
+    gap: 0.2rem;
+  }
+  .answer-attribution-role {
+    margin: 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    opacity: 0.72;
+  }
+  .answer-attribution-name,
+  .answer-attribution-credentials,
+  .answer-attribution-specialties,
+  .answer-attribution-practice,
+  .answer-attribution-date {
+    margin: 0;
+  }
+  .answer-attribution-name {
+    font-weight: 600;
+  }
+  .answer-attribution-credentials,
+  .answer-attribution-specialties,
+  .answer-attribution-practice,
+  .answer-attribution-date {
+    font-size: 0.92rem;
+    opacity: 0.88;
+  }
+</style>
