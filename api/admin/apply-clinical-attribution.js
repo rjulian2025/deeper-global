@@ -60,6 +60,7 @@ export default async function handler(req, res) {
       root: process.cwd(),
       highPackage: high,
       editorialPackage: editorial,
+      migrationSql: typeof body.migration_sql === 'string' ? body.migration_sql : undefined,
     });
 
     res.statusCode = 200;

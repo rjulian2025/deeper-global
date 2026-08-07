@@ -9,6 +9,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import pg from 'pg';
+import { CLINICAL_ATTRIBUTION_MIGRATION_SQL } from './clinical-attribution-migration-sql.mjs';
 
 const { Client } = pg;
 
@@ -133,23 +134,40 @@ async function applyMigrationViaManagementApi(sql) {
   return { ok: true, body: body.slice(0, 300) };
 }
 
-async function applyMigrationViaPostgres(sql) {
-  const password = process.env.SUPABASE_DB_PASSWORD?.trim();
-  const databaseUrl = process.env.SUPABASE_DB_URL?.trim() || process.env.DATABASE_URL?.trim();
-  if (!password && !databaseUrl) {
-    return { ok: false, error: 'SUPABASE_DB_PASSWORD / SUPABASE_DB_URL not set' };
+function resolveDatabaseUrl(password) {
+  const candidates = [
+    process.env.SUPABASE_DB_URL,
+    process.env.DATABASE_URL,
+    process.env.POSTGRES_URL,
+    process.env.POSTGRES_URL_NON_POOLING,
+    process.env.POSTGRES_PRISMA_URL,
+  ]
+    .map((value) => (typeof value === 'string' ? value.trim() : ''))
+    .filter(Boolean);
+
+  if (candidates.length) return candidates[0];
+
+  if (!password) return null;
+
+  const poolerPath = 'supabase/.temp/pooler-url';
+  if (existsSync(poolerPath)) {
+    return readFileSync(poolerPath, 'utf8')
+      .trim()
+      .replace(/\/\/postgres:[^@]*@/, `//postgres:${encodeURIComponent(password)}@`);
   }
 
-  let connectionString = databaseUrl;
+  return `postgresql://postgres.${PROJECT_REF}:${encodeURIComponent(password)}@aws-0-us-east-1.pooler.supabase.com:6543/postgres`;
+}
+
+async function applyMigrationViaPostgres(sql) {
+  const password = process.env.SUPABASE_DB_PASSWORD?.trim();
+  const connectionString = resolveDatabaseUrl(password);
   if (!connectionString) {
-    const poolerPath = 'supabase/.temp/pooler-url';
-    if (!existsSync(poolerPath)) {
-      connectionString = `postgresql://postgres.${PROJECT_REF}:${encodeURIComponent(password)}@aws-0-us-east-1.pooler.supabase.com:6543/postgres`;
-    } else {
-      connectionString = readFileSync(poolerPath, 'utf8')
-        .trim()
-        .replace(/\/\/postgres:[^@]*@/, `//postgres:${encodeURIComponent(password)}@`);
-    }
+    return {
+      ok: false,
+      error:
+        'No Postgres URL env (SUPABASE_DB_URL/DATABASE_URL/POSTGRES_URL*) and no SUPABASE_DB_PASSWORD',
+    };
   }
 
   const client = new Client({
@@ -165,15 +183,24 @@ async function applyMigrationViaPostgres(sql) {
   }
 }
 
-export async function ensureAttributionSchema({ supabase, root = process.cwd() } = {}) {
+function loadMigrationSql({ root = process.cwd(), migrationSql } = {}) {
+  if (typeof migrationSql === 'string' && migrationSql.trim()) return migrationSql.trim();
+  const sqlPath = join(root, MIGRATION_FILE);
+  if (existsSync(sqlPath)) return readFileSync(sqlPath, 'utf8');
+  return CLINICAL_ATTRIBUTION_MIGRATION_SQL;
+}
+
+export async function ensureAttributionSchema({
+  supabase,
+  root = process.cwd(),
+  migrationSql,
+} = {}) {
   const probe = await probeAttributionColumns(supabase);
   if (probe.present) {
     return { applied: false, already_present: true };
   }
 
-  const sqlPath = join(root, MIGRATION_FILE);
-  if (!existsSync(sqlPath)) throw new Error(`Missing migration file: ${sqlPath}`);
-  const sql = readFileSync(sqlPath, 'utf8');
+  const sql = loadMigrationSql({ root, migrationSql });
 
   const viaApi = await applyMigrationViaManagementApi(sql);
   if (viaApi.ok) {
@@ -195,10 +222,10 @@ export async function ensureAttributionSchema({ supabase, root = process.cwd() }
 
   throw new Error(
     [
-      'Additive attribution columns are missing and migration could not be applied.',
+      'Additive attribution columns are missing and migration could not be applied from this runtime.',
       `Management API: ${viaApi.error}`,
       `Postgres: ${viaPg.error}`,
-      'Set SUPABASE_ACCESS_TOKEN or SUPABASE_DB_PASSWORD/SUPABASE_DB_URL, apply the SQL manually, then re-run.',
+      'Add SUPABASE_ACCESS_TOKEN or a Postgres URL/password to GitHub Actions or Vercel Production, apply supabase/migrations/20260716210000_clinical_attribution_model.sql once, then re-run apply.',
     ].join(' ')
   );
 }
@@ -253,6 +280,7 @@ export async function runClinicalAttributionApply({
   root = process.cwd(),
   highPackage,
   editorialPackage,
+  migrationSql,
 } = {}) {
   const packages = highPackage && editorialPackage ? null : loadApplyPackages({ root });
   const high = highPackage || packages.high;
@@ -262,7 +290,7 @@ export async function runClinicalAttributionApply({
     throw new Error('Apply packages must include rows arrays');
   }
 
-  const schema = await ensureAttributionSchema({ supabase, root });
+  const schema = await ensureAttributionSchema({ supabase, root, migrationSql });
 
   const highIds = high.rows.map((r) => r.answer_id);
   const editorialIds = editorial.rows.map((r) => r.answer_id);

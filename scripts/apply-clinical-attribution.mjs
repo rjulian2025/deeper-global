@@ -11,7 +11,7 @@
  * Uses local SUPABASE_SERVICE_ROLE_KEY when available; otherwise falls back to
  * production admin API with CRON_SECRET (after C0 deploy of the admin endpoint).
  */
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createClient } from '@supabase/supabase-js';
 import { bootstrapCloudEnv, assertPipelineCredentials, credentialMode } from './lib/cloud-env.mjs';
 import { postAdminApply } from './lib/remote-admin-request.mjs';
@@ -58,13 +58,17 @@ async function applyLocally({ apply }) {
 
 async function applyRemotely({ apply, remoteUrl }) {
   const packages = loadApplyPackages();
+  const migrationPath = 'supabase/migrations/20260716210000_clinical_attribution_model.sql';
+  const migrationSql = existsSync(migrationPath)
+    ? readFileSync(migrationPath, 'utf8')
+    : undefined;
   const payload = await postAdminApply({
     url: remoteUrl,
     body: {
       apply,
-      use_server_package: true,
       high: packages.high,
       editorial: packages.editorial,
+      migration_sql: migrationSql,
     },
   });
   return { ...payload, apply_path: payload.apply_path || 'remote_admin' };
