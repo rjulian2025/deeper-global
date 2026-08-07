@@ -24,8 +24,11 @@ on:
     paths:
       - '.github/workflows/clinical-attribution-apply.yml'
       - 'reports/reviewer-migration/apply-package/**'
+      - 'reports/reviewer-migration/phase-c-apply-status.md'
       - 'scripts/apply-clinical-attribution.mjs'
       - 'scripts/lib/reviewers/apply-clinical-attribution.mjs'
+      - 'scripts/lib/reviewers/clinical-attribution-migration-sql.mjs'
+      - 'api/admin/apply-clinical-attribution.js'
 
 jobs:
   apply:
