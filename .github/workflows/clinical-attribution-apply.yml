@@ -1,0 +1,108 @@
+name: Clinical Attribution Apply
+
+# Phase C: apply additive attribution schema + Peachtree clinical contributor backfill.
+# Requires GitHub secrets (one of):
+#   CRON_SECRET → production admin API (after C0 merge/deploy)
+#   SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY → direct write
+# Optional for C1 DDL if columns missing:
+#   SUPABASE_ACCESS_TOKEN or SUPABASE_DB_PASSWORD
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: Apply schema + backfill to production Supabase
+        type: boolean
+        default: false
+      force_remote:
+        description: Force production admin API path even if local service role exists
+        type: boolean
+        default: false
+  push:
+    branches:
+      - production/astro
+    paths:
+      - '.github/workflows/clinical-attribution-apply.yml'
+      - 'reports/reviewer-migration/apply-package/**'
+      - 'reports/reviewer-migration/phase-c-apply-status.md'
+      - 'scripts/apply-clinical-attribution.mjs'
+      - 'scripts/lib/reviewers/apply-clinical-attribution.mjs'
+      - 'scripts/lib/reviewers/clinical-attribution-migration-sql.mjs'
+      - 'api/admin/apply-clinical-attribution.js'
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Resolve apply mode
+        id: flags
+        env:
+          DISPATCH_APPLY: ${{ github.event_name == 'workflow_dispatch' && inputs.apply }}
+          FORCE_REMOTE_INPUT: ${{ github.event_name == 'workflow_dispatch' && inputs.force_remote }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          set -euo pipefail
+          APPLY=false
+          FORCE_REMOTE=false
+
+          if [ "$DISPATCH_APPLY" = "true" ]; then
+            APPLY=true
+          elif [ "${{ github.event_name }}" = "push" ]; then
+            if printf '%s' "$COMMIT_MESSAGE" | grep -q '\[clinical-attribution-apply\]'; then
+              APPLY=true
+            fi
+          fi
+
+          if [ "$FORCE_REMOTE_INPUT" = "true" ]; then
+            FORCE_REMOTE=true
+          elif printf '%s' "$COMMIT_MESSAGE" | grep -q '\[force-remote\]'; then
+            FORCE_REMOTE=true
+          fi
+
+          echo "apply=$APPLY" >> "$GITHUB_OUTPUT"
+          echo "force_remote=$FORCE_REMOTE" >> "$GITHUB_OUTPUT"
+          echo "Apply mode: $APPLY (force_remote=$FORCE_REMOTE)"
+
+      - name: Run clinical attribution apply
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+          SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          APPLY: ${{ steps.flags.outputs.apply }}
+          FORCE_REMOTE: ${{ steps.flags.outputs.force_remote }}
+        run: |
+          set -euo pipefail
+          ARGS=()
+          if [ "${APPLY}" = "true" ]; then
+            ARGS+=(--apply)
+          fi
+          if [ "${FORCE_REMOTE}" = "true" ]; then
+            ARGS+=(--force-remote)
+          fi
+          # Prefer remote admin when CRON_SECRET is present and service role is not,
+          # after production deploy of /api/admin/apply-clinical-attribution.
+          if [ -z "${SUPABASE_SERVICE_ROLE_KEY:-}" ] && [ -n "${CRON_SECRET:-}" ]; then
+            ARGS+=(--force-remote)
+          fi
+          node scripts/apply-clinical-attribution.mjs "${ARGS[@]}" | tee reports/reviewer-migration/phase-c-apply-workflow.json
+
+      - name: Upload apply report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase-c-apply-report
+          path: reports/reviewer-migration/phase-c-apply*.json
+          if-no-files-found: ignore

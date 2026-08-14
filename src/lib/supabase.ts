@@ -39,6 +39,19 @@ export type Question = {
   review_status?: string | null;
   reviewed_by?: string | null;
   reviewed_at?: string | null;
+  /** Additive attribution columns (Phase C migration; may be absent until applied). */
+  clinical_contributor_id?: string | null;
+  clinical_contributor_assigned_at?: string | null;
+  clinical_contributor_method?: string | null;
+  clinical_contributor_approval_source?: string | null;
+  clinical_reviewer_id?: string | null;
+  clinically_reviewed_at?: string | null;
+  editorial_review_status?: string | null;
+  editorial_reviewer_id?: string | null;
+  editorially_reviewed_at?: string | null;
+  attribution_legacy_reviewed_by?: string | null;
+  attribution_legacy_reviewed_at?: string | null;
+  attribution_legacy_bulk_approval?: boolean | null;
   source_refs?: unknown[] | null;
   primary_entities?: unknown[] | null;
   related_entities?: unknown[] | null;

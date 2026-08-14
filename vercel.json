@@ -18,6 +18,9 @@
     "api/admin/publish-phase-1b-drafts.js": {
       "maxDuration": 60
     },
+    "api/admin/apply-clinical-attribution.js": {
+      "maxDuration": 300
+    },
     "api/cron/publish-approved.js": {
       "maxDuration": 30
     },

@@ -3,24 +3,28 @@ import ProfileLayout from '@/components/reviewers/ProfileLayout.astro';
 import ReviewerAnswerExcerpt from '@/components/reviewers/ReviewerAnswerExcerpt.astro';
 import ReviewerSidebar from '@/components/reviewers/ReviewerSidebar.astro';
 import ReviewerVideoCard from '@/components/reviewers/ReviewerVideoCard.astro';
-import ReviewerFeaturedVideos from '@/components/reviewers/ReviewerFeaturedVideos.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getQuestions } from '@/lib/supabase';
 import { getReviewedByLabel } from '@/lib/trust';
 import { buildReviewGroupDisplays, resolveReviewerProfilePaths, topicAnswersLabel } from '@/lib/reviewer-page';
-import { reviewerProfilesBySlug, type ReviewerProfile } from '@/data/reviewers';
+import { getAllReviewerRouteProfiles, type ContributorRouteProfile } from '@/lib/contributor-profiles';
+import { siteUrl, websiteId } from '@/lib/site';
+import { getCanonicalTopic } from '@/lib/taxonomy';
 import '@/styles/reviewer-profile.css';
 
 export async function getStaticPaths() {
-  return Array.from(reviewerProfilesBySlug.values()).map((reviewer) => ({
+  return getAllReviewerRouteProfiles().map((reviewer) => ({
     params: { reviewerSlug: reviewer.slug },
     props: { reviewer },
   }));
 }
 
 const questions = await getQuestions();
-const reviewer = resolveReviewerProfilePaths(Astro.props.reviewer as ReviewerProfile, questions);
+const reviewer = resolveReviewerProfilePaths(Astro.props.reviewer as ContributorRouteProfile, questions);
+const activation = (Astro.props.reviewer as ContributorRouteProfile).activation;
 const questionsBySlug = new Map(questions.map((question) => [question.slug, question]));
+
+// Proposed assignments are not in DB yet; show live reviewed_by matches plus empty proposed placeholder count from build.
 const reviewedAnswers = questions
   .filter((question) => getReviewedByLabel(question) === reviewer.id)
   .sort((a, b) => a.question.localeCompare(b.question));
@@ -30,7 +34,7 @@ const reviewerPageRole = reviewer.trustRoleLabel ?? 'Clinical Reviewer';
 const pageTitle = `${displayName} | ${reviewerPageRole} | Deeper Global`;
 const pageDescription = reviewer.designation
   ? `${displayName}. ${reviewer.designation}`
-  : `${reviewer.name} reviews selected Deeper Global answers related to ${reviewer.specialtyLabel.toLowerCase()}.`;
+  : `${reviewer.name} is associated with selected Deeper Global answers related to ${reviewer.specialtyLabel.toLowerCase()}.`;
 
 const reviewGroups = reviewer.reviewedContentGroups
   ? buildReviewGroupDisplays(reviewer.reviewedContentGroups, questionsBySlug)
@@ -38,10 +42,57 @@ const reviewGroups = reviewer.reviewedContentGroups
 
 const hasOverview =
   Boolean(reviewer.overviewParagraphs?.length) || Boolean(reviewer.expertiseSummary) || Boolean(reviewer.bio);
-const overviewTitle = reviewer.overviewParagraphs?.length ? 'Clinical overview' : 'About this reviewer';
+const overviewTitle = reviewer.overviewParagraphs?.length ? 'Clinical overview' : 'About this contributor';
 const overviewHeading = reviewer.overviewParagraphs?.length
   ? 'Assessment and diagnostic expertise'
   : `Background and expertise`;
+
+const topicDistribution = new Map<string, number>();
+for (const answer of reviewedAnswers) {
+  const topic = getCanonicalTopic(answer.category || answer.raw_category || answer.primary_theme).name;
+  topicDistribution.set(topic, (topicDistribution.get(topic) || 0) + 1);
+}
+const topicRows = [...topicDistribution.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+
+const pageUrl = siteUrl(`/reviewers/${reviewer.slug}/`);
+const personId = `${pageUrl}#person`;
+const jsonLd = {
+  '@graph': [
+    {
+      '@type': 'ProfilePage',
+      '@id': `${pageUrl}#profile`,
+      url: pageUrl,
+      name: pageTitle,
+      description: pageDescription,
+      isPartOf: { '@id': websiteId() },
+      mainEntity: { '@id': personId },
+    },
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: displayName,
+      url: pageUrl,
+      jobTitle: reviewer.credentialLine || reviewer.role || reviewer.specialtyLabel,
+      description: reviewer.bio,
+      knowsAbout: reviewer.expertiseTags,
+      ...(reviewer.sameAs?.length ? { sameAs: reviewer.sameAs } : {}),
+      ...(reviewer.practiceName === 'Peachtree Psychology'
+        ? {
+            affiliation: {
+              '@type': 'Organization',
+              '@id': `${siteUrl('/organizations/peachtree-psychology/')}#organization`,
+              name: 'Peachtree Psychology',
+              url: siteUrl('/organizations/peachtree-psychology/'),
+            },
+          }
+        : {}),
+    },
+  ],
+};
+
+const PAGE_SIZE = 24;
+const visibleAnswers = reviewedAnswers.slice(0, PAGE_SIZE);
+const hiddenCount = Math.max(0, reviewedAnswers.length - visibleAnswers.length);
 ---
 
 <BaseLayout
@@ -50,6 +101,8 @@ const overviewHeading = reviewer.overviewParagraphs?.length
   canonicalPath={`/reviewers/${reviewer.slug}`}
   imagePath={reviewer.image}
   imageAlt={reviewer.imageAlt}
+  jsonLd={jsonLd}
+  noindex={!activation.indexable}
 >
   <main class="discovery-surface reviewer-profile">
     <div class="container">
@@ -65,17 +118,51 @@ const overviewHeading = reviewer.overviewParagraphs?.length
     <section class="reviewer-body">
       <div class="container reviewer-body-shell">
         <header class="reviewer-page-header">
-          <p class="eyebrow">Clinical reviewer</p>
+          <p class="eyebrow">{reviewerPageRole}</p>
           <h1>{displayName}</h1>
           <p class="reviewer-designation">{reviewer.designation ?? reviewer.specialtyLabel}</p>
+          {
+            reviewer.practiceName === 'Peachtree Psychology' && (
+              <p class="editorial-meta">
+                Affiliated with <a href="/organizations/peachtree-psychology/">Peachtree Psychology</a>
+                {
+                  reviewer.practiceUrl && (
+                    <>
+                      {' '}
+                      · <a href={reviewer.practiceUrl} rel="noopener noreferrer">External practice profile</a>
+                    </>
+                  )
+                }
+              </p>
+            )
+          }
+          {
+            !activation.indexable && (
+              <p class="editorial-meta">
+                Profile prepared for activation (currently noindex until migration apply and editorial approval).
+              </p>
+            )
+          }
         </header>
 
         <ProfileLayout>
           <ReviewerSidebar slot="sidebar" reviewer={reviewer} />
 
           <div class="profile-main-inner">
-            {reviewer.videoModule && <ReviewerVideoCard reviewer={reviewer} />}
-            {reviewer.featuredVideoLinks?.length ? <ReviewerFeaturedVideos reviewer={reviewer} /> : null}
+            {
+              reviewer.videoModule && (
+                <ReviewerVideoCard video={reviewer.videoModule} fallbackPoster={reviewer.image} />
+              )
+            }
+            {
+              reviewer.additionalVideos && reviewer.additionalVideos.length > 0 && (
+                <section class="reviewer-video-list" aria-label={`More videos from ${displayName}`}>
+                  {reviewer.additionalVideos.map((video) => (
+                    <ReviewerVideoCard video={video} fallbackPoster={reviewer.image} />
+                  ))}
+                </section>
+              )
+            }
 
             {
               reviewer.clinicalPerspective && (
@@ -102,15 +189,31 @@ const overviewHeading = reviewer.overviewParagraphs?.length
             }
 
             {
+              topicRows.length > 0 && (
+                <section class="profile-main-section profile-main-section--compact" aria-labelledby="topic-dist-title">
+                  <p class="profile-main-label">Topic distribution</p>
+                  <h2 id="topic-dist-title">Associated answer topics</h2>
+                  <ul class="reviewer-affiliation-list">
+                    {topicRows.map(([topic, count]) => (
+                      <li>
+                        {topic}: {count}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )
+            }
+
+            {
               reviewGroups.length > 0 ? (
                 <section
                   class="profile-main-section"
                   id="reviewed-knowledge"
                   aria-labelledby="reviewed-knowledge-title"
                 >
-                  <p class="profile-main-label">Reviewed knowledge</p>
+                  <p class="profile-main-label">Associated knowledge</p>
                   <h2 id="reviewed-knowledge-title">
-                    {reviewer.reviewedKnowledgeTitle ?? `Answers reviewed by ${displayName.split(',')[0]}`}
+                    {reviewer.reviewedKnowledgeTitle ?? `Answers associated with ${displayName.split(',')[0]}`}
                   </h2>
                   {
                     reviewer.reviewedKnowledgeIntro && (
@@ -150,13 +253,21 @@ const overviewHeading = reviewer.overviewParagraphs?.length
               ) : (
                 reviewedAnswers.length > 0 && (
                   <section class="profile-main-section" aria-labelledby="reviewed-answers-title">
-                    <p class="profile-main-label">Reviewed answers</p>
+                    <p class="profile-main-label">Associated answers</p>
                     <h2 id="reviewed-answers-title">
-                      Selected answers reviewed by {reviewer.name.split(',')[0]}
+                      {reviewedAnswers.length} answer{reviewedAnswers.length === 1 ? '' : 's'} currently attributed
                     </h2>
                     <div class="reviewer-answer-list tier-excerpt-list">
-                      {reviewedAnswers.map((question) => <ReviewerAnswerExcerpt question={question} />)}
+                      {visibleAnswers.map((question) => <ReviewerAnswerExcerpt question={question} />)}
                     </div>
+                    {
+                      hiddenCount > 0 && (
+                        <p class="tier-group-more">
+                          Showing {visibleAnswers.length} of {reviewedAnswers.length}. Additional answers will paginate
+                          after contributor activation.
+                        </p>
+                      )
+                    }
                   </section>
                 )
               )
@@ -207,8 +318,8 @@ const overviewHeading = reviewer.overviewParagraphs?.length
           )
         }
         <p class="profile-disclaimer">
-          See the <a href="/editorial-policy/">editorial policy</a> for how Deeper Global handles reviewer attribution,
-          sources, and updates.
+          See the <a href="/editorial-policy/">editorial policy</a> for how Deeper Global handles contributor
+          attribution, sources, and updates. Deeper Global does not employ or certify Peachtree Psychology clinicians.
         </p>
       </div>
     </section>

@@ -1,0 +1,19 @@
+{
+  "attested_at": "2026-08-07T12:52:00.000Z",
+  "branch": "cursor/clinical-contributor-migration-c37c",
+  "commit": "6003d923a665b00b9a97d028f4e85a50c7245aef",
+  "vercel_project": "deeper-global-www-production",
+  "deployment_id": "dpl_Hab5yn19NdZroMrjFg4Ds3i2QwNv",
+  "deployment_url": "deeper-global-www-production-iaeor50fv-gps4.vercel.app",
+  "branch_alias": "deeper-global-www-production-git-cursor-clinical-co-be2b4a-gps4.vercel.app",
+  "ready_state": "READY",
+  "pages_built": 1377,
+  "supabase_connected": true,
+  "evidence": [
+    "Vercel build logs show successful `astro build` with full answer corpus pagination",
+    "MIN_ANSWER_COUNT floor (950) would fail the build without Supabase credentials on Vercel",
+    "Preview HTML validation confirmed Peachtree routes, Amanda profile, org page, sitemap exclusions, and transitional Ken attribution UI"
+  ],
+  "local_agent_supabase_env": false,
+  "note": "Local cloud-agent VM lacks injected SUPABASE_* secrets; production-equivalent build attested via Vercel project env for this branch commit."
+}

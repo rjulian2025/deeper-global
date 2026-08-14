@@ -1,0 +1,903 @@
+{
+  "specialtyCrosswalk": [
+    {
+      "specialty": "Anxiety",
+      "aliases": [
+        "anxiety",
+        "anxiety management",
+        "anticipatory anxiety",
+        "generalized anxiety",
+        "panic",
+        "stress",
+        "health anxiety"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "anxiety-and-stress",
+          "weight": 1,
+          "rationale": "Exact anxiety/stress topic match"
+        },
+        {
+          "id": "general-mental-health",
+          "weight": 0.45,
+          "rationale": "Broad emotional regulation adjacency"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "anxiety-and-mood",
+          "weight": 0.75
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Anxiety",
+      "confidenceRules": [
+        "exact_topic=high",
+        "theme_only=medium"
+      ]
+    },
+    {
+      "specialty": "Social Anxiety",
+      "aliases": [
+        "social anxiety",
+        "social anxiety disorder"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "anxiety-and-stress",
+          "weight": 0.95,
+          "rationale": "Social anxiety sits in anxiety cluster"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "anxiety-and-mood",
+          "weight": 0.7
+        },
+        {
+          "id": "relationships-and-connection",
+          "weight": 0.4
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Social Anxiety",
+      "confidenceRules": [
+        "alias_or_title_match=high"
+      ]
+    },
+    {
+      "specialty": "Depression",
+      "aliases": [
+        "depression",
+        "depressive",
+        "low mood",
+        "numbness",
+        "hopeless",
+        "seasonal affective"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "depression",
+          "weight": 1,
+          "rationale": "Exact depression topic match"
+        },
+        {
+          "id": "anxiety-and-stress",
+          "weight": 0.35,
+          "rationale": "Common comorbidity adjacency only"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "anxiety-and-mood",
+          "weight": 0.75
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Depression",
+      "confidenceRules": [
+        "exact_topic=high"
+      ]
+    },
+    {
+      "specialty": "Mood Disorders",
+      "aliases": [
+        "mood disorders",
+        "mood disorder"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "depression",
+          "weight": 0.85,
+          "rationale": "Mood disorders map primarily to depression cluster"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "anxiety-and-mood",
+          "weight": 0.7
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "medium",
+      "sourceSpecialty": "Mood Disorders",
+      "confidenceRules": [
+        "parent_mood=medium_unless_title_confirms"
+      ]
+    },
+    {
+      "specialty": "ADHD",
+      "aliases": [
+        "adhd",
+        "add",
+        "attention deficit",
+        "executive functioning",
+        "executive function",
+        "neurodiversity",
+        "neurodivergent"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "neurodivergence-and-attention",
+          "weight": 1,
+          "rationale": "Exact ADHD/neurodivergence topic"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "care-and-therapy",
+          "weight": 0.7
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "ADHD",
+      "confidenceRules": [
+        "exact_topic=high"
+      ]
+    },
+    {
+      "specialty": "Adult ADHD Testing",
+      "aliases": [
+        "adhd testing",
+        "add/adhd",
+        "adhd assessment"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "neurodivergence-and-attention",
+          "weight": 1,
+          "rationale": "Testing specialty within ADHD topic"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "care-and-therapy",
+          "weight": 0.65
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [
+        "testing_specialty"
+      ],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Adult ADHD Testing",
+      "confidenceRules": [
+        "testing_keywords_boost"
+      ]
+    },
+    {
+      "specialty": "Autism",
+      "aliases": [
+        "autism",
+        "autism level 1",
+        "autistic"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "neurodivergence-and-attention",
+          "weight": 0.95,
+          "rationale": "Autism within neurodivergence topic"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "care-and-therapy",
+          "weight": 0.65
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Autism",
+      "confidenceRules": [
+        "exact_or_alias=high"
+      ]
+    },
+    {
+      "specialty": "OCD",
+      "aliases": [
+        "ocd",
+        "obsessive-compulsive",
+        "obsessive compulsive",
+        "intrusive thoughts",
+        "compulsion"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "anxiety-and-stress",
+          "weight": 0.9,
+          "rationale": "OCD/intrusive thoughts currently cluster under anxiety taxonomy"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "anxiety-and-mood",
+          "weight": 0.7
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "OCD",
+      "confidenceRules": [
+        "alias_or_title_match=high",
+        "generic_anxiety_alone=not_enough"
+      ]
+    },
+    {
+      "specialty": "Obsessive-Compulsive (OCD)",
+      "aliases": [
+        "obsessive-compulsive (ocd)",
+        "pediatric ocd"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "anxiety-and-stress",
+          "weight": 0.9,
+          "rationale": "OCD taxonomy adjacency"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "anxiety-and-mood",
+          "weight": 0.7
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Obsessive-Compulsive (OCD)",
+      "confidenceRules": [
+        "alias_or_title_match=high"
+      ]
+    },
+    {
+      "specialty": "Addiction",
+      "aliases": [
+        "addiction",
+        "substance use",
+        "substance abuse",
+        "alcohol use",
+        "drug abuse",
+        "addictive behaviors",
+        "chemical dependency",
+        "recovery",
+        "relapse",
+        "sobriety"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "addiction-and-recovery",
+          "weight": 1,
+          "rationale": "Exact addiction topic"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "trauma-and-safety",
+          "weight": 0.7
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Addiction",
+      "confidenceRules": [
+        "exact_topic=high"
+      ]
+    },
+    {
+      "specialty": "Substance Use",
+      "aliases": [
+        "substance use",
+        "substance abuse & chemical dependency"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "addiction-and-recovery",
+          "weight": 1,
+          "rationale": "Substance use maps to addiction topic"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "trauma-and-safety",
+          "weight": 0.7
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Substance Use",
+      "confidenceRules": [
+        "exact_topic=high"
+      ]
+    },
+    {
+      "specialty": "Trauma",
+      "aliases": [
+        "trauma",
+        "trauma and ptsd",
+        "trauma & ptsd",
+        "trauma and ptsd",
+        "ptsd",
+        "medical trauma",
+        "complex trauma"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "trauma-and-safety",
+          "weight": 1,
+          "rationale": "Exact trauma topic"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "trauma-and-safety",
+          "weight": 0.8
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Trauma",
+      "confidenceRules": [
+        "exact_topic=high"
+      ]
+    },
+    {
+      "specialty": "PTSD",
+      "aliases": [
+        "ptsd",
+        "post-traumatic"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "trauma-and-safety",
+          "weight": 1,
+          "rationale": "PTSD within trauma topic"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "trauma-and-safety",
+          "weight": 0.8
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "PTSD",
+      "confidenceRules": [
+        "exact_topic=high"
+      ]
+    },
+    {
+      "specialty": "Grief",
+      "aliases": [
+        "grief",
+        "grief & loss",
+        "grief and loss",
+        "bereavement",
+        "loss"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "grief-and-loss",
+          "weight": 1,
+          "rationale": "Exact grief topic"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "life-transitions-and-change",
+          "weight": 0.75
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Grief",
+      "confidenceRules": [
+        "exact_topic=high"
+      ]
+    },
+    {
+      "specialty": "Life Transitions",
+      "aliases": [
+        "life transitions",
+        "life events & transitions",
+        "adjustment"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "general-mental-health",
+          "weight": 0.7,
+          "rationale": "Life transitions live under general mental health aliases"
+        },
+        {
+          "id": "work-and-burnout",
+          "weight": 0.45,
+          "rationale": "Work transitions adjacency"
+        },
+        {
+          "id": "identity-and-self-worth",
+          "weight": 0.4,
+          "rationale": "Identity transitions adjacency"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "life-transitions-and-change",
+          "weight": 0.7
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "medium",
+      "sourceSpecialty": "Life Transitions",
+      "confidenceRules": [
+        "theme_or_alias=medium",
+        "needs_title_support_for_high"
+      ]
+    },
+    {
+      "specialty": "Parenting",
+      "aliases": [
+        "parenting",
+        "family conflict",
+        "child",
+        "school issues"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "family-and-parenting",
+          "weight": 1,
+          "rationale": "Exact family/parenting topic"
+        },
+        {
+          "id": "teens-and-identity",
+          "weight": 0.7,
+          "rationale": "Teen parenting adjacency"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "family-and-parenting",
+          "weight": 0.8
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Parenting",
+      "confidenceRules": [
+        "exact_topic=high"
+      ]
+    },
+    {
+      "specialty": "Relationship Issues",
+      "aliases": [
+        "relationship issues",
+        "relationship counseling",
+        "building healthy relationships",
+        "marital and premarital",
+        "couples",
+        "codependency",
+        "divorce",
+        "infidelity",
+        "jealousy"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "relationships-and-communication",
+          "weight": 1,
+          "rationale": "Exact relationships topic"
+        },
+        {
+          "id": "loneliness-and-belonging",
+          "weight": 0.45,
+          "rationale": "Connection adjacency"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "relationships-and-connection",
+          "weight": 0.8
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Relationship Issues",
+      "confidenceRules": [
+        "exact_topic=high"
+      ]
+    },
+    {
+      "specialty": "Eating Disorders",
+      "aliases": [
+        "eating disorders",
+        "disordered eating",
+        "arfid",
+        "body image",
+        "body dysmorphic disorder"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "general-mental-health",
+          "weight": 0.55,
+          "rationale": "No dedicated eating-disorder canonical topic; require title/specialty keywords"
+        },
+        {
+          "id": "identity-and-self-worth",
+          "weight": 0.4,
+          "rationale": "Body image adjacency"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "anxiety-and-mood",
+          "weight": 0.35
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [
+        "requires_keyword_support"
+      ],
+      "baseConfidence": "medium",
+      "sourceSpecialty": "Eating Disorders",
+      "confidenceRules": [
+        "keyword_required_for_assignment",
+        "topic_alone=low"
+      ]
+    },
+    {
+      "specialty": "Pregnancy, Prenatal, Postpartum",
+      "aliases": [
+        "pregnancy",
+        "prenatal",
+        "postpartum",
+        "perinatal",
+        "infertility",
+        "reproductive mental health",
+        "motherhood"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "family-and-parenting",
+          "weight": 0.7,
+          "rationale": "Perinatal often family-adjacent"
+        },
+        {
+          "id": "depression",
+          "weight": 0.55,
+          "rationale": "Postpartum depression adjacency"
+        },
+        {
+          "id": "anxiety-and-stress",
+          "weight": 0.5,
+          "rationale": "Perinatal anxiety adjacency"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "family-and-parenting",
+          "weight": 0.55
+        },
+        {
+          "id": "anxiety-and-mood",
+          "weight": 0.45
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [
+        "requires_keyword_support"
+      ],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Pregnancy, Prenatal, Postpartum",
+      "confidenceRules": [
+        "keyword_match=high"
+      ]
+    },
+    {
+      "specialty": "Chronic Illness",
+      "aliases": [
+        "chronic illness",
+        "chronic illness & disability",
+        "chronic pain",
+        "cancer",
+        "caregiver stress"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "general-mental-health",
+          "weight": 0.65,
+          "rationale": "Physical health aliases under general mental health"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "life-transitions-and-change",
+          "weight": 0.45
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [
+        "requires_keyword_support"
+      ],
+      "baseConfidence": "medium",
+      "sourceSpecialty": "Chronic Illness",
+      "confidenceRules": [
+        "keyword_required"
+      ]
+    },
+    {
+      "specialty": "Self Esteem",
+      "aliases": [
+        "self esteem",
+        "self-esteem",
+        "self-compassion",
+        "shame",
+        "impostor",
+        "perfectionism"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "identity-and-self-worth",
+          "weight": 1,
+          "rationale": "Exact identity/self-worth topic"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "identity-and-self-worth",
+          "weight": 0.8
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Self Esteem",
+      "confidenceRules": [
+        "exact_topic=high"
+      ]
+    },
+    {
+      "specialty": "LGBTQ+",
+      "aliases": [
+        "lgbtq+",
+        "lgbtqia+",
+        "lgbtqia+ issues",
+        "lgbtqia+ concerns",
+        "transgender",
+        "bisexual",
+        "lesbian"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "gender-sexuality-and-intimacy",
+          "weight": 1,
+          "rationale": "Exact gender/sexuality topic"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "relationships-and-connection",
+          "weight": 0.55
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "LGBTQ+",
+      "confidenceRules": [
+        "exact_topic=high"
+      ]
+    },
+    {
+      "specialty": "Spirituality",
+      "aliases": [
+        "spirituality",
+        "spiritual issues"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "meaning-faith-and-existential-questions",
+          "weight": 0.85,
+          "rationale": "Spirituality maps to meaning/faith topic"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "spirituality-and-meaning",
+          "weight": 0.8
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "medium",
+      "sourceSpecialty": "Spirituality",
+      "confidenceRules": [
+        "prefer_editorial_reviewer_when_rick_protected",
+        "theme_match=medium"
+      ]
+    },
+    {
+      "specialty": "Student Athletic Challenges",
+      "aliases": [
+        "student athletic",
+        "sports performance",
+        "athlete"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "teens-and-identity",
+          "weight": 0.55,
+          "rationale": "Student athlete adjacency"
+        },
+        {
+          "id": "anxiety-and-stress",
+          "weight": 0.45,
+          "rationale": "Performance anxiety adjacency"
+        },
+        {
+          "id": "neurodivergence-and-attention",
+          "weight": 0.35,
+          "rationale": "Performance/ADHD overlap"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "family-and-parenting",
+          "weight": 0.35
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [
+        "requires_keyword_support"
+      ],
+      "baseConfidence": "medium",
+      "sourceSpecialty": "Student Athletic Challenges",
+      "confidenceRules": [
+        "keyword_required"
+      ]
+    },
+    {
+      "specialty": "Psychological Testing",
+      "aliases": [
+        "psychological testing",
+        "diagnostic evaluation",
+        "anxiety assessment",
+        "depression evaluation",
+        "ocd testing"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "neurodivergence-and-attention",
+          "weight": 0.7,
+          "rationale": "Testing often ADHD-related in this corpus"
+        },
+        {
+          "id": "therapy-and-care-navigation",
+          "weight": 0.65,
+          "rationale": "Evaluation/care navigation"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "care-and-therapy",
+          "weight": 0.7
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [
+        "testing_specialty"
+      ],
+      "baseConfidence": "medium",
+      "sourceSpecialty": "Psychological Testing",
+      "confidenceRules": [
+        "requires_testing_or_diagnosis_language"
+      ]
+    },
+    {
+      "specialty": "Executive Functioning",
+      "aliases": [
+        "executive functioning",
+        "productivity coaching",
+        "school issues",
+        "education and learning disabilities"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "neurodivergence-and-attention",
+          "weight": 0.8,
+          "rationale": "Executive function strongly ADHD-adjacent"
+        },
+        {
+          "id": "teens-and-identity",
+          "weight": 0.45,
+          "rationale": "Student coaching adjacency"
+        },
+        {
+          "id": "work-and-burnout",
+          "weight": 0.4,
+          "rationale": "Adult productivity adjacency"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "care-and-therapy",
+          "weight": 0.5
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [
+        "coaching_ok"
+      ],
+      "baseConfidence": "medium",
+      "sourceSpecialty": "Executive Functioning",
+      "confidenceRules": [
+        "coach_role_allowed_for_these_topics"
+      ]
+    },
+    {
+      "specialty": "Work/Life Balance",
+      "aliases": [
+        "work/life balance",
+        "burnout",
+        "career counseling",
+        "productivity"
+      ],
+      "eligibleTopics": [
+        {
+          "id": "work-and-burnout",
+          "weight": 1,
+          "rationale": "Exact work/burnout topic"
+        }
+      ],
+      "eligibleThemes": [
+        {
+          "id": "work-and-purpose",
+          "weight": 0.8
+        }
+      ],
+      "excludedTopics": [],
+      "roleRestrictions": [],
+      "baseConfidence": "high",
+      "sourceSpecialty": "Work/Life Balance",
+      "confidenceRules": [
+        "exact_topic=high"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-07-16T21:08:23.046Z",
+  "high_confidence_original": 923,
+  "high_confidence_surviving_after_coherence_flags": 923,
+  "automated_coherence_downgrades": 0,
+  "flagged_for_human_qa_rows": 53,
+  "clinicians_needing_review": [
+    "samantha-bryant",
+    "susan-keenan",
+    "laura-hilsen",
+    "michaela-hilburn",
+    "lynn-lane",
+    "jackie-malone",
+    "meredith-price",
+    "amanda-gaines",
+    "liz-webb",
+    "sarah-evers",
+    "lauren-sanders"
+  ],
+  "qa_sample_size": 105,
+  "unmatched_editorial_transition": 145,
+  "recommended_crosswalk_revisions": [
+    "Tighten Life Transitions \u2192 work-and-burnout / general-mental-health weights; require keyword support for high confidence",
+    "Prevent Trauma specialty from winning meaning/faith pages unless trauma language is primary",
+    "Require stronger perinatal keywords before Pregnancy specialty influences anxiety/depression pages",
+    "Exclude coach (Jeannine) from non-executive-function family pages that lack student/parent/ADHD signals",
+    "Add dedicated loneliness/social-connection specialty mapping or leave those medium/unmatched"
+  ],
+  "phase": "C-prep",
+  "qa_sample_path": "reports/reviewer-migration/qa-sample.csv",
+  "qa_sample_md": "reports/reviewer-migration/qa-sample.md",
+  "high_confidence_surviving_automated_qa_rules": 923,
+  "clinicians_flagged_human_distribution_review": 11,
+  "human_qa_sample_pending": 105,
+  "legacy_review_date_rows": 1068,
+  "profile_readiness": {
+    "complete": 14,
+    "requires_source_correction": 1,
+    "report_only": 1
+  },
+  "sql_migration": "supabase/migrations/20260716210000_clinical_attribution_model.sql",
+  "apply_package_dir": "reports/reviewer-migration/apply-package/"
+}

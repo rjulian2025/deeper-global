@@ -1,54 +1,30 @@
 import { getSemanticEnrichmentForApi, getSemanticSearchHaystack } from './semantic-enrichment.mjs';
 
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 const SITE_URL = 'https://www.deeper.global';
 const INDEXABLE_REVIEW_STATUSES = new Set(['approved', 'published', 'reviewed']);
 const RATE_LIMIT_WINDOW_MS = 60 * 1000;
 const RATE_LIMIT_MAX = 120;
 const rateLimitBuckets = new Map();
-const REVIEWER_PROFILES = {
-  'david-k-gore-phd': {
-    id: 'david-k-gore-phd',
-    name: 'Kenneth W. Christian, PhD',
-    specialty_label: 'Addiction & Recovery',
-    profile_url: `${SITE_URL}/reviewers/david-k-gore-phd/`,
-  },
-  'kenneth-w-christian-phd': {
-    id: 'kenneth-w-christian-phd',
-    name: 'Kenneth W. Christian, PhD',
-    specialty_label: 'Performance, Purpose & Self-Limiting Patterns',
-    profile_url: `${SITE_URL}/reviewers/kenneth-w-christian-phd/`,
-  },
-  'alex-crenshaw-phd': {
-    id: 'alex-crenshaw-phd',
-    name: 'Dr. Alex Crenshaw, PhD',
-    specialty_label: 'Adult ADHD Testing & Psychological Evaluation',
-    profile_url: `${SITE_URL}/reviewers/alex-crenshaw-phd/`,
-  },
-  'rick-julian': {
-    id: 'rick-julian',
-    name: 'Rick Julian',
-    specialty_label: 'Spirituality & Meaning',
-    profile_url: `${SITE_URL}/reviewers/rick-julian/`,
-  },
-};
 
-const REVIEWER_ALIASES = {
-  'david-k-gore-phd': 'david-k-gore-phd',
-  'david k gore phd': 'david-k-gore-phd',
-  'david k. gore phd': 'david-k-gore-phd',
-  'david k. gore, phd': 'david-k-gore-phd',
-  'kenneth-w-christian-phd': 'kenneth-w-christian-phd',
-  'kenneth w christian phd': 'kenneth-w-christian-phd',
-  'kenneth w. christian phd': 'kenneth-w-christian-phd',
-  'kenneth w. christian, phd': 'kenneth-w-christian-phd',
-  'alex-crenshaw-phd': 'alex-crenshaw-phd',
-  'alex crenshaw phd': 'alex-crenshaw-phd',
-  'alex crenshaw, phd': 'alex-crenshaw-phd',
-  'dr. alex crenshaw, phd': 'alex-crenshaw-phd',
-  'dr. alex crenshaw phd': 'alex-crenshaw-phd',
-  'rick-julian': 'rick-julian',
-  'rick julian': 'rick-julian',
-};
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+function loadCanonicalReviewers() {
+  try {
+    const raw = readFileSync(join(__dirname, 'reviewers-canonical.json'), 'utf8');
+    return JSON.parse(raw);
+  } catch {
+    return { profiles: {}, aliases: {} };
+  }
+}
+
+const CANONICAL_REVIEWERS = loadCanonicalReviewers();
+const REVIEWER_PROFILES = CANONICAL_REVIEWERS.profiles || {};
+const REVIEWER_ALIASES = CANONICAL_REVIEWERS.aliases || {};
 
 export const API_CONSTANTS = {
   site_url: SITE_URL,

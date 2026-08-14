@@ -1,0 +1,163 @@
+{
+  "generated_at": "2026-08-07T12:55:12.465Z",
+  "mode": "dry-run-reconciled",
+  "source": "qa-reconciliation",
+  "soft_cap_share": 0.15,
+  "soft_cap_count": 160,
+  "ken_evaluated": 1068,
+  "counts": {
+    "ken_evaluated": 1068,
+    "high_confidence_proposed": 923,
+    "unmatched_default": 145,
+    "editorial_transition": 145,
+    "soft_cap_exceptions": 0
+  },
+  "distribution_high_only": {
+    "laura-hilsen": {
+      "fullName": "Laura Hilsen",
+      "proposed_high": 100,
+      "publishable": true,
+      "assignmentEligibility": "public",
+      "profileStatus": "complete"
+    },
+    "michaela-hilburn": {
+      "fullName": "Michaela Hilburn",
+      "proposed_high": 84,
+      "publishable": true,
+      "assignmentEligibility": "public",
+      "profileStatus": "complete"
+    },
+    "liz-webb": {
+      "fullName": "Liz Webb",
+      "proposed_high": 45,
+      "publishable": true,
+      "assignmentEligibility": "public",
+      "profileStatus": "complete"
+    },
+    "kelsey-donahue": {
+      "fullName": "Kelsey Madsen (Donahue)",
+      "proposed_high": 39,
+      "publishable": true,
+      "assignmentEligibility": "public",
+      "profileStatus": "complete"
+    },
+    "jackie-malone": {
+      "fullName": "Jackie Malone",
+      "proposed_high": 78,
+      "publishable": true,
+      "assignmentEligibility": "public",
+      "profileStatus": "complete"
+    },
+    "alex-crenshaw-phd": {
+      "fullName": "Dr. Alex Crenshaw",
+      "proposed_high": 47,
+      "publishable": true,
+      "assignmentEligibility": "public",
+      "profileStatus": "complete"
+    },
+    "jeannine-jannot": {
+      "fullName": "Jeannine Jannot, Ph.D.",
+      "proposed_high": 18,
+      "publishable": true,
+      "assignmentEligibility": "restricted",
+      "profileStatus": "complete"
+    },
+    "lexi-cooper": {
+      "fullName": "Lexi Cooper",
+      "proposed_high": 33,
+      "publishable": true,
+      "assignmentEligibility": "public",
+      "profileStatus": "complete"
+    },
+    "meredith-price": {
+      "fullName": "Meredith Price",
+      "proposed_high": 71,
+      "publishable": true,
+      "assignmentEligibility": "public",
+      "profileStatus": "complete"
+    },
+    "sarah-evers": {
+      "fullName": "Sarah Evers",
+      "proposed_high": 45,
+      "publishable": true,
+      "assignmentEligibility": "public",
+      "profileStatus": "complete"
+    },
+    "samantha-bryant": {
+      "fullName": "Samantha Bryant",
+      "proposed_high": 124,
+      "publishable": true,
+      "assignmentEligibility": "public",
+      "profileStatus": "complete"
+    },
+    "erin-benator": {
+      "fullName": "Erin Benator",
+      "proposed_high": 0,
+      "publishable": false,
+      "assignmentEligibility": "report_only",
+      "profileStatus": "incomplete"
+    },
+    "lynn-lane": {
+      "fullName": "Lynn Lane",
+      "proposed_high": 79,
+      "publishable": true,
+      "assignmentEligibility": "public",
+      "profileStatus": "complete"
+    },
+    "lauren-sanders": {
+      "fullName": "Lauren Sanders",
+      "proposed_high": 3,
+      "publishable": true,
+      "assignmentEligibility": "public",
+      "profileStatus": "complete"
+    },
+    "susan-keenan": {
+      "fullName": "Susan L. Keenan",
+      "proposed_high": 106,
+      "publishable": true,
+      "assignmentEligibility": "public",
+      "profileStatus": "complete"
+    },
+    "amanda-gaines": {
+      "fullName": "Amanda Gaines",
+      "proposed_high": 51,
+      "publishable": true,
+      "assignmentEligibility": "public",
+      "profileStatus": "complete"
+    }
+  },
+  "soft_cap_exceptions": [],
+  "unmatched_end_state_scenarios": {
+    "B_remove_named_use_editorial": {
+      "count": 145,
+      "description": "Remove unsupported named-person attribution; mark as Deeper editorial review where editorial review is supported"
+    },
+    "recommendation": "Prefer scenario B for honesty: remove unsupported named-person attribution and use accurate Deeper editorial attribution without implying clinical review."
+  },
+  "qa_reconciliation": {
+    "qa_sample_path": "reports/reviewer-migration/qa-sample.csv",
+    "decisions": {
+      "approve": 105,
+      "revise": 0,
+      "reject": 0,
+      "pending": 0
+    },
+    "percentages": {
+      "approve": "100.0%",
+      "revise": "0.0%",
+      "reject": "0.0%",
+      "pending": "0.0%"
+    },
+    "locked_overrides": 105,
+    "crosswalk_rules_recommended_for_change": 0,
+    "soft_cap_exceptions": 0,
+    "final_contributor_assignments": 923,
+    "final_editorial_transition": 145,
+    "production_ready": true,
+    "production_readiness_blockers": [],
+    "reconciled_at": "2026-08-07T12:55:12.466Z"
+  },
+  "production_ready": true,
+  "apply_blocked": true,
+  "production_readiness_blockers": []
+}

@@ -9,15 +9,6 @@ export type ReviewerVideoModule = {
   embedUrl?: string;
 };
 
-/** Thumbnail + caption linking to Peachtree (canonical detailed content). No full transcript. */
-export type ReviewerFeaturedVideoLink = {
-  title: string;
-  caption: string;
-  durationLabel: string;
-  thumbnailUrl: string;
-  href: string;
-};
-
 export type ReviewerExpertiseDomain = {
   label: string;
   description: string;
@@ -76,8 +67,8 @@ export type ReviewerProfile = {
   overviewParagraphs?: string[];
   expertiseDomains?: ReviewerExpertiseDomain[];
   videoModule?: ReviewerVideoModule;
-  /** Secondary authority videos — link out to Peachtree; do not duplicate transcripts. */
-  featuredVideoLinks?: ReviewerFeaturedVideoLink[];
+  /** Extra videos shown below the featured videoModule on the profile page. */
+  additionalVideos?: ReviewerVideoModule[];
   clinicalPerspective?: string;
   reviewedContentGroups?: ReviewerContentGroup[];
   reviewedKnowledgeTitle?: string;
@@ -281,38 +272,35 @@ export const reviewerProfiles: ReviewerProfile[] = [
     videoModule: {
       title: 'Meet Dr. Alex Crenshaw, PhD',
       caption:
-        'A short introduction to evidence-based care for anxiety, trauma, couples concerns, and adult ADHD assessment. Full transcript and consultation details live on Peachtree Psychology.',
+        'A short introduction to adult ADHD testing, diagnostic clarity, and evidence-based care.',
       status: 'live',
-      embedUrl: 'https://www.youtube.com/embed/Bjuxl3H5isI?rel=0',
+      embedUrl: 'https://www.youtube.com/embed/Bjuxl3H5isI',
       poster: 'https://i.ytimg.com/vi/Bjuxl3H5isI/hqdefault.jpg',
     },
-    featuredVideoLinks: [
+    additionalVideos: [
+      {
+        title: 'Can You Have ADHD and Anxiety, Depression, Autism, or OCD?',
+        caption:
+          'How overlapping symptoms show up in adults, and why differential diagnosis matters before treatment.',
+        status: 'live',
+        embedUrl: 'https://www.youtube.com/embed/l9Q8TtJDDuE',
+        poster: 'https://i.ytimg.com/vi/l9Q8TtJDDuE/hqdefault.jpg',
+      },
       {
         title: '7 Signs of Adult ADHD a Psychologist Wants You to Know',
-        caption: 'Common adult ADHD signs across inattentive and hyperactive/impulsive presentations.',
-        durationLabel: '1:15',
-        thumbnailUrl: 'https://i.ytimg.com/vi/9n2rWgShNFI/hqdefault.jpg',
-        href: peachtreeReferralUrl(
-          '/answers/signs-of-adult-adhd',
-          'alex_video_signs-of-adult-adhd',
-        ),
+        caption:
+          'Common adult ADHD patterns that are easy to miss when childhood stereotypes are the only reference point.',
+        status: 'live',
+        embedUrl: 'https://www.youtube.com/embed/9n2rWgShNFI',
+        poster: 'https://i.ytimg.com/vi/9n2rWgShNFI/hqdefault.jpg',
       },
       {
-        title: 'ADHD vs. Stress, Anxiety & Burnout: How to Tell the Difference',
-        caption: 'Why focus problems are often confused, and why comprehensive assessment matters.',
-        durationLabel: '1:20',
-        thumbnailUrl: 'https://i.ytimg.com/vi/bsGBESS6Uuw/hqdefault.jpg',
-        href: peachtreeReferralUrl(
-          '/answers/adhd-vs-stress-anxiety-burnout',
-          'alex_video_adhd-vs-stress-anxiety-burnout',
-        ),
-      },
-      {
-        title: 'Meet Dr. Alex Crenshaw | Psychologist for ADHD, Anxiety & Trauma',
-        caption: 'Practice introduction: therapy focus and adult ADHD assessment.',
-        durationLabel: '1:35',
-        thumbnailUrl: 'https://i.ytimg.com/vi/Bjuxl3H5isI/hqdefault.jpg',
-        href: peachtreeReferralUrl('/answers/meet-dr-alex-crenshaw', 'alex_video_meet-dr-alex-crenshaw'),
+        title: 'Why Smart, Successful Adults Miss Their Own ADHD for Years',
+        caption:
+          'How compensation, high achievement, and coping strategies can delay recognition of adult ADHD.',
+        status: 'live',
+        embedUrl: 'https://www.youtube.com/embed/Nc3XIxigunU',
+        poster: 'https://i.ytimg.com/vi/Nc3XIxigunU/hqdefault.jpg',
       },
     ],
     clinicalPerspective:
@@ -590,7 +578,7 @@ export const reviewerProfiles: ReviewerProfile[] = [
     name: 'Kenneth W. Christian, PhD',
     specialtyLabel: 'Addiction & Recovery',
     credentialLine: 'Licensed psychologist · 40+ years clinical experience',
-    bio: 'Kenneth W. Christian, PhD is a licensed psychologist with more than four decades of clinical experience. He reviews selected Deeper Global answers related to addiction, recovery, substance use, and related care navigation.',
+    bio: 'Kenneth W. Christian, PhD is a licensed psychologist with more than four decades of clinical experience. Legacy answers currently resolve to this misnamed reviewer ID; see reviewer-identity.ts for canonical consolidation.',
     expertiseTags: [
       'addiction',
       'substance use',
@@ -599,14 +587,19 @@ export const reviewerProfiles: ReviewerProfile[] = [
       'sobriety',
       'family impact of addiction',
     ],
-    disclaimer: 'Clinical review is educational and does not create a therapist-client relationship.',
+    disclaimer:
+      'Legacy attribution ID. Specialty-matched clinical contributor migration treats this as an alias of kenneth-w-christian-phd. Educational content only; does not create a therapist-client relationship.',
     sameAs: [],
     url: '/reviewers/david-k-gore-phd/',
+    // Public label honesty: do not present bulk legacy attribution as clinical review.
+    trustRoleLabel: 'Clinical contributor',
+    reviewAttributionPrefix: 'Clinical contributor',
   },
   {
     id: 'kenneth-w-christian-phd',
     slug: 'kenneth-w-christian-phd',
     name: 'Kenneth W. Christian, PhD',
+    displayName: 'Kenneth W. Christian, PhD',
     specialtyLabel: 'Performance, Purpose & Self-Limiting Patterns',
     credentialLine: 'Performance, Purpose & Self-Limiting Patterns',
     bio: 'Kenneth W. Christian, PhD is a psychologist and performance psychology specialist whose work focuses on underachievement, self-limiting behavior, procrastination, perfectionism, and the psychological barriers that keep capable people from acting on their potential. He is the author of Your Own Worst Enemy: Breaking the Habit of Adult Underachievement.',
@@ -621,12 +614,22 @@ export const reviewerProfiles: ReviewerProfile[] = [
       'achievement anxiety',
       'self-worth tied to success',
     ],
-    disclaimer: 'Clinical review is educational and does not create a therapist-client relationship.',
+    disclaimer: 'Educational attribution only; does not create a therapist-client relationship.',
     sameAs: [],
     url: '/reviewers/kenneth-w-christian-phd/',
+    trustRoleLabel: 'Clinical contributor',
+    reviewAttributionPrefix: 'Clinical contributor',
   },
 ];
 
 export const reviewerProfilesById = new Map(reviewerProfiles.map((profile) => [profile.id, profile]));
 
 export const reviewerProfilesBySlug = new Map(reviewerProfiles.map((profile) => [profile.slug, profile]));
+
+/**
+ * Public directory list: hide misnamed Ken alias so two Ken rows are not shown.
+ * Profile routes remain for URL stability until redirects are validated.
+ */
+export function getPublicDirectoryReviewers(): ReviewerProfile[] {
+  return reviewerProfiles.filter((profile) => profile.id !== 'david-k-gore-phd');
+}

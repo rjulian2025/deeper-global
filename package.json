@@ -115,7 +115,20 @@
     "seo:priority": "node scripts/generate-indexation-priority.mjs",
     "seo:gsc-coverage": "node scripts/audit-gsc-index-coverage.mjs",
     "seo:p1-sources": "node scripts/prepare-p1-enrichment-sources.mjs",
-    "seo:indexnow": "node scripts/submit-indexnow.mjs"
+    "seo:indexnow": "node scripts/submit-indexnow.mjs",
+    "reviewers:generate-peachtree": "node scripts/lib/reviewers/generate-peachtree-contributors.mjs",
+    "reviewers:export-crosswalk": "node scripts/lib/reviewers/export-crosswalk-json.mjs",
+    "reviewers:export-canonical": "node scripts/lib/reviewers/export-canonical-registry.mjs",
+    "reviewers:audit": "node scripts/reviewers-audit.mjs",
+    "reviewers:assign": "node scripts/assign-clinical-reviewers.mjs --dry-run",
+    "reviewers:validate": "node scripts/reviewers-validate.mjs",
+    "reviewers:rollback": "node scripts/reviewers-rollback.mjs",
+    "reviewers:phase-c-prep": "node scripts/lib/reviewers/phase-c-prep.mjs",
+    "reviewers:reconcile-qa": "node scripts/reviewers-reconcile-qa.mjs",
+    "reviewers:profile-readiness": "node scripts/reviewers-profile-readiness.mjs",
+    "reviewers:pre-apply-validate": "node scripts/reviewers-pre-apply-validate.mjs",
+    "reviewers:apply": "node scripts/apply-clinical-attribution.mjs",
+    "reviewers:post-apply-validate": "node scripts/reviewers-post-apply-validate.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.104.2",
