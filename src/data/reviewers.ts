@@ -9,6 +9,15 @@ export type ReviewerVideoModule = {
   embedUrl?: string;
 };
 
+/** Thumbnail + caption linking to Peachtree (canonical detailed content). No full transcript. */
+export type ReviewerFeaturedVideoLink = {
+  title: string;
+  caption: string;
+  durationLabel: string;
+  thumbnailUrl: string;
+  href: string;
+};
+
 export type ReviewerExpertiseDomain = {
   label: string;
   description: string;
@@ -67,6 +76,8 @@ export type ReviewerProfile = {
   overviewParagraphs?: string[];
   expertiseDomains?: ReviewerExpertiseDomain[];
   videoModule?: ReviewerVideoModule;
+  /** Secondary authority videos — link out to Peachtree; do not duplicate transcripts. */
+  featuredVideoLinks?: ReviewerFeaturedVideoLink[];
   clinicalPerspective?: string;
   reviewedContentGroups?: ReviewerContentGroup[];
   reviewedKnowledgeTitle?: string;
@@ -270,10 +281,40 @@ export const reviewerProfiles: ReviewerProfile[] = [
     videoModule: {
       title: 'Meet Dr. Alex Crenshaw, PhD',
       caption:
-        'A short introduction to adult ADHD testing, diagnostic clarity, and evidence-based care.',
-      status: 'coming_soon',
-      statusLabel: 'Coming soon',
+        'A short introduction to evidence-based care for anxiety, trauma, couples concerns, and adult ADHD assessment. Full transcript and consultation details live on Peachtree Psychology.',
+      status: 'live',
+      embedUrl: 'https://www.youtube.com/embed/Bjuxl3H5isI?rel=0',
+      poster: 'https://i.ytimg.com/vi/Bjuxl3H5isI/hqdefault.jpg',
     },
+    featuredVideoLinks: [
+      {
+        title: '7 Signs of Adult ADHD a Psychologist Wants You to Know',
+        caption: 'Common adult ADHD signs across inattentive and hyperactive/impulsive presentations.',
+        durationLabel: '1:15',
+        thumbnailUrl: 'https://i.ytimg.com/vi/9n2rWgShNFI/hqdefault.jpg',
+        href: peachtreeReferralUrl(
+          '/answers/signs-of-adult-adhd',
+          'alex_video_signs-of-adult-adhd',
+        ),
+      },
+      {
+        title: 'ADHD vs. Stress, Anxiety & Burnout: How to Tell the Difference',
+        caption: 'Why focus problems are often confused, and why comprehensive assessment matters.',
+        durationLabel: '1:20',
+        thumbnailUrl: 'https://i.ytimg.com/vi/bsGBESS6Uuw/hqdefault.jpg',
+        href: peachtreeReferralUrl(
+          '/answers/adhd-vs-stress-anxiety-burnout',
+          'alex_video_adhd-vs-stress-anxiety-burnout',
+        ),
+      },
+      {
+        title: 'Meet Dr. Alex Crenshaw | Psychologist for ADHD, Anxiety & Trauma',
+        caption: 'Practice introduction: therapy focus and adult ADHD assessment.',
+        durationLabel: '1:35',
+        thumbnailUrl: 'https://i.ytimg.com/vi/Bjuxl3H5isI/hqdefault.jpg',
+        href: peachtreeReferralUrl('/answers/meet-dr-alex-crenshaw', 'alex_video_meet-dr-alex-crenshaw'),
+      },
+    ],
     clinicalPerspective:
       'Many adults seek ADHD testing after years of wondering why effort, focus, and follow-through feel harder than they should.',
     reviewedContentGroups: [

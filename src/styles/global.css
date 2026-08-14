@@ -1975,6 +1975,42 @@ body:has(.answer-page--direction-d) {
   border-top: 1px solid var(--d-line);
 }
 
+.peachtree-video-referral {
+  border: 0.5px solid var(--d-line, #ddd);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+
+.peachtree-video-referral-label {
+  margin: 0 0 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--d-muted, #777);
+}
+
+.peachtree-video-referral-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.peachtree-video-referral-teaser {
+  margin: 0 0 0.85rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--d-muted, #555);
+}
+
+.peachtree-video-referral-link {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .answer-page--direction-d .answer-reading-panel .question-context-panel,
 .answer-page--direction-d .answer-reading-panel .practitioner-card {
   background: transparent;

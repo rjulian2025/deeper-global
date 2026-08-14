@@ -38,6 +38,7 @@ import {
   type RelatedContentContext,
 } from '@/lib/content';
 import { getAnswerPractitionerLink } from '@/lib/practitioner-links';
+import { getAlexPeachtreeVideoReferral } from '@/data/alex-peachtree-video-referrals';
 import { resolveSemanticEnrichmentSync, getPilotEnrichmentBySlug } from '@/lib/semantic-enrichment';
 import { CONTENT_LICENSE_URL, organizationId, siteUrl, websiteId } from '@/lib/site';
 import { qaPageNode } from '@/lib/schema';
@@ -135,6 +136,7 @@ const pageId = `${answerUrl}#webpage`;
 const qaPageId = `${answerUrl}#qapage`;
 const shouldIndex = shouldIndexQuestion(question);
 const practitionerLink = getAnswerPractitionerLink(question.slug);
+const alexVideoReferral = getAlexPeachtreeVideoReferral(question.slug);
 const isAiMentalHealthAnswer = isAiMentalHealthSprintQuestion(question);
 const isAdhdHubAnswer = isAdhdHubSlug(question.slug);
 const isAnxietyHubAnswer = isAnxietyHubSlug(question.slug);
@@ -272,6 +274,8 @@ const jsonLd = {
       author: {
         '@id': organizationId(),
       },
+      answerCount: 1,
+      upvoteCount: 0,
       acceptedAnswer: {
         '@id': answerId,
       },
@@ -281,6 +285,7 @@ const jsonLd = {
       '@id': answerId,
       url: `${answerUrl}#accepted-answer`,
       text: schemaAnswerText,
+      upvoteCount: 0,
       dateCreated: question.created_at,
       dateModified: updatedAt,
       citation: citation.url,
@@ -455,6 +460,21 @@ const jsonLd = {
                   href={practitionerLink.href}
                   label={practitionerLink.label}
                 />
+              </div>
+            )
+          }
+
+          {
+            alexVideoReferral && (
+              <div class="answer-supplement">
+                <aside class="peachtree-video-referral" aria-label="Related clinician video">
+                  <p class="peachtree-video-referral-label">Related video</p>
+                  <p class="peachtree-video-referral-title">{alexVideoReferral.title}</p>
+                  <p class="peachtree-video-referral-teaser">{alexVideoReferral.teaser}</p>
+                  <a class="peachtree-video-referral-link" href={alexVideoReferral.href} rel="noopener noreferrer">
+                    Watch &amp; read on Peachtree Psychology →
+                  </a>
+                </aside>
               </div>
             )
           }

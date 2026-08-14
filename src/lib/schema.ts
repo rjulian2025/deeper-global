@@ -4,9 +4,12 @@ export function questionEntity(item: QaSchemaItem) {
   return {
     '@type': 'Question',
     name: item.question,
+    answerCount: 1,
+    upvoteCount: 0,
     acceptedAnswer: {
       '@type': 'Answer',
       text: item.answer,
+      upvoteCount: 0,
     },
   };
 }

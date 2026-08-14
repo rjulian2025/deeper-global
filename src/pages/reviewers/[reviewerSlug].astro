@@ -3,6 +3,7 @@ import ProfileLayout from '@/components/reviewers/ProfileLayout.astro';
 import ReviewerAnswerExcerpt from '@/components/reviewers/ReviewerAnswerExcerpt.astro';
 import ReviewerSidebar from '@/components/reviewers/ReviewerSidebar.astro';
 import ReviewerVideoCard from '@/components/reviewers/ReviewerVideoCard.astro';
+import ReviewerFeaturedVideos from '@/components/reviewers/ReviewerFeaturedVideos.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getQuestions } from '@/lib/supabase';
 import { getReviewedByLabel } from '@/lib/trust';
@@ -74,6 +75,7 @@ const overviewHeading = reviewer.overviewParagraphs?.length
 
           <div class="profile-main-inner">
             {reviewer.videoModule && <ReviewerVideoCard reviewer={reviewer} />}
+            {reviewer.featuredVideoLinks?.length ? <ReviewerFeaturedVideos reviewer={reviewer} /> : null}
 
             {
               reviewer.clinicalPerspective && (
