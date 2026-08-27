@@ -85,19 +85,22 @@ vercel inspect <deployment-id> | grep -A5 "Builds"
 A build that completes in `0ms` is a pre-build validation failure, not a code
 error. The most common cause is a whitespace-contaminated secret.
 
-### GitHub auto-deploy (one-time)
+### GitHub Actions (one secret)
 
-Pushes to `production/astro` deploy via `.github/workflows/deploy-production.yml`.
-Add these repository secrets in GitHub (Settings → Secrets → Actions):
+Pushes to `production/astro` deploy via Vercel native Git integration.
+
+GitHub Actions workflows pull production secrets at runtime. Add **only**:
 
 | Secret | Where to get it |
 |---|---|
 | `VERCEL_TOKEN` | [vercel.com/account/tokens](https://vercel.com/account/tokens) |
-| `VERCEL_ORG_ID` | Team settings, or `.vercel/project.json` after `vercel link` |
-| `VERCEL_PROJECT_ID` | `.vercel/project.json` (`projectId`), or Vercel project settings |
 
-Local manual deploy (same result):
+Project `orgId` / `projectId` are in `.github/vercel-project.json`. Commit `orgId` locally via `.github/vercel-project.md` instructions; CI falls back to API resolution when empty.
 
-```bash
-npm run deploy:prod
-```
+**Remove if still present:** `CRON_SECRET`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, `SUPABASE_SERVICE_ROLE_KEY`, `ANTHROPIC_API_KEY` from GitHub repository secrets.
+
+### Admin health
+
+`GET /api/admin/health` (Bearer `CRON_SECRET` for automation, or `ADMIN_PASSPHRASE` from the console) returns existence/length/format checks only, never secret values.
+
+`/admin/` unlock requires `ADMIN_PASSPHRASE` only (`GET /api/admin/verify-console`).

@@ -1,0 +1,259 @@
+---
+import EditorialStaticLayout from '@/components/editorial/EditorialStaticLayout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import '@/styles/admin-console.css';
+---
+
+<BaseLayout
+  title="Admin Console | Deeper Global"
+  description="Internal operations console for pipeline health and dry runs."
+  canonicalPath="/admin/"
+  noindex={true}
+>
+  <EditorialStaticLayout
+    eyebrow="Internal"
+    title="Admin console"
+    lede="Check production secret health and run the visit-priority pipeline without a terminal."
+    class="admin-console-page"
+  >
+    <div class="admin-console-panel">
+      <p class="admin-console-note">
+        Enter <code>ADMIN_PASSPHRASE</code> from Vercel production. CRON_SECRET cannot unlock this
+        console. Your passphrase stays in this browser session only.
+      </p>
+
+      <section id="admin-unlock">
+        <div class="admin-console-field">
+          <label for="admin-access-key">Admin passphrase</label>
+          <input
+            id="admin-access-key"
+            name="access-key"
+            type="password"
+            autocomplete="current-password"
+            placeholder="ADMIN_PASSPHRASE"
+          />
+        </div>
+        <div class="admin-console-actions">
+          <button type="button" class="admin-console-btn" id="admin-unlock-btn">Unlock console</button>
+        </div>
+        <p class="admin-console-status" id="admin-unlock-status" aria-live="polite"></p>
+      </section>
+
+      <section id="admin-tools" class="admin-console-hidden" hidden>
+        <div class="admin-console-actions">
+          <button type="button" class="admin-console-btn" id="admin-health-btn">Check secrets health</button>
+          <button type="button" class="admin-console-btn" id="admin-dry-run-btn">Run pipeline (dry run)</button>
+          <button type="button" class="admin-console-btn admin-console-btn--danger" id="admin-apply-btn">
+            Run pipeline (apply)
+          </button>
+          <button type="button" class="admin-console-btn" id="admin-lock-btn">Lock</button>
+        </div>
+        <p class="admin-console-status" id="admin-action-status" aria-live="polite"></p>
+        <div class="admin-console-output admin-console-hidden" id="admin-output" hidden>
+          <div id="admin-output-content"></div>
+        </div>
+      </section>
+    </div>
+  </EditorialStaticLayout>
+</BaseLayout>
+
+<script>
+  const STORAGE_KEY = 'deeper-admin-access-key';
+
+  const unlockSection = document.getElementById('admin-unlock');
+  const toolsSection = document.getElementById('admin-tools');
+  const accessInput = document.getElementById('admin-access-key');
+  const unlockBtn = document.getElementById('admin-unlock-btn');
+  const unlockStatus = document.getElementById('admin-unlock-status');
+  const actionStatus = document.getElementById('admin-action-status');
+  const output = document.getElementById('admin-output');
+  const outputContent = document.getElementById('admin-output-content');
+  const healthBtn = document.getElementById('admin-health-btn');
+  const dryRunBtn = document.getElementById('admin-dry-run-btn');
+  const applyBtn = document.getElementById('admin-apply-btn');
+  const lockBtn = document.getElementById('admin-lock-btn');
+
+  function getToken() {
+    return sessionStorage.getItem(STORAGE_KEY) ?? '';
+  }
+
+  function setToken(value) {
+    if (value) {
+      sessionStorage.setItem(STORAGE_KEY, value);
+    } else {
+      sessionStorage.removeItem(STORAGE_KEY);
+    }
+  }
+
+  function setStatus(el, message, kind = '') {
+    el.textContent = message;
+    el.classList.remove('is-error', 'is-ok');
+    if (kind) el.classList.add(kind);
+  }
+
+  function showTools(show) {
+    toolsSection.hidden = !show;
+    toolsSection.classList.toggle('admin-console-hidden', !show);
+    unlockSection.hidden = show;
+  }
+
+  function authHeaders() {
+    return {
+      Authorization: `Bearer ${getToken()}`,
+      'Content-Type': 'application/json',
+    };
+  }
+
+  function renderHealthTable(data) {
+    const rows = Object.entries(data)
+      .filter(([key]) => !['ok', 'checked_at'].includes(key))
+      .map(([name, meta]) => {
+        const flags = Object.entries(meta)
+          .filter(([key]) => !['exists', 'length'].includes(key))
+          .map(([key, value]) => `${key}: ${value}`)
+          .join(', ');
+        return `<tr>
+          <th scope="row">${name}</th>
+          <td>${meta.exists ? 'yes' : 'no'}</td>
+          <td>${meta.length ?? '—'}</td>
+          <td>${flags || '—'}</td>
+        </tr>`;
+      })
+      .join('');
+
+    return `<p><strong>Overall:</strong> ${data.ok ? 'ok' : 'degraded'} · checked ${data.checked_at}</p>
+      <table class="admin-console-table">
+        <thead>
+          <tr><th>Variable</th><th>Exists</th><th>Length</th><th>Checks</th></tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+  }
+
+  async function verifyConsoleUnlock(token) {
+    const response = await fetch('/api/admin/verify-console', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!response.ok) {
+      throw new Error(`Passphrase rejected (HTTP ${response.status}).`);
+    }
+    return response.json();
+  }
+
+  async function fetchHealth() {
+    const response = await fetch('/api/admin/health', {
+      headers: { Authorization: `Bearer ${getToken()}` },
+    });
+    if (!response.ok) {
+      throw new Error(`Health check failed (HTTP ${response.status}).`);
+    }
+    return response.json();
+  }
+
+  async function runPipeline(apply) {
+    const response = await fetch('/api/admin/run-visit-priority-pipeline', {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({ apply, rewriteOnlyUnstaged: false }),
+    });
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(body.error ?? `Pipeline failed (HTTP ${response.status}).`);
+    }
+    return body;
+  }
+
+  function showOutput(html) {
+    output.hidden = false;
+    output.classList.remove('admin-console-hidden');
+    outputContent.innerHTML = html;
+  }
+
+  unlockBtn?.addEventListener('click', async () => {
+    const token = accessInput?.value.trim() ?? '';
+    if (!token) {
+      setStatus(unlockStatus, 'Enter an access key.', 'is-error');
+      return;
+    }
+    unlockBtn.disabled = true;
+    setStatus(unlockStatus, 'Verifying…');
+    try {
+      await verifyConsoleUnlock(token);
+      setToken(token);
+      showTools(true);
+      setStatus(unlockStatus, '');
+    } catch (error) {
+      setStatus(unlockStatus, error instanceof Error ? error.message : 'Unlock failed.', 'is-error');
+    } finally {
+      unlockBtn.disabled = false;
+    }
+  });
+
+  lockBtn?.addEventListener('click', () => {
+    setToken('');
+    accessInput.value = '';
+    showTools(false);
+    output.hidden = true;
+    output.classList.add('admin-console-hidden');
+    setStatus(actionStatus, '');
+    setStatus(unlockStatus, 'Console locked.');
+  });
+
+  healthBtn?.addEventListener('click', async () => {
+    healthBtn.disabled = true;
+    setStatus(actionStatus, 'Fetching health…');
+    try {
+      const data = await fetchHealth();
+      showOutput(renderHealthTable(data));
+      setStatus(actionStatus, 'Health check complete.', 'is-ok');
+    } catch (error) {
+      setStatus(actionStatus, error instanceof Error ? error.message : 'Health check failed.', 'is-error');
+    } finally {
+      healthBtn.disabled = false;
+    }
+  });
+
+  dryRunBtn?.addEventListener('click', async () => {
+    dryRunBtn.disabled = true;
+    setStatus(actionStatus, 'Running dry pipeline…');
+    try {
+      const data = await runPipeline(false);
+      showOutput(`<pre>${JSON.stringify(data, null, 2)}</pre>`);
+      setStatus(actionStatus, 'Dry run complete.', 'is-ok');
+    } catch (error) {
+      setStatus(actionStatus, error instanceof Error ? error.message : 'Dry run failed.', 'is-error');
+    } finally {
+      dryRunBtn.disabled = false;
+    }
+  });
+
+  applyBtn?.addEventListener('click', async () => {
+    const confirmed = window.confirm(
+      'Apply inserts and rewrites to production? This writes draft rows and staging rewrites.'
+    );
+    if (!confirmed) return;
+
+    applyBtn.disabled = true;
+    setStatus(actionStatus, 'Running apply pipeline…');
+    try {
+      const data = await runPipeline(true);
+      showOutput(`<pre>${JSON.stringify(data, null, 2)}</pre>`);
+      setStatus(actionStatus, 'Apply pipeline complete.', 'is-ok');
+    } catch (error) {
+      setStatus(actionStatus, error instanceof Error ? error.message : 'Apply failed.', 'is-error');
+    } finally {
+      applyBtn.disabled = false;
+    }
+  });
+
+  const existing = getToken();
+  if (existing) {
+    verifyConsoleUnlock(existing)
+      .then(() => {
+        showTools(true);
+      })
+      .catch(() => {
+        setToken('');
+      });
+  }
+</script>

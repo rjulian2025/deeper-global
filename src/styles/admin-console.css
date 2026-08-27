@@ -1,0 +1,145 @@
+/* Admin console — editorial typography, outline controls only */
+.admin-console-page {
+  font-family: var(--font-sans);
+  color: var(--d-ink);
+  background: var(--d-page);
+}
+
+.admin-console-panel {
+  max-width: 42rem;
+}
+
+.admin-console-field {
+  display: grid;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.admin-console-field label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--d-muted);
+}
+
+.admin-console-field input {
+  width: 100%;
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--d-line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--d-ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+}
+
+.admin-console-field input:focus {
+  outline: 2px solid var(--d-heading);
+  outline-offset: 2px;
+}
+
+.admin-console-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: var(--space-8) 0 var(--space-6);
+}
+
+.admin-console-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0 1.125rem;
+  border: 1px solid var(--d-heading);
+  border-radius: 0;
+  background: transparent;
+  color: var(--d-heading);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.admin-console-btn:hover {
+  border-color: var(--d-ink);
+  color: var(--d-ink);
+}
+
+.admin-console-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.admin-console-btn--danger {
+  border-color: var(--d-muted);
+  color: var(--d-muted);
+}
+
+.admin-console-status {
+  margin: 0 0 var(--space-4);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--d-muted);
+}
+
+.admin-console-status.is-error {
+  color: #8b3a3a;
+}
+
+.admin-console-status.is-ok {
+  color: var(--d-ink);
+}
+
+.admin-console-output {
+  margin-top: var(--space-6);
+  padding: var(--space-4);
+  border: 1px solid var(--d-line);
+  background: transparent;
+  overflow-x: auto;
+}
+
+.admin-console-output pre {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.admin-console-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--space-4);
+  font-size: 0.875rem;
+}
+
+.admin-console-table th,
+.admin-console-table td {
+  padding: 0.5rem 0.625rem;
+  border-bottom: 1px solid var(--d-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.admin-console-table th {
+  font-weight: 500;
+  color: var(--d-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.admin-console-hidden {
+  display: none;
+}
+
+.admin-console-note {
+  margin: 0 0 var(--space-6);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--d-muted);
+}
