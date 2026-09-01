@@ -9,6 +9,7 @@ import {
   SITE_NAME,
   websiteId,
 } from '@/lib/site';
+import { getGaMeasurementId, robotsMetaContent, shouldLoadAnalytics } from '@/lib/site-env';
 
 const DEFAULT_OG_IMAGE_PATH = '/og/deeper-global-og-v2.png';
 const DEFAULT_OG_IMAGE_ALT =
@@ -34,6 +35,8 @@ type Props = {
   ogType?: 'website' | 'article';
   jsonLd?: Record<string, unknown>;
   noindex?: boolean;
+  /** Override robots meta (e.g. `noindex, nofollow` on 404). */
+  robots?: string;
   /** Pass true on design/prototype pages to suppress all GA4 tracking. */
   noAnalytics?: boolean;
   imagePath?: string;
@@ -49,6 +52,7 @@ const {
   ogType = 'website',
   jsonLd,
   noindex = false,
+  robots,
   noAnalytics = false,
   imagePath = DEFAULT_OG_IMAGE_PATH,
   imageAlt = DEFAULT_OG_IMAGE_ALT,
@@ -57,15 +61,18 @@ const {
 } = Astro.props;
 
 const isProdHost = PROD_HOSTS.has(Astro.url.hostname);
-const suppressAnalytics =
-  !isProdHost ||
-  noAnalytics ||
-  ANALYTICS_EXCLUDED_PREFIXES.some((prefix) => Astro.url.pathname.startsWith(prefix));
+const gaMeasurementId = getGaMeasurementId();
+const loadAnalytics =
+  shouldLoadAnalytics() &&
+  isProdHost &&
+  Boolean(gaMeasurementId) &&
+  !noAnalytics &&
+  !ANALYTICS_EXCLUDED_PREFIXES.some((prefix) => Astro.url.pathname.startsWith(prefix));
 
 const canonicalUrl = siteUrl(canonicalPath);
 const imageUrl = /^https?:\/\//i.test(imagePath) ? imagePath : siteUrl(imagePath);
-const GA_MEASUREMENT_ID = import.meta.env.NEXT_PUBLIC_GA_ID ?? 'G-VY56C15LGV';
 const INTENT_EVENT_ENDPOINT = import.meta.env.PUBLIC_INTENT_EVENT_ENDPOINT ?? '/api/intent-event';
+const resolvedRobots = robots ?? (noindex ? 'noindex,follow' : robotsMetaContent());
 const siteGraph = [
   {
     '@type': 'Organization',
@@ -114,7 +121,7 @@ const structuredData = {
     <meta name="theme-color" content="#0e1f33" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex,follow" />}
+    {resolvedRobots && <meta name="robots" content={resolvedRobots} />}
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -137,11 +144,11 @@ const structuredData = {
     <link rel="alternate" type="text/plain" href="/agents.txt" title="agents.txt" />
     <link rel="alternate" type="application/rss+xml" href="/feed.xml" title={`${SITE_NAME} RSS`} />
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
-    {!suppressAnalytics && (
+    {loadAnalytics && (
       <>
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
-        <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+        <script is:inline define:vars={{ gaMeasurementId }}>
           window.dataLayer = window.dataLayer || [];
           window.gtag = function gtag(){window.dataLayer.push(arguments);}
           // Obvious bots/headless browsers skip GA4 config so no page_view (and
@@ -150,7 +157,7 @@ const structuredData = {
           // Bots may still crawl (see robots.txt); they just are not counted.
           if (!/(bot|crawl|spider|slurp|headless|phantom|selenium|playwright|puppeteer|pingdom|uptime|monitor|bytespider|gptbot|claudebot|perplexitybot|ccbot|googlebot|bingbot|semrush|ahrefs|dotbot|petalbot|youbot|omgilibot|facebookbot|diffbot|applebot-extended)/i.test(navigator.userAgent)) {
             window.gtag('js', new Date());
-            window.gtag('config', GA_MEASUREMENT_ID, {
+            window.gtag('config', gaMeasurementId, {
               page_location: `${window.location.origin}${window.location.pathname}`,
               page_path: window.location.pathname,
             });
@@ -231,7 +238,7 @@ const structuredData = {
         </div>
       </footer>
     </div>
-    {!suppressAnalytics && <script is:inline define:vars={{ INTENT_EVENT_ENDPOINT }}>
+    {loadAnalytics && <script is:inline define:vars={{ INTENT_EVENT_ENDPOINT }}>
       (() => {
         // Obvious bots/headless browsers/crawlers are allowed to crawl (see
         // robots.txt) but must not be counted in GA4 or first-party intent
