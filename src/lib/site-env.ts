@@ -67,3 +67,8 @@ export function getGaMeasurementId(): string | null {
 export function shouldLoadAnalytics(): boolean {
   return resolveShouldLoadAnalytics(currentAnalyticsEnv());
 }
+
+export function getGoogleSiteVerification(): string | null {
+  const value = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
+  return value || null;
+}
