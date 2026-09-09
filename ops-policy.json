@@ -1,0 +1,15 @@
+{
+  "siteKind": "production",
+  "framework": "astro",
+  "publicPreview": true,
+  "analytics": "required",
+  "capabilities": {
+    "robots": true,
+    "sitemap": true,
+    "canonical": true,
+    "custom404": true,
+    "securityHeaders": true
+  },
+  "require404Nofollow": true,
+  "analyticsIgnorePaths": ["docs/**", "tests/**", "dist/**", "dist-*/**"]
+}

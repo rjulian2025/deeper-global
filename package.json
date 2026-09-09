@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "check": "astro build",
     "test": "node --test tests/*.test.mjs",
+    "validate:preview": "DIST_DIR=dist-preview node scripts/validate-preview-output.mjs",
     "audit:authority": "node scripts/audit-authority-data.mjs",
     "audit:data-integrity": "node scripts/audit-data-integrity.mjs",
     "db:apply-review-integrity": "node scripts/apply-review-integrity-migration.mjs",
