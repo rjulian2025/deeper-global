@@ -1,3 +1,0 @@
-# indexability-state: noindex
-User-agent: *
-Disallow: /
