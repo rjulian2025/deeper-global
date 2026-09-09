@@ -26,6 +26,7 @@ export default defineConfig({
       PUBLIC_GA_MEASUREMENT_ID: envField.string({ context: 'client', access: 'public', optional: true }),
       PUBLIC_GA4_MEASUREMENT_ID: envField.string({ context: 'client', access: 'public', optional: true }),
       NEXT_PUBLIC_GA_ID: envField.string({ context: 'client', access: 'public', optional: true }),
+      PUBLIC_GOOGLE_SITE_VERIFICATION: envField.string({ context: 'client', access: 'public', optional: true }),
     },
   },
   integrations: isIndexableBuild ? [sitemapIntegration] : [],

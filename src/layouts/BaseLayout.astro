@@ -9,7 +9,12 @@ import {
   SITE_NAME,
   websiteId,
 } from '@/lib/site';
-import { getGaMeasurementId, robotsMetaContent, shouldLoadAnalytics } from '@/lib/site-env';
+import {
+  getGaMeasurementId,
+  getGoogleSiteVerification,
+  robotsMetaContent,
+  shouldLoadAnalytics,
+} from '@/lib/site-env';
 
 const DEFAULT_OG_IMAGE_PATH = '/og/deeper-global-og-v2.png';
 const DEFAULT_OG_IMAGE_ALT =
@@ -62,6 +67,7 @@ const {
 
 const isProdHost = PROD_HOSTS.has(Astro.url.hostname);
 const gaMeasurementId = getGaMeasurementId();
+const googleSiteVerification = getGoogleSiteVerification();
 const loadAnalytics =
   shouldLoadAnalytics() &&
   isProdHost &&
@@ -122,6 +128,9 @@ const structuredData = {
     <title>{title}</title>
     <meta name="description" content={description} />
     {resolvedRobots && <meta name="robots" content={resolvedRobots} />}
+    {googleSiteVerification && (
+      <meta name="google-site-verification" content={googleSiteVerification} />
+    )}
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
