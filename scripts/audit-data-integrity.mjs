@@ -147,6 +147,7 @@ async function fetchAllQuestions(client) {
       .from('questions_master')
       .select(SELECT_COLUMNS)
       .order('created_at', { ascending: false })
+      .order('id', { ascending: true })
       .range(from, to);
     if (error) throw error;
     const page = data ?? [];
@@ -498,11 +499,12 @@ function detectSlugCollisions(questions) {
   const bySlug = new Map();
   for (const question of questions) {
     const slug = cleanText(question.slug);
-    const list = bySlug.get(slug) ?? [];
-    list.push(question.id);
-    bySlug.set(slug, list);
+    if (!slug) continue; // skip blank/null slugs
+    const idSet = bySlug.get(slug) ?? new Set();
+    idSet.add(question.id);
+    bySlug.set(slug, idSet);
   }
-  return [...bySlug.entries()].filter(([, ids]) => ids.length > 1);
+  return [...bySlug.entries()].filter(([, idSet]) => idSet.size > 1).map(([slug, idSet]) => [slug, [...idSet]]);
 }
 
 function crossReferencePromoteReports(questions, promoteReports, issues) {
@@ -668,6 +670,11 @@ async function main() {
   const issues = [];
   const addictionSlugs = loadAddictionSlugs();
   const promoteReports = loadPromoteReports();
+  const inputsLoaded = [];
+  if (existsSync(ADDICTION_REVIEW_REPORT)) inputsLoaded.push(ADDICTION_REVIEW_REPORT);
+  for (const dir of ['reports/enrichment-corpus/promote-updates', 'reports/enrichment-addiction/promote-updates']) {
+    if (existsSync(dir)) inputsLoaded.push(dir);
+  }
 
   const scoreDistribution = {};
   const tierCounts = {};
@@ -686,6 +693,19 @@ async function main() {
     reviewStatusCounts.set(status, (reviewStatusCounts.get(status) ?? 0) + 1);
 
     if (!status || INDEXABLE_REVIEW_STATUSES.has(status)) indexable += 1;
+  }
+
+  // Detect any pagination duplication of the same row id
+  const distinctIds = new Set(questions.map((q) => q.id));
+  if (distinctIds.size !== questions.length) {
+    addIssue(issues, {
+      id: 'pagination_duplicate_row',
+      severity: 'critical',
+      message: `Fetched ${questions.length} rows but ${distinctIds.size} distinct ids`,
+      slug: null,
+      field: 'id',
+      value: `${questions.length} vs ${distinctIds.size}`,
+    });
   }
 
   const slugCollisions = detectSlugCollisions(questions);
@@ -849,6 +869,7 @@ JSONB fields must be arrays when non-null.`;
       supabase_slugs: total,
       build_static_paths: total,
     },
+    inputs_loaded: inputsLoaded,
   };
 
   mkdirSync(OUT_DIR, { recursive: true });

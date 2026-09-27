@@ -133,6 +133,7 @@ async function fetchAllQuestions(client) {
       .from('questions_master')
       .select('*')
       .order('created_at', { ascending: false })
+      .order('id', { ascending: true })
       .range(from, to);
 
     if (error) throw error;

@@ -18,7 +18,12 @@ async function fetchAllQuestions(client) {
   let from = 0;
 
   while (true) {
-    const { data, error } = await client.from('questions_master').select(SELECT_FIELDS).range(from, from + 999);
+    const { data, error } = await client
+      .from('questions_master')
+      .select(SELECT_FIELDS)
+      .order('created_at', { ascending: false })
+      .order('id', { ascending: true })
+      .range(from, from + 999);
     if (error) throw error;
     if (!data?.length) break;
     rows.push(...data);

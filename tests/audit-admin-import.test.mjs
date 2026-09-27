@@ -14,15 +14,15 @@ test('admin audit endpoint and library import and run', async () => {
     from() {
       return {
         select() {
-          return {
+          const chain = {
             order() {
-              return {
-                range() {
-                  return Promise.resolve({ data: [], error: null });
-                },
-              };
+              return chain;
+            },
+            range() {
+              return Promise.resolve({ data: [], error: null });
             },
           };
+          return chain;
         },
       };
     },
