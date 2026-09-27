@@ -94,6 +94,7 @@ const siteGraph = [
     name: SITE_NAME,
     url: siteUrl(),
     logo: siteUrl('/favicon.svg'),
+    telephone: '+1-404-688-0088',
     description:
       "A rigorously reviewed repository of mental health questions and answers, built to be the world's most trusted source of mental health information.",
     founder: {
@@ -241,6 +242,7 @@ const structuredData = {
             <span class="nav-cta-full">Ask anything</span>
             <span class="nav-cta-short" aria-hidden="true">Ask</span>
           </a>
+          <a class="nav-call" href="tel:+14046880088" data-cta="call" aria-label="Call (404) 688-0088">(404) 688-0088</a>
         </nav>
       </header>
       <nav id="nav-drawer" class="nav-drawer" aria-label="Site navigation" aria-hidden="true">
@@ -269,6 +271,7 @@ const structuredData = {
             <a href="/developers/">Developers</a>
             <a href="/api-terms/">API terms</a>
             <a href="/privacy/">Privacy</a>
+            <a href="tel:+14046880088" data-cta="call" aria-label="Call (404) 688-0088">(404) 688-0088</a>
           </span>
         </div>
       </footer>
@@ -526,6 +529,11 @@ const structuredData = {
 
           if (link.matches('[data-cta="primary"]')) {
             window.deeperTrackEvent('primary_cta_clicked', {
+              ...landingUtm,
+            });
+          }
+          if (/^tel:\+14046880088$/i.test(href) || link.matches('[data-cta="call"]')) {
+            window.deeperTrackEvent('click_to_call', {
               ...landingUtm,
             });
           }
