@@ -98,6 +98,8 @@ async function main() {
   const bySlug = new Map();
   for (const row of rows) {
     const key = cleanText(row.slug);
+    // Skip null/blank slugs when grouping duplicates
+    if (!key) continue;
     const list = bySlug.get(key) ?? [];
     list.push(row);
     bySlug.set(key, list);

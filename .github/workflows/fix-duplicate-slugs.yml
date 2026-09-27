@@ -7,6 +7,9 @@ on:
     paths:
       - '.github/workflows/fix-duplicate-slugs.yml'
       - 'scripts/fix-duplicate-slugs.mjs'
+      - 'scripts/lib/duplicate-slug-fixer.mjs'
+      - 'api/admin/fix-duplicate-slugs.js'
+      - 'api/admin/audit-data-integrity.js'
   workflow_dispatch: {}
 
 jobs:
@@ -14,6 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      CRON_SECRET: ${{ secrets.CRON_SECRET }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
     steps:
       - uses: actions/checkout@v4
 
@@ -26,45 +34,136 @@ jobs:
         run: npm ci
 
       - name: Dry run (backup + plan + resolution)
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: node scripts/fix-duplicate-slugs.mjs
+        run: |
+          set -euo pipefail
+          mkdir -p tmp/dup-dry
+          if [ -n "${SUPABASE_SERVICE_ROLE_KEY:-}" ]; then
+            echo "Running local dry run via script..."
+            node scripts/fix-duplicate-slugs.mjs
+            # Ensure at least one backup file was written
+            cnt=$(ls -1 reports/data-integrity/backup-duplicate-slugs-*.json 2>/dev/null | wc -l | tr -d ' ')
+            if [ "$cnt" -lt 1 ]; then echo "No backup file found" >&2; exit 1; fi
+          else
+            if [ -z "${CRON_SECRET:-}" ]; then
+              echo "No SUPABASE_SERVICE_ROLE_KEY and no CRON_SECRET. Cannot proceed." >&2
+              exit 1
+            fi
+            echo "Polling https://www.deeper.global/api/admin/fix-duplicate-slugs for readiness..."
+            deadline=$(( $(date +%s) + 600 ))
+            while true; do
+              code=$(curl -sS -o /dev/null -w '%{http_code}' -L https://www.deeper.global/api/admin/fix-duplicate-slugs || echo "000")
+              if [ "$code" = "401" ] || [ "$code" = "405" ] || [ "$code" = "200" ]; then
+                echo "Endpoint live (HTTP $code)."
+                break
+              fi
+              now=$(date +%s)
+              if [ "$now" -ge "$deadline" ]; then
+                echo "Endpoint did not become ready within 10 minutes. Last code: $code" >&2
+                exit 1
+              fi
+              sleep 10
+            done
+            echo "Running remote dry run via admin endpoint..."
+            curl --fail-with-body -sS -X POST \
+              -H "Authorization: Bearer ${CRON_SECRET}" \
+              -H "Content-Type: application/json" \
+              --data '{"apply":false}' \
+              https://www.deeper.global/api/admin/fix-duplicate-slugs \
+              | tee tmp/dup-dry/admin-dry.json
+            jq -e '.backup_rows | length >= 0' tmp/dup-dry/admin-dry.json >/dev/null
+            planned=$(jq -r '.patches | length' tmp/dup-dry/admin-dry.json)
+            echo "Planned patches: ${planned}"
+            echo "${planned}" > tmp/dup-dry/planned-count.txt
+          fi
 
       - name: Upload dry-run artifacts
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: duplicate-fix-dry-run
           path: |
             reports/data-integrity/backup-duplicate-slugs-*.json
             reports/data-integrity/plan-duplicate-slugs-*.json
             reports/data-integrity/duplicate-resolution-*.json
+            tmp/dup-dry/admin-dry.json
+            tmp/dup-dry/planned-count.txt
           if-no-files-found: error
 
       - name: Apply duplicate fix (idempotent)
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: node scripts/fix-duplicate-slugs.mjs --apply
+        run: |
+          set -euo pipefail
+          mkdir -p tmp/dup-apply
+          # Determine dry-run planned count if available
+          planned=0
+          if [ -f tmp/dup-dry/planned-count.txt ]; then
+            planned=$(cat tmp/dup-dry/planned-count.txt)
+          elif ls -1 reports/data-integrity/plan-duplicate-slugs-*.json >/dev/null 2>&1; then
+            planned=$(jq -r '.duplicate_rows_total' reports/data-integrity/plan-duplicate-slugs-*.json | head -n1)
+          fi
+          echo "Planned count (from dry-run): ${planned}"
+          if [ "${planned}" = "0" ]; then
+            echo "No duplicates to apply. Skipping apply."
+            exit 0
+          fi
+          if [ -n "${SUPABASE_SERVICE_ROLE_KEY:-}" ]; then
+            echo "Running local apply..."
+            node scripts/fix-duplicate-slugs.mjs --apply
+          else
+            echo "Running remote apply via admin endpoint..."
+            curl --fail-with-body -sS -X POST \
+              -H "Authorization: Bearer ${CRON_SECRET}" \
+              -H "Content-Type: application/json" \
+              --data '{"apply":true}' \
+              https://www.deeper.global/api/admin/fix-duplicate-slugs \
+              | tee tmp/dup-apply/admin-apply.json
+            # Print apply result summary and verify all applied
+            applied=$(jq -r '.apply_results | map(select(.status=="applied")) | length' tmp/dup-apply/admin-apply.json)
+            notmod=$(jq -r '.apply_results | map(select(.status=="not_modified")) | length' tmp/dup-apply/admin-apply.json)
+            failed=$(jq -r '.apply_results | map(select(.status=="failed")) | length' tmp/dup-apply/admin-apply.json)
+            echo "Apply results: applied=${applied} not_modified=${notmod} failed=${failed}"
+            if [ "${applied}" != "${planned}" ] || [ "${notmod}" != "0" ] || [ "${failed}" != "0" ]; then
+              echo "Apply did not fully succeed (planned=${planned}, applied=${applied}, not_modified=${notmod}, failed=${failed})" >&2
+              exit 1
+            fi
+          fi
 
       - name: Re-run data integrity audit
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        run: npm run audit:data-integrity
+        run: |
+          set -euo pipefail
+          if [ -n "${SUPABASE_SERVICE_ROLE_KEY:-}" ]; then
+            npm run audit:data-integrity
+          else
+            echo "Running remote admin audit..."
+            mkdir -p tmp/post-audit
+            curl --fail-with-body -sS -H "Authorization: Bearer ${CRON_SECRET}" \
+              https://www.deeper.global/api/admin/audit-data-integrity \
+              | tee tmp/post-audit/admin-audit.json >/dev/null
+          fi
 
         # Upload post-apply evidence
-      - name: Upload audit artifacts
+      - name: Upload apply and audit artifacts
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: data-integrity-post-apply
           path: |
             reports/data-integrity/audit-2026-06-14.json
             reports/data-integrity/audit-2026-06-14.md
+            tmp/post-audit/admin-audit.json
+            tmp/dup-apply/admin-apply.json
           if-no-files-found: error
 
       - name: Fail if any criticals remain
         run: |
-          jq -e '.summary.issue_counts.critical == 0' reports/data-integrity/audit-2026-06-14.json >/dev/null
+          set -euo pipefail
+          if [ -n "${SUPABASE_SERVICE_ROLE_KEY:-}" ]; then
+            jq -e '.summary.issue_counts.critical == 0' reports/data-integrity/audit-2026-06-14.json >/dev/null
+          else
+            jq -e '.summary.issue_counts.critical == 0' tmp/post-audit/admin-audit.json >/dev/null
+          fi
           echo "Post-apply audit criticals = 0"
+      - name: Note redeploy requirement
+        if: success()
+        run: |
+          echo "NOTE: After successful apply, production redeploy is required to update static pages."
+          echo "No deploy hook is configured in this repo's workflows. Manual step: run 'npm run deploy:prod' from a trusted environment, or trigger a Vercel production deploy."

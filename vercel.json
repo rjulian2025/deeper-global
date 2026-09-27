@@ -22,6 +22,13 @@
     "api/admin/apply-clinical-attribution.js": {
       "maxDuration": 300
     },
+    "api/admin/fix-duplicate-slugs.js": {
+      "maxDuration": 300
+    },
+    "api/admin/audit-data-integrity.js": {
+      "maxDuration": 300,
+      "includeFiles": "{reports/review-updates/addiction-review-2026-03-13.json,reports/enrichment-corpus/promote-updates/**,reports/enrichment-addiction/promote-updates/**}"
+    },
     "api/cron/publish-approved.js": {
       "maxDuration": 30
     },
