@@ -1,0 +1,45 @@
+name: Build and Report Sitemap Count (one-shot)
+
+on:
+  push:
+    branches:
+      - cursor/audit-warnings-backfill-1017
+    paths:
+      - '.github/workflows/build-sitemap-count.yml'
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Build (production-like)
+        run: npm run build
+      - name: Count sitemap URLs
+        run: |
+          set -euo pipefail
+          node -e "const fs=require('fs'),p=require('path');const root='dist';const idx=p.join(root,'sitemap-index.xml');let total=0,parts=0;if(fs.existsSync(idx)){const index=fs.readFileSync(idx,'utf8');const locs=[...index.matchAll(/<loc>([^<]+)<\\/loc>/g)].map(m=>m[1]);parts=locs.length;for(const href of locs){const file=href.replace(/^https?:\\/\\/[^/]+\\//,'');const f=p.join(root,file);if(fs.existsSync(f)){const xml=fs.readFileSync(f,'utf8');total+=(xml.match(/<url>/g)||[]).length;}}}else{const sm=p.join(root,'sitemap.xml');if(fs.existsSync(sm)){const xml=fs.readFileSync(sm,'utf8');total=(xml.match(/<url>/g)||[]).length;parts=1;}}const out={generated_at:new Date().toISOString(),sitemaps:parts,total};console.log(JSON.stringify(out,null,2));fs.mkdirSync('reports/data-integrity',{recursive:true});fs.writeFileSync('reports/data-integrity/sitemap-count.json',JSON.stringify(out,null,2)+'\\n');"
+      - name: Commit sitemap count
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/data-integrity/sitemap-count.json
+          git commit -m "chore: add sitemap count report"
+          git push
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sitemap-count
+          path: reports/data-integrity/sitemap-count.json
+
