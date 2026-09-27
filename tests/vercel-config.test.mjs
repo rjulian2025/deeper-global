@@ -52,3 +52,15 @@ test('vercel.json preserves cron and function definitions', () => {
   assert.ok(vercel.crons?.length > 0);
   assert.ok(vercel.functions?.['api/cron/publish-approved.js']);
 });
+
+test('visit-priority pipeline functions include required JSON assets', () => {
+  const adminFn = vercel.functions?.['api/admin/run-visit-priority-pipeline.js'];
+  const cronFn = vercel.functions?.['api/cron/run-visit-priority-pipeline.js'];
+  assert.ok(adminFn, 'missing admin run-visit-priority function');
+  assert.ok(cronFn, 'missing cron run-visit-priority function');
+  for (const fn of [adminFn, cronFn]) {
+    assert.ok(Array.isArray(fn.includeFiles), 'includeFiles not configured');
+    assert.ok(fn.includeFiles.includes('reports/phase-1b/visit-priority/batch-25-drafts.json'));
+    assert.ok(fn.includeFiles.includes('reports/gsc-weekly/rewrite-batch-priority-4.json'));
+  }
+});

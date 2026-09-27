@@ -68,6 +68,11 @@ export default async function handler(req, res) {
       })
     );
   } catch (error) {
+    // Log detailed failure for diagnostics (message + stack)
+    console.error('visit_priority_pipeline_failed', {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+    });
     res.statusCode = 500;
     res.end(JSON.stringify({ error: error.message ?? 'Visit priority pipeline failed.' }));
   }

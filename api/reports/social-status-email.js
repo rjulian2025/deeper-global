@@ -82,9 +82,9 @@ async function fetchPipelineData() {
     }),
     // Posts that have failed
     supabaseQuery('social_posts', {
-      select: 'id,format,body,status,updated_at,question_id',
+      select: 'id,format,body,status,created_at,question_id',
       status: 'eq.failed',
-      order: 'updated_at.desc',
+      order: 'created_at.desc',
       limit: 20,
     }),
     // Next N approved posts in queue
@@ -239,7 +239,7 @@ function buildEmailHtml(data) {
     <p style="font-size:13px;color:#6b7280;margin:0 0 12px;">These posts could not be published. Review and re-approve or delete in Supabase.</p>
     <table style="width:100%;border-collapse:collapse;">
       ${data.recentlyFailed.map((p) => `<tr style="border-bottom:1px solid #fee2e2;">
-        <td style="padding:8px 12px 8px 0;color:#6b7280;white-space:nowrap;font-size:13px;">${esc(fmtShortDate(p.updated_at))}</td>
+        <td style="padding:8px 12px 8px 0;color:#6b7280;white-space:nowrap;font-size:13px;">${esc(fmtShortDate(p.created_at))}</td>
         <td style="padding:8px 0;font-size:13px;color:#374151;">${esc(truncate(p.body, 120))}</td>
       </tr>`).join('')}
     </table>`;
@@ -330,7 +330,7 @@ function buildEmailText(data) {
       ? [
           '',
           `--- Failed posts (${data.recentlyFailed.length}) ---`,
-          ...data.recentlyFailed.map((p) => `${fmtShortDate(p.updated_at)}: ${truncate(p.body, 80)}`),
+          ...data.recentlyFailed.map((p) => `${fmtShortDate(p.created_at)}: ${truncate(p.body, 80)}`),
         ]
       : []),
     '',
@@ -350,7 +350,8 @@ async function sendNotification(data) {
   const apiKey = (process.env.RESEND_API_KEY ?? '').trim();
   if (!apiKey) throw new Error('Missing RESEND_API_KEY.');
 
-  const from = (process.env.REPORT_EMAIL_FROM ?? 'alerts@therapistgps.com').trim();
+  // Unified Resend sender: default to verified domain if not configured
+  const from = (process.env.REPORT_EMAIL_FROM ?? 'Deeper Global <reports@mail.deeperwebsites.com>').trim();
   const to = (process.env.REPORT_EMAIL_TO ?? DEFAULT_REPORT_TO).trim();
 
   const dayLabel = new Date().toLocaleDateString('en-US', {

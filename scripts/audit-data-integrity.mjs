@@ -23,7 +23,36 @@ const OUT_DIR = 'reports/data-integrity';
 const OUT_JSON = `${OUT_DIR}/audit-2026-06-14.json`;
 const OUT_MD = `${OUT_DIR}/audit-2026-06-14.md`;
 const MIN_ANSWER_COUNT = 950;
-const PAGE_SIZE = 1000;
+// Keep page size conservative to avoid statement timeouts on Supabase
+const PAGE_SIZE = 500;
+// Only select the columns required by this audit to reduce payload and query cost
+const SELECT_COLUMNS = [
+  'id',
+  'slug',
+  'question',
+  'category',
+  'raw_category',
+  'short_answer',
+  'answer',
+  'improved_title',
+  'improved_meta_description',
+  'improved_summary',
+  'answer_sections',
+  'key_takeaways',
+  'care_note',
+  'related_questions',
+  'suggested_schema_question',
+  'suggested_schema_answer',
+  'primary_theme',
+  'related_themes',
+  'source_refs',
+  'content_prompt_version',
+  'content_enriched_at',
+  'review_status',
+  'reviewed_by',
+  'reviewed_at',
+  'created_at',
+].join(',');
 
 const VALID_REVIEW_STATUSES = new Set(['', 'draft', 'reviewed', 'approved', 'published', 'retired_duplicate']);
 const INDEXABLE_REVIEW_STATUSES = new Set(['approved', 'published', 'reviewed']);
@@ -101,7 +130,7 @@ async function fetchAllQuestions(client) {
     const to = from + PAGE_SIZE - 1;
     const { data, error } = await client
       .from('questions_master')
-      .select('*')
+      .select(SELECT_COLUMNS)
       .order('created_at', { ascending: false })
       .range(from, to);
     if (error) throw error;

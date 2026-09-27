@@ -63,6 +63,11 @@ export default async function handler(req, res) {
       triggered_by: req.headers['user-agent'] ?? null,
     });
   } catch (error) {
+    // Surface the failure in logs for observability (message + stack when available)
+    console.error('visit_priority_pipeline_failed', {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+    });
     return res.status(500).json({
       error: 'visit_priority_pipeline_failed',
       message: error instanceof Error ? error.message : String(error),

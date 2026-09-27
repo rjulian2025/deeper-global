@@ -1582,11 +1582,11 @@ function emailPayloadHash(payload) {
 
 async function sendEmail(report) {
   const apiKey = process.env.RESEND_API_KEY;
-  const from = cleanText(process.env.REPORT_EMAIL_FROM);
+  // Unified Resend sender: default to verified domain if not configured
+  const from = cleanText(process.env.REPORT_EMAIL_FROM, 'Deeper Global <reports@mail.deeperwebsites.com>');
   const to = cleanText(process.env.REPORT_EMAIL_TO, DEFAULT_REPORT_TO);
 
   if (!apiKey) throw new Error('Missing RESEND_API_KEY.');
-  if (!from) throw new Error('Missing REPORT_EMAIL_FROM.');
 
   const subject = `Deeper Global intent report — ${new Date().toISOString().slice(0, 10)}`;
   const payload = {
