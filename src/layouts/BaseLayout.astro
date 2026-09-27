@@ -307,10 +307,22 @@ const structuredData = {
             try { window.deeperTrackEvent(item.name, item.params || {}); } catch {}
           }
         };
-        // Fallback: if attribution never loads (blocked), flush after ~2s and on pagehide
+        // Fallback: if attribution never loads (blocked), send without attribution after ~2s and on pagehide
         try {
-          flushFallbackTimer = window.setTimeout(() => flushQueue(true), 2000);
-          window.addEventListener('pagehide', () => flushQueue(true), { once: true });
+          const giveUp = () => {
+            try {
+              window.__dgAttribution = () => ({});
+              window.__dgAttributionReady = true;
+              flushQueue(true);
+            } catch {}
+          };
+          flushFallbackTimer = window.setTimeout(giveUp, 2000);
+          window.addEventListener('pagehide', giveUp, { once: true });
+          // Allow attribution-init to clear timer and flush when ready
+          window.__dgOnAttributionReady = () => {
+            try { if (flushFallbackTimer) clearTimeout(flushFallbackTimer); } catch {}
+            flushQueue();
+          };
         } catch {}
 
         const clean = (value, maxLength = MAX_PARAM_LENGTH) => {
@@ -425,6 +437,18 @@ const structuredData = {
           }
         };
 
+        const currentAttribution = () => {
+          try { return (window.__dgAttribution && window.__dgAttribution()) || {}; } catch { return {}; }
+        };
+        const sendTrackedEventNow = (eventName, params, withoutAttribution = false) => {
+          const merged = withoutAttribution ? params : { ...currentAttribution(), ...params };
+          const compactedParams = compactParams(merged);
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', eventName, compactedParams);
+          }
+          sendFirstPartyIntentEvent(eventName, compactedParams);
+        };
+
         window.deeperTrackEvent = (eventName, params = {}) => {
           if (!window.__dgAttributionReady) {
             if (window.__dgEventQueue.length < MAX_QUEUE) {
@@ -432,14 +456,7 @@ const structuredData = {
             }
             return;
           }
-          // Merge stored attribution for GA4. Values are further cleaned below.
-          let attribution = {};
-          try { attribution = (window.__dgAttribution && window.__dgAttribution()) || {}; } catch {}
-          const compactedParams = compactParams({ ...attribution, ...params });
-          if (typeof window.gtag === 'function') {
-            window.gtag('event', eventName, compactedParams);
-          }
-          sendFirstPartyIntentEvent(eventName, compactedParams);
+          sendTrackedEventNow(eventName, params);
         };
 
         if (document.querySelector('.answer-layout')) {
