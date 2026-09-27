@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 /**
  * Expand critical issues into per-record occurrences using anon key.
+ * Reads the audit JSON to identify critical slugs, then queries Supabase
+ * to enumerate exact row ids.
  * Produces: reports/data-integrity/critical-expanded-YYYY-MM-DD.json
  */
-import { mkdirSync, writeFileSync, readdirSync, readFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { createClient } from '@supabase/supabase-js';
 import { cleanText, resolveSupabaseConfig } from './lib/content-enrichment-utils.mjs';
 
 const OUT_DIR = 'reports/data-integrity';
-const PAGE_SIZE = 1000;
+const AUDIT_JSON = join(OUT_DIR, 'audit-2026-06-14.json');
 
 function loadPromoteReports() {
   const dirs = ['reports/enrichment-corpus/promote-updates', 'reports/enrichment-addiction/promote-updates'];
@@ -27,46 +29,39 @@ function loadPromoteReports() {
   return reports;
 }
 
-async function fetchAll(client) {
-  const rows = [];
-  for (let from = 0; ; from += PAGE_SIZE) {
-    const { data, error } = await client
-      .from('questions_master')
-      .select('id,slug,content_enriched_at')
-      .order('created_at', { ascending: false })
-      .range(from, from + PAGE_SIZE - 1);
-    if (error) throw error;
-    const page = data ?? [];
-    rows.push(...page);
-    if (page.length < PAGE_SIZE) break;
-  }
-  return rows;
-}
-
-function duplicates(rows) {
-  const bySlug = new Map();
-  for (const row of rows) {
-    const key = cleanText(row.slug);
-    const list = bySlug.get(key) ?? [];
-    list.push(row);
-    bySlug.set(key, list);
-  }
-  return [...bySlug.entries()].filter(([, list]) => list.length > 1);
+async function fetchBySlug(client, slug) {
+  const { data, error } = await client.from('questions_master').select('id,slug,content_enriched_at').eq('slug', slug);
+  if (error) throw error;
+  return data ?? [];
 }
 
 async function main() {
   const { url, key } = resolveSupabaseConfig();
   const client = createClient(url, key, { auth: { persistSession: false } });
-  const rows = await fetchAll(client);
+  if (!existsSync(AUDIT_JSON)) {
+    console.log(`Audit JSON not found at ${AUDIT_JSON}; nothing to expand`);
+    return;
+  }
+  const audit = JSON.parse(readFileSync(AUDIT_JSON, 'utf8'));
+  const crits = Array.isArray(audit.critical_instances) ? audit.critical_instances : [];
+  const duplicateSlugs = Array.from(
+    new Set(
+      crits
+        .filter((c) => c.issue_id === 'duplicate_slug' && cleanText(c.slug))
+        .map((c) => cleanText(c.slug))
+    )
+  );
+  const missingPromote = crits
+    .filter((c) => c.issue_id === 'promote_slug_missing_in_db' && cleanText(c.slug))
+    .map((c) => cleanText(c.slug));
 
-  const duplicateGroups = duplicates(rows);
-  const bySlug = new Map(rows.map((r) => [r.slug, r]));
   const promoteReports = loadPromoteReports();
 
   const expanded = [];
 
-  for (const [slug, list] of duplicateGroups) {
-    for (const row of list) {
+  for (const slug of duplicateSlugs) {
+    const rows = await fetchBySlug(client, slug);
+    for (const row of rows) {
       expanded.push({
         issue_id: 'duplicate_slug',
         table: 'questions_master',
@@ -81,8 +76,7 @@ async function main() {
 
   for (const report of promoteReports) {
     for (const slug of report.slugs ?? []) {
-      const row = bySlug.get(slug);
-      if (!row) {
+      if (missingPromote.includes(slug)) {
         expanded.push({
           issue_id: 'promote_slug_missing_in_db',
           table: 'questions_master',
@@ -91,16 +85,6 @@ async function main() {
           field: 'slug',
           value: slug,
           explanation: `Promote report ${report.path} lists a slug that does not exist in the DB.`,
-        });
-      } else if (!cleanText(row.content_enriched_at)) {
-        expanded.push({
-          issue_id: 'promote_not_enriched_in_db',
-          table: 'questions_master',
-          id: row.id,
-          slug,
-          field: 'content_enriched_at',
-          value: null,
-          explanation: `Promote report ${report.path} lists this slug, but it lacks content_enriched_at in DB.`,
         });
       }
     }
