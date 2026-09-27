@@ -101,8 +101,14 @@ jobs:
           if [ -f tmp/dup-dry/planned-count.txt ]; then
             planned=$(cat tmp/dup-dry/planned-count.txt)
           elif compgen -G "reports/data-integrity/plan-duplicate-slugs-*.json" >/dev/null; then
-            firstPlan=$(ls reports/data-integrity/plan-duplicate-slugs-*.json | head -n1)
-            planned=$(jq -r '.duplicate_rows_total' "$firstPlan")
+            shopt -s nullglob
+            plans=(reports/data-integrity/plan-duplicate-slugs-*.json)
+            firstPlan="${plans[0]:-}"
+            if [ -n "${firstPlan}" ]; then
+              planned=$(jq -r '.duplicate_rows_total' "$firstPlan")
+            else
+              planned=0
+            fi
           fi
           echo "Planned count (from dry-run): ${planned}"
           if [ "${planned}" = "0" ]; then

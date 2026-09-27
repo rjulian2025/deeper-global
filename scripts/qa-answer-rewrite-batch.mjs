@@ -66,6 +66,7 @@ async function fetchAllStagedRows(supabase) {
       .is('staging_rewrite_error', null)
       .eq('staging_rewrite_prompt_version', ANSWER_REWRITE_PROMPT_VERSION)
       .order('slug', { ascending: true })
+      .order('id', { ascending: true })
       .range(offset, offset + pageSize - 1);
 
     if (error) throw new Error(error.message);

@@ -45,6 +45,8 @@ async function fetchAllQuestions(supabase) {
     const { data, error } = await supabase
       .from('questions_master')
       .select('id, slug, question, reviewed_by, reviewed_at, review_status')
+      .order('created_at', { ascending: false })
+      .order('id', { ascending: true })
       .range(from, from + PAGE_SIZE - 1);
     if (error) throw new Error(`Supabase fetch failed: ${error.message}`);
     if (!data || data.length === 0) break;

@@ -187,6 +187,7 @@ async function fetchAllQuestions(client) {
       .from('questions_master')
       .select(QUESTION_SELECT_COLUMNS)
       .order('slug', { ascending: true })
+      .order('id', { ascending: true })
       .range(from, from + pageSize - 1);
 
     if (error) throw error;
