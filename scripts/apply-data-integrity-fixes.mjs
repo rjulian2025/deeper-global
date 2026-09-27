@@ -85,6 +85,7 @@ async function fetchAllQuestions(client) {
       .from('questions_master')
       .select(SELECT_FIELDS)
       .order('slug')
+      .order('id', { ascending: true })
       .range(from, from + PAGE_SIZE - 1);
     if (error) throw error;
     const page = data ?? [];

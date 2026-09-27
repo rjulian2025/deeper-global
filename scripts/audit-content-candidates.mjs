@@ -184,6 +184,7 @@ async function fetchAllQuestions(client) {
       .from('questions_master')
       .select('id, question, slug, category, raw_category, review_status')
       .order('created_at', { ascending: false })
+      .order('id', { ascending: true })
       .range(from, to);
 
     if (error) throw error;
