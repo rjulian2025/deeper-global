@@ -19,10 +19,13 @@ function pickCanonical(rows) {
       const aEnriched = Boolean(cleanText(a.content_enriched_at));
       const bEnriched = Boolean(cleanText(b.content_enriched_at));
       if (aEnriched !== bEnriched) return bEnriched ? 1 : -1;
-      // Oldest created_at wins
-      const aTime = Date.parse(a.created_at);
-      const bTime = Date.parse(b.created_at);
-      return aTime - bTime;
+      // Oldest created_at wins (NaN-safe), then lowest id as tiebreaker
+      const aTime = Date.parse(a.created_at ?? '') || Number.POSITIVE_INFINITY;
+      const bTime = Date.parse(b.created_at ?? '') || Number.POSITIVE_INFINITY;
+      if (aTime !== bTime) return aTime - bTime;
+      const aId = String(a.id);
+      const bId = String(b.id);
+      return aId.localeCompare(bId);
     })[0];
 }
 

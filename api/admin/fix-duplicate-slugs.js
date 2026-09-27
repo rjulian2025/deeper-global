@@ -30,7 +30,7 @@ export default async function handler(req, res) {
 
   try {
     const body = await readJsonBody(req);
-    const apply = Boolean(body.apply);
+    const apply = body && body.apply === true;
     const supabase = createClient(url, serviceRoleKey, { auth: { persistSession: false } });
 
     const rows = await fetchAllQuestionsCompact(supabase);
@@ -53,7 +53,7 @@ export default async function handler(req, res) {
     };
 
     // If apply mode had any failures, return non-2xx to surface partial apply
-    if (apply && applied.some((r) => r.status === 'failed')) {
+    if (apply && applied.some((r) => r.status !== 'applied')) {
       res.statusCode = 500;
     } else {
       res.statusCode = 200;
