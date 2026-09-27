@@ -276,7 +276,8 @@ const structuredData = {
         </div>
       </footer>
     </div>
-    {loadAnalytics && <script is:inline define:vars={{ INTENT_EVENT_ENDPOINT }}>
+    {loadAnalytics && <script is:inline type="module" define:vars={{ INTENT_EVENT_ENDPOINT }}>
+      import { captureAttributionOnLanding, getAttributionParams } from '@/lib/attribution.mjs';
       (() => {
         // Obvious bots/headless browsers/crawlers are allowed to crawl (see
         // robots.txt) but must not be counted in GA4 or first-party intent
@@ -287,6 +288,11 @@ const structuredData = {
         const MAX_PARAM_LENGTH = 100;
         const sameHost = window.location.hostname;
         const path = window.location.pathname;
+
+        // Capture attribution context on every landing
+        try {
+          captureAttributionOnLanding(window.location, document.referrer);
+        } catch {}
 
         const clean = (value, maxLength = MAX_PARAM_LENGTH) => {
           if (typeof value !== 'string') return undefined;
@@ -401,7 +407,10 @@ const structuredData = {
         };
 
         window.deeperTrackEvent = (eventName, params = {}) => {
-          const compactedParams = compactParams(params);
+          // Merge stored attribution for GA4. Values are further cleaned below.
+          let attribution = {};
+          try { attribution = getAttributionParams(); } catch {}
+          const compactedParams = compactParams({ ...attribution, ...params });
           if (typeof window.gtag === 'function') {
             window.gtag('event', eventName, compactedParams);
           }
@@ -504,12 +513,11 @@ const structuredData = {
 
           const href = link.getAttribute('href') ?? '';
           const label = clean(link.textContent ?? '', 80);
-          const pageUtmParams = new URLSearchParams(window.location.search);
-          const landingUtm = {
-            utm_source: pageUtmParams.get('utm_source') ?? undefined,
-            utm_medium: pageUtmParams.get('utm_medium') ?? undefined,
-            utm_campaign: pageUtmParams.get('utm_campaign') ?? undefined,
-            utm_content: pageUtmParams.get('utm_content') ?? undefined,
+          const ctaLocationFromEl = (el) => {
+            if (el.closest('header')) return 'header';
+            if (el.closest('footer')) return 'footer';
+            if (el.closest('.site-nav-links, .nav-drawer-inner')) return 'nav';
+            return 'body';
           };
           const trackDeeperOutboundClick = (target, placement) => {
             const destinationDomain = target.hostname.replace(/^www\./, '');
@@ -529,12 +537,12 @@ const structuredData = {
 
           if (link.matches('[data-cta="primary"]')) {
             window.deeperTrackEvent('primary_cta_clicked', {
-              ...landingUtm,
+              cta_location: ctaLocationFromEl(link),
             });
           }
           if (/^tel:\+14046880088$/i.test(href) || link.matches('[data-cta="call"]')) {
             window.deeperTrackEvent('click_to_call', {
-              ...landingUtm,
+              cta_location: ctaLocationFromEl(link),
             });
           }
 

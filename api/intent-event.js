@@ -63,7 +63,10 @@ const ALLOWED_EVENTS = new Set([
   // Conversion/lead events
   'primary_cta_clicked',
   'generate_lead',
+  'lead_message_submit',
   'book_call',
+  // Calls are conversions in GA4 only; allow here for parity if we choose to log first-party later.
+  'click_to_call',
 ]);
 
 const ALLOWED_CONTENT_TYPES = new Set(['answer', 'category', 'entity', 'hub', 'policy', 'search', 'external_referral']);
