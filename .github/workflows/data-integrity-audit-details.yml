@@ -27,6 +27,7 @@ jobs:
       - name: Duplicate fix dry run (backup + plan + resolution)
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: node scripts/fix-duplicate-slugs.mjs
 
