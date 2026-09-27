@@ -350,7 +350,8 @@ async function sendNotification(data) {
   const apiKey = (process.env.RESEND_API_KEY ?? '').trim();
   if (!apiKey) throw new Error('Missing RESEND_API_KEY.');
 
-  const from = (process.env.REPORT_EMAIL_FROM ?? 'alerts@therapistgps.com').trim();
+  // Unified Resend sender: default to verified domain if not configured
+  const from = (process.env.REPORT_EMAIL_FROM ?? 'Deeper Global <reports@mail.deeperwebsites.com>').trim();
   const to = (process.env.REPORT_EMAIL_TO ?? DEFAULT_REPORT_TO).trim();
 
   const dayLabel = new Date().toLocaleDateString('en-US', {
