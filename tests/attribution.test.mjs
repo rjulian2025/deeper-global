@@ -25,7 +25,12 @@ test('attribution capture: first-touch always set; last-touch only on UTM landin
   const firstTouch = JSON.parse(firstDump[T.FIRST_TOUCH_KEY]);
   assert.equal(firstTouch.landing_page, '/answers/');
   assert.ok(firstTouch.first_seen_ts, 'first_seen_ts present');
-  assert.equal(sessionStorage.getItem(T.LAST_TOUCH_KEY), null, 'no last touch without UTMs');
+  // Last touch should also be set on external referrer even without UTMs
+  const ltAfterFirst = sessionStorage.getItem(T.LAST_TOUCH_KEY);
+  assert.ok(ltAfterFirst, 'last touch should be written when external referrer present');
+  const ltParsed = JSON.parse(ltAfterFirst);
+  assert.equal(ltParsed.referrer, 'www.google.com');
+  assert.equal(ltParsed.landing_page, '/answers/');
 
   // Second landing: with UTMs
   const url2 = 'https://www.deeper.global/answers/how-do-i-feel?utm_source=x&utm_medium=social&utm_campaign=social_question_only&utm_content=why-do-i-feel';
@@ -37,16 +42,13 @@ test('attribution capture: first-touch always set; last-touch only on UTM landin
   assert.equal(lastTouch.medium, 'social');
   assert.equal(lastTouch.campaign, 'social_question_only');
   assert.equal(lastTouch.content, 'why-do-i-feel');
-  assert.ok(
-    lastTouch.landing_page.startsWith('/answers/how-do-i-feel?utm_source=x&utm_medium=social&utm_campaign=social_question_only&utm_content='),
-    `landing_page should include UTM query, got: ${lastTouch.landing_page}`
-  );
+  assert.equal(lastTouch.landing_page, '/answers/how-do-i-feel', 'landing_page should be path only');
 
   // Combined GA4 params
   const at = getAttributionParams(storage);
   assert.equal(at.ft_source, undefined, 'first touch may lack UTM');
   assert.equal(at.lt_source, 'x');
-  assert.equal(at.referrer, 'https://www.google.com');
+  assert.equal(at.referrer, 'www.google.com');
   assert.ok(at.landing_page.startsWith('/answers/'));
 });
 

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="og-title og-desc">
+  <title id="og-title">Deeper Global mental health answers for private questions</title>
+  <desc id="og-desc">Typographic Open Graph card for deeper.global</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e1f33" />
+      <stop offset="55%" stop-color="#102a43" />
+      <stop offset="100%" stop-color="#163552" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <text x="72" y="92" fill="#a8cde8" font-family="Inter, sans-serif" font-size="18" font-weight="600" letter-spacing="3.2">THE QUESTIONS YOU ASK WHEN NO ONE IS LOOKING</text>
+  <text x="72" y="152" fill="#fffdf9" font-family="'Noto Serif Display', serif" font-size="54" font-weight="600" letter-spacing="-0.5">
+    <tspan x="72" y="152">Mental health answers</tspan>
+    <tspan x="72" y="210">worth asking</tspan>
+  </text>
+  <text x="72" y="318" fill="rgba(255,253,249,0.72)" font-family="Inter, sans-serif" font-size="24" font-weight="400">
+    <tspan x="72" y="318">Expert-vetted mental health answers for questions</tspan>
+    <tspan x="72" y="352">too personal, too tangled, or too hard to ask out loud.</tspan>
+  </text>
+  <text x="72" y="572" fill="#a8cde8" font-family="Inter, sans-serif" font-size="22" font-weight="500" letter-spacing="0.4">deeper.global</text>
+  <text x="1128" y="572" text-anchor="end" fill="rgba(255,253,249,0.48)" font-family="Inter, sans-serif" font-size="18" font-weight="500" letter-spacing="2.4">DEEPER GLOBAL</text>
+</svg>

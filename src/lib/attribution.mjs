@@ -13,11 +13,24 @@
 const FIRST_TOUCH_KEY = 'dg_attribution_ft';
 const LAST_TOUCH_KEY = 'dg_attribution_lt';
 const MAX_VALUE_LEN = 100;
+const INTERNAL_HOSTS = new Set(['deeper.global', 'www.deeper.global']);
 
 function safeTruncate(value, max = MAX_VALUE_LEN) {
   if (typeof value !== 'string') return undefined;
   const trimmed = value.replace(/\s+/g, ' ').trim();
   return trimmed ? trimmed.slice(0, max) : undefined;
+}
+
+function hostFromReferrer(referrer) {
+  if (!referrer) return undefined;
+  try {
+    const u = new URL(referrer);
+    const host = u.hostname || undefined;
+    if (host && !INTERNAL_HOSTS.has(host)) return host;
+    return undefined; // ignore internal referrers
+  } catch {
+    return undefined;
+  }
 }
 
 function extractFromLocation(locationLike) {
@@ -42,7 +55,8 @@ function extractFromLocation(locationLike) {
       content: safeTruncate(urlSearch.get('utm_content') ?? undefined),
       term: safeTruncate(urlSearch.get('utm_term') ?? undefined),
       gclid: safeTruncate(gclid ?? undefined),
-      landing_page: safeTruncate(`${pathname}${search}`.slice(0, MAX_VALUE_LEN)),
+      // path only (no query) to avoid leaking PII
+      landing_page: safeTruncate(`${pathname}`.slice(0, MAX_VALUE_LEN)),
     },
   };
 }
@@ -59,6 +73,7 @@ function extractFromLocation(locationLike) {
 export function captureAttributionOnLanding(locationLike, referrer, storageOverride = {}) {
   try {
     const { hasUtm, params } = extractFromLocation(locationLike);
+    const refHost = hostFromReferrer(referrer);
     const local = storageOverride.localStorage ?? (typeof window !== 'undefined' ? window.localStorage : undefined);
     const session = storageOverride.sessionStorage ?? (typeof window !== 'undefined' ? window.sessionStorage : undefined);
     if (!local || !session) return;
@@ -68,16 +83,19 @@ export function captureAttributionOnLanding(locationLike, referrer, storageOverr
     if (!firstTouchExisting) {
       const firstTouch = {
         ...params,
-        referrer: safeTruncate(referrer ?? ''),
+        referrer: safeTruncate(refHost ?? ''),
         first_seen_ts: nowIso,
       };
       local.setItem(FIRST_TOUCH_KEY, JSON.stringify(firstTouch));
     }
 
-    if (hasUtm) {
+    // Update last touch when:
+    // - UTMs/gclid are present, OR
+    // - An external referrer (non-internal) arrives even without UTMs
+    if (hasUtm || refHost) {
       const lastTouch = {
         ...params,
-        referrer: safeTruncate(referrer ?? ''),
+        referrer: safeTruncate(refHost ?? ''),
       };
       session.setItem(LAST_TOUCH_KEY, JSON.stringify(lastTouch));
     }
