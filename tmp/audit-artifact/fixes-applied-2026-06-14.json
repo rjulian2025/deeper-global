@@ -1,0 +1,294 @@
+{
+  "generated_at": "2026-06-14T02:20:46.262Z",
+  "mode": "apply",
+  "summary": {
+    "kenneth_promotions": {
+      "planned": 0,
+      "expected_from_kenneth_report": 42,
+      "applied": 0
+    },
+    "duplicate_demotions": {
+      "planned": 8,
+      "applied": 8
+    },
+    "related_question_backfill": {
+      "planned": 0,
+      "applied": 0
+    },
+    "addiction_prompt_fixes": {
+      "planned": 0,
+      "applied": 0
+    }
+  },
+  "kenneth_promotions": [],
+  "duplicate_demotions": [
+    {
+      "id": "d8c4ea75-b7f8-4e22-9c1f-fa6cb5ef230e",
+      "slug": "why-do-i-feel-empty-even-when-my-life-looks-177941-018",
+      "canonical": "why-do-i-feel-empty-even-when-my-life-looks-good-on-paper-t2u3v4",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "citation_notes": "Legacy answer enrichment promotion. Duplicate of canonical slug why-do-i-feel-empty-even-when-my-life-looks-good-on-paper-t2u3v4; demoted to draft for redirect consolidation.",
+      "previous": {
+        "review_status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "citation_notes": "Legacy answer enrichment promotion. Duplicate of canonical slug why-do-i-feel-empty-even-when-my-life-looks-good-on-paper-t2u3v4; demoted to draft for redirect consolidation."
+      }
+    },
+    {
+      "id": "ea431c76-38ea-4df7-a7fb-ad3cbf115616",
+      "slug": "why-do-i-feel-so-lonely-even-when-im-surrounded-by-people-p7q8r9",
+      "canonical": "why-do-i-feel-so-lonely-even-when-im-surrounded-by-people",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "citation_notes": "Legacy answer enrichment promotion. Draft notes: Duplicate question variant with different slug; cross-link non-suffixed slug. Duplicate of canonical slug why-do-i-feel-so-lonely-even-when-im-surrounded-by-people; demoted to draft for redirect consolidation.",
+      "previous": {
+        "review_status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "citation_notes": "Legacy answer enrichment promotion. Draft notes: Duplicate question variant with different slug; cross-link non-suffixed slug. Duplicate of canonical slug why-do-i-feel-so-lonely-even-when-im-surrounded-by-people; demoted to draft for redirect consolidation."
+      }
+    },
+    {
+      "id": "bcbf383b-a50d-4c5c-b337-225945327456",
+      "slug": "why-do-i-feel-like-im-pretending-to-be-s-177940-018",
+      "canonical": "why-do-i-feel-like-im-pretending-to-be-someone-im-not-r8s9t1",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "citation_notes": "Legacy answer enrichment promotion. Draft notes: Duplicate question variant with different slug; cross-link r8s9t1 slug. Duplicate of canonical slug why-do-i-feel-like-im-pretending-to-be-someone-im-not-r8s9t1; demoted to draft for redirect consolidation.",
+      "previous": {
+        "review_status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "citation_notes": "Legacy answer enrichment promotion. Draft notes: Duplicate question variant with different slug; cross-link r8s9t1 slug. Duplicate of canonical slug why-do-i-feel-like-im-pretending-to-be-someone-im-not-r8s9t1; demoted to draft for redirect consolidation."
+      }
+    },
+    {
+      "id": "5250a012-c71c-402c-949f-efa8e1dd1591",
+      "slug": "how-do-i-stop-overthinking-every-conversation-i-have-e5f6g7",
+      "canonical": "how-do-i-stop-overthinking-every-conversation-i-have",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "citation_notes": "Legacy answer enrichment promotion. Draft notes: Anxiety & Stress category duplicate slug; emphasize loop-breaking and mindfulness framing. Duplicate of canonical slug how-do-i-stop-overthinking-every-conversation-i-have; demoted to draft for redirect consolidation.",
+      "previous": {
+        "review_status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "citation_notes": "Legacy answer enrichment promotion. Draft notes: Anxiety & Stress category duplicate slug; emphasize loop-breaking and mindfulness framing. Duplicate of canonical slug how-do-i-stop-overthinking-every-conversation-i-have; demoted to draft for redirect consolidation."
+      }
+    },
+    {
+      "id": "93205f1f-5ea1-4183-8cb0-8f8e7e7e9932",
+      "slug": "why-do-i-feel-like-im-failing-at-everyth-177940-030",
+      "canonical": "why-do-i-feel-like-im-failing-at-everything-b2c3d4",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "citation_notes": "Legacy answer enrichment promotion. Duplicate of canonical slug why-do-i-feel-like-im-failing-at-everything-b2c3d4; demoted to draft for redirect consolidation.",
+      "previous": {
+        "review_status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "citation_notes": "Legacy answer enrichment promotion. Duplicate of canonical slug why-do-i-feel-like-im-failing-at-everything-b2c3d4; demoted to draft for redirect consolidation."
+      }
+    },
+    {
+      "id": "f518b6b2-748a-4743-bb64-bf8be299d1dd",
+      "slug": "why-do-i-feel-guilty-when-im-happy-177941-002",
+      "canonical": "why-do-i-feel-guilty-when-im-happy-i8j9k1",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "citation_notes": "Legacy answer enrichment promotion. Draft notes: Verify survivor guilt examples feel inclusive; confirm no trauma therapy modality over-promises. Duplicate of canonical slug why-do-i-feel-guilty-when-im-happy-i8j9k1; demoted to draft for redirect consolidation.",
+      "previous": {
+        "review_status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "citation_notes": "Legacy answer enrichment promotion. Draft notes: Verify survivor guilt examples feel inclusive; confirm no trauma therapy modality over-promises. Duplicate of canonical slug why-do-i-feel-guilty-when-im-happy-i8j9k1; demoted to draft for redirect consolidation."
+      }
+    },
+    {
+      "id": "7a92528a-d067-4206-8f7f-3dab088c9b9d",
+      "slug": "how-do-i-stop-feeling-guilty-about-setti-177940-013",
+      "canonical": "how-do-i-stop-feeling-guilty-about-setting-boundaries-q8r9s1",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "citation_notes": "Legacy answer enrichment promotion. Duplicate of canonical slug how-do-i-stop-feeling-guilty-about-setting-boundaries-q8r9s1; demoted to draft for redirect consolidation.",
+      "previous": {
+        "review_status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "citation_notes": "Legacy answer enrichment promotion. Duplicate of canonical slug how-do-i-stop-feeling-guilty-about-setting-boundaries-q8r9s1; demoted to draft for redirect consolidation."
+      }
+    },
+    {
+      "id": "c60a8c48-4bcf-46c0-be54-f494788351cd",
+      "slug": "how-do-i-find-motivation-when-im-depress-190648-011",
+      "canonical": "how-do-i-find-motivation-when-im-depressed-z8a9b1",
+      "review_status": "draft",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "citation_notes": "Legacy answer enrichment promotion. Draft notes: Duplicate question variant; distinct slug preserved. Duplicate of canonical slug how-do-i-find-motivation-when-im-depressed-z8a9b1; demoted to draft for redirect consolidation.",
+      "previous": {
+        "review_status": "draft",
+        "reviewed_by": null,
+        "reviewed_at": null,
+        "citation_notes": "Legacy answer enrichment promotion. Draft notes: Duplicate question variant; distinct slug preserved. Duplicate of canonical slug how-do-i-find-motivation-when-im-depressed-z8a9b1; demoted to draft for redirect consolidation."
+      }
+    }
+  ],
+  "related_question_backfill": [],
+  "addiction_prompt_fixes": [
+    {
+      "slug": "can-using-ai-for-emotional-support-become-addictive",
+      "skipped": true,
+      "reason": "already correct"
+    },
+    {
+      "slug": "is-it-normal-to-feel-bored-or-empty-after-getting-sober",
+      "skipped": true,
+      "reason": "already correct"
+    },
+    {
+      "slug": "what-should-i-do-after-a-relapse-in-recovery",
+      "skipped": true,
+      "reason": "already correct"
+    },
+    {
+      "slug": "support-someone-with-addiction-without-enabling",
+      "skipped": true,
+      "reason": "already correct"
+    },
+    {
+      "slug": "when-to-seek-professional-help-for-substance-use",
+      "skipped": true,
+      "reason": "already correct"
+    }
+  ],
+  "apply_results": {
+    "kenneth_promotions": [],
+    "duplicate_demotions": [
+      {
+        "slug": "why-do-i-feel-empty-even-when-my-life-looks-177941-018",
+        "applied": true,
+        "skipped": false
+      },
+      {
+        "slug": "why-do-i-feel-so-lonely-even-when-im-surrounded-by-people-p7q8r9",
+        "applied": true,
+        "skipped": false
+      },
+      {
+        "slug": "why-do-i-feel-like-im-pretending-to-be-s-177940-018",
+        "applied": true,
+        "skipped": false
+      },
+      {
+        "slug": "how-do-i-stop-overthinking-every-conversation-i-have-e5f6g7",
+        "applied": true,
+        "skipped": false
+      },
+      {
+        "slug": "why-do-i-feel-like-im-failing-at-everyth-177940-030",
+        "applied": true,
+        "skipped": false
+      },
+      {
+        "slug": "why-do-i-feel-guilty-when-im-happy-177941-002",
+        "applied": true,
+        "skipped": false
+      },
+      {
+        "slug": "how-do-i-stop-feeling-guilty-about-setti-177940-013",
+        "applied": true,
+        "skipped": false
+      },
+      {
+        "slug": "how-do-i-find-motivation-when-im-depress-190648-011",
+        "applied": true,
+        "skipped": false
+      }
+    ],
+    "related_question_backfill": [],
+    "addiction_prompt_fixes": [
+      {
+        "slug": "can-using-ai-for-emotional-support-become-addictive",
+        "applied": false,
+        "skipped": true,
+        "reason": "already correct"
+      },
+      {
+        "slug": "is-it-normal-to-feel-bored-or-empty-after-getting-sober",
+        "applied": false,
+        "skipped": true,
+        "reason": "already correct"
+      },
+      {
+        "slug": "what-should-i-do-after-a-relapse-in-recovery",
+        "applied": false,
+        "skipped": true,
+        "reason": "already correct"
+      },
+      {
+        "slug": "support-someone-with-addiction-without-enabling",
+        "applied": false,
+        "skipped": true,
+        "reason": "already correct"
+      },
+      {
+        "slug": "when-to-seek-professional-help-for-substance-use",
+        "applied": false,
+        "skipped": true,
+        "reason": "already correct"
+      }
+    ]
+  },
+  "vercel_redirects": [
+    {
+      "source": "/answers/why-do-i-feel-empty-even-when-my-life-looks-177941-018",
+      "destination": "/answers/why-do-i-feel-empty-even-when-my-life-looks-good-on-paper-t2u3v4/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-so-lonely-even-when-im-surrounded-by-people-p7q8r9",
+      "destination": "/answers/why-do-i-feel-so-lonely-even-when-im-surrounded-by-people/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-like-im-pretending-to-be-s-177940-018",
+      "destination": "/answers/why-do-i-feel-like-im-pretending-to-be-someone-im-not-r8s9t1/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-stop-overthinking-every-conversation-i-have-e5f6g7",
+      "destination": "/answers/how-do-i-stop-overthinking-every-conversation-i-have/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-like-im-failing-at-everyth-177940-030",
+      "destination": "/answers/why-do-i-feel-like-im-failing-at-everything-b2c3d4/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/why-do-i-feel-guilty-when-im-happy-177941-002",
+      "destination": "/answers/why-do-i-feel-guilty-when-im-happy-i8j9k1/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-stop-feeling-guilty-about-setti-177940-013",
+      "destination": "/answers/how-do-i-stop-feeling-guilty-about-setting-boundaries-q8r9s1/",
+      "permanent": true
+    },
+    {
+      "source": "/answers/how-do-i-find-motivation-when-im-depress-190648-011",
+      "destination": "/answers/how-do-i-find-motivation-when-im-depressed-z8a9b1/",
+      "permanent": true
+    }
+  ]
+}
