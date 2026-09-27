@@ -1,0 +1,1277 @@
+{
+  "generated_at": "2026-09-27T17:54:33.814Z",
+  "summary": {
+    "ADHD": 19,
+    "Imago": 2,
+    "SpiritualityMeaning": 12,
+    "Other": 8,
+    "total": 41
+  },
+  "count": 41,
+  "plan": {
+    "how-do-i-tell-my-partner-im-no-longer-religious": {
+      "before": [
+        "How do I explain my spiritual journey to family who still believe?",
+        "What do I do when my family rejects me for changing my beliefs?",
+        "How do I respect my family's faith while I no longer believe?"
+      ],
+      "dropped_unresolvable": [
+        "How do I explain my spiritual journey to family who still believe?",
+        "What do I do when my family rejects me for changing my beliefs?"
+      ],
+      "added": [
+        {
+          "slug": "how-do-i-make-new-friends-after-leaving-my-church",
+          "question": "How do I make new friends after leaving my church or religious community?",
+          "score": 8
+        },
+        {
+          "slug": "is-it-normal-to-grieve-the-loss-of-my-faith-like-a-death",
+          "question": "Is it normal to grieve the loss of my faith like a death?",
+          "score": 8
+        },
+        {
+          "slug": "why-am-i-questioning-all-my-beliefs-in-midlife",
+          "question": "Why am I questioning all my beliefs in midlife?",
+          "score": 8
+        },
+        {
+          "slug": "can-ai-make-religious-or-spiritual-confusion-worse",
+          "question": "Can AI make religious or spiritual confusion worse?",
+          "score": 5
+        }
+      ],
+      "after": [
+        "How do I respect my family's faith while I no longer believe?",
+        "How do I make new friends after leaving my church or religious community?",
+        "Is it normal to grieve the loss of my faith like a death?",
+        "Why am I questioning all my beliefs in midlife?",
+        "Can AI make religious or spiritual confusion worse?"
+      ],
+      "category": "Spiritual Doubt"
+    },
+    "what-is-existentialism-and-can-it-help-when-life-feels-meaningless": {
+      "before": [
+        "Is it normal to have existential thoughts?",
+        "Why do I feel like life has no meaning or purpose?",
+        "How do I find meaning in life when everything feels pointless?"
+      ],
+      "dropped_unresolvable": [
+        "Is it normal to have existential thoughts?"
+      ],
+      "added": [
+        {
+          "slug": "why-does-achieving-my-goals-leave-me-feeling-empty",
+          "question": "Why does achieving my goals leave me feeling empty instead of fulfilled?",
+          "score": 8
+        },
+        {
+          "slug": "is-it-normal-to-have-existential-thought-181083-046",
+          "question": "Is it normal to have existential thoughts when I can't sleep?",
+          "score": 5
+        },
+        {
+          "slug": "why-do-i-feel-spiritually-empty-despite-having-n8o2p5",
+          "question": "Why do I feel spiritually empty despite having everything I thought I wanted?",
+          "score": 5
+        }
+      ],
+      "after": [
+        "Why do I feel like life has no meaning or purpose?",
+        "How do I find meaning in life when everything feels pointless?",
+        "Why does achieving my goals leave me feeling empty instead of fulfilled?",
+        "Is it normal to have existential thoughts when I can't sleep?",
+        "Why do I feel spiritually empty despite having everything I thought I wanted?"
+      ],
+      "category": "Existential"
+    },
+    "is-it-okay-if-i-never-find-a-single-life-purpose": {
+      "before": [
+        "How do I find my purpose when nothing feels meaningful anymore?",
+        "What do I do when I feel like giving up on my dreams?",
+        "What is existentialism and can it help when life feels meaningless?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-ai-make-me-feel-like-my-creativity-does-not-matter",
+          "question": "Can AI make me feel like my creativity does not matter?",
+          "score": 11
+        },
+        {
+          "slug": "how-do-i-cope-with-being-laid-off-due-to-ai-automation",
+          "question": "How do I cope with being laid off due to AI automation?",
+          "score": 11
+        }
+      ],
+      "after": [
+        "How do I find my purpose when nothing feels meaningful anymore?",
+        "What do I do when I feel like giving up on my dreams?",
+        "What is existentialism and can it help when life feels meaningless?",
+        "Can AI make me feel like my creativity does not matter?",
+        "How do I cope with being laid off due to AI automation?"
+      ],
+      "category": "Life Purpose"
+    },
+    "how-do-i-build-a-personal-spiritual-practice-outside-organized-religion": {
+      "before": [
+        "Can I still be spiritual without being religious?",
+        "How do I find meaning in life when traditional religion no longer fits?",
+        "What does it mean to have a spiritual awakening?"
+      ],
+      "dropped_unresolvable": [
+        "How do I find meaning in life when traditional religion no longer fits?"
+      ],
+      "added": [
+        {
+          "slug": "can-ai-make-religious-or-spiritual-confusion-worse",
+          "question": "Can AI make religious or spiritual confusion worse?",
+          "score": 5
+        },
+        {
+          "slug": "can-life-be-meaningful-without-believing-in-god",
+          "question": "Can life be meaningful without believing in God?",
+          "score": 5
+        },
+        {
+          "slug": "how-do-i-cope-with-losing-my-faith-181083-031",
+          "question": "How do I cope with losing my faith?",
+          "score": 5
+        }
+      ],
+      "after": [
+        "Can I still be spiritual without being religious?",
+        "What does it mean to have a spiritual awakening?",
+        "Can AI make religious or spiritual confusion worse?",
+        "Can life be meaningful without believing in God?",
+        "How do I cope with losing my faith?"
+      ],
+      "category": "Spiritual Doubt"
+    },
+    "why-am-i-questioning-all-my-beliefs-in-midlife": {
+      "before": [
+        "What is faith deconstruction and how is it different from a crisis of faith?",
+        "How do I find meaning when I no longer believe what I was taught?",
+        "How do I respect my family's faith while I no longer believe?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "how-do-i-explain-my-spiritual-journey-to-181083-041",
+          "question": "How do I explain my spiritual journey to others?",
+          "score": 8
+        },
+        {
+          "slug": "how-do-i-handle-religious-holidays-after-181083-038",
+          "question": "How do I handle religious holidays after losing my faith?",
+          "score": 8
+        }
+      ],
+      "after": [
+        "What is faith deconstruction and how is it different from a crisis of faith?",
+        "How do I find meaning when I no longer believe what I was taught?",
+        "How do I respect my family's faith while I no longer believe?",
+        "How do I explain my spiritual journey to others?",
+        "How do I handle religious holidays after losing my faith?"
+      ],
+      "category": "Spiritual Doubt"
+    },
+    "what-is-faith-deconstruction-and-how-is-it-different-from-a-crisis-of-faith": {
+      "before": [
+        "What do I do when I'm losing faith in everything I was taught?",
+        "Why am I questioning all my beliefs in midlife?",
+        "How do I find meaning when I no longer believe what I was taught?"
+      ],
+      "dropped_unresolvable": [
+        "What do I do when I'm losing faith in everything I was taught?"
+      ],
+      "added": [
+        {
+          "slug": "how-do-i-cope-with-losing-my-faith-181083-031",
+          "question": "How do I cope with losing my faith?",
+          "score": 16
+        },
+        {
+          "slug": "can-ai-make-religious-or-spiritual-confusion-worse",
+          "question": "Can AI make religious or spiritual confusion worse?",
+          "score": 13
+        },
+        {
+          "slug": "how-do-i-handle-religious-holidays-after-181083-038",
+          "question": "How do I handle religious holidays after losing my faith?",
+          "score": 13
+        }
+      ],
+      "after": [
+        "Why am I questioning all my beliefs in midlife?",
+        "How do I find meaning when I no longer believe what I was taught?",
+        "How do I cope with losing my faith?",
+        "Can AI make religious or spiritual confusion worse?",
+        "How do I handle religious holidays after losing my faith?"
+      ],
+      "category": "Spiritual Doubt"
+    },
+    "how-do-believers-make-sense-of-suffering-if-god-is-loving": {
+      "before": [
+        "Why do bad things happen to good people?",
+        "Is it normal to feel angry at God or religion?",
+        "Can religious trauma be real even if nothing \"bad\" happened?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "what-do-i-do-when-im-losing-faith-in-everything-i--186602-023",
+          "question": "What do I do when I'm losing faith in everything I used to believe?",
+          "score": 13
+        },
+        {
+          "slug": "am-i-becoming-too-dependent-on-ai-to-make-decision-189142-016",
+          "question": "Am I becoming too dependent on AI to make decisions at work?",
+          "score": 8
+        }
+      ],
+      "after": [
+        "Why do bad things happen to good people?",
+        "Is it normal to feel angry at God or religion?",
+        "Can religious trauma be real even if nothing 'bad' happened?",
+        "What do I do when I'm losing faith in everything I used to believe?",
+        "Am I becoming too dependent on AI to make decisions at work?"
+      ],
+      "category": "Spiritual Struggle / Existential Crisis"
+    },
+    "how-do-i-talk-to-my-children-about-death-without-an-afterlife": {
+      "before": [
+        "How do I live with knowing everyone I love will die someday?",
+        "How do I cope with the fear that death means complete annihilation?",
+        "How do I respect my family's faith while I no longer believe?"
+      ],
+      "dropped_unresolvable": [
+        "How do I cope with the fear that death means complete annihilation?"
+      ],
+      "added": [
+        {
+          "slug": "how-do-i-cope-with-the-fear-that-death-means-compl-186602-026",
+          "question": "How do I cope with the fear that death means complete nothingness?",
+          "score": 8
+        },
+        {
+          "slug": "how-do-i-deal-with-existential-anxiety-about-s6t9u3",
+          "question": "How do I deal with existential anxiety about death and meaninglessness?",
+          "score": 8
+        },
+        {
+          "slug": "can-religious-trauma-be-real-even-if-not-181083-042",
+          "question": "Can religious trauma be real even if nothing 'bad' happened?",
+          "score": 5
+        }
+      ],
+      "after": [
+        "How do I live with knowing everyone I love will die someday?",
+        "How do I respect my family's faith while I no longer believe?",
+        "How do I cope with the fear that death means complete nothingness?",
+        "How do I deal with existential anxiety about death and meaninglessness?",
+        "Can religious trauma be real even if nothing 'bad' happened?"
+      ],
+      "category": "Spiritual Struggle / Existential Crisis"
+    },
+    "how-do-i-live-with-knowing-everyone-i-love-will-die-someday": {
+      "before": [
+        "How do I cope with the fear that death means complete annihilation?",
+        "How do I deal with existential anxiety about meaning and mortality?",
+        "How do I find meaning in life when everything feels pointless?"
+      ],
+      "dropped_unresolvable": [
+        "How do I cope with the fear that death means complete annihilation?",
+        "How do I deal with existential anxiety about meaning and mortality?"
+      ],
+      "added": [
+        {
+          "slug": "how-do-i-deal-with-existential-anxiety-about-s6t9u3",
+          "question": "How do I deal with existential anxiety about death and meaninglessness?",
+          "score": 19
+        },
+        {
+          "slug": "how-do-i-cope-with-the-fear-that-death-means-compl-186602-026",
+          "question": "How do I cope with the fear that death means complete nothingness?",
+          "score": 16
+        },
+        {
+          "slug": "am-i-losing-my-ability-to-connect-with-real-people-189142-008",
+          "question": "Am I losing my ability to connect with real people because of AI?",
+          "score": 8
+        },
+        {
+          "slug": "can-ai-help-me-practice-social-skills-before-real--189142-014",
+          "question": "Can AI help me practice social skills before real interactions?",
+          "score": 8
+        }
+      ],
+      "after": [
+        "How do I find meaning in life when everything feels pointless?",
+        "How do I deal with existential anxiety about death and meaninglessness?",
+        "How do I cope with the fear that death means complete nothingness?",
+        "Am I losing my ability to connect with real people because of AI?",
+        "Can AI help me practice social skills before real interactions?"
+      ],
+      "category": "Spiritual Struggle / Existential Crisis"
+    },
+    "can-life-be-meaningful-without-believing-in-god": {
+      "before": [
+        "How do I find meaning in life when traditional religion no longer fits?",
+        "Can I still be spiritual without being religious?",
+        "What is existentialism and can it help when life feels meaningless?"
+      ],
+      "dropped_unresolvable": [
+        "How do I find meaning in life when traditional religion no longer fits?"
+      ],
+      "added": [
+        {
+          "slug": "how-do-i-find-meaning-in-life-when-traditional-c7d2e8",
+          "question": "How do I find meaning in life when traditional religion doesn't resonate with me?",
+          "score": 8
+        },
+        {
+          "slug": "can-ai-make-religious-or-spiritual-confusion-worse",
+          "question": "Can AI make religious or spiritual confusion worse?",
+          "score": 5
+        },
+        {
+          "slug": "how-do-i-build-a-personal-spiritual-practice-outside-organized-religion",
+          "question": "How do I build a personal spiritual practice outside organized religion?",
+          "score": 5
+        }
+      ],
+      "after": [
+        "Can I still be spiritual without being religious?",
+        "What is existentialism and can it help when life feels meaningless?",
+        "How do I find meaning in life when traditional religion doesn't resonate with me?",
+        "Can AI make religious or spiritual confusion worse?",
+        "How do I build a personal spiritual practice outside organized religion?"
+      ],
+      "category": "Spiritual Doubt"
+    },
+    "is-it-normal-to-grieve-the-loss-of-my-faith-like-a-death": {
+      "before": [
+        "How do I cope with losing my faith?",
+        "Is it normal to miss aspects of my old faith?",
+        "How do I find meaning after leaving organized religion?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-ai-make-religious-or-spiritual-confusion-worse",
+          "question": "Can AI make religious or spiritual confusion worse?",
+          "score": 13
+        },
+        {
+          "slug": "how-do-i-handle-religious-holidays-after-181083-038",
+          "question": "How do I handle religious holidays after losing my faith?",
+          "score": 13
+        }
+      ],
+      "after": [
+        "How do I cope with losing my faith?",
+        "Is it normal to miss aspects of my old faith?",
+        "How do I find meaning after leaving organized religion?",
+        "Can AI make religious or spiritual confusion worse?",
+        "How do I handle religious holidays after losing my faith?"
+      ],
+      "category": "Spiritual Doubt"
+    },
+    "why-does-achieving-my-goals-leave-me-feeling-empty": {
+      "before": [
+        "Why do I feel spiritually empty despite having everything I wanted?",
+        "Why do I feel like life has no meaning or purpose?",
+        "Is it okay if I never find a single life purpose?"
+      ],
+      "dropped_unresolvable": [
+        "Why do I feel spiritually empty despite having everything I wanted?"
+      ],
+      "added": [
+        {
+          "slug": "what-is-existentialism-and-can-it-help-when-life-feels-meaningless",
+          "question": "What is existentialism and can it help when life feels meaningless?",
+          "score": 8
+        },
+        {
+          "slug": "is-it-normal-to-have-existential-thought-181083-046",
+          "question": "Is it normal to have existential thoughts when I can't sleep?",
+          "score": 5
+        },
+        {
+          "slug": "why-do-i-feel-spiritually-empty-despite-having-n8o2p5",
+          "question": "Why do I feel spiritually empty despite having everything I thought I wanted?",
+          "score": 5
+        }
+      ],
+      "after": [
+        "Why do I feel like life has no meaning or purpose?",
+        "Is it okay if I never find a single life purpose?",
+        "What is existentialism and can it help when life feels meaningless?",
+        "Is it normal to have existential thoughts when I can't sleep?",
+        "Why do I feel spiritually empty despite having everything I thought I wanted?"
+      ],
+      "category": "Existential"
+    },
+    "why-do-bad-things-happen-to-good-people": {
+      "before": [
+        "How do believers make sense of suffering if God is loving?",
+        "How do I find meaning after losing someone?",
+        "How do I deal with existential anxiety about meaning and mortality?"
+      ],
+      "dropped_unresolvable": [
+        "How do I find meaning after losing someone?",
+        "How do I deal with existential anxiety about meaning and mortality?"
+      ],
+      "added": [
+        {
+          "slug": "can-religious-trauma-be-real-even-if-not-181083-042",
+          "question": "Can religious trauma be real even if nothing 'bad' happened?",
+          "score": 5
+        },
+        {
+          "slug": "how-do-i-cope-with-the-fear-that-death-means-compl-186602-026",
+          "question": "How do I cope with the fear that death means complete nothingness?",
+          "score": 5
+        },
+        {
+          "slug": "how-do-i-deal-with-existential-anxiety-about-s6t9u3",
+          "question": "How do I deal with existential anxiety about death and meaninglessness?",
+          "score": 5
+        },
+        {
+          "slug": "how-do-i-deal-with-fear-of-hell-after-le-181083-036",
+          "question": "How do I deal with fear of hell after leaving religion?",
+          "score": 5
+        }
+      ],
+      "after": [
+        "How do believers make sense of suffering if God is loving?",
+        "Can religious trauma be real even if nothing 'bad' happened?",
+        "How do I cope with the fear that death means complete nothingness?",
+        "How do I deal with existential anxiety about death and meaninglessness?",
+        "How do I deal with fear of hell after leaving religion?"
+      ],
+      "category": "Spiritual Struggle / Existential Crisis"
+    },
+    "how-do-i-respect-my-familys-faith-while-i-no-longer-believe": {
+      "before": [
+        "How do I handle family rejection after changing my beliefs?",
+        "How do I handle religious holidays after leaving faith?",
+        "How do I tell my partner I'm no longer religious?"
+      ],
+      "dropped_unresolvable": [
+        "How do I handle religious holidays after leaving faith?"
+      ],
+      "added": [
+        {
+          "slug": "how-do-i-explain-my-spiritual-journey-to-181083-041",
+          "question": "How do I explain my spiritual journey to others?",
+          "score": 11
+        },
+        {
+          "slug": "how-do-i-make-new-friends-after-leaving-my-church",
+          "question": "How do I make new friends after leaving my church or religious community?",
+          "score": 8
+        },
+        {
+          "slug": "is-it-normal-to-grieve-the-loss-of-my-faith-like-a-death",
+          "question": "Is it normal to grieve the loss of my faith like a death?",
+          "score": 8
+        }
+      ],
+      "after": [
+        "How do I handle family rejection after changing my beliefs?",
+        "How do I tell my partner I'm no longer religious?",
+        "How do I explain my spiritual journey to others?",
+        "How do I make new friends after leaving my church or religious community?",
+        "Is it normal to grieve the loss of my faith like a death?"
+      ],
+      "category": "Spiritual Doubt"
+    },
+    "how-do-i-make-new-friends-after-leaving-my-church": {
+      "before": [
+        "Why do I feel lost without religious community?",
+        "How do I find meaning after leaving organized religion?",
+        "What do I do when my family rejects me for changing my beliefs?"
+      ],
+      "dropped_unresolvable": [
+        "What do I do when my family rejects me for changing my beliefs?"
+      ],
+      "added": [
+        {
+          "slug": "how-do-i-find-meaning-after-losing-my-re-181083-034",
+          "question": "How do I find meaning after losing my religious beliefs?",
+          "score": 8
+        },
+        {
+          "slug": "how-do-i-find-meaning-in-life-when-traditional-c7d2e8",
+          "question": "How do I find meaning in life when traditional religion doesn't resonate with me?",
+          "score": 8
+        },
+        {
+          "slug": "how-do-i-know-if-my-spiritual-experiences-are-p5q9r3",
+          "question": "How do I know if my spiritual experiences are genuine or just wishful thinking?",
+          "score": 8
+        }
+      ],
+      "after": [
+        "Why do I feel lost without religious community?",
+        "How do I find meaning after leaving organized religion?",
+        "How do I find meaning after losing my religious beliefs?",
+        "How do I find meaning in life when traditional religion doesn't resonate with me?",
+        "How do I know if my spiritual experiences are genuine or just wishful thinking?"
+      ],
+      "category": "Spiritual Doubt"
+    },
+    "when-is-imago-relationship-therapy-a-good-fit-for-couples": {
+      "before": [
+        "Why does couples therapy sometimes feel like refereeing instead of change?",
+        "What should couples expect from a pre-therapy consultation call?",
+        "Why do communication skills fail when we are upset with our partner?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "why-do-capable-couples-keep-reenacting-the-same-relationship-fight",
+          "question": "Why do capable couples keep reenacting the same relationship fight?",
+          "score": 22
+        },
+        {
+          "slug": "how-does-my-nervous-system-hijack-conversations-with-my-partner",
+          "question": "How does my nervous system hijack conversations with my partner?",
+          "score": 11
+        }
+      ],
+      "after": [
+        "Why does couples therapy sometimes feel like refereeing instead of change?",
+        "What should couples expect from a pre-therapy consultation call?",
+        "Why do communication skills fail when we are upset with our partner?",
+        "Why do capable couples keep reenacting the same relationship fight?",
+        "How does my nervous system hijack conversations with my partner?"
+      ],
+      "category": "Relationships & Communication"
+    },
+    "why-doesnt-understanding-our-patterns-fix-our-relationship": {
+      "before": [
+        "Why do capable couples keep reenacting the same relationship fight?",
+        "How does my nervous system hijack conversations with my partner?",
+        "When is Imago Relationship Therapy a good fit for couples?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "what-should-couples-expect-from-a-pre-therapy-consultation-call",
+          "question": "What should couples expect from a pre-therapy consultation call?",
+          "score": 11
+        },
+        {
+          "slug": "why-do-communication-skills-fail-when-we-are-upset-with-our-partner",
+          "question": "Why do communication skills fail when we are upset with our partner?",
+          "score": 11
+        }
+      ],
+      "after": [
+        "Why do capable couples keep reenacting the same relationship fight?",
+        "How does my nervous system hijack conversations with my partner?",
+        "When is Imago Relationship Therapy a good fit for couples?",
+        "What should couples expect from a pre-therapy consultation call?",
+        "Why do communication skills fail when we are upset with our partner?"
+      ],
+      "category": "Relationships & Communication"
+    },
+    "why-do-capable-couples-keep-reenacting-the-same-relationship-fight": {
+      "before": [
+        "How does my nervous system hijack conversations with my partner?",
+        "Why do communication skills fail when we are upset with our partner?",
+        "Why does couples therapy sometimes feel like refereeing instead of change?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "when-is-imago-relationship-therapy-a-good-fit-for-couples",
+          "question": "When is Imago Relationship Therapy a good fit for couples?",
+          "score": 22
+        },
+        {
+          "slug": "what-should-couples-expect-from-a-pre-therapy-consultation-call",
+          "question": "What should couples expect from a pre-therapy consultation call?",
+          "score": 11
+        }
+      ],
+      "after": [
+        "How does my nervous system hijack conversations with my partner?",
+        "Why do communication skills fail when we are upset with our partner?",
+        "Why does couples therapy sometimes feel like refereeing instead of change?",
+        "When is Imago Relationship Therapy a good fit for couples?",
+        "What should couples expect from a pre-therapy consultation call?"
+      ],
+      "category": "Relationships & Communication"
+    },
+    "why-do-communication-skills-fail-when-we-are-upset-with-our-partner": {
+      "before": [
+        "How does my nervous system hijack conversations with my partner?",
+        "Why does couples therapy sometimes feel like refereeing instead of change?",
+        "When is Imago Relationship Therapy a good fit for couples?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "why-do-capable-couples-keep-reenacting-the-same-relationship-fight",
+          "question": "Why do capable couples keep reenacting the same relationship fight?",
+          "score": 14
+        },
+        {
+          "slug": "what-should-couples-expect-from-a-pre-therapy-consultation-call",
+          "question": "What should couples expect from a pre-therapy consultation call?",
+          "score": 11
+        }
+      ],
+      "after": [
+        "How does my nervous system hijack conversations with my partner?",
+        "Why does couples therapy sometimes feel like refereeing instead of change?",
+        "When is Imago Relationship Therapy a good fit for couples?",
+        "Why do capable couples keep reenacting the same relationship fight?",
+        "What should couples expect from a pre-therapy consultation call?"
+      ],
+      "category": "Relationships & Communication"
+    },
+    "what-should-couples-expect-from-a-pre-therapy-consultation-call": {
+      "before": [
+        "When is Imago Relationship Therapy a good fit for couples?",
+        "Why does couples therapy sometimes feel like refereeing instead of change?",
+        "Why do capable couples keep reenacting the same relationship fight?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "how-does-my-nervous-system-hijack-conversations-with-my-partner",
+          "question": "How does my nervous system hijack conversations with my partner?",
+          "score": 11
+        },
+        {
+          "slug": "why-do-communication-skills-fail-when-we-are-upset-with-our-partner",
+          "question": "Why do communication skills fail when we are upset with our partner?",
+          "score": 11
+        }
+      ],
+      "after": [
+        "When is Imago Relationship Therapy a good fit for couples?",
+        "Why does couples therapy sometimes feel like refereeing instead of change?",
+        "Why do capable couples keep reenacting the same relationship fight?",
+        "How does my nervous system hijack conversations with my partner?",
+        "Why do communication skills fail when we are upset with our partner?"
+      ],
+      "category": "Relationships & Communication"
+    },
+    "why-does-couples-therapy-sometimes-feel-like-refereeing-not-change": {
+      "before": [
+        "When is Imago Relationship Therapy a good fit for couples?",
+        "Why doesn't understanding our patterns fix our relationship?",
+        "What should couples expect from a pre-therapy consultation call?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "why-do-capable-couples-keep-reenacting-the-same-relationship-fight",
+          "question": "Why do capable couples keep reenacting the same relationship fight?",
+          "score": 14
+        },
+        {
+          "slug": "why-do-communication-skills-fail-when-we-are-upset-with-our-partner",
+          "question": "Why do communication skills fail when we are upset with our partner?",
+          "score": 14
+        }
+      ],
+      "after": [
+        "When is Imago Relationship Therapy a good fit for couples?",
+        "Why doesn't understanding our patterns fix our relationship?",
+        "What should couples expect from a pre-therapy consultation call?",
+        "Why do capable couples keep reenacting the same relationship fight?",
+        "Why do communication skills fail when we are upset with our partner?"
+      ],
+      "category": "Relationships & Communication"
+    },
+    "how-does-my-nervous-system-hijack-conversations-with-my-partner": {
+      "before": [
+        "Why do capable couples keep reenacting the same relationship fight?",
+        "Why do communication skills fail when we are upset with our partner?",
+        "Why doesn't understanding our patterns fix our relationship?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "what-should-couples-expect-from-a-pre-therapy-consultation-call",
+          "question": "What should couples expect from a pre-therapy consultation call?",
+          "score": 11
+        },
+        {
+          "slug": "what-should-i-do-if-my-partner-shuts-down-during-arguments",
+          "question": "What should I do if my partner shuts down during arguments?",
+          "score": 11
+        }
+      ],
+      "after": [
+        "Why do capable couples keep reenacting the same relationship fight?",
+        "Why do communication skills fail when we are upset with our partner?",
+        "Why doesn't understanding our patterns fix our relationship?",
+        "What should couples expect from a pre-therapy consultation call?",
+        "What should I do if my partner shuts down during arguments?"
+      ],
+      "category": "Relationships & Communication"
+    },
+    "how-do-i-manage-adhd-burnout": {
+      "before": [
+        "How do I build routines with ADHD?",
+        "How do I stay focused at work with ADHD?",
+        "Can ADHD cause anxiety and depression?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        },
+        {
+          "slug": "how-do-adhd-medications-work",
+          "question": "How do ADHD medications work?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "How do I build routines with ADHD?",
+        "How do I stay focused at work with ADHD?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?",
+        "How do ADHD medications work?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "how-do-i-study-with-adhd": {
+      "before": [
+        "How do I stay focused at work with ADHD?",
+        "What is executive dysfunction and how does it affect daily life?",
+        "How do I build routines with ADHD?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-adhd-cause-anxiety-and-depression",
+          "question": "Can ADHD cause anxiety and depression?",
+          "score": 22
+        },
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "How do I stay focused at work with ADHD?",
+        "What is executive dysfunction and how does it affect daily life?",
+        "How do I build routines with ADHD?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "what-is-adhd-and-how-is-it-different-from-just-being-distracted": {
+      "before": [
+        "How do I know if I have ADHD as an adult?",
+        "How do I get tested for ADHD as an adult?",
+        "What is executive dysfunction and how does it affect daily life?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-adhd-cause-anxiety-and-depression",
+          "question": "Can ADHD cause anxiety and depression?",
+          "score": 22
+        },
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "How do I know if I have ADHD as an adult?",
+        "How do I get tested for ADHD as an adult?",
+        "What is executive dysfunction and how does it affect daily life?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "how-do-i-build-routines-with-adhd": {
+      "before": [
+        "What is executive dysfunction and how does it affect daily life?",
+        "How do I cope with ADHD time blindness?",
+        "How do I manage ADHD burnout?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-adhd-cause-anxiety-and-depression",
+          "question": "Can ADHD cause anxiety and depression?",
+          "score": 22
+        },
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "What is executive dysfunction and how does it affect daily life?",
+        "How do I cope with ADHD time blindness?",
+        "How do I manage ADHD burnout?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "is-hyperfocus-a-symptom-of-adhd": {
+      "before": [
+        "What is ADHD and how is it different from just being distracted?",
+        "How do I stay focused at work with ADHD?",
+        "How do I cope with ADHD time blindness?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-adhd-cause-anxiety-and-depression",
+          "question": "Can ADHD cause anxiety and depression?",
+          "score": 22
+        },
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "What is ADHD and how is it different from just being distracted?",
+        "How do I stay focused at work with ADHD?",
+        "How do I cope with ADHD time blindness?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "can-adhd-cause-anxiety-and-depression": {
+      "before": [
+        "How do I know if I have ADHD as an adult?",
+        "How do I manage ADHD without medication?",
+        "Why do I get so emotionally overwhelmed with ADHD?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        },
+        {
+          "slug": "how-do-adhd-medications-work",
+          "question": "How do ADHD medications work?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "How do I know if I have ADHD as an adult?",
+        "How do I manage ADHD without medication?",
+        "Why do I get so emotionally overwhelmed with ADHD?",
+        "Can trauma look like ADHD?",
+        "How do ADHD medications work?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "what-are-the-signs-of-adhd-in-women": {
+      "before": [
+        "How do I know if I have ADHD as an adult?",
+        "What is rejection sensitive dysphoria and ADHD?",
+        "Why do I get so emotionally overwhelmed with ADHD?"
+      ],
+      "dropped_unresolvable": [
+        "What is rejection sensitive dysphoria and ADHD?"
+      ],
+      "added": [
+        {
+          "slug": "can-adhd-cause-anxiety-and-depression",
+          "question": "Can ADHD cause anxiety and depression?",
+          "score": 22
+        },
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        },
+        {
+          "slug": "how-do-adhd-medications-work",
+          "question": "How do ADHD medications work?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "How do I know if I have ADHD as an adult?",
+        "Why do I get so emotionally overwhelmed with ADHD?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?",
+        "How do ADHD medications work?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "can-trauma-look-like-adhd": {
+      "before": [
+        "How do I get tested for ADHD as an adult?",
+        "How do I know if I have ADHD as an adult?",
+        "Can ADHD cause anxiety and depression?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "how-do-adhd-medications-work",
+          "question": "How do ADHD medications work?",
+          "score": 22
+        },
+        {
+          "slug": "how-do-i-build-routines-with-adhd",
+          "question": "How do I build routines with ADHD?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "How do I get tested for ADHD as an adult?",
+        "How do I know if I have ADHD as an adult?",
+        "Can ADHD cause anxiety and depression?",
+        "How do ADHD medications work?",
+        "How do I build routines with ADHD?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "how-do-adhd-medications-work": {
+      "before": [
+        "How do I manage ADHD without medication?",
+        "How do I know if I have ADHD as an adult?",
+        "Can ADHD cause anxiety and depression?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        },
+        {
+          "slug": "how-do-i-build-routines-with-adhd",
+          "question": "How do I build routines with ADHD?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "How do I manage ADHD without medication?",
+        "How do I know if I have ADHD as an adult?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?",
+        "How do I build routines with ADHD?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "what-should-i-tell-my-partner-about-adhd": {
+      "before": [
+        "How do I manage ADHD in relationships?",
+        "What is rejection sensitive dysphoria and ADHD?",
+        "How do I know if I have ADHD as an adult?"
+      ],
+      "dropped_unresolvable": [
+        "What is rejection sensitive dysphoria and ADHD?"
+      ],
+      "added": [
+        {
+          "slug": "can-adhd-cause-anxiety-and-depression",
+          "question": "Can ADHD cause anxiety and depression?",
+          "score": 22
+        },
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        },
+        {
+          "slug": "how-do-adhd-medications-work",
+          "question": "How do ADHD medications work?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "How do I manage ADHD in relationships?",
+        "How do I know if I have ADHD as an adult?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?",
+        "How do ADHD medications work?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "how-do-i-stay-focused-at-work-with-adhd": {
+      "before": [
+        "How do I explain ADHD to my employer?",
+        "What workplace accommodations help adults with ADHD?",
+        "How do I manage ADHD burnout?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-adhd-cause-anxiety-and-depression",
+          "question": "Can ADHD cause anxiety and depression?",
+          "score": 22
+        },
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "How do I explain ADHD to my employer?",
+        "What workplace accommodations help adults with ADHD?",
+        "How do I manage ADHD burnout?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "what-workplace-accommodations-help-adults-with-adhd": {
+      "before": [
+        "How do I explain ADHD to my employer?",
+        "How do I stay focused at work with ADHD?",
+        "How do I get tested for ADHD as an adult?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-adhd-cause-anxiety-and-depression",
+          "question": "Can ADHD cause anxiety and depression?",
+          "score": 22
+        },
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "How do I explain ADHD to my employer?",
+        "How do I stay focused at work with ADHD?",
+        "How do I get tested for ADHD as an adult?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "what-is-the-difference-between-adhd-and-bipolar-disorder": {
+      "before": [
+        "How do I know if I have ADHD as an adult?",
+        "Can ADHD cause anxiety and depression?",
+        "How do ADHD medications work?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        },
+        {
+          "slug": "how-do-i-build-routines-with-adhd",
+          "question": "How do I build routines with ADHD?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "How do I know if I have ADHD as an adult?",
+        "Can ADHD cause anxiety and depression?",
+        "How do ADHD medications work?",
+        "Can trauma look like ADHD?",
+        "How do I build routines with ADHD?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "how-do-i-get-tested-for-adhd-as-an-adult": {
+      "before": [
+        "How do I know if I have ADHD as an adult?",
+        "What are the signs of ADHD in women?",
+        "Can trauma look like ADHD?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-adhd-cause-anxiety-and-depression",
+          "question": "Can ADHD cause anxiety and depression?",
+          "score": 22
+        },
+        {
+          "slug": "how-do-adhd-medications-work",
+          "question": "How do ADHD medications work?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "How do I know if I have ADHD as an adult?",
+        "What are the signs of ADHD in women?",
+        "Can trauma look like ADHD?",
+        "Can ADHD cause anxiety and depression?",
+        "How do ADHD medications work?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "what-is-rejection-sensitive-dysphoria-and-adhd": {
+      "before": [
+        "Why do I get so emotionally overwhelmed with ADHD?",
+        "How do I manage ADHD in relationships?",
+        "What should I tell my partner about ADHD?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-adhd-cause-anxiety-and-depression",
+          "question": "Can ADHD cause anxiety and depression?",
+          "score": 22
+        },
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "Why do I get so emotionally overwhelmed with ADHD?",
+        "How do I manage ADHD in relationships?",
+        "What should I tell my partner about ADHD?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "how-do-i-stop-forgetting-things-with-adhd": {
+      "before": [
+        "What is executive dysfunction and how does it affect daily life?",
+        "How do I cope with ADHD time blindness?",
+        "How do I build routines with ADHD?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-adhd-cause-anxiety-and-depression",
+          "question": "Can ADHD cause anxiety and depression?",
+          "score": 22
+        },
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "What is executive dysfunction and how does it affect daily life?",
+        "How do I cope with ADHD time blindness?",
+        "How do I build routines with ADHD?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "how-do-i-manage-adhd-in-relationships": {
+      "before": [
+        "What should I tell my partner about ADHD?",
+        "What is rejection sensitive dysphoria and ADHD?",
+        "Why do I get so emotionally overwhelmed with ADHD?"
+      ],
+      "dropped_unresolvable": [
+        "What is rejection sensitive dysphoria and ADHD?"
+      ],
+      "added": [
+        {
+          "slug": "can-adhd-cause-anxiety-and-depression",
+          "question": "Can ADHD cause anxiety and depression?",
+          "score": 22
+        },
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        },
+        {
+          "slug": "how-do-adhd-medications-work",
+          "question": "How do ADHD medications work?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "What should I tell my partner about ADHD?",
+        "Why do I get so emotionally overwhelmed with ADHD?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?",
+        "How do ADHD medications work?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "how-do-i-explain-adhd-to-my-employer": {
+      "before": [
+        "What workplace accommodations help adults with ADHD?",
+        "How do I stay focused at work with ADHD?",
+        "How do I get tested for ADHD as an adult?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-adhd-cause-anxiety-and-depression",
+          "question": "Can ADHD cause anxiety and depression?",
+          "score": 22
+        },
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "What workplace accommodations help adults with ADHD?",
+        "How do I stay focused at work with ADHD?",
+        "How do I get tested for ADHD as an adult?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?"
+      ],
+      "category": "Neurodivergence & Attention"
+    },
+    "how-do-i-cope-with-adhd-time-blindness": {
+      "before": [
+        "What is executive dysfunction and how does it affect daily life?",
+        "How do I build routines with ADHD?",
+        "How do I stop forgetting things with ADHD?"
+      ],
+      "dropped_unresolvable": [],
+      "added": [
+        {
+          "slug": "can-adhd-cause-anxiety-and-depression",
+          "question": "Can ADHD cause anxiety and depression?",
+          "score": 22
+        },
+        {
+          "slug": "can-trauma-look-like-adhd",
+          "question": "Can trauma look like ADHD?",
+          "score": 22
+        }
+      ],
+      "after": [
+        "What is executive dysfunction and how does it affect daily life?",
+        "How do I build routines with ADHD?",
+        "How do I stop forgetting things with ADHD?",
+        "Can ADHD cause anxiety and depression?",
+        "Can trauma look like ADHD?"
+      ],
+      "category": "Neurodivergence & Attention"
+    }
+  }
+}
