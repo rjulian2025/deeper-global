@@ -1,0 +1,45 @@
+name: Data Integrity Audit (details)
+
+on:
+  push:
+    branches:
+      - 'cursor/**'
+  workflow_dispatch: {}
+
+jobs:
+  audit-details:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run data integrity audit (no-fail)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: npm run audit:data-integrity
+
+      - name: Show audit summary (head)
+        run: |
+          echo "::group::Audit summary"
+          ls -la reports/data-integrity || true
+          if [ -f reports/data-integrity/audit-2026-06-14.json ]; then
+            jq '{generated_at, source, summary: .summary.issue_counts, critical_instances_count: (.critical_instances|length)}' reports/data-integrity/audit-2026-06-14.json || true
+          fi
+          echo "::endgroup::"
+
+      - name: Upload audit artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: data-integrity-report
+          path: reports/data-integrity/*
+          if-no-files-found: warn
