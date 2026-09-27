@@ -147,6 +147,7 @@ async function fetchAllQuestions(client) {
       .from('questions_master')
       .select(SELECT_COLUMNS)
       .order('created_at', { ascending: false })
+      .order('id', { ascending: true })
       .range(from, to);
     if (error) throw error;
     const page = data ?? [];

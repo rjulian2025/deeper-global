@@ -119,7 +119,12 @@ async function fetchAllQuestions(client) {
   const pages = [];
   for (let from = 0; ; from += PAGE_SIZE) {
     const to = from + PAGE_SIZE - 1;
-    const { data, error } = await client.from('questions_master').select(SELECT_COLUMNS).order('created_at', { ascending: false }).range(from, to);
+    const { data, error } = await client
+      .from('questions_master')
+      .select(SELECT_COLUMNS)
+      .order('created_at', { ascending: false })
+      .order('id', { ascending: true })
+      .range(from, to);
     if (error) throw error;
     const page = data ?? [];
     pages.push(...page);
@@ -201,6 +206,8 @@ function auditRow(question, issues, addictionSlugs) {
   const missing = missingFields(question);
   const enriched = Boolean(question.content_enriched_at);
   const hasSections = sectionCount(question) > 0;
+  const reviewedBy = cleanText(question.reviewed_by);
+  const reviewerId = resolveReviewerId(reviewedBy);
 
   if (!slug) {
     addIssue(issues, { id: 'missing_slug', severity: 'critical', message: 'Row missing slug', slug: String(question.id), field: 'slug' });
@@ -224,9 +231,7 @@ function auditRow(question, issues, addictionSlugs) {
     addIssue(issues, { id: 'invalid_review_status', severity: 'critical', message: `Invalid review_status: ${status}`, slug, field: 'review_status', value: status });
   }
 
-  const reviewedBy = cleanText(question.reviewed_by);
   if (reviewedBy) {
-    const reviewerId = resolveReviewerId(reviewedBy);
     if (!reviewerId || !VALID_REVIEWER_IDS.has(reviewerId)) {
       addIssue(issues, { id: 'orphan_reviewed_by', severity: 'critical', message: `reviewed_by not in reviewers.ts: ${reviewedBy}`, slug, field: 'reviewed_by', value: reviewedBy });
     }
@@ -267,6 +272,40 @@ function auditRow(question, issues, addictionSlugs) {
   auditAnswerSections(question, issues);
   auditSourceRefs(question, issues);
 
+  // Addiction-specific checks restored
+  if (addictionSlugs.includes(slug)) {
+    const promptVersion = cleanText(question.content_prompt_version);
+    if (promptVersion && promptVersion !== ADDICTION_PROMPT_VERSION) {
+      addIssue(issues, {
+        id: 'addiction_wrong_prompt_version',
+        severity: 'warning',
+        message: `Addiction answer has unexpected content_prompt_version: ${promptVersion}`,
+        slug,
+        field: 'content_prompt_version',
+        value: promptVersion,
+      });
+    }
+    if (isV2Answer(question) && reviewerId !== 'david-k-gore-phd' && reviewerId !== 'codex-seo-review') {
+      addIssue(issues, {
+        id: 'addiction_missing_gore_reviewer',
+        severity: 'info',
+        message: 'Addiction enriched answer not reviewed by david-k-gore-phd',
+        slug,
+        field: 'reviewed_by',
+        value: reviewedBy || '(empty)',
+      });
+    }
+    if (promptVersion === CORPUS_PROMPT_VERSION) {
+      addIssue(issues, {
+        id: 'addiction_corpus_prompt_mismatch',
+        severity: 'warning',
+        message: 'Addiction slug promoted with corpus prompt version',
+        slug,
+        field: 'content_prompt_version',
+      });
+    }
+  }
+
   return { score };
 }
 
@@ -287,11 +326,11 @@ function detectSlugCollisions(questions) {
   for (const question of questions) {
     const slug = cleanText(question.slug);
     if (!slug) continue;
-    const list = bySlug.get(slug) ?? [];
-    list.push(question.id);
-    bySlug.set(slug, list);
+    const set = bySlug.get(slug) ?? new Set();
+    set.add(question.id);
+    bySlug.set(slug, set);
   }
-  return [...bySlug.entries()].filter(([, ids]) => ids.length > 1);
+  return [...bySlug.entries()].filter(([, idSet]) => idSet.size > 1).map(([slug, idSet]) => [slug, [...idSet]]);
 }
 
 function crossReferencePromoteReports(questions, promoteReports, issues) {
@@ -344,6 +383,19 @@ export async function runDataIntegrityAudit(client) {
     const status = cleanText(question.review_status).toLowerCase() || '(empty)';
     reviewStatusCounts.set(status, (reviewStatusCounts.get(status) ?? 0) + 1);
     if (!status || INDEXABLE_REVIEW_STATUSES.has(status)) indexable += 1;
+  }
+
+  // Detect any pagination duplication of the same row id
+  const distinctIds = new Set(questions.map((q) => q.id));
+  if (distinctIds.size !== questions.length) {
+    addIssue(issues, {
+      id: 'pagination_duplicate_row',
+      severity: 'critical',
+      message: `Fetched ${questions.length} rows but ${distinctIds.size} distinct ids`,
+      slug: null,
+      field: 'id',
+      value: `${questions.length} vs ${distinctIds.size}`,
+    });
   }
 
   const slugCollisions = detectSlugCollisions(questions);

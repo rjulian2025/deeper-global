@@ -200,6 +200,7 @@ async function fetchAllQuestions(client, { includeReviewedAt }) {
       .from('questions_master')
       .select(selectColumns)
       .order('created_at', { ascending: false })
+      .order('id', { ascending: true })
       .range(from, from + PAGE_SIZE - 1);
 
     if (error) throw error;

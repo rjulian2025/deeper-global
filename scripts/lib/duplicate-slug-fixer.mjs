@@ -36,6 +36,7 @@ export async function fetchAllQuestionsCompact(client) {
       .from('questions_master')
       .select('id,slug,review_status,reviewed_by,reviewed_at,content_enriched_at,created_at,updated_at,citation_notes')
       .order('created_at', { ascending: false })
+      .order('id', { ascending: true })
       .range(from, from + PAGE_SIZE - 1);
     if (error) throw error;
     const page = data ?? [];
