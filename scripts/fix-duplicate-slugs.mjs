@@ -113,16 +113,19 @@ async function main() {
     for (const row of list) {
       if (row.id === canonical.id) continue;
       backups.push({ ...row });
+      const retiredSlug = `${slug}-retired-duplicate-${String(row.id).slice(0, 8)}`.toLowerCase();
       patches.push({
         slug,
         canonical_slug: canonical.slug,
         canonical_id: canonicalId,
         update: {
           id: row.id,
+          slug: retiredSlug,
           review_status: RETIRED_DUPLICATE,
           citation_notes: demoteNote(canonical.slug, row.citation_notes),
         },
         previous: {
+          slug: row.slug,
           review_status: row.review_status,
           citation_notes: row.citation_notes,
         },
@@ -150,7 +153,12 @@ async function main() {
       slug,
       canonical_id: canonical.id,
       canonical_slug: canonical.slug,
-      retired_ids: list.filter((r) => r.id !== canonical.id).map((r) => r.id),
+      retired: list
+        .filter((r) => r.id !== canonical.id)
+        .map((r) => ({
+          id: r.id,
+          new_slug: `${slug}-retired-duplicate-${String(r.id).slice(0, 8)}`.toLowerCase(),
+        })),
     };
   });
   writeFileSync(resolutionPath, `${JSON.stringify({ generated_at: new Date().toISOString(), resolutions: resolution }, null, 2)}\n`);
