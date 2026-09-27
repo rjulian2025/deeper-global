@@ -21,6 +21,12 @@ jobs:
 
       - run: npm ci
 
+      - name: Check env readiness
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node -e "import('./scripts/lib/supabase-env.mjs').then(m=>console.log(JSON.stringify(m.envStatus(),null,2)))"
+
       - name: Fix duplicate slugs (apply)
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
