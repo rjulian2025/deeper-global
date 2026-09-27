@@ -1,3 +1,70 @@
-name: REMOVED Data Integrity Audit (details)
-on: { workflow_dispatch: {} }
-jobs: {}
+name: Data Integrity Apply+Audit (details)
+
+on:
+  push:
+    branches:
+      - cursor/audit-details-1017
+    paths:
+      - '.github/workflows/data-integrity-audit-details.yml'
+  workflow_dispatch: {}
+
+jobs:
+  apply_and_audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Duplicate fix dry run (backup + plan + resolution)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/fix-duplicate-slugs.mjs
+
+      - name: Upload dry-run artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: duplicate-fix-dry-run
+          path: |
+            reports/data-integrity/backup-duplicate-slugs-*.json
+            reports/data-integrity/plan-duplicate-slugs-*.json
+            reports/data-integrity/duplicate-resolution-*.json
+          if-no-files-found: error
+
+      - name: Apply duplicate fix
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: node scripts/fix-duplicate-slugs.mjs --apply
+
+      - name: Run data integrity audit (no-fail)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: npm run audit:data-integrity
+
+      - name: Expand per-record criticals
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: node scripts/audit-critical-expand.mjs
+
+      - name: Upload post-apply audit artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: data-integrity-post-apply
+          path: |
+            reports/data-integrity/audit-2026-06-14.json
+            reports/data-integrity/audit-2026-06-14.md
+            reports/data-integrity/critical-expanded-*.json
+          if-no-files-found: warn
