@@ -35,6 +35,40 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Wait for new deployment (x-deploy-sha == $GITHUB_SHA)
+        run: |
+          set -euo pipefail
+          if [ -n "${SUPABASE_SERVICE_ROLE_KEY:-}" ]; then
+            echo "Service role available; readiness check not required for local path."
+            exit 0
+          fi
+          if [ -z "${CRON_SECRET:-}" ]; then
+            echo "No SUPABASE_SERVICE_ROLE_KEY and no CRON_SECRET. Cannot proceed." >&2
+            exit 1
+          fi
+          echo "Waiting for https://www.deeper.global/api/admin/fix-duplicate-slugs to advertise x-deploy-sha=${GITHUB_SHA} ..."
+          deadline=$(( $(date +%s) + 900 ))  # 15 minutes
+          while true; do
+            headers="$(curl -sS -D - -o /dev/null https://www.deeper.global/api/admin/fix-duplicate-slugs || true)"
+            sha="$(printf '%s' "$headers" | awk -F': ' 'tolower($1) ~ /^x-deploy-sha$/ {print $2}' | tr -d '\r')"
+            now=$(date +%s)
+            if [ -n "${sha}" ]; then
+              echo "Observed x-deploy-sha: ${sha}"
+            else
+              echo "x-deploy-sha header missing (deployment not ready yet)."
+            end_if_missing=""
+            fi
+            if [ -n "${sha}" ] && [ "${sha}" = "${GITHUB_SHA}" ]; then
+              echo "Ready: running deployment matches current commit."
+              break
+            fi
+            if [ "$now" -ge "$deadline" ]; then
+              echo "Timed out waiting for deployment with x-deploy-sha=${GITHUB_SHA}. Last seen sha: ${sha:-<none>}." >&2
+              exit 1
+            fi
+            sleep 15
+          done
+
       - name: Dry run (backup + plan + resolution)
         run: |
           set -euo pipefail
@@ -47,25 +81,6 @@ jobs:
             files=(reports/data-integrity/backup-duplicate-slugs-*.json)
             if [ "${#files[@]}" -lt 1 ]; then echo "No backup file found" >&2; exit 1; fi
           else
-            if [ -z "${CRON_SECRET:-}" ]; then
-              echo "No SUPABASE_SERVICE_ROLE_KEY and no CRON_SECRET. Cannot proceed." >&2
-              exit 1
-            fi
-            echo "Polling https://www.deeper.global/api/admin/fix-duplicate-slugs for readiness..."
-            deadline=$(( $(date +%s) + 600 ))
-            while true; do
-              code=$(curl -sS -o /dev/null -w '%{http_code}' -L https://www.deeper.global/api/admin/fix-duplicate-slugs || echo "000")
-              if [ "$code" = "401" ] || [ "$code" = "405" ] || [ "$code" = "200" ]; then
-                echo "Endpoint live (HTTP $code)."
-                break
-              fi
-              now=$(date +%s)
-              if [ "$now" -ge "$deadline" ]; then
-                echo "Endpoint did not become ready within 10 minutes. Last code: $code" >&2
-                exit 1
-              fi
-              sleep 10
-            done
             echo "Running remote dry run via admin endpoint..."
             curl --fail-with-body -sS -X POST \
               -H "Authorization: Bearer ${CRON_SECRET}" \
@@ -158,6 +173,24 @@ jobs:
             jq -e '.inputs_loaded | length == 3' tmp/post-audit/admin-audit.json >/dev/null || { echo "Expected inputs_loaded length 3 (addiction review JSON + two promote-updates dirs)"; exit 1; }
           fi
 
+      - name: Warning counts per rule
+        run: |
+          set -euo pipefail
+          mkdir -p tmp/post-audit
+          if [ -n "${SUPABASE_SERVICE_ROLE_KEY:-}" ]; then
+            src="reports/data-integrity/audit-2026-06-14.json"
+          else
+            src="tmp/post-audit/admin-audit.json"
+          fi
+          echo "Warning counts per rule:"
+          jq -r '
+            .issues
+            | map(select(.severity == "warning"))
+            | group_by(.id)
+            | map({id: .[0].id, count: (map(.count // 1) | add)})
+            | sort_by(.count) | reverse
+          ' "$src" | tee tmp/post-audit/warning-counts.json
+
         # Upload post-apply evidence
       - name: Upload apply and audit artifacts
         uses: actions/upload-artifact@v4
@@ -168,6 +201,7 @@ jobs:
             reports/data-integrity/audit-2026-06-14.json
             reports/data-integrity/audit-2026-06-14.md
             tmp/post-audit/admin-audit.json
+            tmp/post-audit/warning-counts.json
             tmp/dup-apply/admin-apply.json
           if-no-files-found: error
 
