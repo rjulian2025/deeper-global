@@ -19,6 +19,8 @@ const KENNETH_REPORT = 'reports/reviewer-attribution/kenneth-w-christian-phd.jso
 const KENNETH_REVIEWER = 'kenneth-w-christian-phd';
 const KENNETH_REVIEWED_AT = '2026-06-13';
 const ADDICTION_PROMPT_VERSION = 'deeper-addiction-enrichment-v1';
+import { ANSWER_REWRITE_PROMPT_VERSION } from './lib/answer-rewrite-system-prompt.mjs';
+const ACCEPTED_ADDICTION_PROMPT_VERSIONS = new Set([ADDICTION_PROMPT_VERSION, ANSWER_REWRITE_PROMPT_VERSION]);
 const PAGE_SIZE = 1000;
 
 /** canonical slug → duplicate slug (redirect source) */
@@ -255,29 +257,8 @@ function planRelatedQuestionBackfill(rows) {
 }
 
 function planAddictionPromptFixes(rows) {
-  const bySlug = new Map(rows.map((row) => [row.slug, row]));
-  const patches = [];
-
-  for (const slug of ADDICTION_PROMPT_FIX_SLUGS) {
-    const row = bySlug.get(slug);
-    if (!row) {
-      patches.push({ slug, skipped: true, reason: 'slug not found' });
-      continue;
-    }
-    const current = cleanText(row.content_prompt_version);
-    if (current === ADDICTION_PROMPT_VERSION) {
-      patches.push({ slug, skipped: true, reason: 'already correct' });
-      continue;
-    }
-    patches.push({
-      id: row.id,
-      slug,
-      content_prompt_version: ADDICTION_PROMPT_VERSION,
-      previous: row.content_prompt_version,
-    });
-  }
-
-  return patches;
+  // Deprecated: accepted set includes copywriter prompt; never relabel in fixes plan.
+  return [];
 }
 
 async function applyPatch(client, table, patch) {
@@ -355,15 +336,12 @@ async function main() {
         planned: relatedPatches.filter((item) => !item.skipped).length,
         applied: results.related_question_backfill.filter((item) => item.applied).length,
       },
-      addiction_prompt_fixes: {
-        planned: addictionPatches.filter((item) => !item.skipped).length,
-        applied: results.addiction_prompt_fixes.filter((item) => item.applied).length,
-      },
+      addiction_prompt_fixes: { planned: 0, applied: 0 },
     },
     kenneth_promotions: kennethPatches,
     duplicate_demotions: duplicatePatches,
     related_question_backfill: relatedPatches,
-    addiction_prompt_fixes: addictionPatches,
+    addiction_prompt_fixes: [],
     apply_results: apply ? results : null,
     vercel_redirects: DUPLICATE_CLUSTERS.map(({ canonical, duplicate }) => ({
       source: `/answers/${duplicate}`,
@@ -380,7 +358,7 @@ async function main() {
   console.log(`Kenneth promotions: ${report.summary.kenneth_promotions.planned} planned`);
   console.log(`Duplicate demotions: ${report.summary.duplicate_demotions.planned} planned`);
   console.log(`Related question backfill: ${report.summary.related_question_backfill.planned} planned`);
-  console.log(`Addiction prompt fixes: ${report.summary.addiction_prompt_fixes.planned} planned`);
+  console.log(`Addiction prompt fixes: 0 planned (rule deprecated)`);
   console.log(`Wrote ${reportPath}`);
 
   if (apply) {
