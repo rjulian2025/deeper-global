@@ -1,13 +1,6 @@
 name: Related Questions Backfill (dry-run, commit plan)
 
 on:
-  push:
-    branches:
-      - cursor/**
-    paths:
-      - '.github/workflows/related-backfill-dryrun.yml'
-      - 'scripts/backfill-related-questions.mjs'
-      - 'scripts/lib/related-questions-backfill.mjs'
   workflow_dispatch: {}
 
 jobs:

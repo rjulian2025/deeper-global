@@ -1,12 +1,6 @@
 name: Retired Redirects Detect (commit report and file updates)
 
 on:
-  push:
-    branches:
-      - cursor/audit-warnings-backfill-1017
-    paths:
-      - '.github/workflows/retired-redirects-detect.yml'
-      - 'scripts/detect-missing-redirects.mjs'
   workflow_dispatch: {}
 
 jobs:
