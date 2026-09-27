@@ -133,6 +133,14 @@ async function markFailed(url, key, postId) {
   });
 }
 
+async function releaseClaim(url, key, postId) {
+  const qs = new URLSearchParams({ id: `eq.${postId}` });
+  return supabaseRequest(url, key, `social_posts?${qs}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ scheduled_for: null }),
+  });
+}
+
 /**
  * After publishing one post for a question, push other pending posts for the
  * same question_id forward in time so they don't fire on the very next cron tick.
@@ -193,6 +201,12 @@ function summarizeError(error) {
   };
 }
 
+function isAccountLevelBlocked(summary) {
+  const status = Number(summary?.status ?? NaN);
+  // Treat 401/403 auth, 402 billing, and 429 rate-limit as account-level blockers.
+  return status === 401 || status === 402 || status === 403 || status === 429;
+}
+
 async function postToX(text) {
   const credentials = {
     appKey: process.env.X_API_KEY?.trim(),
@@ -243,6 +257,7 @@ export default async function handler(req, res) {
     if (!url || !key) throw new Error('Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY');
 
     let posts = await getApprovedPostsToPublish(url, key, limit);
+    let publishingBlocked = false;
 
     if (posts.length === 0 && !dryRun) {
       const supabase = createClient(url, key, { auth: { persistSession: false } });
@@ -381,32 +396,55 @@ export default async function handler(req, res) {
         results.push({ ...selected, status: 'published', x_post_id: published.id, error: null });
       } catch (err) {
         const summary = summarizeError(err);
-        console.error('social_publish_failed', { post_id: claimedPost.id, error: summary });
-        const failedUpdate = await markFailed(url, key, claimedPost.id).catch((updateError) => {
-          console.error('social_publish_mark_failed_error', {
-            post_id: claimedPost.id,
-            error: summarizeError(updateError),
+        if (isAccountLevelBlocked(summary)) {
+          // Circuit breaker: stop further attempts; do NOT mark post failed; release the claim.
+          console.error('social_publish_billing_blocked', { post_id: claimedPost.id, error: summary });
+          await releaseClaim(url, key, claimedPost.id).catch((updateError) => {
+            console.error('social_publish_release_claim_error', {
+              post_id: claimedPost.id,
+              error: summarizeError(updateError),
+            });
+            return null;
           });
-          return null;
-        });
-        console.log('social_publish_update_result', {
-          post_id: claimedPost.id,
-          failed_update_count: Array.isArray(failedUpdate) ? failedUpdate.length : null,
-        });
-        results.push({ ...selected, status: 'failed', x_post_id: null, error: summary.message });
+          results.push({ ...selected, status: 'blocked', x_post_id: null, error: summary.message, blocked: true });
+          publishingBlocked = true;
+          break;
+        } else {
+          console.error('social_publish_failed', { post_id: claimedPost.id, error: summary });
+          const failedUpdate = await markFailed(url, key, claimedPost.id).catch((updateError) => {
+            console.error('social_publish_mark_failed_error', {
+              post_id: claimedPost.id,
+              error: summarizeError(updateError),
+            });
+            return null;
+          });
+          console.log('social_publish_update_result', {
+            post_id: claimedPost.id,
+            failed_update_count: Array.isArray(failedUpdate) ? failedUpdate.length : null,
+          });
+          results.push({ ...selected, status: 'failed', x_post_id: null, error: summary.message });
+        }
       }
     }
 
-    return res.status(200).json({
-      ok: true,
+    const responsePayload = {
+      ok: !publishingBlocked,
       dryRun,
       requested: limit,
       found: posts.length,
       published: results.filter((r) => r.status === 'published').length,
       failed: results.filter((r) => r.status === 'failed').length,
       invalid: results.filter((r) => r.status === 'invalid').length,
+      blocked: results.filter((r) => r.status === 'blocked').length,
       results,
-    });
+    };
+
+    if (publishingBlocked) {
+      // Make the run visibly unhealthy to monitoring
+      return res.status(503).json({ error: 'social_publish_billing_blocked', ...responsePayload });
+    }
+
+    return res.status(200).json(responsePayload);
   } catch (error) {
     console.error('publish_approved_social_posts_failed', error);
     return res.status(500).json({
