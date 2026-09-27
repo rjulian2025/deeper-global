@@ -60,6 +60,10 @@ const ALLOWED_EVENTS = new Set([
   'answer_related_clicked',
   'api_answer_fetched',
   'api_answers_listed',
+  // Conversion/lead events
+  'primary_cta_clicked',
+  'generate_lead',
+  'book_call',
 ]);
 
 const ALLOWED_CONTENT_TYPES = new Set(['answer', 'category', 'entity', 'hub', 'policy', 'search', 'external_referral']);
