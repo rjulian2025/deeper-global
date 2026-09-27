@@ -5,8 +5,8 @@
  *
  * Stored fields:
  * - source, medium, campaign, content, term, gclid
- * - referrer (full document.referrer)
- * - landing_page (pathname + search)
+ * - referrer (host only; internal referrers ignored)
+ * - landing_page (path only; no query)
  * - first_seen_ts (ISO 8601)
  */
 
@@ -21,13 +21,21 @@ function safeTruncate(value, max = MAX_VALUE_LEN) {
   return trimmed ? trimmed.slice(0, max) : undefined;
 }
 
-function hostFromReferrer(referrer) {
+function stripWww(host) {
+  return (host || '').replace(/^www\./, '');
+}
+
+function hostFromReferrer(referrer, currentHost) {
   if (!referrer) return undefined;
   try {
     const u = new URL(referrer);
     const host = u.hostname || undefined;
-    if (host && !INTERNAL_HOSTS.has(host)) return host;
-    return undefined; // ignore internal referrers
+    if (!host) return undefined;
+    const thisHost = stripWww(currentHost || (typeof window !== 'undefined' ? window.location.hostname : ''));
+    const refHost = stripWww(host);
+    if (thisHost && refHost === thisHost) return undefined;
+    if (INTERNAL_HOSTS.has(refHost)) return undefined;
+    return host;
   } catch {
     return undefined;
   }
@@ -73,7 +81,9 @@ function extractFromLocation(locationLike) {
 export function captureAttributionOnLanding(locationLike, referrer, storageOverride = {}) {
   try {
     const { hasUtm, params } = extractFromLocation(locationLike);
-    const refHost = hostFromReferrer(referrer);
+    const loc = typeof locationLike === 'string' ? new URL(locationLike, 'https://example.com') : locationLike;
+    const currentHost = loc?.hostname ?? (typeof window !== 'undefined' ? window.location.hostname : undefined);
+    const refHost = hostFromReferrer(referrer, currentHost);
     const local = storageOverride.localStorage ?? (typeof window !== 'undefined' ? window.localStorage : undefined);
     const session = storageOverride.sessionStorage ?? (typeof window !== 'undefined' ? window.sessionStorage : undefined);
     if (!local || !session) return;
@@ -97,6 +107,10 @@ export function captureAttributionOnLanding(locationLike, referrer, storageOverr
         ...params,
         referrer: safeTruncate(refHost ?? ''),
       };
+      if (!hasUtm && refHost) {
+        lastTouch.source = safeTruncate(refHost);
+        lastTouch.medium = 'referral';
+      }
       session.setItem(LAST_TOUCH_KEY, JSON.stringify(lastTouch));
     }
   } catch {
@@ -151,6 +165,7 @@ export function getAttributionParams(storageOverride = {}) {
       lt_medium: lastTouch.medium,
       lt_campaign: lastTouch.campaign,
       lt_content: lastTouch.content,
+      lt_referrer: lastTouch.referrer,
       // shared context
       referrer: firstTouch.referrer,
       landing_page: firstTouch.landing_page,

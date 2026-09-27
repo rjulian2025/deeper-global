@@ -7,13 +7,13 @@ Important: This work is instrumentation-only. It does not change copy, answers, 
 ## Attribution capture (client)
 
 On every landing:
-- Captured fields: `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `gclid`, `referrer` (full `document.referrer`), `landing_page` (pathname + search), `first_seen_ts` (ISO 8601)
+- Captured fields: `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `gclid`, `referrer` (hostname only), `landing_page` (path only), `first_seen_ts` (ISO 8601)
 - First touch (localStorage, never overwritten): `dg_attribution_ft`
 - Last touch (sessionStorage, replaced on new UTM/gclid landing): `dg_attribution_lt`
 
 Client module: `src/lib/attribution.mjs`
 - `captureAttributionOnLanding(location, referrer)`
-- `getAttributionParams()` → `{ ft_source, ft_medium, ft_campaign, ft_content, lt_source, lt_medium, lt_campaign, lt_content, referrer, landing_page }`
+- `getAttributionParams()` → `{ ft_source, ft_medium, ft_campaign, ft_content, lt_source, lt_medium, lt_campaign, lt_content, lt_referrer, referrer, landing_page }`
 - All values are trimmed and truncated to 100 chars.
 
 Used automatically in `src/layouts/BaseLayout.astro` for GA4 events (gated to production hosts).
@@ -44,7 +44,7 @@ Wrapper module: `src/lib/events.mjs`
 - `leadMessageSubmit(ctaLocation, extra)`
 - `bookCall(ctaLocation, extra)` (do not use until an on-site booking exists)
 
-These call `window.deeperTrackEvent(eventName, params)` with attribution merged in. First-party `/api/intent-event` is also sent with allowed events.
+These call `window.deeperTrackEvent(eventName, params)` with attribution merged in. First-party `/api/intent-event` is also sent with allowed events. Page-load events are queued until attribution initializes, so the initial event includes first-touch params.
 
 ## Forms and submissions
 

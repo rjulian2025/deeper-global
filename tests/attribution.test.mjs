@@ -31,6 +31,10 @@ test('attribution capture: first-touch always set; last-touch only on UTM landin
   const ltParsed = JSON.parse(ltAfterFirst);
   assert.equal(ltParsed.referrer, 'www.google.com');
   assert.equal(ltParsed.landing_page, '/answers/');
+  // And it should carry source/medium for referral last-touch
+  const atAfterFirst = getAttributionParams(storage);
+  assert.equal(atAfterFirst.lt_source, 'www.google.com');
+  assert.equal(atAfterFirst.lt_medium, 'referral');
 
   // Second landing: with UTMs
   const url2 = 'https://www.deeper.global/answers/how-do-i-feel?utm_source=x&utm_medium=social&utm_campaign=social_question_only&utm_content=why-do-i-feel';

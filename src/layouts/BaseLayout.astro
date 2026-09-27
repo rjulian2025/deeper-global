@@ -279,7 +279,9 @@ const structuredData = {
     </div>
     {loadAnalytics && (
       <>
-        <script type="module" src={attributionInitUrl}></script>
+        <script type="module">
+          import "../scripts/attribution-init.mjs";
+        </script>
         <script is:inline define:vars={{ INTENT_EVENT_ENDPOINT }}>
       (() => {
         // Obvious bots/headless browsers/crawlers are allowed to crawl (see
@@ -291,6 +293,11 @@ const structuredData = {
         const MAX_PARAM_LENGTH = 100;
         const sameHost = window.location.hostname;
         const path = window.location.pathname;
+
+        // Attribution readiness and queuing for early page-load events
+        window.__dgAttribution = window.__dgAttribution || (() => ({}));
+        window.__dgAttributionReady = window.__dgAttributionReady || false;
+        window.__dgEventQueue = window.__dgEventQueue || [];
 
         const clean = (value, maxLength = MAX_PARAM_LENGTH) => {
           if (typeof value !== 'string') return undefined;
@@ -405,6 +412,10 @@ const structuredData = {
         };
 
         window.deeperTrackEvent = (eventName, params = {}) => {
+          if (!window.__dgAttributionReady) {
+            window.__dgEventQueue.push({ name: eventName, params });
+            return;
+          }
           // Merge stored attribution for GA4. Values are further cleaned below.
           let attribution = {};
           try { attribution = (window.__dgAttribution && window.__dgAttribution()) || {}; } catch {}
@@ -512,9 +523,8 @@ const structuredData = {
           const href = link.getAttribute('href') ?? '';
           const label = clean(link.textContent ?? '', 80);
           const ctaLocationFromEl = (el) => {
-            // Prefer explicit nav/drawer before generic header
-            if (el.closest('.site-nav-links, .nav-drawer-inner')) return 'nav';
-            if (el.closest('header')) return 'header';
+            if (el.closest('.nav-drawer-inner')) return 'drawer';
+            if (el.closest('.site-nav-links') || el.closest('header')) return 'nav';
             if (el.closest('footer')) return 'footer';
             return 'body';
           };
@@ -549,6 +559,7 @@ const structuredData = {
             window.deeperTrackEvent('hub_link_clicked', {
               link_label: label,
               target_path: href,
+              cta_location: ctaLocationFromEl(link),
             });
           }
 

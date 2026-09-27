@@ -13,3 +13,16 @@ window.__dgAttribution = () => {
   }
 };
 
+// Mark attribution ready and flush any queued events
+try {
+  const queued = Array.isArray(window.__dgEventQueue) ? window.__dgEventQueue.splice(0) : [];
+  window.__dgAttributionReady = true;
+  if (queued && typeof window.deeperTrackEvent === 'function') {
+    for (const item of queued) {
+      try {
+        window.deeperTrackEvent(item.name, item.params || {});
+      } catch {}
+    }
+  }
+} catch {}
+
