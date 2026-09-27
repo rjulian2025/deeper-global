@@ -109,12 +109,14 @@ async function main() {
 
   for (const [slug, list] of duplicates) {
     const canonical = pickCanonical(list);
+    const canonicalId = canonical.id;
     for (const row of list) {
       if (row.id === canonical.id) continue;
       backups.push({ ...row });
       patches.push({
         slug,
         canonical_slug: canonical.slug,
+        canonical_id: canonicalId,
         update: {
           id: row.id,
           review_status: RETIRED_DUPLICATE,
@@ -131,6 +133,7 @@ async function main() {
   mkdirSync(OUT_DIR, { recursive: true });
   const backupPath = `${OUT_DIR}/backup-duplicate-slugs-${todayStamp()}.json`;
   const planPath = `${OUT_DIR}/plan-duplicate-slugs-${todayStamp()}.json`;
+  const resolutionPath = `${OUT_DIR}/duplicate-resolution-${todayStamp()}.json`;
 
   writeFileSync(backupPath, `${JSON.stringify({ generated_at: new Date().toISOString(), rows: backups }, null, 2)}\n`);
   const plan = {
@@ -141,10 +144,21 @@ async function main() {
     patches,
   };
   writeFileSync(planPath, `${JSON.stringify(plan, null, 2)}\n`);
+  const resolution = duplicates.map(([slug, list]) => {
+    const canonical = pickCanonical(list);
+    return {
+      slug,
+      canonical_id: canonical.id,
+      canonical_slug: canonical.slug,
+      retired_ids: list.filter((r) => r.id !== canonical.id).map((r) => r.id),
+    };
+  });
+  writeFileSync(resolutionPath, `${JSON.stringify({ generated_at: new Date().toISOString(), resolutions: resolution }, null, 2)}\n`);
 
   console.log(`Planned duplicate demotions: ${patches.length} across ${duplicates.length} slugs`);
   console.log(`Wrote ${backupPath}`);
   console.log(`Wrote ${planPath}`);
+  console.log(`Wrote ${resolutionPath}`);
 
   if (apply && patches.length) {
     const results = await applyUpdates(client, patches);

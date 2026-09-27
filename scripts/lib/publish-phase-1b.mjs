@@ -241,7 +241,18 @@ export async function publishPhase1bDrafts({
   }
 
   const { error: insertError } = await supabase.from('questions_master').insert(rowsToInsert);
-  if (insertError) throw insertError;
+  if (insertError) {
+    const msg = String(insertError.message || '');
+    const isDuplicate =
+      insertError.code === '23505' ||
+      /duplicate key value/i.test(msg) ||
+      /unique constraint/i.test(msg) ||
+      insertError.details?.includes?.('already exists');
+    if (!isDuplicate) {
+      throw insertError;
+    }
+    // If a unique index on slug exists and races occurred, treat duplicates as skipped.
+  }
 
   const { count: afterCount, error: afterCountError } = await supabase
     .from('questions_master')
