@@ -15,7 +15,6 @@ import {
   robotsMetaContent,
   shouldLoadAnalytics,
 } from '@/lib/site-env';
-import attributionInitUrl from '../scripts/attribution-init.mjs?url';
 
 const DEFAULT_OG_IMAGE_PATH = '/og/deeper-global-og-v2.png';
 const DEFAULT_OG_IMAGE_ALT =
@@ -279,7 +278,7 @@ const structuredData = {
     </div>
     {loadAnalytics && (
       <>
-        <script type="module">
+        <script>
           import "../scripts/attribution-init.mjs";
         </script>
         <script is:inline define:vars={{ INTENT_EVENT_ENDPOINT }}>
@@ -297,7 +296,22 @@ const structuredData = {
         // Attribution readiness and queuing for early page-load events
         window.__dgAttribution = window.__dgAttribution || (() => ({}));
         window.__dgAttributionReady = window.__dgAttributionReady || false;
-        window.__dgEventQueue = window.__dgEventQueue || [];
+        window.__dgEventQueue = Array.isArray(window.__dgEventQueue) ? window.__dgEventQueue : [];
+        const MAX_QUEUE = 50;
+        let flushFallbackTimer = null;
+        const flushQueue = (force = false) => {
+          if (!force && !window.__dgAttributionReady) return;
+          const queued = window.__dgEventQueue.splice(0);
+          if (!queued.length) return;
+          for (const item of queued) {
+            try { window.deeperTrackEvent(item.name, item.params || {}); } catch {}
+          }
+        };
+        // Fallback: if attribution never loads (blocked), flush after ~2s and on pagehide
+        try {
+          flushFallbackTimer = window.setTimeout(() => flushQueue(true), 2000);
+          window.addEventListener('pagehide', () => flushQueue(true), { once: true });
+        } catch {}
 
         const clean = (value, maxLength = MAX_PARAM_LENGTH) => {
           if (typeof value !== 'string') return undefined;
@@ -413,7 +427,9 @@ const structuredData = {
 
         window.deeperTrackEvent = (eventName, params = {}) => {
           if (!window.__dgAttributionReady) {
-            window.__dgEventQueue.push({ name: eventName, params });
+            if (window.__dgEventQueue.length < MAX_QUEUE) {
+              window.__dgEventQueue.push({ name: eventName, params });
+            }
             return;
           }
           // Merge stored attribution for GA4. Values are further cleaned below.

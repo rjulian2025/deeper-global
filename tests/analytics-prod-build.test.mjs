@@ -59,7 +59,10 @@ test('production build has no inline script with import/@/ and all inline script
       const typeMatch = attrs.match(/type\s*=\s*"([^"]+)"/i);
       const type = typeMatch ? typeMatch[1].toLowerCase() : '';
       if (type && type !== 'text/javascript' && type !== 'module') continue;
-      // Inline module scripts are allowed but must not use @/ alias
+      // Inline module scripts must not contain raw imports and must not use @/ alias
+      if (type === 'module') {
+        assert.ok(!/^\s*import\s/m.test(code), `inline module must not contain raw import in ${file}`);
+      }
       assert.ok(!/@\//.test(code), `inline script must not contain @/ alias in ${file}`);
       // Parse only classic scripts; module parsing is environment-specific
       if (!type || type === 'text/javascript') {
@@ -83,7 +86,7 @@ test('production build has no inline script with import/@/ and all inline script
   await walk(tmpOut);
   for (const js of jsFiles) {
     const code = readFileSync(js, 'utf8');
-    const importRe = /import\\s+[^'"]*['"]([^'"]+)['"]/g;
+    const importRe = /import\s+[^'"]*['"]([^'"]+)['"]/g;
     let im;
     while ((im = importRe.exec(code))) {
       const spec = im[1];
