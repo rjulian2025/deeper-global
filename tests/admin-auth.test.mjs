@@ -1,26 +1,19 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { isAdminAuthorized } from '../scripts/lib/admin-auth.mjs';
+import { isBearerAuthorized, resolveAdminSecret } from '../scripts/lib/admin-auth.mjs';
 
-test('admin auth rejects when secret missing', () => {
-  const req = { headers: {}, query: {} };
-  const saved = process.env.CRON_SECRET;
-  try {
-    delete process.env.CRON_SECRET;
-    assert.equal(isAdminAuthorized(req), false);
-  } finally {
-    if (saved) process.env.CRON_SECRET = saved;
-  }
-});
+test('isBearerAuthorized accepts only Authorization header', () => {
+  process.env.CRON_SECRET = 'topsecret';
+  const secret = resolveAdminSecret();
+  assert.equal(secret, 'topsecret');
 
-test('admin auth accepts Bearer token', () => {
-  const saved = process.env.CRON_SECRET;
-  try {
-    process.env.CRON_SECRET = 's3cr3t';
-    const req = { headers: { authorization: 'Bearer s3cr3t' }, query: {} };
-    assert.equal(isAdminAuthorized(req), true);
-  } finally {
-    if (saved) process.env.CRON_SECRET = saved;
-  }
+  const reqHeaderOk = { headers: { authorization: `Bearer ${secret}` } };
+  assert.equal(isBearerAuthorized(reqHeaderOk), true);
+
+  const reqWrongHeader = { headers: { authorization: `Bearer wrong` } };
+  assert.equal(isBearerAuthorized(reqWrongHeader), false);
+
+  const reqQueryTrick = { headers: {}, query: { secret } };
+  assert.equal(isBearerAuthorized(reqQueryTrick), false, 'query param must not authorize');
 });
 

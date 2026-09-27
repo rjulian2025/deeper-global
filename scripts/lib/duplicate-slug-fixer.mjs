@@ -9,14 +9,6 @@ function isIndexableStatus(value) {
   return INDEXABLE.has(status);
 }
 
-function demoteNote(canonical, existing) {
-  const note = `Duplicate of canonical slug ${canonical}; demoted to ${RETIRED_DUPLICATE}.`;
-  const prior = cleanText(existing);
-  if (!prior) return note;
-  if (prior.includes(canonical)) return prior;
-  return `${prior}\n\n${note}`;
-}
-
 function pickCanonical(rows) {
   return rows
     .slice()
@@ -27,6 +19,7 @@ function pickCanonical(rows) {
       const aEnriched = Boolean(cleanText(a.content_enriched_at));
       const bEnriched = Boolean(cleanText(b.content_enriched_at));
       if (aEnriched !== bEnriched) return bEnriched ? 1 : -1;
+      // Oldest created_at wins
       const aTime = Date.parse(a.created_at);
       const bTime = Date.parse(b.created_at);
       return aTime - bTime;
@@ -53,20 +46,19 @@ export function planDuplicateFixFromRows(rows) {
   const bySlug = new Map();
   for (const row of rows) {
     const key = cleanText(row.slug);
+    if (!key) continue; // skip null/blank slugs
     const list = bySlug.get(key) ?? [];
     list.push(row);
     bySlug.set(key, list);
   }
-  const duplicates = [...bySlug.entries()].filter(([, list]) => list.length > 1);
 
-  const backups = [];
+  const duplicates = [...bySlug.entries()].filter(([, list]) => list.length > 1);
   const patches = [];
-  const resolutions = [];
+  const backups = [];
 
   for (const [slug, list] of duplicates) {
     const canonical = pickCanonical(list);
     const canonicalId = canonical.id;
-    const retired = [];
     for (const row of list) {
       if (row.id === canonical.id) continue;
       backups.push({ ...row });
@@ -79,7 +71,7 @@ export function planDuplicateFixFromRows(rows) {
           id: row.id,
           slug: retiredSlug,
           review_status: RETIRED_DUPLICATE,
-          citation_notes: demoteNote(canonical.slug, row.citation_notes),
+          citation_notes: buildDemoteNote(canonical.slug, row.citation_notes),
         },
         previous: {
           slug: row.slug,
@@ -87,15 +79,23 @@ export function planDuplicateFixFromRows(rows) {
           citation_notes: row.citation_notes,
         },
       });
-      retired.push({ id: row.id, new_slug: retiredSlug });
     }
-    resolutions.push({
+  }
+
+  const resolutions = duplicates.map(([slug, list]) => {
+    const canonical = pickCanonical(list);
+    return {
       slug,
       canonical_id: canonical.id,
       canonical_slug: canonical.slug,
-      retired,
-    });
-  }
+      retired: list
+        .filter((r) => r.id !== canonical.id)
+        .map((r) => ({
+          id: r.id,
+          new_slug: `${slug}-retired-duplicate-${String(r.id).slice(0, 8)}`.toLowerCase(),
+        })),
+    };
+  });
 
   return {
     duplicates: duplicates.length,
@@ -109,10 +109,24 @@ export async function applyDuplicateFix(client, patches) {
   const results = [];
   for (const patch of patches) {
     const { id, ...update } = patch.update;
-    const { data, error } = await client.from('questions_master').update(update).eq('id', id).select('id,slug');
-    if (error) throw error;
-    results.push({ id, slug: patch.slug, applied: Boolean(data?.length) });
+    try {
+      const { data, error } = await client.from('questions_master').update(update).eq('id', id).select('id,slug');
+      if (error) {
+        results.push({ id, slug: patch.slug, status: 'failed', error: error.message ?? String(error) });
+        continue;
+      }
+      results.push({ id, slug: patch.slug, status: data?.length ? 'applied' : 'not_modified' });
+    } catch (err) {
+      results.push({ id, slug: patch.slug, status: 'failed', error: err.message ?? String(err) });
+    }
   }
   return results;
 }
 
+function buildDemoteNote(canonicalSlug, existing) {
+  const note = `Duplicate of canonical slug ${canonicalSlug}; demoted to ${RETIRED_DUPLICATE}.`;
+  const prior = cleanText(existing);
+  if (!prior) return note;
+  if (prior.includes(canonicalSlug)) return prior;
+  return `${prior}\n\n${note}`;
+}

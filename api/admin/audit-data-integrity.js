@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { isAdminAuthorized, cleanText } from '../../scripts/lib/admin-auth.mjs';
+import { isBearerAuthorized, cleanText } from '../../scripts/lib/admin-auth.mjs';
 import { runDataIntegrityAudit } from '../../scripts/lib/data-integrity-audit.mjs';
 
 export default async function handler(req, res) {
@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  if (!isAdminAuthorized(req)) {
+  if (!isBearerAuthorized(req)) {
     res.statusCode = 401;
     res.end(JSON.stringify({ error: 'Unauthorized.' }));
     return;

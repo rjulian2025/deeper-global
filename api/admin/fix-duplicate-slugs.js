@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { isAdminAuthorized, readJsonBody, cleanText } from '../../scripts/lib/admin-auth.mjs';
+import { isBearerAuthorized, readJsonBody, cleanText } from '../../scripts/lib/admin-auth.mjs';
 import {
   fetchAllQuestionsCompact,
   planDuplicateFixFromRows,
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  if (!isAdminAuthorized(req)) {
+  if (!isBearerAuthorized(req)) {
     res.statusCode = 401;
     res.end(JSON.stringify({ error: 'Unauthorized.' }));
     return;
@@ -45,14 +45,19 @@ export default async function handler(req, res) {
       generated_at: new Date().toISOString(),
       mode: apply ? 'apply' : 'dry-run',
       duplicates: plan.duplicates,
-      backup_rows: apply ? undefined : plan.backup_rows, // omit full backups on apply response to reduce payload
+      backup_rows: plan.backup_rows,
       patches: apply ? undefined : plan.patches,
       resolutions: plan.resolutions,
       apply_results: apply ? applied : undefined,
       apply_path: 'remote_admin',
     };
 
-    res.statusCode = 200;
+    // If apply mode had any failures, return non-2xx to surface partial apply
+    if (apply && applied.some((r) => r.status === 'failed')) {
+      res.statusCode = 500;
+    } else {
+      res.statusCode = 200;
+    }
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(report));
   } catch (error) {

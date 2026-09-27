@@ -17,6 +17,13 @@ export function isAdminAuthorized(req) {
   return authHeader === `Bearer ${secret}` || headerSecret === secret || querySecret === secret;
 }
 
+export function isBearerAuthorized(req) {
+  const secret = resolveAdminSecret();
+  if (!secret) return false;
+  const authHeader = req.headers?.authorization ?? req.headers?.Authorization;
+  return authHeader === `Bearer ${secret}`;
+}
+
 export function readJsonBody(req) {
   return new Promise((resolve, reject) => {
     const chunks = [];
