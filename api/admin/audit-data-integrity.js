@@ -3,6 +3,11 @@ import { isBearerAuthorized, cleanText } from '../../scripts/lib/admin-auth.mjs'
 import { runDataIntegrityAudit } from '../../scripts/lib/data-integrity-audit.mjs';
 
 export default async function handler(req, res) {
+  // Always advertise the running deployment SHA for readiness probes
+  try {
+    const sha = process.env.VERCEL_GIT_COMMIT_SHA || '';
+    if (sha) res.setHeader('x-deploy-sha', sha);
+  } catch {}
   if (req.method !== 'GET') {
     res.statusCode = 405;
     res.setHeader('Allow', 'GET');

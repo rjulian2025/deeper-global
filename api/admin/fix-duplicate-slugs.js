@@ -7,6 +7,11 @@ import {
 } from '../../scripts/lib/duplicate-slug-fixer.mjs';
 
 export default async function handler(req, res) {
+  // Always advertise the running deployment SHA for readiness probes
+  try {
+    const sha = process.env.VERCEL_GIT_COMMIT_SHA || '';
+    if (sha) res.setHeader('x-deploy-sha', sha);
+  } catch {}
   if (req.method !== 'POST') {
     res.statusCode = 405;
     res.setHeader('Allow', 'POST');
