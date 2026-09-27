@@ -9,6 +9,8 @@ import {
   relatedQuestionCount,
   tierForScore,
 } from './content-enrichment-utils.mjs';
+import { REDIRECT_SOURCE_SLUGS as REDIRECT_SOURCE_SLUGS_ARRAY } from './redirect-sources.mjs';
+import { ANSWER_REWRITE_PROMPT_VERSION } from './answer-rewrite-system-prompt.mjs';
 
 const MIN_ANSWER_COUNT = 950;
 const PAGE_SIZE = 500;
@@ -70,6 +72,8 @@ const REVIEWER_ALIASES = {
 const ADDICTION_REVIEW_REPORT = 'reports/review-updates/addiction-review-2026-03-13.json';
 const ADDICTION_PROMPT_VERSION = 'deeper-addiction-enrichment-v1';
 const CORPUS_PROMPT_VERSION = 'deeper-answer-enrichment-v1';
+const ACCEPTED_ADDICTION_PROMPT_VERSIONS = new Set([ADDICTION_PROMPT_VERSION, ANSWER_REWRITE_PROMPT_VERSION]);
+const REDIRECT_SOURCE_SLUGS = new Set(REDIRECT_SOURCE_SLUGS_ARRAY);
 
 function normalizeReviewerLabel(value) {
   return value.toLowerCase().replace(/[,.-]+/g, ' ').replace(/\s+/g, ' ').trim();
@@ -275,7 +279,7 @@ function auditRow(question, issues, addictionSlugs) {
   // Addiction-specific checks restored
   if (addictionSlugs.includes(slug)) {
     const promptVersion = cleanText(question.content_prompt_version);
-    if (promptVersion && promptVersion !== ADDICTION_PROMPT_VERSION) {
+    if (promptVersion && !ACCEPTED_ADDICTION_PROMPT_VERSIONS.has(promptVersion)) {
       addIssue(issues, {
         id: 'addiction_wrong_prompt_version',
         severity: 'warning',
@@ -310,15 +314,35 @@ function auditRow(question, issues, addictionSlugs) {
 }
 
 function detectDuplicateQuestions(questions) {
-  const byNormalized = new Map();
+  const byNormalizedAll = new Map();
+  const byNormalizedPub = new Map();
   for (const question of questions) {
     const key = normalizeQuestionText(question.question);
     if (!key) continue;
-    const list = byNormalized.get(key) ?? [];
-    list.push(question.slug);
-    byNormalized.set(key, list);
+    const listAll = byNormalizedAll.get(key) ?? [];
+    listAll.push(question);
+    byNormalizedAll.set(key, listAll);
+    const status = cleanText(question.review_status).toLowerCase();
+    const publishable = (!status || INDEXABLE_REVIEW_STATUSES.has(status)) && status !== 'retired_duplicate' && !REDIRECT_SOURCE_SLUGS.has(question.slug);
+    if (publishable) {
+      const listPub = byNormalizedPub.get(key) ?? [];
+      listPub.push(question);
+      byNormalizedPub.set(key, listPub);
+    }
   }
-  return [...byNormalized.entries()].filter(([, slugs]) => slugs.length > 1);
+  const warningGroups = [];
+  let suppressedGroups = 0;
+  for (const [key, listPub] of byNormalizedPub.entries()) {
+    if (listPub.length > 1) {
+      warningGroups.push([key, listPub.map((q) => q.slug)]);
+    }
+  }
+  for (const [key, listAll] of byNormalizedAll.entries()) {
+    if (listAll.length > 1 && (!byNormalizedPub.has(key) || (byNormalizedPub.get(key)?.length ?? 0) <= 1)) {
+      suppressedGroups += 1;
+    }
+  }
+  return { warningGroups, suppressedGroups };
 }
 
 function detectSlugCollisions(questions) {
@@ -403,9 +427,12 @@ export async function runDataIntegrityAudit(client) {
     addIssue(issues, { id: 'duplicate_slug', severity: 'critical', message: `Duplicate slug (${ids.length} rows)`, slug, field: 'slug', count: ids.length });
   }
 
-  const duplicateQuestions = detectDuplicateQuestions(questions);
-  for (const [, slugs] of duplicateQuestions) {
+  const { warningGroups, suppressedGroups } = detectDuplicateQuestions(questions);
+  for (const [, slugs] of warningGroups) {
     addIssue(issues, { id: 'duplicate_question_text', severity: 'warning', message: `Duplicate question text (${slugs.length} slugs)`, slug: slugs[0], field: 'question', count: slugs.length });
+  }
+  if (suppressedGroups > 0) {
+    addIssue(issues, { id: 'duplicate_question_text_redirected', severity: 'info', message: 'Duplicate question groups suppressed due to redirect/non-indexable', slug: null, field: 'question', count: suppressedGroups });
   }
 
   crossReferencePromoteReports(questions, promoteReports, issues);
@@ -440,7 +467,7 @@ export async function runDataIntegrityAudit(client) {
     indexability: { pass: indexable === total, indexable, non_indexable: total - indexable },
     issue_counts: issueCounts,
     review_status_distribution: [...reviewStatusCounts.entries()].sort((a, b) => b[1] - a[1]),
-    duplicate_questions: duplicateQuestions,
+    duplicate_questions: warningGroups,
     addiction_slug_count: addictionSlugs.length,
     overall_status: issueCounts.critical === 0 ? (issueCounts.warning === 0 ? 'PASS' : 'PASS WITH WARNINGS') : 'FAIL',
   };
