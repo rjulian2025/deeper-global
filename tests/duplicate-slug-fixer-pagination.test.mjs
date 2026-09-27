@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { fetchAllQuestionsCompact } from '../scripts/lib/duplicate-slug-fixer.mjs';
+import { fetchAllQuestionsCompact, planDuplicateFixFromRows } from '../scripts/lib/duplicate-slug-fixer.mjs';
 
 function makeRows(count, sameCreatedAt = true) {
   const createdAt = '2026-01-01T00:00:00.000Z';
@@ -55,7 +55,8 @@ function makeFakeClientWithUnstablePagination(allRows, { shuffleTiesWhenNoIdOrde
             const createdAt = rows[0]?.created_at ?? null;
             const ties = rows.filter((r) => r.created_at === createdAt);
             const others = rows.filter((r) => r.created_at !== createdAt);
-            const seed = from + to;
+            const pageSize = to - from + 1;
+            const seed = Math.floor(from / pageSize);
             ties.sort((a, b) => {
               const s = String(a.id).localeCompare(String(b.id));
               return (seed % 2 === 0) ? s : -s;
@@ -78,4 +79,8 @@ test('fetchAllQuestionsCompact retrieves all rows stably with id tiebreaker', as
   assert.equal(rows.length, 1200);
   const distinctIds = new Set(rows.map((r) => r.id));
   assert.equal(distinctIds.size, 1200);
+  // With unique slugs and stable pagination, duplicate fixer should plan zero patches
+  const plan = planDuplicateFixFromRows(rows);
+  assert.equal(plan.duplicates, 0);
+  assert.equal(plan.patches.length, 0);
 });

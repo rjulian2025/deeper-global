@@ -79,11 +79,11 @@ function makeFakeClientWithUnstablePagination(allRows, { shuffleTiesWhenNoIdOrde
             const createdAt = rows[0]?.created_at ?? null;
             const ties = rows.filter((r) => r.created_at === createdAt);
             const others = rows.filter((r) => r.created_at !== createdAt);
-            // Deterministic shuffle per request window to avoid flakiness
-            const seed = from + to;
+            // Deterministic shuffle per page index: flip order each page
+            const pageSize = to - from + 1;
+            const seed = Math.floor(from / pageSize);
             ties.sort((a, b) => {
               const s = String(a.id).localeCompare(String(b.id));
-              // flip order every other page window
               return (seed % 2 === 0) ? s : -s;
             });
             rows = ties.concat(others);
@@ -117,8 +117,3 @@ test('audit detects pagination_duplicate_row when ids repeat', async () => {
   const critIds = new Set(report.issues.filter((i) => i.severity === 'critical').map((i) => i.id));
   assert.equal(critIds.has('pagination_duplicate_row'), true);
 });
-
-// Note: A separate test verifies that explicit duplicate ids across pages produce
-// a pagination_duplicate_row critical. The instability-only revert experiment is
-// validated manually in CI by removing the id tiebreaker and observing assertion
-// failures in this suite rather than chain TypeErrors.
