@@ -3,7 +3,9 @@ name: Data Integrity Apply: duplicate slugs
 on:
   push:
     branches:
-      - 'cursor/**'
+      - cursor/audit-details-1017
+    paths:
+      - '.github/workflows/data-integrity-apply-duplicates.yml'
   workflow_dispatch: {}
 
 jobs:
