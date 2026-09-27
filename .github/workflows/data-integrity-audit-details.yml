@@ -27,6 +27,12 @@ jobs:
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: npm run audit:data-integrity
 
+      - name: Expand per-record criticals
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: node scripts/audit-critical-expand.mjs
+
       - name: Show audit summary (head)
         run: |
           echo "::group::Audit summary"
@@ -41,5 +47,8 @@ jobs:
         if: always()
         with:
           name: data-integrity-report
-          path: reports/data-integrity/*
+          path: |
+            reports/data-integrity/audit-2026-06-14.json
+            reports/data-integrity/audit-2026-06-14.md
+            reports/data-integrity/critical-expanded-*.json
           if-no-files-found: warn
