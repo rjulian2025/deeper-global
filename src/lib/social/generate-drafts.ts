@@ -5,6 +5,28 @@ export const SOCIAL_DRAFT_MODEL = 'claude-haiku-4-5-20251001';
 export const RESTRICTED_CATEGORY_CRISIS_RESOURCE_LINE =
   "If you're in crisis, the 988 Suicide & Crisis Lifeline (call or text 988) is available 24/7.";
 export const X_TCO_URL_LENGTH = 23;
+export function buildAnswerUtmUrlForSocial({
+  slug,
+  source = 'x',
+  medium = 'social',
+  campaign = 'social_question_only',
+  content,
+}: {
+  slug: string;
+  source?: string;
+  medium?: string;
+  campaign?: string;
+  content?: string;
+}): string {
+  const safeSlug = String(slug || '').trim();
+  const params = new URLSearchParams({
+    utm_source: String(source || 'x'),
+    utm_medium: String(medium || 'social'),
+    utm_campaign: String(campaign || 'social_question_only'),
+    utm_content: String(content || safeSlug),
+  });
+  return `https://www.deeper.global/answers/${safeSlug}/?${params.toString()}`;
+}
 
 export const SOCIAL_DRAFT_STRATEGIES = [
   'top_impressions',
@@ -168,7 +190,13 @@ function buildQuestionOnlyPost(
   questionOnlyText: string,
   categorySafetyTier: CategorySafetyTier
 ) {
-  const url = `https://www.deeper.global/answers/${question.slug}/`;
+  const url = buildAnswerUtmUrlForSocial({
+    slug: question.slug,
+    source: 'x',
+    medium: 'social',
+    campaign: 'social_question_only',
+    content: question.slug,
+  });
   const restricted = categorySafetyTier === 'restricted';
   const linkBlock = `\n\n${url}`;
   const crisisBlock = restricted ? `\n\n${RESTRICTED_CATEGORY_CRISIS_RESOURCE_LINE}` : '';

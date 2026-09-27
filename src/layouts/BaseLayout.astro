@@ -237,7 +237,7 @@ const structuredData = {
             <a href="/protocol/">Protocol</a>
             <a href="/about/">About</a>
           </div>
-          <a class="nav-cta" href="/answers/">
+          <a class="nav-cta" href="/answers/" data-cta="primary">
             <span class="nav-cta-full">Ask anything</span>
             <span class="nav-cta-short" aria-hidden="true">Ask</span>
           </a>
@@ -501,6 +501,13 @@ const structuredData = {
 
           const href = link.getAttribute('href') ?? '';
           const label = clean(link.textContent ?? '', 80);
+          const pageUtmParams = new URLSearchParams(window.location.search);
+          const landingUtm = {
+            utm_source: pageUtmParams.get('utm_source') ?? undefined,
+            utm_medium: pageUtmParams.get('utm_medium') ?? undefined,
+            utm_campaign: pageUtmParams.get('utm_campaign') ?? undefined,
+            utm_content: pageUtmParams.get('utm_content') ?? undefined,
+          };
           const trackDeeperOutboundClick = (target, placement) => {
             const destinationDomain = target.hostname.replace(/^www\./, '');
             window.deeperTrackEvent('deeper_outbound_click', {
@@ -516,6 +523,12 @@ const structuredData = {
               utm_content: target.searchParams.get('utm_content') ?? undefined,
             });
           };
+
+          if (link.matches('[data-cta="primary"]')) {
+            window.deeperTrackEvent('primary_cta_clicked', {
+              ...landingUtm,
+            });
+          }
 
           if (link.closest('.site-nav-links, .nav-drawer-inner') && href.startsWith('/')) {
             window.deeperTrackEvent('hub_link_clicked', {

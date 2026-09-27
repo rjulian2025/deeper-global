@@ -1,6 +1,6 @@
-# AI Search + SEO Content Standard
+# AI Search + SEO + Conversion Content Standard
 
-Applies to every page and post written or published for: qvbrands.com, deeperwebsites.com, deeper.global, rickjulian.com (and any Deeper client site built from these repos). Owner: Rick Julian. Adopted Sep 27, 2026.
+Applies to every page and post written or published for: qvbrands.com, deeperwebsites.com, deeper.global, rickjulian.com (and any Deeper client site built from these repos). Owner: Rick Julian. Adopted Sep 27, 2026; conversion section added the same day.
 
 Every piece of content ships optimized for BOTH traditional search (Google/Bing) and AI answer engines (Google AI Overviews/AI Mode, ChatGPT search, Perplexity, Claude, Copilot, Gemini). This is the default, not an add-on. A post that fails the checklist below is not ready to publish.
 
@@ -42,8 +42,16 @@ Every article/post/essay/answer page:
 ## 5. Scheduled content
 - Scheduled posts carry `publishAt` with an explicit ET offset. Every consumer (pages, index, related links, sitemap, feed, llms.txt, llms-full.txt, JSON-LD lists) uses the single published-only list. Nothing future leaks.
 
-## 6. Enforcement
-- Each repo keeps an automated test that builds the site and asserts, for every published post: BlogPosting/Article JSON-LD present and parseable with the required fields in §1, BreadcrumbList present, canonical + OG tags present, the URL is in the sitemap and llms.txt, and no scheduled/future URL appears anywhere.
-- Drafts (GBP posts, blog posts, essays, landing pages) are written to §2 before they are reviewed; code changes that add a new content type must add its schema and llms entries in the same PR.
+## 6. Conversion and revenue (required on every page)
+Every page and post is built to turn visits into a measurable `book_call` (or the site's equivalent primary conversion).
+- **Attribution:** every link we control that points to a site carries UTM parameters (`utm_source`, `utm_medium`, `utm_campaign`, and `utm_content` naming the specific post or placement), e.g. GBP posts `utm_source=google_business_profile&utm_medium=post&utm_campaign=<site>_gbp&utm_content=<post-slug>`, GBP listing `utm_medium=listing`, social `utm_source=<network>&utm_medium=social`, email `utm_medium=email`. On-site, pass the landing page and UTM source into booking and lead events (GA4 `book_call` / `generate_lead` with `source`, `medium`, `campaign`, `content`, `page_path`) so each booking traces back to the post, GBP query or social mention that drove it. Internal links do not get UTMs.
+- **Lead magnet before the call:** each site offers at least one short, genuinely useful diagnostic, checklist or template in exchange for an email (e.g. Deeper's AI-ready therapist website checklist or readiness audit). It sits as the secondary action on posts and service pages, fires a `generate_lead` event, and adds the contact to a nurture/retargeting list (Resend audience, sending from the verified domain). It never competes visually with the primary CTA.
+- **Reviews and testimonials:** service pages show real client testimonials (named with permission, approved clients only) near the CTA, marked up with `Review` (author, reviewBody, itemReviewed = the Service/Organization) and `AggregateRating` only when backed by real, verifiable reviews (e.g. counts and ratings mirrored from the Google Business Profile). Never invent, paraphrase into new claims, or inflate reviews or ratings. Note: Google does not show star rich results for a business's reviews of itself, but the markup still helps AI engines understand and cite social proof, so keep it accurate.
+    50|- **Core Web Vitals are a release requirement:** at the 75th percentile on mobile, LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1; Lighthouse mobile Performance ≥ 90 on key templates. Optimize images (modern formats, explicit sizes, lazy-load below the fold), minimize third-party scripts (load booking widgets and analytics without blocking render), and treat a CWV regression as a bug that blocks deploy.
+- **One primary CTA per page:** each page has exactly one primary call to action (e.g. "Book a free 20-minute strategy call"), visually unmistakable (highest-contrast button, above the fold and repeated at the end), with the same label and destination throughout the page. Everything else (lead magnet, related reading) is visibly secondary. Each page's success is measured against its primary CTA conversion rate in GA4.
+
+## 7. Enforcement
+- Each repo keeps an automated test that builds the site and asserts, for every published post: BlogPosting/Article JSON-LD present and parseable with the required fields in §1, BreadcrumbList present, canonical + OG tags present, the URL is in the sitemap and llms.txt, and no scheduled/future URL appears anywhere; and, for every page, at least one element marked as the primary CTA (e.g. `data-cta="primary"`) with all such elements sharing one label and one destination, and that outbound links to our own properties in GBP/social/email templates carry UTMs.
+- Drafts (GBP posts, blog posts, essays, landing pages) are written to §2 and §6 before they are reviewed; code changes that add a new content type must add its schema and llms entries in the same PR. Run Lighthouse (mobile) on changed templates before merging.
 - This file lives at `docs/AI-SEO-CONTENT-STANDARD.md` in every site repo and is referenced from the repo README / AGENTS.md so coding agents apply it automatically.
 

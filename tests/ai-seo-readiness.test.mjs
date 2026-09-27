@@ -60,6 +60,23 @@ test('BaseLayout emits Organization, WebSite, and Person nodes', () => {
   assert.ok(types.has('Person'), 'Person node present (Rick Julian @id)');
 });
 
+test('Every page includes one or more primary CTAs and they share one destination per page', () => {
+  const pages = ['index.html', 'about/index.html'];
+  for (const page of pages) {
+    const filePath = join(distPreview, page);
+    if (!existsSync(filePath)) continue;
+    const html = readFileSync(filePath, 'utf8');
+    const matches = [...html.matchAll(/<a\b[^>]*data-cta="primary"[^>]*>/gi)];
+    assert.ok(matches.length >= 1, `Primary CTA present on ${page}`);
+    const hrefs = new Set(
+      matches
+        .map((m) => m[0].match(/\bhref="([^"]+)"/i)?.[1])
+        .filter(Boolean)
+    );
+    assert.equal(hrefs.size, 1, `Primary CTA links share one destination on ${page}`);
+  }
+});
+
 test('Answer pages (when built) include Article, QAPage, BreadcrumbList with required fields', () => {
   const answersRoot = existsSync(dist) ? dist : distPreview;
   if (!existsSync(answersRoot)) return;
