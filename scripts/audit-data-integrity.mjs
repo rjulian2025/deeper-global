@@ -105,6 +105,21 @@ function pct(count, total) {
 }
 
 function addIssue(issues, { id, severity, message, slug, field, value, count }) {
+  // Record per-occurrence details for critical issues
+  if (severity === 'critical') {
+    try {
+      globalThis.__CRITICAL_DETAILS__ = globalThis.__CRITICAL_DETAILS__ || [];
+      globalThis.__CRITICAL_DETAILS__.push({
+        issue_id: id,
+        severity,
+        slug: slug ?? null,
+        field: field ?? null,
+        value: typeof value === 'string' ? cleanText(value) : value ?? null,
+      });
+    } catch {
+      // best-effort only
+    }
+  }
   const existing = issues.find((item) => item.id === id);
   if (existing) {
     existing.count = (existing.count ?? 1) + (count ?? 1);
@@ -818,6 +833,7 @@ JSONB fields must be arrays when non-null.`;
       const order = { critical: 0, warning: 1, info: 2 };
       return order[a.severity] - order[b.severity] || (b.count ?? 0) - (a.count ?? 0);
     }),
+    critical_instances: Array.isArray(globalThis.__CRITICAL_DETAILS__) ? globalThis.__CRITICAL_DETAILS__ : [],
     schema_documentation: schemaDocumentation,
     recommendations,
     site_consumption: {
