@@ -10,8 +10,9 @@ import { resolveSupabaseConfig } from './lib/supabase-env.mjs';
 import { buildBackfillPlan } from './lib/related-questions-backfill.mjs';
 
 const OUT_DIR = 'reports/data-integrity';
-const SELECT = '*';
-const PAGE_SIZE = 1000;
+const SELECT =
+  'id,slug,question,category,raw_category,primary_theme,related_themes,related_questions,review_status,content_enriched_at,improved_title,created_at,updated_at';
+const PAGE_SIZE = 500;
 
 async function fetchAllQuestions(client) {
   const rows = [];
