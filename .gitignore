@@ -53,3 +53,6 @@ _archive/
 next-env.d.ts
 
 .env*.local
+
+# preview build output
+/dist-preview/

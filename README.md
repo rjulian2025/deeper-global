@@ -42,6 +42,10 @@ npm run dev
 | `npm run build:preview` | Preview/non-indexable build → `dist-preview/` |
 | `npm test` | Configuration and guardrail tests |
 
+### AI search + SEO standard
+
+This repo adopts the AI + SEO content standard in `docs/AI-SEO-CONTENT-STANDARD.md`. All content types and templates must comply. Tests include readiness checks for structured data, robots/AI crawler rules, and discovery feeds.
+
 ### Credentialed read-only production build (C12)
 
 Production builds require Supabase read credentials and enforce `MIN_ANSWER_COUNT=950`. The build path is **read-only** toward Supabase (static page generation only).
