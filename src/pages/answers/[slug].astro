@@ -40,7 +40,7 @@ import {
 import { getAnswerPractitionerLink } from '@/lib/practitioner-links';
 import { getAlexPeachtreeVideoReferral } from '@/data/alex-peachtree-video-referrals';
 import { resolveSemanticEnrichmentSync, getPilotEnrichmentBySlug } from '@/lib/semantic-enrichment';
-import { CONTENT_LICENSE_URL, organizationId, siteUrl, websiteId } from '@/lib/site';
+import { CONTENT_LICENSE_URL, organizationId, siteUrl, websiteId, FOUNDER_PERSON_ID } from '@/lib/site';
 import { qaPageNode } from '@/lib/schema';
 import { getCanonicalTopic } from '@/lib/taxonomy';
 import {
@@ -58,6 +58,7 @@ import { resolveAttribution } from '@/lib/attribution/resolve-attribution';
 import { getQuestionBySlug, getQuestions, getModalities, type Question } from '@/lib/supabase';
 import { filterPublishableQuestions } from '@/lib/indexing-policy';
 import { answerOgImagePath } from '@/lib/og-answer-image';
+import { getRelatedThemeNames } from '@/lib/content';
 
 export async function getStaticPaths() {
   const questions = filterPublishableQuestions(await getQuestions());
@@ -158,6 +159,10 @@ const trustUpdatedLabel = attribution.updatedAt ? formatDate(attribution.updated
 const hasTrustSidebar = Boolean(
   attribution.state !== 'none' || reviewedBy || reviewedAt || reviewStatusDisplay || sourceRefs.length > 0
 );
+const ogImagePath = answerOgImagePath(question.slug, updatedAt);
+const ogImageUrl = siteUrl(ogImagePath);
+const wordCount = answerText.split(/\s+/).filter(Boolean).length;
+const keywords = Array.from(new Set([getPrimaryTheme(question), ...getRelatedThemeNames(question)].filter(Boolean)));
 
 type RelatedSidebarLink = { href: string; label: string };
 
@@ -246,12 +251,15 @@ const jsonLd = {
       '@id': articleId,
       headline: displayTitle,
       description,
+      image: ogImageUrl,
+      inLanguage: 'en',
+      wordCount,
+      articleSection: category,
+      keywords,
       articleBody: answerText,
       datePublished: question.created_at,
       dateModified: updatedAt,
-      author: {
-        '@id': organizationId(),
-      },
+      author: { '@id': FOUNDER_PERSON_ID },
       publisher: {
         '@id': organizationId(),
       },
@@ -346,7 +354,9 @@ const jsonLd = {
   ogType="article"
   jsonLd={jsonLd}
   noindex={!shouldIndex}
-  imagePath={answerOgImagePath(question.slug, updatedAt)}
+  imagePath={ogImagePath}
+  articlePublishedTime={question.created_at}
+  articleModifiedTime={updatedAt}
   imageAlt={`Deeper Global — ${displayTitle}`}
 >
   {crisisSensitive && <CrisisBanner />}
@@ -384,6 +394,8 @@ const jsonLd = {
 
           <p class="editorial-meta">
             {category}
+            <span class="meta-sep" aria-hidden="true">·</span>
+            <a href="/about/">By Rick Julian</a>
             {
               attribution.publicRoleLabel && (
                 <>
@@ -396,6 +408,10 @@ const jsonLd = {
                 </>
               )
             }
+            <>
+              <span class="meta-sep" aria-hidden="true">·</span>
+              Published {formatDate(question.created_at)}
+            </>
             {
               attribution.showUpdatedDate && (
                 <>

@@ -1,0 +1,70 @@
+# Deeper Global
+
+> Trusted, evidence-informed mental health answers structured for people, search engines, and AI systems.
+
+Base URL: https://www.deeper.global
+Full corpus index: https://www.deeper.global/llms-full.txt
+Primary audience: people seeking mental health information before, during, or after care.
+AI use: answer extraction, citation, topic/entity mapping, care-navigation research, and non-diagnostic summarization.
+Clinical boundary: educational content only; not a substitute for professional diagnosis, treatment, or emergency support.
+Crisis boundary: for immediate self-harm, suicide, or danger concerns in the U.S., call or text 988 or contact emergency services.
+
+## Core Pages
+
+- [Home](https://www.deeper.global/): Deeper Global mission and public intelligence layer.
+- [About](https://www.deeper.global/about/): Mission, editorial process, and founder.
+- [Answers](https://www.deeper.global/answers/): Complete answer library.
+- [Modalities](https://www.deeper.global/modalities/): Structured psychoeducation hub for therapy approaches — EMDR, CBT, DBT, IFS, somatic therapies, couples work, and emerging treatments with cross-links to related answers.
+- [ADHD hub](https://www.deeper.global/adhd/): Curated cluster for adult ADHD diagnosis, executive dysfunction, emotional overwhelm, medication, work accommodations, and daily coping.
+- [Anxiety hub](https://www.deeper.global/anxiety/): Curated cluster for panic symptoms, social anxiety, worry, work stress, medication questions, grounding skills, and when to seek support.
+- [AI mental health hub](https://www.deeper.global/ai-mental-health/): Curated cluster for AI psychosis, chatbot dependency, AI companions, teens, work anxiety, deepfakes, and safety boundaries.
+- [AI use policy](https://www.deeper.global/ai-use/): Public boundaries for agent, retrieval, and developer use of Deeper Global content.
+- [API terms](https://www.deeper.global/api-terms/): Developer preview terms, attribution requirements, commercial-use boundary, and rate-limit expectations.
+- [Topics](https://www.deeper.global/categories/): Public topic hubs.
+- [Canonical topic directory](https://www.deeper.global/topics/): The 16 canonical topics from src/lib/taxonomy.ts (noindex, follow).
+- [Entities](https://www.deeper.global/entities/): Canonical mental health entity map.
+- [Protocol](https://www.deeper.global/protocol/): Content governance and trust protocol.
+- [Reviewers](https://www.deeper.global/reviewers/): Named clinical reviewers for selected answers.
+- [Developers](https://www.deeper.global/developers/): Deeper API developer preview, examples, OpenAPI, and commercial access note.
+- [Privacy](https://www.deeper.global/privacy/): Privacy posture for mental health intent data.
+- [AI use policy](https://www.deeper.global/ai-use/): Reuse, attribution, and public read API terms for AI systems.
+- [Answer JSON index](https://www.deeper.global/llms/answers.json): Canonical answer inventory with review, risk, citation, and summary metadata.
+- [Answer API](https://www.deeper.global/api/v1/answers/): Canonical v1 answer inventory for apps, agents, and developer examples.
+- [Entity JSON index](https://www.deeper.global/llms/entities.json): Topic map, aliases, counts, and representative answer slugs.
+- [Priority JSON index](https://www.deeper.global/llms/priority.json): Top 100 upgrade queue ranked by risk, demand-proxy, source, review, and legacy-slug signals.
+- [OpenAPI](https://www.deeper.global/openapi.json): Machine-readable Deeper API specification.
+- [Agent instructions](https://www.deeper.global/agents.txt): Agent usage boundaries and preferred retrieval workflow.
+- [Full corpus index](https://www.deeper.global/llms-full.txt): Extended AI-agent-readable site map, topic inventory, and usage guidance.
+- [RSS feed](https://www.deeper.global/feed.xml): Recently updated answers.
+- [Sitemap](https://www.deeper.global/sitemap.xml): All indexable pages.
+
+## About
+
+Deeper Global was founded by Rick Julian (https://www.rickjulian.com/), a digital
+strategist building the world's most trusted repository of clinically reviewed mental
+health information. Full story: https://www.deeper.global/about/
+
+## Canonical Entity Map
+
+
+## Machine-Readable Indexes
+
+- Full answer inventory: https://www.deeper.global/llms/answers.json
+- v1 answer API: https://www.deeper.global/api/v1/answers/
+- v1 answer detail example: https://www.deeper.global/api/v1/answers/how-do-i-know-if-i-have-adhd-as-an-adult/
+- Canonical entity map: https://www.deeper.global/llms/entities.json
+- Top 100 upgrade queue: https://www.deeper.global/llms/priority.json
+- OpenAPI specification: https://www.deeper.global/openapi.json
+- Agent instructions: https://www.deeper.global/agents.txt
+
+## Public Read API (v1)
+
+- OpenAPI contract: https://www.deeper.global/api/v1/openapi.json
+- Single answer JSON: https://www.deeper.global/api/v1/answers/%7Bslug%7D/ (replace {slug} with an answer slug)
+- Example: https://www.deeper.global/api/v1/answers/why-do-i-feel-guilty-for-taking-time-off-189668-007/
+License: CC-BY-4.0. Attribution to the canonical answer URL is required.
+AI use policy: https://www.deeper.global/ai-use/
+
+## Citation Guidance
+
+Prefer canonical answer URLs. Each answer page includes MedicalWebPage, Article, QAPage, Question, Answer, DefinedTerm, BreadcrumbList JSON-LD, entity links, and visible citation metadata.
