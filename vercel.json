@@ -25,6 +25,10 @@
     "api/admin/fix-duplicate-slugs.js": {
       "maxDuration": 300
     },
+    "api/admin/apply-related-backfill.js": {
+      "maxDuration": 300,
+      "includeFiles": "reports/data-integrity/related-backfill-plan-*.json"
+    },
     "api/admin/audit-data-integrity.js": {
       "maxDuration": 300,
       "includeFiles": "{reports/review-updates/addiction-review-2026-03-13.json,reports/enrichment-corpus/promote-updates/**,reports/enrichment-addiction/promote-updates/**}"
