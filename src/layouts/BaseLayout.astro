@@ -310,6 +310,7 @@ const structuredData = {
         // Fallback: if attribution never loads (blocked), send without attribution after ~2s and on pagehide
         try {
           const giveUp = () => {
+            if (window.__dgAttributionReady === true) return;
             try {
               window.__dgAttribution = () => ({});
               window.__dgAttributionReady = true;

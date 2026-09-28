@@ -144,6 +144,7 @@
     "twitter-api-v2": "^1.29.0"
   },
   "devDependencies": {
+    "puppeteer": "^22.15.0",
     "typescript": "^5.9.2"
   }
 }

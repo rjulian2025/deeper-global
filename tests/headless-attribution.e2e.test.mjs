@@ -18,7 +18,10 @@ function startStaticServer(rootDir, { stripAstroScripts = false } = {}) {
       // 404 fallback
       let content = readFileSync(filePath, 'utf8');
       if (stripAstroScripts && filePath.endsWith('.html')) {
+        // Remove bundled Astro module scripts
         content = content.replace(/<script[^>]*src="\/_astro\/[^"]+"[^>]*><\/script>/g, '');
+        // Remove any inline script (module or classic) that imports the attribution init (older heads)
+        content = content.replace(/<script[^>]*>[\s\S]*?import\s+["']\.\.\/scripts\/attribution-init\.mjs["'][\s\S]*?<\/script>/gi, '');
       }
       res.statusCode = 200;
       res.setHeader('Content-Type', filePath.endsWith('.html') ? 'text/html' : 'text/plain');
@@ -29,6 +32,7 @@ function startStaticServer(rootDir, { stripAstroScripts = false } = {}) {
         let fallback = readFileSync(path.join(rootDir, 'index.html'), 'utf8');
         if (stripAstroScripts) {
           fallback = fallback.replace(/<script[^>]*src="\/_astro\/[^"]+"[^>]*><\/script>/g, '');
+          fallback = fallback.replace(/<script[^>]*>[\s\S]*?import\s+["']\.\.\/scripts\/attribution-init\.mjs["'][\s\S]*?<\/script>/gi, '');
         }
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/html');
@@ -62,27 +66,39 @@ test('headless: attribution ready and events carry ft_source; fallback flushes w
   const base = `http://127.0.0.1:${port}`;
   const browser = await puppeteer.launch({ headless: 'new' });
   const page = await browser.newPage();
+  await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36');
   // Normal path
   await page.goto(`${base}/answers/?utm_source=x&utm_medium=social&utm_campaign=test&utm_content=slug`, { waitUntil: 'load' });
   await page.waitForFunction(() => window.__dgAttributionReady === true, { timeout: 5000 });
-  const dl1 = await page.evaluate(() => (window.dataLayer || []).filter((e) => Array.isArray(e) && e[0] === 'event'));
-  assert.ok(dl1.some((e) => e[1] === 'hub_viewed' && e[2] && e[2].ft_source === 'x'), 'hub_viewed missing ft_source on normal path');
+  const dl1 = await page.evaluate(() => (window.dataLayer || []).map((e) => Array.from(e)).filter((e) => e[0] === 'event'));
+  const hv1 = dl1.filter((e) => e[1] === 'hub_viewed');
+  assert.equal(hv1.length, 1, 'hub_viewed must be sent exactly once on normal path');
+  assert.ok(hv1[0][2] && hv1[0][2].ft_source === 'x', 'hub_viewed missing ft_source on normal path');
+  // pagehide should not overwrite attribution
+  await page.evaluate(() => window.dispatchEvent(new Event('pagehide')));
+  await page.evaluate(() => window.deeperTrackEvent('hub_viewed', {}));
+  const dl1b = await page.evaluate(() => (window.dataLayer || []).map((e) => Array.from(e)).filter((e) => e[0] === 'event' && e[1] === 'hub_viewed'));
+  assert.ok(dl1b[dl1b.length - 1][2] && dl1b[dl1b.length - 1][2].ft_source === 'x', 'attribution lost after pagehide');
 
   // Fallback path: serve HTML with Astro module scripts stripped so init never runs
   const { server: server2, port: port2 } = await startStaticServer(out, { stripAstroScripts: true });
   const base2 = `http://127.0.0.1:${port2}`;
   const page2 = await browser.newPage();
+  await page2.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36');
   await page2.goto(`${base2}/answers/?utm_source=y&utm_medium=social&utm_campaign=test&utm_content=slug`, { waitUntil: 'load' });
   // __dgAttributionReady may remain false; fallback should flush within ~3s and push hub_viewed without attribution
-  await page2.waitForFunction(() => (window.dataLayer || []).some((e) => Array.isArray(e) && e[0] === 'event' && e[1] === 'hub_viewed'), { timeout: 3500 });
-  const dl2 = await page2.evaluate(() => (window.dataLayer || []).filter((e) => Array.isArray(e) && e[0] === 'event'));
+  await page2.waitForFunction(() => (window.dataLayer || []).some((e) => Array.from(e)[0] === 'event' && Array.from(e)[1] === 'hub_viewed'), { timeout: 3500 });
+  const dl2 = await page2.evaluate(() => (window.dataLayer || []).map((e) => Array.from(e)).filter((e) => e[0] === 'event'));
   const hv2 = dl2.find((e) => e[1] === 'hub_viewed');
   assert.ok(hv2, 'hub_viewed not sent on fallback');
   const params2 = hv2[2] || {};
   assert.ok(!('ft_source' in params2), 'fallback should not include attribution');
 
-  await browser.close();
-  server.close();
-  server2.close();
+  try {
+    await browser.close();
+  } finally {
+    server.close();
+    server2.close();
+  }
 });
 

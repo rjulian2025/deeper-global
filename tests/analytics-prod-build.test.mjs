@@ -42,10 +42,19 @@ test('production build has no inline script with import/@/ and all inline script
     const scriptRe = /<script([^>]*)>([\s\S]*?)<\/script>/gi;
     let m;
     while ((m = scriptRe.exec(html))) {
-      const attrs = (m[1] || '').toLowerCase();
+      const attrsRaw = m[1] || '';
       const code = (m[2] || '').trim();
-      const srcMatch = attrs.match(/src\s*=\s*"([^"]+)"/i);
+      const srcMatch = attrsRaw.match(/src\s*=\s*"([^"]+)"/i);
       const src = srcMatch ? srcMatch[1] : '';
+      if (src) {
+        const resolved = src.startsWith('/')
+          ? path.join(tmpOut, src)
+          : path.join(path.dirname(file), src);
+        // External third-party scripts (http/https) are OK
+        if (!/^https?:\/\//i.test(src)) {
+          assert.doesNotThrow(() => readFileSync(resolved), `missing script asset: ${src} referenced by ${file}`);
+        }
+      }
       if (!code) {
         // External script: if data:, ensure it is not importing unresolved modules
         if (src && src.startsWith('data:')) {
@@ -56,15 +65,19 @@ test('production build has no inline script with import/@/ and all inline script
         continue;
       }
       // Skip non-JS inline scripts (e.g., application/ld+json)
-      const typeMatch = attrs.match(/type\s*=\s*"([^"]+)"/i);
+      const typeMatch = attrsRaw.match(/type\s*=\s*"([^"]+)"/i);
       const type = typeMatch ? typeMatch[1].toLowerCase() : '';
       if (type && type !== 'text/javascript' && type !== 'module') continue;
       // Inline module scripts must not contain raw imports and must not use @/ alias
       if (type === 'module') {
         assert.ok(!/^\s*import\s/m.test(code), `inline module must not contain raw import in ${file}`);
+        // Also ensure module code parses
+        if (typeof vm.SourceTextModule === 'function') {
+          assert.doesNotThrow(() => new vm.SourceTextModule(code), `inline module failed to parse in ${file}`);
+        }
       }
       assert.ok(!/@\//.test(code), `inline script must not contain @/ alias in ${file}`);
-      // Parse only classic scripts; module parsing is environment-specific
+      // Parse classic scripts
       if (!type || type === 'text/javascript') {
         vm.createScript(code);
       }
@@ -86,12 +99,34 @@ test('production build has no inline script with import/@/ and all inline script
   await walk(tmpOut);
   for (const js of jsFiles) {
     const code = readFileSync(js, 'utf8');
+    // Static ESM imports: import ... from '...'
     const importRe = /import\s+[^'"]*['"]([^'"]+)['"]/g;
     let im;
     while ((im = importRe.exec(code))) {
       const spec = im[1];
       const isBare = !spec.startsWith('.') && !spec.startsWith('/') && !spec.startsWith('data:') && !spec.startsWith('http');
       assert.ok(!isBare, `bare import "${spec}" found in emitted asset ${js}`);
+      // For relative/absolute specs, ensure they resolve to a real file in the build output
+      if (!isBare) {
+        const target = spec.startsWith('/')
+          ? path.join(tmpOut, spec)
+          : path.join(path.dirname(js), spec);
+        assert.doesNotThrow(() => readFileSync(target), `unresolved import "${spec}" in ${js}`);
+      }
+    }
+    // Dynamic imports: import('...')
+    const dynImportRe = /import\(\s*['"]([^'"]+)['"]\s*\)/g;
+    let dm;
+    while ((dm = dynImportRe.exec(code))) {
+      const spec = dm[1];
+      const isBare = !spec.startsWith('.') && !spec.startsWith('/') && !spec.startsWith('data:') && !spec.startsWith('http');
+      assert.ok(!isBare, `bare dynamic import "${spec}" found in emitted asset ${js}`);
+      if (!isBare) {
+        const target = spec.startsWith('/')
+          ? path.join(tmpOut, spec)
+          : path.join(path.dirname(js), spec);
+        assert.doesNotThrow(() => readFileSync(target), `unresolved dynamic import "${spec}" in ${js}`);
+      }
     }
   }
 });
