@@ -1,0 +1,29 @@
+name: Headless E2E (Attribution)
+
+on:
+  pull_request:
+    branches:
+      - production/astro
+    paths-ignore:
+      - '.github/workflows/fix-duplicate-slugs.yml'
+  workflow_dispatch: {}
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run headless E2E test
+        env:
+          HEADLESS_E2E: 'true'
+        run: npm run test:e2e

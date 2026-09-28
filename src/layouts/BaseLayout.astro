@@ -276,7 +276,12 @@ const structuredData = {
         </div>
       </footer>
     </div>
-    {loadAnalytics && <script is:inline define:vars={{ INTENT_EVENT_ENDPOINT }}>
+    {loadAnalytics && (
+      <>
+        <script>
+          import "../scripts/attribution-init.mjs";
+        </script>
+        <script is:inline define:vars={{ INTENT_EVENT_ENDPOINT }}>
       (() => {
         // Obvious bots/headless browsers/crawlers are allowed to crawl (see
         // robots.txt) but must not be counted in GA4 or first-party intent
@@ -287,6 +292,39 @@ const structuredData = {
         const MAX_PARAM_LENGTH = 100;
         const sameHost = window.location.hostname;
         const path = window.location.pathname;
+
+        // Attribution readiness and queuing for early page-load events
+        window.__dgAttribution = window.__dgAttribution || (() => ({}));
+        window.__dgAttributionReady = window.__dgAttributionReady || false;
+        window.__dgEventQueue = Array.isArray(window.__dgEventQueue) ? window.__dgEventQueue : [];
+        const MAX_QUEUE = 50;
+        let flushFallbackTimer = null;
+        const flushQueue = (force = false) => {
+          if (!force && !window.__dgAttributionReady) return;
+          const queued = window.__dgEventQueue.splice(0);
+          if (!queued.length) return;
+          for (const item of queued) {
+            try { window.deeperTrackEvent(item.name, item.params || {}); } catch {}
+          }
+        };
+        // Fallback: if attribution never loads (blocked), send without attribution after ~2s and on pagehide
+        try {
+          const giveUp = () => {
+            if (window.__dgAttributionReady === true) return;
+            try {
+              window.__dgAttribution = () => ({});
+              window.__dgAttributionReady = true;
+              flushQueue(true);
+            } catch {}
+          };
+          flushFallbackTimer = window.setTimeout(giveUp, 2000);
+          window.addEventListener('pagehide', giveUp, { once: true });
+          // Allow attribution-init to clear timer and flush when ready
+          window.__dgOnAttributionReady = () => {
+            try { if (flushFallbackTimer) clearTimeout(flushFallbackTimer); } catch {}
+            flushQueue();
+          };
+        } catch {}
 
         const clean = (value, maxLength = MAX_PARAM_LENGTH) => {
           if (typeof value !== 'string') return undefined;
@@ -400,12 +438,26 @@ const structuredData = {
           }
         };
 
-        window.deeperTrackEvent = (eventName, params = {}) => {
-          const compactedParams = compactParams(params);
+        const currentAttribution = () => {
+          try { return (window.__dgAttribution && window.__dgAttribution()) || {}; } catch { return {}; }
+        };
+        const sendTrackedEventNow = (eventName, params, withoutAttribution = false) => {
+          const merged = withoutAttribution ? params : { ...currentAttribution(), ...params };
+          const compactedParams = compactParams(merged);
           if (typeof window.gtag === 'function') {
             window.gtag('event', eventName, compactedParams);
           }
           sendFirstPartyIntentEvent(eventName, compactedParams);
+        };
+
+        window.deeperTrackEvent = (eventName, params = {}) => {
+          if (!window.__dgAttributionReady) {
+            if (window.__dgEventQueue.length < MAX_QUEUE) {
+              window.__dgEventQueue.push({ name: eventName, params });
+            }
+            return;
+          }
+          sendTrackedEventNow(eventName, params);
         };
 
         if (document.querySelector('.answer-layout')) {
@@ -504,12 +556,11 @@ const structuredData = {
 
           const href = link.getAttribute('href') ?? '';
           const label = clean(link.textContent ?? '', 80);
-          const pageUtmParams = new URLSearchParams(window.location.search);
-          const landingUtm = {
-            utm_source: pageUtmParams.get('utm_source') ?? undefined,
-            utm_medium: pageUtmParams.get('utm_medium') ?? undefined,
-            utm_campaign: pageUtmParams.get('utm_campaign') ?? undefined,
-            utm_content: pageUtmParams.get('utm_content') ?? undefined,
+          const ctaLocationFromEl = (el) => {
+            if (el.closest('.nav-drawer-inner')) return 'drawer';
+            if (el.closest('.site-nav-links') || el.closest('header')) return 'nav';
+            if (el.closest('footer')) return 'footer';
+            return 'body';
           };
           const trackDeeperOutboundClick = (target, placement) => {
             const destinationDomain = target.hostname.replace(/^www\./, '');
@@ -529,12 +580,12 @@ const structuredData = {
 
           if (link.matches('[data-cta="primary"]')) {
             window.deeperTrackEvent('primary_cta_clicked', {
-              ...landingUtm,
+              cta_location: ctaLocationFromEl(link),
             });
           }
           if (/^tel:\+14046880088$/i.test(href) || link.matches('[data-cta="call"]')) {
             window.deeperTrackEvent('click_to_call', {
-              ...landingUtm,
+              cta_location: ctaLocationFromEl(link),
             });
           }
 
@@ -542,6 +593,7 @@ const structuredData = {
             window.deeperTrackEvent('hub_link_clicked', {
               link_label: label,
               target_path: href,
+              cta_location: ctaLocationFromEl(link),
             });
           }
 
@@ -599,6 +651,8 @@ const structuredData = {
           }
         });
       })();
-    </script>}
+    </script>
+      </>
+    )}
   </body>
 </html>

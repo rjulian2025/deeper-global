@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "check": "astro build",
     "test": "npm run build:preview && node --test tests/*.test.mjs",
+    "test:e2e": "HEADLESS_E2E=true node --test tests/headless-attribution.e2e.test.mjs",
     "validate:preview": "DIST_DIR=dist-preview node scripts/validate-preview-output.mjs",
     "audit:authority": "node scripts/audit-authority-data.mjs",
     "audit:data-integrity": "node scripts/audit-data-integrity.mjs",
@@ -143,6 +144,7 @@
     "twitter-api-v2": "^1.29.0"
   },
   "devDependencies": {
+    "puppeteer": "^22.15.0",
     "typescript": "^5.9.2"
   }
 }
