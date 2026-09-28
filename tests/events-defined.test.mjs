@@ -23,7 +23,7 @@ test('exported GA4 event wrappers exist and include attribution params', () => {
   const localStorage = makeStorage();
   const sessionStorage = makeStorage();
   const storage = { localStorage, sessionStorage };
-  captureAttributionOnLanding(new URL('https://www.deeper.global/answers/?utm_source=x&utm_medium=social&utm_campaign=abc&utm_content=slug'), 'https://twitter.com/x', storage);
+  captureAttributionOnLanding(new URL('https://www.deeper.global/answers/?utm_source=x&utm_medium=social&utm_campaign=abc&utm_content=slug&utm_term=t1&gclid=GL-123'), 'https://twitter.com/x', storage);
 
   const calls = [];
   global.window = {
@@ -51,6 +51,16 @@ test('exported GA4 event wrappers exist and include attribution params', () => {
     if (['click_to_call', 'primary_cta_clicked', 'generate_lead', 'lead_message_submit', 'book_call'].includes(c.name)) {
       assert.ok(typeof at.cta_location === 'string', `${c.name} should include cta_location`);
     }
+    // Legacy UTM set from ONE chosen touch, and gclid present when available
+    for (const k of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid']) {
+      assert.ok(k in at, `${c.name} missing ${k}`);
+    }
+    assert.equal(at.utm_source, 'x');
+    assert.equal(at.utm_medium, 'social');
+    assert.equal(at.utm_campaign, 'abc');
+    assert.equal(at.utm_content, 'slug');
+    assert.equal(at.utm_term, 't1');
+    assert.equal(at.gclid, 'GL-123');
   }
 });
 

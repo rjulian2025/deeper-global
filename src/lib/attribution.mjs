@@ -89,7 +89,9 @@ export function captureAttributionOnLanding(locationLike, referrer, storageOverr
     if (!local || !session) return;
 
     const nowIso = new Date().toISOString();
-    const firstTouchExisting = safeParseJson(local.getItem(FIRST_TOUCH_KEY));
+    const firstTouchParsed = safeParseJson(local.getItem(FIRST_TOUCH_KEY));
+    // Treat non-object (string/array/number/boolean) and invalid JSON as "missing"
+    const firstTouchExisting = normalizeTouch(firstTouchParsed);
     if (!firstTouchExisting) {
       const firstTouch = {
         ...params,
@@ -154,6 +156,8 @@ export function getAttributionParams(storageOverride = {}) {
     const firstTouch = normalizeTouch(safeParseJson(local.getItem(FIRST_TOUCH_KEY))) ?? {};
     const lastTouch = normalizeTouch(safeParseJson(session.getItem(LAST_TOUCH_KEY))) ?? {};
 
+    // Choose one whole touch for legacy UTM/gclid: prefer last when it has a source; otherwise first
+    const chosen = lastTouch && typeof lastTouch === 'object' && lastTouch.source ? lastTouch : firstTouch;
     const params = {
       // first-touch
       ft_source: firstTouch.source,
@@ -165,6 +169,14 @@ export function getAttributionParams(storageOverride = {}) {
       lt_medium: lastTouch.medium,
       lt_campaign: lastTouch.campaign,
       lt_content: lastTouch.content,
+      // legacy UTM params from ONE whole touch (no field-by-field mixing)
+      utm_source: chosen.source,
+      utm_medium: chosen.medium,
+      utm_campaign: chosen.campaign,
+      utm_content: chosen.content,
+      utm_term: chosen.term,
+      // gclid from the same chosen touch
+      gclid: chosen.gclid,
       lt_referrer: lastTouch.referrer,
       // shared context
       referrer: firstTouch.referrer,
