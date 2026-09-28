@@ -13,7 +13,7 @@ On every landing:
 
 Client module: `src/lib/attribution.mjs`
 - `captureAttributionOnLanding(location, referrer)`
-- `getAttributionParams()` → `{ ft_source, ft_medium, ft_campaign, ft_content, lt_source, lt_medium, lt_campaign, lt_content, lt_referrer, referrer, landing_page }`
+- `getAttributionParams()` → `{ ft_source, ft_medium, ft_campaign, ft_content, lt_source, lt_medium, lt_campaign, lt_content, utm_source, utm_medium, utm_campaign, utm_content, utm_term, gclid, lt_referrer, referrer, landing_page }`
 - All values are trimmed and truncated to 100 chars.
 
 Used automatically in `src/layouts/BaseLayout.astro` for GA4 events (gated to production hosts).
@@ -23,6 +23,8 @@ Used automatically in `src/layouts/BaseLayout.astro` for GA4 events (gated to pr
 All GA4 events include:
 - `ft_source`, `ft_medium`, `ft_campaign`, `ft_content`
 - `lt_source`, `lt_medium`, `lt_campaign`, `lt_content`
+- Legacy UTM set from ONE whole touch (prefer `lt` when it has a `source`, otherwise `ft`): `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`
+- `gclid` from the same chosen touch as the legacy UTM set
 - `referrer`, `landing_page`, `page_path`
 - `cta_location` where applicable (`header`, `nav`, `footer`, or `body`)
 
@@ -74,6 +76,12 @@ Register these GA4 custom dimensions/metrics as needed:
 - `lt_medium`
 - `lt_campaign`
 - `lt_content`
+- `utm_source`
+- `utm_medium`
+- `utm_campaign`
+- `utm_content`
+- `utm_term`
+- `gclid`
 - `referrer`
 - `landing_page`
 - `page_path` (already present)
