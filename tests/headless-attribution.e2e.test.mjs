@@ -73,9 +73,22 @@ test('headless: attribution ready and events carry ft_source; fallback flushes w
   const res = spawnSync(process.platform === 'win32' ? 'npx.cmd' : 'npx', ['astro', 'build', '--outDir', out], { env, cwd: process.cwd(), stdio: 'inherit' });
   assert.equal(res.status, 0, 'production build must succeed');
 
+  // Register resource cleanups immediately so failures exit fast without hangs
+  const cleanups = [];
+  t.after(async () => {
+    for (const fn of cleanups.reverse()) {
+      try { await fn(); } catch {}
+    }
+  });
+
   const { server, port } = await startStaticServer(out);
+  cleanups.push(() => new Promise((resolve) => {
+    try { server.closeAllConnections?.(); } catch {}
+    try { server.close(() => resolve()); } catch { resolve(); }
+  }));
   const base = `http://127.0.0.1:${port}`;
   const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox','--disable-setuid-sandbox'] });
+  cleanups.push(() => browser.close().catch(() => {}));
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36');
   // Normal path
@@ -93,6 +106,10 @@ test('headless: attribution ready and events carry ft_source; fallback flushes w
 
   // Fallback path: serve HTML with Astro module scripts stripped so init never runs
   const { server: server2, port: port2 } = await startStaticServer(out, { stripAstroScripts: true });
+  cleanups.push(() => new Promise((resolve) => {
+    try { server2.closeAllConnections?.(); } catch {}
+    try { server2.close(() => resolve()); } catch { resolve(); }
+  }));
   const base2 = `http://127.0.0.1:${port2}`;
   const page2 = await browser.newPage();
   await page2.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36');
@@ -106,12 +123,6 @@ test('headless: attribution ready and events carry ft_source; fallback flushes w
   assert.ok(hv2, 'hub_viewed not sent on fallback');
   const params2 = hv2[2] || {};
   assert.ok(!('ft_source' in params2), 'fallback should not include attribution');
-
-  try {
-    await browser.close();
-  } finally {
-    server.close();
-    server2.close();
-  }
+  // browser and servers will be closed by t.after() cleanup
 });
 
