@@ -55,3 +55,44 @@ test('corrupt and non-object JSON are treated as missing and overwritten on next
   assert.equal(lt2.source, 'z');
 });
 
+test('last-touch never merges previous last-touch fields (no M4b mixing across landings)', () => {
+  const localStorage = makeStorage();
+  const sessionStorage = makeStorage();
+  const storage = { localStorage, sessionStorage };
+  // First landing with full lt
+  captureAttributionOnLanding(new URL('https://www.deeper.global/answers/?utm_source=lt1&utm_medium=social&utm_campaign=camp1&utm_content=c1'), 'https://twitter.com/a', storage);
+  // Second landing with partial lt (no campaign/content)
+  captureAttributionOnLanding(new URL('https://www.deeper.global/answers/?utm_source=lt2&utm_medium=social'), 'https://twitter.com/b', storage);
+  const at = getAttributionParams(storage);
+  // Ensure we do not retain previous lt campaign/content
+  assert.equal(at.lt_source, 'lt2');
+  assert.equal(at.lt_medium, 'social');
+  assert.equal(at.lt_campaign, undefined);
+  assert.equal(at.lt_content, undefined);
+  // Legacy utm_* should also come only from the chosen (lt) touch with no mixing
+  assert.equal(at.utm_source, 'lt2');
+  assert.equal(at.utm_medium, 'social');
+  assert.equal(at.utm_campaign, undefined);
+  assert.equal(at.utm_content, undefined);
+});
+
+test('all corrupt forms (bad JSON, null, string, array, number, boolean) are treated as missing for both ft and lt', () => {
+  const localStorage = makeStorage();
+  const sessionStorage = makeStorage();
+  const storage = { localStorage, sessionStorage };
+  const corruptValues = ['{bad', null, 'x', [], 5, true];
+  for (const val of corruptValues) {
+    localStorage.clear();
+    sessionStorage.clear();
+    // Seed corrupt state
+    localStorage.setItem(T.FIRST_TOUCH_KEY, typeof val === 'string' ? val : JSON.stringify(val));
+    sessionStorage.setItem(T.LAST_TOUCH_KEY, typeof val === 'string' ? val : JSON.stringify(val));
+    // Next landing must overwrite both touches
+    captureAttributionOnLanding(new URL('https://www.deeper.global/answers/?utm_source=src&utm_medium=med&utm_campaign=cmp&utm_content=ctt&utm_term=tt&gclid=G1'), 'https://example.com/r', storage);
+    const ft = JSON.parse(localStorage.getItem(T.FIRST_TOUCH_KEY));
+    const lt = JSON.parse(sessionStorage.getItem(T.LAST_TOUCH_KEY));
+    assert.equal(ft.source, 'src');
+    assert.equal(lt.source, 'src');
+  }
+});
+

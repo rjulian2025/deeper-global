@@ -130,7 +130,8 @@ function safeParseJson(text) {
 }
 
 function normalizeTouch(obj) {
-  if (!obj || typeof obj !== 'object') return null;
+  // Only accept plain objects; arrays, null, numbers, booleans, and strings are invalid
+  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return null;
   return {
     source: safeTruncate(obj.source),
     medium: safeTruncate(obj.medium),
