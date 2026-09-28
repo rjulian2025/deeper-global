@@ -22,6 +22,8 @@ function startStaticServer(rootDir, { stripAstroScripts = false } = {}) {
         content = content.replace(/<script[^>]*src="\/_astro\/[^"]+"[^>]*><\/script>/g, '');
         // Remove any inline script (module or classic) that imports the attribution init (older heads)
         content = content.replace(/<script[^>]*>[\s\S]*?import\s+["']\.\.\/scripts\/attribution-init\.mjs["'][\s\S]*?<\/script>/gi, '');
+        // Remove all inline module scripts (compiled bundles sometimes inline code without explicit imports)
+        content = content.replace(/<script\s+type="module"(?![^>]*\bsrc=)[^>]*>[\s\S]*?<\/script>/gi, '');
       }
       res.statusCode = 200;
       res.setHeader('Content-Type', filePath.endsWith('.html') ? 'text/html' : 'text/plain');
@@ -33,6 +35,7 @@ function startStaticServer(rootDir, { stripAstroScripts = false } = {}) {
         if (stripAstroScripts) {
           fallback = fallback.replace(/<script[^>]*src="\/_astro\/[^"]+"[^>]*><\/script>/g, '');
           fallback = fallback.replace(/<script[^>]*>[\s\S]*?import\s+["']\.\.\/scripts\/attribution-init\.mjs["'][\s\S]*?<\/script>/gi, '');
+          fallback = fallback.replace(/<script\s+type="module"(?![^>]*\bsrc=)[^>]*>[\s\S]*?<\/script>/gi, '');
         }
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/html');
@@ -65,7 +68,8 @@ test('headless: attribution ready and events carry ft_source; fallback flushes w
   const { server, port } = await startStaticServer(out);
   const base = `http://127.0.0.1:${port}`;
   const browser = await puppeteer.launch({ headless: 'new' });
-  const page = await browser.newPage();
+  const context1 = await browser.createIncognitoBrowserContext();
+  const page = await context1.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36');
   // Normal path
   await page.goto(`${base}/answers/?utm_source=x&utm_medium=social&utm_campaign=test&utm_content=slug`, { waitUntil: 'load' });
@@ -83,7 +87,8 @@ test('headless: attribution ready and events carry ft_source; fallback flushes w
   // Fallback path: serve HTML with Astro module scripts stripped so init never runs
   const { server: server2, port: port2 } = await startStaticServer(out, { stripAstroScripts: true });
   const base2 = `http://127.0.0.1:${port2}`;
-  const page2 = await browser.newPage();
+  const context2 = await browser.createIncognitoBrowserContext();
+  const page2 = await context2.newPage();
   await page2.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36');
   await page2.goto(`${base2}/answers/?utm_source=y&utm_medium=social&utm_campaign=test&utm_content=slug`, { waitUntil: 'load' });
   // __dgAttributionReady may remain false; fallback should flush within ~3s and push hub_viewed without attribution
