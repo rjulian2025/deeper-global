@@ -1,0 +1,5 @@
+email,first_name,last_name,status
+sent1@example.com,Alice,One,sent
+replied@example.com,Bob,Two,replied
+bounced@example.com,Carol,Three,bounced
+unsub@example.com,Dave,Four,unsubscribed

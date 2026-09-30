@@ -1,0 +1,9 @@
+email,First Name,Last Name,Company,Website,City,State
+fresh1@therapypractice.com,Jane,Doe,Doe Therapy,https://doetherapy.com,Austin,TX
+replied@example.com,Bob,Two,Overlap Practice,,,
+sent1@example.com,Alice,One,Old Contact,,,
+info@clinic.com,Front,Desk,Clinic Co,,,
+bad-email,Invalid,Row,,,,
+fresh1@therapypractice.com,Jane,Doe,Duplicate Inc,,,
+plumber@pipes.com,Mike,Pipe,Pipe Plumbing Co,https://pipes.com,Dallas,TX
+info@known-practice.com,Shared,Inbox,Known Practice,https://known-practice.com,Denver,CO
