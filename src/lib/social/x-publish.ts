@@ -10,6 +10,14 @@ function getXWeightedLength(text: string) {
   return text.replace(/https?:\/\/\S+/g, 'x'.repeat(X_TCO_URL_LENGTH)).length;
 }
 
+// X shortens all URLs to t.co links counted as this many characters.
+const X_TCO_URL_LENGTH = 23;
+const X_MAX_WEIGHTED_LENGTH = 280;
+
+function getXWeightedLength(text: string) {
+  return text.replace(/https?:\/\/\S+/g, 'x'.repeat(X_TCO_URL_LENGTH)).length;
+}
+
 export type XCredentials = {
   appKey: string;
   appSecret: string;
