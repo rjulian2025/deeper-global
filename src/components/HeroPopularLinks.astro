@@ -4,6 +4,8 @@ export type HeroPopularLink = {
   label: string;
 };
 
+type AsideVariant = 'a' | 'b' | 'c';
+
 type Props = {
   links: HeroPopularLink[];
   variant?: 'before' | 'a' | 'b' | 'c';
@@ -17,6 +19,14 @@ const fallbackLinks: HeroPopularLink[] = [
   { href: '/answers/', label: 'Relationship anxiety' },
 ];
 const items = links.length ? links : fallbackLinks;
+
+const asideVariants: Record<AsideVariant, { ariaLabel: string; label: string; labelClass: string; listClass: string }> = {
+  a: { ariaLabel: "Editor's reading recommendations", label: "Editor's picks", labelClass: 'hero-popular-eyebrow', listClass: 'hero-popular-list' },
+  b: { ariaLabel: 'Common starting points', label: 'People often start with', labelClass: 'hero-popular-eyebrow', listClass: 'hero-popular-grid' },
+  c: { ariaLabel: 'Start here recommendations', label: 'Start here', labelClass: 'hero-popular-heading', listClass: 'hero-popular-start-list' },
+};
+
+const asideConfig = variant === 'before' ? null : asideVariants[variant];
 ---
 
 {
@@ -27,32 +37,10 @@ const items = links.length ? links : fallbackLinks;
         <a href={link.href}>{link.label}</a>
       ))}
     </div>
-  ) : variant === 'a' ? (
-    <aside class="hero-popular hero-popular--a" aria-label="Editor's reading recommendations">
-      <p class="hero-popular-eyebrow">Editor's picks</p>
-      <ul class="hero-popular-list">
-        {items.map((link) => (
-          <li>
-            <a href={link.href}>{link.label}</a>
-          </li>
-        ))}
-      </ul>
-    </aside>
-  ) : variant === 'b' ? (
-    <aside class="hero-popular hero-popular--b" aria-label="Common starting points">
-      <p class="hero-popular-eyebrow">People often start with</p>
-      <ul class="hero-popular-grid">
-        {items.map((link) => (
-          <li>
-            <a href={link.href}>{link.label}</a>
-          </li>
-        ))}
-      </ul>
-    </aside>
-  ) : (
-    <aside class="hero-popular hero-popular--c" aria-label="Start here recommendations">
-      <p class="hero-popular-heading">Start here</p>
-      <ul class="hero-popular-start-list">
+  ) : asideConfig && (
+    <aside class={`hero-popular hero-popular--${variant}`} aria-label={asideConfig.ariaLabel}>
+      <p class={asideConfig.labelClass}>{asideConfig.label}</p>
+      <ul class={asideConfig.listClass}>
         {items.map((link) => (
           <li>
             <a href={link.href}>{link.label}</a>
